@@ -1,0 +1,32 @@
+table 'GP Floor'
+	lineageTag: 4ade2737-1a91-4f5b-a91a-e62b98ff9115
+
+	measure 'GP Floor Value' = SELECTEDVALUE('GP Floor'[GP Floor])
+		lineageTag: 5f0ece96-f935-48f5-8b2d-6bd62641850b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'At Or Above Floor' =
+			
+			VAR gp = [GP %]
+			VAR floor = [GP Floor Value]
+			RETURN
+			IF( gp >= floor, "Yes", "No" )
+		lineageTag: 7528d5ff-3172-48bc-bbc0-3535adbdb348
+
+	column 'GP Floor'
+		formatString: 0%;-0%;0%
+		lineageTag: bb244a29-9834-4ec5-8682-b24dbeae5586
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata = {"version":0}
+
+		annotation SummarizationSetBy = User
+
+	partition 'GP Floor' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.01)
+
+	annotation PBI_Id = 2d2213986a9c4605a5ac384189ce41c0
+

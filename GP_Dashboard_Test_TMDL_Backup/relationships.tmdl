@@ -1,0 +1,68 @@
+relationship b12d9333-31a6-4b64-932a-bc5fdf9cde26
+	joinOnDateBehavior: datePartOnly
+	fromColumn: QUADRA_JOBS.'Event Date'
+	toColumn: LocalDateTable_1c5fc97e-cfea-4696-9f4d-3e1a1467a9fd.Date
+
+relationship 620a24cd-eb4f-48da-8adb-7cd58264892f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: QUADRA_JOBS.Enddate
+	toColumn: LocalDateTable_0503f533-5201-45d5-9a42-3771896ef5de.Date
+
+relationship c1c0556d-a306-4c8d-a5aa-1f461564d1c2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOBS_D.'Start Date'
+	toColumn: LocalDateTable_f51e4c0c-ae80-4f1e-87ac-5edd782b340d.Date
+
+relationship 2eafbda3-13d6-4f0d-9347-208f26f3e3a0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOBS_D.'Target Completion Date'
+	toColumn: LocalDateTable_7a941b06-edc1-4ba7-af13-7e0183ae2eee.Date
+
+relationship d5282259-b232-43e3-b2b5-200e1b0b79e0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOBS_D.'Act Completion Date'
+	toColumn: LocalDateTable_49635eab-0f8f-4957-8b14-acceb73cb6b0.Date
+
+relationship 52c6c7d2-3e07-441c-ab86-53e49d270430
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOBS_D.'Warranty Start'
+	toColumn: LocalDateTable_eaa3c432-d083-4f82-9d4b-43e187652926.Date
+
+relationship befe4193-e2d8-4d49-a565-6ea2cbe536d5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOBS_D.'Warranty End'
+	toColumn: LocalDateTable_3a1f621c-3673-4258-ab6d-6a3b9eee339f.Date
+
+relationship 20089509-a545-7877-da91-1ee6c38616f0
+	fromColumn: QUADRA_JOBS.'Job Number'
+	toColumn: JOBS_D.'Job Number'
+
+relationship f4c1bc70-ca90-4a37-84bc-28937638bd3f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FYCalendar.Date
+	toColumn: LocalDateTable_75bd3a0f-989c-4a2c-87df-113f83dee7a8.Date
+
+relationship 99e99fca-7916-4a3c-85cd-a1726109591f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FYCalendar.'Fiscal Start Of Year'
+	toColumn: LocalDateTable_33a81e29-b93a-47e6-9d26-496b68471450.Date
+
+relationship c29ff1c3-c953-452a-afc0-c591d7172e0b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FYCalendar.'Fiscal End Of Year'
+	toColumn: LocalDateTable_e16781d1-4e65-4bb2-81b0-59ff4b0265b1.Date
+
+relationship 95e7af7c-c846-4a8a-a0c7-331f8d82f4a6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FYCalendar.'Fiscal Start Of Quarter'
+	toColumn: LocalDateTable_aa06de53-58c9-4350-995a-1e4a41d0ceea.Date
+
+relationship 2768b1ef-8c1e-4cff-82f4-761bc070119c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FYCalendar.'Fiscal End Of Quarter'
+	toColumn: LocalDateTable_51e5f02a-e988-4034-afd5-3a86e5e0b9f2.Date
+
+relationship c22f8d8b-7adc-e77b-58c4-5901b4f7730b
+	fromColumn: QUADRA_JOBS.Startdate
+	toColumn: FYCalendar.Date
+
