@@ -27,3 +27,12 @@ This folder contains PBIP-based Power BI projects. Use the workflow below to kee
 
 - When a version is ready, merge to main and tag the release (e.g., crr-v05).
 - Optionally export a .pbix for distribution, but do not commit it.
+
+## GitHub PR workflow
+
+1. Push your branch to GitHub.
+2. Open the repo on GitHub.
+3. Click "Compare & pull request" for your branch.
+4. Confirm base is main, add a title/description.
+5. Review "Files changed".
+6. Click "Merge pull request".
