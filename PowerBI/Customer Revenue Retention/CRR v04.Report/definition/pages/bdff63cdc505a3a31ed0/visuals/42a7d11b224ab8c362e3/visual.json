@@ -4,10 +4,10 @@
   "position": {
     "x": 31.546391752577321,
     "y": 158.659793814433,
-    "z": 15000,
+    "z": 14000,
     "height": 51.958762886597938,
     "width": 397.11340206185571,
-    "tabOrder": 14000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "advancedSlicerVisual",
@@ -182,6 +182,48 @@
             }
           }
         }
+      ],
+      "accentBar": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "selection:selected"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -200,5 +242,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bc2ee2250096ecbd9a50",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Revenue_Stream_D"
+              }
+            },
+            "Property": "Revenue Stream"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

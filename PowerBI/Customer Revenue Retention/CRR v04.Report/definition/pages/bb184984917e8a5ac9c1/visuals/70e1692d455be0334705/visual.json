@@ -1,0 +1,196 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "70e1692d455be0334705",
+  "position": {
+    "x": 31.818181818181817,
+    "y": 351.81818181818181,
+    "z": 2000,
+    "height": 318.18181818181813,
+    "width": 1471.8181818181818,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "Contract Number"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.Contract Number",
+              "nativeQueryRef": "Contract Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "Contract Description"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.Contract Description",
+              "nativeQueryRef": "Contract Description"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Gross Profit"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Gross Profit",
+              "nativeQueryRef": "Service Contract Gross Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue",
+              "nativeQueryRef": "Service Contract Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Cost",
+              "nativeQueryRef": "Service Contract Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Gross Profit %"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Gross Profit %",
+              "nativeQueryRef": "Service Contract Gross Profit %"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "Renewal Date"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.Renewal Date",
+              "nativeQueryRef": "Renewal Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "IsActiveContract"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.IsActiveContract",
+              "nativeQueryRef": "IsActiveContract"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "YearIndex"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.YearIndex",
+              "nativeQueryRef": "YearIndex"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SERVCONTRACTS_D"
+                  }
+                },
+                "Property": "Renewal Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "SERVCONTRACTS_D.Contract Description"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "30ebc47e0a310b259900",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SERVCONTRACTS_D"
+              }
+            },
+            "Property": "IsActiveContractYear"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  }
+}

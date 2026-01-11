@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "9cd829df07062468a514",
   "position": {
-    "x": 20.412371134020621,
-    "y": 316.39175257731961,
+    "x": 20.273037542662117,
+    "y": 316.07508532423208,
     "z": 5000,
-    "height": 332.16494845360825,
-    "width": 200.41237113402062,
+    "height": 332.6621160409556,
+    "width": 200.88737201365186,
     "tabOrder": 4000
   },
   "visual": {
@@ -44,10 +44,10 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Revenue (By Stream)"
+                  "Property": "Revenue (By Stream - Completed Only)"
                 }
               },
-              "queryRef": "_Key Measures.Revenue (By Stream)",
+              "queryRef": "_Key Measures.Revenue (By Stream - Completed Only)",
               "nativeQueryRef": "Revenue",
               "displayName": "Revenue"
             },
@@ -59,12 +59,11 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Total Revenue Trend vs PY"
+                  "Property": "Total Revenue (FY As Of)"
                 }
               },
-              "queryRef": "_Key Measures.Total Revenue Trend vs PY",
-              "nativeQueryRef": "vs PY",
-              "displayName": "vs PY"
+              "queryRef": "_Key Measures.Total Revenue (FY As Of)",
+              "nativeQueryRef": "Total Revenue (FY As Of)"
             }
           ]
         }
@@ -167,52 +166,6 @@
             }
           }
         }
-      ],
-      "columnFormatting": [
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Center'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.Total Revenue Trend vs PY"
-          }
-        },
-        {
-          "properties": {
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.Revenue (By Stream)"
-          }
-        }
-      ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "83.27340344404737D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.Revenue (By Stream)"
-          }
-        }
       ]
     },
     "visualContainerObjects": {
@@ -231,5 +184,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "66a9bda3d681600230d1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Quarter Label"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "af0c054760e35cb48979",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Revenue (By Stream - Completed Only)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b84bbbcc416625c0183d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue (FY As Of)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

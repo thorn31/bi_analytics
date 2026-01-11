@@ -1,0 +1,126 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "aafd6159c7bc7b5765b9",
+  "position": {
+    "x": 46,
+    "y": 123,
+    "z": 4000,
+    "height": 149,
+    "width": 1234,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customer Lifecycle Status"
+                }
+              },
+              "queryRef": "_Key Measures.Customer Status",
+              "nativeQueryRef": "Customer Lifecycle Status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Months Since Last Billing"
+                }
+              },
+              "queryRef": "_Key Measures.Months Since Last Billing",
+              "nativeQueryRef": "Months Since Last Billing"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "T&M Spend per Maintenance $ (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.T&M Spend per Maintenance $ (TTM)",
+              "nativeQueryRef": "T&M Spend per Maintenance $ (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Spend per Maintenance $ (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Project Spend per Maintenance $ (TTM)",
+              "nativeQueryRef": "Project Spend per Maintenance $ (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total T&M Spend per Total Maintenance $ (Snapshot)"
+                }
+              },
+              "queryRef": "_Key Measures.Total T&M Spend per Total Maintenance $ (Snapshot)",
+              "nativeQueryRef": "Total T&M Spend per Total Maintenance $ (Snapshot)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Project Spend per Total Maintenance $ (Snapshot)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Project Spend per Total Maintenance $ (Snapshot)",
+              "nativeQueryRef": "Total Project Spend per Total Maintenance $ (Snapshot)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Customer Lifecycle Status"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

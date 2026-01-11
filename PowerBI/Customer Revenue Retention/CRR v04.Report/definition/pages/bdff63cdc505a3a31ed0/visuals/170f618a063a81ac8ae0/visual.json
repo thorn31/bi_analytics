@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "170f618a063a81ac8ae0",
   "position": {
-    "x": 20.412371134020621,
-    "y": 238.45360824742269,
+    "x": 20.273037542662117,
+    "y": 238.66894197952217,
     "z": 7000,
-    "height": 77.938144329896915,
-    "width": 200.41237113402062,
+    "height": 77.406143344709889,
+    "width": 200.88737201365186,
     "tabOrder": 6000
   },
   "visual": {
@@ -23,12 +23,11 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Revenue (By Stream)"
+                  "Property": "Total Revenue (Completed Months Only)"
                 }
               },
-              "queryRef": "_Key Measures.Revenue (By Stream)",
-              "nativeQueryRef": "Revenue (By Stream)",
-              "displayName": "Total Revenue"
+              "queryRef": "_Key Measures.Total Revenue (Completed Months Only)",
+              "nativeQueryRef": "Total Revenue (Completed Months Only)"
             }
           ]
         }
@@ -43,7 +42,7 @@
                     "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Revenue (By Stream)"
+                "Property": "Total Revenue (Completed Months Only)"
               }
             },
             "direction": "Descending"
@@ -158,6 +157,75 @@
             "id": "default"
           }
         }
+      ],
+      "fillCustom": [
+        {
+          "properties": {
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "cardCalloutArea": [
+        {
+          "properties": {
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -194,8 +262,39 @@
             }
           }
         }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5bc3e828d58290d38557",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue (Completed Months Only)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

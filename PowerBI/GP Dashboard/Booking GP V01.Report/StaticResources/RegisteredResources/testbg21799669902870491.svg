@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+  <defs>
+    <!-- Main canvas background (#F4F6F8) with a very subtle vertical gradient to reduce banding -->
+    <linearGradient id="pageBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F7F9FB"></stop>
+      <stop offset="55%" stop-color="#F4F6F8"></stop>
+      <stop offset="100%" stop-color="#EEF2F5"></stop>
+    </linearGradient>
+
+    <!-- Subtle diagonal lift (kept extremely muted) -->
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"></stop>
+      <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.08"></stop>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- LAYOUT CONSTANTS (for reference)
+       Canvas: 1920 x 1080
+       Header height: 80
+       Left filter pane width: 320
+       Divider stroke: 1px
+       Recommended content gutter from pane divider: 24
+  -->
+
+  <!-- Main page background -->
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#pageBg)"></rect>
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#sheen)"></rect>
+
+  <!-- Header bar (white) -->
+  <rect x="0" y="0" width="1920" height="80" fill="#FFFFFF"></rect>
+  <line x1="0" y1="80" x2="1920" y2="80" stroke="#D9D9D9" stroke-width="1"></line>
+
+  <!-- Left filter pane (white, aligned to header) -->
+  <rect x="0" y="80" width="320" height="1000" fill="#FFFFFF"></rect>
+  <line x1="320" y1="80" x2="320" y2="1080" stroke="#D9D9D9" stroke-width="1"></line>
+
+  <!-- Optional: pane section header area -->
+  <rect x="0" y="80" width="320" height="60" fill="#FFFFFF"></rect>
+  <line x1="0" y1="140" x2="320" y2="140" stroke="#EFEFEF" stroke-width="1"></line>
+
+  <!-- Minimal header text placeholders (delete if you want a pure background only) -->
+  <text x="360" y="50" font-family="Segoe UI, Arial" font-size="22" fill="#2B2B2B">Report Title</text>
+  <text x="360" y="72" font-family="Segoe UI, Arial" font-size="12" fill="#6B6B6B">Context / Last refresh / Breadcrumb</text>
+
+  <!-- Minimal filter pane label placeholder (delete if you want a pure background only) -->
+  <text x="20" y="120" font-family="Segoe UI, Arial" font-size="14" fill="#2B2B2B">Filters</text>
+
+  <!-- NOTE:
+       If you want this as a CLEAN background asset:
+       - Delete the <text> elements above (Report Title/Context/Filters).
+       Everything else is just background + structural panels/dividers.
+  -->
+</svg>

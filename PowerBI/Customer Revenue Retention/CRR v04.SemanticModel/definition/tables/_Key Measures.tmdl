@@ -1298,7 +1298,7 @@ table '_Key Measures'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Is In Top N' = ```
+	measure 'Is In Top N Customers' = ```
 			
 			VAR N = SELECTEDVALUE ( 'Top N'[Top N], 10 )
 			RETURN
@@ -1574,6 +1574,7 @@ table '_Key Measures'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Annualized YTD Comparison. Forces logic to 'Start of Year -> As Of Date'. Use ONLY for Annual Tables or KPI Scorecards. Do not use for Quarters/Months.
 	measure 'Total Revenue (FY As Of)' = ```
 			
 			VAR StartDate =
@@ -1593,7 +1594,7 @@ table '_Key Measures'
 			
 			```
 		formatString: \$#,0;(\$#,0);\$#,0
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Revenue
 		lineageTag: f912db72-60c0-4102-b6a0-155bfc650920
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
@@ -1621,23 +1622,24 @@ table '_Key Measures'
 			
 			```
 		formatString: \$#,0;(\$#,0);\$#,0
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Revenue
 		lineageTag: 5003f6df-75b3-44d1-a25f-c98f5ea1725e
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Total Revenue YoY Δ (FY As Of)' = [Total Revenue (FY As Of)] - [Total Revenue PY (FY As Of)]
 		formatString: \$#,0;(\$#,0);\$#,0
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Revenue
 		lineageTag: 6e49b1bc-525f-4fc0-b10d-0858a564232e
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Total Revenue YoY % (FY As Of)' = DIVIDE([Total Revenue YoY Δ (FY As Of)], [Total Revenue PY (FY As Of)])
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Revenue
 		lineageTag: 39790dd6-6812-4abf-8244-c83472102f71
 
+	/// Annualized YTD Comparison. Forces logic to 'Start of Year -> As Of Date'. Use ONLY for Annual Tables or KPI Scorecards. Do not use for Quarters/Months.
 	measure 'Total Gross Profit (FY As Of)' = ```
 			
 			VAR StartDate =
@@ -1657,7 +1659,7 @@ table '_Key Measures'
 			
 			```
 		formatString: \$#,0;(\$#,0);\$#,0
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Gross Profit
 		lineageTag: 85a9f2a8-149c-41b0-9087-43ef5cc034dc
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
@@ -1685,14 +1687,14 @@ table '_Key Measures'
 			
 			```
 		formatString: \$#,0;(\$#,0);\$#,0
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Gross Profit
 		lineageTag: b7675a05-d8d8-4a58-890f-3263c4f18632
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Total Gross Profit YoY Δ (FY As Of)' = [Total Gross Profit (FY As Of)] - [Total Gross Profit PY (FY As Of)]
 		formatString: \$#,0;(\$#,0);\$#,0
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Gross Profit
 		lineageTag: 4192b195-bc29-40f9-83f8-0fbd586c4f19
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
@@ -1703,16 +1705,17 @@ table '_Key Measures'
 						[Total Gross Profit PY (FY As Of)]
 					)
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Gross Profit
 		lineageTag: 189c18f0-a543-4323-97b2-16f3177275fa
 
+	/// Annualized YTD Comparison. Forces logic to 'Start of Year -> As Of Date'. Use ONLY for Annual Tables or KPI Scorecards. Do not use for Quarters/Months.
 	measure 'Total GP % (FY As Of)' =
 			DIVIDE(
 						[Total Gross Profit (FY As Of)],
 						[Total Revenue (FY As Of)]
 					)
 		formatString: 0.00%;-0.00%;0.00%
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Gross Profit
 		lineageTag: 4d1f665d-d2d5-4496-ab39-66e399c7b769
 
 	measure 'Total GP % PY (FY As Of)' =
@@ -1721,44 +1724,31 @@ table '_Key Measures'
 						[Total Revenue PY (FY As Of)]
 					)
 		formatString: 0.00%;-0.00%;0.00%
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Gross Profit
 		lineageTag: 9e272676-cbb7-4727-8b89-7ae62a2be3f6
 
 	measure 'Total GP % YoY Δ (pp) (FY As Of)' = [Total GP % (FY As Of)] - [Total GP % PY (FY As Of)]
 		formatString: 0.00%;-0.00%;0.00%
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
+		displayFolder: 04 Time Intelligence – Fiscal\Gross Profit
 		lineageTag: 20e66d07-7b29-45b6-b1d7-434c8ec5d0cd
 
-	measure 'Total Revenue PY' = ```
-			
-			CALCULATE(
-			    [Revenue (By Stream)],
-			    SAMEPERIODLASTYEAR( 'FYCALENDAR_D'[Date] )
-			)
-			
-			```
-		displayFolder: 04 Time Intelligence – Fiscal\Card Ready\Total
-		lineageTag: 00a8b1f4-c51e-4c54-bc5a-a60b2672c6f4
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
+	/// Standard Period Comparison. Compares the selected period (Month/Quarter) to the same period last year. Use for Charts and Trend Tables.
 	measure 'Total Revenue Trend vs PY' = ```
 			
 			VAR CY = [Revenue (By Stream)]
 			VAR PY = [Total Revenue PY]
-			
 			RETURN
 			IF( 
 			    ISBLANK(CY) || CY = 0, 
 			    BLANK(),
-			    VAR PctChange = DIVIDE( CY - PY, PY )
+			    VAR Diff = CY - PY
+			    VAR PctChange = DIVIDE( Diff, PY )
 			    VAR Icon = 
 			        SWITCH( TRUE(),
 			            PctChange > 0, UNICHAR(9650), -- ▲
 			            PctChange < 0, UNICHAR(9660), -- ▼
 			            UNICHAR(9644)                 -- ▬
 			        )
-			    -- Using Figure Space (UNICHAR 8199) to match the width of the minus sign for alignment
 			    VAR PctText = 
 			        IF( PctChange >= 0, 
 			            UNICHAR(8199) & FORMAT( PctChange, "0.0%" ), 
@@ -1783,16 +1773,17 @@ table '_Key Measures'
 		displayFolder: 03 Gross Profit\Total
 		lineageTag: 845b89e3-0e5f-4f63-a474-76604f8e4b35
 
+	/// Standard Period Comparison. Compares the selected period (Month/Quarter) to the same period last year. Use for Charts and Trend Tables.
 	measure 'Total Gross Profit Trend vs PY' = ```
 			
 			VAR CY = [Gross Profit (By Stream)]
 			VAR PY = [Total Gross Profit PY]
-			
 			RETURN
 			IF( 
 			    ISBLANK(CY) || CY = 0, 
 			    BLANK(),
-			    VAR PctChange = DIVIDE( CY - PY, PY )
+			    VAR Diff = CY - PY
+			    VAR PctChange = DIVIDE( Diff, PY )
 			    VAR Icon = 
 			        SWITCH( TRUE(),
 			            PctChange > 0, UNICHAR(9650), -- ▲
@@ -2333,6 +2324,420 @@ table '_Key Measures'
 			```
 		displayFolder: 05 Time Intelligence – R12M\Gross Profit
 		lineageTag: d8478713-b516-4954-a3aa-b745c61a373d
+
+	measure 'Customer Revenue Rank (All Time)' = ```
+			
+			RANKX(
+			    ALL( CUSTOMERS_D ),
+			    [Total Revenue],
+			    ,
+			    DESC,
+			    Dense
+			)
+			
+			```
+		displayFolder: 08 Customer Status\Profile
+		lineageTag: e3ac8f3a-9a4f-48d1-b717-c58c63863b08
+
+	measure 'Customer Rank Context String' = ```
+			
+			VAR RankVal = [Customer Revenue Rank (All Time)]
+			VAR TotalCustomers = 
+			    CALCULATE( 
+			        COUNTROWS(CUSTOMERS_D), 
+			        FILTER( ALL(CUSTOMERS_D), [Total Revenue] > 0 ) 
+			    )
+			RETURN
+			    IF( 
+			        ISBLANK([Total Revenue]), 
+			        "No Revenue",
+			        "#" & FORMAT(RankVal, "#,0") & " of " & FORMAT(TotalCustomers, "#,0")
+			    )
+			
+			```
+		displayFolder: 08 Customer Status\Profile
+		lineageTag: 67782e7e-f746-4b7f-9dc6-d76bc06648fc
+
+	measure 'Customer Profile Metric Value' = ```
+			
+			VAR _SelectedMetric = SELECTEDVALUE( 'UI_CustomerProfileRows'[Metric Name] )
+			VAR _Result = 
+			    SWITCH( _SelectedMetric,
+			        "Lifecycle Status",  [Customer Lifecycle Status],
+			        "Last Billing Date", FORMAT( [Last Billing Date (Any Stream)], "MMM d, yyyy" ),
+			        "Active Contracts",  FORMAT( [Active Contracts], "#,0" ),
+			        "Active Projects",   FORMAT( [Active Projects], "#,0" ),
+			        "Lifetime Revenue",  FORMAT( [Total Revenue], "$#,0" ),
+			        "Lifetime GP",       FORMAT( [Total Gross Profit], "$#,0" ),
+			        "Lifetime GP %",     FORMAT( [Total GP %], "0.0%" ),
+			        "Revenue Rank",      [Customer Rank Context String]
+			    )
+			RETURN
+			    IF( ISBLANK(_Result), "--", _Result )
+			
+			```
+		displayFolder: 08 Customer Status\Profile
+		lineageTag: 23f8dd6b-9d0d-4491-8c0d-8d545574dcfc
+
+	measure 'Contract Booking Value (Active Only)' = ```
+			
+			CALCULATE(
+			    SUM( 'SERVCONTRACTS_D'[Contract Amount] ),
+			    'SERVCONTRACTS_D'[IsActiveContract] = TRUE
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 08 Customer Status\Contract
+		lineageTag: 64e4fb8a-79e7-4550-befa-395c80529f70
+
+	measure 'Is In Top N (Active Contracts Value)' = ```
+			
+			VAR N = SELECTEDVALUE ( 'Top N'[Top N], 10 )
+			VAR RankVal = 
+			    RANKX( 
+			        ALLSELECTED( 'SERVCONTRACTS_D'[Contract Number] ), 
+			        [Contract Booking Value (Active Only)], 
+			        , 
+			        DESC, 
+			        Dense 
+			    )
+			RETURN
+			    IF ( NOT ISBLANK([Contract Booking Value (Active Only)]) && RankVal <= N, 1, 0 )
+			
+			```
+		displayFolder: 08 Customer Status\Contract
+		lineageTag: 3c6762a7-745a-4085-9937-7ba903bf3f14
+
+	measure 'NPS Response Count' = ```
+			
+			COUNTROWS( NPS_F )
+			
+			```
+		formatString: #,0
+		displayFolder: 10 Customer Experience
+		lineageTag: 5ce620fd-4ba7-41be-b468-00eddf1b1e9b
+
+	measure 'Promoters Count' = ```
+			
+			CALCULATE( COUNTROWS(NPS_F), NPS_F[1-10 Score] >= 9 )
+			
+			```
+		formatString: #,0
+		displayFolder: 10 Customer Experience
+		lineageTag: c79a9a8e-78d6-4a26-8260-be5789d72fe9
+
+	measure 'Detractors Count' = ```
+			
+			CALCULATE( COUNTROWS(NPS_F), NPS_F[1-10 Score] <= 6 )
+			
+			```
+		formatString: #,0
+		displayFolder: 10 Customer Experience
+		lineageTag: ca8982f1-0603-4305-adee-6ea9e1d098dd
+
+	measure 'Net Promoter Score' = ```
+			
+			VAR P = [Promoters Count]
+			VAR D = [Detractors Count]
+			VAR Total = [NPS Response Count]
+			RETURN
+			    IF( Total > 0, DIVIDE( P - D, Total ) * 100 )
+			
+			```
+		formatString: 0.0
+		displayFolder: 10 Customer Experience
+		lineageTag: 71f4627b-6f9d-4b20-b78c-9d35174227fc
+
+	measure 'Prompt and On Time %' = ```
+			
+			VAR _Yes = CALCULATE( COUNTROWS(NPS_F), NPS_F[Prompt and On Time] = "Yes" )
+			VAR _No  = CALCULATE( COUNTROWS(NPS_F), NPS_F[Prompt and On Time] = "No" )
+			RETURN
+			    DIVIDE( _Yes, _Yes + _No )
+			
+			```
+		formatString: 0.0%
+		displayFolder: 10 Customer Experience
+		lineageTag: b23b7723-ccb6-46c2-a184-d656e56c6ac7
+
+	measure 'First Time Fix Rate' = ```
+			
+			VAR _Yes = CALCULATE( COUNTROWS(NPS_F), NPS_F[First Time Fix] = "Yes" )
+			VAR _No  = CALCULATE( COUNTROWS(NPS_F), NPS_F[First Time Fix] = "No" )
+			RETURN
+			    DIVIDE( _Yes, _Yes + _No )
+			
+			```
+		formatString: 0.0%
+		displayFolder: 10 Customer Experience
+		lineageTag: 2d9991c4-3f01-442a-b95c-d237f82cbb57
+
+	measure 'Net Promoter Score (R12M)' = ```
+			
+			VAR MaxVisible = MAX('FYCALENDAR_D'[Date])
+			VAR LastData = [Last NPS Date]
+			VAR AnchorDate = MIN( MaxVisible, LastData )
+			RETURN
+			    CALCULATE(
+			        [Net Promoter Score],
+			        DATESINPERIOD( 'FYCALENDAR_D'[Date], AnchorDate, -12, MONTH ),
+			        REMOVEFILTERS( 'FYCALENDAR_D' )
+			    )
+			
+			```
+		formatString: 0.0
+		displayFolder: 10 Customer Experience\R12M
+		lineageTag: 1b74a704-a8c5-4288-876b-0a81f1cf3d42
+
+	measure 'Net Promoter Score PY (R12M)' = ```
+			
+			VAR MaxVisible = MAX('FYCALENDAR_D'[Date])
+			VAR LastData = [Last NPS Date]
+			VAR AnchorDate = MIN( MaxVisible, LastData )
+			VAR AnchorPY = EDATE(AnchorDate, -12)
+			RETURN
+			    CALCULATE(
+			        [Net Promoter Score],
+			        DATESINPERIOD( 'FYCALENDAR_D'[Date], AnchorPY, -12, MONTH ),
+			        REMOVEFILTERS( 'FYCALENDAR_D' )
+			    )
+			
+			```
+		formatString: 0.0
+		displayFolder: 10 Customer Experience\R12M
+		lineageTag: 952a82cf-55ec-4cf8-8b81-ef9411405af1
+
+	measure 'Net Promoter Score Trend vs PY (R12M)' = ```
+			
+			VAR CY = [Net Promoter Score (R12M)]
+			VAR PY = [Net Promoter Score PY (R12M)]
+			
+			RETURN
+			IF( 
+			    ISBLANK(CY) || CY = 0 || ISBLANK(PY) || PY = 0, 
+			    BLANK(),
+			    VAR Diff = CY - PY
+			    VAR Icon = 
+			        SWITCH( TRUE(),
+			            Diff > 0, UNICHAR(9650), -- ▲
+			            Diff < 0, UNICHAR(9660), -- ▼
+			            UNICHAR(9644)            -- ▬
+			        )
+			    VAR PctText = 
+			        IF( Diff >= 0, 
+			            UNICHAR(8199) & FORMAT( Diff, "0.0" ), 
+			            FORMAT( Diff, "0.0" )
+			        )
+			    RETURN
+			        Icon & " " & PctText
+			)
+			
+			```
+		displayFolder: 10 Customer Experience\R12M
+		lineageTag: bedb4cb7-48b0-4cd5-9268-007a6efe6949
+
+	measure 'Debug - R12M Start Date' = ```
+			
+			VAR AnchorDate = [As Of Month End (SC)]
+			RETURN
+			    CALCULATE(
+			        MIN( FYCALENDAR_D[Date] ),
+			        DATESINPERIOD( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			    )
+			
+			```
+		formatString: Short Date
+		displayFolder: 90 Debug
+		lineageTag: 7ce36e9c-56ca-4c4b-8ab0-2a6a50912377
+
+	measure 'Debug - R12M End Date' = ```
+			
+			VAR AnchorDate = [As Of Month End (SC)]
+			RETURN
+			    CALCULATE(
+			        MAX( FYCALENDAR_D[Date] ),
+			        DATESINPERIOD( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			    )
+			
+			```
+		formatString: Short Date
+		displayFolder: 90 Debug
+		lineageTag: 75c4268d-2472-40bb-bc5d-2014e8967767
+
+	measure 'Last NPS Date' = ```
+			
+			CALCULATE( MAX(NPS_F[SERVICE CALL COMPLETED DATE]), REMOVEFILTERS('FYCALENDAR_D') )
+			
+			```
+		displayFolder: 10 Customer Experience
+		lineageTag: 3141a36d-a696-4a2a-bf51-3c014fce6e17
+
+	measure 'Debug - NPS R12M Start Date' = ```
+			
+			VAR MaxVisible = MAX('FYCALENDAR_D'[Date])
+			VAR LastData = [Last NPS Date]
+			VAR AnchorDate = MIN( MaxVisible, LastData )
+			RETURN
+			    CALCULATE(
+			        MIN('FYCALENDAR_D'[Date]),
+			        DATESINPERIOD( 'FYCALENDAR_D'[Date], AnchorDate, -12, MONTH ),
+			        REMOVEFILTERS( 'FYCALENDAR_D' )
+			    )
+			
+			```
+		formatString: Short Date
+		displayFolder: 90 Debug
+		lineageTag: ee11ec12-b128-4a3e-8ef3-2ff38597f9af
+
+	measure 'Debug - NPS R12M End Date' = ```
+			
+			VAR MaxVisible = MAX('FYCALENDAR_D'[Date])
+			VAR LastData = [Last NPS Date]
+			VAR AnchorDate = MIN( MaxVisible, LastData )
+			RETURN
+			    CALCULATE(
+			        MAX('FYCALENDAR_D'[Date]),
+			        DATESINPERIOD( 'FYCALENDAR_D'[Date], AnchorDate, -12, MONTH ),
+			        REMOVEFILTERS( 'FYCALENDAR_D' )
+			    )
+			
+			```
+		formatString: Short Date
+		displayFolder: 90 Debug
+		lineageTag: 2b3f0cc7-10d1-4da3-ad46-4433d3d10f4a
+
+	measure 'Net Promoter Score PY' = ```
+			
+			CALCULATE(
+			    [Net Promoter Score],
+			    SAMEPERIODLASTYEAR( 'FYCALENDAR_D'[Date] )
+			)
+			
+			```
+		formatString: 0.0
+		displayFolder: 10 Customer Experience
+		lineageTag: 291ea2a5-d298-4e6e-8da5-be8ec692e1e0
+
+	measure 'Net Promoter Score Trend vs PY' = ```
+			
+			VAR CY = [Net Promoter Score]
+			VAR PY = [Net Promoter Score PY]
+			
+			RETURN
+			IF( 
+			    ISBLANK(CY) || ISBLANK(PY), 
+			    BLANK(),
+			    VAR Diff = CY - PY
+			    VAR Icon = 
+			        SWITCH( TRUE(),
+			            Diff > 0, UNICHAR(9650), -- ▲
+			            Diff < 0, UNICHAR(9660), -- ▼
+			            UNICHAR(9644)            -- ▬
+			        )
+			    VAR PctText = 
+			        IF( Diff >= 0, 
+			            UNICHAR(8199) & FORMAT( Diff, "0.0" ), 
+			            FORMAT( Diff, "0.0" )
+			        )
+			    RETURN
+			        Icon & " " & PctText
+			)
+			
+			```
+		displayFolder: 10 Customer Experience
+		lineageTag: aac2a233-6e35-4338-bdb5-3a993f2063e1
+
+	measure 'Revenue Δ vs PY Data Bar' = [Total Revenue YoY % (FY As Of)]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 01 Revenue\By Stream
+		lineageTag: f0a8d56e-6d50-4324-81bb-65aad223906a
+
+	measure 'Total Revenue PY' = ```
+			
+			CALCULATE(
+			    [Total Revenue],
+			    DATEADD( 'FYCALENDAR_D'[Date], -1, YEAR )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 04 Time Intelligence – Fiscal\Revenue
+		lineageTag: 9ec22c72-6917-4518-a142-293e1c5436f9
+
+	/// Standard Period Comparison. Compares the selected period (Month/Quarter) to the same period last year. Use for Charts and Trend Tables.
+	measure 'Total GP % Trend vs PY' = ```
+			
+			VAR CY = [Total GP %]
+			VAR PY = CALCULATE( [Total GP %], SAMEPERIODLASTYEAR('FYCALENDAR_D'[Date]) )
+			RETURN
+			IF( 
+			    ISBLANK(CY) || CY = 0, 
+			    BLANK(),
+			    VAR Diff = CY - PY
+			    VAR Icon = 
+			        SWITCH( TRUE(),
+			            Diff > 0, UNICHAR(9650), -- ▲
+			            Diff < 0, UNICHAR(9660), -- ▼
+			            UNICHAR(9644)            -- ▬
+			        )
+			    VAR PctText = 
+			        IF( Diff >= 0, 
+			            UNICHAR(8199) & FORMAT( Diff, "0.0%" ), 
+			            FORMAT( Diff, "0.0%" )
+			        )
+			    RETURN
+			        Icon & " " & PctText
+			)
+			
+			```
+		displayFolder: 03 Gross Profit\Total
+		lineageTag: e2123dec-0736-4698-a307-43777c82f655
+
+	measure 'Reporting Period Subtitle' = ```
+			
+			VAR SelYear = [Selected Fiscal Year (Single)]
+			VAR AsOfDate = [As Of Date (Financials)]
+			VAR IsCurrent = [Selected FY Is Current] = 1
+			
+			RETURN
+			    IF( 
+			        ISBLANK(SelYear),
+			        "Select a Fiscal Year",
+			        IF( 
+			            IsCurrent,
+			            "FY " & SelYear & " YTD (Data through " & FORMAT( AsOfDate, "MMM d, yyyy" ) & ")",
+			            "Fiscal Year " & SelYear & " (Full Year)"
+			        )
+			    )
+			
+			```
+		displayFolder: 90 Debug\UI
+		lineageTag: 288ad653-13fa-4010-9439-18df9d2c0665
+
+	measure 'Total Revenue (Completed Months Only)' = ```
+			
+			CALCULATE(
+			    [Total Revenue],
+			    'FYCALENDAR_D'[Is Completed Month] = TRUE
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01 Revenue
+		lineageTag: 6aed16cd-586a-41b7-ac4a-22de2930b7d7
+
+	measure 'Revenue (By Stream - Completed Only)' = ```
+			
+			CALCULATE(
+			    [Revenue (By Stream)],
+			    'FYCALENDAR_D'[Is Completed Month] = TRUE
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01 Revenue\By Stream
+		lineageTag: c2e3cf2f-5b97-40df-adc4-bad833d6de71
 
 	column _Dummy
 		isHidden

@@ -1,0 +1,181 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "4bde7a0cd58a610a6d6e",
+  "position": {
+    "x": 321.81818181818181,
+    "y": 36.36363636363636,
+    "z": 0,
+    "height": 272.72727272727269,
+    "width": 958.18181818181813,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "MMM Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.MMM Label",
+              "nativeQueryRef": "MMM Label"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Promoters Count"
+                }
+              },
+              "queryRef": "_Key Measures.Promoters Count",
+              "nativeQueryRef": "Promoters Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Detractors Count"
+                }
+              },
+              "queryRef": "_Key Measures.Detractors Count",
+              "nativeQueryRef": "Detractors Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Promoter Score"
+                }
+              },
+              "queryRef": "_Key Measures.Net Promoter Score",
+              "nativeQueryRef": "Net Promoter Score"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Prompt and On Time %"
+                }
+              },
+              "queryRef": "_Key Measures.Prompt and On Time %",
+              "nativeQueryRef": "Prompt and On Time %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "First Time Fix Rate"
+                }
+              },
+              "queryRef": "_Key Measures.First Time Fix Rate",
+              "nativeQueryRef": "First Time Fix Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "NPS Response Count"
+                }
+              },
+              "queryRef": "_Key Measures.NPS Response Count",
+              "nativeQueryRef": "NPS Response Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Promoter Score PY (R12M)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Promoter Score PY (R12M)",
+              "nativeQueryRef": "Net Promoter Score PY (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Promoter Score (R12M)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Promoter Score (R12M)",
+              "nativeQueryRef": "Net Promoter Score (R12M)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "2b01f95b9d0967cdae00",
+  "position": {
+    "x": 557.27272727272725,
+    "y": 349.09090909090907,
+    "z": 3000,
+    "height": 150.90909090909091,
+    "width": 1252.7272727272725,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Promoter Score (R12M)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Promoter Score (R12M)",
+              "nativeQueryRef": "Net Promoter Score (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Promoter Score PY (R12M)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Promoter Score PY (R12M)",
+              "nativeQueryRef": "Net Promoter Score PY (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Promoter Score"
+                }
+              },
+              "queryRef": "_Key Measures.Net Promoter Score",
+              "nativeQueryRef": "Net Promoter Score"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Debug - NPS R12M Start Date"
+                }
+              },
+              "queryRef": "_Key Measures.Debug - NPS R12M Start Date",
+              "nativeQueryRef": "Debug - NPS R12M Start Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Debug - R12M End Date"
+                }
+              },
+              "queryRef": "_Key Measures.Debug - R12M End Date",
+              "nativeQueryRef": "Debug - R12M End Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "NPS Response Count"
+                }
+              },
+              "queryRef": "_Key Measures.NPS Response Count",
+              "nativeQueryRef": "NPS Response Count"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "0538da42b3268695e8e5",
+  "position": {
+    "x": 760,
+    "y": 280,
+    "z": 0,
+    "height": 304,
+    "width": 296
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "QUADRA_CONTRACTS"
+                        }
+                      },
+                      "Property": "Bidprice"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(QUADRA_CONTRACTS.Bidprice)",
+              "nativeQueryRef": "Sum of Bidprice"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fp_GPFloor"
+                    }
+                  },
+                  "Property": "GP Floor Value"
+                }
+              },
+              "queryRef": "GP Floor.GP Floor Value",
+              "nativeQueryRef": "GP Floor Value"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "QUADRA_CONTRACTS"
+                      }
+                    },
+                    "Property": "Bidprice"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

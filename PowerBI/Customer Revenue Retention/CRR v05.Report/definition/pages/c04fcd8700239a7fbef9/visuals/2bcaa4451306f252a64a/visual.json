@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "2bcaa4451306f252a64a",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 261.03092783505156,
+    "width": 1279.7938144329896,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Division",
+              "nativeQueryRef": "Division"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Revenue Retention % (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Revenue Retention % (R12M As Of)",
+              "nativeQueryRef": "Net Revenue Retention % (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Gross Revenue Retention % (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Gross Revenue Retention % (R12M As Of)",
+              "nativeQueryRef": "Gross Revenue Retention % (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "SC Revenue PY (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.SC Revenue PY (R12M As Of)",
+              "nativeQueryRef": "SC Revenue PY (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "SC Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.SC Revenue (R12M As Of)",
+              "nativeQueryRef": "SC Revenue (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Upsell Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Upsell Revenue (R12M As Of)",
+              "nativeQueryRef": "Upsell Revenue (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Project Revenue (R12M As Of)",
+              "nativeQueryRef": "Project Revenue (R12M As Of)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

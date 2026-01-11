@@ -1,0 +1,177 @@
+table QUADRA_JOBS
+	lineageTag: 17b70565-65f2-470a-90d0-5c1d8b040593
+
+	measure 'GP %' =
+			
+			DIVIDE(
+			    SUM(QUADRA_JOBS[Gp]),
+			    SUM(QUADRA_JOBS[Bidprice])
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: f4cecf73-9bc8-497c-9adb-94d3afa0e8bf
+
+	column 'Job Number'
+		dataType: string
+		lineageTag: d711aece-2f28-4fa4-99e3-cc9163312957
+		summarizeBy: none
+		sourceColumn: Job Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Eventid
+		dataType: string
+		lineageTag: ce047ea6-f73e-40aa-93ab-89c5a7b0e35d
+		summarizeBy: none
+		sourceColumn: Eventid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Totalcost
+		dataType: double
+		lineageTag: 0f0aee3f-ed94-4228-8d77-082feb4e5a14
+		summarizeBy: sum
+		sourceColumn: Totalcost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Bidprice
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a82de869-f32a-43a8-bf0b-a453e0cf1bdc
+		summarizeBy: sum
+		sourceColumn: Bidprice
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gp
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 5960674d-dced-4f63-9d98-95ade368377f
+		summarizeBy: sum
+		sourceColumn: Gp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Eventaction
+		dataType: string
+		lineageTag: 76dcefb8-08af-4475-a15a-f4ae94411dd9
+		summarizeBy: none
+		sourceColumn: Eventaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: 7df4035b-7212-4631-ba3a-8e489daaf6bf
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: ac59d7aa-d42d-4b4d-bf23-fa017c5f7f06
+		summarizeBy: none
+		sourceColumn: Job Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Event Key'
+		dataType: string
+		lineageTag: 98d37c57-033c-4fa1-b858-464e56d76584
+		summarizeBy: none
+		sourceColumn: Event Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Event
+		dataType: string
+		lineageTag: 2425de97-6c36-48bf-8dc8-bbfc15a888bf
+		summarizeBy: none
+		sourceColumn: Event
+
+		annotation SummarizationSetBy = Automatic
+
+	column Createdbyid
+		dataType: double
+		lineageTag: 3c89e0cf-4cda-4909-a5a8-dc1414283d4a
+		summarizeBy: sum
+		sourceColumn: Createdbyid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Event Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2c90c5c7-fccb-4323-aa98-f39b5b6b6af7
+		summarizeBy: none
+		sourceColumn: Event Date
+
+		variation Variation
+			isDefault
+			relationship: b12d9333-31a6-4b64-932a-bc5fdf9cde26
+			defaultHierarchy: LocalDateTable_1c5fc97e-cfea-4696-9f4d-3e1a1467a9fd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Startdate
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 63d4af60-b1d9-4959-a534-f537c559d897
+		summarizeBy: none
+		sourceColumn: Startdate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Enddate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9952332f-2ae9-4191-a1ef-d8f5494af48a
+		summarizeBy: none
+		sourceColumn: Enddate
+
+		variation Variation
+			isDefault
+			relationship: 620a24cd-eb4f-48da-8adb-7cd58264892f
+			defaultHierarchy: LocalDateTable_0503f533-5201-45d5-9a42-3771896ef5de.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Task Status'
+		dataType: string
+		lineageTag: 175f810b-64c8-4a4a-ab11-6995025a26da
+		summarizeBy: none
+		sourceColumn: Task Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition QUADRA_JOBS = m
+		mode: import
+		source =
+				let
+					Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
+				    QUADRA_JOBS_View = DW_FINAL_Schema{[Name="QUADRA_JOBS",Kind="View"]}[Data],
+				    ProperCase = Table.RenameColumns(QUADRA_JOBS_View, List.Transform(Table.ColumnNames(QUADRA_JOBS_View), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Filtered Rows" = Table.SelectRows(ProperCase, each ([Source] = "SERV_QUAD") and ([Event] = "Booked") and ([Task Status] = "Completed")),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"Startdate", type date}, {"Enddate", type date}, {"Event Date", type date}})
+				in
+				#"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

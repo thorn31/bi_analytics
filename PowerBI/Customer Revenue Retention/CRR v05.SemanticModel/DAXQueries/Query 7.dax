@@ -1,0 +1,26 @@
+EVALUATE
+VAR RevenueKeys =
+    SELECTCOLUMNS (
+        DISTINCT ( SERVCONTRACTS_REVENUE_F[AgreementKey] ),
+        "AgreementKey", SERVCONTRACTS_REVENUE_F[AgreementKey],
+        "ExtractedCustomerKey",
+            VAR AK = SERVCONTRACTS_REVENUE_F[AgreementKey]
+            VAR FirstPos = FIND ( "_", AK )
+            VAR SecondPos = FIND ( "_", AK, FirstPos + 1 )
+            RETURN LEFT ( AK, SecondPos - 1 )
+    )
+
+VAR AddCheck =
+    ADDCOLUMNS (
+        RevenueKeys,
+        "ExistsInCustomers",
+            VAR ThisCustomerKey = [ExtractedCustomerKey]
+            RETURN
+                CALCULATE (
+                    COUNTROWS ( CUSTOMERS_D ),
+                    CUSTOMERS_D[Customer Key] = ThisCustomerKey
+                )
+    )
+
+RETURN
+RevenueKeys

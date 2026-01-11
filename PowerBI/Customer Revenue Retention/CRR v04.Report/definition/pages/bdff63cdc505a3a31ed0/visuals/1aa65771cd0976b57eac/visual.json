@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "1aa65771cd0976b57eac",
   "position": {
-    "x": 969.58762886597947,
-    "y": 367.42268041237116,
+    "x": 779.59044368600678,
+    "y": 258,
     "z": 8000,
-    "height": 692.1649484536083,
-    "width": 649.48453608247428,
+    "height": 390,
+    "width": 550,
     "tabOrder": 7000
   },
   "visual": {
@@ -313,7 +313,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             },
@@ -335,6 +335,38 @@
               "expr": {
                 "Literal": {
                   "Value": "'Custom'"
+                }
+              }
+            },
+            "enableBackground": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F6F7F8'"
+                    }
+                  }
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "30L"
+                }
+              }
+            },
+            "labelPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Auto'"
                 }
               }
             }
@@ -519,6 +551,26 @@
             }
           }
         }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -534,7 +586,7 @@
                 "Entity": "_Key Measures"
               }
             },
-            "Property": "Is In Top N"
+            "Property": "Is In Top N Customers"
           }
         },
         "type": "Advanced",
@@ -559,7 +611,7 @@
                           "Source": "_"
                         }
                       },
-                      "Property": "Is In Top N"
+                      "Property": "Is In Top N Customers"
                     }
                   },
                   "Right": {

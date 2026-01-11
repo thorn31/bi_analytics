@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "e5b683a2781d67e29620",
   "position": {
-    "x": 220.82474226804123,
-    "y": 238.45360824742269,
+    "x": 221.160409556314,
+    "y": 238.66894197952217,
     "z": 4000,
-    "height": 410,
-    "width": 729.2783505154639,
+    "height": 410.0682593856655,
+    "width": 539.07849829351528,
     "tabOrder": 3000
   },
   "visual": {
@@ -43,11 +43,11 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Revenue (By Stream)"
+                  "Property": "Total Revenue (Completed Months Only)"
                 }
               },
-              "queryRef": "_Key Measures.Revenue (By Stream)",
-              "nativeQueryRef": "Revenue (By Stream)"
+              "queryRef": "_Key Measures.Total Revenue (Completed Months Only)",
+              "nativeQueryRef": "Total Revenue (Completed Months Only)"
             }
           ]
         },
@@ -252,5 +252,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5bfeb6e7ea0b3d805605",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Month Letter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bf5628377cd156b14490",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue PY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2268db6bdac4e1ed70dd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue (Completed Months Only)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

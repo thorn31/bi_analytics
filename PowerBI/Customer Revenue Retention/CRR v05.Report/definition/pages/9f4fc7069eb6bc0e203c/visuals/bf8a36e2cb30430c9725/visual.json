@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "bf8a36e2cb30430c9725",
+  "position": {
+    "x": 663.66839378238342,
+    "y": 238.38341968911917,
+    "z": 20000,
+    "height": 298.81865284974094,
+    "width": 298.81865284974094,
+    "tabOrder": 20000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue Trend vs PY"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue Trend vs PY",
+              "nativeQueryRef": "Total Revenue Trend vs PY"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

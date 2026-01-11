@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "d383f22b0ade23b1ea50",
+  "displayName": "Page 2",
+  "displayOption": "ActualSize",
+  "height": 1080,
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "38af67614b8a6c382bb9",
+      "target": "4bde7a0cd58a610a6d6e",
+      "type": "DataFilter"
+    }
+  ]
+}

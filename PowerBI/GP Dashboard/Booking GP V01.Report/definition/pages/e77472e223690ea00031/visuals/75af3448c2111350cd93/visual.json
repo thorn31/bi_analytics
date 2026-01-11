@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "75af3448c2111350cd93",
+  "position": {
+    "x": 1384,
+    "y": 224,
+    "z": 9000,
+    "height": 320,
+    "width": 512,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fp_GPFloor"
+                    }
+                  },
+                  "Property": "Count At Or Above Floor"
+                }
+              },
+              "queryRef": "GP Floor.Count At Or Above Floor",
+              "nativeQueryRef": "Count At Or Above Floor"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fp_GPFloor"
+                    }
+                  },
+                  "Property": "Count Below Floor"
+                }
+              },
+              "queryRef": "GP Floor.Count Below Floor",
+              "nativeQueryRef": "Count Below Floor"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fp_GPFloor"
+                  }
+                },
+                "Property": "Count At Or Above Floor"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {}
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "GP Floor.Count Below Floor"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

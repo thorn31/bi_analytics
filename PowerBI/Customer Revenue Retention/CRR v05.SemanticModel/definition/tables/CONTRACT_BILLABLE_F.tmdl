@@ -1,0 +1,144 @@
+table CONTRACT_BILLABLE_F
+	isHidden
+	lineageTag: 3344fffa-f695-4ca3-bea6-807da27cd20b
+
+	column CUSTNMBR
+		dataType: string
+		isHidden
+		lineageTag: f37e085e-6fee-4aab-8ccc-e4dd06edc749
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADRSCODE
+		dataType: string
+		isHidden
+		lineageTag: 1392868f-58a0-4f28-b612-7ac591c283b4
+		summarizeBy: none
+		sourceColumn: ADRSCODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		isHidden
+		lineageTag: 403dab31-e3d8-4142-be7e-bbcddca64524
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column WSCONTSQ
+		dataType: double
+		isHidden
+		lineageTag: 8c08853a-db94-439c-a864-77c30c1c8441
+		summarizeBy: sum
+		sourceColumn: WSCONTSQ
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WENNSOFT_BILLING_DATE
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 2c327e6e-168d-4d88-a568-f244139d1aaa
+		summarizeBy: none
+		sourceColumn: WENNSOFT_BILLING_DATE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BILLABLE_ALL
+		dataType: double
+		isHidden
+		lineageTag: 2262b2cf-1ed6-4d4a-a9e1-28fac7cb3376
+		summarizeBy: sum
+		sourceColumn: BILLABLE_ALL
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONTRACT_BILLING_DESC
+		dataType: string
+		isHidden
+		lineageTag: 71de85ff-dd1c-4ee8-a896-91016f33fb3c
+		summarizeBy: none
+		sourceColumn: CONTRACT_BILLING_DESC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_FULL_YEAR_ID
+		dataType: string
+		isHidden
+		lineageTag: 371d5332-9a51-4355-b5fb-5ecaf704460a
+		summarizeBy: none
+		sourceColumn: CONTRACT_FULL_YEAR_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		isHidden
+		lineageTag: b2837207-ff1a-4af8-9fee-496b95b73126
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer_Contract_Year Key'
+		dataType: string
+		isHidden
+		lineageTag: e607ceff-3fd1-422f-ad64-d4bc01944c06
+		summarizeBy: none
+		sourceColumn: Customer_Contract_Year Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CONTRACT_BILLABLE_F = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    Source = SV00564,
+				    #"Trimmed Text" = Table.TransformColumns(Source,{{"CUSTNMBR", Text.Trim, type text}}),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Trimmed Text",{{"CONTRACT_NUMBER", Text.Trim, type text}, {"CUSTNMBR", Text.Trim, type text}, {"ADRSCODE", Text.Trim, type text}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Trimmed Text1",{"CUSTNMBR", "ADRSCODE", "CONTRACT_NUMBER", "WSCONTSQ", "WENNSOFT_BILLING_DATE", "BILLABLE_ALL", "CONTRACT_BILLING_DESC"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"WENNSOFT_BILLING_DATE", type date}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"CUSTNMBR", Order.Ascending}, {"CONTRACT_NUMBER", Order.Ascending}, {"WSCONTSQ", Order.Ascending}, {"WENNSOFT_BILLING_DATE", Order.Ascending}}),
+				    #"Added Custom" = Table.AddColumn(#"Sorted Rows", "Customer Key", each [CUSTNMBR] & "SERV_GP"),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "CONTRACT_FULL_YEAR_ID", each [Customer Key] & "_" & [CONTRACT_NUMBER] & "_" & [ADRSCODE] & "_" & Number.ToText([WSCONTSQ])),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Customer_Contract_Year Key", each [Customer Key] & "_" & [CONTRACT_NUMBER] & "_" & Number.ToText([WSCONTSQ]))
+				in
+				    #"Added Custom2"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

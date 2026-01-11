@@ -1,0 +1,8 @@
+EVALUATE
+    TOPN(10,
+        FILTER(
+            'PROJECT_REVENUE_F',
+            NOT( 'PROJECT_REVENUE_F'[SurrogateProjectID] IN VALUES('PROJECTS_D'[SurrogateProjectID]) )
+        ),
+        'PROJECT_REVENUE_F'[SurrogateProjectID]
+    )

@@ -1,0 +1,404 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "0cdc59f75ec78a2a4000",
+  "position": {
+    "x": 264,
+    "y": 224,
+    "z": 4000,
+    "height": 784,
+    "width": 1104,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBS_D"
+                    }
+                  },
+                  "Property": "Divisions"
+                }
+              },
+              "queryRef": "JOBS_D.Divisions",
+              "nativeQueryRef": "Divisions"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBS_D"
+                    }
+                  },
+                  "Property": "Job Number"
+                }
+              },
+              "queryRef": "JOBS_D.Job Number",
+              "nativeQueryRef": "Job Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBS_D"
+                    }
+                  },
+                  "Property": "Job Name"
+                }
+              },
+              "queryRef": "JOBS_D.Job Name",
+              "nativeQueryRef": "Job Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QUADRA_JOBS"
+                    }
+                  },
+                  "Property": "Startdate"
+                }
+              },
+              "queryRef": "QUADRA_JOBS.Startdate",
+              "nativeQueryRef": "Startdate"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "QUADRA_JOBS"
+                        }
+                      },
+                      "Property": "Bidprice"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(QUADRA_JOBS.Bidprice)",
+              "nativeQueryRef": "Sum of Bidprice"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "QUADRA_JOBS"
+                        }
+                      },
+                      "Property": "Gp"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(QUADRA_JOBS.Gp)",
+              "nativeQueryRef": "Sum of Gp"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fp_GPFloor"
+                    }
+                  },
+                  "Property": "At Or Above Floor"
+                }
+              },
+              "queryRef": "GP Floor.At Or Above Floor",
+              "nativeQueryRef": "At Or Above Floor"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QUADRA_JOBS"
+                    }
+                  },
+                  "Property": "GP %"
+                }
+              },
+              "queryRef": "QUADRA_JOBS.GP %",
+              "nativeQueryRef": "GP %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "QUADRA_JOBS"
+                      }
+                    },
+                    "Property": "Gp"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "309.23212339985895D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "JOBS_D.Job Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110.25839127117911D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(QUADRA_JOBS.Bidprice)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "68D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "GP Floor.At Or Above Floor"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "fp_GPFloor"
+                                    }
+                                  },
+                                  "Property": "At Or Above Floor"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'No'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#df8299'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "QUADRA_JOBS.GP %"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "grid": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Clean Table'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cfa8506f1551b0824e96",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBS_D"
+              }
+            },
+            "Property": "Divisions"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c79e158dd317394e2d0a",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fp_GPFloor"
+              }
+            },
+            "Property": "At Or Above Floor"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9a91c88784ab7048b881",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "QUADRA_JOBS"
+              }
+            },
+            "Property": "GP %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5aa2932b1d3be0988208",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "QUADRA_JOBS"
+              }
+            },
+            "Property": "Job Number"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "5bae723964a3c1ed6b17",
+        "ordinal": 4,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "QUADRA_JOBS"
+                  }
+                },
+                "Property": "Bidprice"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2d66feecd542b1ed6784",
+        "ordinal": 5,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "QUADRA_JOBS"
+                  }
+                },
+                "Property": "Gp"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

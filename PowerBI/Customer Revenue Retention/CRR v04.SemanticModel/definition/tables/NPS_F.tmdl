@@ -1,0 +1,184 @@
+table NPS_F
+	lineageTag: 8e21cf84-b757-443d-a842-dd745839ddb0
+
+	column 'SERVICE CALL NUMBER'
+		dataType: string
+		lineageTag: 3af73178-09b6-400d-925e-adb61f81e0a1
+		summarizeBy: none
+		sourceColumn: SERVICE CALL NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER
+		dataType: string
+		lineageTag: 102748b3-75d5-4e8e-9748-e81935c5f02e
+		summarizeBy: none
+		sourceColumn: CUSTOMER
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOCATION
+		dataType: string
+		lineageTag: fda305d0-7e27-4c04-8921-71f25bdd229a
+		summarizeBy: none
+		sourceColumn: LOCATION
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FIRST, LAST NAME OF CALLER'
+		dataType: string
+		lineageTag: 43d51251-f59a-41d8-a983-8435a7a273a5
+		summarizeBy: none
+		sourceColumn: FIRST, LAST NAME OF CALLER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PHONE NUMBER'
+		dataType: string
+		lineageTag: 09d6b33b-9ea5-4a0f-a2ad-ca3222b5aa61
+		summarizeBy: none
+		sourceColumn: PHONE NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SERVICE CALL COMPLETED DATE'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 59f89397-d738-4a9f-b11b-f31f3a3254de
+		summarizeBy: none
+		sourceColumn: SERVICE CALL COMPLETED DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Service Description'
+		dataType: string
+		lineageTag: fb5dee93-4809-4cc1-a501-adc23cb1607d
+		summarizeBy: none
+		sourceColumn: Service Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type of Call'
+		dataType: string
+		lineageTag: b10de87f-ff0d-41bf-8c86-9740ce377db9
+		summarizeBy: none
+		sourceColumn: Type of Call
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comment
+		dataType: string
+		lineageTag: b010039d-278c-4b3e-b825-552a35b800ae
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prompt and On Time'
+		dataType: string
+		lineageTag: 0480a432-764f-4471-a2c0-eaa0e2995740
+		summarizeBy: none
+		sourceColumn: Prompt and On Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Time Fix'
+		dataType: string
+		lineageTag: ec7571cc-b881-4758-a847-2bcc40600be2
+		summarizeBy: none
+		sourceColumn: First Time Fix
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: 24cb6c60-5c4c-4171-bec2-7fa9cfba4700
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month of Service'
+		dataType: double
+		lineageTag: 558935bc-71e2-4e19-befa-c5c092c108b5
+		summarizeBy: sum
+		sourceColumn: Month of Service
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Market
+		dataType: string
+		lineageTag: f4d5a1c0-31ec-4111-8dae-bf2f62caa6b8
+		summarizeBy: none
+		sourceColumn: Market
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1-10 Score'
+		dataType: double
+		lineageTag: c4ed0fab-4abc-447b-902a-7fd6703ac0b8
+		summarizeBy: sum
+		sourceColumn: 1-10 Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fiscal Year'
+		dataType: double
+		lineageTag: 6647e5c6-fe41-4807-8875-53df65008a32
+		summarizeBy: sum
+		sourceColumn: Fiscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Region
+		dataType: string
+		lineageTag: b2033b68-3674-4cd5-9858-88b11e0f7c22
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition NPS_F = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    SiteRoot = SharePoint.Contents("https://perfectiongroup.sharepoint.com/sites/dispatch"),
+				    SharedDocs = SiteRoot{[Name="Documents"]}[Content],
+				    TargetFolder = SharedDocs{[Name="Customer Experience"]}[Content],
+				
+				    // Optional: keep only actual files (not folders) if needed
+				    FilesOnly = Table.SelectRows(TargetFolder, each [Extension] <> null),
+				
+				    // Parse FY#### from Name
+				    AddFYText = Table.AddColumn(FilesOnly, "FYText", each try Text.Start(Text.AfterDelimiter([Name], "FY"), 4) otherwise null, type text),
+				    AddFY = Table.TransformColumnTypes(AddFYText, {{"FYText", Int64.Type}}),
+				    FilterFY = Table.SelectRows(AddFY, each [FYText] <> null),
+				
+				    // Most recent FY first, then take top 1 row
+				    Sorted = Table.Sort(FilterFY, {{"FYText", Order.Descending}}),
+				    Top1 = Table.FirstN(Sorted, 1),
+				
+				    // Convert single row to a record and pull Content (Binary)
+				    TopRecord = Top1{0},
+				    FileBinary = TopRecord[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(FileBinary),
+				    Historical_and_CYData_Table = #"Imported Excel Workbook"{[Item="Historical_and_CYData",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(Historical_and_CYData_Table, each ([Market] <> "GOODWILL")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"QUESTION:  Hi this is <INTRODUCE YOURSELF> from Perfection Group, just checking ", "Comment"}, {"Were we prompt an on time?", "Prompt and On Time"}, {"Did we fix the issue the first time? #(lf)#(lf)If the customer says “NO”:#(lf)#(lf)Please ask, “", "First Time Fix"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"SERVICE CALL NUMBER", "CUSTOMER", "LOCATION", "FIRST, LAST NAME OF CALLER", "PHONE NUMBER", "SERVICE CALL COMPLETED DATE", "Service Description", "Type of Call", "Comment", "Prompt and On Time", "First Time Fix", "Notes", "Month of Service", "Market", "1-10 Score", "Fiscal Year", "Region"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

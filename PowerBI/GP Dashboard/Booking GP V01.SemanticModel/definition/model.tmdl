@@ -1,0 +1,47 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["QUADRA_JOBS","JOBS_D","FYCALENDAR_D","QUADRA_CONTRACTS","CUSTOMERS_D","DIVISIONS_D"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode","MCP-PBIModeling"]
+
+ref table QUADRA_JOBS
+ref table JOBS_D
+ref table fp_GPFloor
+ref table DateTableTemplate_b8821d4b-2ebf-4e7c-ba9e-92d9c41ba5a8
+ref table LocalDateTable_1c5fc97e-cfea-4696-9f4d-3e1a1467a9fd
+ref table LocalDateTable_0503f533-5201-45d5-9a42-3771896ef5de
+ref table LocalDateTable_f51e4c0c-ae80-4f1e-87ac-5edd782b340d
+ref table LocalDateTable_7a941b06-edc1-4ba7-af13-7e0183ae2eee
+ref table LocalDateTable_49635eab-0f8f-4957-8b14-acceb73cb6b0
+ref table LocalDateTable_eaa3c432-d083-4f82-9d4b-43e187652926
+ref table LocalDateTable_3a1f621c-3673-4258-ab6d-6a3b9eee339f
+ref table FYCALENDAR_D
+ref table LocalDateTable_75bd3a0f-989c-4a2c-87df-113f83dee7a8
+ref table LocalDateTable_33a81e29-b93a-47e6-9d26-496b68471450
+ref table LocalDateTable_e16781d1-4e65-4bb2-81b0-59ff4b0265b1
+ref table LocalDateTable_aa06de53-58c9-4350-995a-1e4a41d0ceea
+ref table LocalDateTable_51e5f02a-e988-4034-afd5-3a86e5e0b9f2
+ref table LocalDateTable_257a3be7-cdaf-49af-8199-e227bd3b9130
+ref table QUADRA_CONTRACTS
+ref table LocalDateTable_00714900-09f2-4399-afcc-623f9dd67dd7
+ref table LocalDateTable_5a01af07-8f91-4c20-933e-34211773d295
+ref table LocalDateTable_c1e903bc-eabd-4b9f-bfad-d3fe01b76de9
+ref table LocalDateTable_0c2d0817-5605-45bf-bb5e-35853569bb8f
+ref table '_Key Measures'
+ref table CUSTOMERS_D
+ref table LocalDateTable_07991bce-1a23-4b3d-aba2-87112141d51c
+ref table LocalDateTable_13b9d61b-849e-41bf-a06c-3449feaae67e
+ref table DIVISIONS_D
+ref table fp_ViewSelector
+ref table fp_DimensionSelector
+
+ref cultureInfo en-US
+

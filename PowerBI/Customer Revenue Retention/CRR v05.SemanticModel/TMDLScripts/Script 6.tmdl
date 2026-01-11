@@ -1,0 +1,196 @@
+createOrReplace
+
+	/// Container for Key Measures
+	table '_Key Measures'
+		lineageTag: 73c099da-2cd7-46c3-b43b-fb93a5325ea2
+
+		measure 'Service Contract Gross Profit' = [Service Contract Revenue] - [Service Contract Cost]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Service Contract
+			lineageTag: bcd20ffd-c100-434d-aa6e-6549b9d2337a
+
+		measure 'Service Contract Gross Profit %' =
+				DIVIDE(
+							[Service Contract Gross Profit],
+							[Service Contract Revenue]
+						)
+			formatString: 0.00%;-0.00%;0.00%
+			displayFolder: Service Contract
+			lineageTag: 87124807-180c-4643-ac35-25a4b89b535c
+
+		measure 'Project Revenue' = ```
+				
+						SUM(PROJECT_REVENUE_F[Amount])
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Projects
+			lineageTag: 11d33cb6-f59b-48e7-ad4c-2266a9d5aae7
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Project Cost' = ```
+				
+						SUM(PROJECT_COSTS_F[Amount])
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Project
+			lineageTag: f0db1013-4217-4b9d-9dc8-68dce3253c16
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Project GP' = ```
+				
+						[Project Revenue] - [Project Cost]
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Project
+			lineageTag: 7426006b-d267-4b2c-8a66-b77aa212edad
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Project GP %' = ```
+				
+						DIVIDE(
+							[Project GP],
+							[Project Revenue]
+						)
+				```
+			displayFolder: Project
+			lineageTag: a8d780d5-3605-461a-b9d1-8959b2639502
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Project GP % (Formatted)' = ```
+				
+						FORMAT(
+							[Project GP %],
+							"0.0%"
+						)
+				```
+			displayFolder: Project
+			lineageTag: 11f33b54-c29e-4580-80cd-04d085385733
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Service Contract Cost' = SUM(SERVCONTRACTS_COSTS_F[Amount])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Service Contract
+			lineageTag: e5f87648-4ace-4269-a9c5-78fb3267c6eb
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Service Contract Revenue' = SUM(SERVCONTRACTS_REVENUE_F[Amount])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Service Contract
+			lineageTag: 644417d4-502d-401d-9320-1b21d78bcbf0
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure Check_Source_Calls = SUM('CALLS_F'[Cost All])
+			displayFolder: Checks
+			lineageTag: 56cdc3a4-1e10-4d8a-8e86-eaaa2fe2b949
+
+		measure Check_Dest_Total = CALCULATE(SUM('PROJECT_COSTS_F'[Amount]), 'PROJECT_COSTS_F'[Source Type] = "Service Call Cost") + SUM('SERVCONTRACTS_COSTS_F'[Amount]) + SUM('SPOT_FINANCIALS_F'[Cost])
+			displayFolder: Checks
+			lineageTag: 642593c2-8adc-4117-a65a-bb83ac3b9d88
+
+		measure Check_Variance = [Check_Source_Calls] - [Check_Dest_Total]
+			displayFolder: Checks
+			lineageTag: b49f0e53-e383-467c-9f39-9b1398f92ff7
+
+		measure 'Spot Revenue' = SUM(SPOT_FINANCIALS_F[Revenue])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Spot
+			lineageTag: 81832730-264e-4837-a2c5-84118306ae8b
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Spot Gross Profit' = [Spot Revenue] - [Spot Cost]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: Spot
+			lineageTag: 4829bbf6-a689-43c1-97a3-46b14da9f169
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Spot GP %' = ```
+				
+						DIVIDE(
+							[Spot Gross Profit],
+							[Spot Revenue]
+						)
+				```
+			displayFolder: Spot
+			lineageTag: 646a9f17-5fa5-4c16-ad83-7aed27b518ca
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure Check_Source_Revenue_Total = ```
+				
+				VAR JobRevenue = SUM('JOB_MONTHLY_SUMMARY_F'[Contract Earned Curr Mo])
+				VAR ContractBillingRevenue = SUM('CONTRACT_BILLABLE_F'[BILLABLE_ALL])
+				VAR SpotCallsRevenue = CALCULATE(SUM('CALLS_F'[Billable All]), 'CALLS_F'[Contract Number] = BLANK() || 'CALLS_F'[Contract Number] = "")
+				
+				RETURN
+				    JobRevenue + ContractBillingRevenue + SpotCallsRevenue
+				
+				```
+			displayFolder: Checks
+			lineageTag: 4176eace-9262-4929-a9c0-0acdda477a1a
+
+		measure Check_Dest_Revenue_Total = ```
+				
+				VAR ProjectRev = SUM('PROJECT_REVENUE_F'[Amount])
+				VAR ContractRev = SUM('SERVCONTRACTS_REVENUE_F'[Amount])
+				VAR SpotRev = SUM('SPOT_FINANCIALS_F'[Revenue])
+				
+				RETURN
+				    ProjectRev + ContractRev + SpotRev
+				
+				```
+			displayFolder: Checks
+			lineageTag: 9ac4048d-167e-466a-81ed-51199e7afad4
+
+		measure Check_Revenue_Variance = [Check_Source_Revenue_Total] - [Check_Dest_Revenue_Total]
+			displayFolder: Checks
+			lineageTag: bcfca2b0-c232-4578-8f83-e92ea72b887f
+
+		measure 'Spot Cost' = SUM( SPOT_FINANCIALS_F[Cost])
+			displayFolder: Spot
+			lineageTag: b5f1eb04-bf53-4fa9-a7be-74edd99a4956
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Total Revenue' = [Project Revenue] + [Service Contract Revenue] + [Spot Revenue]
+			formatString: $#,0.###############;($#,0.###############);$#,0.###############
+			displayFolder: Total
+			lineageTag: 74e4a287-d2f3-4124-a374-b35d0902dc23
+
+		measure 'Total Cost' = [Project Cost] + [Service Contract Cost] + [Spot Cost]
+			formatString: $#,0.###############;($#,0.###############);$#,0.###############
+			displayFolder: Total
+			lineageTag: 22730745-e9b9-465b-a13b-f35ed90e1e1c
+
+		measure 'Total Gross Profit' = [Total Revenue] - [Total Cost]
+			formatString: $#,0.###############;($#,0.###############);$#,0.###############
+			displayFolder: Total
+			lineageTag: 831d0b0f-bd15-41af-9a82-e10ad578a581
+
+		measure 'Total GP %' =
+				DIVIDE(
+					[Total Gross Profit],
+					[Total Revenue]
+				)
+			formatString: 0.00%;-0.00%;0.00%
+			displayFolder: Total
+			lineageTag: 57e3fb96-50e3-4df4-a923-18eaf349a3bb
+
+		column _Dummy
+			isHidden
+			lineageTag: 5a8e02fc-c19f-452b-a41d-40d5b55a211f
+			isNameInferred
+			sourceColumn: [_Dummy]
+
+		partition '_Key Measures' = calculated
+			mode: import
+			source = DATATABLE("_Dummy", STRING, {{"Measure Container"}})
+
