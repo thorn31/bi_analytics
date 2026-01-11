@@ -1,0 +1,19 @@
+EVALUATE
+ADDCOLUMNS (
+    FILTER (
+        SUMMARIZE (
+            SERVCONTRACTS_COSTS_F,
+            SERVCONTRACTS_COSTS_F[AgreementKey],
+            "FactRows", COUNTROWS(SERVCONTRACTS_COSTS_F)
+        ),
+        NOT CONTAINS (
+            SERVCONTRACTS_D,
+            SERVCONTRACTS_D[AgreementKey], 
+            [AgreementKey]
+        )
+    ),
+    "ExampleRecord",
+        CALCULATE (
+            MAX ( SERVCONTRACTS_COSTS_F[AgreementKey] )
+        )
+)

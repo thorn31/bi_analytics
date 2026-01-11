@@ -1,0 +1,1202 @@
+createOrReplace
+
+	/// Container for Key Measures
+	table '_Key Measures'
+		lineageTag: 73c099da-2cd7-46c3-b43b-fb93a5325ea2
+
+		measure 'Service Contract Gross Profit' = [Service Contract Revenue] - [Service Contract Cost]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 03 Gross Profit\Service Contract
+			lineageTag: bcd20ffd-c100-434d-aa6e-6549b9d2337a
+
+		measure 'Service Contract Gross Profit %' =
+				DIVIDE(
+							[Service Contract Gross Profit],
+							[Service Contract Revenue]
+						)
+			formatString: 0.00%;-0.00%;0.00%
+			displayFolder: 03 Gross Profit\Service Contract
+			lineageTag: 87124807-180c-4643-ac35-25a4b89b535c
+
+		measure 'Project Revenue' = SUM(PROJECT_REVENUE_F[Amount])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 00 Base\Revenue\Project
+			lineageTag: 11d33cb6-f59b-48e7-ad4c-2266a9d5aae7
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Project Cost' = SUM(PROJECT_COSTS_F[Amount])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 00 Base\Cost\Project
+			lineageTag: f0db1013-4217-4b9d-9dc8-68dce3253c16
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Project GP' = [Project Revenue] - [Project Cost]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 03 Gross Profit\Project
+			lineageTag: 7426006b-d267-4b2c-8a66-b77aa212edad
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Project GP %' =
+				DIVIDE(
+							[Project GP],
+							[Project Revenue]
+						)
+			displayFolder: 03 Gross Profit\Project
+			lineageTag: a8d780d5-3605-461a-b9d1-8959b2639502
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Project GP % (Formatted)' =
+				FORMAT(
+							[Project GP %],
+							"0.0%"
+						)
+			displayFolder: 90 Debug\Formatting
+			lineageTag: 11f33b54-c29e-4580-80cd-04d085385733
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Service Contract Cost' = SUM(SERVCONTRACTS_COSTS_F[Amount])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 00 Base\Cost\Service Contract
+			lineageTag: e5f87648-4ace-4269-a9c5-78fb3267c6eb
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Service Contract Revenue' = SUM(SERVCONTRACTS_REVENUE_F[Amount])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 00 Base\Revenue\Service Contract
+			lineageTag: 644417d4-502d-401d-9320-1b21d78bcbf0
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure Check_Source_Calls = SUM('CALLS_F'[Cost All])
+			displayFolder: 99 Checks
+			lineageTag: 56cdc3a4-1e10-4d8a-8e86-eaaa2fe2b949
+
+		measure Check_Dest_Total =
+				CALCULATE(
+							SUM('PROJECT_COSTS_F'[Amount]),
+							'PROJECT_COSTS_F'[Source Type] = "Service Call Cost"
+						) + SUM('SERVCONTRACTS_COSTS_F'[Amount]) + SUM('SPOT_FINANCIALS_F'[Cost])
+			displayFolder: 99 Checks
+			lineageTag: 642593c2-8adc-4117-a65a-bb83ac3b9d88
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure Check_Variance = [Check_Source_Calls] - [Check_Dest_Total]
+			displayFolder: 99 Checks
+			lineageTag: b49f0e53-e383-467c-9f39-9b1398f92ff7
+
+		measure 'T&M Revenue' = SUM(SPOT_FINANCIALS_F[Revenue])
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 00 Base\Revenue\T&M
+			lineageTag: 81832730-264e-4837-a2c5-84118306ae8b
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'T&M Gross Profit' = [T&M Revenue] - [T&M Cost]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 03 Gross Profit\T&M
+			lineageTag: 4829bbf6-a689-43c1-97a3-46b14da9f169
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'T&M GP %' =
+				DIVIDE(
+							[T&M Gross Profit],
+							[T&M Revenue]
+						)
+			displayFolder: 03 Gross Profit\T&M
+			lineageTag: 646a9f17-5fa5-4c16-ad83-7aed27b518ca
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure Check_Source_Revenue_Total =
+				VAR JobRevenue = SUM('JOB_MONTHLY_SUMMARY_F'[Contract Earned Curr Mo])
+						VAR ContractBillingRevenue = SUM('CONTRACT_BILLABLE_F'[BILLABLE_ALL])
+						VAR SpotCallsRevenue = CALCULATE(
+							SUM('CALLS_F'[Billable All]),
+							'CALLS_F'[Contract Number] = BLANK() || 'CALLS_F'[Contract Number] = ""
+						)
+				
+						RETURN
+							JobRevenue + ContractBillingRevenue + SpotCallsRevenue
+			displayFolder: 99 Checks
+			lineageTag: 4176eace-9262-4929-a9c0-0acdda477a1a
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure Check_Dest_Revenue_Total =
+				VAR ProjectRev = SUM('PROJECT_REVENUE_F'[Amount])
+						VAR ContractRev = SUM('SERVCONTRACTS_REVENUE_F'[Amount])
+						VAR SpotRev = SUM('SPOT_FINANCIALS_F'[Revenue])
+				
+						RETURN
+							ProjectRev + ContractRev + SpotRev
+			displayFolder: 99 Checks
+			lineageTag: 9ac4048d-167e-466a-81ed-51199e7afad4
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure Check_Revenue_Variance = [Check_Source_Revenue_Total] - [Check_Dest_Revenue_Total]
+			displayFolder: 99 Checks
+			lineageTag: bcfca2b0-c232-4578-8f83-e92ea72b887f
+
+		measure 'T&M Cost' = SUM(SPOT_FINANCIALS_F[Cost])
+			displayFolder: 00 Base\Cost\T&M
+			lineageTag: b5f1eb04-bf53-4fa9-a7be-74edd99a4956
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Total Revenue' = [Project Revenue] + [Service Contract Revenue] + [T&M Revenue]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 01 Revenue
+			lineageTag: 74e4a287-d2f3-4124-a374-b35d0902dc23
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Total Cost' = [Project Cost] + [Service Contract Cost] + [T&M Cost]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 02 Cost
+			lineageTag: 22730745-e9b9-465b-a13b-f35ed90e1e1c
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Total Gross Profit' = [Total Revenue] - [Total Cost]
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 03 Gross Profit\Total
+			lineageTag: 831d0b0f-bd15-41af-9a82-e10ad578a581
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Total GP %' =
+				DIVIDE(
+							[Total Gross Profit],
+							[Total Revenue]
+						)
+			formatString: 0.00%;-0.00%;0.00%
+			displayFolder: 03 Gross Profit\Total
+			lineageTag: 57e3fb96-50e3-4df4-a923-18eaf349a3bb
+
+		measure 'Has Revenue or Cost' =
+				VAR Rev = [Total Revenue]
+						VAR Cost = [Total Cost]
+						RETURN
+							IF(
+								COALESCE(
+									Rev,
+									0
+								) <> 0
+								|| COALESCE(
+									Cost,
+									0
+								) <> 0,
+								1,
+								0
+							)
+			displayFolder: 90 Debug\Helpers
+			lineageTag: 458d0ba9-34c2-4f10-bf6b-f31a56040de7
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Revenue (By Stream)' = ```
+				
+				VAR Stream =
+				    SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+				RETURN
+				    IF (
+				        ISBLANK ( Stream ),
+				        [Total Revenue],
+				        SWITCH (
+				            Stream,
+				            "Project", [Project Revenue],
+				            "Service Contract", [Service Contract Revenue],
+				            "T&M", [T&M Revenue]
+				        )
+				    )
+				
+				```
+			formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+			displayFolder: 01 Revenue\By Stream
+			lineageTag: 1143cebd-9853-4368-a5c5-4b98e773fee3
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Cost (By Stream)' =
+				
+				VAR Stream =
+				    SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+				RETURN
+				    IF (
+				        ISBLANK ( Stream ),
+				        [Total Cost],
+				        SWITCH (
+				            Stream,
+				            "Project", [Project Cost],
+				            "Service Contract", [Service Contract Cost],
+				            "T&M", [T&M Cost]
+				        )
+				    )
+			displayFolder: 02 Cost\By Stream
+			lineageTag: bf013bef-018a-4f8d-8bb8-1b1a261c014c
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Gross Profit (By Stream)' = ```
+				
+				        [Revenue (By Stream)] - [Cost (By Stream)]
+				```
+			displayFolder: 03 Gross Profit\By Stream
+			lineageTag: 99980665-1dcc-476a-9910-f98c9afa3bcc
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'GP % (By Stream)' = ```
+				
+				        DIVIDE (
+				            [Gross Profit (By Stream)],
+				            [Revenue (By Stream)]
+				        )
+				```
+			displayFolder: 03 Gross Profit\By Stream
+			lineageTag: 657b6252-7cd8-439b-807d-a4b8f0f0b969
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Revenue % of Total' = ```
+				
+				        DIVIDE (
+				            [Revenue (By Stream)],
+				            [Total Revenue]
+				        )
+				```
+			displayFolder: 01 Revenue\By Stream
+			lineageTag: 1c5e3daa-7b9c-4e14-975c-2fadcd35789d
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Cost % of Total' = ```
+				
+				        DIVIDE (
+				            [Cost (By Stream)],
+				            [Total Cost]
+				        )
+				```
+			displayFolder: 02 Cost\By Stream
+			lineageTag: 5efb6daf-e1c8-4cb9-a859-a258310a901f
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'GP % of Total Revenue' = ```
+				
+				        DIVIDE (
+				            [Gross Profit (By Stream)],
+				            [Total Revenue]
+				        )
+				```
+			displayFolder: 03 Gross Profit\By Stream
+			lineageTag: ca281b1e-0e08-4bd8-a66c-47cd48f40586
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		/// Prior Year Service Contract Revenue for comparison.
+		measure 'Service Contract Revenue PY (FY Period)' = CALCULATE([Service Contract Revenue], SAMEPERIODLASTYEAR('FYCALENDAR_D'[Date]))
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 04 Time Intelligence – Snapshot
+			lineageTag: 85542245-c109-45f3-a0fb-8052ddc70c03
+
+		/// Total revenue from the prior period for customers who existed in the prior period. Used as the denominator for retention rates.
+		measure 'Retention Base PY' = ```
+				
+				            SUMX(
+				                VALUES(CUSTOMERS_D[Customer Key]),
+				                VAR RevenuePY = [Service Contract Revenue PY (FY Period)]
+				                RETURN IF(RevenuePY > 0, RevenuePY, 0)
+				            )
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 04 Time Intelligence – Snapshot\Components
+			lineageTag: b9c0bf6f-0b36-402a-9dc5-323eab1051f0
+
+		/// Revenue lost from customers who contributed in the prior period but have 0 revenue in the current period.
+		measure 'Churn Revenue (FY Period)' = ```
+				
+				            SUMX(
+				                VALUES(CUSTOMERS_D[Customer Key]),
+				                VAR RevenueCY = [Service Contract Revenue]
+				                VAR RevenuePY = [Service Contract Revenue PY (FY Period)]
+				                RETURN IF(RevenuePY > 0 && RevenueCY = 0, RevenuePY, 0)
+				            )
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 04 Time Intelligence – Snapshot\Components
+			lineageTag: fd625eaf-de3b-4a35-91c5-8bfc880fc291
+
+		/// The decrease in revenue for customers who exist in both periods (Revenue CY < Revenue PY).
+		measure 'Contraction Revenue (FY Period)' = ```
+				
+				            SUMX(
+				                VALUES(CUSTOMERS_D[Customer Key]),
+				                VAR RevenueCY = [Service Contract Revenue]
+				                VAR RevenuePY = [Service Contract Revenue PY (FY Period)]
+				                RETURN IF(RevenuePY > 0 && RevenueCY > 0 && RevenueCY < RevenuePY, RevenuePY - RevenueCY, 0)
+				            )
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 04 Time Intelligence – Snapshot\Components
+			lineageTag: 7d2cb635-df4f-4df4-b3b0-22768897f146
+
+		/// The increase in revenue for customers who exist in both periods (Revenue CY > Revenue PY).
+		measure 'Upsell Revenue (FY Period)' = ```
+				
+				            SUMX(
+				                VALUES(CUSTOMERS_D[Customer Key]),
+				                VAR RevenueCY = [Service Contract Revenue]
+				                VAR RevenuePY = [Service Contract Revenue PY (FY Period)]
+				                RETURN IF(RevenuePY > 0 && RevenueCY > RevenuePY, RevenueCY - RevenuePY, 0)
+				            )
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 04 Time Intelligence – Snapshot\Components
+			lineageTag: 1fe3e531-8fdd-412b-9610-c373fdff7255
+
+		/// Net Revenue Retention (NRR). Measures the total value of renewed contracts plus expansion revenue minus churn and contraction. Target > 100%.
+		measure 'Net Revenue Retention % (FY Period)' = ```
+				
+				            DIVIDE(
+				                [Retention Base PY] - [Churn Revenue (FY Period)] - [Contraction Revenue (FY Period)]  + [Upsell Revenue (FY Period)],
+				                [Retention Base PY]
+				            )
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 06 Retention KPIs – Snapshot
+			lineageTag: ac4c387d-72d1-4688-a447-901d21f33d31
+
+		/// Gross Revenue Retention (GRR). Measures the retained value of renewed contracts, excluding upsells. Max is 100%.
+		measure 'Gross Revenue Retention % (FY Period)' = ```
+				
+				            DIVIDE(
+				                [Retention Base PY] - [Churn Revenue (FY Period)] - [Contraction Revenue (FY Period)],
+				                [Retention Base PY]
+				            )
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 06 Retention KPIs – Snapshot
+			lineageTag: a4c4b8b6-3728-436c-9761-f1c95c9f6d87
+
+		/// The percentage of revenue lost due to churned customers.
+		measure 'Churn Rate % (FY Period)' = DIVIDE([Churn Revenue (FY Period)], [Retention Base PY])
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 06 Retention KPIs – Snapshot
+			lineageTag: 05f6ca58-84a2-437b-a316-0f1950c1bad9
+
+		/// Rolling 12 Month Revenue for the Current Period.
+		measure 'Service Contract Revenue (TTM)' = ```
+				
+				VAR RawAnchorDate =
+				    MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+				
+				VAR AnchorDate =
+				    EOMONTH ( RawAnchorDate, 0 )
+				RETURN
+				CALCULATE (
+				    [Service Contract Revenue],
+				    DATESINPERIOD (
+				        FYCALENDAR_D[Date],
+				        AnchorDate,
+				        -12,
+				        MONTH
+				    )
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: a1ba7d1e-8bb8-4941-83be-673ec5bd1b31
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		/// Rolling 12 Month Revenue for the Prior Period (13-24 months ago), using EDATE for cleaner logic.
+		measure 'Service Contract Revenue PY (TTM)' = ```
+				
+				VAR RawAnchorDate =
+				    MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+				
+				VAR AnchorDate =
+				    EOMONTH ( RawAnchorDate, 0 )
+				RETURN
+				IF (
+				    ISBLANK ( AnchorDate ),
+				    BLANK(),
+				    CALCULATE (
+				        [Service Contract Revenue],
+				        DATESINPERIOD (
+				            FYCALENDAR_D[Date],
+				            EDATE ( AnchorDate, -12 ),
+				            -12,
+				            MONTH
+				        )
+				    )
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: 494f829e-d4d6-450c-8fe6-0fbb0fd6713f
+
+		/// TTM Denominator: Prior 12-month revenue for customers who existed in that period.
+		measure 'Retention Base PY (TTM)' = ```
+				
+				CALCULATE (
+				    [Service Contract Revenue PY (TTM)],
+				    KEEPFILTERS ( SERVCONTRACTS_REVENUE_F[Date] )
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: 1c8a62a2-d097-4c91-8a4c-b7227861a823
+
+		/// TTM Churn: Lost revenue from customers who had revenue in PY (TTM) but 0 in CY (TTM).
+		measure 'Churn Revenue (TTM)' = ```
+				
+				VAR RevCY =
+				    [Service Contract Revenue (TTM)]
+				VAR RevPY =
+				    [Service Contract Revenue PY (TTM)]
+				RETURN
+				IF (
+				    RevPY > 0
+				        && ( ISBLANK ( RevCY ) || RevCY = 0 ),
+				    RevPY,
+				    BLANK()
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: e20d31ca-c878-4035-aa4a-a91da8275456
+
+		/// TTM Contraction: Decrease in revenue for retained customers over the rolling period.
+		measure 'Contraction Revenue (TTM)' = ```
+				
+				VAR RevCY =
+				    [Service Contract Revenue (TTM)]
+				VAR RevPY =
+				    [Service Contract Revenue PY (TTM)]
+				RETURN
+				IF (
+				    RevPY > 0
+				        && RevCY > 0
+				        && RevCY < RevPY,
+				    RevPY - RevCY,
+				    BLANK()
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: 564d13e6-d846-4007-9223-e4583634af65
+
+		/// TTM Upsell: Increase in revenue for retained customers over the rolling period.
+		measure 'Upsell Revenue (TTM)' = ```
+				
+				VAR RevCY =
+				    [Service Contract Revenue (TTM)]
+				VAR RevPY =
+				    [Service Contract Revenue PY (TTM)]
+				RETURN
+				IF (
+				    RevPY > 0
+				        && RevCY > RevPY,
+				    RevCY - RevPY,
+				    BLANK()
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: 21d23976-54fb-4534-91d9-9ee27c52616c
+
+		/// Net Revenue Retention (TTM). Rolling 12-month view.
+		measure 'Net Revenue Retention % (TTM)' = ```
+				
+				            DIVIDE(
+				                [Retention Base PY (TTM)] - [Churn Revenue (TTM)] - [Contraction Revenue (TTM)] + [Upsell Revenue (TTM)],
+				                [Retention Base PY (TTM)]
+				            )
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 07 Retention KPIs – TTM
+			lineageTag: 0abb25da-222b-4dbe-be8f-0cc4fa568a12
+
+		/// Churn Rate (TTM). Rolling 12-month view.
+		measure 'Churn Rate % (TTM)' = ```
+				
+				DIVIDE (
+				    [Churn Revenue (TTM)],
+				    [Retention Base PY (TTM)]
+				)
+				
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 07 Retention KPIs – TTM
+			lineageTag: bccaf7de-19e2-414f-87ee-1ad06e2007c4
+
+		measure 'Gross Revenue Retention % (TTM)' = ```
+				
+				VAR RevCY =
+				    [Service Contract Revenue (TTM)]
+				VAR RevPY =
+				    [Service Contract Revenue PY (TTM)]
+				RETURN
+				DIVIDE (
+				    MIN ( RevCY, RevPY ),
+				    RevPY
+				)
+				
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 07 Retention KPIs – TTM
+			lineageTag: 0c226a0b-d5cd-4e0d-8b8c-4cf98ac24103
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Debug – Anchor Date' = ```
+				
+				MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+				
+				```
+			displayFolder: 90 Debug
+			lineageTag: 2e70543d-4716-4e01-821a-59c40e8b8ff8
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Customers Churned (TTM)' = ```
+				
+				CALCULATE (
+				    DISTINCTCOUNT ( CUSTOMERS_D[Customer Key] ),
+				    FILTER (
+				        VALUES ( CUSTOMERS_D[Customer Key] ),
+				        [Service Contract Revenue PY (TTM)] > 0
+				            && (
+				                ISBLANK ( [Service Contract Revenue (TTM – As Of Today)] )
+				                || [Service Contract Revenue (TTM – As Of Today)] = 0
+				            )
+				    )
+				)
+				
+				```
+			displayFolder: 05 Time Intelligence – TTM\Logo
+			lineageTag: 419cbdd0-491d-4ecb-b888-f5e7e28b7ed8
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Logo Churn Rate % (TTM)' = ```
+				
+				DIVIDE (
+				    [Customers Churned (TTM)],
+				    [Customers PY (TTM)]
+				)
+				
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 07 Retention KPIs – TTM
+			lineageTag: 8fa89ecc-95f2-48cd-9f88-24926b0189ef
+
+		measure 'Customers PY (TTM)' = ```
+				
+				CALCULATE (
+				    DISTINCTCOUNT ( CUSTOMERS_D[Customer Key] ),
+				    FILTER (
+				        VALUES ( CUSTOMERS_D[Customer Key] ),
+				        [Service Contract Revenue PY (TTM)] > 0
+				    )
+				)
+				
+				```
+			displayFolder: 05 Time Intelligence – TTM\Logo
+			lineageTag: 3ccaa1e3-da10-4521-b674-a7c0fc64906d
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Customers Inactive 12+ Months' = ```
+				
+				CALCULATE (
+				    DISTINCTCOUNT ( CUSTOMERS_D[Customer Key] ),
+				    FILTER (
+				        VALUES ( CUSTOMERS_D[Customer Key] ),
+				        VAR LastBillingDate =
+				            CALCULATE (
+				                MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+				            )
+				        RETURN
+				            NOT ISBLANK ( LastBillingDate )
+				                && DATEDIFF ( LastBillingDate, EOMONTH ( TODAY(), 0 ), MONTH ) >= 12
+				    )
+				)
+				
+				```
+			displayFolder: 08 Customer Status\Counts
+			lineageTag: 1775fa57-562f-4a85-9eff-4fe0967be43a
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Service Contract Revenue (TTM – As Of Today)' = ```
+				
+				VAR AnchorDate =
+				    EOMONTH ( TODAY (), 0 )
+				VAR Rev =
+				    CALCULATE (
+				        [Service Contract Revenue],
+				        DATESINPERIOD (
+				            FYCALENDAR_D[Date],
+				            AnchorDate,
+				            -12,
+				            MONTH
+				        )
+				    )
+				RETURN
+				IF ( Rev > 0, Rev, BLANK () )
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – TTM\Helpers
+			lineageTag: c52a2f2d-8eee-4679-a798-ca684110c00d
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'NRR (TTM – Active Cohort Only)' = ```
+				CALCULATE (
+				    DIVIDE (
+				        [Service Contract Revenue (TTM)],
+				        [Service Contract Revenue PY (TTM)]
+				    ),
+				    FILTER (
+				        VALUES ( CUSTOMERS_D[Customer Key] ),
+				        DATEDIFF (
+				            CALCULATE ( MAX ( SERVCONTRACTS_REVENUE_F[Date] ) ),
+				            EOMONTH ( TODAY(), 0 ),
+				            MONTH
+				        ) <= 12
+				    )
+				)
+				
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 07 Retention KPIs – TTM\Cohorts
+			lineageTag: 6b8aa630-eb8d-456f-8f08-50b41b396388
+
+		measure 'Months Since Last Contract Billing' = ```
+				
+				VAR LastBillingDate =
+				    CALCULATE (
+				        MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+				    )
+				VAR AnchorDate =
+				    EOMONTH ( TODAY (), 0 )
+				RETURN
+				IF (
+				    ISBLANK ( LastBillingDate ),
+				    BLANK (),
+				    DATEDIFF (
+				        EOMONTH ( LastBillingDate, 0 ),
+				        AnchorDate,
+				        MONTH
+				    )
+				)
+				
+				```
+			displayFolder: 90 Debug\Legacy
+			lineageTag: 9ca58e51-f9f4-4a31-baca-c72e9302a5f3
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Customer Contract Status' = ```
+				
+				IF (
+				    [Months Since Last Contract Billing] >= 12,
+				    "Churned",
+				    "Active"
+				)
+				
+				```
+			displayFolder: 90 Debug\Legacy
+			lineageTag: 9e4453a2-fdff-4ab1-ac09-2d639924e0bb
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Selected Customer Name' =
+				
+				IF (
+				    ISFILTERED ( 'CUSTOMERS_D'[Customer Name] ),
+				    IF (
+				        HASONEVALUE ( 'CUSTOMERS_D'[Customer Name] ),
+				        VALUES ( 'CUSTOMERS_D'[Customer Name] ),
+				        "Multiple Customers Selected"
+				    ),
+				    "All Customers (Company Total)"
+				)
+			displayFolder: 90 Debug\UI
+			lineageTag: 49325a64-8ed9-40f3-bbb5-437363f783fe
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Last Billing Date (Any Stream)' = ```
+				
+				CALCULATE (
+				    MAX ( ALL_BILLINGS_F[BillingDate] )
+				)
+				
+				```
+			displayFolder: 08 Customer Status\Helpers
+			lineageTag: 42e2cdf0-cab0-4e93-b370-3248bb8410c8
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Is Active Customer' = ```
+				
+				VAR MonthsInactive =
+				    [Months Since Last Billing]
+				RETURN
+				IF (
+				    NOT ISBLANK ( MonthsInactive )
+				        && MonthsInactive < 12,
+				    1,
+				    0
+				)
+				
+				```
+			displayFolder: 08 Customer Status
+			lineageTag: df4ebd35-6b6b-4d14-b986-0d4ec55cdb47
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Customer Lifecycle Status' = ```
+				
+				VAR MonthsInactive =
+				    [Months Since Last Billing]
+				RETURN
+				SWITCH (
+				    TRUE (),
+				    ISBLANK ( MonthsInactive ),        "No Activity",
+				    MonthsInactive < 6,                "Active",
+				    MonthsInactive < 12,               "Dormant (6–11 mo)",
+				    "Inactive (12+ mo)"
+				)
+				
+				```
+			displayFolder: 08 Customer Status\Helpers
+			lineageTag: 2f7c11b4-4872-48c1-8d28-550e3c5a2d4c
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Months Since Last Billing' = ```
+				
+				VAR LastBillingDate =
+				    [Last Billing Date (Any Stream)]
+				VAR AnchorDate =
+				    EOMONTH ( TODAY(), 0 )
+				RETURN
+				IF (
+				    ISBLANK ( LastBillingDate ),
+				    BLANK (),
+				    DATEDIFF (
+				        EOMONTH ( LastBillingDate, 0 ),
+				        AnchorDate,
+				        MONTH
+				    )
+				)
+				
+				```
+			displayFolder: 08 Customer Status\Helpers
+			lineageTag: 2ad2a8aa-e56a-47f2-939b-cdd871a9a2b6
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Project Revenue (TTM)' = ```
+				
+				VAR AnchorDate =
+				    EOMONTH ( TODAY(), 0 )
+				RETURN
+				CALCULATE (
+				    [Project Revenue],
+				    DATESINPERIOD (
+				        FYCALENDAR_D[Date],
+				        AnchorDate,
+				        -12,
+				        MONTH
+				    )
+				)
+				
+				```
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: 2d6e84f6-b736-481c-a59d-c374e7256d8a
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'T&M Revenue (TTM)' = ```
+				
+				VAR AnchorDate =
+				    EOMONTH ( TODAY(), 0 )
+				RETURN
+				CALCULATE (
+				    [T&M Revenue],
+				    DATESINPERIOD (
+				        FYCALENDAR_D[Date],
+				        AnchorDate,
+				        -12,
+				        MONTH
+				    )
+				)
+				
+				```
+			displayFolder: 05 Time Intelligence – TTM
+			lineageTag: 8ffa65a2-4413-4a05-98b4-f8d31271f860
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Project Spend per Maintenance $ (TTM)' = ```
+				
+				VAR MaintRev =
+				    [Service Contract Revenue (TTM)]
+				VAR ProjectRev =
+				    [Project Revenue (TTM)]
+				RETURN
+				IF (
+				    MaintRev > 0,
+				    DIVIDE ( ProjectRev, MaintRev ),
+				    BLANK ()
+				)
+				
+				```
+			displayFolder: 09 Relationship Intensity\TTM
+			lineageTag: d7c0537b-bd17-4831-a0a3-a53ed8f89161
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'T&M Spend per Maintenance $ (TTM)' = ```
+				
+				VAR MaintRev =
+				    [Service Contract Revenue (TTM)]
+				VAR TMRev =
+				    [T&M Revenue (TTM)]
+				RETURN
+				IF (
+				    MaintRev > 0,
+				    DIVIDE ( TMRev, MaintRev ),
+				    BLANK ()
+				)
+				
+				```
+			displayFolder: 09 Relationship Intensity\TTM
+			lineageTag: ec03a1c3-2a27-4805-830b-2400a5b27e68
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Total T&M Spend per Total Maintenance $ (Snapshot)' = ```
+				
+				VAR MaintRev =
+				    [Service Contract Revenue]
+				VAR TMRev =
+				    [T&M Revenue]
+				RETURN
+				IF (
+				    MaintRev > 0,
+				    DIVIDE ( TMRev, MaintRev ),
+				    BLANK ()
+				)
+				
+				```
+			displayFolder: 09 Relationship Intensity\Snapshot
+			lineageTag: 58993b39-fe01-4d1c-adca-e13a8f34d777
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Total Project Spend per Total Maintenance $ (Snapshot)' = ```
+				
+				VAR MaintRev =
+				    [Service Contract Revenue]
+				VAR ProjectRev =
+				    [Project Revenue]
+				RETURN
+				IF (
+				    MaintRev > 0,
+				    DIVIDE ( ProjectRev, MaintRev ),
+				    BLANK ()
+				)
+				
+				```
+			displayFolder: 09 Relationship Intensity\Snapshot
+			lineageTag: a7118c0b-4cf0-4735-b0b6-5f14e88ea7a1
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Last SC Data Month End' = ```
+				
+				CALCULATE (
+				    MAX ( SC_CustomerMonth_Revenue[Month End] ),
+				    REMOVEFILTERS ( FYCALENDAR_D[Date] )
+				)
+				
+				```
+			lineageTag: a493b9c8-29f8-464d-91a4-d777a126c652
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		/// Rolling 12-month (R12M) retention framework (As-Of, cohort-based).
+		/// Uses SC_AgreementMonth_Revenue to ensure retention respects Service Contract slicers (Division, Contract Type, etc.).
+		measure 'Last SC Data Month End (In Slice)' = ```
+				
+				CALCULATE (
+				    MAX ( SC_AgreementMonth_Revenue[Month End] ),
+				    REMOVEFILTERS ( FYCALENDAR_D[Date] ),
+				    REMOVEFILTERS ( CUSTOMERS_D[Customer Key] )
+				)
+				
+				```
+			isHidden
+			displayFolder: 05 Time Intelligence – R12M\Helpers
+			lineageTag: 44b3ed2e-6c08-4d4d-9a08-53f02a90c0dd
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'As Of Month End (SC)' = ```
+				
+				VAR SelectedMonthEnd =
+				    EOMONTH ( MAX ( FYCALENDAR_D[Date] ), 0 )
+				VAR LastDataMonthEnd =
+				    [Last SC Data Month End (In Slice)]
+				RETURN
+				    IF (
+				        ISBLANK ( LastDataMonthEnd ),
+				        BLANK (),
+				        MIN ( SelectedMonthEnd, LastDataMonthEnd )
+				    )
+				
+				```
+			displayFolder: 05 Time Intelligence – R12M\Helpers
+			lineageTag: 7f66c48d-4a9f-4aa9-9c86-f2d3c5f2c8e7
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'SC Revenue (Agreement Month)' = SUM ( SC_AgreementMonth_Revenue[SC Revenue] )
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M\Helpers
+			lineageTag: 63d82a1c-bd3f-4f8d-a16b-2f95578fa5a6
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'SC Revenue (R12M As Of)' = ```
+				
+				VAR AnchorDate =
+				    [As Of Month End (SC)]
+				RETURN
+				    CALCULATE (
+				        [SC Revenue (Agreement Month)],
+				        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+				    )
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M
+			lineageTag: 3b90e0da-2b1d-4ab2-8f0f-0b85f0ed3b8c
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'SC Revenue PY (R12M As Of)' = ```
+				
+				VAR AnchorDate =
+				    [As Of Month End (SC)]
+				VAR AnchorPY =
+				    EDATE ( AnchorDate, -12 )
+				RETURN
+				    IF (
+				        ISBLANK ( AnchorDate ),
+				        BLANK (),
+				        CALCULATE (
+				            [SC Revenue (Agreement Month)],
+				            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH )
+				        )
+				    )
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M
+			lineageTag: 6fd2e4cc-9b07-46f5-bc16-53c2c4dd381a
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Retention Base PY (R12M As Of)' = ```
+				
+				SUMX (
+				    VALUES ( CUSTOMERS_D[Customer Key] ),
+				    VAR RevPY = [SC Revenue PY (R12M As Of)]
+				    RETURN IF ( RevPY > 0, RevPY, 0 )
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M\Components
+			lineageTag: 84aebcb0-65bb-4871-b62b-4d56c2c7b4b6
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Churn Revenue (R12M As Of)' = ```
+				
+				SUMX (
+				    VALUES ( CUSTOMERS_D[Customer Key] ),
+				    VAR RevCY = [SC Revenue (R12M As Of)]
+				    VAR RevPY = [SC Revenue PY (R12M As Of)]
+				    RETURN
+				        IF ( RevPY > 0 && ( ISBLANK ( RevCY ) || RevCY = 0 ), RevPY, 0 )
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M\Components
+			lineageTag: a1e3513e-3fb5-4d05-98c7-7ce1c76ed8ef
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Contraction Revenue (R12M As Of)' = ```
+				
+				SUMX (
+				    VALUES ( CUSTOMERS_D[Customer Key] ),
+				    VAR RevCY = [SC Revenue (R12M As Of)]
+				    VAR RevPY = [SC Revenue PY (R12M As Of)]
+				    RETURN
+				        IF ( RevPY > 0 && RevCY > 0 && RevCY < RevPY, RevPY - RevCY, 0 )
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M\Components
+			lineageTag: 2c2a9a3d-6b39-4c6e-89ef-70f22b3b79e4
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Upsell Revenue (R12M As Of)' = ```
+				
+				SUMX (
+				    VALUES ( CUSTOMERS_D[Customer Key] ),
+				    VAR RevCY = [SC Revenue (R12M As Of)]
+				    VAR RevPY = [SC Revenue PY (R12M As Of)]
+				    RETURN
+				        IF ( RevPY > 0 && RevCY > RevPY, RevCY - RevPY, 0 )
+				)
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M\Components
+			lineageTag: 5d0e8e0a-bfe0-49fb-ae20-3b3c332b31da
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Net Revenue Retention % (R12M As Of)' = ```
+				
+				DIVIDE (
+				    [Retention Base PY (R12M As Of)]
+				        - [Churn Revenue (R12M As Of)]
+				        - [Contraction Revenue (R12M As Of)]
+				        + [Upsell Revenue (R12M As Of)],
+				    [Retention Base PY (R12M As Of)]
+				)
+				
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 07 Retention KPIs – R12M As Of
+			lineageTag: e635ff5f-45e8-4cfd-a0a9-f15fd7e79595
+
+		measure 'Gross Revenue Retention % (R12M As Of)' = ```
+				
+				DIVIDE (
+				    [Retention Base PY (R12M As Of)]
+				        - [Churn Revenue (R12M As Of)]
+				        - [Contraction Revenue (R12M As Of)],
+				    [Retention Base PY (R12M As Of)]
+				)
+				
+				```
+			formatString: 0.0%;-0.0%;0.0%
+			displayFolder: 07 Retention KPIs – R12M As Of
+			lineageTag: 7d1c6be3-5f3c-4a67-9f93-5cf2d047b1c9
+
+		measure 'Project Revenue (R12M As Of)' = ```
+				
+				VAR AnchorDate =
+				    [As Of Month End (SC)]
+				RETURN
+				    CALCULATE (
+				        [Project Revenue],
+				        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+				    )
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M
+			lineageTag: 1b46acdb-00e2-4c7a-81a3-5cd5d692a9a8
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'T&M Revenue (R12M As Of)' = ```
+				
+				VAR AnchorDate =
+				    [As Of Month End (SC)]
+				RETURN
+				    CALCULATE (
+				        [T&M Revenue],
+				        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+				    )
+				
+				```
+			formatString: \$#,0;(\$#,0);\$#,0
+			displayFolder: 05 Time Intelligence – R12M
+			lineageTag: 8b5d1f58-0b38-4b75-9a2c-d7e3cba4d1b9
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+		measure 'Project Spend per Maintenance $ (R12M As Of)' = ```
+				
+				VAR MaintRev =
+				    [SC Revenue (R12M As Of)]
+				VAR ProjectRev =
+				    [Project Revenue (R12M As Of)]
+				RETURN
+				    IF ( MaintRev > 0, DIVIDE ( ProjectRev, MaintRev ), BLANK () )
+				
+				```
+			displayFolder: 09 Relationship Intensity\R12M As Of
+			lineageTag: 3ad6b3a2-4b7e-4c3f-9a5b-9d987b2c0b05
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'T&M Spend per Maintenance $ (R12M As Of)' = ```
+				
+				VAR MaintRev =
+				    [SC Revenue (R12M As Of)]
+				VAR TMRev =
+				    [T&M Revenue (R12M As Of)]
+				RETURN
+				    IF ( MaintRev > 0, DIVIDE ( TMRev, MaintRev ), BLANK () )
+				
+				```
+			displayFolder: 09 Relationship Intensity\R12M As Of
+			lineageTag: 75c7c7fd-9a51-48ff-b9d0-8d5d85155ed7
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		column _Dummy
+			isHidden
+			lineageTag: 5a8e02fc-c19f-452b-a41d-40d5b55a211f
+			isNameInferred
+			sourceColumn: [_Dummy]
+
+		partition '_Key Measures' = calculated
+			mode: import
+			source = DATATABLE("_Dummy", STRING, {{"Measure Container"}})
+

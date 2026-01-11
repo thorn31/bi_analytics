@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "138efb45ad8fbef4ab69",
+  "position": {
+    "x": 120,
+    "y": 293.1958762886598,
+    "z": 1000,
+    "height": 300.61855670103091,
+    "width": 1060.8247422680413
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Check_Dest_Total"
+                }
+              },
+              "queryRef": "_Key Measures.Check_Dest_Total",
+              "nativeQueryRef": "Check_Dest_Total"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Check_Source_Calls"
+                }
+              },
+              "queryRef": "_Key Measures.Check_Source_Calls",
+              "nativeQueryRef": "Check_Source_Calls"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Check_Variance"
+                }
+              },
+              "queryRef": "_Key Measures.Check_Variance",
+              "nativeQueryRef": "Check_Variance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Total Cost",
+              "nativeQueryRef": "Total Cost"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Company"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Company",
+              "nativeQueryRef": "Company"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Division",
+              "nativeQueryRef": "Division"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

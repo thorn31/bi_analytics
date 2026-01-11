@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "e26f7d62b64a497c57dc",
+  "position": {
+    "x": 985.0853242320818,
+    "y": 318.839590443686,
+    "z": 6000,
+    "height": 273.68600682593853,
+    "width": 896.6211604095563,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Revenue_Stream_D"
+                    }
+                  },
+                  "Property": "Revenue Stream"
+                }
+              },
+              "queryRef": "Revenue_Stream_D.Revenue Stream",
+              "nativeQueryRef": "Revenue Stream",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Cost (By Stream)"
+                }
+              },
+              "queryRef": "_Key Measures.Cost (By Stream)",
+              "nativeQueryRef": "Cost (By Stream)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Revenue % of Total"
+                }
+              },
+              "queryRef": "_Key Measures.Revenue % of Total",
+              "nativeQueryRef": "Revenue % of Total"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Revenue (By Stream)"
+                }
+              },
+              "queryRef": "_Key Measures.Revenue (By Stream)",
+              "nativeQueryRef": "Revenue (By Stream)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "GP % (By Stream)"
+                }
+              },
+              "queryRef": "_Key Measures.GP % (By Stream)",
+              "nativeQueryRef": "GP % (By Stream)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Gross Profit (By Stream)"
+                }
+              },
+              "queryRef": "_Key Measures.Gross Profit (By Stream)",
+              "nativeQueryRef": "Gross Profit (By Stream)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Cost % of Total"
+                }
+              },
+              "queryRef": "_Key Measures.Cost % of Total",
+              "nativeQueryRef": "Cost % of Total"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

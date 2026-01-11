@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "c53a85a0955c119bdcae",
+  "position": {
+    "x": 763.91752577319585,
+    "y": 0,
+    "z": 1000,
+    "height": 116.28865979381443,
+    "width": 505.97938144329896,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textSlicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "Contract Number"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.Contract Number",
+              "nativeQueryRef": "Contract Number"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "s",
+                    "Entity": "SERVCONTRACTS_D",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Contains": {
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "s"
+                              }
+                            },
+                            "Property": "Contract Number"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'A+5226'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

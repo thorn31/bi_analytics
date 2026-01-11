@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "b5d32e1859188c495e3a",
+  "position": {
+    "x": 0,
+    "y": 416,
+    "z": 1000,
+    "height": 280,
+    "width": 798,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_REVENUE_F"
+                    }
+                  },
+                  "Property": "Amount"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_REVENUE_F.Amount",
+              "nativeQueryRef": "Amount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_REVENUE_F"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_REVENUE_F.Date",
+              "nativeQueryRef": "Date"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SERVCONTRACTS_REVENUE_F"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

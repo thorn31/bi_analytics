@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "0bd6be4bac48fb8ce3d2",
+  "position": {
+    "x": 1605.1055887372013,
+    "y": 692.04778156996588,
+    "z": 12000,
+    "height": 300,
+    "width": 276.60089590443681,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_REVENUE_F"
+                    }
+                  },
+                  "Property": "Amount"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_REVENUE_F.Amount",
+              "nativeQueryRef": "Amount"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "04302faf4b8000bb7c73",
+  "position": {
+    "x": 383,
+    "y": 367,
+    "z": 10000,
+    "height": 254,
+    "width": 524,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "Contract Type"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.Contract Type",
+              "nativeQueryRef": "Contract Type",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue",
+              "nativeQueryRef": "Service Contract Revenue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Service Contract Revenue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fd9f28c8d4079ab6e6be",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Service Contract Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0f70ed5c9ce76700ab13",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SERVCONTRACTS_D"
+              }
+            },
+            "Property": "Contract Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8995cfad5053d2e1c598",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

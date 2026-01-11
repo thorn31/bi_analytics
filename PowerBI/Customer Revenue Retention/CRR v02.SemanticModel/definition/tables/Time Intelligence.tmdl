@@ -1,0 +1,68 @@
+table 'Time Intelligence'
+	lineageTag: ad33936e-844d-4620-8dca-cc10030a29ce
+
+	calculationGroup
+
+		calculationItem Current = ```
+				SELECTEDMEASURE()
+				
+				```
+
+		calculationItem MTD = ```
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    DATESMTD( 'FYCalendar_D'[Date] )
+				)
+				
+				```
+
+		calculationItem QTD = ```
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    DATESQTD( 'FYCalendar_D'[Date] )
+				)
+				
+				```
+
+		calculationItem YTD = ```
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    DATESYTD( 'FYCalendar_D'[Date] )
+				)
+				
+				```
+
+		calculationItem PY = ```
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    SAMEPERIODLASTYEAR( 'FYCalendar_D'[Date] )
+				)
+				
+				```
+
+		calculationItem YoY = ```
+				VAR Curr = SELECTEDMEASURE()
+				VAR Prev = CALCULATE(
+				    SELECTEDMEASURE(),
+				    SAMEPERIODLASTYEAR( 'FYCalendar_D'[Date] )
+				)
+				RETURN Curr - Prev
+				
+				```
+
+		calculationItem 'YoY %'
+
+			formatStringDefinition = "0.0%"
+
+	column Period
+		dataType: string
+		lineageTag: 6f729d25-4c44-44e0-bba5-0f33c2301502
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: fb727df0-5028-4778-95af-fd122fad3180
+		sourceColumn: Ordinal
+

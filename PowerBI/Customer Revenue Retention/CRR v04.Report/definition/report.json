@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY25SU11",
+      "reportVersionAtImport": {
+        "visual": "2.4.0",
+        "report": "3.0.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Perfection_New14006285453856981.json",
+      "reportVersionAtImport": {
+        "visual": "2.4.0",
+        "report": "3.0.0",
+        "page": "2.3.0"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e673efb18d2b0b92b4bf",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIVISIONS_D"
+              }
+            },
+            "Property": "Company"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY25SU11",
+          "path": "BaseThemes/CY25SU11.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "PBI_SlicerPanel_wControl_(1)9860462231848993.png",
+          "path": "PBI_SlicerPanel_wControl_(1)9860462231848993.png",
+          "type": "Image"
+        },
+        {
+          "name": "Badge_PG-Circle-Reversed_2Col7786831604012499.png",
+          "path": "Badge_PG-Circle-Reversed_2Col7786831604012499.png",
+          "type": "Image"
+        },
+        {
+          "name": "Badge_PG-Circle-RGB785336690028513.png",
+          "path": "Badge_PG-Circle-RGB785336690028513.png",
+          "type": "Image"
+        },
+        {
+          "name": "Badge_PG-Circle-RGB6251770443828839.png",
+          "path": "Badge_PG-Circle-RGB6251770443828839.png",
+          "type": "Image"
+        },
+        {
+          "name": "PG_Arrow9095992411081082.svg",
+          "path": "PG_Arrow9095992411081082.svg",
+          "type": "Image"
+        },
+        {
+          "name": "PG_Arrow259137531327289.svg",
+          "path": "PG_Arrow259137531327289.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Icon_PG-Total_Facility-Graysca7811267966852667.jpg",
+          "path": "Icon_PG-Total_Facility-Graysca7811267966852667.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "PG_Arrow1867330995351283.svg",
+          "path": "PG_Arrow1867330995351283.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Perfection_New14006285453856981.json",
+          "path": "Perfection_New14006285453856981.json",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

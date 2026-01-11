@@ -1,0 +1,142 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "813ea16e3b4d03bae15d",
+  "position": {
+    "x": 13,
+    "y": 367,
+    "z": 14000,
+    "height": 254,
+    "width": 357,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stream_Subsegment_D"
+                    }
+                  },
+                  "Property": "Revenue Stream"
+                }
+              },
+              "queryRef": "Stream_Subsegment_D.Revenue Stream",
+              "nativeQueryRef": "Revenue Stream"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FINANCIAL_METRIC_D"
+                    }
+                  },
+                  "Property": "Metric Value – Revenue"
+                }
+              },
+              "queryRef": "FINANCIAL_METRIC_D.Metric Value – Revenue",
+              "nativeQueryRef": "Revenue",
+              "displayName": "Revenue"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metric Selector"
+                    }
+                  },
+                  "Property": "Metric Selector"
+                }
+              },
+              "index": 0,
+              "length": 1
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FINANCIAL_METRIC_D"
+                  }
+                },
+                "Property": "Metric Value – Revenue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "733f9ce5d0e0a38a3307",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3b6c51e7ca802a7754d9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Stream_Subsegment_D"
+              }
+            },
+            "Property": "Revenue Stream"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "af1afbe5d4392fc5d118",
+  "position": {
+    "x": 743.5051546391752,
+    "y": 15.463917525773196,
+    "z": 3000,
+    "height": 483.71134020618558,
+    "width": 536.28865979381442,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Customer Name",
+              "nativeQueryRef": "Customer Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Customer Number"
+                }
+              },
+              "queryRef": "Min(CUSTOMERS_D.Customer Number)",
+              "nativeQueryRef": "Customer Number1"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7aafced1dfc51a898cfd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Customer Name"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "CUSTOMERS_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "StartsWith": {
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "c"
+                        }
+                      },
+                      "Property": "Customer Name"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'great'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

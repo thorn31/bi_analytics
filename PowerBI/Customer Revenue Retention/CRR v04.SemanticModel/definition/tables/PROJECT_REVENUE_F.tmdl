@@ -1,0 +1,243 @@
+table PROJECT_REVENUE_F
+	lineageTag: f10611b9-4e57-4b83-b8e1-3d9bde2d1a2b
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 34f56a49-5cac-4e41-9975-99ab732b034d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SurrogateProjectID
+		dataType: string
+		lineageTag: d398b09b-484f-40b1-b0a7-e3b5ed15b27c
+		summarizeBy: none
+		sourceColumn: SurrogateProjectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 797aefe4-a5c6-40f7-ba78-fb97f38f9973
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Source Type'
+		dataType: string
+		lineageTag: 083de03b-747c-424b-a627-c4504be39408
+		summarizeBy: none
+		sourceColumn: Source Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Number'
+		dataType: string
+		lineageTag: 5e261531-eaf0-48fa-8979-2a5db0215dfd
+		summarizeBy: none
+		sourceColumn: Customer Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 81539096-c678-4f67-84d9-33d4084f35da
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PROJECT_REVENUE_F = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    //
+				    // ============================
+				    //     JOB REVENUE STREAM
+				    // ============================
+				    //
+				    Job_Revenue =
+				        let
+				            // Select needed columns including Customer Key + Number
+				            Slim =
+				                Table.SelectColumns(
+				                    JOB_FINANCIALS_F,
+				                    {
+				                        "Period Date",
+				                        "SurrogateProjectID",
+				                        "Customer Number",
+				                        "Customer Key",
+				                        "Contract Earned Curr Mo"
+				                    }
+				                ),
+				
+				            Renamed =
+				                Table.RenameColumns(
+				                    Slim,
+				                    {
+				                        {"Period Date", "Date"},
+				                        {"Contract Earned Curr Mo", "Amount"}
+				                    }
+				                ),
+				
+				            Typed =
+				                Table.TransformColumnTypes(
+				                    Renamed,
+				                    {
+				                        {"Date", type date},
+				                        {"SurrogateProjectID", type text},
+				                        {"Customer Number", type text},
+				                        {"Customer Key", type text},
+				                        {"Amount", Currency.Type}
+				                    }
+				                ),
+				
+				            WithType =
+				                Table.AddColumn(
+				                    Typed,
+				                    "Source Type",
+				                    each "Job Earned",
+				                    type text
+				                )
+				        in
+				            WithType,
+				
+				
+				    //
+				    // ============================
+				    //   SERVICE PROJECT REVENUE
+				    // ============================
+				    //
+				
+				    // Filter PROJECTS_D to only service contracts
+				    Service_Projects =
+				        Table.SelectRows(
+				            PROJECTS_D,
+				            each [Project Type] = "Service Contract"
+				        ),
+				
+				    // Keep Project Number, SurrogateProjectID, Customer Number, Customer Key
+				    Service_Project_Keys =
+				        Table.SelectColumns(
+				            Service_Projects,
+				            {
+				                "Project Number",
+				                "SurrogateProjectID",
+				                "Customer Number",
+				                "Customer Key"
+				            }
+				        ),
+				    Service_Project_Unique = Table.Distinct(Service_Project_Keys, {"Project Number"}),
+				
+				    // Slim billing table for performance
+				    Billing_Slim =
+				        Table.SelectColumns(
+				            CONTRACT_BILLABLE_F,
+				            {
+				                "WENNSOFT_BILLING_DATE",
+				                "CONTRACT_NUMBER",
+				                "BILLABLE_ALL"
+				            }
+				        ),
+				
+				    // Join billing rows to PROJECTS_D slice
+				    Joined =
+				        Table.NestedJoin(
+				            Billing_Slim,
+				            {"CONTRACT_NUMBER"},
+				            Service_Project_Unique,
+				            {"Project Number"},
+				            "Matched",
+				            JoinKind.Inner
+				        ),
+				
+				    // Expand: Project Number, SurrogateProjectID, Customer Number, Customer Key
+				    Expanded =
+				        Table.ExpandTableColumn(
+				            Joined,
+				            "Matched",
+				            {
+				                "Project Number",
+				                "SurrogateProjectID",
+				                "Customer Number",
+				                "Customer Key"
+				            },
+				            {
+				                "Project Number",
+				                "SurrogateProjectID",
+				                "Customer Number",
+				                "Customer Key"
+				            }
+				        ),
+				
+				    // Rename + type
+				    Cleaned =
+				        Table.TransformColumnTypes(
+				            Table.RenameColumns(
+				                Expanded,
+				                {
+				                    {"WENNSOFT_BILLING_DATE", "Date"},
+				                    {"BILLABLE_ALL", "Amount"}
+				                }
+				            ),
+				            {
+				                {"Date", type date},
+				                {"Project Number", type text},
+				                {"SurrogateProjectID", type text},
+				                {"Customer Number", type text},
+				                {"Customer Key", type text},
+				                {"Amount", Currency.Type}
+				            }
+				        ),
+				
+				    // Add source label
+				    Service_Revenue_Final =
+				        Table.AddColumn(
+				            Cleaned,
+				            "Source Type",
+				            each "Service Billing",
+				            type text
+				        ),
+				
+				    // Unified schema output
+				    Service_Revenue_Formatted =
+				        Table.SelectColumns(
+				            Service_Revenue_Final,
+				            {
+				                "Date",
+				                "SurrogateProjectID",
+				                "Customer Number",
+				                "Customer Key",
+				                "Amount",
+				                "Source Type"
+				            }
+				        ),
+				
+				
+				    //
+				    // ============================
+				    //   COMBINE STREAMS
+				    // ============================
+				    //
+				    PROJECT_REVENUE_F =
+				        Table.Combine({
+				            Job_Revenue,
+				            Service_Revenue_Formatted
+				        }),
+				    AddDateGuard = Table.SelectRows(#"PROJECT_REVENUE_F", each [Date] <= Date.AddYears(Date.From(DateTime.LocalNow()), 0))
+				in
+				    AddDateGuard
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,381 @@
+DEFINE
+    MEASURE '_Key Measures'[Service Contract Gross Profit] = [Service Contract Revenue] - [Service Contract Cost]
+    MEASURE '_Key Measures'[Service Contract Gross Profit %] = DIVIDE(
+			[Service Contract Gross Profit],
+			[Service Contract Revenue]
+		)
+    MEASURE '_Key Measures'[Project Revenue] = SUM(PROJECT_REVENUE_F[Amount])
+    MEASURE '_Key Measures'[Project Cost] = SUM(PROJECT_COSTS_F[Amount])
+    MEASURE '_Key Measures'[Project GP] = [Project Revenue] - [Project Cost]
+    MEASURE '_Key Measures'[Project GP %] = DIVIDE(
+			[Project GP],
+			[Project Revenue]
+		)
+    MEASURE '_Key Measures'[Project GP % (Formatted)] = FORMAT(
+			[Project GP %],
+			"0.0%"
+		)
+    MEASURE '_Key Measures'[Service Contract Cost] = SUM(SERVCONTRACTS_COSTS_F[Amount])
+    MEASURE '_Key Measures'[Service Contract Revenue] = SUM(SERVCONTRACTS_REVENUE_F[Amount])
+    MEASURE '_Key Measures'[Check_Source_Calls] = SUM('CALLS_F'[Cost All])
+    MEASURE '_Key Measures'[Check_Dest_Total] = CALCULATE(
+			SUM('PROJECT_COSTS_F'[Amount]),
+			'PROJECT_COSTS_F'[Source Type] = "Service Call Cost"
+		) + SUM('SERVCONTRACTS_COSTS_F'[Amount]) + SUM('SPOT_FINANCIALS_F'[Cost])
+    MEASURE '_Key Measures'[Check_Variance] = [Check_Source_Calls] - [Check_Dest_Total]
+    MEASURE '_Key Measures'[T&M Revenue] = SUM(SPOT_FINANCIALS_F[Revenue])
+    MEASURE '_Key Measures'[T&M Gross Profit] = [T&M Revenue] - [T&M Cost]
+    MEASURE '_Key Measures'[T&M GP %] = DIVIDE(
+			[T&M Gross Profit],
+			[T&M Revenue]
+		)
+    MEASURE '_Key Measures'[Check_Source_Revenue_Total] = VAR JobRevenue = SUM('JOB_MONTHLY_SUMMARY_F'[Contract Earned Curr Mo])
+		VAR ContractBillingRevenue = SUM('CONTRACT_BILLABLE_F'[BILLABLE_ALL])
+		VAR SpotCallsRevenue = CALCULATE(
+			SUM('CALLS_F'[Billable All]),
+			'CALLS_F'[Contract Number] = BLANK() || 'CALLS_F'[Contract Number] = ""
+		)
+
+		RETURN
+			JobRevenue + ContractBillingRevenue + SpotCallsRevenue
+    MEASURE '_Key Measures'[Check_Dest_Revenue_Total] = VAR ProjectRev = SUM('PROJECT_REVENUE_F'[Amount])
+		VAR ContractRev = SUM('SERVCONTRACTS_REVENUE_F'[Amount])
+		VAR SpotRev = SUM('SPOT_FINANCIALS_F'[Revenue])
+
+		RETURN
+			ProjectRev + ContractRev + SpotRev
+    MEASURE '_Key Measures'[Check_Revenue_Variance] = [Check_Source_Revenue_Total] - [Check_Dest_Revenue_Total]
+    MEASURE '_Key Measures'[T&M Cost] = SUM(SPOT_FINANCIALS_F[Cost])
+    MEASURE '_Key Measures'[Total Revenue] = [Project Revenue] + [Service Contract Revenue] + [T&M Revenue]
+    MEASURE '_Key Measures'[Total Cost] = [Project Cost] + [Service Contract Cost] + [T&M Cost]
+    MEASURE '_Key Measures'[Total Gross Profit] = [Total Revenue] - [Total Cost]
+    MEASURE '_Key Measures'[Total GP %] = DIVIDE(
+			[Total Gross Profit],
+			[Total Revenue]
+		)
+    MEASURE '_Key Measures'[Has Revenue or Cost] = VAR Rev = [Total Revenue]
+		VAR Cost = [Total Cost]
+		RETURN
+			IF(
+				COALESCE(
+					Rev,
+					0
+				) <> 0
+				|| COALESCE(
+					Cost,
+					0
+				) <> 0,
+				1,
+				0
+			)
+    MEASURE '_Key Measures'[Revenue (By Stream)] = VAR Stream =
+    SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+RETURN
+    IF (
+        ISBLANK ( Stream ),
+        [Total Revenue],
+        SWITCH (
+            Stream,
+            "Project", [Project Revenue],
+            "Service Contract", [Service Contract Revenue],
+            "T&M", [T&M Revenue]
+        )
+    )
+    MEASURE '_Key Measures'[Cost (By Stream)] = VAR Stream =
+    SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+RETURN
+    IF (
+        ISBLANK ( Stream ),
+        [Total Cost],
+        SWITCH (
+            Stream,
+            "Project", [Project Cost],
+            "Service Contract", [Service Contract Cost],
+            "T&M", [T&M Cost]
+        )
+    )
+    MEASURE '_Key Measures'[Gross Profit (By Stream)] = [Revenue (By Stream)] - [Cost (By Stream)]
+    MEASURE '_Key Measures'[GP % (By Stream)] = DIVIDE (
+            [Gross Profit (By Stream)],
+            [Revenue (By Stream)]
+        )
+    MEASURE '_Key Measures'[Revenue % of Total] = DIVIDE (
+            [Revenue (By Stream)],
+            [Total Revenue]
+        )
+    MEASURE '_Key Measures'[Cost % of Total] = DIVIDE (
+            [Cost (By Stream)],
+            [Total Cost]
+        )
+    MEASURE '_Key Measures'[GP % of Total Revenue] = DIVIDE (
+            [Gross Profit (By Stream)],
+            [Total Revenue]
+        )
+    MEASURE '_Key Measures'[Service Contract Revenue PY] = CALCULATE([Service Contract Revenue], SAMEPERIODLASTYEAR('FYCALENDAR_D'[Date]))
+    MEASURE '_Key Measures'[Retention Base PY] = SUMX(
+                VALUES(CUSTOMERS_D[Customer Key]),
+                VAR RevenuePY = [Service Contract Revenue PY]
+                RETURN IF(RevenuePY > 0, RevenuePY, 0)
+            )
+    MEASURE '_Key Measures'[Churn Revenue] = SUMX(
+                VALUES(CUSTOMERS_D[Customer Key]),
+                VAR RevenueCY = [Service Contract Revenue]
+                VAR RevenuePY = [Service Contract Revenue PY]
+                RETURN IF(RevenuePY > 0 && RevenueCY = 0, RevenuePY, 0)
+            )
+    MEASURE '_Key Measures'[Contraction Revenue] = SUMX(
+                VALUES(CUSTOMERS_D[Customer Key]),
+                VAR RevenueCY = [Service Contract Revenue]
+                VAR RevenuePY = [Service Contract Revenue PY]
+                RETURN IF(RevenuePY > 0 && RevenueCY > 0 && RevenueCY < RevenuePY, RevenuePY - RevenueCY, 0)
+            )
+    MEASURE '_Key Measures'[Upsell Revenue] = SUMX(
+                VALUES(CUSTOMERS_D[Customer Key]),
+                VAR RevenueCY = [Service Contract Revenue]
+                VAR RevenuePY = [Service Contract Revenue PY]
+                RETURN IF(RevenuePY > 0 && RevenueCY > RevenuePY, RevenueCY - RevenuePY, 0)
+            )
+    MEASURE '_Key Measures'[Net Revenue Retention %] = DIVIDE(
+                [Retention Base PY] - [Churn Revenue] - [Contraction Revenue] + [Upsell Revenue],
+                [Retention Base PY]
+            )
+    MEASURE '_Key Measures'[Gross Revenue Retention %] = DIVIDE(
+                [Retention Base PY] - [Churn Revenue] - [Contraction Revenue],
+                [Retention Base PY]
+            )
+    MEASURE '_Key Measures'[Churn Rate %] = DIVIDE([Churn Revenue], [Retention Base PY])
+    MEASURE '_Key Measures'[Service Contract Revenue (TTM)] = VAR RawAnchorDate =
+    MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+
+VAR AnchorDate =
+    EOMONTH ( RawAnchorDate, 0 )
+RETURN
+CALCULATE (
+    [Service Contract Revenue],
+    DATESINPERIOD (
+        FYCALENDAR_D[Date],
+        AnchorDate,
+        -12,
+        MONTH
+    )
+)
+    MEASURE '_Key Measures'[Service Contract Revenue PY (TTM)] = VAR RawAnchorDate =
+    MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+
+VAR AnchorDate =
+    EOMONTH ( RawAnchorDate, 0 )
+RETURN
+IF (
+    ISBLANK ( AnchorDate ),
+    BLANK(),
+    CALCULATE (
+        [Service Contract Revenue],
+        DATESINPERIOD (
+            FYCALENDAR_D[Date],
+            EDATE ( AnchorDate, -12 ),
+            -12,
+            MONTH
+        )
+    )
+)
+    MEASURE '_Key Measures'[Retention Base PY (TTM)] = CALCULATE (
+    [Service Contract Revenue PY (TTM)],
+    KEEPFILTERS ( SERVCONTRACTS_REVENUE_F[Date] )
+)
+    MEASURE '_Key Measures'[Churn Revenue (TTM)] = VAR RevCY =
+    [Service Contract Revenue (TTM)]
+VAR RevPY =
+    [Service Contract Revenue PY (TTM)]
+RETURN
+IF (
+    RevPY > 0
+        && ( ISBLANK ( RevCY ) || RevCY = 0 ),
+    RevPY,
+    BLANK()
+)
+    MEASURE '_Key Measures'[Contraction Revenue (TTM)] = VAR RevCY =
+    [Service Contract Revenue (TTM)]
+VAR RevPY =
+    [Service Contract Revenue PY (TTM)]
+RETURN
+IF (
+    RevPY > 0
+        && RevCY > 0
+        && RevCY < RevPY,
+    RevPY - RevCY,
+    BLANK()
+)
+    MEASURE '_Key Measures'[Upsell Revenue (TTM)] = VAR RevCY =
+    [Service Contract Revenue (TTM)]
+VAR RevPY =
+    [Service Contract Revenue PY (TTM)]
+RETURN
+IF (
+    RevPY > 0
+        && RevCY > RevPY,
+    RevCY - RevPY,
+    BLANK()
+)
+    MEASURE '_Key Measures'[Net Revenue Retention % (TTM)] = DIVIDE(
+                [Retention Base PY (TTM)] - [Churn Revenue (TTM)] - [Contraction Revenue (TTM)] + [Upsell Revenue (TTM)],
+                [Retention Base PY (TTM)]
+            )
+    MEASURE '_Key Measures'[Churn Rate % (TTM)] = DIVIDE (
+    [Churn Revenue (TTM)],
+    [Retention Base PY (TTM)]
+)
+    MEASURE '_Key Measures'[Gross Revenue Retention % (TTM)] = VAR RevCY =
+    [Service Contract Revenue (TTM)]
+VAR RevPY =
+    [Service Contract Revenue PY (TTM)]
+RETURN
+DIVIDE (
+    MIN ( RevCY, RevPY ),
+    RevPY
+)
+    MEASURE '_Key Measures'[Debug – Anchor Date] = MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+    MEASURE '_Key Measures'[Customers Churned (TTM)] = CALCULATE (
+    DISTINCTCOUNT ( CUSTOMERS_D[Customer Key] ),
+    FILTER (
+        VALUES ( CUSTOMERS_D[Customer Key] ),
+        [Service Contract Revenue PY (TTM)] > 0
+            && (
+                ISBLANK ( [Service Contract Revenue (TTM – As Of Today)] )
+                || [Service Contract Revenue (TTM – As Of Today)] = 0
+            )
+    )
+)
+    MEASURE '_Key Measures'[Logo Churn Rate % (TTM)] = DIVIDE (
+    [Customers Churned (TTM)],
+    [Customers PY (TTM)]
+)
+    MEASURE '_Key Measures'[Customers PY (TTM)] = CALCULATE (
+    DISTINCTCOUNT ( CUSTOMERS_D[Customer Key] ),
+    FILTER (
+        VALUES ( CUSTOMERS_D[Customer Key] ),
+        [Service Contract Revenue PY (TTM)] > 0
+    )
+)
+    MEASURE '_Key Measures'[Customers Inactive 12+ Months] = CALCULATE (
+    DISTINCTCOUNT ( CUSTOMERS_D[Customer Key] ),
+    FILTER (
+        VALUES ( CUSTOMERS_D[Customer Key] ),
+        VAR LastBillingDate =
+            CALCULATE (
+                MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+            )
+        RETURN
+            NOT ISBLANK ( LastBillingDate )
+                && DATEDIFF ( LastBillingDate, EOMONTH ( TODAY(), 0 ), MONTH ) >= 12
+    )
+)
+    MEASURE '_Key Measures'[Service Contract Revenue (TTM – As Of Today)] = VAR AnchorDate =
+    EOMONTH ( TODAY (), 0 )
+VAR Rev =
+    CALCULATE (
+        [Service Contract Revenue],
+        DATESINPERIOD (
+            FYCALENDAR_D[Date],
+            AnchorDate,
+            -12,
+            MONTH
+        )
+    )
+RETURN
+IF ( Rev > 0, Rev, BLANK () )
+    MEASURE '_Key Measures'[NRR (TTM – Active Cohort Only)] = CALCULATE (
+    DIVIDE (
+        [Service Contract Revenue (TTM)],
+        [Service Contract Revenue PY (TTM)]
+    ),
+    FILTER (
+        VALUES ( CUSTOMERS_D[Customer Key] ),
+        DATEDIFF (
+            CALCULATE ( MAX ( SERVCONTRACTS_REVENUE_F[Date] ) ),
+            EOMONTH ( TODAY(), 0 ),
+            MONTH
+        ) <= 12
+    )
+)
+    MEASURE '_Key Measures'[Months Since Last Contract Billing] = VAR LastBillingDate =
+    CALCULATE (
+        MAX ( SERVCONTRACTS_REVENUE_F[Date] )
+    )
+VAR AnchorDate =
+    EOMONTH ( TODAY (), 0 )
+RETURN
+IF (
+    ISBLANK ( LastBillingDate ),
+    BLANK (),
+    DATEDIFF (
+        EOMONTH ( LastBillingDate, 0 ),
+        AnchorDate,
+        MONTH
+    )
+)
+    MEASURE '_Key Measures'[Customer Contract Status] = IF (
+    [Months Since Last Contract Billing] >= 12,
+    "Churned",
+    "Active"
+)
+
+EVALUATE
+    SUMMARIZECOLUMNS(
+        "Service Contract Gross Profit", [Service Contract Gross Profit],
+        "Service Contract Gross Profit %", [Service Contract Gross Profit %],
+        "Project Revenue", [Project Revenue],
+        "Project Cost", [Project Cost],
+        "Project GP", [Project GP],
+        "Project GP %", [Project GP %],
+        "Project GP % (Formatted)", [Project GP % (Formatted)],
+        "Service Contract Cost", [Service Contract Cost],
+        "Service Contract Revenue", [Service Contract Revenue],
+        "Check_Source_Calls", [Check_Source_Calls],
+        "Check_Dest_Total", [Check_Dest_Total],
+        "Check_Variance", [Check_Variance],
+        "T&M Revenue", [T&M Revenue],
+        "T&M Gross Profit", [T&M Gross Profit],
+        "T&M GP %", [T&M GP %],
+        "Check_Source_Revenue_Total", [Check_Source_Revenue_Total],
+        "Check_Dest_Revenue_Total", [Check_Dest_Revenue_Total],
+        "Check_Revenue_Variance", [Check_Revenue_Variance],
+        "T&M Cost", [T&M Cost],
+        "Total Revenue", [Total Revenue],
+        "Total Cost", [Total Cost],
+        "Total Gross Profit", [Total Gross Profit],
+        "Total GP %", [Total GP %],
+        "Has Revenue or Cost", [Has Revenue or Cost],
+        "Revenue (By Stream)", [Revenue (By Stream)],
+        "Cost (By Stream)", [Cost (By Stream)],
+        "Gross Profit (By Stream)", [Gross Profit (By Stream)],
+        "GP % (By Stream)", [GP % (By Stream)],
+        "Revenue % of Total", [Revenue % of Total],
+        "Cost % of Total", [Cost % of Total],
+        "GP % of Total Revenue", [GP % of Total Revenue],
+        "Service Contract Revenue PY", [Service Contract Revenue PY],
+        "Retention Base PY", [Retention Base PY],
+        "Churn Revenue", [Churn Revenue],
+        "Contraction Revenue", [Contraction Revenue],
+        "Upsell Revenue", [Upsell Revenue],
+        "Net Revenue Retention %", [Net Revenue Retention %],
+        "Gross Revenue Retention %", [Gross Revenue Retention %],
+        "Churn Rate %", [Churn Rate %],
+        "Service Contract Revenue (TTM)", [Service Contract Revenue (TTM)],
+        "Service Contract Revenue PY (TTM)", [Service Contract Revenue PY (TTM)],
+        "Retention Base PY (TTM)", [Retention Base PY (TTM)],
+        "Churn Revenue (TTM)", [Churn Revenue (TTM)],
+        "Contraction Revenue (TTM)", [Contraction Revenue (TTM)],
+        "Upsell Revenue (TTM)", [Upsell Revenue (TTM)],
+        "Net Revenue Retention % (TTM)", [Net Revenue Retention % (TTM)],
+        "Churn Rate % (TTM)", [Churn Rate % (TTM)],
+        "Gross Revenue Retention % (TTM)", [Gross Revenue Retention % (TTM)],
+        "Debug – Anchor Date", [Debug – Anchor Date],
+        "Customers Churned (TTM)", [Customers Churned (TTM)],
+        "Logo Churn Rate % (TTM)", [Logo Churn Rate % (TTM)],
+        "Customers PY (TTM)", [Customers PY (TTM)],
+        "Customers Inactive 12+ Months", [Customers Inactive 12+ Months],
+        "Service Contract Revenue (TTM – As Of Today)", [Service Contract Revenue (TTM – As Of Today)],
+        "NRR (TTM – Active Cohort Only)", [NRR (TTM – Active Cohort Only)],
+        "Months Since Last Contract Billing", [Months Since Last Contract Billing],
+        "Customer Contract Status", [Customer Contract Status]
+    )

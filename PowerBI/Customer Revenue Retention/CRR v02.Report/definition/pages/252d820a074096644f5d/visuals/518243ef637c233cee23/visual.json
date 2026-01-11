@@ -1,0 +1,181 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "518243ef637c233cee23",
+  "position": {
+    "x": 0,
+    "y": 125.92592592592592,
+    "z": 0,
+    "height": 280.55555555555554,
+    "width": 798.14814814814815,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Churn Revenue (FY Period)"
+                }
+              },
+              "queryRef": "_Key Measures.Churn Revenue",
+              "nativeQueryRef": "Churn Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Churn Revenue (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Churn Revenue (TTM)",
+              "nativeQueryRef": "Churn Revenue (TTM)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Customer Name",
+              "nativeQueryRef": "Customer Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Contraction Revenue (FY Period)"
+                }
+              },
+              "queryRef": "_Key Measures.Contraction Revenue",
+              "nativeQueryRef": "Contraction Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Contraction Revenue (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Contraction Revenue (TTM)",
+              "nativeQueryRef": "Contraction Revenue (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Gross Revenue Retention % (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Gross Revenue Retention % (TTM)",
+              "nativeQueryRef": "Gross Revenue Retention % (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Revenue Retention % (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Revenue Retention % (TTM)",
+              "nativeQueryRef": "Net Revenue Retention % (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue (TTM)",
+              "nativeQueryRef": "Service Contract Revenue (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue PY (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue PY (TTM)",
+              "nativeQueryRef": "Service Contract Revenue PY (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Upsell Revenue (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Upsell Revenue (TTM)",
+              "nativeQueryRef": "Upsell Revenue (TTM)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Contraction Revenue (TTM)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

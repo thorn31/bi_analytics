@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "6bccb78705e436706507",
+  "position": {
+    "x": 940.20618556701038,
+    "y": 368.659793814433,
+    "z": 2000,
+    "height": 351.340206185567,
+    "width": 325.97938144329873
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Division",
+              "nativeQueryRef": "Division",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Contracts"
+                }
+              },
+              "queryRef": "_Key Measures.Active Contracts",
+              "nativeQueryRef": "Active Contracts"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Active Contracts"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

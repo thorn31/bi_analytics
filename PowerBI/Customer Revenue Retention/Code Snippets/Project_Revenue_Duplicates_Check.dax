@@ -1,0 +1,13 @@
+EVALUATE
+TOPN(50,
+    FILTER(
+        SUMMARIZECOLUMNS(
+            'PROJECT_REVENUE_F'[Date],
+            'PROJECT_REVENUE_F'[Amount],
+            "RowCount", COUNTROWS('PROJECT_REVENUE_F'),
+            "DistinctIDs", DISTINCTCOUNT('PROJECT_REVENUE_F'[SurrogateProjectID])
+        ),
+        [RowCount] > 1 && [Amount] <> 0
+    ),
+    [DistinctIDs], DESC
+)

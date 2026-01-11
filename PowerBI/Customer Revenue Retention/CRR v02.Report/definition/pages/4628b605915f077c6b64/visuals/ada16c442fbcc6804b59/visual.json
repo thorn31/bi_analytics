@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ada16c442fbcc6804b59",
+  "position": {
+    "x": 661.84210526315792,
+    "y": 0,
+    "z": 1000,
+    "height": 223.68421052631578,
+    "width": 618.421052631579,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Check_Dest_Total"
+                }
+              },
+              "queryRef": "_Key Measures.Check_Dest_Total",
+              "nativeQueryRef": "Check_Dest_Total"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Check_Source_Calls"
+                }
+              },
+              "queryRef": "_Key Measures.Check_Source_Calls",
+              "nativeQueryRef": "Check_Source_Calls"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Check_Variance"
+                }
+              },
+              "queryRef": "_Key Measures.Check_Variance",
+              "nativeQueryRef": "Check_Variance"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

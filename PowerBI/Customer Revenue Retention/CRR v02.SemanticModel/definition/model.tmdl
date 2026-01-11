@@ -1,0 +1,70 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Facts
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Staging
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Project Financials'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup Dim
+
+	annotation PBI_QueryGroupOrder = 3
+
+/// Query group for diagnostics
+queryGroup Diagnostics
+
+	annotation PBI_QueryGroupOrder = 4
+
+/// Errors in queries that were loaded on 12/12/2025 3:07:53 PM.
+queryGroup 'Query Errors - 12/12/2025 3:07:53 PM'
+
+	annotation PBI_QueryGroupOrder = 5
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["CONTRACT_BILLABLE_F","JOB_MONTHLY_SUMMARY_F","SERVCONTRACTS_REVENUE_F","SERVCONTRACTS_COSTS_F","PROJECT_REVENUE_F","PROJECT_COSTS_F","CALLS_F","SV00564","JOBSTRIMMED_D","SERVPROJECTS_D","CONTRACTS_D","JOBS_D","JOB_FINANCIALS_F","SERVCONTRACTS_D_STAGING","REPAIR","PROJECTS_D","SERVCONTRACTS_D","FYCALENDAR_D","CUSTOMERS_D","SPOT_FINANCIALS_F","DIVISIONS_D","ALL_BILLINGS_F"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","MCP-PBIModeling","DaxQueryView_Desktop","DevMode"]
+
+annotation __TEdtr = 1
+
+ref table CONTRACT_BILLABLE_F
+ref table CUSTOMERS_D
+ref table FYCALENDAR_D
+ref table '_Key Measures'
+ref table JOB_MONTHLY_SUMMARY_F
+ref table PROJECTS_D
+ref table PROJECT_REVENUE_F
+ref table PROJECT_COSTS_F
+ref table 'Time Intelligence'
+ref table SERVCONTRACTS_REVENUE_F
+ref table SERVCONTRACTS_COSTS_F
+ref table SERVCONTRACTS_D
+ref table CONTRACTS_D
+ref table SERVCONTRACTS_D_STAGING
+ref table SPOT_FINANCIALS_F
+ref table CALLS_F
+ref table DIVISIONS_D
+ref table Revenue_Stream_D
+ref table FINANCIAL_METRIC_D
+ref table ALL_BILLINGS_F
+ref table 'Customer Status Selector'
+ref table Stream_Subsegment_D
+ref table 'Metric Selector'
+
+ref cultureInfo en-US
+

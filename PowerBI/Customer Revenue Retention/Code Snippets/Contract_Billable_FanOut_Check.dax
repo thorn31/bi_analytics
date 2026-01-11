@@ -1,0 +1,40 @@
+EVALUATE
+VAR ServiceProjectsJoined =
+    SELECTCOLUMNS(
+        FILTER(
+            SUMMARIZE(
+                'CONTRACT_BILLABLE_F',
+                'CONTRACT_BILLABLE_F'[WENNSOFT_BILLING_DATE],
+                'CONTRACT_BILLABLE_F'[BILLABLE_ALL],
+                'CONTRACT_BILLABLE_F'[CONTRACT_NUMBER]
+            ),
+            // Filter to only rows that would go to Project Revenue (Service Contracts)
+            // This is simplified and assumes CONTRACT_NUMBER is the Project Number
+            'CONTRACT_BILLABLE_F'[CONTRACT_NUMBER] IN
+                CALCULATETABLE(
+                    VALUES('PROJECTS_D'[Project Number]),
+                    'PROJECTS_D'[Project Type] = "Service Contract"
+                )
+        ),
+        "Date", 'CONTRACT_BILLABLE_F'[WENNSOFT_BILLING_DATE],
+        "Amount", 'CONTRACT_BILLABLE_F'[BILLABLE_ALL],
+        "ContractNumber", 'CONTRACT_BILLABLE_F'[CONTRACT_NUMBER]
+    )
+VAR ExpandedProjects =
+    ADDCOLUMNS(
+        ServiceProjectsJoined,
+        "DistinctProjectsCount",
+            CALCULATE(
+                DISTINCTCOUNT('PROJECTS_D'[SurrogateProjectID]),
+                TREATAS(
+                    { [ContractNumber] },
+                    'PROJECTS_D'[Project Number]
+                ),
+                'PROJECTS_D'[Project Type] = "Service Contract"
+            )
+    )
+RETURN
+    FILTER(
+        ExpandedProjects,
+        [DistinctProjectsCount] > 1
+    )

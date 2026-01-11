@@ -1,0 +1,223 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "f844f04947f972ec237b",
+  "position": {
+    "x": 0,
+    "y": 116.28865979381443,
+    "z": 0,
+    "height": 525.15463917525767,
+    "width": 763.91752577319585,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Customer Name",
+              "nativeQueryRef": "Customer Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "Contract Number"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.Contract Number",
+              "nativeQueryRef": "Contract Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "YearIndex"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.YearIndex",
+              "nativeQueryRef": "YearIndex"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Cost",
+              "nativeQueryRef": "Service Contract Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue",
+              "nativeQueryRef": "Service Contract Revenue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "CUSTOMERS_D.Customer Name"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "SERVCONTRACTS_D.YearIndex"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "_Key Measures.Service Contract Cost"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "_Key Measures.Service Contract Revenue"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "SERVCONTRACTS_D.Contract Number"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Service Contract Cost"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Service Contract Revenue"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Minimal'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

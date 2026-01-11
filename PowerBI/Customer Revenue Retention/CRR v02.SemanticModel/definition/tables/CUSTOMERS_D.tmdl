@@ -1,0 +1,159 @@
+table CUSTOMERS_D
+	lineageTag: c8e1a961-bcbb-4106-996e-09a69da11c85
+
+	column 'Customer Number'
+		dataType: string
+		lineageTag: 7b856fe9-d307-447b-8fe8-b5b3c5e43b9f
+		summarizeBy: none
+		sourceColumn: Customer Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: 435dd1a7-a0f1-45dd-8e4c-b9d6f894be20
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Class'
+		dataType: string
+		lineageTag: 56f390d4-7549-45cb-a8e4-636fa58cf939
+		summarizeBy: none
+		sourceColumn: Customer Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address1
+		dataType: string
+		lineageTag: 320f0ed1-3b96-4866-b871-37b6d514655e
+		summarizeBy: none
+		sourceColumn: Address1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address2
+		dataType: string
+		lineageTag: 693295a2-1101-4f8b-86ee-1102638bcec9
+		summarizeBy: none
+		sourceColumn: Address2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: b98c89df-43ba-44c9-82c3-94430e4f237c
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: adcfecb2-8284-47c8-98ac-0bcb13298a8f
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 977ccd0e-7b92-4c22-b99a-5ca30c2268e1
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: string
+		lineageTag: 8094c264-0a7b-4cab-a5d5-9aa4d076eabd
+		summarizeBy: none
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone1
+		dataType: string
+		lineageTag: c15a1b3d-2f61-49cd-90a9-1d0ac7959582
+		summarizeBy: none
+		sourceColumn: Phone1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payment Term'
+		dataType: string
+		lineageTag: b03aa1cd-9f02-4224-82df-62ac7f0de330
+		summarizeBy: none
+		sourceColumn: Payment Term
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ddd2d295-c863-46f5-a876-71de24df545a
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column Updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5efdc975-09ab-4ec7-8c36-8020b772a85a
+		summarizeBy: none
+		sourceColumn: Updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: 744d423f-3fa4-40ed-8527-cd707a2974eb
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quadra Source'
+		dataType: string
+		lineageTag: d319ddb4-b73b-4bf1-8a82-5e857a271bc3
+		summarizeBy: none
+		sourceColumn: Quadra Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 1acf19bd-3446-40fe-b97a-62a3100bd155
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quadra Customer Key'
+		dataType: string
+		lineageTag: ed1e8528-fecb-4101-87b7-9ac0867e6b82
+		summarizeBy: none
+		sourceColumn: Quadra Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CUSTOMERS_D = m
+		mode: import
+		queryGroup: Dim
+		source = ```
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CUSTOMERS_D",Kind="Table"]}[Data], 
+				    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))}))
+				in
+				    ProperCase
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

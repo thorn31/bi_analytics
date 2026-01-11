@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "79151cb8b4601c23d1fd",
+  "position": {
+    "x": 763.91752577319585,
+    "y": 116.28865979381443,
+    "z": 2000,
+    "height": 525.15463917525767,
+    "width": 505.97938144329896,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_REVENUE_F"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_REVENUE_F.Date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_D"
+                    }
+                  },
+                  "Property": "YearIndex"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_D.YearIndex",
+              "nativeQueryRef": "YearIndex"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

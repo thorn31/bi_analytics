@@ -1,0 +1,87 @@
+table 'Time Intelligence'
+	lineageTag: ad33936e-844d-4620-8dca-cc10030a29ce
+
+	calculationGroup
+
+		calculationItem Current = ```
+				SELECTEDMEASURE()
+				
+				```
+
+		calculationItem MTD = ```
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    DATESMTD( FYCALENDAR_D[Date] )
+				)
+				
+				```
+
+		calculationItem QTD = ```
+				VAR AnchorDate =
+				    MAX ( FYCALENDAR_D[Date] )
+				VAR QuarterStart =
+				    CALCULATE (
+				        MAX ( FYCALENDAR_D[Fiscal Start Of Quarter] ),
+				        TREATAS ( { AnchorDate }, FYCALENDAR_D[Date] )
+				    )
+				RETURN
+				    CALCULATE (
+				        SELECTEDMEASURE(),
+				        DATESBETWEEN ( FYCALENDAR_D[Date], QuarterStart, AnchorDate )
+				    )
+				
+				```
+
+		calculationItem YTD = ```
+				CALCULATE (
+				    SELECTEDMEASURE(),
+				    DATESYTD ( FYCALENDAR_D[Date], "9/30" )
+				)
+				
+				```
+
+		calculationItem PY = ```
+				CALCULATE (
+				    SELECTEDMEASURE(),
+				    DATEADD ( FYCALENDAR_D[Date], -1, YEAR )
+				)
+				
+				```
+
+		calculationItem YoY = ```
+				VAR Curr = SELECTEDMEASURE()
+				VAR Prev = CALCULATE(
+				    SELECTEDMEASURE(),
+				    DATEADD ( FYCALENDAR_D[Date], -1, YEAR )
+				)
+				RETURN Curr - Prev
+				
+				```
+
+		calculationItem 'YoY %' = ```
+				VAR Curr =
+				    SELECTEDMEASURE ()
+				VAR Prev =
+				    CALCULATE (
+				        SELECTEDMEASURE (),
+				        DATEADD ( FYCALENDAR_D[Date], -1, YEAR )
+				    )
+				RETURN
+				    DIVIDE ( Curr - Prev, Prev )
+				
+				```
+
+			formatStringDefinition = "0.0%"
+
+	column Period
+		dataType: string
+		lineageTag: 6f729d25-4c44-44e0-bba5-0f33c2301502
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: fb727df0-5028-4778-95af-fd122fad3180
+		sourceColumn: Ordinal
+

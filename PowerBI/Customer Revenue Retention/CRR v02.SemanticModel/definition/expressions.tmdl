@@ -1,0 +1,225 @@
+expression JOBSTRIMMED_D =
+		let
+		    Source = JOBS_D,
+		    #"Removed Other Columns" = Table.SelectColumns(Source,{"Job Number", "Job Name", "Divisions", "Customer Number", "Start Date", "Act Completion Date", "Source", "Job Key", "Customer Key"})
+		in
+		    #"Removed Other Columns"
+	lineageTag: 28e07c03-020a-4da7-ae41-64a2b01c9a17
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression JOB_FINANCIALS_F =
+		let
+		    // Slim source
+		    Slim =
+		        Table.SelectColumns(
+		            JOB_MONTHLY_SUMMARY_F,
+		            {
+		                "Job Number",
+		                "Period Date",
+		                "Customer Number",
+		                "Total Actual Cost",
+		                "Contract Earned Curr Mo",
+		                "Job Key",
+		                "Customer Key"
+		            }
+		        ),
+		
+		    // Group by job
+		    Grouped =
+		        Table.Group(
+		            Slim,
+		            {"Job Key"},
+		            {{"Rows", each _, type table}}
+		        ),
+		
+		    // Compute Monthly Cost inside each job group
+		    AddMonthlyCost =
+		        Table.TransformColumns(
+		            Grouped,
+		            {
+		                {
+		                    "Rows",
+		                    (t) =>
+		                        let
+		                            Sorted = Table.Sort(t, {{"Period Date", Order.Ascending}}),
+		
+		                            Indexed = Table.AddIndexColumn(Sorted, "Index", 0, 1, Int64.Type),
+		
+		                            CleanCost =
+		                                Table.TransformColumns(
+		                                    Indexed,
+		                                    {
+		                                        { "Total Actual Cost",
+		                                          each try Number.From(_) otherwise 0,
+		                                          type number }
+		                                    }
+		                                ),
+		
+		                            CostList = CleanCost[Total Actual Cost],
+		
+		                            PrevList =
+		                                List.InsertRange(
+		                                    List.RemoveLastN(CostList, 1),
+		                                    0,
+		                                    {0}
+		                                ),
+		
+		                            WithPrev =
+		                                Table.AddColumn(
+		                                    CleanCost,
+		                                    "PrevCost",
+		                                    each PrevList{[Index]},
+		                                    type number
+		                                ),
+		
+		                            WithMonthlyCost =
+		                                Table.AddColumn(
+		                                    WithPrev,
+		                                    "Monthly Cost",
+		                                    each [Total Actual Cost] - [PrevCost],
+		                                    type number
+		                                ),
+		
+		                            Clean =
+		                                Table.RemoveColumns(
+		                                    WithMonthlyCost,
+		                                    {"Index","PrevCost"}
+		                                )
+		                        in
+		                            Clean
+		                }
+		            }
+		        ),
+		
+		    // Expand all rows back out
+		    Expanded =
+		        Table.ExpandTableColumn(
+		            AddMonthlyCost,
+		            "Rows",
+		            {
+		                "Period Date",
+		                "Customer Key",
+		                "Customer Number",
+		                "Job Number",
+		                "Total Actual Cost",
+		                "Contract Earned Curr Mo",
+		                "Monthly Cost"
+		            }
+		        ),
+		
+		    // NOW apply your filtering (SAFE HERE)
+		    Filtered =
+		        Table.SelectRows(
+		            Expanded,
+		            each not (
+		                ([Monthly Cost] = 0 or [Monthly Cost] = null)
+		                and
+		                ([Contract Earned Curr Mo] = 0 or [Contract Earned Curr Mo] = null)
+		            )
+		        ),
+		
+		    // Add surrogate key
+		    AddedSurrogate =
+		        Table.AddColumn(
+		            Filtered,
+		            "SurrogateProjectID",
+		            each
+		                "JOB_"
+		                & Text.From([Customer Key])
+		                & "_"
+		                & Text.From([Job Key]),
+		            type text
+		        ),
+		
+		    // Final typing
+		    Final =
+		        Table.TransformColumnTypes(
+		            AddedSurrogate,
+		            {
+		                {"Monthly Cost", Currency.Type},
+		                {"SurrogateProjectID", type text}
+		            }
+		        )
+		in
+		    Final
+	lineageTag: e52c21cf-ecef-43c5-804c-f7e3bc8aa2cb
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression REPAIR = ```
+		let
+		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data], 
+		    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+		    #"Filtered Rows" = Table.SelectRows(ProperCase, each ([Contract Number] = ""))
+		in
+		    #"Filtered Rows"
+		```
+	lineageTag: 7cdf2c0b-d47c-4a67-9dbd-115c05849f21
+	queryGroup: Facts
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression SERVPROJECTS_D = ```
+		let
+		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data],
+		    #"Filtered Rows" = Table.SelectRows(CUSTOMERS_D_Table, each ([CONTRACT_DESCRIPTION] = "SERVICE PROJECT")), 
+		    ProperCase = Table.RenameColumns(#"Filtered Rows", List.Transform(Table.ColumnNames(#"Filtered Rows"), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+		    #"Removed Other Columns" = Table.SelectColumns(ProperCase,{"Custnmbr", "Contract Number", "Contract Description", "Divisions", "Contract Start Date", "Contract Expiration Date", "Source", "Contract Number Key", "Custnmbr Key"}),
+		    #"Trimmed Text" = Table.TransformColumns(#"Removed Other Columns",{{"Divisions", Text.Trim, type text}})
+		in
+		    #"Trimmed Text"
+		```
+	lineageTag: 50c9f7ac-a000-43a1-970e-a252dfab9dba
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression JOBS_D = ```
+		let
+		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    JOBS_D_Table = DW_FINAL_Schema{[Name="JOBS_D",Kind="Table"]}[Data], 
+		    ProperCase = Table.RenameColumns(JOBS_D_Table, List.Transform(Table.ColumnNames(JOBS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))}))
+		in
+		    ProperCase
+		```
+	lineageTag: c2ea9d9c-0866-4cb4-b479-2c54adbdc227
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression SV00564 =
+		let
+		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    SERV_GP_STAGE_Schema = DATA_WAREHOUSE_Database{[Name="SERV_GP_STAGE",Kind="Schema"]}[Data],
+		    SV00564_Table = SERV_GP_STAGE_Schema{[Name="SV00564",Kind="Table"]}[Data]
+		in
+		    SV00564_Table
+	lineageTag: 6814a67b-37ab-45dc-9079-7d63fb53c380
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

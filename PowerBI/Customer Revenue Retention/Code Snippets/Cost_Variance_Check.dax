@@ -1,0 +1,39 @@
+EVALUATE
+VAR Source_By_Contract = 
+    SUMMARIZECOLUMNS(
+        'CALLS_F'[Contract Number],
+        "SourceCost", SUM('CALLS_F'[Cost All])
+    )
+
+VAR Agreements_By_Contract = 
+    SUMMARIZECOLUMNS(
+        'SERVCONTRACTS_D'[Contract Number], -- We can use Dim since it links 1:M
+        "AgreeCost", SUM('SERVCONTRACTS_COSTS_F'[Amount])
+    )
+
+VAR Projects_By_Contract = 
+    SUMMARIZECOLUMNS(
+        'PROJECTS_D'[Project Number], -- We can use Dim since it links 1:M
+        "ProjCost", CALCULATE(SUM('PROJECTS_D_COSTS_F'[Amount]), 'PROJECTS_D_COSTS_F'[Source Type] = "Service Call Cost")
+    )
+
+-- We need to union the lists of contracts to compare properly
+VAR AllContracts = 
+    DISTINCT(
+        UNION(
+            VALUES('CALLS_F'[Contract Number]),
+            VALUES('SERVCONTRACTS_D'[Contract Number]),
+            VALUES('PROJECTS_D'[Project Number])
+        )
+    )
+
+RETURN
+    FILTER(
+        ADDCOLUMNS(
+            AllContracts,
+            "Source", CALCULATE(SUM('CALLS_F'[Cost All]), TREATAS({[Contract Number]}, 'CALLS_F'[Contract Number])),
+            "Dest_Agree", CALCULATE(SUM('SERVCONTRACTS_COSTS_F'[Amount]), TREATAS({[Contract Number]}, 'SERVCONTRACTS_D'[Contract Number])),
+            "Dest_Proj", CALCULATE(SUM('PROJECTS_D_COSTS_F'[Amount]), TREATAS({[Contract Number]}, 'PROJECTS_D'[Project Number]), 'PROJECTS_D_COSTS_F'[Source Type] = "Service Call Cost")
+        ),
+        ROUND([Source] - ([Dest_Agree] + [Dest_Proj]), 2) <> 0
+    )

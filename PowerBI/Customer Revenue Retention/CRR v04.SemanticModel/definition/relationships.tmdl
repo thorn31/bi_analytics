@@ -1,0 +1,118 @@
+relationship AutoDetected_869357b7-ff48-4474-97a0-6ada8ccea932
+	isActive: false
+	fromColumn: CONTRACT_BILLABLE_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 07fa15ec-ae8b-b6be-6ff8-35910b0bd4ec
+	fromColumn: CONTRACT_BILLABLE_F.WENNSOFT_BILLING_DATE
+	toColumn: FYCALENDAR_D.Date
+
+relationship AutoDetected_0942b00c-a302-429a-9d0a-8d16432ac6c4
+	isActive: false
+	fromColumn: JOB_MONTHLY_SUMMARY_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship b57891cd-fe30-cd42-b94b-52115cb406c9
+	fromColumn: JOB_MONTHLY_SUMMARY_F.'Period Date'
+	toColumn: FYCALENDAR_D.Date
+
+relationship AutoDetected_5f903d6c-627e-413f-9239-ce2af51d173f
+	fromColumn: PROJECTS_D.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship dbd04f74-a9a1-7e88-0206-2350e2e7879b
+	fromColumn: PROJECT_REVENUE_F.Date
+	toColumn: FYCALENDAR_D.Date
+
+relationship AutoDetected_dc5df25e-7d9f-4747-b4ce-be9c89ad5e93
+	isActive: false
+	fromColumn: PROJECT_REVENUE_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 44799686-ab44-9edf-d470-41aa3d44e77f
+	fromColumn: PROJECT_REVENUE_F.SurrogateProjectID
+	toColumn: PROJECTS_D.SurrogateProjectID
+
+relationship AutoDetected_f03c291a-5f2f-462c-b7ec-7862fef18358
+	fromColumn: PROJECT_COSTS_F.SurrogateProjectID
+	toColumn: PROJECTS_D.SurrogateProjectID
+
+relationship d58d0128-f66d-55b0-93f3-7667abb7deb3
+	fromColumn: PROJECT_COSTS_F.Date
+	toColumn: FYCALENDAR_D.Date
+
+relationship ec1a8d22-b3e1-28a7-8b29-ac9475c0f19b
+	fromColumn: SERVCONTRACTS_COSTS_F.Date
+	toColumn: FYCALENDAR_D.Date
+
+relationship c79178c8-9c39-3361-fb54-30e02c09aac0
+	fromColumn: SERVCONTRACTS_REVENUE_F.Date
+	toColumn: FYCALENDAR_D.Date
+
+relationship AutoDetected_27f033ff-9ddf-4121-ba40-5d8d915e23ca
+	fromColumn: SPOT_FINANCIALS_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship eb2040da-3855-5643-7cf8-5604b63ad8f3
+	fromColumn: SPOT_FINANCIALS_F.Date
+	toColumn: FYCALENDAR_D.Date
+
+relationship fe505a88-8c99-f877-9426-0e99433e3a28
+	fromColumn: PROJECTS_D.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship fae9acf3-d0b9-6761-ca36-97ddf6d7e4a0
+	fromColumn: SERVCONTRACTS_D.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship ed43fea8-30d9-47b1-d14c-fe983db16311
+	fromColumn: SPOT_FINANCIALS_F.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship AutoDetected_e0f0a5ee-70c1-46c3-a6ac-7331531d9486
+	fromColumn: SERVCONTRACTS_REVENUE_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship AutoDetected_6eee6001-46b2-4ee6-be79-72dd4d2e1b8b
+	fromColumn: SERVCONTRACTS_COSTS_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship AutoDetected_39888bbc-a360-4827-9cb1-8fbc45981c8e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: SERVCONTRACTS_D_STAGING.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship 45955b6b-b8c4-e27c-5825-ed4c76f16f9a
+	fromColumn: SERVCONTRACTS_D.'Custnmbr Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship AutoDetected_9253053f-b635-4aed-8755-4e8d0cd9f26e
+	fromColumn: ALL_BILLINGS_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship AutoDetected_92292877-7844-4427-b9ea-5e3a5cd44f7e
+	isActive: false
+	fromColumn: ALL_BILLINGS_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship 4c4c9f51-1b94-e05b-799f-133ca46e7e7d
+	fromColumn: ALL_BILLINGS_F.BillingDate
+	toColumn: FYCALENDAR_D.Date
+
+relationship b2c4fe1d-e81f-40e3-b6da-6b7590caf738
+	fromColumn: SC_CustomerMonth_Revenue.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship a3df98bb-ff23-ddb3-8579-7c52d399ff09
+	fromColumn: SC_CustomerMonth_Revenue.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship b1b219ba-881f-47e5-98d1-844a9e139d8b
+	fromColumn: SC_AgreementMonth_Revenue.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship 04b76dca-18b5-468c-b85c-93a28c4e0b5b
+	fromColumn: SC_AgreementMonth_Revenue.'Month End'
+	toColumn: FYCALENDAR_D.Date
+

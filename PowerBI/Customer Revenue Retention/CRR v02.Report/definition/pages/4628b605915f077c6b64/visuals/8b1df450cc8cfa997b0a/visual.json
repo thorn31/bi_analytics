@@ -1,0 +1,195 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "8b1df450cc8cfa997b0a",
+  "position": {
+    "x": 0,
+    "y": 13.187765256841796,
+    "z": 2000,
+    "height": 197.81647885262694,
+    "width": 1280.4121176642764,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Project Revenue",
+              "nativeQueryRef": "Project Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue",
+              "nativeQueryRef": "Service Contract Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Project Cost",
+              "nativeQueryRef": "Project Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Gross Profit"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Gross Profit",
+              "nativeQueryRef": "Service Contract Gross Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Cost",
+              "nativeQueryRef": "Service Contract Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "T&M Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Spot Revenue",
+              "nativeQueryRef": "Spot Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "T&M Gross Profit"
+                }
+              },
+              "queryRef": "_Key Measures.Spot Gross Profit",
+              "nativeQueryRef": "Spot Gross Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project GP %"
+                }
+              },
+              "queryRef": "_Key Measures.Project GP %",
+              "nativeQueryRef": "Project GP %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "T&M GP %"
+                }
+              },
+              "queryRef": "_Key Measures.Spot GP %",
+              "nativeQueryRef": "Spot GP %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Gross Profit %"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Gross Profit %",
+              "nativeQueryRef": "Service Contract Gross Profit %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

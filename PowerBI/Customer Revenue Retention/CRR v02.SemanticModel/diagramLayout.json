@@ -1,0 +1,684 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 703,
+        "y": 17984
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 854,
+            "y": 30508.40040799712
+          },
+          "nodeIndex": "CUSTOMERS_D",
+          "nodeLineageTag": "c8e1a961-bcbb-4106-996e-09a69da11c85",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2227,
+            "y": 31463.90040799712
+          },
+          "nodeIndex": "FYCALENDAR_D",
+          "nodeLineageTag": "32c90cf9-821d-4366-9844-e94253d86364",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1838,
+            "y": 30940.15040799712
+          },
+          "nodeIndex": "CONTRACT_BILLABLE_F",
+          "nodeLineageTag": "3344fffa-f695-4ca3-bea6-807da27cd20b",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 2325,
+            "y": 28648.52540799712
+          },
+          "nodeIndex": "_Key Measures",
+          "nodeLineageTag": "73c099da-2cd7-46c3-b43b-fb93a5325ea2",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1825,
+            "y": 30544.13478299712
+          },
+          "nodeIndex": "JOB_MONTHLY_SUMMARY_F",
+          "nodeLineageTag": "3172d2ed-8613-4ebd-856f-02795d8de208",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2323,
+            "y": 24402.10743924712
+          },
+          "nodeIndex": "PROJECTS_D",
+          "nodeLineageTag": "9fa053a1-7676-4bfa-9741-94157f847221",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1755,
+            "y": 22816.56935330962
+          },
+          "nodeIndex": "PROJECT_REVENUE_F",
+          "nodeLineageTag": "f10611b9-4e57-4b83-b8e1-3d9bde2d1a2b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2039,
+            "y": 22816.56935330962
+          },
+          "nodeIndex": "PROJECT_COSTS_F",
+          "nodeLineageTag": "a075b8e0-2de5-42d0-8197-172ce2591b30",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2323,
+            "y": 22840.56935330962
+          },
+          "nodeIndex": "Time Intelligence",
+          "nodeLineageTag": "ad33936e-844d-4620-8dca-cc10030a29ce",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2379.0555995713466,
+            "y": 21219.206971998603
+          },
+          "nodeIndex": "SERVCONTRACTS_COSTS_F",
+          "nodeLineageTag": "de9a6f99-f437-4e6f-8933-847e83edcaf6",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1978.8576062848042,
+            "y": 20721.035250245634
+          },
+          "nodeIndex": "SERVCONTRACTS_REVENUE_F",
+          "nodeLineageTag": "59c115c8-855c-4624-b670-d2b2e09d5db1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2092.0461746343453,
+            "y": 20948.691628161305
+          },
+          "nodeIndex": "SERVCONTRACTS_D",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2613.0555995713466,
+            "y": 20958.12111112212
+          },
+          "nodeIndex": "CONTRACTS_D",
+          "nodeLineageTag": "7446fe80-6891-4924-963f-ae98480d0081",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1805,
+            "y": 21072.581338923788
+          },
+          "nodeIndex": "SERVCONTRACTS_D_STAGING",
+          "nodeLineageTag": "328b225c-82a1-47ad-8487-e884095f9c3a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2897.0555995713466,
+            "y": 20960.12111112212
+          },
+          "nodeIndex": "SPOT_FINANCIALS_F",
+          "nodeLineageTag": "d57d3445-2b0a-4430-8a92-d747348f7bb9",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3181.0555995713466,
+            "y": 20958.12111112212
+          },
+          "nodeIndex": "CALLS_F",
+          "nodeLineageTag": "d6fe4e3f-39c6-4ae4-9fd6-cd7664afdbec",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2611.0555995713466,
+            "y": 18951.831277888487
+          },
+          "nodeIndex": "DIVISIONS_D",
+          "nodeLineageTag": "88507611-dc51-4a30-a173-ec84f890fd4e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2895.0555995713466,
+            "y": 18939.831277888487
+          },
+          "nodeIndex": "Revenue_Stream_D",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3179.0555995713466,
+            "y": 18939.831277888487
+          },
+          "nodeIndex": "FINANCIAL_METRIC_D",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3463.0555995713466,
+            "y": 18927.831277888487
+          },
+          "nodeIndex": "ALL_BILLINGS_F",
+          "nodeLineageTag": "d4e72451-5094-4aaa-959f-e95156a8f645",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3747.0555995713466,
+            "y": 18939.831277888487
+          },
+          "nodeIndex": "Customer Status Selector",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3177.0555995713466,
+            "y": 16235.114988450616
+          },
+          "nodeIndex": "Stream_Subsegment_D",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3177.0555995713466,
+            "y": 13100.097705923457
+          },
+          "nodeIndex": "Metric Selector",
+          "nodeLineageTag": "4c887b7b-93ba-4a65-a791-f90057f87749",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 59.45945945945946
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 715.29828857616781,
+            "y": 981.16703703777148
+          },
+          "nodeIndex": "_Key Measures",
+          "nodeLineageTag": "73c099da-2cd7-46c3-b43b-fb93a5325ea2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 2761.7285502145028,
+            "y": 1262.8221846283016
+          },
+          "nodeIndex": "CONTRACT_BILLABLE_F",
+          "nodeLineageTag": "3344fffa-f695-4ca3-bea6-807da27cd20b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1550.2761950191239,
+            "y": 765.67349046669187
+          },
+          "nodeIndex": "CUSTOMERS_D",
+          "nodeLineageTag": "c8e1a961-bcbb-4106-996e-09a69da11c85",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 2902.3193600419459,
+            "y": 197.02709997547151
+          },
+          "nodeIndex": "FYCALENDAR_D",
+          "nodeLineageTag": "32c90cf9-821d-4366-9844-e94253d86364",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 3151.4424205949076,
+            "y": 0
+          },
+          "nodeIndex": "JOB_MONTHLY_SUMMARY_F",
+          "nodeLineageTag": "3172d2ed-8613-4ebd-856f-02795d8de208",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1773.9515470828669,
+            "y": 382.949537890582
+          },
+          "nodeIndex": "PROJECTS_D",
+          "nodeLineageTag": "9fa053a1-7676-4bfa-9741-94157f847221",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2178.2702702702704,
+            "y": 349.59459459459464
+          },
+          "nodeIndex": "PROJECT_REVENUE_F",
+          "nodeLineageTag": "f10611b9-4e57-4b83-b8e1-3d9bde2d1a2b",
+          "size": {
+            "height": 369.24324324324323,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 2418.8108108108108,
+            "y": 137.37837837837819
+          },
+          "nodeIndex": "PROJECT_COSTS_F",
+          "nodeLineageTag": "a075b8e0-2de5-42d0-8197-172ce2591b30",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2279.6216216216212,
+            "y": 845.54054054054052
+          },
+          "nodeIndex": "SERVCONTRACTS_COSTS_F",
+          "nodeLineageTag": "de9a6f99-f437-4e6f-8933-847e83edcaf6",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 1",
+      "zoomValue": 74,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 2,
+      "scrollPosition": {
+        "x": 0,
+        "y": 1.6340425531914895
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1734.7951593233377,
+            "y": 654.1687250121189
+          },
+          "nodeIndex": "_Key Measures",
+          "nodeLineageTag": "73c099da-2cd7-46c3-b43b-fb93a5325ea2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1103.1467485479188,
+            "y": 936.19627695926806
+          },
+          "nodeIndex": "CONTRACT_BILLABLE_F",
+          "nodeLineageTag": "3344fffa-f695-4ca3-bea6-807da27cd20b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 618.42276287985214,
+            "y": 586.15111263514257
+          },
+          "nodeIndex": "CUSTOMERS_D",
+          "nodeLineageTag": "c8e1a961-bcbb-4106-996e-09a69da11c85",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 1316.1021191227046,
+            "y": 368.6670293780939
+          },
+          "nodeIndex": "FYCALENDAR_D",
+          "nodeLineageTag": "32c90cf9-821d-4366-9844-e94253d86364",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 939.62649301098,
+            "y": 586.07732696012908
+          },
+          "nodeIndex": "JOB_MONTHLY_SUMMARY_F",
+          "nodeLineageTag": "3172d2ed-8613-4ebd-856f-02795d8de208",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1491.5272728258806,
+            "y": 128.380611103444
+          },
+          "nodeIndex": "PROJECT_COSTS_F",
+          "nodeLineageTag": "a075b8e0-2de5-42d0-8197-172ce2591b30",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 792.60570293661681,
+            "y": 311.93427982724484
+          },
+          "nodeIndex": "PROJECT_REVENUE_F",
+          "nodeLineageTag": "f10611b9-4e57-4b83-b8e1-3d9bde2d1a2b",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 508.50773062776807,
+            "y": 31.902784787389237
+          },
+          "nodeIndex": "PROJECTS_D",
+          "nodeLineageTag": "9fa053a1-7676-4bfa-9741-94157f847221",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 2020.9341545540099,
+            "y": 1288.15200606039
+          },
+          "nodeIndex": "SERVCONTRACTS_COSTS_F",
+          "nodeLineageTag": "de9a6f99-f437-4e6f-8933-847e83edcaf6",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 1595.5416909572996,
+            "y": 1453.8081758407452
+          },
+          "nodeIndex": "SERVCONTRACTS_D",
+          "nodeLineageTag": "f9ad1117-c739-4ec5-b568-dea39abf3521",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 2262.4265463037373,
+            "y": 1610.4563909940641
+          },
+          "nodeIndex": "SERVCONTRACTS_REVENUE_F",
+          "nodeLineageTag": "59c115c8-855c-4624-b670-d2b2e09d5db1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 2302.7951593233374,
+            "y": 740.1687250121189
+          },
+          "nodeIndex": "Time Intelligence",
+          "nodeLineageTag": "ad33936e-844d-4620-8dca-cc10030a29ce",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 2861.4161254489582,
+            "y": 1058.9666293502751
+          },
+          "nodeIndex": "SPOT_FINANCIALS_F",
+          "nodeLineageTag": "d57d3445-2b0a-4430-8a92-d747348f7bb9",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2242.8549992232734,
+            "y": 342.66117421628638
+          },
+          "nodeIndex": "CALLS_F",
+          "nodeLineageTag": "d6fe4e3f-39c6-4ae4-9fd6-cd7664afdbec",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 265.53191489361689,
+            "y": 1060.2680851063828
+          },
+          "nodeIndex": "DIVISIONS_D",
+          "nodeLineageTag": "88507611-dc51-4a30-a173-ec84f890fd4e",
+          "size": {
+            "height": 419.47234042553191,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 2442.0765957446811,
+            "y": 1248.1829787234044
+          },
+          "nodeIndex": "CONTRACTS_D",
+          "nodeLineageTag": "7446fe80-6891-4924-963f-ae98480d0081",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2855.489361702128,
+            "y": 610.90638297872329
+          },
+          "nodeIndex": "ALL_BILLINGS_F",
+          "nodeLineageTag": "d4e72451-5094-4aaa-959f-e95156a8f645",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 17
+        }
+      ],
+      "name": "Layout 2",
+      "zoomValue": 61.197916666666664,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

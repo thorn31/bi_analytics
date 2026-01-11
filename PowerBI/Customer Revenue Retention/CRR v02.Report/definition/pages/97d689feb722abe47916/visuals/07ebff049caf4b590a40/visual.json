@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "07ebff049caf4b590a40",
+  "position": {
+    "x": 8.4615384615384617,
+    "y": 17.692307692307693,
+    "z": 0,
+    "height": 300,
+    "width": 1263.0769230769231,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customers PY (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Customers PY (TTM)",
+              "nativeQueryRef": "Customers PY (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customers Churned (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Customers Churned (TTM)",
+              "nativeQueryRef": "Customers Churned (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Logo Churn Rate % (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Logo Churn Rate % (TTM)",
+              "nativeQueryRef": "Logo Churn Rate % (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customers Inactive 12+ Months"
+                }
+              },
+              "queryRef": "_Key Measures.Customers Inactive 12+ Months",
+              "nativeQueryRef": "Customers Inactive 12+ Months"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Churn Revenue (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Churn Revenue (TTM)",
+              "nativeQueryRef": "Churn Revenue (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Churn Rate % (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Churn Rate % (TTM)",
+              "nativeQueryRef": "Churn Rate % (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Upsell Revenue (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Upsell Revenue (TTM)",
+              "nativeQueryRef": "Upsell Revenue (TTM)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Contraction Revenue (FY Period)"
+                }
+              },
+              "queryRef": "_Key Measures.Contraction Revenue",
+              "nativeQueryRef": "Contraction Revenue (FY Period)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Revenue Retention % (TTM)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Revenue Retention % (TTM)",
+              "nativeQueryRef": "Net Revenue Retention % (TTM)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

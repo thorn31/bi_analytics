@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "76110b14884472c57870",
+  "position": {
+    "x": 9.8969072164948457,
+    "y": 0,
+    "z": 0,
+    "height": 610.51546391752572,
+    "width": 1269.8969072164948,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Company"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Company",
+              "nativeQueryRef": "Company"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Project Revenue",
+              "nativeQueryRef": "Project Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "T&M Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Spot Revenue",
+              "nativeQueryRef": "Spot Revenue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Division",
+              "nativeQueryRef": "Division"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue",
+              "nativeQueryRef": "Total Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue",
+              "nativeQueryRef": "Service Contract Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "T&M Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Spot Cost",
+              "nativeQueryRef": "Spot Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Total Cost",
+              "nativeQueryRef": "Total Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Cost",
+              "nativeQueryRef": "Service Contract Cost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIVISIONS_D"
+                  }
+                },
+                "Property": "Division"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "175cde3e379ee1834266",
+  "position": {
+    "x": 971.85567010309273,
+    "y": 290.10309278350513,
+    "z": 2000,
+    "height": 280.20618556701032,
+    "width": 308.14432989690727,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_REVENUE_F"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_REVENUE_F.Date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_REVENUE_F"
+                    }
+                  },
+                  "Property": "AgreementKey"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_REVENUE_F.AgreementKey",
+              "nativeQueryRef": "AgreementKey1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue",
+              "nativeQueryRef": "Service Contract Revenue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SERVCONTRACTS_REVENUE_F"
+                    }
+                  },
+                  "Property": "Amount"
+                }
+              },
+              "queryRef": "SERVCONTRACTS_REVENUE_F.Amount",
+              "nativeQueryRef": "Amount"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SERVCONTRACTS_REVENUE_F"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

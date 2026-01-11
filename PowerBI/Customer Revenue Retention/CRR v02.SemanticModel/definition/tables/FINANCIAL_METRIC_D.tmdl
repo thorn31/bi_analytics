@@ -1,0 +1,249 @@
+table FINANCIAL_METRIC_D
+	lineageTag: 7d55ca9f-29dc-4ee4-a04f-874f53f85960
+
+	measure 'Total Revenue History Value' =
+			
+			VAR Metric =
+			    SELECTEDVALUE ( Financial_Metric_D[Metric] )
+			RETURN
+			    SWITCH (
+			        Metric,
+			       "Revenue", [Total Revenue],
+			        "GP %", [Total GP %],
+			        BLANK()
+			    )
+		lineageTag: 8d2f9ad1-b79e-430f-82eb-d8d1b7953980
+
+		formatStringDefinition =
+				VAR Metric =
+				    SELECTEDVALUE ( Financial_Metric_D[Metric] )
+				RETURN
+				    SWITCH (
+				        Metric,
+				        "Revenue", "$#,0",
+				        "GP %", "0.0%",
+				        BLANK()
+				    )
+
+	measure 'Metric Value (Stream x Metric)' = ```
+			
+			  VAR Metric      = SELECTEDVALUE ( Financial_Metric_D[Metric] )
+			  VAR Stream      = SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+			  VAR Subsegment  = SELECTEDVALUE ( Stream_Subsegment_D[Subsegment] )
+			
+			  VAR IsProj = Stream = "Project"
+			  VAR IsSC   = Stream = "Service Contract"
+			  VAR IsTM   = Stream = "T&M"
+			
+			  -- Only allow subsegments that are explicitly paired with the current stream
+			  VAR ValidCombo =
+			      IF (
+			          NOT ISBLANK ( Stream ) && NOT ISBLANK ( Subsegment ),
+			          CALCULATE (
+			              COUNTROWS ( Stream_Subsegment_D ),
+			              KEEPFILTERS ( Stream_Subsegment_D[Revenue Stream] = Stream ),
+			              KEEPFILTERS ( Stream_Subsegment_D[Subsegment] = Subsegment )
+			          ) > 0,
+			          TRUE
+			      )
+			
+			  VAR Revenue =
+			      SWITCH (
+			          TRUE (),
+			          IsProj,
+			              CALCULATE ( [Project Revenue],
+			                  TREATAS ( { Subsegment }, DIVISIONS_D[Region] ) ),
+			          IsSC,
+			              CALCULATE ( [Service Contract Revenue],
+			                  TREATAS ( { Subsegment }, SERVCONTRACTS_D[Contract Type] ) ),
+			          IsTM,
+			              [T&M Revenue],
+			          [Total Revenue]
+			      )
+			
+			  VAR GP =
+			      SWITCH (
+			          TRUE (),
+			          IsProj,
+			              CALCULATE ( [Project GP],
+			                  TREATAS ( { Subsegment }, DIVISIONS_D[Region] ) ),
+			          IsSC,
+			              CALCULATE ( [Service Contract Gross Profit],
+			                  TREATAS ( { Subsegment }, SERVCONTRACTS_D[Contract Type] ) ),
+			          IsTM,
+			              [T&M Gross Profit],
+			          [Total Gross Profit]
+			      )
+			
+			  VAR GPct = DIVIDE ( GP, Revenue )
+			
+			  RETURN
+			      IF (
+			          NOT ValidCombo,
+			          BLANK (),
+			          SWITCH ( Metric, "Revenue", Revenue, "GP %", GPct )
+			      )
+			```
+		lineageTag: 03afec0b-af81-4b1e-b281-dda60eb4c933
+
+		formatStringDefinition =
+				VAR Metric = SELECTEDVALUE ( Financial_Metric_D[Metric] )
+				  RETURN SWITCH ( Metric, "Revenue", "$#,0", "GP %", "0.0%", BLANK() )
+
+	measure 'Metric Value – Revenue' = ```
+			
+			  VAR Stream     = SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+			  VAR Subsegment = SELECTEDVALUE ( Stream_Subsegment_D[Subsegment] )
+			  VAR IsProj = Stream = "Project"
+			  VAR IsSC   = Stream = "Service Contract"
+			  VAR IsTM   = Stream = "T&M"
+			  VAR ValidCombo =
+			      IF (
+			          NOT ISBLANK ( Stream ) && NOT ISBLANK ( Subsegment ),
+			          CALCULATE (
+			              COUNTROWS ( Stream_Subsegment_D ),
+			              KEEPFILTERS ( Stream_Subsegment_D[Revenue Stream] = Stream ),
+			              KEEPFILTERS ( Stream_Subsegment_D[Subsegment] = Subsegment )
+			          ) > 0,
+			          TRUE
+			      )
+			  -- Revenue version
+			  VAR BaseProjectRevenue =
+			      IF (
+			          ISBLANK ( Subsegment ),
+			          [Project Revenue],
+			          CALCULATE ( [Project Revenue], TREATAS ( { Subsegment }, DIVISIONS_D[Region] ) )
+			      )
+			  VAR BaseSCRevenue =
+			      IF (
+			          ISBLANK ( Subsegment ),
+			          [Service Contract Revenue],
+			          CALCULATE ( [Service Contract Revenue], TREATAS ( { Subsegment }, SERVCONTRACTS_D[Contract Type] ) )
+			      )
+			
+			  VAR Revenue =
+			      SWITCH (
+			          TRUE (),
+			          IsProj, BaseProjectRevenue,
+			          IsSC,   BaseSCRevenue,
+			          IsTM,   [T&M Revenue],
+			                  [Total Revenue]
+			      )
+			  RETURN IF ( ValidCombo, Revenue )
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 03554dca-aeef-4ac0-9f1f-475353aad9f2
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Metric Value – GP %' = ```
+			
+			  VAR Stream     = SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+			  VAR Subsegment = SELECTEDVALUE ( Stream_Subsegment_D[Subsegment] )
+			
+			  VAR IsProj = Stream = "Project"
+			  VAR IsSC   = Stream = "Service Contract"
+			  VAR IsTM   = Stream = "T&M"
+			
+			  -- Only allow subsegments explicitly paired to the current stream
+			  VAR ValidCombo =
+			      IF (
+			          NOT ISBLANK ( Stream ) && NOT ISBLANK ( Subsegment ),
+			          CALCULATE (
+			              COUNTROWS ( Stream_Subsegment_D ),
+			              KEEPFILTERS ( Stream_Subsegment_D[Revenue Stream] = Stream ),
+			              KEEPFILTERS ( Stream_Subsegment_D[Subsegment]     = Subsegment )
+			          ) > 0,
+			          TRUE
+			      )
+			
+			  -- Revenue with subtotal fallback
+			  VAR BaseProjectRevenue =
+			      IF (
+			          ISBLANK ( Subsegment ),
+			          [Project Revenue],
+			          CALCULATE ( [Project Revenue],
+			              TREATAS ( { Subsegment }, DIVISIONS_D[Region] ) )
+			      )
+			  VAR BaseSCRevenue =
+			      IF (
+			          ISBLANK ( Subsegment ),
+			          [Service Contract Revenue],
+			          CALCULATE ( [Service Contract Revenue],
+			              TREATAS ( { Subsegment }, SERVCONTRACTS_D[Contract Type] ) )
+			      )
+			
+			  VAR Revenue =
+			      SWITCH (
+			          TRUE (),
+			          IsProj, BaseProjectRevenue,
+			          IsSC,   BaseSCRevenue,
+			          IsTM,   [T&M Revenue],
+			                  [Total Revenue]
+			      )
+			
+			  -- GP with subtotal fallback
+			  VAR BaseProjectGP =
+			      IF (
+			          ISBLANK ( Subsegment ),
+			          [Project GP],
+			          CALCULATE ( [Project GP],
+			              TREATAS ( { Subsegment }, DIVISIONS_D[Region] ) )
+			      )
+			  VAR BaseSCGP =
+			      IF (
+			          ISBLANK ( Subsegment ),
+			          [Service Contract Gross Profit],
+			          CALCULATE ( [Service Contract Gross Profit],
+			              TREATAS ( { Subsegment }, SERVCONTRACTS_D[Contract Type] ) )
+			      )
+			
+			  VAR GP =
+			      SWITCH (
+			          TRUE (),
+			          IsProj, BaseProjectGP,
+			          IsSC,   BaseSCGP,
+			          IsTM,   [T&M Gross Profit],
+			                  [Total Gross Profit]
+			      )
+			
+			  RETURN
+			      IF ( NOT ValidCombo, BLANK(), DIVIDE ( GP, Revenue ) )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 67c39c63-1964-4dca-be71-1c6878c87930
+
+	column Metric
+		lineageTag: 4c2568d4-5d95-4303-89ce-cbab8db239fa
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Metric]
+		sortByColumn: 'Metric Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric Sort'
+		formatString: 0
+		lineageTag: a206e22d-e618-464d-9816-a80245eb7683
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Metric Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FINANCIAL_METRIC_D = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Metric", STRING, "Metric Sort", INTEGER,
+				    {
+				        { "Revenue", 1 },
+				        { "GP %", 2 }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 693a4a875a144b67b3b2fd5250990530
+

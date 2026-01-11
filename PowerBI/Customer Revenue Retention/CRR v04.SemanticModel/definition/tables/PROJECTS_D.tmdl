@@ -1,0 +1,230 @@
+table PROJECTS_D
+	lineageTag: 9fa053a1-7676-4bfa-9741-94157f847221
+
+	column 'Project Number'
+		dataType: string
+		lineageTag: a1ed322f-ddc8-48e2-93fc-d124d8660e58
+		summarizeBy: none
+		sourceColumn: Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name/Description'
+		dataType: string
+		lineageTag: b9a199e7-5388-42f4-9536-18ac2e2ac655
+		summarizeBy: none
+		sourceColumn: Project Name/Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divisions
+		dataType: string
+		lineageTag: 19fc0418-a303-4809-aa94-b800b8616096
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Number'
+		dataType: string
+		lineageTag: 4320c7a3-b768-4cad-9fad-4234ada32bde
+		summarizeBy: none
+		sourceColumn: Customer Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 188b0cc0-4806-4507-85e9-53e2214a8ad3
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 54ebe2b8-d0af-4447-a5c3-69bbf2a02c41
+		summarizeBy: none
+		sourceColumn: End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Source
+		dataType: string
+		lineageTag: f344eecc-4b9f-4f57-9e43-7107fbc5a4bd
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Key'
+		dataType: string
+		lineageTag: bed079ff-3647-4a10-9300-2a415fa8c645
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 31fbd6eb-9753-4a01-a272-9208232a5914
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Type'
+		dataType: string
+		lineageTag: 4a3cb5a6-5cd0-41c3-9342-af4289ced221
+		summarizeBy: none
+		sourceColumn: Project Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column SurrogateProjectID
+		dataType: string
+		lineageTag: 08e91f2c-699b-4ee6-b543-ee3dc78a8deb
+		summarizeBy: none
+		sourceColumn: SurrogateProjectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dba26ba6-dc6a-4907-a1d3-00aa14f6f312
+		summarizeBy: none
+		sourceColumn: Inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PROJECTS_D = m
+		mode: import
+		queryGroup: Dim
+		source =
+				let
+				    //=== SERVPROJECTS_D ===================================================//
+				    SERV = SERVPROJECTS_D,
+				
+				    SERV_Std = Table.RenameColumns(
+				        SERV,
+				        {
+				            {"Custnmbr", "Customer Number"},
+				            {"Contract Number", "Project Number"},
+				            {"Contract Description", "Project Name/Description"},
+				            {"Contract Start Date", "Start Date"},
+				            {"Contract Expiration Date", "End Date"},
+				            {"Contract Number Key", "Project Key"},
+				            {"Custnmbr Key", "Customer Key"}
+				        },
+				        MissingField.Ignore
+				    ),
+				
+				    // Add Project Type
+				    SERV_Type = Table.AddColumn(SERV_Std, "Project Type", each "Service Project"),
+				
+				    // Add Surrogate Project ID
+				    SERV_Surrogate =
+				        Table.AddColumn(
+				            SERV_Type,
+				            "SurrogateProjectID",
+				           each "SERV_" &
+				     Text.From([Customer Number]) & "_" &
+				     Text.From([Project Number]),
+				            type text
+				        ),
+				
+				    // Enforce data types for SERVPROJECTS_D
+				    SERV_Typed =
+				        Table.TransformColumnTypes(
+				            SERV_Surrogate,
+				            {
+				                {"Project Number", type text},
+				                {"Project Name/Description", type text},
+				                {"Divisions", type text},
+				                {"Customer Number", type text},
+				                {"Start Date", type date},
+				                {"End Date", type date},
+				                {"Source", type text},
+				                {"Project Key", type text},
+				                {"Customer Key", type text},
+				                {"Project Type", type text},
+				                {"SurrogateProjectID", type text}
+				            },
+				            "en-US"
+				        ),
+				
+				    SERV_Select = Table.SelectColumns(SERV_Typed,{"Customer Number", "Project Number", "Project Name/Description", "Divisions", "Start Date", "End Date", "Source", "Project Key", "Customer Key", "Inactive", "Project Type", "SurrogateProjectID"}),
+				
+				    //=== JOBSTRIMMED_D ===================================================//
+				    JOBS = JOBSTRIMMED_D,
+				
+				    JOBS_Std = Table.RenameColumns(
+				        JOBS,
+				        {
+				            {"Job Number", "Project Number"},
+				            {"Job Name", "Project Name/Description"},
+				            {"Customer Number", "Customer Number"},
+				            {"Start Date", "Start Date"},
+				            {"Act Completion Date", "End Date"},
+				            {"Job Key", "Project Key"},
+				            {"Customer Key", "Customer Key"}
+				        },
+				        MissingField.Ignore
+				    ),
+				
+				    // Add Project Type
+				    JOBS_Type = Table.AddColumn(JOBS_Std, "Project Type", each "Job Cost"),
+				
+				    // Add Surrogate Project ID
+				    JOBS_Surrogate =
+				        Table.AddColumn(JOBS_Type, "SurrogateProjectID", each "JOB_" & Text.From([Customer Key]) & "_" & Text.From([Project Key])),
+				
+				    // Enforce data types for JOBSTRIMMED_D
+				    JOBS_Typed =
+				        Table.TransformColumnTypes(
+				            JOBS_Surrogate,
+				            {
+				                {"Project Number", type text},
+				                {"Project Name/Description", type text},
+				                {"Divisions", type text},
+				                {"Customer Number", type text},
+				                {"Start Date", type date},
+				                {"End Date", type date},
+				                {"Source", type text},
+				                {"Project Key", type text},
+				                {"Customer Key", type text},
+				                {"Project Type", type text},
+				                {"SurrogateProjectID", type text}
+				            },
+				            "en-US"
+				        ),
+				
+				    JOBS_Select = Table.SelectColumns(JOBS_Typed,{"Project Number", "Project Name/Description", "Divisions", "Customer Number", "Start Date", "End Date", "Inactive", "Source", "Project Key", "Customer Key", "Project Type", "SurrogateProjectID"}),
+				
+				    //=== APPEND ===================================================//
+				    PROJECTS_D = Table.Combine({SERV_Select, JOBS_Select}),
+				    #"Removed Duplicates" = Table.Distinct(PROJECTS_D),
+				    RemovedBadProject =
+				        Table.SelectRows(
+				            #"Removed Duplicates",
+				            each not (
+				                [SurrogateProjectID] = "SERV_CN991413_11/21REPEX"
+				                and
+				                [Divisions] = "CINCY OM CONT"
+				            )
+				        ),
+				    #"Trimmed Text" = Table.TransformColumns(RemovedBadProject,{{"Divisions", Text.Trim, type text}})
+				in
+				    #"Trimmed Text"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

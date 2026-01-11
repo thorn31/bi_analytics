@@ -1,0 +1,28 @@
+table Revenue_Stream_D
+	lineageTag: 38f7f4ae-b54b-44d2-a07c-693c248e43c0
+
+	column 'Revenue Stream'
+		lineageTag: 984803ab-7106-433b-852c-42af80ec6d5b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Revenue Stream]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Revenue_Stream_D = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Revenue Stream", STRING,
+				    {
+				        { "Project" },
+				        { "Service Contract" },
+				        { "T&M" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = d061e39a6067479792f5bdc91ddbbfbd
+

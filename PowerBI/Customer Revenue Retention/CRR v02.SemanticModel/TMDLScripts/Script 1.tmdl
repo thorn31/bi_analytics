@@ -1,0 +1,546 @@
+createOrReplace
+
+	model Model
+		culture: en-US
+		defaultPowerBIDataSourceVersion: powerBI_V3
+		sourceQueryCulture: en-US
+		dataAccessOptions
+			legacyRedirects
+			returnErrorValuesAsNull
+
+		table CUSTOMERS_D
+			lineageTag: 8666a183-fdfd-4c0f-aab6-08bb2466c7ee
+
+			column 'Customer Number'
+				dataType: string
+				lineageTag: f0fb7751-54b8-41fc-8054-696f09377fba
+				summarizeBy: none
+				sourceColumn: Customer Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Name'
+				dataType: string
+				lineageTag: 21592c46-f3fd-4e84-80af-d6fab9a46120
+				summarizeBy: none
+				sourceColumn: Customer Name
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Class'
+				dataType: string
+				lineageTag: 3939d972-6d21-497b-9879-4593bb054b5d
+				summarizeBy: none
+				sourceColumn: Customer Class
+
+				annotation SummarizationSetBy = Automatic
+
+			column Address1
+				dataType: string
+				lineageTag: 66baee3b-07c6-4683-a416-aedd446f5dc5
+				summarizeBy: none
+				sourceColumn: Address1
+
+				annotation SummarizationSetBy = Automatic
+
+			column Address2
+				dataType: string
+				lineageTag: 31e9c547-e38a-46f3-9558-c78736baf75b
+				summarizeBy: none
+				sourceColumn: Address2
+
+				annotation SummarizationSetBy = Automatic
+
+			column Country
+				dataType: string
+				lineageTag: 27afead2-582c-40d7-8009-a06a98509466
+				summarizeBy: none
+				sourceColumn: Country
+
+				annotation SummarizationSetBy = Automatic
+
+			column City
+				dataType: string
+				lineageTag: 0366df07-898e-4fea-b7b2-fed2b9766dd7
+				summarizeBy: none
+				sourceColumn: City
+
+				annotation SummarizationSetBy = Automatic
+
+			column State
+				dataType: string
+				lineageTag: 17783944-6f84-4286-bf52-2634ab40b9da
+				summarizeBy: none
+				sourceColumn: State
+
+				annotation SummarizationSetBy = Automatic
+
+			column Zip
+				dataType: string
+				lineageTag: 03cea115-9e10-44ed-9054-6654450511c4
+				summarizeBy: none
+				sourceColumn: Zip
+
+				annotation SummarizationSetBy = Automatic
+
+			column Phone1
+				dataType: string
+				lineageTag: d83d7838-9213-4b5f-81a7-ee3be63fadec
+				summarizeBy: none
+				sourceColumn: Phone1
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Payment Term'
+				dataType: string
+				lineageTag: 88254c18-72a2-4881-a9da-75ab0975157f
+				summarizeBy: none
+				sourceColumn: Payment Term
+
+				annotation SummarizationSetBy = Automatic
+
+			column Created
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 74f4013b-2ea6-46a0-94d3-3b6e3d3f8986
+				summarizeBy: none
+				sourceColumn: Created
+
+				variation Variation
+					isDefault
+					relationship: 08847757-551f-426a-9734-14207ffafbbb
+					defaultHierarchy: LocalDateTable_cd8a1705-b375-46bb-a4f9-45d23b4a0ecf.'Date Hierarchy'
+
+				annotation SummarizationSetBy = Automatic
+
+			column Updated
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 7447e0e3-3f10-4dc9-ab82-b362dc176aef
+				summarizeBy: none
+				sourceColumn: Updated
+
+				variation Variation
+					isDefault
+					relationship: 6191060b-60fb-4714-823c-456408b3b5c8
+					defaultHierarchy: LocalDateTable_23503b0c-d080-4eb4-9162-2f545eaf1a24.'Date Hierarchy'
+
+				annotation SummarizationSetBy = Automatic
+
+			column Source
+				dataType: string
+				lineageTag: c80b2724-43b2-49c4-8975-3e507b84eba0
+				summarizeBy: none
+				sourceColumn: Source
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Quadra Source'
+				dataType: string
+				lineageTag: 20682ce3-8c18-4a6e-95e9-1c7e7499e90b
+				summarizeBy: none
+				sourceColumn: Quadra Source
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: bb5117b2-d261-428a-b063-fa9f6316af4f
+				summarizeBy: none
+				sourceColumn: Customer Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Quadra Customer Key'
+				dataType: string
+				lineageTag: b0e5dd98-3ad7-42ac-9ea4-dde8db186ef8
+				summarizeBy: none
+				sourceColumn: Quadra Customer Key
+
+				annotation SummarizationSetBy = Automatic
+
+			partition CUSTOMERS_D = m
+				mode: import
+				source =
+						let
+						    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+						    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+						    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+						    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CUSTOMERS_D",Kind="Table"]}[Data],
+						    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))}))
+						in
+						    ProperCase
+
+			annotation PBI_ResultType = Table
+
+			annotation PBI_NavigationStepName = Navigation
+
+		table DateTableTemplate_6295b384-0888-4f8a-bbfa-c59add3158e5
+			isHidden
+			isPrivate
+			lineageTag: bc6ac1a5-2301-48b6-8fbd-12f8466507d8
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: General Date
+				lineageTag: d5b3f50e-3071-4352-b35e-0d664e10db48
+				dataCategory: PaddedDateTableDates
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				annotation SummarizationSetBy = User
+
+			column Year = YEAR([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 0dc767e9-a1ce-4e32-ba3b-8c64e6f71703
+				dataCategory: Years
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Year
+
+			column MonthNo = MONTH([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: a3efc412-bd10-4219-84c9-2598e380d9d4
+				dataCategory: MonthOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = MonthNumber
+
+			column Month = FORMAT([Date], "MMMM")
+				dataType: string
+				isHidden
+				lineageTag: 7d66d772-5555-4790-8b25-6368d2dbf05a
+				dataCategory: Months
+				summarizeBy: none
+				sortByColumn: MonthNo
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Month
+
+			column QuarterNo = INT(([MonthNo] + 2) / 3)
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 0943d660-6cde-47ff-8e51-a537eb5e5787
+				dataCategory: QuarterOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = QuarterNumber
+
+			column Quarter = "Qtr " & [QuarterNo]
+				dataType: string
+				isHidden
+				lineageTag: 90981c29-c9ad-4f45-9011-5395595dff1b
+				dataCategory: Quarters
+				summarizeBy: none
+				sortByColumn: QuarterNo
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Quarter
+
+			column Day = DAY([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: fef5f067-d90a-4a45-81ba-c41226688d45
+				dataCategory: DayOfMonth
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Day
+
+			hierarchy 'Date Hierarchy'
+				lineageTag: 5bdb9ce0-c26b-40f5-a5fc-4b1fa2200fa7
+
+				level Year
+					lineageTag: 3f50f8d3-42d7-4882-935d-aab0843a533e
+					column: Year
+
+				level Quarter
+					lineageTag: 88407bad-5865-4209-9bec-b271efc7d9f4
+					column: Quarter
+
+				level Month
+					lineageTag: 21257233-578e-4f45-906a-f57f81a38b28
+					column: Month
+
+				level Day
+					lineageTag: ed9a8c8d-5dba-4e1e-bc03-fe386a615601
+					column: Day
+
+				annotation TemplateId = DateHierarchy
+
+			partition DateTableTemplate_6295b384-0888-4f8a-bbfa-c59add3158e5 = calculated
+				mode: import
+				source = Calendar(Date(2015,1,1), Date(2015,1,1))
+
+			annotation __PBI_TemplateDateTable = true
+
+			annotation DefaultItem = DateHierarchy
+
+		table LocalDateTable_cd8a1705-b375-46bb-a4f9-45d23b4a0ecf
+			isHidden
+			showAsVariationsOnly
+			lineageTag: 3ce9aa83-e6eb-4aef-8bea-8d10a246347f
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: General Date
+				lineageTag: 4dc6d5f9-ca20-413c-bf26-a0da99f8a8be
+				dataCategory: PaddedDateTableDates
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				annotation SummarizationSetBy = User
+
+			column Year = YEAR([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 29183461-0e99-4386-aa98-e149f9abe325
+				dataCategory: Years
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Year
+
+			column MonthNo = MONTH([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 2c1628f8-4b0d-458f-b9c4-af5b1bd8e04d
+				dataCategory: MonthOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = MonthNumber
+
+			column Month = FORMAT([Date], "MMMM")
+				dataType: string
+				isHidden
+				lineageTag: 61f29b95-2d40-4054-82e7-ffc92741603b
+				dataCategory: Months
+				summarizeBy: none
+				sortByColumn: MonthNo
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Month
+
+			column QuarterNo = INT(([MonthNo] + 2) / 3)
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: ff522a0d-395a-4fb4-b720-c1de68a0e369
+				dataCategory: QuarterOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = QuarterNumber
+
+			column Quarter = "Qtr " & [QuarterNo]
+				dataType: string
+				isHidden
+				lineageTag: 0b375277-7843-40a7-bf2a-02422b8e1156
+				dataCategory: Quarters
+				summarizeBy: none
+				sortByColumn: QuarterNo
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Quarter
+
+			column Day = DAY([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: cfaad7d6-1aa4-41d5-a88d-acaab8cabe3d
+				dataCategory: DayOfMonth
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Day
+
+			hierarchy 'Date Hierarchy'
+				lineageTag: 6ea9cdc8-9755-4034-9cfa-0d2e3cc0ab66
+
+				level Year
+					lineageTag: b0049bae-cb25-423b-b7a5-a347c74bc126
+					column: Year
+
+				level Quarter
+					lineageTag: 3359c645-0939-4227-889f-7bbc79421be8
+					column: Quarter
+
+				level Month
+					lineageTag: b6a81832-0092-4f2e-9930-ff01536f7abf
+					column: Month
+
+				level Day
+					lineageTag: 2165cc73-d8d7-4c79-a07c-2eca6a50aa4e
+					column: Day
+
+				annotation TemplateId = DateHierarchy
+
+			partition LocalDateTable_cd8a1705-b375-46bb-a4f9-45d23b4a0ecf = calculated
+				mode: import
+				source = Calendar(Date(Year(MIN('CUSTOMERS_D'[Created])), 1, 1), Date(Year(MAX('CUSTOMERS_D'[Created])), 12, 31))
+
+			annotation __PBI_LocalDateTable = true
+
+		table LocalDateTable_23503b0c-d080-4eb4-9162-2f545eaf1a24
+			isHidden
+			showAsVariationsOnly
+			lineageTag: ca3ae67d-a23c-4f6e-9202-61561434a6a5
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: General Date
+				lineageTag: 8394767a-c352-4871-a59f-1adadf3e64b1
+				dataCategory: PaddedDateTableDates
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				annotation SummarizationSetBy = User
+
+			column Year = YEAR([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 2c44fe6f-d901-4d07-b0cf-b8f5cdf1c81f
+				dataCategory: Years
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Year
+
+			column MonthNo = MONTH([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 4e657fa9-2fc4-413c-94dc-a7ab940ea9e7
+				dataCategory: MonthOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = MonthNumber
+
+			column Month = FORMAT([Date], "MMMM")
+				dataType: string
+				isHidden
+				lineageTag: 03ac8a5b-d660-4cef-8629-349b399e5f04
+				dataCategory: Months
+				summarizeBy: none
+				sortByColumn: MonthNo
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Month
+
+			column QuarterNo = INT(([MonthNo] + 2) / 3)
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 7df90b9f-cb4b-4449-81c5-bda929bf07ea
+				dataCategory: QuarterOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = QuarterNumber
+
+			column Quarter = "Qtr " & [QuarterNo]
+				dataType: string
+				isHidden
+				lineageTag: f4b3d9a9-59e8-44f0-b81f-2abb8f12aac7
+				dataCategory: Quarters
+				summarizeBy: none
+				sortByColumn: QuarterNo
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Quarter
+
+			column Day = DAY([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: d181c024-b49a-474b-b80a-158b9d67c7a9
+				dataCategory: DayOfMonth
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Day
+
+			hierarchy 'Date Hierarchy'
+				lineageTag: 79d18602-01b4-4acf-94df-84c54c06dff6
+
+				level Year
+					lineageTag: 10bb589f-9a85-465a-b05a-5c771e388f16
+					column: Year
+
+				level Quarter
+					lineageTag: a9d10a01-827e-42a9-bddd-eac4c34062dc
+					column: Quarter
+
+				level Month
+					lineageTag: 54627241-c5b0-4a8b-a957-ce103c767881
+					column: Month
+
+				level Day
+					lineageTag: ca67c636-8629-4b78-bbba-30bdc64dc37c
+					column: Day
+
+				annotation TemplateId = DateHierarchy
+
+			partition LocalDateTable_23503b0c-d080-4eb4-9162-2f545eaf1a24 = calculated
+				mode: import
+				source = Calendar(Date(Year(MIN('CUSTOMERS_D'[Updated])), 1, 1), Date(Year(MAX('CUSTOMERS_D'[Updated])), 12, 31))
+
+			annotation __PBI_LocalDateTable = true
+
+		relationship 08847757-551f-426a-9734-14207ffafbbb
+			joinOnDateBehavior: datePartOnly
+			fromColumn: CUSTOMERS_D.Created
+			toColumn: LocalDateTable_cd8a1705-b375-46bb-a4f9-45d23b4a0ecf.Date
+
+		relationship 6191060b-60fb-4714-823c-456408b3b5c8
+			joinOnDateBehavior: datePartOnly
+			fromColumn: CUSTOMERS_D.Updated
+			toColumn: LocalDateTable_23503b0c-d080-4eb4-9162-2f545eaf1a24.Date
+
+		cultureInfo en-US
+
+			linguisticMetadata = {"Version":"1.0.0","Language":"en-US"}
+				contentType: json
+
+		annotation __PBI_TimeIntelligenceEnabled = 1
+
+		annotation PBI_QueryOrder = ["CUSTOMERS_D"]
+
