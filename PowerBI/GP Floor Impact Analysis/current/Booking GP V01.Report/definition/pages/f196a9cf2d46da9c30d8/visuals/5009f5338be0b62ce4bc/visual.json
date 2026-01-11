@@ -838,5 +838,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bc61fc79eb095457bb7b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "% of Projects At or Above Floor"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "684318ee9671e906e260",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "% Sell Price At Or Above Floor"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "113d226680e37e569ec5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "% GP At Or Above Floor"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
