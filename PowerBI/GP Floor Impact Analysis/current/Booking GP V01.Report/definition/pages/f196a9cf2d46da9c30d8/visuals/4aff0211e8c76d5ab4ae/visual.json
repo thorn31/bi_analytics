@@ -380,5 +380,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f1ccc59cc6dba6aa66db",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Month Letter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "184659169005a76703d1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Selected Metric - Current %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "45798e5c08d050168d82",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Selected Metric - Global Baseline %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

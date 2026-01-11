@@ -571,7 +571,7 @@ table '_Key Measures'
 	/// Dynamic Title for the Performance vs Baseline Chart.
 	measure 'Dynamic Title - Chart 2' = ```
 			
-			[Selected Metric - Long Name] & " % Health vs Global Baseline " & LOWER([Selected Dimension])
+			[Selected Metric - Long Name] & " % Health vs Global Baseline " & [Selected Dimension]
 			
 			```
 		displayFolder: Visual Measures
