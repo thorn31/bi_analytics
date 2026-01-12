@@ -146,6 +146,14 @@ table NPS_F
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Capitalize Each Word'
+		dataType: string
+		lineageTag: f30e0ef6-97ad-45a9-906b-dafd2bead3ac
+		summarizeBy: none
+		sourceColumn: Capitalize Each Word
+
+		annotation SummarizationSetBy = Automatic
+
 	partition NPS_F = m
 		mode: import
 		queryGroup: Facts
@@ -174,9 +182,10 @@ table NPS_F
 				    Historical_and_CYData_Table = #"Imported Excel Workbook"{[Item="Historical_and_CYData",Kind="Table"]}[Data],
 				    #"Filtered Rows" = Table.SelectRows(Historical_and_CYData_Table, each ([Market] <> "GOODWILL")),
 				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"QUESTION:  Hi this is <INTRODUCE YOURSELF> from Perfection Group, just checking ", "Comment"}, {"Were we prompt an on time?", "Prompt and On Time"}, {"Did we fix the issue the first time? #(lf)#(lf)If the customer says “NO”:#(lf)#(lf)Please ask, “", "First Time Fix"}}),
-				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"SERVICE CALL NUMBER", "CUSTOMER", "LOCATION", "FIRST, LAST NAME OF CALLER", "PHONE NUMBER", "SERVICE CALL COMPLETED DATE", "Service Description", "Type of Call", "Comment", "Prompt and On Time", "First Time Fix", "Notes", "Month of Service", "Market", "1-10 Score", "Fiscal Year", "Region"})
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"SERVICE CALL NUMBER", "CUSTOMER", "LOCATION", "FIRST, LAST NAME OF CALLER", "PHONE NUMBER", "SERVICE CALL COMPLETED DATE", "Service Description", "Type of Call", "Comment", "Prompt and On Time", "First Time Fix", "Notes", "Month of Service", "Market", "1-10 Score", "Fiscal Year", "Region"}),
+				    #"Inserted Capitalize Each Word" = Table.AddColumn(#"Removed Other Columns", "Capitalize Each Word", each Text.Proper([CUSTOMER]), type text)
 				in
-				    #"Removed Other Columns"
+				    #"Inserted Capitalize Each Word"
 
 	annotation PBI_NavigationStepName = Navigation
 

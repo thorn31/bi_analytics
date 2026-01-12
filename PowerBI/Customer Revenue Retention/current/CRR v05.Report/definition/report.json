@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Perfection_-_Clean_Neutral_(v6462779210587135.json",
+      "name": "Perfection_-_Clean_Neutral_(v67036643786152118.json",
       "reportVersionAtImport": {
         "visual": "2.4.0",
         "report": "3.0.0",
@@ -140,7 +140,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           }
@@ -148,6 +148,9 @@
       }
     ]
   },
+  "publicCustomVisuals": [
+    "markdown094043B111794F2C815A4B97BA2D325B"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",
@@ -167,11 +170,6 @@
         {
           "name": "Badge_PG-Circle-RGB785336690028513.png",
           "path": "Badge_PG-Circle-RGB785336690028513.png",
-          "type": "Image"
-        },
-        {
-          "name": "Badge_PG-Circle-RGB6251770443828839.png",
-          "path": "Badge_PG-Circle-RGB6251770443828839.png",
           "type": "Image"
         },
         {
@@ -195,8 +193,8 @@
           "type": "Image"
         },
         {
-          "name": "Perfection_-_Clean_Neutral_(v6462779210587135.json",
-          "path": "Perfection_-_Clean_Neutral_(v6462779210587135.json",
+          "name": "Perfection_-_Clean_Neutral_(v67036643786152118.json",
+          "path": "Perfection_-_Clean_Neutral_(v67036643786152118.json",
           "type": "CustomTheme"
         }
       ]

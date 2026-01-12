@@ -199,9 +199,10 @@ expression JOBS_D = ```
 		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
 		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
 		    JOBS_D_Table = DW_FINAL_Schema{[Name="JOBS_D",Kind="Table"]}[Data], 
-		    ProperCase = Table.RenameColumns(JOBS_D_Table, List.Transform(Table.ColumnNames(JOBS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))}))
+		    ProperCase = Table.RenameColumns(JOBS_D_Table, List.Transform(Table.ColumnNames(JOBS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+		    #"Filtered Rows" = Table.SelectRows(ProperCase, each ([Divisions] <> "BURDEN" and [Divisions] <> "BURDEN - FIELD" and [Divisions] <> "ENGINEERING" and [Divisions] <> "FREE SERVICE DB" and [Divisions] <> "FREE SERVICE GR" and [Divisions] <> "SLS ASSIST DB" and [Divisions] <> "SLS ASSIST GRN" and [Divisions] <> "TRAINING" and [Divisions] <> "VACATION"))
 		in
-		    ProperCase
+		    #"Filtered Rows"
 		```
 	lineageTag: c2ea9d9c-0866-4cb4-b479-2c54adbdc227
 	queryGroup: Staging

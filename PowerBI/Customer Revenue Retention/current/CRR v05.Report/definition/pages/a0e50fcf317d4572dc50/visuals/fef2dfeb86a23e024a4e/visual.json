@@ -577,6 +577,51 @@
             "id": "field-49e6707b-1d31-1290-57da-1e815d0c666a",
             "order": 1
           }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)",
+            "id": "field-f3e82c8a-6eae-2c13-8be4-0bb5ed9e81db",
+            "order": 3
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)",
+            "id": "field-8e0f3541-73a7-ac5e-1576-5374e0d988e4",
+            "order": 2
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)",
+            "id": "field-4f8204fb-1a1a-af8d-2f5e-495e39aad1d2",
+            "order": 2
+          }
         }
       ],
       "referenceLabelLayout": [
@@ -967,6 +1012,22 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "referenceLabelDetail": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)"
           }
         }
       ]

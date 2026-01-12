@@ -1077,51 +1077,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3feea83f0e016592be4c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Net Revenue Retention % (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "812cacd047ac31aca5bb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Gross Revenue Retention % (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8c8076d20602b454859c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Logo Retention % (SC) (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

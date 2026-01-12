@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "aa727063c0bd7605e6e0",
   "position": {
-    "x": 970.34129692832755,
-    "y": 640.44368600682594,
+    "x": 494.84641638225253,
+    "y": 623.85665529010237,
     "z": 4000,
     "height": 439.55631399317406,
-    "width": 929.79522184300333,
+    "width": 930.716723549488,
     "tabOrder": 2000
   },
   "visual": {
@@ -366,6 +366,62 @@
             }
           ]
         }
+      },
+      {
+        "name": "07cf9e707905a858310c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dd86109992d0a0a4dc36",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Revenue_Stream_D"
+              }
+            },
+            "Property": "Revenue Stream"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "385d43d28ec00074c3a0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Stream_Subsegment_D"
+              }
+            },
+            "Property": "Subsegment"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "55437d83abe1eb6a4308",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FINANCIAL_METRIC_D"
+              }
+            },
+            "Property": "Metric Value (Stream x Metric)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

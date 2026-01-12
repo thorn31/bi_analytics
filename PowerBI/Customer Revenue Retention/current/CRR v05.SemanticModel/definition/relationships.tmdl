@@ -124,3 +124,12 @@ relationship b428bbd9-94a9-99d2-7617-fd8109545d21
 	fromColumn: NPS_F.'SERVICE CALL COMPLETED DATE'
 	toColumn: FYCALENDAR_D.Date
 
+relationship AutoDetected_b748da54-f17d-4614-88af-35ccc2ce94b2
+	fromColumn: JOB_MONTHLY_SUMMARY_F.'Job Key'
+	toColumn: JOBCOSTED_F.'Job Key'
+
+relationship e04ec842-a857-5992-5843-38a000d9c9d4
+	crossFilteringBehavior: bothDirections
+	fromColumn: PROJECTS_D.'Project Key'
+	toColumn: JOBCOSTED_F.'Job Key'
+

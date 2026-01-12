@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "7326ad5b2a993381211d",
   "position": {
-    "x": 120.71672354948805,
-    "y": 540,
+    "x": 20.273037542662117,
+    "y": 578.70307167235489,
     "z": 20000,
-    "height": 88.464163822525592,
-    "width": 96.757679180887365,
+    "height": 49.761092150170647,
+    "width": 197.20136518771329,
     "tabOrder": 20000
   },
   "visual": {
@@ -209,7 +209,7 @@
             "orientation": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "2D"
                 }
               }
             }
@@ -337,7 +337,7 @@
             "overFlowDirection": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1D"
                 }
               }
             }
@@ -454,7 +454,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "9b446c58282d5e6205d4",
+        "name": "56c649009438a6503068",
         "field": {
           "Column": {
             "Expression": {
