@@ -78,37 +78,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "aa2540c48bb9c00aec51",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2f8e10366ea68e0b3c32",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Project Revenue"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

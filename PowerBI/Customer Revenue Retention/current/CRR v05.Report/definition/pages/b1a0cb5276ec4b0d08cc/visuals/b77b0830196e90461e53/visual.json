@@ -4,7 +4,7 @@
   "position": {
     "x": 494.58675688738515,
     "y": 278.11019816336392,
-    "z": 1,
+    "z": 1000,
     "height": 300,
     "width": 300
   },
@@ -33,23 +33,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ff774d0c70798067de2a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "JOB_MONTHLY_SUMMARY_F"
-              }
-            },
-            "Property": "Period Date"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

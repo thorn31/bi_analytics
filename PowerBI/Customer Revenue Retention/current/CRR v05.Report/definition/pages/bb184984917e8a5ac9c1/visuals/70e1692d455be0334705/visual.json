@@ -207,10 +207,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "SERVCONTRACTS_D"
+                    "Entity": "CUSTOMERS_D"
                   }
                 },
-                "Property": "Renewal Date"
+                "Property": "Customer Name"
               }
             },
             "direction": "Ascending"
@@ -225,195 +225,23 @@
           "selector": {
             "metadata": "SERVCONTRACTS_D.Contract Description"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "451D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CUSTOMERS_D.Customer Name"
+          }
         }
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "28e19aad8583c1c1d004",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "SERVCONTRACTS_D"
-              }
-            },
-            "Property": "Contract Description"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e9c4a428720192689edc",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Service Contract Gross Profit"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e7fb1ef09d01c51077a1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Service Contract Revenue"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "20629c006e0903523d37",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Service Contract Cost"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a0b33342d8229c80987d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Service Contract Gross Profit %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "fcb22a72acb2d5ec51e7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "SERVCONTRACTS_D"
-              }
-            },
-            "Property": "Renewal Date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c9bfadf3bc03b07d85ba",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "SERVCONTRACTS_D"
-              }
-            },
-            "Property": "YearIndex"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b444fa994e910d4ec051",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Customer Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f00fa5eccd9dc006d950",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "First Contract Billing Date"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5f542fc8ae350b0edd83",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Last Contract Billing Date"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "575a0aa78888450d4dde",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "SERVCONTRACTS_D"
-              }
-            },
-            "Property": "Cancel Box"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "13184b5e3096e57c5027",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "SERVCONTRACTS_D"
-              }
-            },
-            "Property": "IsActiveContractYear"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "bb46cd8f05694143e5ea",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "SERVCONTRACTS_D"
-              }
-            },
-            "Property": "Contract Number"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

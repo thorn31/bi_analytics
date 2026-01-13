@@ -805,62 +805,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "eb87dc16c303670b291a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d50e9d385007bc22316a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Quarter"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "081bc5e0ea8d2c589b38",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ea72aaa84b5b70d3e0eb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Gross Profit (By Stream)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

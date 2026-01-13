@@ -1,0 +1,62 @@
+table fp_GPFloor
+	lineageTag: 4ade2737-1a91-4f5b-a91a-e62b98ff9115
+
+	measure 'GP Floor Value' = SELECTEDVALUE('fp_GPFloor'[GP Floor])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5f0ece96-f935-48f5-8b2d-6bd62641850b
+
+	measure 'At Or Above Floor' =
+			
+			VAR gp = [GP %]
+			  VAR floor = [GP Floor Value]
+			  RETURN
+			  IF(
+			  ISBLANK(gp) || ISBLANK(floor),
+			  BLANK(),
+			  IF(gp >= floor, "Yes", "No")
+			  )
+		lineageTag: 7528d5ff-3172-48bc-bbc0-3535adbdb348
+
+	measure 'Count At Or Above Floor' = ```
+			
+			  VAR jobs = VALUES(JOBS_D[Job Number])
+			  RETURN
+			  COUNTROWS(
+			  FILTER(jobs, [At Or Above Floor] = "Yes")
+			  )
+			```
+		formatString: 0
+		lineageTag: 8bcbca7b-783c-4590-a127-965b1801923d
+
+	measure 'Count Below Floor' = ```
+			
+			    COUNTROWS(
+			    FILTER(
+			    VALUES(JOBS_D[Job Number]),
+			    [At Or Above Floor] = "No"
+			    )
+			    )
+			```
+		formatString: 0
+		lineageTag: 95d29eff-63ea-4896-b870-9086837fd60b
+
+	column 'GP Floor'
+		dataType: decimal
+		formatString: 0%;-0%;0%
+		lineageTag: bb244a29-9834-4ec5-8682-b24dbeae5586
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition fp_GPFloor = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.01)
+
+	annotation PBI_Id = 2d2213986a9c4605a5ac384189ce41c0
+

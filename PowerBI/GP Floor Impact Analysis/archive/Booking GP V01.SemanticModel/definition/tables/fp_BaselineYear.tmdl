@@ -1,0 +1,19 @@
+/// Table for selecting the Baseline Year (2024 onwards).
+table fp_BaselineYear
+	lineageTag: 16a8fe65-fbc3-4ee2-81d1-4d82ecfed330
+
+	/// Selected Baseline Year, defaults to 2025.
+	measure 'Baseline Year Value' = SELECTEDVALUE('fp_BaselineYear'[Baseline Year], 2025)
+		formatString: 0
+		isHidden
+		lineageTag: 05511069-9710-4f03-bc0a-ac1bf531dbf0
+
+	column 'Baseline Year'
+		lineageTag: fdc3efc2-13e5-4f52-bde1-1063b3deaed5
+		isNameInferred
+		sourceColumn: [Baseline Year]
+
+	partition fp_BaselineYear = calculated
+		mode: import
+		source = SELECTCOLUMNS(FILTER(VALUES('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] >= 2024), "Baseline Year", 'FYCALENDAR_D'[Fiscal Year])
+

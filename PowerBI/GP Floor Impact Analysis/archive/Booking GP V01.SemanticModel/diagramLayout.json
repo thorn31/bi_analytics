@@ -1,0 +1,163 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 322,
+            "y": 51
+          },
+          "nodeIndex": "JOBS_D",
+          "nodeLineageTag": "fc142710-a0d8-44d1-9fe6-9f59c3ec7598",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 582,
+            "y": 39
+          },
+          "nodeIndex": "QUADRA_JOBS",
+          "nodeLineageTag": "17b70565-65f2-470a-90d0-5c1d8b040593",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1059,
+            "y": 487.5
+          },
+          "nodeIndex": "QUADRA_CONTRACTS",
+          "nodeLineageTag": "6fa60a8b-c7c3-41ef-b7d2-096318ffee00",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1343,
+            "y": 300.25
+          },
+          "nodeIndex": "_Key Measures",
+          "nodeLineageTag": "b91f0227-6bb9-4050-b89a-47c89b490bb2",
+          "size": {
+            "height": 792,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 866,
+            "y": 64
+          },
+          "nodeIndex": "fp_GPFloor",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 529,
+            "y": 494
+          },
+          "nodeIndex": "FYCALENDAR_D",
+          "nodeLineageTag": "08601d45-a133-4be4-a463-75c45a804b28",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 128,
+            "y": 592.25
+          },
+          "nodeIndex": "CUSTOMERS_D",
+          "nodeLineageTag": "76a5d38b-6f2e-4506-b3d2-d63992540541",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 324
+          },
+          "nodeIndex": "DIVISIONS_D",
+          "nodeLineageTag": "e3540253-e2da-456a-8d9e-d7de22212d10",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1627,
+            "y": 327.5
+          },
+          "nodeIndex": "fp_DimensionSelector",
+          "nodeLineageTag": "7f3c55e5-369b-489d-b283-1bab3a4e80cd",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1911,
+            "y": 339.5
+          },
+          "nodeIndex": "fp_ViewSelector",
+          "nodeLineageTag": "f229efdb-d510-4ea5-bc5b-3ba2bb9690dd",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2195,
+            "y": 303.5
+          },
+          "nodeIndex": "fp_BaselineYear",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

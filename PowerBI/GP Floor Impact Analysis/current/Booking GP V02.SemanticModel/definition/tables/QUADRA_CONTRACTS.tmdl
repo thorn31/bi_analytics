@@ -1,0 +1,259 @@
+table QUADRA_CONTRACTS
+	lineageTag: 6fa60a8b-c7c3-41ef-b7d2-096318ffee00
+
+	column 'Contract Number'
+		dataType: string
+		lineageTag: fc35994e-5108-4cbf-b915-5a15526faf4a
+		summarizeBy: none
+		sourceColumn: Contract Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quotenumber
+		dataType: string
+		lineageTag: a344afb5-d2ee-4f49-b6ce-2e471933a62a
+		summarizeBy: none
+		sourceColumn: Quotenumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customernumber
+		dataType: string
+		lineageTag: 441c33da-f724-4ed8-a8c7-e79c33d6b075
+		summarizeBy: none
+		sourceColumn: Customernumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Regionid
+		dataType: string
+		lineageTag: 70142073-7f7d-41e9-afb6-f875a9feb702
+		summarizeBy: none
+		sourceColumn: Regionid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Createdbyid
+		dataType: string
+		lineageTag: ca637b2a-e68f-47c8-b67c-4c5d43d801e0
+		summarizeBy: none
+		sourceColumn: Createdbyid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Event Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8ff4d392-7ff0-4b81-bf72-fb9c55d19623
+		summarizeBy: none
+		sourceColumn: Event Date
+
+		variation Variation
+			isDefault
+			relationship: 4c3c0e64-949c-4d58-a270-0a071416434e
+			defaultHierarchy: LocalDateTable_00714900-09f2-4399-afcc-623f9dd67dd7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Eventid
+		dataType: string
+		lineageTag: f6259217-1af1-41de-abdd-0a428b0affb4
+		summarizeBy: none
+		sourceColumn: Eventid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contractstartdate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b2d987ed-fcd5-432b-96a3-5ad68bbdf82b
+		summarizeBy: none
+		sourceColumn: Contractstartdate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Contractenddate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: aa97cdc1-7da1-48cc-a093-88e0f274fd1b
+		summarizeBy: none
+		sourceColumn: Contractenddate
+
+		variation Variation
+			isDefault
+			relationship: c823b448-a88b-4efe-8341-1419ba3fbd28
+			defaultHierarchy: LocalDateTable_5a01af07-8f91-4c20-933e-34211773d295.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Contracttype
+		dataType: string
+		lineageTag: 744745bf-5af8-4ecb-b936-86644c88c339
+		summarizeBy: none
+		sourceColumn: Contracttype
+
+		annotation SummarizationSetBy = Automatic
+
+	column Totalcost
+		dataType: double
+		lineageTag: 97e3947e-0e6b-40d0-8adf-3c33dd2e8cea
+		summarizeBy: sum
+		sourceColumn: Totalcost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Bidprice
+		dataType: double
+		lineageTag: 7dcb9a1c-b7ed-474c-a9fe-6b3278f0d144
+		summarizeBy: sum
+		sourceColumn: Bidprice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Gp
+		dataType: double
+		lineageTag: 9873912d-14cb-42fb-a4c2-d80e44d37b16
+		summarizeBy: sum
+		sourceColumn: Gp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Eventaction
+		dataType: string
+		lineageTag: 65746fab-b031-40ed-964e-f50a18580c6a
+		summarizeBy: none
+		sourceColumn: Eventaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: dd813cab-8d8b-4579-93f2-9db5cef3a08b
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: 6e54d490-6164-4fbd-a8dc-e07b3facf51a
+		summarizeBy: none
+		sourceColumn: Job Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: b14d81fd-5920-4b79-9f59-439adfc25d33
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Key'
+		dataType: string
+		lineageTag: b637a9ab-f932-4a38-945e-fb4564ec8c21
+		summarizeBy: none
+		sourceColumn: Quote Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Event Key'
+		dataType: string
+		lineageTag: 77bb89c7-e9f4-4dfa-b293-2df8e01e0730
+		summarizeBy: none
+		sourceColumn: Event Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quadra User Key'
+		dataType: string
+		lineageTag: 8134f68d-e7a5-4930-a959-78ede7798200
+		summarizeBy: none
+		sourceColumn: Quadra User Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Event
+		dataType: string
+		lineageTag: 0f9aa487-6b48-4b70-b44c-1cd2d5627b7c
+		summarizeBy: none
+		sourceColumn: Event
+
+		annotation SummarizationSetBy = Automatic
+
+	column Startdate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7caeacf2-1b81-4d8f-ba36-4947c9ea74b4
+		summarizeBy: none
+		sourceColumn: Startdate
+
+		variation Variation
+			isDefault
+			relationship: 07b96cec-259c-4ee6-afa6-44baace3a116
+			defaultHierarchy: LocalDateTable_c1e903bc-eabd-4b9f-bfad-d3fe01b76de9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Servicecontractid
+		dataType: double
+		lineageTag: fc635851-f5ac-4491-b417-d6c367f3c9ac
+		summarizeBy: sum
+		sourceColumn: Servicecontractid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quotedate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f6ce4fc7-7621-43f3-9772-638a59d2a4e5
+		summarizeBy: none
+		sourceColumn: Quotedate
+
+		variation Variation
+			isDefault
+			relationship: 1f7d24da-2ff5-4a5a-9d00-144e8299da1a
+			defaultHierarchy: LocalDateTable_0c2d0817-5605-45bf-bb5e-35853569bb8f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DivisionMap
+		dataType: string
+		lineageTag: 41a9ea3f-d3da-490b-aaeb-f45ed8e2d0aa
+		summarizeBy: none
+		sourceColumn: DivisionMap
+
+		annotation SummarizationSetBy = Automatic
+
+	partition QUADRA_CONTRACTS = m
+		mode: import
+		source =
+				let
+					Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_CLEAN_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
+				    SERV_CONTRACTS_View = DW_CLEAN_Schema{[Name="QUADRA_CONTRACTS",Kind="View"]}[Data],
+				    Custom1 = Table.RenameColumns(SERV_CONTRACTS_View, List.Transform(Table.ColumnNames(SERV_CONTRACTS_View), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Filtered Rows" = Table.SelectRows(Custom1, each ([Event] = "Booked") and ([Eventaction] = "Approved Internally")),
+				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"Regionid"}, REGIONS_D, {"REGIONID"}, "REGIONS_D", JoinKind.LeftOuter),
+				    #"Expanded REGIONS_D" = Table.ExpandTableColumn(#"Merged Queries", "REGIONS_D", {"REGION"}, {"DivisionMap"})
+				in
+				    #"Expanded REGIONS_D"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

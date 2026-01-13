@@ -1,0 +1,244 @@
+table DIVISIONS_D
+	lineageTag: e3540253-e2da-456a-8d9e-d7de22212d10
+
+	column DivisionCode
+		dataType: string
+		lineageTag: 74738488-6b7a-4678-9144-565a3da3f0f4
+		summarizeBy: none
+		sourceColumn: DivisionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: 88cad010-772a-4519-80c2-6052637fa2ef
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 735e4374-453d-4e09-890b-a434dfc3665e
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: eb9717fd-1746-41ba-b241-c3d1c8c8638b
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIVISIONS_D = m
+		mode: import
+		source = ```
+				let
+				      Source = Table.FromRows(
+				          {
+				              {"AUTOMATION","Controls","Misc","Mechanical"},
+				              {"BURDEN","Burden","Misc","Misc"},
+				              {"BURDEN - FIELD","Burden","Misc","Misc"},
+				              {"CFS OM PROJ JC","TFS","TFS","TFS"},
+				              {"CFS PROJ JC","TFS","TFS","TFS"},
+				              {"CINCY PROJ JC","Cincinnati","North","Service"},
+				              {"COL PROJ JC","Columbus","North","Service"},
+				              {"CONTROLS","Controls","Misc","Mechanical"},
+				              {"DAY PROJ JC","Dayton","North","Service"},
+				              {"DESIGN BUILD","Design Build","Mechanical","Mechanical"},
+				              {"ENGINEERING","Engineering","Misc","Misc"},
+				              {"FREE SERVICE DB","Free Service DB","Misc","Misc"},
+				              {"FREE SERVICE GR","Free Service GR","Misc","Misc"},
+				              {"INDUSTRIAL","Industrial","Misc","Misc"},
+				              {"INDY PROJ JC","Indianapolis","North","Service"},
+				              {"KNOX PROJ JC","Knoxville","South","Service"},
+				              {"LEOPARDO","Leopardo","Leopardo","Mechanical"},
+				              {"LEX PROJ JC","Lexington","Central","Service"},
+				              {"LOU PROJ JC","Louisville","Central","Service"},
+				              {"NASH PROJ JC","Nashville","South","Service"},
+				              {"PERF CONTRACT","Green","Mechanical","Mechanical"},
+				              {"PLAN SPEC","Plan Spec","Mechanical","Mechanical"},
+				              {"SLS ASSIST DB","Sales Assist","Misc","Misc"},
+				              {"SLS ASSIST GRN","Sales Assist","Misc","Misc"},
+				              {"SPECIAL PROJECT","Special Project","Misc","Misc"},
+				              {"TRAINING","Training","Misc","Misc"},
+				              {"VACATION","Vacation","Misc","Misc"},
+				              {"WV PROJ JC","West Virginia","Central","Service"},
+				              {"KNOX PROJ","Knoxville","South","Service"},
+				              {"LEX A","Lexington","Central","Service"},
+				              {"LEX C","Lexington","Central","Service"},
+				              {"NASH C","Nashville","South","Service"},
+				              {"LOU C","Louisville","Central","Service"},
+				              {"LEX I","Lexington","Central","Service"},
+				              {"CINCY C","Cincinnati","North","Service"},
+				              {"COL C","Columbus","North","Service"},
+				              {"WVA C","West Virginia","Central","Service"},
+				              {"NASH A","Nashville","South","Service"},
+				              {"NASH OM CNTRACT","Nashville","South","Service"},
+				              {"DAY PROJ","Dayton","North","Service"},
+				              {"COL PROJ","Columbus","North","Service"},
+				              {"KNOX C","Knoxville","South","Service"},
+				              {"NASH I","Nashville","South","Service"},
+				              {"CINCY PROJ","Cincinnati","North","Service"},
+				              {"CFS DOWNTIME","TFS","TFS","TFS"},
+				              {"CFS SUPERVISION","TFS","TFS","TFS"},
+				              {"CFS TRAINING","TFS","TFS","TFS"},
+				              {"CFS VACATION","TFS","TFS","TFS"},
+				              {"LEX DOWNTIME","Lexington","Central","Service"},
+				              {"LEX SUPERVISION","Lexington","Central","Service"},
+				              {"LEX TRAINING","Lexington","Central","Service"},
+				              {"LEX VACATION","Lexington","Central","Service"},
+				              {"LOU DOWNTIME","Louisville","Central","Service"},
+				              {"LOU SALES ASST","Louisville","Central","Service"},
+				              {"LOU SUPERVISION","Louisville","Central","Service"},
+				              {"LOU TRAINING","Louisville","Central","Service"},
+				              {"LOU VACATION","Louisville","Central","Service"},
+				              {"WVA DOWNTIME","West Virginia","Central","Service"},
+				              {"WVA TRAINING","West Virginia","Central","Service"},
+				              {"WVA VACATION","West Virginia","Central","Service"},
+				              {"CINCY DOWNTIME","Cincinnati","North","Service"},
+				              {"CINCY OM TRNING","Cincinnati","North","Service"},
+				              {"CINCY SUPERVSN","Cincinnati","North","Service"},
+				              {"DAY DOWNTIME","Dayton","North","Service"},
+				              {"DAY OM TRAINING","Dayton","North","Service"},
+				              {"DAY TRAINING","Dayton","North","Service"},
+				              {"INDY DOWNTIM","Indianapolis","North","Service"},
+				              {"INDY VACA","Indianapolis","North","Service"},
+				              {"INDY TRAINING","Indianapolis","North","Service"},
+				              {"NASH DOWNTIME","Nashville","South","Service"},
+				              {"NASH SUPERVISE","Nashville","South","Service"},
+				              {"NASH TRAINING","Nashville","South","Service"},
+				              {"NASH VAC/HOL","Nashville","South","Service"},
+				              {"KNOX DOWNTIME","Knoxville","South","Service"},
+				              {"KNOX SUPERVISE","Knoxville","South","Service"},
+				              {"KNOX TRAINING","Knoxville","South","Service"},
+				              {"KNOX I","Knoxville","South","Service"},
+				              {"KNOX A","Knoxville","South","Service"},
+				              {"CHAT A","Chattanooga","South","Service"},
+				              {"CINCY OM PROJ","Cincinnati","North","Service"},
+				              {"KNOX OM CNTRACT","Knoxville","South","Service"},
+				              {"CHAT C","Chattanooga","South","Service"},
+				              {"DAY C","Dayton","North","Service"},
+				              {"CINCY A","Cincinnati","North","Service"},
+				              {"NASH PROJ","Nashville","South","Service"},
+				              {"DAY A","Dayton","North","Service"},
+				              {"DAY OM CONTRACT","Dayton","North","Service"},
+				              {"CINCY I","Cincinnati","North","Service"},
+				              {"CINCY OM CONT","Cincinnati","North","Service"},
+				              {"COL A","Columbus","North","Service"},
+				              {"INDY PROJ","Indianapolis","North","Service"},
+				              {"INDY C","Indianapolis","North","Service"},
+				              {"COL OM CONTRACT","Columbus","North","Service"},
+				              {"INDY OM CONT","Indianapolis","North","Service"},
+				              {"COL OM REPAIR","Columbus","North","Service"},
+				              {"INDY I","Indianapolis","North","Service"},
+				              {"INDY A","Indianapolis","North","Service"},
+				              {"WVA PROJ","West Virginia","Central","Service"},
+				              {"WVA OM PROJ","West Virginia","Central","Service"},
+				              {"LOU PROJ","Louisville","Central","Service"},
+				              {"LEX PROJ","Lexington","Central","Service"},
+				              {"LOU A","Louisville","Central","Service"},
+				              {"CFS A","TFS","TFS","TFS"},
+				              {"CFS OM CONTRACT","TFS","TFS","TFS"},
+				              {"CFS C","TFS","TFS","TFS"},
+				              {"CFS OM PROJECT","TFS","TFS","TFS"},
+				              {"LOU I","Louisville","Central","Service"},
+				              {"LEX OM PROJ","Lexington","Central","Service"},
+				              {"WVA A","West Virginia","Central","Service"},
+				              {"CFS PROJ","TFS","TFS","TFS"},
+				              {"CFS SLS ASSIST","TFS","TFS","TFS"},
+				              {"LEX OM CONT","Lexington","Central","Service"},
+				              {"LEX SALES ASST","Lexington","Central","Service"},
+				              {"WVA SALES ASST","West Virginia","Central","Service"},
+				              {"CINCY OM DOWNTI","Cincinnati","North","Service"},
+				              {"CINCY SALES AST","Cincinnati","North","Service"},
+				              {"CINCY R&D","Cincinnati","North","Service"},
+				              {"CINCY TRNING","Cincinnati","North","Service"},
+				              {"CINCY VACA","Cincinnati","North","Service"},
+				              {"DAY OM DOWNTIME","Dayton","North","Service"},
+				              {"DAY SALES ASST","Dayton","North","Service"},
+				              {"DAY SUPERVSN","Dayton","North","Service"},
+				              {"DAY VACA","Dayton","North","Service"},
+				              {"INDY SALES ASST","Indianapolis","North","Service"},
+				              {"INDY SUPERVSN","Indianapolis","North","Service"},
+				              {"NASH SALES ASST","Nashville","South","Service"},
+				              {"KNOX SALES ASST","Knoxville","South","Service"},
+				              {"KNOX VACATION","Knoxville","South","Service"},
+				              {"DAY OM PROJ","Dayton","North","Service"},
+				              {"KNOX REPAIR","Knoxville","South","Service"},
+				              {"CINCY REPAIR","Cincinnati","North","Service"},
+				              {"NASH REPAIR","Nashville","South","Service"},
+				              {"INDY REPAIR","Indianapolis","North","Service"},
+				              {"LEX REPAIR","Lexington","Central","Service"},
+				              {"LOUISV REPAIR","Louisville","Central","Service"},
+				              {"DAY REPAIR","Dayton","North","Service"},
+				              {"WVA REPAIR","West Virginia","Central","Service"},
+				              {"COL REPAIR","Columbus","North","Service"},
+				              {"WVA OM REPAIR","West Virginia","Central","Service"},
+				              {"CFS REPAIR","TFS","TFS","TFS"},
+				              {"CFS OM REPAIR","TFS","TFS","TFS"},
+				              {"CHATT REPAIR","Chattanooga","South","Service"},
+				              {"DAYTON REPAIR","Dayton","North","Service"},
+				              {"CINCY OM REPAIR","Cincinnati","North","Service"},
+				              {"CN PROJ REPAIR","Cincinnati","North","Service"},
+				              {"DAY OM REPAIR","Dayton","North","Service"},
+				              {"WVA SUPERVISION","West Virginia","Central","Service"},
+				              {"DY PROJ REPAIR","Dayton","North","Service"},
+				              {"NV PROJ REPAIR","Unknown","Misc","Misc"},
+				              {"LX PROJ REPAIR","Lexington","Central","Service"},
+				              {"WV PROJ REPAIR","West Virginia","Central","Service"},
+				              {"LV PROJ REPAIR","Unknown","Misc","Misc"},
+				              {"CFS PROJ REPAIR","TFS","TFS","TFS"},
+				              {"KX PROJ REPAIR","Knoxville","South","Service"},
+				              {"IN PROJ REPAIR","Indianapolis","North","Service"},
+				              {"NASH OM REPAIR","Nashville","South","Service"}, 
+				              {"Unknown", "Unknown", "Unknown", "Service"},
+				              {"CINCY", "Cincinnati", "North", "Service"},
+				              {"DAY", "Dayton", "North", "Service"},
+				              {"INDY", "Indianapolis", "North", "Service"},
+				              {"KNOX", "Knoxville", "South", "Service"},
+				              {"NASH", "Nashville", "South", "Service"},
+				              {"LEX", "Lexington", "Central", "Service"},
+				              {"LOU", "Louisville", "Central", "Service"},
+				              {"WV", "West Virginia", "Central", "Service"},
+				              {"All Regions", "Unknown", "Misc", "Service"},
+				            {"Cincinnati", "Cincinnati", "North", "Service"},
+				            {"Columbus", "Columbus", "North", "Service"},
+				            {"Dayton", "Dayton", "North", "Service"},
+				            {"Lexington", "Lexington", "Central", "Service"},
+				            {"Louisville", "Louisville", "Central", "Service"},
+				            {"Indianapolis", "Indianapolis", "North", "Service"},
+				            {"Charleston", "West Virginia", "Central", "Service"},
+				            {"Nashville", "Nashville", "South", "Service"},
+				            {"Chattanooga", "Chattanooga", "South", "Service"},
+				            {"Knoxville", "Knoxville", "South", "Service"},
+				            {"Central Facility Services", "TFS", "TFS", "TFS"},
+				            {"West Virginia", "West Virginia", "Central", "Service"}
+				          },
+				          {"DivisionCode","Division","Region","Company"}
+				      ),
+				    TrimTyped = Table.TransformColumnTypes(
+				          Source,
+				          {{"DivisionCode", type text}, {"Division", type text}, {"Region", type text}, {"Company", type text}},
+				          "en-US"
+				      ),
+				      Cleaned = Table.TransformColumns(
+				          TrimTyped,
+				          {
+				              {"DivisionCode", each Text.Upper(Text.Trim(_)), type text},
+				              {"Division", each Text.Trim(_), type text},
+				              {"Region", each Text.Trim(_), type text},
+				              {"Company", each Text.Trim(_), type text}
+				          }
+				      )
+				  in
+				      Cleaned
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

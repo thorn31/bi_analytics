@@ -202,6 +202,18 @@
                   "Value": "0L"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -812,62 +824,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "af1f61e6bb71e804b933",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "50c408b90b626795bc00",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Quarter"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b1bc66e5a473b1070759",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "36d557236cc7925b5bc7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Revenue (By Stream)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

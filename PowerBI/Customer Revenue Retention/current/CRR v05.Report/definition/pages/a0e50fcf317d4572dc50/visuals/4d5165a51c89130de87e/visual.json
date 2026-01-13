@@ -4,7 +4,7 @@
   "position": {
     "x": 495,
     "y": 258.94197952218428,
-    "z": 0,
+    "z": 1000,
     "height": 344.641638225256,
     "width": 455,
     "tabOrder": 7000
@@ -596,6 +596,48 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Revenue_Stream_D"
+                          }
+                        },
+                        "Property": "Revenue Stream"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Project'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -812,62 +854,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "65a93e7eb521aca93705",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b25de2fd029107b1794e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Quarter"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5d7448740b420e9ea21e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Revenue_Stream_D"
-              }
-            },
-            "Property": "Revenue Stream"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "694a245dcb058121e3ac",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Revenue (By Stream)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

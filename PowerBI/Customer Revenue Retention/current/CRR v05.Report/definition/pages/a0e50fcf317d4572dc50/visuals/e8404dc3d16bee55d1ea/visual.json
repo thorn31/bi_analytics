@@ -4,7 +4,7 @@
   "position": {
     "x": 1444.914675767918,
     "y": 623.85665529010237,
-    "z": 7000,
+    "z": 0,
     "height": 439.55631399317406,
     "width": 455.22184300341291,
     "tabOrder": 10000
@@ -524,107 +524,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6fb7939140c8e81871d7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a1a306bf795c00b23a10",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Quarter"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f616f2dc07e77ce1cc70",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Revenue (By Stream)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4776bc3507ccb7215858",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Cost (By Stream)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "92080fef7958cda5a58d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Gross Profit (By Stream)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1c0578e8217a6ba5a0b7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GP % (By Stream)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1be5df26b092763eb79a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Month"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

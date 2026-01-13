@@ -1,0 +1,38 @@
+/// Parameter table to select the view (# Bookings, $ Sales, $ GP) for the main chart.
+table fp_ViewSelector
+	lineageTag: f229efdb-d510-4ea5-bc5b-3ba2bb9690dd
+
+	column View
+		lineageTag: ddd4cac6-6150-4338-93a3-173c9f45c48a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [View]
+		sortByColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		formatString: 0
+		lineageTag: d1914236-efe4-4842-8ddc-f64679950ef1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fp_ViewSelector = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "View", STRING, 
+				    "Order", INTEGER, 
+				    {
+				        {"# Bookings", 1},
+				        {"$ Sales", 2},
+				        {"$ GP", 3}
+				    }
+				)
+				
+				```
+

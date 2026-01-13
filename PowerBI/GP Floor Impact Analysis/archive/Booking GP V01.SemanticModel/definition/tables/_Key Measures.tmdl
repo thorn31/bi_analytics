@@ -1,0 +1,682 @@
+table '_Key Measures'
+	lineageTag: b91f0227-6bb9-4050-b89a-47c89b490bb2
+
+	measure 'GP % For Chart' = [GP %]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: General
+		lineageTag: dbdc30bb-829c-4bad-afa9-1a213b2e2396
+
+	measure 'Is Below Floor' = ```
+			
+			VAR gpPct = ROUND(ROUND([Project Gross Profit %], 3), 2)
+			VAR floor = [GP Floor Value]
+			RETURN
+			IF( NOT ISBLANK(gpPct) && gpPct < floor, 1, 0 )
+			
+			```
+		formatString: 0
+		displayFolder: Floor Analysis\General
+		lineageTag: 0840ca2c-3bdb-4dea-b3bc-bb9e88542165
+
+	measure 'Sell Price Below Floor' = ```
+			
+			VAR floor = [GP Floor Value]
+			RETURN
+			CALCULATE(
+			    [Project Price],
+			    FILTER(
+			        QUADRA_JOBS,
+			        ROUND(ROUND([Project Gross Profit %], 3), 2) < floor
+			    )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Sell Price
+		lineageTag: 390d8436-0032-45ef-acd0-7c60a79cb57d
+
+	measure 'GP $ Below Floor' = ```
+			
+			VAR floor = [GP Floor Value]
+			RETURN
+			CALCULATE(
+			    [Project Gross Profit],
+			    FILTER(
+			        QUADRA_JOBS,
+			        ROUND(ROUND([Project Gross Profit %], 3), 2) < floor
+			    )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: 5bd01942-9a57-4ebd-9b68-08da93a5dd0d
+
+	measure '% Sale Price Below Floor' = ```
+			
+			DIVIDE( [Sell Price Below Floor], [Project Price] )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: 1f5ece03-6b16-4709-a595-8491667a62b1
+
+	measure 'Sell Price At Or Above Floor' = ```
+			
+			VAR floor = [GP Floor Value]
+			RETURN
+			CALCULATE(
+			    [Project Price],
+			    FILTER(
+			        QUADRA_JOBS,
+			        ROUND(ROUND([Project Gross Profit %], 3), 2) >= floor
+			    )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Sell Price
+		lineageTag: f1a71982-7501-4599-9ca9-870825820ef0
+
+	measure '% Sell Price At Or Above Floor' = ```
+			
+			DIVIDE(
+			    COALESCE([Sell Price At Or Above Floor], 0),
+			    [Sell Price Below Floor] + [Sell Price At Or Above Floor]
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Floor Analysis\Sell Price
+		lineageTag: c5001cf4-b53b-4e66-acf7-42570c64c7da
+
+	measure 'GP $ Gap vs Floor' = ```
+			
+			VAR floor = [GP Floor Value]
+			RETURN
+			SUMX(
+			    FILTER(
+			        QUADRA_JOBS,
+			        ROUND(ROUND([Project Gross Profit %], 3), 2) < floor
+			    ),
+			    ( floor - ROUND(ROUND([Project Gross Profit %], 3), 2) ) * [Project Price]
+			)
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: fe9fdc91-19ab-4f81-8ae7-a223218b13ed
+
+	measure 'GP $ At Floor For Below-Floor Jobs' = ```
+			
+			VAR floor = [GP Floor Value]
+			RETURN
+			SUMX(
+			    FILTER(QUADRA_JOBS, ROUND(ROUND([Project Gross Profit %], 3), 2) < floor),
+			    [Project Price] * floor
+			)
+			
+			```
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: b888e9df-32c2-41a7-a072-0280ff604816
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% GP At Or Above Floor' = ```
+			
+			VAR floor = [GP Floor Value]
+			VAR gpAbove =
+			    CALCULATE(
+			        [Project Gross Profit],
+			        FILTER(QUADRA_JOBS, ROUND(ROUND([Project Gross Profit %], 3), 2) >= floor)
+			    )
+			VAR gpTotal =
+			    CALCULATE( [Project Gross Profit] )
+			RETURN
+			DIVIDE( COALESCE(gpAbove, 0), gpTotal )
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: e8bc37d6-08e6-4d08-ace3-dcae29b6c598
+
+	measure 'Current Filters' = ```
+			
+			VAR Divisions =
+			    CONCATENATEX(
+			        VALUES('JOBS_D'[Cleaned Divisions]),
+			        'JOBS_D'[Cleaned Divisions],
+			        ", "
+			    )
+			
+			VAR Fiscal =
+			    CONCATENATEX(
+			        VALUES(FYCALENDAR_D[Fiscal Year Label]),
+			        FYCALENDAR_D[Fiscal Year Label],
+			        ", "
+			    )
+			
+			VAR Months =
+			    CONCATENATEX(
+			        VALUES(FYCALENDAR_D[Fiscal Month]),
+			        FYCALENDAR_D[Fiscal Month],
+			        ", "
+			    )
+			
+			VAR WeekFlag =
+			    IF( SELECTEDVALUE(FYCALENDAR_D[Is Current Week]) = TRUE(), "Current Week", BLANK() )
+			
+			VAR MonthFlag =
+			    IF( SELECTEDVALUE(FYCALENDAR_D[Is Current Month]) = TRUE(), "Current Month", BLANK() )
+			
+			RETURN
+			"Divisions: " & IF(Divisions = BLANK(), "All", Divisions) &
+			" | Fiscal: " & IF(Fiscal = BLANK(), "All", Fiscal) &
+			" | Months: " & IF(Months = BLANK(), "All", Months) &
+			" | Flags: " & 
+			    TRIM(
+			        SUBSTITUTE(
+			            SUBSTITUTE(
+			                WeekFlag & " " & MonthFlag,
+			                "  ", " "
+			            ),
+			        ",", ""
+			        )
+			    )
+			
+			```
+		displayFolder: Utility
+		lineageTag: 5368083a-fc6f-4782-be91-66e3d9e35b36
+
+	/// Returns 1 if there is data in QUADRA_CONTRACTS or QUADRA_JOBS for the current context, used to filter slicers.
+	measure IsActiveFiscalYear = INT( NOT ISEMPTY('QUADRA_CONTRACTS') || NOT ISEMPTY('QUADRA_JOBS') )
+		displayFolder: Utility
+		lineageTag: bf10d8c0-2e46-465d-b15c-872afeb54731
+
+	/// Total Bid Price from QUADRA_JOBS.
+	measure 'Project Price' = SUM('QUADRA_JOBS'[Bidprice])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Projects
+		lineageTag: 0b6242de-425d-4748-b560-3e6b62532af8
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Total Gross Profit from QUADRA_JOBS.
+	measure 'Project Gross Profit' = SUM('QUADRA_JOBS'[Gp])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Projects
+		lineageTag: 51a1df57-4488-457e-9a08-00e90b85a1a3
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Project Gross Profit as a percentage of Project Price.
+	measure 'Project Gross Profit %' = DIVIDE([Project Gross Profit], [Project Price])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Projects
+		lineageTag: 3d722bf6-10b6-4bc6-94c9-87d7af0acba2
+
+	/// Project Price for Baseline Year (FY2025).
+	measure 'Baseline Project Price' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    [Project Price],
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Baseline Analysis\Sell Price
+		lineageTag: 7f26b3c1-4e0a-429a-a22e-c528539d5d6b
+
+	/// Project Gross Profit for Baseline Year (FY2025).
+	measure 'Baseline Project GP' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    [Project Gross Profit],
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Baseline Analysis\Gross Profit
+		lineageTag: 946d3a3c-fe43-46e5-9cab-142fc467dcc5
+
+	/// % Revenue At Or Above Floor for Baseline Year (FY2025).
+	measure 'Baseline % Sell Price At or Above Floor' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			        COALESCE([Baseline Sell Price At or Above Floor], 0),
+			        [Baseline Project Price] + 0
+			    ),
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Baseline Analysis\Sell Price
+		lineageTag: 9cc6a581-82b0-4ba6-a803-671280c83d9d
+
+	/// % GP At Or Above Floor for Baseline Year (FY2025).
+	measure 'Baseline % GP At or Above Floor' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    [% GP At Or Above Floor],
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Baseline Analysis\Gross Profit
+		lineageTag: fd6a1c34-038d-4a4b-9e14-4252b0b3a924
+
+	/// Point variance for % Revenue At or Above Floor compared to FY2025 baseline.
+	measure 'Var % Sell Price vs Baseline' = [% Sell Price At Or Above Floor] - [Baseline % Sell Price At or Above Floor]
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Baseline Analysis\Sell Price
+		lineageTag: e0f23666-82d1-4ef6-8278-6aca1961177d
+
+	/// Point variance for % GP At or Above Floor compared to FY2025 baseline.
+	measure 'Var % GP vs Baseline' = [% GP At Or Above Floor] - [Baseline % GP At or Above Floor]
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Baseline Analysis\Gross Profit
+		lineageTag: 1f69ae9c-e5b9-4dc7-89e2-cea566834209
+
+	/// Total count of unique projects.
+	measure 'Count of Projects' = DISTINCTCOUNT('QUADRA_JOBS'[Job Number])
+		formatString: #,0
+		displayFolder: Floor Analysis\Project Count
+		lineageTag: 79bfef47-5447-466c-b932-a775dbeba677
+
+	/// Count of projects where the rounded GP% is below the floor.
+	measure 'Count of Projects Below Floor' = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        VALUES('QUADRA_JOBS'[Job Number]),
+			        [Is Below Floor] = 1
+			    )
+			)
+			
+			```
+		formatString: #,0
+		displayFolder: Floor Analysis\Project Count
+		lineageTag: c75132e3-bd6a-4b7d-94ef-df7f7d30130b
+
+	/// Count of projects where the rounded GP% is at or above the floor.
+	measure 'Count of Projects At or Above Floor' = ```
+			
+			[Count of Projects] - [Count of Projects Below Floor]
+			
+			```
+		formatString: #,0
+		displayFolder: Floor Analysis\Project Count
+		lineageTag: 80973027-9d27-46b4-a259-e2ec0b654689
+
+	/// Percentage of projects that are at or above the floor standard.
+	measure '% of Projects At or Above Floor' = DIVIDE(COALESCE([Count of Projects At or Above Floor], 0), [Count of Projects])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Floor Analysis\Project Count
+		lineageTag: 3d3d5481-1002-444e-8c84-246b31cfc580
+
+	/// Total count of unique projects for Baseline Year (FY2025).
+	measure 'Baseline Count of Projects' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    [Count of Projects],
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: #,0
+		displayFolder: Baseline Analysis\Project Count
+		lineageTag: 893e3dee-dd5d-4878-94e2-ef06135e53fe
+
+	/// % of Projects At or Above Floor for Baseline Year (FY2025).
+	measure 'Baseline % of Projects At or Above Floor' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			        COALESCE([Count of Projects At or Above Floor], 0),
+			        [Baseline Count of Projects] + 0
+			    ),
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Baseline Analysis\Project Count
+		lineageTag: 636ec243-1ec7-4b7b-b054-b04bf45d5bf9
+
+	/// Point variance for % of Projects At or Above Floor compared to FY2025 baseline.
+	measure 'Var % Projects vs Baseline' = [% of Projects At or Above Floor] - [Baseline % of Projects At or Above Floor]
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Baseline Analysis\Project Count
+		lineageTag: 8404dc6e-b7d7-4eec-8429-22ba4a7bfcfb
+
+	/// Calculates how much each dimension (e.g., Division) contributed to the total change in % Sell Price At or Above Floor vs the FY2025 Baseline. Sums to the total variance.
+	measure 'Impact on Sell Price % vs Baseline' = ```
+			
+			VAR GlobalCurrentSales = CALCULATE([Project Price], ALLSELECTED()) 
+			VAR GlobalBaselineSales = CALCULATE([Baseline Project Price], ALLSELECTED())
+			
+			RETURN
+			IF(GlobalCurrentSales = 0 || GlobalBaselineSales = 0, BLANK(),
+			
+			    VAR CurrentContrib = 
+			        DIVIDE(
+			            COALESCE([Sell Price At Or Above Floor], 0), 
+			            GlobalCurrentSales
+			        )
+			
+			    VAR BaselineContrib = 
+			        DIVIDE(
+			            COALESCE([Baseline Sell Price At or Above Floor], 0), 
+			            GlobalBaselineSales
+			        )
+			
+			    RETURN 
+			        CurrentContrib - BaselineContrib
+			)
+			
+			```
+		formatString: +0.00%;-0.00%;0.00%
+		displayFolder: Baseline Analysis\Sell Price
+		lineageTag: 803504e0-d460-49b3-b8db-592ff81e1e68
+
+	/// Sell Price At Or Above Floor for Baseline Year (FY2025).
+	measure 'Baseline Sell Price At or Above Floor' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    [Sell Price At Or Above Floor],
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Baseline Analysis\Sell Price
+		lineageTag: b3daddb0-b219-48f6-b74d-2ed220157022
+
+	/// Gross Profit Dollars where the rounded GP% is at or above the floor.
+	measure 'GP $ At Or Above Floor' = ```
+			
+			VAR floor = [GP Floor Value]
+			RETURN
+			CALCULATE(
+			    [Project Gross Profit],
+			    FILTER(
+			        QUADRA_JOBS,
+			        ROUND(ROUND([Project Gross Profit %], 3), 2) >= floor
+			    )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: 55f0ea74-84d4-4a93-b66e-b912f32deac1
+
+	/// Dynamic measure for Above Floor values based on fp_ViewSelector.
+	measure 'Selected Metric - Above Floor' = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('fp_ViewSelector'[View]),
+			    "# Projects", [Count of Projects At or Above Floor],
+			    "$ Sales", [Sell Price At Or Above Floor],
+			    "$ GP", [GP $ At Or Above Floor],
+			    [Sell Price At Or Above Floor]
+			)
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: 6124220f-99df-4d2b-a730-c22fa3f8251c
+
+		formatStringDefinition = ```
+				
+				SWITCH(
+				    SELECTEDVALUE('fp_ViewSelector'[View]),
+				    "# Projects", "#,0",
+				    "$#,0"
+				)
+				
+				```
+
+	/// Dynamic measure for Below Floor values based on fp_ViewSelector.
+	measure 'Selected Metric - Below Floor' = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('fp_ViewSelector'[View]),
+			    "# Projects", [Count of Projects Below Floor],
+			    "$ Sales", [Sell Price Below Floor],
+			    "$ GP", [GP $ Below Floor],
+			    [Sell Price Below Floor]
+			)
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: 69cb0e9d-6c6f-4c02-9b77-973f994f0c76
+
+		formatStringDefinition = ```
+				
+				SWITCH(
+				    SELECTEDVALUE('fp_ViewSelector'[View]),
+				    "# Projects", "#,0",
+				    "$#,0"
+				)
+				
+				```
+
+	/// Dynamic Label for the Chart Title.
+	measure 'Selected Metric - Label' = SELECTEDVALUE('fp_ViewSelector'[View], "$ Sales") & " Analysis"
+		displayFolder: Visual Measures
+		lineageTag: 746b4f55-b709-4193-8aa0-be7c2082ed30
+
+	/// Dynamic measure for Current % Health based on fp_ViewSelector.
+	measure 'Selected Metric - Current %' = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('fp_ViewSelector'[View]),
+			    "# Projects", [% of Projects At or Above Floor],
+			    "$ Sales", [% Sell Price At Or Above Floor],
+			    "$ GP", [% GP At Or Above Floor],
+			    [% Sell Price At Or Above Floor]
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Visual Measures
+		lineageTag: 0156e62f-973b-4223-b7de-36c14a8ea641
+
+	/// Dynamic measure for Baseline % Health based on fp_ViewSelector.
+	measure 'Selected Metric - Baseline %' = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('fp_ViewSelector'[View]),
+			    "# Projects", [Baseline % of Projects At or Above Floor],
+			    "$ Sales", [Baseline % Sell Price At or Above Floor],
+			    "$ GP", [Baseline % GP At or Above Floor],
+			    [Baseline % Sell Price At or Above Floor]
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Visual Measures
+		lineageTag: 7ef2ae7c-9c95-49ef-8a7d-bc4e7199b0b6
+
+	/// Company-wide Baseline performance for the selected metric. Appears as a flat line across the chart.
+	measure 'Selected Metric - Global Baseline %' = ```
+			
+			CALCULATE(
+			    [Selected Metric - Baseline %],
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D')
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Visual Measures
+		lineageTag: 5f941054-1644-409f-907a-9266fca594b5
+
+	/// Converts the short view code (# Projects, etc.) to a descriptive name for titles.
+	measure 'Selected Metric - Long Name' = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('fp_ViewSelector'[View]),
+			    "# Projects", "Number of Projects",
+			    "$ Sales", "Sell Price ($)",
+			    "$ GP", "Gross Profit ($)",
+			    "Sell Price ($)"
+			)
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: ec79d9d8-1b4c-441a-aae1-c30793f3fb92
+
+	/// Returns the currently selected dimension name (e.g., "By Month").
+	measure 'Selected Dimension' = ```
+			
+			VAR Selection = SELECTEDVALUE('fp_DimensionSelector'[fp_DimensionSelector Order])
+			RETURN
+			SWITCH(
+			    Selection,
+			    0, "by Month",
+			    1, "by Quarter",
+			    2, "by Division",
+			    "by Month"
+			)
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: 0100e7a2-03cc-4c8e-bca0-edf85573aa0c
+
+	/// Dynamic Title for the Volume/Mix Chart.
+	measure 'Dynamic Title - Chart 1' = ```
+			
+			[Selected Metric - Long Name] & " Sold Against GP Floor " & [Selected Dimension]
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: 52b3b668-87f8-4c6c-88e0-9feca5af44fe
+
+	/// Dynamic Title for the Performance vs Baseline Chart.
+	measure 'Dynamic Title - Chart 2' = ```
+			
+			[Selected Metric - Long Name] & " % Health vs Global Baseline " & [Selected Dimension]
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: da2f6d05-6404-44f9-8e43-942f6670f3cc
+
+	/// Percentage point difference between the Project Gross Profit % and the GP Floor. Positive is healthy, negative is below floor.
+	measure 'GP % Variance from Floor' = ```
+			
+			IF(
+			    NOT ISBLANK([Project Gross Profit %]), 
+			    [Project Gross Profit %] - [GP Floor Value],
+			    BLANK()
+			)
+			
+			```
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: 254d96cb-59a9-4f44-a1aa-1d606d7b6b81
+
+	/// Dollar difference between actual Gross Profit and the expected Gross Profit based on the GP Floor. Positive indicates a surplus, negative indicates a shortfall.
+	measure 'GP $ Variance from Floor' = ```
+			
+			IF(
+			    NOT ISBLANK([Project Gross Profit]),
+			    [Project Gross Profit] - ([Project Price] * [GP Floor Value]),
+			    BLANK()
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: 15c84cfe-3fa2-4bf3-a668-89db3db0b83a
+
+	measure 'Project Price Data Bar' = [Project Price]
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Projects
+		lineageTag: 815d4c8f-75fb-404f-a338-c0955e20ab63
+
+	/// Project Gross Profit % for Baseline Year (FY2025).
+	measure 'Baseline Project GP %' = ```
+			
+			VAR _baselineYear = [Baseline Year Value]
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			        [Project Gross Profit],
+			        [Project Price]
+			    ),
+			    ALLSELECTED('DIVISIONS_D'),
+			    ALLSELECTED('FYCALENDAR_D'),
+			    FILTER(ALL('FYCALENDAR_D'[Fiscal Year]), 'FYCALENDAR_D'[Fiscal Year] = _baselineYear)
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Baseline Analysis\Gross Profit
+		lineageTag: ae1e8e13-32a8-4e44-966a-e761c9dbf979
+
+	/// Accent bar color for Projects card when selected.
+	measure 'Accent Bar Color - Projects' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "# Projects", "#5FB3A2", "#FFFFFF00")
+		displayFolder: Visual Measures\Card Backgrounds
+		lineageTag: 1fabee5d-c6d0-47e3-8654-d0093ae7ee32
+
+	/// Accent bar color for Sales card when selected.
+	measure 'Accent Bar Color - Sales' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "$ Sales", "#5FB3A2", "#FFFFFF00")
+		displayFolder: Visual Measures\Card Backgrounds
+		lineageTag: 5f722646-9cb7-469d-abaa-95cbe33bdd41
+
+	/// Accent bar color for GP card when selected.
+	measure 'Accent Bar Color - GP' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "$ GP", "#5FB3A2", "#FFFFFF00")
+		displayFolder: Visual Measures\Card Backgrounds
+		lineageTag: 96417190-b7e7-467d-af9e-01d8ecb52e9e
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 3fcefeb3-a823-4c58-bc7e-fd8e0c2775d0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '_Key Measures' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = c828f403bb0e4e3596d72751e619b4ed
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

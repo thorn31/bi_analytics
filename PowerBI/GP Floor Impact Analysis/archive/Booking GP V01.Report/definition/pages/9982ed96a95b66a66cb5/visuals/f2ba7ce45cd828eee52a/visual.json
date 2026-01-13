@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "f2ba7ce45cd828eee52a",
+  "position": {
+    "x": 622.32295221843015,
+    "y": 274.50511945392492,
+    "z": 1000,
+    "height": 300,
+    "width": 300
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QUADRA_CONTRACTS"
+                    }
+                  },
+                  "Property": "Contract Number"
+                }
+              },
+              "queryRef": "QUADRA_CONTRACTS.Contract Number",
+              "nativeQueryRef": "Contract Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QUADRA_CONTRACTS"
+                    }
+                  },
+                  "Property": "Contracttype"
+                }
+              },
+              "queryRef": "QUADRA_CONTRACTS.Contracttype",
+              "nativeQueryRef": "Contracttype"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

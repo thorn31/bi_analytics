@@ -4,7 +4,7 @@
   "position": {
     "x": 1694.641638225256,
     "y": 0,
-    "z": 2000,
+    "z": 1000,
     "height": 80.170648464163818,
     "width": 225.76791808873719,
     "tabOrder": 0
@@ -111,6 +111,47 @@
                     },
                     "Annotations": {
                       "PowerBI.MParameterBehavior": 1
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "c",
+                    "Entity": "CUSTOMERS_D",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "c"
+                                }
+                              },
+                              "Property": "Customer Name"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Greater Clark County Schools'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
                     }
                   }
                 ]
@@ -244,20 +285,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "fa4ca6e893d5e07a0061",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Customer Name"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

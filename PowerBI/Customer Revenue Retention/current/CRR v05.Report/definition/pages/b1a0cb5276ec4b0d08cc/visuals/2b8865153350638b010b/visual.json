@@ -199,34 +199,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "6402fa61d021c51e6090",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "JOB_MONTHLY_SUMMARY_F"
-              }
-            },
-            "Property": "Period Date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ff073da0170160669cb6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "JOB_MONTHLY_SUMMARY_F"
-              }
-            },
-            "Property": "Expected Contract"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

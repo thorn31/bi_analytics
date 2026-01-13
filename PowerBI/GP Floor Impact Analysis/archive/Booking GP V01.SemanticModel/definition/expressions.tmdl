@@ -1,0 +1,14 @@
+expression REGIONS_D =
+		let
+			Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_CLEAN_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
+		    REGION_QUADRA_View = DW_CLEAN_Schema{[Name="REGION_QUADRA",Kind="View"]}[Data]
+		in
+		    REGION_QUADRA_View
+	lineageTag: d04bb7cd-de5e-4788-91d7-34ee295a79d1
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

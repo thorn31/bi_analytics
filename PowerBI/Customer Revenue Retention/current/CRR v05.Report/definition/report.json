@@ -45,7 +45,7 @@
         }
       },
       {
-        "name": "393a2b081de40a529780",
+        "name": "9c12a0924756ac600571",
         "field": {
           "Column": {
             "Expression": {
@@ -88,7 +88,28 @@
                         [
                           {
                             "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Leopardo'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
                               "Value": "'Misc'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Unknown'"
                             }
                           }
                         ]
@@ -101,7 +122,6 @@
           ]
         },
         "howCreated": "User",
-        "isHiddenInViewMode": true,
         "objects": {
           "general": [
             {
@@ -140,7 +160,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "false"
+                "Value": "true"
               }
             }
           }

@@ -1,0 +1,16 @@
+/// Parameter to switch between Jobs and Contracts view.
+table fp_SourceSelector
+	lineageTag: b770497d-96bd-4dd0-843f-7a666c5cdadc
+
+	column Source
+		lineageTag: 18dc8927-eb64-417b-afd8-fad77199077f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Source]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fp_SourceSelector = calculated
+		mode: import
+		source = DATATABLE("Source", STRING, {{"Jobs"}, {"Contracts"}})
+
