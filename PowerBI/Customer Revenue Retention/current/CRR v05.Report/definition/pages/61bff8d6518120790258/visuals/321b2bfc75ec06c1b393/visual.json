@@ -1,0 +1,616 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "321b2bfc75ec06c1b393",
+  "position": {
+    "x": 13.919768003866603,
+    "y": 310.87481875302075,
+    "z": 3000,
+    "height": 678.35669405509907,
+    "width": 1799.3620106331562,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Division",
+              "nativeQueryRef": "Division",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Customer Name",
+              "nativeQueryRef": "Customer Name",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PROJECTS_D"
+                    }
+                  },
+                  "Property": "Project Name/Description"
+                }
+              },
+              "queryRef": "PROJECTS_D.Project Name/Description",
+              "nativeQueryRef": "Project Name/Description",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBCOSTED_F"
+                    }
+                  },
+                  "Property": "Project Orig Contract"
+                }
+              },
+              "queryRef": "JOBCOSTED_F.Job Contract Amount",
+              "nativeQueryRef": "Project Orig Contract"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBCOSTED_F"
+                    }
+                  },
+                  "Property": "Proj Current Contract"
+                }
+              },
+              "queryRef": "JOBCOSTED_F.Proj Current Contract",
+              "nativeQueryRef": "Proj Current Contract"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBCOSTED_F"
+                    }
+                  },
+                  "Property": "Proj Estimated GP"
+                }
+              },
+              "queryRef": "JOBCOSTED_F.Estimated GP",
+              "nativeQueryRef": "Proj Estimated GP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBCOSTED_F"
+                    }
+                  },
+                  "Property": "Proj Estimated GP %"
+                }
+              },
+              "queryRef": "JOBCOSTED_F.Proj Estimated GP %",
+              "nativeQueryRef": "Proj Estimated GP %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBCOSTED_F"
+                    }
+                  },
+                  "Property": "Proj Forecast Cost"
+                }
+              },
+              "queryRef": "JOBCOSTED_F.Proj Forecast Cost",
+              "nativeQueryRef": "Proj Forecast Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBCOSTED_F"
+                    }
+                  },
+                  "Property": "Proj Forecast GP"
+                }
+              },
+              "queryRef": "JOBCOSTED_F.Proj Forecast GP",
+              "nativeQueryRef": "Proj Forecast GP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOBCOSTED_F"
+                    }
+                  },
+                  "Property": "Proj Forecast GP %"
+                }
+              },
+              "queryRef": "JOBCOSTED_F.Proj Forecast GP %",
+              "nativeQueryRef": "Proj Forecast GP %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Project Revenue",
+              "nativeQueryRef": "Project Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project GP"
+                }
+              },
+              "queryRef": "_Key Measures.Project GP",
+              "nativeQueryRef": "Project GP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Project Cost",
+              "nativeQueryRef": "Project Cost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "CUSTOMERS_D"
+                  }
+                },
+                "Property": "Customer Name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DIVISIONS_D.Division"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "CUSTOMERS_D.Customer Name"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Customer Name"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "PROJECTS_D.Project Name/Description"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PROJECTS_D"
+                    }
+                  },
+                  "Property": "Project Name/Description"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Dayton'"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Aesthetic Eye Oculoplastic Surgery'"
+                      }
+                    }
+                  ],
+                  "children": [
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'10 Remic'"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    }
+                  ]
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Annunciation Greek Orthodox Church'"
+                      }
+                    }
+                  ],
+                  "children": [
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'Greek Ortho Leak Repair'"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    },
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'Greek Ortho PTAC'"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabular'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b196a5443004707e815d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PROJECTS_D"
+              }
+            },
+            "Property": "Project Name/Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "28c28fc18a3a070ad69e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Project Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "13566a7d94d86d0baa24",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIVISIONS_D"
+              }
+            },
+            "Property": "Division"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b7afd5c6c3a090145288",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Project GP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "740919a6e900ea32476b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Project Cost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4b177eb3923473e55488",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Customer Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "31415a0a2e9e58b84edd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PROJECTS_D"
+              }
+            },
+            "Property": "Project Type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "PROJECTS_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "Project Type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Job Cost'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "9edd3450d411b6d0587b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBCOSTED_F"
+              }
+            },
+            "Property": "Proj Current Contract"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "17aa95ddc80a181062b7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBCOSTED_F"
+              }
+            },
+            "Property": "Proj Estimated GP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7c480747091e398c6b00",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBCOSTED_F"
+              }
+            },
+            "Property": "Project Orig Contract"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4683fca0647305d739c6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBCOSTED_F"
+              }
+            },
+            "Property": "Proj Forecast Cost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ebbab8d0154a630b0324",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBCOSTED_F"
+              }
+            },
+            "Property": "Proj Estimated GP %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5c21e537b6b411c52b69",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBCOSTED_F"
+              }
+            },
+            "Property": "Proj Forecast GP"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7314f0ca5820cb103300",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "JOBCOSTED_F"
+              }
+            },
+            "Property": "Proj Forecast GP %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

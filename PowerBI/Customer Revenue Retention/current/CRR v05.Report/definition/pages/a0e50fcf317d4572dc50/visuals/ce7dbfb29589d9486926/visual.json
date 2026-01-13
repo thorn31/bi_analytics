@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ce7dbfb29589d9486926",
   "position": {
-    "x": 1664.2320819112626,
+    "x": 1674.3686006825938,
     "y": 0,
     "z": 3000,
     "height": 80.170648464163818,
@@ -145,7 +145,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'greater c'"
+                            "Value": "'greater'"
                           }
                         }
                       }
@@ -280,6 +280,20 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "45ac5e7309602e35d620",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Customer Name"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

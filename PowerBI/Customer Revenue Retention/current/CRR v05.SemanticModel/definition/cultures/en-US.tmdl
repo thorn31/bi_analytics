@@ -8293,6 +8293,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Monthly": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -8349,7 +8359,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Total Gross Profit": {
+			          "GP$ YTD": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -8359,7 +8369,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "GP$ YTD": {
+			          "Total Gross Profit": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

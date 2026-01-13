@@ -177,7 +177,7 @@ table SERVCONTRACTS_D
 
 	column 'Renewal Date'
 		dataType: dateTime
-		formatString: Long Date
+		formatString: yyyy-mm-dd
 		lineageTag: c249b2dd-903f-4313-96df-236371f2d054
 		summarizeBy: none
 		sourceColumn: Renewal Date
@@ -185,6 +185,8 @@ table SERVCONTRACTS_D
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	partition SERVCONTRACTS_D = m
 		mode: import

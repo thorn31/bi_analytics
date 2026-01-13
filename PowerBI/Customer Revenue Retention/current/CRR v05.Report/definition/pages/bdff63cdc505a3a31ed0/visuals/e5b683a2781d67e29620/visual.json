@@ -269,37 +269,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "374838700d409508d157",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Month Letter"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "951224f0350b574a0256",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Revenue PY (Dynamic)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

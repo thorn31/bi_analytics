@@ -2751,6 +2751,7 @@ table '_Key Measures'
 			```
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 01 Revenue\By Stream
+		lineageTag: bc2f3eb8-0949-4636-821f-277083e65ada
 
 	measure 'Revenue PY (Dynamic)' = ```
 			
@@ -2765,6 +2766,166 @@ table '_Key Measures'
 			```
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 01 Revenue\By Stream
+		lineageTag: 7bf79e80-0be3-47be-9fb3-8988eb73ddbe
+
+	measure 'Churn Revenue % (R12M As Of)' = DIVIDE( [Churn Revenue (R12M As Of)], [Retention Base PY (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Retention KPIs – R12M As Of\NRR Components
+		lineageTag: 378c6f29-4319-4a28-92b2-0627150edb2c
+
+	measure 'Contraction Revenue % (R12M As Of)' = DIVIDE( [Contraction Revenue (R12M As Of)], [Retention Base PY (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Retention KPIs – R12M As Of\NRR Components
+		lineageTag: 2cb2ca6b-918c-4ef7-9279-65e80f978fa0
+
+	measure 'Upsell Revenue % (R12M As Of)' = DIVIDE( [Upsell Revenue (R12M As Of)], [Retention Base PY (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Retention KPIs – R12M As Of\NRR Components
+		lineageTag: 745a2475-091b-4526-9f6c-ff7d863a625b
+
+	measure 'Logo Churn % (SC) (R12M As Of)' = DIVIDE( [Logo Churn Count (SC) (R12M As Of)], [Retention Base Count PY (SC) (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 07 Retention KPIs – R12M As Of\Logo Retention (SC)
+		lineageTag: 0af86e4f-0656-4b4c-a7f2-2d4758865120
+
+	measure 'NRR Waterfall Value' = ```
+			VAR Selection = SELECTEDVALUE ( 'Waterfall - NRR Breakdown'[ID] )
+			RETURN
+			    SWITCH (
+			        Selection,
+			        1, [Retention Base PY (R12M As Of)],
+			        2, -1 * [Churn Revenue (R12M As Of)],        
+			        3, -1 * [Contraction Revenue (R12M As Of)],  
+			        4, [Upsell Revenue (R12M As Of)],
+			        5, [Retention Base PY (R12M As Of)] 
+			           - [Churn Revenue (R12M As Of)] 
+			           - [Contraction Revenue (R12M As Of)] 
+			           + [Upsell Revenue (R12M As Of)]            
+			    )
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 07 Retention KPIs – R12M As Of\NRR Components
+		lineageTag: aa71f600-3a00-4fa5-b728-7da825f19aba
+
+	measure 'Customer Retention Category (R12M)' =
+			VAR RevCY = [SC Revenue (R12M As Of)]
+			VAR RevPY = [SC Revenue PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        RevPY > 0 && (ISBLANK(RevCY) || RevCY = 0), "Churned",
+			        RevPY > 0 && RevCY < RevPY, "Contraction",
+			        RevPY > 0 && RevCY > RevPY, "Upsell",
+			        RevPY > 0 && RevCY = RevPY, "Steady",
+			        RevPY = 0 && RevCY > 0, "New Business",
+			        BLANK()
+			    )
+		displayFolder: 07 Retention KPIs – R12M As Of\NRR Components
+		lineageTag: 9406eb75-b194-4825-b904-ac671780cc85
+
+	measure 'R12M Period Label' = ```
+			VAR EndDate = [As Of Month End (SC)]
+			VAR StartDate = EDATE( EndDate, -11 )
+			RETURN
+			    IF ( 
+			        ISBLANK( EndDate ), 
+			        "No Data",
+			        FORMAT( StartDate, "MMM yyyy" ) & " – " & FORMAT( EndDate, "MMM yyyy" )
+			    )
+			```
+		displayFolder: 05 Time Intelligence – R12M\Helpers
+		lineageTag: 25744551-49f4-4923-9247-80bff57107de
+
+	measure 'NRR Logic Explanation.MD' =
+			" # Net Revenue Retention (NRR) Logic Explained
+			
+			This document explains the logic behind the **Net Revenue Retention (NRR)** calculations in the Power BI report, specifically focusing on how customers are classified as ""Churned"" versus ""Lapsed.""
+			
+			## 1. The ""As Of"" Anchor Date
+			Every calculation starts with a single **Anchor Date**. This is the reference point for ""Today"" in the report.
+			
+			*   **Logic:** The report looks at your Date Slicer selection and snaps to the **latest available Service Contract data**.
+			*   **Example:** If you select ""FY2026"" but data only exists through **December 2025**, the Anchor Date becomes **Dec 31, 2025**.
+			
+			## 2. The Two Comparison Windows
+			Once the Anchor Date is set, the system looks at two specific 12-month periods:
+			
+			1.  **Current Period (CY):** The 12 months ending on the Anchor Date.
+			    *   *Example:* Jan 1, 2025 – Dec 31, 2025
+			2.  **Prior Period (PY):** The 12 months *before* the Current Period.
+			    *   *Example:* Jan 1, 2024 – Dec 31, 2024
+			
+			## 3. How Status is Determined (The ""Who Counts?"" Rule)
+			NRR only measures how well we retained customers who were **already with us** in the Prior Period.
+			
+			| Customer Scenario | Revenue in Prior Period (PY) | Revenue in Current Period (CY) | Status | Impact on NRR |
+			| :--- | :---: | :---: | :--- | :--- |
+			| **Steady** | ✅ Yes ($10k) | ✅ Yes ($10k) | **Steady** | Neutral (100%) |
+			| **Growth** | ✅ Yes ($10k) | ✅ Yes ($15k) | **Upsell** | Positive (>100%) |
+			| **Decline** | ✅ Yes ($10k) | ✅ Yes ($5k) | **Contraction** | Negative (<100%) |
+			| **Lost Recently** | ✅ Yes ($10k) | ❌ No ($0) | **Churned** | Negative (0%) |
+			| **Lost Long Ago** | ❌ No ($0) | ❌ No ($0) | **Lapsed** | **Excluded** |
+			| **New Customer** | ❌ No ($0) | ✅ Yes ($10k) | **New Business** | **Excluded** |
+			
+			---
+			
+			## 4. The ""Churn vs. Lapsed"" Cliff (Example)
+			*Why does a customer count as Churn one month, but disappear the next?*
+			
+			Imagine **Anchor Date = Dec 31, 2025**.
+			*   **Prior Period (PY):** Jan 2024 – Dec 2024.
+			
+			### Scenario A: Last Bill was Jan 1, 2024
+			*   **Is Jan 1, 2024 in the Prior Period?** Yes.
+			*   **Result:** This customer counts as **Base Revenue**.
+			*   **Current Status:** Since they have paid nothing since, they are marked as **Churned**.
+			*   **Impact:** They hurt the NRR score.
+			
+			### Scenario B: Last Bill was Dec 1, 2023
+			*   **Is Dec 1, 2023 in the Prior Period?** No. (It is before Jan 2024).
+			*   **Result:** This customer had **$0 revenue** in the Prior Period (Jan–Dec 2024).
+			*   **Current Status:** **Lapsed / Inactive**.
+			*   **Impact:** They are **excluded** from the calculation entirely. We already ""counted"" their churn in last year's report; we don't count it again this year.
+			"
+		displayFolder: 90 Debug
+		lineageTag: 8ca1f05f-7d7d-41e9-8f04-fab0d7732d9b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'NRR % PY Display (R12M)' = ```
+			VAR AnchorDate = [As Of Month End (SC)]
+			VAR FirstBill = [First Contract Billing Date]
+			VAR MonthsSinceStart = DATEDIFF( FirstBill, AnchorDate, MONTH )
+			
+			RETURN
+			    IF ( 
+			        HASONEVALUE( CUSTOMERS_D[Customer Name] ), -- Changed from ISINSCOPE
+			        SWITCH (
+			            TRUE (),
+			            MonthsSinceStart < 12, "New",
+			            MonthsSinceStart < 36, "Ramp Up",
+			            FORMAT( [Net Revenue Retention % PY (R12M As Of)], "0.0%" )
+			        ),
+			        FORMAT( [Net Revenue Retention % PY (R12M As Of)], "0.0%" )
+			    )
+			```
+		displayFolder: 07 Retention KPIs – R12M As Of\NRR
+		lineageTag: 3c6d0b5e-bfd3-4497-ac0f-4a437880b590
+
+	measure 'NRR Trend Display (R12M)' = ```
+			VAR AnchorDate = [As Of Month End (SC)]
+			VAR FirstBill = [First Contract Billing Date]
+			VAR MonthsSinceStart = DATEDIFF( FirstBill, AnchorDate, MONTH )
+			
+			RETURN
+			    IF ( 
+			        HASONEVALUE( CUSTOMERS_D[Customer Name] ) && MonthsSinceStart < 36, -- Changed from ISINSCOPE
+			        BLANK(), 
+			        [Net Revenue Retention Trend vs PY (R12M As Of)]
+			    )
+			```
+		displayFolder: 07 Retention KPIs – R12M As Of\NRR
+		lineageTag: 541ddab0-c395-4638-a4d7-ddf448e24909
 
 	column _Dummy
 		isHidden

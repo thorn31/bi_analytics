@@ -1,0 +1,30 @@
+/// Disconnected table for NRR Waterfall Chart structure.
+table 'Waterfall - NRR Breakdown'
+	lineageTag: 21dc14b8-7a30-48c2-986f-d6a1eb7a7b09
+
+	column Category
+		lineageTag: b1bbc031-0a11-4cf9-93fa-d809ebc763a2
+		isNameInferred
+		sourceColumn: [Category]
+		sortByColumn: ID
+
+	column ID
+		lineageTag: cdf319d7-c228-447f-a64c-83c596601880
+		isNameInferred
+		sourceColumn: [ID]
+
+	partition 'Waterfall - NRR Breakdown' = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Category", STRING,
+				    "ID", INTEGER,
+				    {
+				        { "Starting Base", 1 },
+				        { "Churn", 2 },
+				        { "Contraction", 3 },
+				        { "Upsell", 4 },
+				        { "Retained Revenue", 5 }
+				    }
+				)
+

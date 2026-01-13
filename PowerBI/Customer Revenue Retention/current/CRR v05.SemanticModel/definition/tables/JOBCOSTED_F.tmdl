@@ -1,0 +1,318 @@
+table JOBCOSTED_F
+	lineageTag: 32824b09-0862-4159-aff8-39d75c12a3fa
+
+	measure 'Project Orig Contract' = SUM(JOBCOSTED_F[Orig Contract Amount])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: d24e7c50-ccad-4c0f-a382-c9642a279b92
+
+	measure 'Proj Current Contract' = SUM(JOBCOSTED_F[Current Contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 6b0cfa97-3063-48a1-ac5e-663fd91f2bc4
+
+	measure 'Proj Estimated GP' = SUM(JOBCOSTED_F[Estimated Gross Profit])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 9aa43b28-7c73-4d73-b542-238777f7a1bf
+
+	measure 'Proj Forecast Cost' = ```
+			SUM(JOBCOSTED_F[Tot Revsd Forecast Cost]) 
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7562d1cd-eed4-4bd4-b94e-1143f5edbbc1
+
+	measure 'Proj Estimated GP %' =
+			
+			DIVIDE([Proj Estimated GP], [Proj Current Contract])
+		formatString: #,0%;-#,0%;#,0%
+		lineageTag: 788d2bab-38bf-448f-b714-f9673e7bbd8e
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+	measure 'Proj Forecast GP' = [Proj Current Contract] - [Proj Forecast Cost]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 18d470cc-1b32-4575-be2d-b71c50487875
+
+	measure 'Proj Forecast GP %' =
+			
+			DIVIDE([Proj Current Contract] - [Proj Forecast Cost], [Proj Current Contract])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: 34be1699-588d-483e-8d65-7d0455fac776
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalSubtraction"
+				}
+
+		changedProperty = FormatString
+
+	column 'Est Labor Cost'
+		dataType: double
+		lineageTag: e7880023-05e4-4801-9d9f-8c4588cf5e71
+		summarizeBy: sum
+		sourceColumn: Est Labor Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Est Material Cost'
+		dataType: double
+		lineageTag: 13e85f3a-98d7-44f7-b57c-2ad885372826
+		summarizeBy: sum
+		sourceColumn: Est Material Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Est Equipment Cost'
+		dataType: double
+		lineageTag: 82cbb53f-f579-4578-a1b6-65678f8d801c
+		summarizeBy: sum
+		sourceColumn: Est Equipment Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Est Subs Cost'
+		dataType: double
+		lineageTag: 75231973-5752-4c33-9abb-71058e354b3c
+		summarizeBy: sum
+		sourceColumn: Est Subs Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Est Misc Other Cost'
+		dataType: double
+		lineageTag: f6ad802c-2b9f-4e52-b78e-13742d536da1
+		summarizeBy: sum
+		sourceColumn: Est Misc Other Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Estimated Cost'
+		dataType: double
+		lineageTag: d06a3f69-77f0-4944-9b50-ca3ebdb0809a
+		summarizeBy: sum
+		sourceColumn: Total Estimated Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Est Plus Markup'
+		dataType: double
+		lineageTag: 8d5c0492-e451-45c4-996f-742fc6c918b6
+		summarizeBy: sum
+		sourceColumn: Total Est Plus Markup
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Orig Contract Amount'
+		dataType: double
+		lineageTag: e5e09d56-6a9c-4da0-a449-2bfd3d16febd
+		summarizeBy: sum
+		sourceColumn: Orig Contract Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Originating Contract Amt'
+		dataType: double
+		lineageTag: a445b700-c0a7-4aad-9fba-f5a227827660
+		summarizeBy: sum
+		sourceColumn: Originating Contract Amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Confirmed Chg Order Amt'
+		dataType: double
+		lineageTag: 96853c4c-8be9-4328-90e7-c5561206cf13
+		summarizeBy: sum
+		sourceColumn: Confirmed Chg Order Amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Equipment Ttd'
+		dataType: double
+		lineageTag: bcc59791-a511-4760-b2d0-21e0b0031afd
+		summarizeBy: sum
+		sourceColumn: Forecast Equipment Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecasted Labor Ttd'
+		dataType: double
+		lineageTag: a0f00673-f625-4a8a-b964-7b91782fd6ec
+		summarizeBy: sum
+		sourceColumn: Forecasted Labor Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Materials Ttd'
+		dataType: double
+		lineageTag: 10e09471-33cc-4f9d-8176-bdd3fbdc3534
+		summarizeBy: sum
+		sourceColumn: Forecast Materials Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Forecasted Cost'
+		dataType: double
+		lineageTag: 703545fa-84b7-45d3-98c5-9c638aee5db3
+		summarizeBy: sum
+		sourceColumn: Total Forecasted Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Equip Forecasted'
+		dataType: double
+		lineageTag: 226d3506-91c8-46c0-9556-ff8773e41b85
+		summarizeBy: sum
+		sourceColumn: Revsd Equip Forecasted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Labor Forecasted'
+		dataType: double
+		lineageTag: bf9815e2-a060-43fa-a68b-d6dbdabfff4b
+		summarizeBy: sum
+		sourceColumn: Revsd Labor Forecasted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Materials Forecst'
+		dataType: double
+		lineageTag: 57e8545f-3fdc-4f32-85b7-4e5b12edc6a6
+		summarizeBy: sum
+		sourceColumn: Revsd Materials Forecst
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tot Revsd Forecast Cost'
+		dataType: double
+		lineageTag: cbd7c588-c2bc-4ee3-a7cb-c2f1200039bf
+		summarizeBy: sum
+		sourceColumn: Tot Revsd Forecast Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: b76c11e2-4a08-4eb3-b5c8-50bbba448489
+		summarizeBy: none
+		sourceColumn: Job Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Type Flag'
+		dataType: string
+		lineageTag: 619dd418-a3dd-4ea9-bfec-7e95be7ddd13
+		summarizeBy: none
+		sourceColumn: Job Type Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Warranty Start'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 35fd4ecb-fde6-4484-8bcf-b1edef68a086
+		summarizeBy: none
+		sourceColumn: Warranty Start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Warranty End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8a4b0eda-e1a2-408f-8d84-c62b0e12768d
+		summarizeBy: none
+		sourceColumn: Warranty End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Current Contract'
+		dataType: double
+		lineageTag: ab434b2f-be93-4332-9eb8-66c889630fcd
+		summarizeBy: sum
+		sourceColumn: Current Contract
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Estimated Gross Profit'
+		dataType: double
+		lineageTag: d1ff3390-2b61-492e-8eda-20f559bacd08
+		summarizeBy: sum
+		sourceColumn: Estimated Gross Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Gross Profit'
+		dataType: double
+		lineageTag: 5f2dc1da-0e70-4fdb-b031-71640584bf7e
+		summarizeBy: sum
+		sourceColumn: Forecast Gross Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition JOBCOSTED_F = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    Source = JOBS_D,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Est Labor Cost", "Est Material Cost", "Est Equipment Cost", "Est Subs Cost", "Est Misc Other Cost", "Total Estimated Cost", "Total Est Plus Markup", "Orig Contract Amount", "Originating Contract Amt", "Confirmed Chg Order Amt", "Forecast Equipment Ttd", "Forecasted Labor Ttd", "Forecast Materials Ttd", "Total Forecasted Cost", "Revsd Equip Forecasted", "Revsd Labor Forecasted", "Revsd Materials Forecst", "Tot Revsd Forecast Cost", "Job Key", "Job Type Flag", "Warranty Start", "Warranty End"}),
+				    #"Inserted Addition" = Table.AddColumn(#"Removed Other Columns", "Current Contract", each [Orig Contract Amount] + [Confirmed Chg Order Amt], type number),
+				    #"Added Custom" = Table.AddColumn(#"Inserted Addition", "Estimated Gross Profit", each [Current Contract] - [Total Estimated Cost], type number),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Forecast Gross Profit", each [Current Contract] - [Tot Revsd Forecast Cost], type number)
+				in
+				    #"Added Custom1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
