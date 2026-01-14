@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "66aa52c43aa17dc0de94",
+  "name": "b151966454e66907a0c7",
   "position": {
     "x": 360.30716723549483,
     "y": 710,
@@ -34,15 +34,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QUADRA_CONTRACTS"
+                      "Entity": "JOBS_D"
                     }
                   },
-                  "Property": "Contract Number"
+                  "Property": "Job Name"
                 }
               },
-              "queryRef": "QUADRA_CONTRACTS.Contract Number",
-              "nativeQueryRef": "Contract Number",
-              "displayName": "Contract Number"
+              "queryRef": "JOBS_D.Job Name",
+              "nativeQueryRef": "Job Name",
+              "displayName": "Job Name"
             },
             {
               "field": {
@@ -737,163 +737,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "bc1dfc3e6317bb10e078",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Customer Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "8469570691c82359c997",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Start Date"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "7b6a63dfc033edc8d30d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Sell Price"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "cf480dc3be2a0a0c8981",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Sell Price Data Bar"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4e5297ba5201bedec2a2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total GP"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8013e11c779b65ec0503",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total GP %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6065c42419e00ea23604",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GP % Δ Floor"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "03cf3151b91b8b030004",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GP % Δ Floor Data Bar"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d746492d3d018776bd8a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GP $ Δ Floor Data Bar"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ebf996706c261564ae01",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Floor Status"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "aeb1b5109ed7b7eed00e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GP $ Shortfall to Floor"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

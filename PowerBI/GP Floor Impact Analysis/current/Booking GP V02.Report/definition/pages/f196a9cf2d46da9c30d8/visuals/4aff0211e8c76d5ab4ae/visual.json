@@ -181,6 +181,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "enableTitleDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           },
           "selector": {
@@ -316,6 +323,40 @@
             }
           }
         }
+      ],
+      "seriesLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Selected Metric - Global Baseline %"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -439,7 +480,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d5d37fcc467c43161668",
+        "name": "704bcf2146e79e0aaebd",
         "field": {
           "Measure": {
             "Expression": {
@@ -453,7 +494,7 @@
         "type": "Advanced"
       },
       {
-        "name": "5ee3c02705ec0770cb7e",
+        "name": "a609c3898eb39370da33",
         "field": {
           "Measure": {
             "Expression": {
@@ -465,6 +506,20 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "1c7aef020657bc0dd035",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Month Letter"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 436,
         "y": 242
       },
       "nodes": [
         {
           "location": {
             "x": 322,
-            "y": 207.0625
+            "y": 449.640625
           },
           "nodeIndex": "JOBS_D",
           "nodeLineageTag": "fc142710-a0d8-44d1-9fe6-9f59c3ec7598",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 582,
-            "y": 195.0625
+            "y": 437.640625
           },
           "nodeIndex": "QUADRA_JOBS",
           "nodeLineageTag": "17b70565-65f2-470a-90d0-5c1d8b040593",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 582,
-            "y": 762.5625
+            "y": 1005.140625
           },
           "nodeIndex": "QUADRA_CONTRACTS",
           "nodeLineageTag": "6fa60a8b-c7c3-41ef-b7d2-096318ffee00",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 1343,
-            "y": 456.3125
+            "y": 698.890625
           },
           "nodeIndex": "_Key Measures",
           "nodeLineageTag": "b91f0227-6bb9-4050-b89a-47c89b490bb2",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 866,
-            "y": 220.0625
+            "y": 462.640625
           },
           "nodeIndex": "fp_GPFloor",
           "size": {
@@ -75,7 +75,7 @@
         {
           "location": {
             "x": 1157,
-            "y": 194.0625
+            "y": 436.640625
           },
           "nodeIndex": "FYCALENDAR_D",
           "nodeLineageTag": "08601d45-a133-4be4-a463-75c45a804b28",
@@ -88,7 +88,7 @@
         {
           "location": {
             "x": 128,
-            "y": 748.3125
+            "y": 990.890625
           },
           "nodeIndex": "CUSTOMERS_D",
           "nodeLineageTag": "76a5d38b-6f2e-4506-b3d2-d63992540541",
@@ -101,7 +101,7 @@
         {
           "location": {
             "x": 0,
-            "y": 480.0625
+            "y": 722.640625
           },
           "nodeIndex": "DIVISIONS_D",
           "nodeLineageTag": "e3540253-e2da-456a-8d9e-d7de22212d10",
@@ -114,7 +114,7 @@
         {
           "location": {
             "x": 1627,
-            "y": 483.5625
+            "y": 726.140625
           },
           "nodeIndex": "fp_DimensionSelector",
           "nodeLineageTag": "7f3c55e5-369b-489d-b283-1bab3a4e80cd",
@@ -127,7 +127,7 @@
         {
           "location": {
             "x": 1911,
-            "y": 495.5625
+            "y": 738.140625
           },
           "nodeIndex": "fp_ViewSelector",
           "nodeLineageTag": "f229efdb-d510-4ea5-bc5b-3ba2bb9690dd",
@@ -140,7 +140,7 @@
         {
           "location": {
             "x": 2195,
-            "y": 459.5625
+            "y": 702.140625
           },
           "nodeIndex": "fp_BaselineYear",
           "size": {
@@ -152,7 +152,7 @@
         {
           "location": {
             "x": 2479,
-            "y": 582.6875
+            "y": 825.265625
           },
           "nodeIndex": "fp_SourceSelector",
           "size": {
@@ -164,7 +164,7 @@
         {
           "location": {
             "x": 2740,
-            "y": 593.8125
+            "y": 836.390625
           },
           "nodeIndex": "fp_BookingName",
           "nodeLineageTag": "4fd4fa03-a212-43b2-8272-cba1d7bd2e39",
@@ -173,6 +173,18 @@
             "width": 234
           },
           "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 3024,
+            "y": 572.671875
+          },
+          "nodeIndex": "Info",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

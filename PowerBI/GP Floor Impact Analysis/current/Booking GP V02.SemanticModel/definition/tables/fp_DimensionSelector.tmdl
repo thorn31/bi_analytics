@@ -42,7 +42,7 @@ table fp_DimensionSelector
 				{
 				    ("By Month", NAMEOF('FYCALENDAR_D'[Month Letter]), 0),
 				    ("By Quarter", NAMEOF('FYCALENDAR_D'[Fiscal Quarter Label]), 1),
-				    ("By Division", NAMEOF('DIVISIONS_D'[Division]), 2)
+				    ("By Division", NAMEOF('DIVISIONS_D'[Division Short]), 2)
 				}
 
 	annotation PBI_Id = d46afc8718b14842b644910e5d8067d4

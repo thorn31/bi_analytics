@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "e09264a2e1bb4469e64e",
+  "displayName": "Duplicate of Booking GP Floor Analysis",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "b151966454e66907a0c7",
+      "target": "ec4e40a77c36d1030342",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b151966454e66907a0c7",
+      "target": "fd13a6cfd291ca2404eb",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b151966454e66907a0c7",
+      "target": "88db967e569880730d86",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09f47df063ca3247ebac",
+      "target": "88db967e569880730d86",
+      "type": "DataFilter"
+    }
+  ]
+}

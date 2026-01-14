@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "5009f5338be0b62ce4bc",
+  "name": "dec82a2c220ad51ee483",
   "position": {
     "x": 360,
     "y": 100.44368600682593,
@@ -1036,51 +1036,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "16f94eb9d5350c9c576b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "% Count At or Above Floor"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "9044e44f79e232e077c7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "% Sell Price At Or Above Floor"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "dae73310780716905078",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "% GP At Or Above Floor"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

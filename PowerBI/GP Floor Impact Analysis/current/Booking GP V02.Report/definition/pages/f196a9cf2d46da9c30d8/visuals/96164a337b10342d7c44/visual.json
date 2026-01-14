@@ -206,7 +206,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'# Bookings'"
+                                "Value": "'$ GP'"
                               }
                             }
                           ]
@@ -285,6 +285,40 @@
               "expr": {
                 "Literal": {
                   "Value": "4L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "selection:selected"
+          }
+        }
+      ],
+      "accentBar": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#DDA46F'"
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
                 }
               }
             }
@@ -559,7 +593,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "2a14d21d1a2440d3c2c8",
+        "name": "1a4b0af7048ba650a946",
         "field": {
           "Column": {
             "Expression": {
