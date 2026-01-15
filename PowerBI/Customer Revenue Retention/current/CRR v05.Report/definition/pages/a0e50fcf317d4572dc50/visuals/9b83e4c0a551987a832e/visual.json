@@ -202,18 +202,6 @@
                   "Value": "0L"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
             }
           }
         },
@@ -435,13 +423,6 @@
         {
           "properties": {
             "enableValueDataLabel": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "showSeries": {
               "expr": {
                 "Literal": {
                   "Value": "true"

@@ -107,13 +107,6 @@
       "categoryAxis": [
         {
           "properties": {
-            "innerPadding": {
-              "expr": {
-                "Literal": {
-                  "Value": "53L"
-                }
-              }
-            },
             "concatenateLabels": {
               "expr": {
                 "Literal": {
@@ -125,6 +118,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "innerPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "50L"
                 }
               }
             }
@@ -509,134 +509,6 @@
                 }
               }
             }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": 0.4
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Revenue_Stream_D"
-                          }
-                        },
-                        "Property": "Revenue Stream"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Service Contract'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": 0.6
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Revenue_Stream_D"
-                          }
-                        },
-                        "Property": "Revenue Stream"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'T&M'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Revenue_Stream_D"
-                          }
-                        },
-                        "Property": "Revenue Stream"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Project'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
           }
         }
       ]

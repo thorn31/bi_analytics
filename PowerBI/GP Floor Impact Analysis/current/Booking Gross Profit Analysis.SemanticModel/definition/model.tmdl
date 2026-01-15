@@ -1,0 +1,33 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["QUADRA_JOBS","JOBS_D","FYCALENDAR_D","QUADRA_CONTRACTS","CUSTOMERS_D","DIVISIONS_D","REGIONS_D"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode","MCP-PBIModeling"]
+
+ref table QUADRA_JOBS
+ref table JOBS_D
+ref table fp_GPFloor
+ref table FYCALENDAR_D
+ref table QUADRA_CONTRACTS
+ref table '_Key Measures'
+ref table CUSTOMERS_D
+ref table DIVISIONS_D
+ref table fp_ViewSelector
+ref table fp_DimensionSelector
+ref table fp_BaselineYear
+ref table fp_SourceSelector
+ref table fp_BookingName
+ref table Info
+ref table fp_BookingNumber
+ref table fp_BookingDetail
+
+ref cultureInfo en-US
+

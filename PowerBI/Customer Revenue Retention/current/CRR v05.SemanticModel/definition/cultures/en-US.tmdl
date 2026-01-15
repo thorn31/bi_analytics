@@ -8293,16 +8293,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
-			        },
-			        {
-			          "Monthly": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -40359,6 +40349,27 @@ cultureInfo en-US
 			        {
 			          "_reporting period subtitle FormatString": {
 			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "table_key_measures.revenue_cumulative_by_stream": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Revenue Cumulative (By Stream)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cumulative": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]

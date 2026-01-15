@@ -1,0 +1,226 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 231
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 322,
+            "y": 995.44140625
+          },
+          "nodeIndex": "JOBS_D",
+          "nodeLineageTag": "fc142710-a0d8-44d1-9fe6-9f59c3ec7598",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 582,
+            "y": 983.44140625
+          },
+          "nodeIndex": "QUADRA_JOBS",
+          "nodeLineageTag": "17b70565-65f2-470a-90d0-5c1d8b040593",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 582,
+            "y": 1550.94140625
+          },
+          "nodeIndex": "QUADRA_CONTRACTS",
+          "nodeLineageTag": "6fa60a8b-c7c3-41ef-b7d2-096318ffee00",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1343,
+            "y": 1244.69140625
+          },
+          "nodeIndex": "_Key Measures",
+          "nodeLineageTag": "b91f0227-6bb9-4050-b89a-47c89b490bb2",
+          "size": {
+            "height": 792,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 866,
+            "y": 1008.44140625
+          },
+          "nodeIndex": "fp_GPFloor",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1157,
+            "y": 982.44140625
+          },
+          "nodeIndex": "FYCALENDAR_D",
+          "nodeLineageTag": "08601d45-a133-4be4-a463-75c45a804b28",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 128,
+            "y": 1536.69140625
+          },
+          "nodeIndex": "CUSTOMERS_D",
+          "nodeLineageTag": "76a5d38b-6f2e-4506-b3d2-d63992540541",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1268.44140625
+          },
+          "nodeIndex": "DIVISIONS_D",
+          "nodeLineageTag": "e3540253-e2da-456a-8d9e-d7de22212d10",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1627,
+            "y": 1271.94140625
+          },
+          "nodeIndex": "fp_DimensionSelector",
+          "nodeLineageTag": "7f3c55e5-369b-489d-b283-1bab3a4e80cd",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1911,
+            "y": 1283.94140625
+          },
+          "nodeIndex": "fp_ViewSelector",
+          "nodeLineageTag": "f229efdb-d510-4ea5-bc5b-3ba2bb9690dd",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 2195,
+            "y": 1247.94140625
+          },
+          "nodeIndex": "fp_BaselineYear",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 2479,
+            "y": 1371.06640625
+          },
+          "nodeIndex": "fp_SourceSelector",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 2740,
+            "y": 1382.19140625
+          },
+          "nodeIndex": "fp_BookingName",
+          "nodeLineageTag": "4fd4fa03-a212-43b2-8272-cba1d7bd2e39",
+          "size": {
+            "height": 221,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 3024,
+            "y": 1118.47265625
+          },
+          "nodeIndex": "Info",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2725,
+            "y": 1122.92578125
+          },
+          "nodeIndex": "fp_BookingNumber",
+          "nodeLineageTag": "e2e17ba0-2c8a-43da-b313-4eaeedfda41f",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 2725,
+            "y": 932.60546875
+          },
+          "nodeIndex": "fp_BookingDetail",
+          "nodeLineageTag": "63bfac0b-52d6-4425-ab93-102ae2ef6b4f",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 15
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

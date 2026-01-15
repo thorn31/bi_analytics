@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "1fa3730d658d1c9e95a5",
   "position": {
-    "x": 758,
-    "y": 177,
+    "x": 1143.1802120141342,
+    "y": 63.321554770318016,
     "z": 4000,
-    "height": 320,
-    "width": 1117,
+    "height": 477.17314487632507,
+    "width": 760.98939929328617,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "pivotTable",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
-        "Rows": {
+        "Category": {
           "projections": [
             {
               "field": {
@@ -38,31 +38,17 @@
                       "Entity": "FYCALENDAR_D"
                     }
                   },
-                  "Property": "MMM Label"
+                  "Property": "Fiscal Quarter"
                 }
               },
-              "queryRef": "FYCALENDAR_D.MMM Label",
-              "nativeQueryRef": "MMM Label",
-              "active": false
+              "queryRef": "FYCALENDAR_D.Fiscal Quarter",
+              "nativeQueryRef": "Fiscal Quarter",
+              "active": true
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
-                  "Property": "Net Promoter Score"
-                }
-              },
-              "queryRef": "_Key Measures.Net Promoter Score",
-              "nativeQueryRef": "Net Promoter Score"
-            },
             {
               "field": {
                 "Measure": {
@@ -76,89 +62,29 @@
               },
               "queryRef": "_Key Measures.Net Revenue Retention % (R12M As Of)",
               "nativeQueryRef": "Net Revenue Retention % (R12M As Of)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
-                  "Property": "Gross Revenue Retention % (R12M As Of)"
-                }
-              },
-              "queryRef": "_Key Measures.Gross Revenue Retention % (R12M As Of)",
-              "nativeQueryRef": "Gross Revenue Retention % (R12M As Of)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
-                  "Property": "Logo Retention % (SC) (R12M As Of)"
-                }
-              },
-              "queryRef": "_Key Measures.Logo Retention % (SC) (R12M As Of)",
-              "nativeQueryRef": "Logo Retention % (SC) (R12M As Of)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
-                  "Property": "Net Revenue Retention Trend vs PY (R12M As Of)"
-                }
-              },
-              "queryRef": "_Key Measures.Net Revenue Retention Trend vs PY (R12M As Of)",
-              "nativeQueryRef": "Net Revenue Retention Trend vs PY (R12M As Of)"
             }
           ]
         }
-      }
-    },
-    "expansionStates": [
-      {
-        "roles": [
-          "Rows"
-        ],
-        "levels": [
+      },
+      "sortDefinition": {
+        "sort": [
           {
-            "queryRefs": [
-              "FYCALENDAR_D.Fiscal Year"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FYCALENDAR_D"
-                    }
-                  },
-                  "Property": "Fiscal Year"
-                }
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Net Revenue Retention % (R12M As Of)"
               }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "FYCALENDAR_D.MMM Label"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
+            },
+            "direction": "Descending"
           }
         ],
-        "root": {}
+        "isDefaultSort": true
       }
-    ],
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
@@ -265,6 +191,34 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "218c1349560199989c9e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Net Revenue Retention % (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "756dd62fbe27ebea415d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Quarter"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

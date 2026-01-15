@@ -108,7 +108,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Infinity Global Dayton Dc'"
+                                "Value": "'Overhead Door Company Of Greater Cincinnati'"
                               }
                             }
                           ]
@@ -145,7 +145,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'dayton'"
+                            "Value": "'greater'"
                           }
                         }
                       }
@@ -280,20 +280,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "63742ce2b185cd024184",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Customer Name"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "f196a9cf2d46da9c30d8",
+  "displayName": "Booking GP Floor Analysis",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "66aa52c43aa17dc0de94",
+      "target": "d1cc4ed744ed490ee303",
+      "type": "NoFilter"
+    },
+    {
+      "source": "66aa52c43aa17dc0de94",
+      "target": "def24a805bad8467dcac",
+      "type": "NoFilter"
+    },
+    {
+      "source": "66aa52c43aa17dc0de94",
+      "target": "133966f72b69e1d96b00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "72f015273a27970810e2",
+      "target": "133966f72b69e1d96b00",
+      "type": "DataFilter"
+    }
+  ]
+}

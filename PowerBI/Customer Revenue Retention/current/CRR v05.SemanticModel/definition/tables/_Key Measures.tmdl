@@ -2918,6 +2918,7 @@ table '_Key Measures'
 
 	measure 'Financials Max Allowed Month End' = EOMONTH ( TODAY(), -1 )
 		displayFolder: 05 Time Intelligence – R12M\Helpers
+		lineageTag: 6d67896c-a1fe-4e67-ab46-31b225aa416c
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -2934,6 +2935,7 @@ table '_Key Measures'
 			RETURN
 			    IF ( ISBLANK ( LastBillingDate ), BLANK (), EOMONTH ( LastBillingDate, 0 ) )
 		displayFolder: 05 Time Intelligence – R12M\Helpers
+		lineageTag: 86daeccd-304a-447d-a049-f403da527598
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -2965,6 +2967,7 @@ table '_Key Measures'
 			    )
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: UI\Customer\Summary by Stream (R12M)
+		lineageTag: 56186de6-e394-4821-8740-f0a0c58d8a23
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -2983,6 +2986,7 @@ table '_Key Measures'
 			    SWITCH ( AxisStream, "Project", ProjectRev, "Service Contract", SCRev, "T&M", TMRev )
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: UI\Customer\Summary by Stream (R12M)
+		lineageTag: 7c387d0b-e2c9-43f7-8a4b-b1322bf42ccf
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
@@ -2994,6 +2998,7 @@ table '_Key Measures'
 			RETURN DIVIDE ( SCRev, TotalRev )
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: UI\Customer\Risk & Opportunity (R12M)
+		lineageTag: c973eeb6-0589-4991-bc62-9dfb762af1a0
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -3006,6 +3011,7 @@ table '_Key Measures'
 			RETURN DIVIDE ( TopStreamRev, TotalRev )
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: UI\Customer\Risk & Opportunity (R12M)
+		lineageTag: 0dd2c87e-fef8-45e9-a6dd-e35c436dc01e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -3015,6 +3021,7 @@ table '_Key Measures'
 			RETURN IF ( ISBLANK ( PY ) || PY = 0, BLANK (), DIVIDE ( CY - PY, PY ) )
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: UI\Customer\Risk & Opportunity (R12M)
+		lineageTag: 326c6a1b-6fc4-411f-a154-7ba65134f495
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

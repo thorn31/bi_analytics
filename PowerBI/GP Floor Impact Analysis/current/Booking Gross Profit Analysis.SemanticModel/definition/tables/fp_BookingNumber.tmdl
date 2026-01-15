@@ -1,0 +1,54 @@
+table fp_BookingNumber
+	lineageTag: e2e17ba0-2c8a-43da-b313-4eaeedfda41f
+
+	column fp_BookingNumber
+		lineageTag: 060e263a-bde2-4a38-80d6-46c4b5174bd5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'fp_BookingNumber Order'
+
+		relatedColumnDetails
+			groupByColumn: 'fp_BookingNumber Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'fp_BookingNumber Fields'
+		isHidden
+		lineageTag: 5deda309-fa90-4738-95d9-9bbfeeb4ef2c
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'fp_BookingNumber Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'fp_BookingNumber Order'
+		isHidden
+		formatString: 0
+		lineageTag: 624cac80-7876-4e3e-b22d-75607addcd7b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source = SWITCH ( [fp_BookingNumber Order], 0, "Contracts", 1, "Jobs" )
+		lineageTag: 10a360bc-0ede-4f08-86b0-5f3bab63b6fc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fp_BookingNumber = calculated
+		mode: import
+		source =
+				{
+				    ("Contract Number", NAMEOF('QUADRA_CONTRACTS'[Contract Number]), 0),
+				    ("Job Number", NAMEOF('QUADRA_JOBS'[Job Number]), 1)
+				}
+
+	annotation PBI_Id = 7429d78f9e2d4be2a55bc5e78a4679b9
+

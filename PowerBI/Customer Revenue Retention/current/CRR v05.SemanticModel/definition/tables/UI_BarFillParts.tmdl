@@ -1,12 +1,15 @@
 /// Disconnected helper table for 100% bar fill segments (share vs remainder).
 table UI_BarFillParts
+	lineageTag: 5195b382-ea25-4c5b-8c7c-b5f778e7304a
 
 	column Part
+		lineageTag: 940bc356-78a2-40a9-8c88-fe2029fd7ef4
 		isNameInferred
 		sourceColumn: [Part]
 		sortByColumn: Sort
 
 	column Sort
+		lineageTag: 5ed168df-91d7-4a15-a278-52f529bf2a17
 		isNameInferred
 		sourceColumn: [Sort]
 
