@@ -1013,6 +1013,26 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'___AUTO___'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -1020,7 +1040,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "1de02bd97335d26167dc",
+        "name": "16f94eb9d5350c9c576b",
         "field": {
           "Measure": {
             "Expression": {
@@ -1034,7 +1054,7 @@
         "type": "Advanced"
       },
       {
-        "name": "e88c5bd3655001804679",
+        "name": "9044e44f79e232e077c7",
         "field": {
           "Measure": {
             "Expression": {
@@ -1048,7 +1068,7 @@
         "type": "Advanced"
       },
       {
-        "name": "3843fa21082dde65a8c2",
+        "name": "dae73310780716905078",
         "field": {
           "Measure": {
             "Expression": {

@@ -33,6 +33,32 @@ table DIVISIONS_D
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Short label for Division (e.g., Indy, Knox, Nash).
+	column 'Division Short' = ```
+			
+			VAR divisionName = 'DIVISIONS_D'[Division]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    divisionName = "Indianapolis", "Indy",
+			    divisionName = "Knoxville", "Knox",
+			    divisionName = "Nashville", "Nash",
+			    divisionName = "Dayton", "Day",
+			    divisionName = "Cincinnati", "Cincy",
+			    divisionName = "Louisville", "Lou",
+			    divisionName = "Lexington", "Lex",
+			    divisionName = "West Virginia", "WV",
+			    divisionName = "Chattanooga", "Chatt",
+			    divisionName = "Columbus", "Col",
+			    divisionName = "Design Build", "DB",
+			    divisionName = "Green", "Green",
+			    divisionName
+			)
+			
+			```
+		dataType: string
+		lineageTag: d29e4eea-9c74-4ba2-946f-a34c54eb3014
+
 	partition DIVISIONS_D = m
 		mode: import
 		source = ```

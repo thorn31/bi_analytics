@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "fef2dfeb86a23e024a4e",
   "position": {
-    "x": 494.84641638225253,
-    "y": 100.44368600682593,
+    "x": 494.5454545454545,
+    "y": 101.81818181818181,
     "z": 7000,
-    "height": 139.14675767918087,
-    "width": 1405.2901023890784,
+    "height": 138.74125874125875,
+    "width": 1405.3146853146852,
     "tabOrder": 3000
   },
   "visual": {
@@ -15,36 +15,6 @@
       "queryState": {
         "Data": {
           "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
-                  "Property": "Net Revenue Retention % (R12M As Of)"
-                }
-              },
-              "queryRef": "_Key Measures.Net Revenue Retention % (R12M As Of)",
-              "nativeQueryRef": "NRR %",
-              "displayName": "NRR %"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
-                  "Property": "Gross Revenue Retention % (R12M As Of)"
-                }
-              },
-              "queryRef": "_Key Measures.Gross Revenue Retention % (R12M As Of)",
-              "nativeQueryRef": "GRR %",
-              "displayName": "GRR %"
-            },
             {
               "field": {
                 "Measure": {
@@ -74,6 +44,36 @@
               "queryRef": "_Key Measures.Total GP % (R12M As Of)",
               "nativeQueryRef": "GP %",
               "displayName": "GP %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Revenue Retention % (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Revenue Retention % (R12M As Of)",
+              "nativeQueryRef": "NRR %",
+              "displayName": "NRR %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Gross Revenue Retention % (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Gross Revenue Retention % (R12M As Of)",
+              "nativeQueryRef": "GRR %",
+              "displayName": "GRR %"
             }
           ]
         }
@@ -88,7 +88,7 @@
                     "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Net Revenue Retention % (R12M As Of)"
+                "Property": "Total Revenue (R12M As Of)"
               }
             },
             "direction": "Descending"

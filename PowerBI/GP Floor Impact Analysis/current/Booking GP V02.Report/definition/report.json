@@ -101,6 +101,36 @@
             }
           ]
         }
+      },
+      {
+        "name": "a9476971cb03200db29b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "QUADRA_JOBS"
+              }
+            },
+            "Property": "Eventaction"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   },
@@ -161,6 +191,11 @@
         {
           "name": "Badge_PG-Circle-RGB785336690028513.png",
           "path": "Badge_PG-Circle-RGB785336690028513.png",
+          "type": "Image"
+        },
+        {
+          "name": "info-circle-svgrepo-com_(1)6371603878331876.svg",
+          "path": "info-circle-svgrepo-com_(1)6371603878331876.svg",
           "type": "Image"
         }
       ]

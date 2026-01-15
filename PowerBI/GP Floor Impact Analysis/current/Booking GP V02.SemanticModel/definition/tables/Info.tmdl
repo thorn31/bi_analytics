@@ -1,0 +1,26 @@
+table Info
+	lineageTag: 22a8e745-ddd2-49cd-b138-52634836b7a8
+
+	column Key
+		lineageTag: 1a53effc-8bc6-47ca-ba9f-d483abf99e0b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Info = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Key", STRING,
+				    {
+				        { "About" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 1d73e9eaff4c4a0eb257836fe5b22dcb
+

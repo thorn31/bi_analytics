@@ -51,11 +51,7 @@ table '_Key Measures'
 		displayFolder: Floor Analysis\Gross Profit
 		lineageTag: 5bd01942-9a57-4ebd-9b68-08da93a5dd0d
 
-	measure '% Sale Price Below Floor' = ```
-			
-			DIVIDE( [Sell Price Below Floor], [Project Price] )
-			
-			```
+	measure '% Sale Price Below Floor' = DIVIDE([Sell Price Below Floor], [Total Sell Price])
 		formatString: 0.00%;-0.00%;0.00%
 		displayFolder: Floor Analysis\Gross Profit
 		lineageTag: 1f5ece03-6b16-4709-a595-8491667a62b1
@@ -104,21 +100,6 @@ table '_Key Measures'
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: Floor Analysis\Gross Profit
 		lineageTag: fe9fdc91-19ab-4f81-8ae7-a223218b13ed
-
-	measure 'GP $ At Floor For Below-Floor Jobs' = ```
-			
-			VAR floor = [GP Floor Value]
-			RETURN
-			SUMX(
-			    FILTER(QUADRA_JOBS, ROUND(ROUND([Project Gross Profit %], 3), 2) < floor),
-			    [Project Price] * floor
-			)
-			
-			```
-		displayFolder: Floor Analysis\Gross Profit
-		lineageTag: b888e9df-32c2-41a7-a072-0280ff604816
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure '% GP At Or Above Floor' = ```
 			
@@ -371,7 +352,7 @@ table '_Key Measures'
 	/// Calculates how much each dimension (e.g., Division) contributed to the total change in % Sell Price At or Above Floor vs the FY2025 Baseline. Sums to the total variance.
 	measure 'Impact on Sell Price % vs Baseline' = ```
 			
-			VAR GlobalCurrentSales = CALCULATE([Project Price], ALLSELECTED()) 
+			VAR GlobalCurrentSales = CALCULATE([Total Sell Price], ALLSELECTED()) 
 			VAR GlobalBaselineSales = CALCULATE([Baseline Sell Price], ALLSELECTED())
 			
 			RETURN
@@ -577,7 +558,7 @@ table '_Key Measures'
 	/// Dynamic Title for the Performance vs Baseline Chart.
 	measure 'Dynamic Title - Chart 2' = ```
 			
-			[Selected Metric - Long Name] & " % Health vs Global Baseline " & [Selected Dimension]
+			[Selected Metric - Long Name] & " % Health vs " & [Baseline Line Label] & " " & [Selected Dimension]
 			
 			```
 		displayFolder: Visual Measures
@@ -634,17 +615,17 @@ table '_Key Measures'
 		lineageTag: ae1e8e13-32a8-4e44-966a-e761c9dbf979
 
 	/// Accent bar color for Projects card when selected.
-	measure 'Accent Bar Color - Projects' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "# Bookings", "#5FB3A2", "#FFFFFF00")
+	measure 'Accent Bar Color - Projects' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "# Bookings", "#DDA46F", "#FFFFFF00")
 		displayFolder: Visual Measures\Card Backgrounds
 		lineageTag: 1fabee5d-c6d0-47e3-8654-d0093ae7ee32
 
 	/// Accent bar color for Sales card when selected.
-	measure 'Accent Bar Color - Sales' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "$ Sales", "#5FB3A2", "#FFFFFF00")
+	measure 'Accent Bar Color - Sales' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "$ Sales", "#DDA46F", "#FFFFFF00")
 		displayFolder: Visual Measures\Card Backgrounds
 		lineageTag: 5f722646-9cb7-469d-abaa-95cbe33bdd41
 
 	/// Accent bar color for GP card when selected.
-	measure 'Accent Bar Color - GP' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "$ GP", "#5FB3A2", "#FFFFFF00")
+	measure 'Accent Bar Color - GP' = IF(SELECTEDVALUE('fp_ViewSelector'[View]) = "$ GP", "#DDA46F", "#FFFFFF00")
 		displayFolder: Visual Measures\Card Backgrounds
 		lineageTag: 96417190-b7e7-467d-af9e-01d8ecb52e9e
 
@@ -863,6 +844,128 @@ table '_Key Measures'
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: Floor Analysis\Gross Profit
 		lineageTag: 3dab5b08-996b-4dc1-819c-056ae0b9d1bc
+
+	/// Profit dollars missing to reach the GP Floor (BLANK when at/above floor); totals sum row shortfalls.
+	measure 'GP $ Shortfall to Floor' = ```
+			
+			VAR _src = SELECTEDVALUE('fp_SourceSelector'[Source], "Jobs")
+			VAR floor = [GP Floor Value]
+			RETURN
+			IF(
+			    _src = "Contracts",
+			    SUMX(
+			        VALUES('QUADRA_CONTRACTS'[Contract Number]),
+			        VAR expectedGP = CALCULATE([Total Sell Price]) * floor
+			        VAR actualGP = CALCULATE([Total GP])
+			        VAR shortfall = expectedGP - actualGP
+			        RETURN IF(shortfall > 0, shortfall)
+			    ),
+			    SUMX(
+			        VALUES('QUADRA_JOBS'[Job Number]),
+			        VAR expectedGP = CALCULATE([Total Sell Price]) * floor
+			        VAR actualGP = CALCULATE([Total GP])
+			        VAR shortfall = expectedGP - actualGP
+			        RETURN IF(shortfall > 0, shortfall)
+			    )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Gross Profit
+		lineageTag: 50eba6f8-32ad-4077-99e2-29288a80dbc5
+
+	measure 'KPI Tooltip' = ```
+			
+			SWITCH(
+			  SELECTEDVALUE(KPI_D[KPI]),
+			  "% Bookings Above Floor",
+			    "The percentage of sold bookings whose GP% is at or above the selected GP Floor. This measures pricing discipline.",
+			  "% Sale Price Above GP Floor",
+			    "The percentage of total booked sales ($) coming from bookings priced at or above the GP Floor. This measures revenue mix.",
+			  "% GP$ Above GP Floor",
+			    "The percentage of total gross profit dollars generated by bookings priced at or above the GP Floor. This measures profit quality.",
+			  BLANK()
+			)
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: 10b470aa-5881-4716-b96a-9a30b65ea13c
+
+	/// Dynamic label for the Global Baseline reference line (use in a card/text box near the line).
+	measure 'Baseline Line Label' = ```
+			
+			FORMAT ( [Baseline Year Value], "0" )
+			    & " Baseline ("
+			    & FORMAT ( [Selected Metric - Global Baseline %], "0.0%" )
+			    & ")"
+			
+			```
+		displayFolder: Visual Measures
+		lineageTag: 6580077b-e500-47ef-801f-440c25309c42
+
+	/// Text status indicating whether the current booking is at/above the GP Floor, below it, or not applicable when GP% is blank.
+	measure 'Floor Status' = ```
+			
+			VAR _src = SELECTEDVALUE('fp_SourceSelector'[Source], "Jobs")
+			VAR hasRows =
+			    IF(
+			        _src = "Contracts",
+			        NOT ISEMPTY('QUADRA_CONTRACTS'),
+			        NOT ISEMPTY('QUADRA_JOBS')
+			    )
+			
+			VAR gpPct = ROUND(ROUND([Total GP %], 3), 2)
+			VAR floor = [GP Floor Value]
+			
+			RETURN
+			IF(
+			    NOT hasRows,
+			    BLANK(),
+			    IF(
+			        ISBLANK(gpPct) || ISBLANK(floor),
+			        "N/A",
+			        IF(gpPct < floor, "Below", "At/Above")
+			    )
+			)
+			
+			```
+		displayFolder: Floor Analysis\General
+		lineageTag: a220930e-2a8d-4abd-befa-e63e5f7037bd
+
+	/// For bookings below the GP Floor, returns the GP$ those bookings would have earned at the floor (Sell Price × Floor), summed across below-floor bookings. Dynamic for Jobs/Contracts.
+	measure 'GP $ At Floor (Below-Floor Bookings)' = ```
+			
+			VAR _src = SELECTEDVALUE('fp_SourceSelector'[Source], "Jobs")
+			VAR floor = [GP Floor Value]
+			RETURN
+			IF(
+			    _src = "Contracts",
+			    SUMX(
+			        VALUES('QUADRA_CONTRACTS'[Contract Number]),
+			        VAR sell = CALCULATE([Contract Price])
+			        VAR gpPct = CALCULATE([Contract GP %])
+			        RETURN IF(NOT ISBLANK(gpPct) && gpPct < floor, sell * floor)
+			    ),
+			    SUMX(
+			        VALUES('QUADRA_JOBS'[Job Number]),
+			        VAR sell = CALCULATE([Project Price])
+			        VAR gpPct = CALCULATE([Project Gross Profit %])
+			        RETURN IF(NOT ISBLANK(gpPct) && gpPct < floor, sell * floor)
+			    )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Gross Profit
+
+	/// Simulated GP$ if below-floor bookings achieved the GP Floor (holds sell price constant). Equals Total GP + GP $ Shortfall to Floor.
+	measure 'GP $ Simulated At Floor' = ```
+			
+			[Total GP] + [GP $ Shortfall to Floor]
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Floor Analysis\Gross Profit
 
 	column Column
 		isHidden

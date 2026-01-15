@@ -52,11 +52,26 @@
                       "Entity": "_Key Measures"
                     }
                   },
+                  "Property": "Floor Status"
+                }
+              },
+              "queryRef": "_Key Measures.Floor Status",
+              "nativeQueryRef": "Floor Status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
                   "Property": "Total Start Date"
                 }
               },
               "queryRef": "_Key Measures.Total Start Date",
-              "nativeQueryRef": "Total Start Date"
+              "nativeQueryRef": "Start Date",
+              "displayName": "Start Date"
             },
             {
               "field": {
@@ -70,7 +85,8 @@
                 }
               },
               "queryRef": "_Key Measures.Total Sell Price",
-              "nativeQueryRef": "Total Sell Price"
+              "nativeQueryRef": "Sell Price",
+              "displayName": "Sell Price"
             },
             {
               "field": {
@@ -95,25 +111,12 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Total GP"
-                }
-              },
-              "queryRef": "_Key Measures.Total GP",
-              "nativeQueryRef": "Total GP"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
                   "Property": "Total GP %"
                 }
               },
               "queryRef": "_Key Measures.Total GP %",
-              "nativeQueryRef": "Total GP %"
+              "nativeQueryRef": "GP %",
+              "displayName": "GP %"
             },
             {
               "field": {
@@ -152,11 +155,27 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "GP $ Δ Floor"
+                  "Property": "Total GP"
                 }
               },
-              "queryRef": "_Key Measures.GP $ Δ Floor",
-              "nativeQueryRef": "GP $ Δ Floor"
+              "queryRef": "_Key Measures.Total GP",
+              "nativeQueryRef": "GP $",
+              "displayName": "GP $"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "GP $ Shortfall to Floor"
+                }
+              },
+              "queryRef": "_Key Measures.GP $ Shortfall to Floor",
+              "nativeQueryRef": "GP $ Shortfall",
+              "displayName": "GP $ Shortfall"
             },
             {
               "field": {
@@ -187,8 +206,7 @@
                 }
               },
               "index": 1,
-              "length": 1,
-              "sortDirection": "Ascending"
+              "length": 1
             }
           ]
         }
@@ -197,29 +215,16 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "CUSTOMERS_D"
+                    "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Customer Name"
+                "Property": "Total Sell Price"
               }
             },
-            "direction": "Ascending"
-          },
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "QUADRA_CONTRACTS"
-                  }
-                },
-                "Property": "Contract Number"
-              }
-            },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -513,6 +518,144 @@
           "selector": {
             "metadata": "_Key Measures.GP $ Δ Floor Data Bar"
           }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total GP %"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.GP % Δ Floor"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total GP"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Sell Price"
+          }
+        },
+        {
+          "properties": {
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Floor Status"
+          }
         }
       ],
       "columnWidth": [
@@ -528,6 +671,34 @@
           },
           "selector": {
             "metadata": "CUSTOMERS_D.Customer Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total GP %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.GP $ Shortfall to Floor"
           }
         }
       ],
@@ -549,6 +720,19 @@
             ],
             "metadata": "_Key Measures.Total GP %"
           }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Key Measures.Floor Status"
+          }
         }
       ]
     },
@@ -557,7 +741,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c58b4b24528268567e22",
+        "name": "bc1dfc3e6317bb10e078",
         "field": {
           "Column": {
             "Expression": {
@@ -571,7 +755,7 @@
         "type": "Categorical"
       },
       {
-        "name": "5385c03406ed7b5e55b4",
+        "name": "8469570691c82359c997",
         "field": {
           "Measure": {
             "Expression": {
@@ -585,7 +769,7 @@
         "type": "Advanced"
       },
       {
-        "name": "d5767dd7505187ac0e77",
+        "name": "7b6a63dfc033edc8d30d",
         "field": {
           "Measure": {
             "Expression": {
@@ -599,7 +783,7 @@
         "type": "Advanced"
       },
       {
-        "name": "dffb88f403580b4721c1",
+        "name": "cf480dc3be2a0a0c8981",
         "field": {
           "Measure": {
             "Expression": {
@@ -613,7 +797,7 @@
         "type": "Advanced"
       },
       {
-        "name": "861a063fb74290ad729b",
+        "name": "4e5297ba5201bedec2a2",
         "field": {
           "Measure": {
             "Expression": {
@@ -627,7 +811,7 @@
         "type": "Advanced"
       },
       {
-        "name": "c663aaef33a5bc98777a",
+        "name": "8013e11c779b65ec0503",
         "field": {
           "Measure": {
             "Expression": {
@@ -641,7 +825,7 @@
         "type": "Advanced"
       },
       {
-        "name": "478939508004b64a600e",
+        "name": "6065c42419e00ea23604",
         "field": {
           "Measure": {
             "Expression": {
@@ -655,7 +839,7 @@
         "type": "Advanced"
       },
       {
-        "name": "23ff94df7c1cc492cd6d",
+        "name": "03cf3151b91b8b030004",
         "field": {
           "Measure": {
             "Expression": {
@@ -669,21 +853,7 @@
         "type": "Advanced"
       },
       {
-        "name": "04cd212a8590b0c0c1ac",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GP $ Δ Floor"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c82036f3e35a87c4e3ad",
+        "name": "d746492d3d018776bd8a",
         "field": {
           "Measure": {
             "Expression": {
@@ -697,18 +867,32 @@
         "type": "Advanced"
       },
       {
-        "name": "7300541c4c052b610025",
+        "name": "ebf996706c261564ae01",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "QUADRA_CONTRACTS"
+                "Entity": "_Key Measures"
               }
             },
-            "Property": "Contract Number"
+            "Property": "Floor Status"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
+      },
+      {
+        "name": "aeb1b5109ed7b7eed00e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "GP $ Shortfall to Floor"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

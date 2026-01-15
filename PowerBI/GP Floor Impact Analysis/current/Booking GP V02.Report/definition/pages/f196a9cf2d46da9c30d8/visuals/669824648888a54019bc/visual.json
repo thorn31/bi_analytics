@@ -138,6 +138,83 @@
               }
             }
           }
+        },
+        {
+          "properties": {
+            "enableValueDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableBackground": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Selected Metric - Above Floor"
+          }
+        },
+        {
+          "properties": {
+            "enableValueDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableBackground": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Selected Metric - Below Floor"
+          }
         }
       ],
       "totals": [
@@ -308,6 +385,19 @@
             }
           }
         }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -315,7 +405,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "51744766c5b860369190",
+        "name": "1354c0029e9dbbc5b75e",
         "field": {
           "Measure": {
             "Expression": {
@@ -329,7 +419,7 @@
         "type": "Advanced"
       },
       {
-        "name": "ec4ed3aa0b2d74025050",
+        "name": "e376b51127c7d279cea9",
         "field": {
           "Measure": {
             "Expression": {
@@ -343,7 +433,7 @@
         "type": "Advanced"
       },
       {
-        "name": "6cc8e37400b9040220e7",
+        "name": "f9045183202ddc80cb4d",
         "field": {
           "Column": {
             "Expression": {

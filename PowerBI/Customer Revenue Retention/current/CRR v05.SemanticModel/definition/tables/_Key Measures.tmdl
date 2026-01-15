@@ -953,7 +953,6 @@ table '_Key Measures'
 			      REMOVEFILTERS ( CUSTOMERS_D )
 			  )
 			```
-		isHidden
 		displayFolder: 05 Time Intelligence – R12M\Helpers
 		lineageTag: 44b3ed2e-6c08-4d4d-9a08-53f02a90c0dd
 
@@ -1119,34 +1118,36 @@ table '_Key Measures'
 		displayFolder: 07 Retention KPIs – R12M As Of\GRR
 		lineageTag: 7d1c6be3-5f3c-4a67-9f93-5cf2d047b1c9
 
-	measure 'Project Revenue (R12M As Of)' = ```
-			
+	measure 'Project Revenue (R12M As Of)' =
 			VAR AnchorDate =
-			    [As Of Month End (SC)]
+			    [As Of Month End (Financials)]
 			RETURN
-			    CALCULATE (
-			        [Project Revenue],
-			        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE (
+			            [Project Revenue],
+			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			        )
 			    )
-			
-			```
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 05 Time Intelligence – R12M\Revenue
 		lineageTag: 1b46acdb-00e2-4c7a-81a3-5cd5d692a9a8
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
-	measure 'T&M Revenue (R12M As Of)' = ```
-			
+	measure 'T&M Revenue (R12M As Of)' =
 			VAR AnchorDate =
-			    [As Of Month End (SC)]
+			    [As Of Month End (Financials)]
 			RETURN
-			    CALCULATE (
-			        [T&M Revenue],
-			        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE (
+			            [T&M Revenue],
+			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			        )
 			    )
-			
-			```
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 05 Time Intelligence – R12M\Revenue
 		lineageTag: 8b5d1f58-0b38-4b75-9a2c-d7e3cba4d1b9
@@ -1840,23 +1841,23 @@ table '_Key Measures'
 		displayFolder: 07 Retention KPIs – R12M As Of\Logo Retention (SC)
 		lineageTag: d3969edf-4fd4-4d2c-a3fa-a1363f9a36dc
 
-	measure 'Total Revenue (R12M As Of)' = ```
-			
-			VAR AnchorDate = [As Of Month End (SC)]
+	measure 'Total Revenue (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
 			RETURN
-			    CALCULATE (
-			        [Total Revenue],
-			        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE (
+			            [Total Revenue],
+			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			        )
 			    )
-			
-			```
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 05 Time Intelligence – R12M\Revenue
 		lineageTag: 84cdb3d9-c973-4eb7-9946-3c92a41b579a
 
-	measure 'Total Revenue PY (R12M As Of)' = ```
-			
-			VAR AnchorDate = [As Of Month End (SC)]
+	measure 'Total Revenue PY (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
 			VAR AnchorPY = EDATE ( AnchorDate, -12 )
 			RETURN
 			    IF (
@@ -1867,8 +1868,6 @@ table '_Key Measures'
 			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH )
 			        )
 			    )
-			
-			```
 		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 05 Time Intelligence – R12M\Revenue
 		lineageTag: 78c129e2-2d46-4696-a0fc-5cb8060465a8
@@ -2170,22 +2169,22 @@ table '_Key Measures'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Total Gross Profit (R12M As Of)' = ```
-			
-			VAR AnchorDate = [As Of Month End (SC)]
+	measure 'Total Gross Profit (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
 			RETURN
-			    CALCULATE (
-			        [Total Gross Profit],
-			        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE (
+			            [Total Gross Profit],
+			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH )
+			        )
 			    )
-			
-			```
 		displayFolder: 05 Time Intelligence – R12M\Gross Profit
 		lineageTag: 6d8bebf2-ad20-42cf-9c99-4c2f801a9dcd
 
-	measure 'Total Gross Profit PY (R12M As Of)' = ```
-			
-			VAR AnchorDate = [As Of Month End (SC)]
+	measure 'Total Gross Profit PY (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
 			VAR AnchorPY = EDATE ( AnchorDate, -12 )
 			RETURN
 			    IF (
@@ -2196,25 +2195,15 @@ table '_Key Measures'
 			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH )
 			        )
 			    )
-			
-			```
 		displayFolder: 05 Time Intelligence – R12M\Gross Profit
 		lineageTag: 24e0f082-65d8-4455-ae1a-29cf9ed309ec
 
-	measure 'Total GP % (R12M As Of)' = ```
-			
-			DIVIDE( [Total Gross Profit (R12M As Of)], [Total Revenue (R12M As Of)] )
-			
-			```
+	measure 'Total GP % (R12M As Of)' = DIVIDE( [Total Gross Profit (R12M As Of)], [Total Revenue (R12M As Of)] )
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: 05 Time Intelligence – R12M\GP %
 		lineageTag: bf05e9d2-03fd-4e1e-a296-5e276c9a925d
 
-	measure 'Total GP % PY (R12M As Of)' = ```
-			
-			DIVIDE( [Total Gross Profit PY (R12M As Of)], [Total Revenue PY (R12M As Of)] )
-			
-			```
+	measure 'Total GP % PY (R12M As Of)' = DIVIDE( [Total Gross Profit PY (R12M As Of)], [Total Revenue PY (R12M As Of)] )
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: 05 Time Intelligence – R12M\GP %
 		lineageTag: 8cbb0b58-1ad8-4c16-aec7-adc312dac6e0
@@ -2926,6 +2915,108 @@ table '_Key Measures'
 			```
 		displayFolder: 07 Retention KPIs – R12M As Of\NRR
 		lineageTag: 541ddab0-c395-4638-a4d7-ddf448e24909
+
+	measure 'Financials Max Allowed Month End' = EOMONTH ( TODAY(), -1 )
+		displayFolder: 05 Time Intelligence – R12M\Helpers
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'As Of Month End (Financials)' =
+			VAR MaxAllowedMonthEnd =
+			    [Financials Max Allowed Month End]
+			VAR LastBillingDate =
+			    CALCULATE (
+			        MAX ( ALL_BILLINGS_F[BillingDate] ),
+			        REMOVEFILTERS (),
+			        ALL_BILLINGS_F[Billing Amount] <> 0,
+			        ALL_BILLINGS_F[BillingDate] <= MaxAllowedMonthEnd
+			    )
+			RETURN
+			    IF ( ISBLANK ( LastBillingDate ), BLANK (), EOMONTH ( LastBillingDate, 0 ) )
+		displayFolder: 05 Time Intelligence – R12M\Helpers
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Stream Share Fill (R12M)' =
+			VAR AxisStream =
+			    SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+			VAR Part =
+			    SELECTEDVALUE ( UI_BarFillParts[Part] )
+			VAR TotalRev =
+			    [Total Revenue (R12M As Of)]
+			VAR ProjectRev =
+			    [Project Revenue (R12M As Of)]
+			VAR TMRev =
+			    [T&M Revenue (R12M As Of)]
+			VAR SCRev =
+			    TotalRev - ProjectRev - TMRev
+			VAR StreamRev =
+			    SWITCH ( AxisStream, "Project", ProjectRev, "Service Contract", SCRev, "T&M", TMRev )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( AxisStream ) || ISBLANK ( Part ) || ISBLANK ( TotalRev ) || TotalRev = 0,
+			            BLANK (),
+			        Part = "Remainder",
+			            MAX ( 0, TotalRev - StreamRev ),
+			        Part = AxisStream,
+			            StreamRev,
+			        0
+			    )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: UI\Customer\Summary by Stream (R12M)
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue (R12M As Of) (By Stream)' =
+			VAR AxisStream =
+			    SELECTEDVALUE ( Revenue_Stream_D[Revenue Stream] )
+			VAR TotalRev =
+			    [Total Revenue (R12M As Of)]
+			VAR ProjectRev =
+			    [Project Revenue (R12M As Of)]
+			VAR TMRev =
+			    [T&M Revenue (R12M As Of)]
+			VAR SCRev =
+			    TotalRev - ProjectRev - TMRev
+			RETURN
+			    SWITCH ( AxisStream, "Project", ProjectRev, "Service Contract", SCRev, "T&M", TMRev )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: UI\Customer\Summary by Stream (R12M)
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Recurring Mix % (SC) (R12M)' =
+			VAR TotalRev = [Total Revenue (R12M As Of)]
+			VAR ProjectRev = [Project Revenue (R12M As Of)]
+			VAR TMRev = [T&M Revenue (R12M As Of)]
+			VAR SCRev = TotalRev - ProjectRev - TMRev
+			RETURN DIVIDE ( SCRev, TotalRev )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: UI\Customer\Risk & Opportunity (R12M)
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Stream Concentration % (R12M)' =
+			VAR TotalRev = [Total Revenue (R12M As Of)]
+			VAR ProjectRev = [Project Revenue (R12M As Of)]
+			VAR TMRev = [T&M Revenue (R12M As Of)]
+			VAR SCRev = TotalRev - ProjectRev - TMRev
+			VAR TopStreamRev = MAX ( ProjectRev, MAX ( SCRev, TMRev ) )
+			RETURN DIVIDE ( TopStreamRev, TotalRev )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: UI\Customer\Risk & Opportunity (R12M)
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Momentum % (R12M vs PY)' =
+			VAR CY = [Total Revenue (R12M As Of)]
+			VAR PY = [Total Revenue PY (R12M As Of)]
+			RETURN IF ( ISBLANK ( PY ) || PY = 0, BLANK (), DIVIDE ( CY - PY, PY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: UI\Customer\Risk & Opportunity (R12M)
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column _Dummy
 		isHidden

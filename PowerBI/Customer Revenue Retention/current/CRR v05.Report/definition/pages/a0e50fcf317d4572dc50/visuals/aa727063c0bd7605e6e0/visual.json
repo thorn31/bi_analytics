@@ -366,62 +366,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "2efa53adb4ce9bd2260a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "db32cf32a44281631a0e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Revenue_Stream_D"
-              }
-            },
-            "Property": "Revenue Stream"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "0dfcb7fad4e317eb6262",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Stream_Subsegment_D"
-              }
-            },
-            "Property": "Subsegment"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "9654fd6431180e6ea709",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FINANCIAL_METRIC_D"
-              }
-            },
-            "Property": "Metric Value (Stream x Metric)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }
