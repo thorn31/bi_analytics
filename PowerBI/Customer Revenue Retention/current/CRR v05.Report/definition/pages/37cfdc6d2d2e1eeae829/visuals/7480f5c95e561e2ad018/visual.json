@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "fef2dfeb86a23e024a4e",
+  "name": "7480f5c95e561e2ad018",
   "position": {
     "x": 494.5454545454545,
     "y": 101.81818181818181,
@@ -1267,5 +1267,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9e2e4597c0ad509c3728",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Net Revenue Retention % (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "52460bb2775452386ae5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Gross Revenue Retention % (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2c0898f551a32ea9e846",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "35c528da7c64aba7a3e4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total GP % (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

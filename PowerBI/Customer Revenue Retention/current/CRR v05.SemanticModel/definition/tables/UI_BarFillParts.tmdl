@@ -1,0 +1,16 @@
+/// Disconnected helper table for 100% bar fill segments (share vs remainder).
+table UI_BarFillParts
+
+	column Part
+		isNameInferred
+		sourceColumn: [Part]
+		sortByColumn: Sort
+
+	column Sort
+		isNameInferred
+		sourceColumn: [Sort]
+
+	partition UI_BarFillParts = calculated
+		mode: import
+		source = DATATABLE ( "Part", STRING, "Sort", INTEGER, { { "Project", 1 }, { "Service Contract", 2 }, { "T&M", 3 }, { "Remainder", 4 } } )
+

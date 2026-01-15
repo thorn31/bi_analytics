@@ -1,0 +1,21 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "37cfdc6d2d2e1eeae829",
+  "displayName": "Duplicate of Customer",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "pageBinding": {
+    "name": "ac78658410a1784db90a",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "visualInteractions": [
+    {
+      "source": "08609001a8e900523380",
+      "target": "d3a97637d05c0b7460ac",
+      "type": "NoFilter"
+    }
+  ]
+}

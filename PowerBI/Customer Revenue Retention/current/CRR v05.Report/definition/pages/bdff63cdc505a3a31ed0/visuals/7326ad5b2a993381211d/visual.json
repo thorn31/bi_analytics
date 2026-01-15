@@ -67,7 +67,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''_Key Measures''[Revenue (By Stream)]'"
+                                "Value": "'''_Key Measures''[Revenue Cumulative (By Stream)]'"
                               }
                             }
                           ]
@@ -95,7 +95,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''_Key Measures''[Revenue (By Stream)]'"
+                                      "Value": "'''_Key Measures''[Revenue Cumulative (By Stream)]'"
                                     }
                                   }
                                 ]
@@ -119,7 +119,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Monthly"
+                            "0": "Cumulative"
                           }
                         ]
                       }
@@ -450,23 +450,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0961466434646e6db36e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_Revenue View Mode"
-              }
-            },
-            "Property": "Revenue View Mode"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }
