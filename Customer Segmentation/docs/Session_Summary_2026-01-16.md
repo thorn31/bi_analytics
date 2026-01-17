@@ -58,7 +58,7 @@ A key-based system allows precise user control.
 *   **Religious**: ~90
 *   **Schools (Public/Private)**: ~50
 *   **College/University**: ~25
-*   **Hospitality**: ~25
+*   **Hospitality**: ~25 (support category; not a primary industrial group)
 
 ## Next Steps
 
@@ -69,3 +69,11 @@ A key-based system allows precise user control.
 3.  **Model Integration**:
     *   Import `CUSTOMERS_D.m` into Power BI.
     *   Validate relationships and visual results.
+
+---
+
+## Update Note (Current Repo)
+
+This session summary reflects the initial prototype. The current workflow is documented in:
+- `README.md`
+- `docs/WORKFLOW.md`

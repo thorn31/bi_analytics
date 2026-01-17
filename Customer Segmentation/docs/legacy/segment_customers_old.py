@@ -1,4 +1,7 @@
 import csv
+
+# Legacy script retained for reference only.
+# Current pipeline entrypoints: `dedupe_customers.py` and `segment_customers.py`.
 import re
 import os
 import difflib

@@ -17,13 +17,18 @@ let
     // NOTE: Update this path to the actual location of 'CustomerSegmentation.csv'
     SegmentationFilePath = "C:\Users\thorn\documents\projects\powerbi\Customer Segmentation\output\CustomerSegmentation.csv",
     
-    SegmentationSource = Csv.Document(File.Contents(SegmentationFilePath),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    SegmentationSource = Csv.Document(File.Contents(SegmentationFilePath),[Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
     #"Promoted Headers" = Table.PromoteHeaders(SegmentationSource, [PromoteAllScalars=true]),
     #"Typed Segmentation" = Table.TransformColumnTypes(#"Promoted Headers",{
         {"Customer Key", type text}, 
         {"Original Name", type text}, 
         {"Master Customer Name", type text}, 
-        {"Segment", type text}, 
+        {"Industrial Group", type text},
+        {"Industry Detail", type text},
+        {"NAICS", type text},
+        {"Method", type text},
+        {"Confidence", type text},
+        {"Rationale", type text},
         {"Source", type text}
     }),
     
@@ -31,16 +36,16 @@ let
     // 3. Merge & Integrate
     // -------------------------------------------------------------------
     #"Merged Queries" = Table.NestedJoin(#"Capitalized Each Word", {"Customer Key"}, #"Typed Segmentation", {"Customer Key"}, "Segmentation", JoinKind.LeftOuter),
-    #"Expanded Segmentation" = Table.ExpandTableColumn(#"Merged Queries", "Segmentation", {"Master Customer Name", "Segment"}, {"Master Customer Name", "Segment"}),
+    #"Expanded Segmentation" = Table.ExpandTableColumn(#"Merged Queries", "Segmentation", {"Master Customer Name", "Industrial Group", "Industry Detail", "NAICS", "Method", "Confidence", "Rationale"}, {"Master Customer Name", "Industrial Group", "Industry Detail", "NAICS", "Method", "Confidence", "Rationale"}),
     
     // -------------------------------------------------------------------
     // 4. Cleanup & Fallbacks
     // -------------------------------------------------------------------
-    // Fallback 1: Segment defaults to "Other" if missing
-    #"Filled Segment" = Table.ReplaceValue(#"Expanded Segmentation", null, "Other", Replacer.ReplaceValue, {"Segment"}),
+    // Fallback 1: Industrial Group defaults to "Unknown / Needs Review" if missing
+    #"Filled Group" = Table.ReplaceValue(#"Expanded Segmentation", null, "Unknown / Needs Review", Replacer.ReplaceValue, {"Industrial Group"}),
     
     // Fallback 2: Master Name defaults to original Customer Name if missing
-    #"Added Final Master Name" = Table.AddColumn(#"Filled Segment", "Final Master Name", each if [Master Customer Name] = null or [Master Customer Name] = "" then [Customer Name] else [Master Customer Name], type text),
+    #"Added Final Master Name" = Table.AddColumn(#"Filled Group", "Final Master Name", each if [Master Customer Name] = null or [Master Customer Name] = "" then [Customer Name] else [Master Customer Name], type text),
     
     // Clean up
     #"Removed Temporary Columns" = Table.RemoveColumns(#"Added Final Master Name", {"Master Customer Name"}),
