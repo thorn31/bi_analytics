@@ -10,10 +10,10 @@
     "tabOrder": 9000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -27,8 +27,13 @@
                 }
               },
               "queryRef": "UI_CustomerProfileRows.Metric Name",
-              "nativeQueryRef": "Metric Name"
-            },
+              "nativeQueryRef": "Metric Name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -67,15 +72,7 @@
     "objects": {
       "total": [
         {
-          "properties": {
-            "totals": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
+          "properties": {}
         }
       ],
       "columnHeaders": [
@@ -167,6 +164,13 @@
                   "Value": "8D"
                 }
               }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -205,6 +209,26 @@
           },
           "selector": {
             "metadata": "UI_CustomerProfileRows.Metric Name"
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]

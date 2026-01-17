@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ec38eb90694c722007ba",
   "position": {
-    "x": 494.5454545454545,
-    "y": 258.46153846153845,
-    "z": 13000,
-    "height": 344.61538461538458,
-    "width": 1405.3146853146852,
-    "tabOrder": 13000
+    "x": 1444.4582043343655,
+    "y": 258.57585139318888,
+    "z": 12000,
+    "height": 344.7678018575852,
+    "width": 455.7275541795666,
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "lineStackedColumnComboChart",
@@ -791,48 +791,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "417708b3bce06321c7b6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4b43ba5e8b2c17b18ebb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "063559b1b0ed4cde95ae",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Revenue (By Stream)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

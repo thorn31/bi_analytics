@@ -1,0 +1,47 @@
+relationship 20089509-a545-7877-da91-1ee6c38616f0
+	crossFilteringBehavior: bothDirections
+	fromColumn: QUADRA_JOBS.'Job Number'
+	toColumn: JOBS_D.'Job Number'
+
+relationship c22f8d8b-7adc-e77b-58c4-5901b4f7730b
+	fromColumn: QUADRA_JOBS.Startdate
+	toColumn: FYCALENDAR_D.Date
+
+relationship AutoDetected_f6fc40e0-5220-4bb5-9164-06929b71e388
+	fromColumn: JOBS_D.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 55cddfec-1260-99ee-d196-d8808470ebbd
+	fromColumn: QUADRA_CONTRACTS.Contractstartdate
+	toColumn: FYCALENDAR_D.Date
+
+relationship 1c2d6d17-48b4-051e-db7b-0c421aaff20e
+	fromColumn: JOBS_D.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 05c76eb9-c151-1924-36ee-8607005e3405
+	fromColumn: QUADRA_CONTRACTS.DivisionMap
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship b7f2043b-9132-6bb8-c5bd-8efbee14f1d5
+	fromColumn: QUADRA_CONTRACTS.'Customer Key'
+	toColumn: CUSTOMERS_D.'Quadra Customer Key'
+
+relationship 8a127783-01ad-e5e3-9220-8e71177ffc08
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fp_SourceSelector.Source
+	toColumn: fp_BookingNumber.Source
+
+relationship 96109ebb-756c-395e-8c0c-318018aace2d
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fp_SourceSelector.Source
+	toColumn: fp_BookingDetail.Source
+
+relationship 65c6176a-d793-6fab-07c0-3c5c681fc72c
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fp_SourceSelector.Source
+	toColumn: fp_BookingName.Source
+

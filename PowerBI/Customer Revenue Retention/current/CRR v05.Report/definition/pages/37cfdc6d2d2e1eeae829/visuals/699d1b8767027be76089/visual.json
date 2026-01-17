@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "699d1b8767027be76089",
   "position": {
-    "x": 21.258741258741257,
-    "y": 851.46853146853141,
-    "z": 16000,
-    "height": 213.70629370629371,
-    "width": 454.26573426573424,
-    "tabOrder": 16000
+    "x": 20.804953560371519,
+    "y": 880.74303405572766,
+    "z": 14000,
+    "height": 184.27244582043346,
+    "width": 453.74613003095982,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "hundredPercentStackedBarChart",
@@ -178,7 +178,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -223,6 +223,34 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "showSeries": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "optimizeLabelDisplay": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelOverflow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
                 }
               }
             }
@@ -299,51 +327,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "4da2b69881586d9cb560",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Revenue_Stream_D"
-              }
-            },
-            "Property": "Revenue Stream"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "2af7e1599c51bed11a76",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_BarFillParts"
-              }
-            },
-            "Property": "Part"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "539a28c6378100891b24",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Revenue Stream Share Fill (R12M)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

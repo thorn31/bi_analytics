@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "3b99bac0b6c103004305",
   "position": {
-    "x": 0,
-    "y": 571,
+    "x": 520.14134275618369,
+    "y": 571.02473498233212,
     "z": 2000,
-    "height": 509,
-    "width": 1920,
+    "height": 462.47349823321554,
+    "width": 1384.0282685512368,
     "tabOrder": 1000
   },
   "visual": {
@@ -168,13 +168,31 @@
                     "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Last Contract Billing Date"
+                "Property": "Retention Base PY (R12M As Of)"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "303.40282492733957D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CUSTOMERS_D.Customer Name"
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   },

@@ -1,0 +1,49 @@
+table fp_DimensionSelector
+	lineageTag: 7f3c55e5-369b-489d-b283-1bab3a4e80cd
+
+	column fp_DimensionSelector
+		lineageTag: 52f1afa3-db4f-40db-ba02-1a74f7890b35
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'fp_DimensionSelector Order'
+
+		relatedColumnDetails
+			groupByColumn: 'fp_DimensionSelector Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'fp_DimensionSelector Fields'
+		isHidden
+		lineageTag: f22f2623-a08b-42b6-9693-8504cadba36f
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'fp_DimensionSelector Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'fp_DimensionSelector Order'
+		isHidden
+		formatString: 0
+		lineageTag: e8848df1-27a3-45c0-b3dc-efa6c8807e8c
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fp_DimensionSelector = calculated
+		mode: import
+		source =
+				{
+				    ("By Month", NAMEOF('FYCALENDAR_D'[Month Letter]), 0),
+				    ("By Quarter", NAMEOF('FYCALENDAR_D'[Fiscal Quarter Label]), 1),
+				    ("By Division", NAMEOF('DIVISIONS_D'[Division Short]), 2)
+				}
+
+	annotation PBI_Id = d46afc8718b14842b644910e5d8067d4
+
