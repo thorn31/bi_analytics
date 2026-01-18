@@ -27,10 +27,16 @@ python3 segment_customers.py
 - `input/Batch*.md`: analyst-produced batch classifications (importable).
 
 **Outputs (`output/`)**
-- `output/CustomerMasterMap.csv`: customer-level bridge table (dedupe output).
-- `output/CustomerDeduplicationLog.csv`: audit log (filter `IsMerge=TRUE` for actual rollups).
-- `output/MasterCustomerSegmentation.csv`: master-level dimension (one row per master canonical).
-- `output/CustomerSegmentation.csv`: key-level join output (classification inherited from master).
+- Final deliverables:
+  - `output/MasterCustomerSegmentation.csv`: master-level dimension (one row per master canonical).
+  - `output/CustomerSegmentation.csv`: key-level join output (classification inherited from master).
+- Review deliverables:
+  - `output/SegmentationReviewWorklist.csv`: “what’s left to review” for segmentation.
+  - `output/RunHistory.csv`: run-to-run trend log (counts).
+- Supporting/audit outputs:
+  - `output/dedupe/CustomerMasterMap.csv`: customer-level bridge table (dedupe output).
+  - `output/dedupe/CustomerDeduplicationLog.csv`: audit log (filter `IsMerge=TRUE` for actual rollups).
+- Workflow/helper artifacts are documented in `output/README.md`.
 
 ## Batch Workflow (Recommended)
 
@@ -59,7 +65,7 @@ python3 suggest_master_websites.py
 Output: `output/MasterWebsiteSuggestions.csv`
 
 ## Notes
-- Windows file locks: if a CSV is open in Excel/Power BI, scripts will fail to overwrite it.
+- Windows file locks: if a CSV is open in Excel/Power BI, scripts may write a timestamped fallback file instead of overwriting.
 - Segmentation is computed **once per unique master**, then joined back to all customer keys.
 
 ## Current Status

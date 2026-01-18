@@ -226,6 +226,7 @@ This document applies the **Customer Classification & Segmentation Specification
 | PAW PET ADVENTURES WORLDWIDE | Pet services (unclear) | — | AI-Assisted Search |
 | PEBBLE BROOK GOLF CLUB | Golf club | 7139 | Rule-Based |
 | PEPOS BURRITO BAR 2 | Restaurant | 7225 | Rule-Based |
+| PERFECTION PRINTING | Printing services| 3231 | Heuristic |
 
 ---
 
@@ -313,10 +314,9 @@ This document applies the **Customer Classification & Segmentation Specification
 
 | Customer | Industry Detail | NAICS | Method |
 |---|---|---:|---|
-| PERFECTION GROUP | Your organization (internal) | — | Manual Override |
+| PERFECTION GROUP | Your organization (internal) | 2382 | Manual Override |
 | PERFECTION MECHANICAL | Mechanical contractor (internal brand) | 2382 | Manual Override |
-| PERFECTION SERVICES | Services (internal brand) | — | Manual Override |
-| PERFECTION PRINTING | Printing services (internal/affiliate?) | 3231 | Heuristic |
+| PERFECTION SERVICES | Services (internal brand) | 2382 | Manual Override |
 
 ---
 

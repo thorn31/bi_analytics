@@ -42,10 +42,17 @@ LOCKED_SUPPORT_CATEGORIES = {
 LOCKED_METHODS = {
     "Rule-Based",
     "Entity Inference",
-    "AI-Assisted Search",
+    "AI-Assisted Search",  # legacy name (kept for backward compatibility)
+    "AI Analyst Research",
     "Heuristic",
     "Manual Override",
     "Unclassified",
+}
+
+LOCKED_STATUSES = {
+    "Final",
+    "Draft",
+    "Queued",
 }
 
 
@@ -71,6 +78,8 @@ def confidence_for_method(method: str) -> tuple[str, str]:
         return "Medium", "Known/recognized entity mapping"
     if method == "AI-Assisted Search":
         return "Medium", "External lookup required"
+    if method == "AI Analyst Research":
+        return "Medium", "AI-assisted research and synthesis"
     if method == "Heuristic":
         return "Low", "Weak-signal best guess"
     return "Low", "Insufficient information"
@@ -82,16 +91,59 @@ def repo_root() -> Path:
 
 def default_paths() -> dict[str, Path]:
     root = repo_root()
+    # Prefer the reconciled overrides file when available, since it aligns override
+    # canonicals to the current master canonical list produced by dedupe.
+    reconciled_overrides = root / "input" / "MasterSegmentationOverrides_reconciled.csv"
+    base_overrides = root / "input" / "MasterSegmentationOverrides.csv"
+    dedupe_dir = root / "output" / "dedupe"
     return {
         "input_customers": root / "input" / "CustomerLastBillingDate.csv",
         "manual_overrides": root / "input" / "ManualOverrides.csv",
+        "master_merge_overrides": root / "input" / "MasterMergeOverrides.csv",
         "master_websites": root / "input" / "MasterWebsites.csv",
-        "master_segmentation_overrides": root / "input" / "MasterSegmentationOverrides.csv",
-        "dedupe_output": root / "output" / "CustomerMasterMap.csv",
+        "master_segmentation_overrides": reconciled_overrides if reconciled_overrides.exists() else base_overrides,
+        "dedupe_output": dedupe_dir / "CustomerMasterMap.csv",
         "segmentation_output": root / "output" / "CustomerSegmentation.csv",
         "master_segmentation_output": root / "output" / "MasterCustomerSegmentation.csv",
-        "dedupe_log": root / "output" / "CustomerDeduplicationLog.csv",
+        "dedupe_log": dedupe_dir / "CustomerDeduplicationLog.csv",
     }
+
+
+def load_master_merge_overrides(path: Path) -> Dict[str, str]:
+    """
+    Load master→master merge mapping at the canonical level.
+
+    Rows are normalized through `get_master_name()` so inputs can be either
+    display-case or canonical-case.
+    """
+    if not path.exists():
+        return {}
+
+    merges: Dict[str, str] = {}
+    with path.open(mode="r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            from_raw = (row.get("From Master Customer Name Canonical") or row.get("From") or "").strip()
+            to_raw = (row.get("To Master Customer Name Canonical") or row.get("To") or "").strip()
+            if not from_raw or from_raw.startswith("#") or not to_raw:
+                continue
+            from_can = get_master_name(from_raw)
+            to_can = get_master_name(to_raw)
+            if from_can and to_can and from_can != to_can:
+                merges[from_can] = to_can
+    return merges
+
+
+def resolve_master_merge_target(source: str, merges: Dict[str, str]) -> str:
+    """
+    Follow merge chains to a terminal target, guarding against cycles.
+    """
+    current = source
+    visited: set[str] = set()
+    while current in merges and current not in visited:
+        visited.add(current)
+        current = merges[current]
+    return current
 
 
 def load_overrides(path: Path) -> Dict[str, ManualOverride]:
@@ -140,11 +192,13 @@ def load_master_segmentation_overrides(path: Path) -> Dict[str, dict]:
             canonical = (row.get("Master Customer Name Canonical") or "").strip()
             if not canonical or canonical.startswith("#"):
                 continue
+            status = (row.get("Status") or "").strip() or "Final"
             overrides[canonical] = {
                 "Industrial Group": (row.get("Industrial Group") or "").strip(),
                 "Industry Detail": (row.get("Industry Detail") or "").strip(),
                 "NAICS": (row.get("NAICS") or "").strip(),
                 "Method": (row.get("Method") or "").strip(),
+                "Status": status,
                 "Support Category": (row.get("Support Category") or "").strip(),
                 "Company Website": (row.get("Company Website") or "").strip(),
                 "Notes": (row.get("Notes") or "").strip(),
@@ -612,6 +666,7 @@ def build_master_map_rows(
     input_rows: Iterable[dict],
     *,
     overrides: Dict[str, ManualOverride],
+    master_merge_overrides: Optional[Dict[str, str]] = None,
 ) -> List[dict]:
     processed: List[dict] = []
 
@@ -661,6 +716,12 @@ def build_master_map_rows(
     apply_fuzzy_master_dedupe(processed, overrides=overrides)
     for row in processed:
         canonical_master = row["Master Customer Name"]
+        if master_merge_overrides:
+            target = resolve_master_merge_target(canonical_master, master_merge_overrides)
+            if target and target != canonical_master:
+                row["_Master Merge From"] = canonical_master
+                row["Master Customer Name"] = target
+                canonical_master = target
         row["Master Customer Name Canonical"] = canonical_master
         row["Master Customer Name"] = to_display_name(canonical_master)
 
@@ -722,6 +783,9 @@ def build_dedupe_log_rows(
 
         if final_canonical != s3_chain and not change_type:
             change_type.append("Fuzzy Merge")
+
+        if row.get("_Master Merge From"):
+            change_type.append("Master Merge Override")
 
         if change_type or is_merge:
             log_rows.append(
@@ -913,14 +977,25 @@ def read_csv_dicts(path: Path) -> List[dict]:
         return list(csv.DictReader(handle))
 
 
-def write_csv_dicts(path: Path, rows: List[dict], fieldnames: List[str]) -> None:
+def write_csv_dicts(path: Path, rows: List[dict], fieldnames: List[str]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with path.open(mode="w", encoding="utf-8", newline="") as handle:
-            writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        # Use UTF-8 with BOM so Excel reliably detects encoding (prevents mojibake like "Kâ€“12").
+        with path.open(mode="w", encoding="utf-8-sig", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
             writer.writeheader()
             writer.writerows(rows)
-    except PermissionError as exc:
-        raise SystemExit(
-            f"Permission error writing {path}. Close any app using the file (Excel/Power BI), then re-run."
-        ) from exc
+        return path
+    except PermissionError:
+        # Windows/Excel/Power BI can lock output CSVs. Fall back to a timestamped
+        # file so pipelines can still run to completion.
+        from datetime import datetime
+
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        fallback = path.with_name(f"{path.stem}_{ts}{path.suffix}")
+        with fallback.open(mode="w", encoding="utf-8-sig", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
+            writer.writeheader()
+            writer.writerows(rows)
+        print(f"Warning: could not overwrite {path} (file may be open/locked). Wrote {fallback} instead.")
+        return fallback

@@ -6,6 +6,7 @@ from customer_processing import (
     build_dedupe_log_rows,
     build_master_map_rows,
     default_paths,
+    load_master_merge_overrides,
     load_overrides,
     read_csv_dicts,
     write_csv_dicts,
@@ -17,6 +18,7 @@ def main() -> None:
 
     input_path = paths["input_customers"]
     overrides_path = paths["manual_overrides"]
+    master_merge_overrides_path = paths["master_merge_overrides"]
     output_master_map = paths["dedupe_output"]
     output_log = paths["dedupe_log"]
 
@@ -24,9 +26,14 @@ def main() -> None:
         raise SystemExit(f"Error: Input file not found at {input_path}")
 
     overrides = load_overrides(overrides_path)
+    master_merge_overrides = load_master_merge_overrides(master_merge_overrides_path)
     input_rows = read_csv_dicts(input_path)
 
-    master_rows = build_master_map_rows(input_rows, overrides=overrides)
+    master_rows = build_master_map_rows(
+        input_rows,
+        overrides=overrides,
+        master_merge_overrides=master_merge_overrides,
+    )
     master_counts = Counter(row["Master Customer Name Canonical"] for row in master_rows)
     for row in master_rows:
         group_size = master_counts[row["Master Customer Name Canonical"]]
@@ -37,7 +44,7 @@ def main() -> None:
         master_rows, overrides=overrides, master_name_counts=dict(master_counts)
     )
 
-    write_csv_dicts(
+    master_map_written = write_csv_dicts(
         output_master_map,
         master_rows,
         fieldnames=[
@@ -53,7 +60,7 @@ def main() -> None:
             "Last Billing Date (Any Stream)",
         ],
     )
-    write_csv_dicts(
+    dedupe_log_written = write_csv_dicts(
         output_log,
         log_rows,
         fieldnames=[
@@ -72,11 +79,12 @@ def main() -> None:
     missing_override_keys = sorted(override_keys - input_keys)
 
     print(f"Loaded {len(overrides)} manual overrides from {overrides_path}.")
+    print(f"Loaded {len(master_merge_overrides)} master-merge overrides from {master_merge_overrides_path}.")
     if missing_override_keys:
         print(f"Warning: {len(missing_override_keys)} override keys not found in input.")
     print(f"Processed {len(master_rows)} input rows.")
-    print(f"Saved master map to {output_master_map}")
-    print(f"Saved deduplication log to {output_log}")
+    print(f"Saved master map to {master_map_written}")
+    print(f"Saved deduplication log to {dedupe_log_written}")
 
 
 if __name__ == "__main__":

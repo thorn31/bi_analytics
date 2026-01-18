@@ -142,13 +142,13 @@ Arku,ARKU,Manufacturing,Industrial Machinery (Leveling/Deburring),333517,AI Anal
 Armstrong Relocation Louisville,ARMSTRONG RELOCATION LOUISVILLE,Commercial Services,Moving & Storage Services,484210,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,goarmstrong.com,FALSE,1
 Armstrong Utilities,ARMSTRONG UTILITIES,Utilities,,22,Rule-Based,,High,Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Armstrong Utilities'),,,FALSE,1
 Arrow Dental,ARROW DENTAL,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Arrow Dental'),,,FALSE,1
-Arrow Wine and Spirits,ARROW WINE AND SPIRITS,Commercial Services,Alcohol Retail,445310,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,arrowwineandspirits.com,TRUE,2
-Art Geissler,ART GEISSLER,Individual / Misc,Real Estate Agent,531210,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
-Artazn,ARTAZN,Manufacturing,Zinc Products Manufacturing,331491,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,artazn.com,FALSE,1
-Artisan Mechanical,ARTISAN MECHANICAL,Construction,HVAC Contractor,238220,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,artisan-mech.com,FALSE,1
+Arrow Wine and Spirits,ARROW WINE AND SPIRITS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Arrow Wine and Spirits'),,,TRUE,2
+Art Geissler,ART GEISSLER,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Art Geissler'),,,FALSE,1
+Artazn,ARTAZN,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Artazn Llc'),,,FALSE,1
+Artisan Mechanical,ARTISAN MECHANICAL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Artisan Mechanical'),,,FALSE,1
 Arts Rental,ARTS RENTAL,Commercial Services,Equipment rental,5324,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
 Arvato Digital USA,ARVATO DIGITAL USA,Commercial Services,Digital services/fulfillment,5415,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
-Ashbusters Chimney Service,ASHBUSTERS CHIMNEY SERVICE,Construction,Chimney & Masonry Services,238140,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,ashbusters.net,FALSE,1
+Ashbusters Chimney Service,ASHBUSTERS CHIMNEY SERVICE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Ashbusters Chimney Service'),,,FALSE,1
 Ashland Avenue Baptist Church,ASHLAND AVENUE BAPTIST CHURCH,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Ashland Avenue Baptist Church'),,,FALSE,1
 Ashland Credit Union,ASHLAND CREDIT UNION,Financial Services,,52,Rule-Based,,High,Matched financial keyword; Deterministic keyword/pattern match (evidence: 'Ashland Credit Union'),,,FALSE,1
 Aspen Grovethe Stanton Group,ASPEN GROVETHE STANTON GROUP,Construction,Contractor/property (unclear),,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),Mechanical Contractor,,FALSE,1
@@ -165,9 +165,9 @@ Auglaize County OH,AUGLAIZE COUNTY OH,Municipal / Local Government,,92,Rule-Base
 Aurora Properties,AURORA PROPERTIES,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Aurora Properties Llc C/O Avison Young'),,,FALSE,1
 Austin Landing North,AUSTIN LANDING NORTH,Commercial Real Estate,Commercial property entity,5311,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,TRUE,2
 Auto Truck Group,AUTO TRUCK GROUP,Commercial Services,Commercial vehicle dealer,4412,Heuristic,Final,High,Analyst-approved override (method: Heuristic),Hospitality,,FALSE,1
-Automotive Steering Column,AUTOMOTIVE STEERING COLUMN,Manufacturing,Automotive Components,336330,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
+Automotive Steering Column,AUTOMOTIVE STEERING COLUMN,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Automotive Steering Column Llc'),,,FALSE,1
 Aveda Mid America,AVEDA MID AMERICA,Commercial Services,Retail/personal care brand,4461,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
-Avi Foodsystems,AVI FOODSYSTEMS,Commercial Services,Food Service Management,722310,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,avifoodsystems.com,TRUE,2
+Avi Foodsystems,AVI FOODSYSTEMS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Avi Foodsystems Inc'),,,TRUE,2
 Avis Phillips,AVIS PHILLIPS,Commercial Services,Individual/entity unclear,,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
 Avison Young,AVISON YOUNG,Commercial Services,CRE brokerage/property mgmt,5312,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
 Avison Young Billing,AVISON YOUNG BILLING,Commercial Services,CRE brokerage/property mgmt,5312,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
@@ -186,7 +186,7 @@ Baltimore Air Coil,BALTIMORE AIR COIL,Construction,HVAC equipment manufacturer (
 Bambeck and Vest,BAMBECK AND VEST,Construction,Contractor,2362,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),Mechanical Contractor,,FALSE,1
 Bar Louie Murfreesboro,BAR LOUIE MURFREESBORO,Commercial Services,Restaurant/bar,7225,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
 Bar Louie Nashville,BAR LOUIE NASHVILLE,Commercial Services,Restaurant/bar,7225,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
-Barger Concepts,BARGER CONCEPTS,Commercial Services,Event Venue & Retail,561920,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
+Barger Concepts,BARGER CONCEPTS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Barger Concepts Llc'),,,FALSE,1
 Bark Box,BARK BOX,Commercial Services,E-commerce retail,4541,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
 Batavia Local School District,BATAVIA LOCAL SCHOOL DISTRICT,Public Schools (K–12),,611,Rule-Based,,High,Matched public school district keyword; Deterministic keyword/pattern match (evidence: 'Batavia Local School District'),,,FALSE,1
 Batteries Plus 294,BATTERIES PLUS 294,Commercial Services,Retail,4441,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
@@ -202,16 +202,16 @@ Beautiful Savior Lutheran Church and School,BEAUTIFUL SAVIOR LUTHERAN CHURCH AND
 Beaver Dam Baptist Church,BEAVER DAM BAPTIST CHURCH,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Beaver Dam Baptist Church'),,,FALSE,1
 Beckley Arh Hospital,BECKLEY ARH HOSPITAL,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Beckley Arh Hospital'),,,FALSE,1
 Bedford Acres Christian Church,BEDFORD ACRES CHRISTIAN CHURCH,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Bedford Acres Christian Church'),,,FALSE,1
-Belcan,BELCAN,Commercial Services,Engineering & Staffing Services,541330,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,belcan.com,FALSE,1
-Belflex Staffing Network,BELFLEX STAFFING NETWORK,Commercial Services,Staffing Services,561320,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,belflex.com,FALSE,1
+Belcan,BELCAN,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Belcan'),,,FALSE,1
+Belflex Staffing Network,BELFLEX STAFFING NETWORK,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Belflex Staffing Network'),,,FALSE,1
 Belkin,BELKIN,Commercial Services,Consumer electronics brand,3344,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
 Bell County Fiscal Court,BELL COUNTY FISCAL COURT,Municipal / Local Government,,92,Rule-Based,,High,Matched county/agency keyword; Deterministic keyword/pattern match (evidence: 'Bell County Fiscal Court'),,,FALSE,1
 Bellarmine University,BELLARMINE UNIVERSITY,University / College,,611,Rule-Based,,High,Matched education keyword; Deterministic keyword/pattern match (evidence: 'Bellarmine University'),,,FALSE,1
 Belterra Resort Indiana,BELTERRA RESORT INDIANA,Commercial Services,Hospitality,72,Rule-Based,,High,Matched hospitality keyword; Deterministic keyword/pattern match (evidence: 'Belterra Resort Indiana'),Hospitality,,TRUE,2
-Beltone,BELTONE,Commercial Services,Hearing Aid Retail,446110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,beltone.com,FALSE,1
+Beltone,BELTONE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Beltone'),,,FALSE,1
 Benchmark Physical Therapy,BENCHMARK PHYSICAL THERAPY,Healthcare / Senior Living,Physical therapy,6213,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
-Benison,BENISON,Commercial Services,Event Venue,722320,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,thebenison.com,FALSE,1
-Bernard Laboratories,BERNARD LABORATORIES,Manufacturing,Contract Chemical Manufacturing,325998,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,bernardlab.com,FALSE,1
+Benison,BENISON,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'The Benison'),,,FALSE,1
+Bernard Laboratories,BERNARD LABORATORIES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Bernard Laboratories Inc'),,,FALSE,1
 Bertke Electric,BERTKE ELECTRIC,Utilities,,22,Rule-Based,,High,"Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Bertke Electric Co., Inc.')",,,FALSE,1
 Best Sanitizers,BEST SANITIZERS,Manufacturing,Sanitizer & Soap Manufacturing,325611,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,bestsanitizers.com,FALSE,1
 Bestone Tire and Service of Lima,BESTONE TIRE AND SERVICE OF LIMA,Commercial Services,Auto Repair & Tire Service,811111,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,bestonecommercial.com,FALSE,1
@@ -361,7 +361,7 @@ Central Insualtion Services,CENTRAL INSUALTION SERVICES,Construction,Insulation 
 Century Construction,CENTURY CONSTRUCTION,Construction,,23,Rule-Based,,High,Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Century Construction'),,,FALSE,1
 Century Mold,CENTURY MOLD,Manufacturing,Mold making,3335,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
 Cer Services,CER SERVICES,Commercial Services,Services (unclear),,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,TRUE,2
-Ceredo Manor,CEREDO MANOR,Healthcare / Senior Living,Affordable Senior Housing,623312,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,nationalchurchresidences.org,FALSE,1
+Ceredo Manor,CEREDO MANOR,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Ceredo Manor'),,,FALSE,1
 Cerrowire,CERROWIRE,Manufacturing,Wire/cable manufacturing,3359,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
 Certus Medical,CERTUS MEDICAL,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Certus Medical'),,,TRUE,2
 Ceso,CESO,Commercial Services,Engineering/architecture,5413,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
@@ -377,10 +377,10 @@ Charter Communications,CHARTER COMMUNICATIONS,Commercial Services,Telecom,5173,E
 Chase Bank,CHASE BANK,Financial Services,,52,Rule-Based,,High,Matched financial keyword; Deterministic keyword/pattern match (evidence: 'Chase Bank'),,,FALSE,1
 Chavez Properties,CHAVEZ PROPERTIES,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Chavez Properties'),,,FALSE,1
 Chef Ben Hibachi and Chinese,CHEF BEN HIBACHI AND CHINESE,Commercial Services,Restaurant,7225,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),Hospitality,,FALSE,1
-Cheif Logan State Park,CHEIF LOGAN STATE PARK,Municipal / Local Government,State Park,712190,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,wvstateparks.com,FALSE,1
-Chemie Tek,CHEMIE TEK,Manufacturing,Chemical Synthesis,325199,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,chemietek.com,FALSE,1
+Cheif Logan State Park,CHEIF LOGAN STATE PARK,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Cheif Logan State Park'),,,FALSE,1
+Chemie Tek,CHEMIE TEK,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Chemie Tek'),,,FALSE,1
 Chep Services,CHEP SERVICES,Commercial Services,Pallet pooling/logistics,4931,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
-Cherokee Millwright,CHEROKEE MILLWRIGHT,Construction,Millwright & Industrial Services,238290,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,cherokeemillwright.com,FALSE,1
+Cherokee Millwright,CHEROKEE MILLWRIGHT,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Cherokee Millwright Inc'),,,FALSE,1
 Chevy Chase Plaza,CHEVY CHASE PLAZA,Commercial Services,Business Services,,Heuristic,,Low,Matched weak business-services signal; Weak-signal best guess (evidence: 'Chevy Chase Plaza Llc C/O Equity Management Group'),,,FALSE,1
 Chickfila,CHICKFILA,Commercial Services,Restaurant,7225,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,TRUE,8
 Children,CHILDREN,Commercial Services,Too generic,,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
@@ -390,10 +390,10 @@ Chop House Hendersonville,CHOP HOUSE HENDERSONVILLE,Commercial Services,Restaura
 Chop House Murfreesboro,CHOP HOUSE MURFREESBORO,Commercial Services,Restaurant,7225,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),Hospitality,,FALSE,1
 Christ Emmanuel Christian Fellowship,CHRIST EMMANUEL CHRISTIAN FELLOWSHIP,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Christ Emmanuel Christian Fellowship'),,,FALSE,1
 Christel House Academy,CHRISTEL HOUSE ACADEMY,Private Schools (K–12),,611,Rule-Based,,High,Matched private school keyword; Deterministic keyword/pattern match (evidence: 'Christel House Academy'),,,FALSE,1
-Christel House West,CHRISTEL HOUSE WEST,Public Schools (K–12),Public Charter School,611110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,christelhouse.org,FALSE,1
+Christel House West,CHRISTEL HOUSE WEST,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Christel House West'),,,FALSE,1
 Christian Academy of Lawrenceburg,CHRISTIAN ACADEMY OF LAWRENCEBURG,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Christian Academy Of Lawrenceburg'),,,FALSE,1
 Christian Life Church,CHRISTIAN LIFE CHURCH,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Christian Life Church'),,,FALSE,1
-Christie Cookie,CHRISTIE COOKIE,Manufacturing,Cookie & Bakery Manufacturing,311821,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,christiecookies.com,TRUE,2
+Christie Cookie,CHRISTIE COOKIE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Christie Cookie Co'),,,TRUE,2
 Chuck Davidson,CHUCK DAVIDSON,Commercial Services,Individual/entity unclear,,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
 Church of the City,CHURCH OF THE CITY,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Church Of The City'),,,FALSE,1
 Church of the Nativity of Our Lord,CHURCH OF THE NATIVITY OF OUR LORD,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Church Of The Nativity Of Our Lord'),,,FALSE,1
@@ -402,11 +402,11 @@ Church of the Resurrection,CHURCH OF THE RESURRECTION,Non-Profit / Religious,,81
 Ci Thornburg,CI THORNBURG,Commercial Services,Entity unclear,,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
 Cincinnati 3301 Mp WRK7,CINCINNATI 3301 MP WRK7,Commercial Real Estate,Property/site entity (coded),5311,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
 Cincinnati Belting and Transmission,CINCINNATI BELTING AND TRANSMISSION,Commercial Services,Industrial distribution,4238,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,TRUE,2
-Cincinnati Center for Autism,CINCINNATI CENTER FOR AUTISM,Non-Profit / Religious,Autism Therapy & Support,624120,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,cincinnaticenterforautism.org,FALSE,1
-Cincinnati Childrens Med Center,CINCINNATI CHILDRENS MED CENTER,Healthcare / Senior Living,Pediatric Hospital,622110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,cincinnatichildrens.org,FALSE,1
+Cincinnati Center for Autism,CINCINNATI CENTER FOR AUTISM,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Cincinnati Center For Autism'),,,FALSE,1
+Cincinnati Childrens Med Center,CINCINNATI CHILDRENS MED CENTER,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Cincinnati Childrens Med Center'),,,FALSE,1
 Cincinnati Commercial Contracting,CINCINNATI COMMERCIAL CONTRACTING,Commercial Services,Contractor (also fits construction),2362,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
 Cincinnati Construction Mgt,CINCINNATI CONSTRUCTION MGT,Construction,,23,Rule-Based,,High,Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Cincinnati Construction Mgt.'),,,FALSE,1
-Cincinnati Facial Plastics,CINCINNATI FACIAL PLASTICS,Healthcare / Senior Living,Plastic Surgery Practice,621111,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,cincyfacialplastics.com,FALSE,1
+Cincinnati Facial Plastics,CINCINNATI FACIAL PLASTICS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Cincinnati Facial Plastics'),,,FALSE,1
 Cincinnati Insurance the,CINCINNATI INSURANCE THE,Financial Services,,52,Rule-Based,,High,"Matched financial keyword; Deterministic keyword/pattern match (evidence: 'Cincinnati Insurance Co, The')",,,FALSE,1
 Cincinnati Landmark Productions,CINCINNATI LANDMARK PRODUCTIONS,Commercial Services,Media/production (unclear),5121,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
 Cincinnati Metal Fabricating,CINCINNATI METAL FABRICATING,Manufacturing,Metal fabrication,3323,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
@@ -414,7 +414,7 @@ Cincinnati Milacron,CINCINNATI MILACRON,Manufacturing,Industrial machinery,3332,
 Cincinnati Physicians,CINCINNATI PHYSICIANS,Commercial Services,Medical group (unclear),6211,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
 Cincinnati Radiator,CINCINNATI RADIATOR,Commercial Services,Automotive repair/parts,4413,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
 Cincinnati Sports Mall,CINCINNATI SPORTS MALL,Commercial Services,Sports facility,7139,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),Hospitality,,FALSE,1
-Cincinnati Tennis Lindner Family Tennis Center,CINCINNATI TENNIS LINDNER FAMILY TENNIS CENTER,Commercial Services,Sports Venue,711211,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,cincytennis.com,FALSE,1
+Cincinnati Tennis Lindner Family Tennis Center,CINCINNATI TENNIS LINDNER FAMILY TENNIS CENTER,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Cincinnati Tennis, Llc, Lindner Family Tennis Center')",,,FALSE,1
 Cincinnati Toolbank,CINCINNATI TOOLBANK,Financial Services,,52,Rule-Based,,High,Matched financial keyword; Deterministic keyword/pattern match (evidence: 'Cincinnati Tool Bank'),,,TRUE,2
 Cincinnati Truck Parts,CINCINNATI TRUCK PARTS,Commercial Services,Truck parts distribution,4231,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
 Cincinnati Trucking Parts Do Not Use,CINCINNATI TRUCKING PARTS DO NOT USE,Commercial Services,Deactivated record,,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
@@ -455,8 +455,8 @@ City of Winchester,CITY OF WINCHESTER,Municipal / Local Government,,92,Rule-Base
 City of Winchester City Hall,CITY OF WINCHESTER CITY HALL,Municipal / Local Government,,92,Rule-Based,,High,Matched city/town/state keyword; Deterministic keyword/pattern match (evidence: 'City Of Winchester City Hall'),,,FALSE,1
 Civil and Environmental Consultants,CIVIL AND ENVIRONMENTAL CONSULTANTS,Construction,Engineering consulting,5413,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Mechanical Contractor,,FALSE,1
 Clark County Schools,CLARK COUNTY SCHOOLS,Public Schools (K–12),,611,Rule-Based,,High,Matched public school district keyword; Deterministic keyword/pattern match (evidence: 'Clark County Schools'),,,FALSE,1
-Clarke Americanmirc Express,CLARKE AMERICANMIRC EXPRESS,Unknown / Needs Review,Unidentified,,Unclassified,Final,High,Analyst-approved override (method: Unclassified),,,FALSE,1
-Classic Wood Products,CLASSIC WOOD PRODUCTS,Manufacturing,Millwork Manufacturing,321918,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
+Clarke Americanmirc Express,CLARKE AMERICANMIRC EXPRESS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Clarke American/Mirc Express'),,,FALSE,1
+Classic Wood Products,CLASSIC WOOD PRODUCTS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Classic Wood Products'),,,FALSE,1
 Clayco,CLAYCO,Construction,Design-build / GC,2362,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Mechanical Contractor,,FALSE,1
 Clayton Liberty Township Library,CLAYTON LIBERTY TOWNSHIP LIBRARY,Municipal / Local Government,,92,Rule-Based,,High,Matched county/agency keyword; Deterministic keyword/pattern match (evidence: 'Clayton- Liberty Township Library'),,,FALSE,1
 Clean Slate Services,CLEAN SLATE SERVICES,Commercial Services,Services (unclear),,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
@@ -469,7 +469,7 @@ Cnj Food Dba Dos Bros Bearden,CNJ FOOD DBA DOS BROS BEARDEN,Commercial Services,
 Cofers Chapel Free Will Baptist Church,COFERS CHAPEL FREE WILL BAPTIST CHURCH,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Cofer'S Chapel Free Will Baptist Church'),,,FALSE,1
 Cogo Ministries,COGO MINISTRIES,Non-Profit / Religious,Religious/nonprofit,8131,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
 Coi Brooks Hill Road 232,COI BROOKS HILL ROAD 232,Commercial Real Estate,Property/address entity,5311,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Cold Jet,COLD JET,Manufacturing,Dry Ice Blasting Equipment,333999,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,coldjet.com,FALSE,1
+Cold Jet,COLD JET,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Cold Jet'),,,FALSE,1
 Colerain Township,COLERAIN TOWNSHIP,Municipal / Local Government,,92,Rule-Based,,High,Matched county/agency keyword; Deterministic keyword/pattern match (evidence: 'Colerain Township'),,,FALSE,1
 College of Biblical Studies,COLLEGE OF BIBLICAL STUDIES,University / College,,611,Rule-Based,,High,Matched education keyword; Deterministic keyword/pattern match (evidence: 'College Of Biblical Studies'),,,FALSE,1
 College of MT St Joseph,COLLEGE OF MT ST JOSEPH,University / College,,611,Rule-Based,,High,Matched education keyword; Deterministic keyword/pattern match (evidence: 'College Of Mt. St. Joseph'),,,FALSE,1
@@ -568,143 +568,143 @@ Cutting Crew,CUTTING CREW,Commercial Services,Salon,8121,Heuristic,Final,High,An
 Cw Zumbiel,CW ZUMBIEL,Commercial Services,Printing/packaging,3231,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
 Cyclebar,CYCLEBAR,Commercial Services,Fitness studio,7139,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
 DTWPH2,DTWPH2,Commercial Real Estate,Property entity (coded),5311,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
-Dae IL USA,DAE IL USA,Manufacturing,Automotive Gears Mfg,336350,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,daeilusa.com,FALSE,1
+Dae IL USA,DAE IL USA,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dae Il Usa Inc'),,,FALSE,1
 Daleville Community Schools,DALEVILLE COMMUNITY SCHOOLS,Public Schools (K–12),Public school district,6111,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Daltile,DALTILE,Manufacturing,Tile Manufacturing,327120,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,daltile.com,FALSE,1
+Daltile,DALTILE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Daltile Corporation'),,,FALSE,1
 Dam Holdings,DAM HOLDINGS,Commercial Services,Business Services,,Heuristic,,Low,Matched weak business-services signal; Weak-signal best guess (evidence: 'Dam Holdings Llc'),,,FALSE,1
 Dan Beard Council Bsoa,DAN BEARD COUNCIL BSOA,Non-Profit / Religious,Youth nonprofit,8134,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Dana Danville,DANA DANVILLE,Manufacturing,Automotive Gaskets Mfg,336390,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dana.com,FALSE,1
-Dana Louisville,DANA LOUISVILLE,Manufacturing,Automotive/Transport,3363,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dana.com,FALSE,1
-Danimer Scientific Kentucky,DANIMER SCIENTIFIC KENTUCKY,Manufacturing,Bioplastics Manufacturing,325211,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,danimerscientific.com,FALSE,1
-Danis,DANIS,Construction,Construction Management / GC,236220,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,danis.com,FALSE,1
-Danis Building,DANIS BUILDING,Construction,Construction Management / GC,236220,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,danis.com,FALSE,1
-Data Tech Depot Hamilton,DATA TECH DEPOT HAMILTON,Commercial Services,IT & Printer Repair,811212,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dtdi.com,FALSE,1
-Dave Agricola,DAVE AGRICOLA,Individual / Misc,Individual,,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
-David Agricola,DAVID AGRICOLA,Individual / Misc,Individual,,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
-Davis Distribution Systems,DAVIS DISTRIBUTION SYSTEMS,Commercial Services,Wholesale Distribution,4238,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
+Dana Danville,DANA DANVILLE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dana Danville'),,,FALSE,1
+Dana Louisville,DANA LOUISVILLE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dana Louisville'),,,FALSE,1
+Danimer Scientific Kentucky,DANIMER SCIENTIFIC KENTUCKY,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Danimer Scientific Kentucky'),,,FALSE,1
+Danis,DANIS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Danis'),,,FALSE,1
+Danis Building,DANIS BUILDING,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Danis Building'),,,FALSE,1
+Data Tech Depot Hamilton,DATA TECH DEPOT HAMILTON,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Data Tech Depot - Hamilton'),,,FALSE,1
+Dave Agricola,DAVE AGRICOLA,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dave Agricola'),,,FALSE,1
+David Agricola,DAVID AGRICOLA,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'David Agricola'),,,FALSE,1
+Davis Distribution Systems,DAVIS DISTRIBUTION SYSTEMS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Davis Distribution Systems'),,,FALSE,1
 Davis Memorial Hospital,DAVIS MEMORIAL HOSPITAL,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Davis Memorial Hospital'),,,FALSE,1
 Davis Memorial Presbyterian Church,DAVIS MEMORIAL PRESBYTERIAN CHURCH,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Davis Memorial Presbyterian Church'),,,FALSE,1
 Davita Health Care West Virginia,DAVITA HEALTH CARE WEST VIRGINIA,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Davita Health Care West Virginia'),,,FALSE,1
-Dayton Art Institute,DAYTON ART INSTITUTE,Non-Profit / Religious,Art Museum,712110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,daytonartinstitute.org,FALSE,1
+Dayton Art Institute,DAYTON ART INSTITUTE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dayton Art Institute'),,,FALSE,1
 Dayton Board of Education,DAYTON BOARD OF EDUCATION,Public Schools (K–12),,611,Rule-Based,,High,Matched public school district keyword; Deterministic keyword/pattern match (evidence: 'Dayton Board Of Education'),,,FALSE,1
-Dayton Masonic Center,DAYTON MASONIC CENTER,Commercial Services,Event Venue,722320,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,daytonmasoniccenter.org,FALSE,1
+Dayton Masonic Center,DAYTON MASONIC CENTER,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dayton Masonic Center'),,,FALSE,1
 Dayton Public Schools,DAYTON PUBLIC SCHOOLS,Public Schools (K–12),,611,Rule-Based,,High,Matched public school district keyword; Deterministic keyword/pattern match (evidence: 'Dayton Public Schools'),,,TRUE,2
-Dcm Products,DCM PRODUCTS,Unknown / Needs Review,Unidentified,,Unclassified,Final,High,Analyst-approved override (method: Unclassified),,,FALSE,1
+Dcm Products,DCM PRODUCTS,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Dcm Products, Inc.')",,,FALSE,1
 Dcp Holding,DCP HOLDING,Commercial Services,Business Services,,Heuristic,,Low,Matched weak business-services signal; Weak-signal best guess (evidence: 'Dcp Holding Company'),,,FALSE,1
 Dct Property Management,DCT PROPERTY MANAGEMENT,Commercial Real Estate,,531,Rule-Based,,High,"Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Dct Property Management, Llc')",,,FALSE,1
 Ddc Dowell Springs,DDC DOWELL SPRINGS,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Ddc Dowell Springs Llc C/O Realty Trust Group Llc'),,,FALSE,1
-Deaconess Memorial,DEACONESS MEMORIAL,Healthcare / Senior Living,Hospital,622110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,deaconess.com,TRUE,2
+Deaconess Memorial,DEACONESS MEMORIAL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Deaconess Memorial'),,,TRUE,2
 Dearringer Buildings,DEARRINGER BUILDINGS,Commercial Real Estate,Property/building entity,5311,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Debrakuempel,DEBRAKUEMPEL,Construction,Mechanical Contractor,238220,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,debra-kuempel.com,FALSE,1
-Deceuninck North America,DECEUNINCK NORTH AMERICA,Manufacturing,PVC Window/Door Systems,326199,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,deceuninckna.com,FALSE,1
+Debrakuempel,DEBRAKUEMPEL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Debra-Kuempel'),,,FALSE,1
+Deceuninck North America,DECEUNINCK NORTH AMERICA,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Deceuninck North America'),,,FALSE,1
 Decoach Recovery Centre,DECOACH RECOVERY CENTRE,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Decoach Recovery Centre'),,,FALSE,1
 Deerfield Township,DEERFIELD TOWNSHIP,Municipal / Local Government,,92,Rule-Based,,High,Matched county/agency keyword; Deterministic keyword/pattern match (evidence: 'Deerfield Township'),,,TRUE,2
-Delta Hotels Ashland Downtown,DELTA HOTELS ASHLAND DOWNTOWN,Commercial Services,Hotel,721110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,marriott.com,FALSE,1
+Delta Hotels Ashland Downtown,DELTA HOTELS ASHLAND DOWNTOWN,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Delta Hotels Ashland Downtown'),,,FALSE,1
 Delta Natural Gas,DELTA NATURAL GAS,Utilities,,22,Rule-Based,,High,Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Delta Natural Gas'),,,FALSE,1
-Deluxe Nails Billing,DELUXE NAILS BILLING,Commercial Services,Nail Salon,812113,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
-Deming Enterprise,DEMING ENTERPRISE,Construction,General Contractor,236220,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,demingenterprises.net,FALSE,1
-Denhamblythe,DENHAMBLYTHE,Construction,Design-Build Construction,236220,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,denhamblythe.com,FALSE,1
+Deluxe Nails Billing,DELUXE NAILS BILLING,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Deluxe Nails Billing'),,,FALSE,1
+Deming Enterprise,DEMING ENTERPRISE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Deming Enterprise Inc'),,,FALSE,1
+Denhamblythe,DENHAMBLYTHE,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Denham-Blythe Company, Inc.')",,,FALSE,1
 Denier Electric,DENIER ELECTRIC,Utilities,,22,Rule-Based,,High,"Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Denier Electric Co., Inc.')",,,FALSE,1
 Denision University,DENISION UNIVERSITY,University / College,,611,Rule-Based,,High,Matched education keyword; Deterministic keyword/pattern match (evidence: 'Denision University'),,,FALSE,1
-Dennis Group,DENNIS GROUP,Construction,Food Facility Design-Build,541330,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dennisgroup.com,FALSE,1
+Dennis Group,DENNIS GROUP,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'The Dennis Group, Llc')",,,FALSE,1
 Denso Manufacturing,DENSO MANUFACTURING,Manufacturing,,31-33,Rule-Based,,High,Matched manufacturing keyword; Deterministic keyword/pattern match (evidence: 'Denso Manufacturing'),,,FALSE,1
 Dent Crossing,DENT CROSSING,Commercial Real Estate,Retail property/site,5311,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
 Dental Care Plus,DENTAL CARE PLUS,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Dental Care Plus'),,,FALSE,1
 Dental Partners South Knoxville,DENTAL PARTNERS SOUTH KNOXVILLE,Commercial Services,Food distribution,424490,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
 Department of Public Works,DEPARTMENT OF PUBLIC WORKS,Municipal / Local Government,Municipal public works,9211,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
 Department of Veterans Services,DEPARTMENT OF VETERANS SERVICES,Municipal / Local Government,Government veterans services,9231,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Dependable Supply Chain Services,DEPENDABLE SUPPLY CHAIN SERVICES,Commercial Services,Logistics & Warehousing,488510,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,gowithdependable.com,FALSE,1
+Dependable Supply Chain Services,DEPENDABLE SUPPLY CHAIN SERVICES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dependable Supply Chain Services'),,,FALSE,1
 Der Development,DER DEVELOPMENT,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'D.E.R. Development'),,,TRUE,2
 Dermatology Assoc of KY,DERMATOLOGY ASSOC OF KY,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Dermatology Assoc Of Ky C/O Haymaker Property Management'),,,FALSE,1
 Dermatology Assoc of KY Psc,DERMATOLOGY ASSOC OF KY PSC,Healthcare / Senior Living,Dermatology practice,6211,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
 Design Build Solutions,DESIGN BUILD SOLUTIONS,Construction,,23,Rule-Based,,High,Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Design Build Solutions'),,,FALSE,1
-Det Beverages,DET BEVERAGES,Unknown / Needs Review,Unidentified,,Unclassified,Final,High,Analyst-approved override (method: Unclassified),,,FALSE,1
+Det Beverages,DET BEVERAGES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Det Beverages Llc'),,,FALSE,1
 Devitt and Associates,DEVITT AND ASSOCIATES,Commercial Services,Business Services,,Heuristic,,Low,Matched weak business-services signal; Weak-signal best guess (evidence: 'Devitt & Associates'),,,FALSE,1
-Dex Imaging,DEX IMAGING,Commercial Services,Office Equipment & Services,423420,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,deximaging.com,FALSE,1
-Dhl,DHL,Commercial Services,Logistics & Express Delivery,492110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dhl.com,TRUE,8
+Dex Imaging,DEX IMAGING,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dex Imaging'),,,FALSE,1
+Dhl,DHL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dhl'),,,TRUE,8
 Diamond Electric Manufacturing,DIAMOND ELECTRIC MANUFACTURING,Utilities,,22,Rule-Based,,High,Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Diamond Electric Manufacturing'),,,FALSE,1
 Dickeys Barbecue Pit,DICKEYS BARBECUE PIT,Commercial Services,Restaurant,7225,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
-Digital Futures Office 2,DIGITAL FUTURES OFFICE 2,Commercial Real Estate,Office Building,531120,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,digitalfuturescomplex.com,FALSE,1
+Digital Futures Office 2,DIGITAL FUTURES OFFICE 2,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Digital Futures Office 2 Llc'),,,FALSE,1
 Diocese of Covington,DIOCESE OF COVINGTON,Non-Profit / Religious,,81,Rule-Based,,High,Matched religious/non-profit keyword; Deterministic keyword/pattern match (evidence: 'Diocese Of Covington'),,,FALSE,1
 Diocese of Knoxville,DIOCESE OF KNOXVILLE,Commercial Services,Food distribution,424490,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Director of Choice Grants Tennesse Department of Education,DIRECTOR OF CHOICE GRANTS TENNESSE DEPARTMENT OF EDUCATION,Municipal / Local Government,State Education Dept,923110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,tn.gov,FALSE,1
+Director of Choice Grants Tennesse Department of Education,DIRECTOR OF CHOICE GRANTS TENNESSE DEPARTMENT OF EDUCATION,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Director Of Choice Grants Tennesse Department Of Education'),,,FALSE,1
 Disabled American Veterans,DISABLED AMERICAN VETERANS,Non-Profit / Religious,Veterans nonprofit,8133,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
-Distribution International,DISTRIBUTION INTERNATIONAL,Commercial Services,Insulation Distribution,423330,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,distributioninternational.com,FALSE,1
+Distribution International,DISTRIBUTION INTERNATIONAL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Distribution International'),,,FALSE,1
 Diversified Construction Group,DIVERSIFIED CONSTRUCTION GROUP,Construction,,23,Rule-Based,,High,Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Diversified Construction Group'),,,FALSE,1
-Diversified Gas and Oil,DIVERSIFIED GAS AND OIL,Energy Services,Oil & Gas Production,2111,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,div.energy,FALSE,1
+Diversified Gas and Oil,DIVERSIFIED GAS AND OIL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Diversified Gas & Oil'),,,FALSE,1
 Diversified Management Plus,DIVERSIFIED MANAGEMENT PLUS,Commercial Services,Business Services,,Heuristic,,Low,Matched weak business-services signal; Weak-signal best guess (evidence: 'Diversified Management Plus'),,,FALSE,1
-Dixon Bayco,DIXON BAYCO,Manufacturing,Valves & Fittings Mfg,332919,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dixonvalve.com,FALSE,1
+Dixon Bayco,DIXON BAYCO,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dixon Bayco'),,,FALSE,1
 Dmac Stationary Developments,DMAC STATIONARY DEVELOPMENTS,Commercial Real Estate,Development entity,5311,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Dnu IN Motion Orthopaedics,DNU IN MOTION ORTHOPAEDICS,Healthcare / Senior Living,Orthopedic Practice,621111,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,motionorthodocs.com,FALSE,1
-Dnu Lifetime Products,DNU LIFETIME PRODUCTS,Manufacturing,Consumer Goods Manufacturing,339999,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,lifetime.com,FALSE,1
-Do It Right Excavating,DO IT RIGHT EXCAVATING,Construction,Excavation Contractor,238910,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
-Do Not Use,DO NOT USE,Individual / Misc,Invalid Record,,Manual Override,Final,High,Analyst-approved override (method: Manual Override),,,FALSE,1
+Dnu IN Motion Orthopaedics,DNU IN MOTION ORTHOPAEDICS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dnu In Motion Orthopaedics'),,,FALSE,1
+Dnu Lifetime Products,DNU LIFETIME PRODUCTS,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Dnu - Lifetime Products, Inc.')",,,FALSE,1
+Do It Right Excavating,DO IT RIGHT EXCAVATING,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Do It Right Excavating, Llc')",,,FALSE,1
+Do Not Use,DO NOT USE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Do Not Use'),,,FALSE,1
 Do Not Use 45NINETY Construction,DO NOT USE 45NINETY CONSTRUCTION,Construction,,23,Rule-Based,,High,Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Do Not Use 45Ninety Construction Inc'),,,FALSE,1
 Do Not Use Knoxville Properties PARTNERSHIP2CS,DO NOT USE KNOXVILLE PROPERTIES PARTNERSHIP2CS,Commercial Services,Food distribution,424490,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Dole Fresh Vegetables,DOLE FRESH VEGETABLES,Manufacturing,Food Processing,311422,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dole.com,FALSE,1
+Dole Fresh Vegetables,DOLE FRESH VEGETABLES,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Dole Fresh Vegetables, Inc.')",,,FALSE,1
 Dollar General,DOLLAR GENERAL,Commercial Services,Discount retail,4523,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
 Dollywood,DOLLYWOOD,Commercial Services,Theme park,7131,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
 Dollywoods Dream More Resort,DOLLYWOODS DREAM MORE RESORT,Commercial Services,Hospitality,72,Rule-Based,,High,Matched hospitality keyword; Deterministic keyword/pattern match (evidence: 'Dollywoods Dream More Resort'),Hospitality,,FALSE,1
-Domestic Uniform Rental,DOMESTIC UNIFORM RENTAL,Commercial Services,Uniform Rental,812332,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,domesticuniform.com,FALSE,1
-Dominican Fathers Province of St Joseph,DOMINICAN FATHERS PROVINCE OF ST JOSEPH,Non-Profit / Religious,Religious Organization,813110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,opeast.org,FALSE,1
+Domestic Uniform Rental,DOMESTIC UNIFORM RENTAL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Domestic Uniform Rental'),,,FALSE,1
+Dominican Fathers Province of St Joseph,DOMINICAN FATHERS PROVINCE OF ST JOSEPH,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dominican Fathers Province Of St Joseph'),,,FALSE,1
 Dominium,DOMINIUM,Commercial Real Estate,Multifamily developer/property,5311,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),,,FALSE,1
-Donaldson,DONALDSON,Manufacturing,Filtration Systems Mfg,333999,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,donaldson.com,FALSE,1
-Dorman Products,DORMAN PRODUCTS,Manufacturing,Automotive Parts Mfg,336390,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dormanproducts.com,FALSE,1
-Doug Newberry,DOUG NEWBERRY,Individual / Misc,Individual,,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
-Downtime Rebuild,DOWNTIME REBUILD,Unknown / Needs Review,Unidentified,,Unclassified,Final,High,Analyst-approved override (method: Unclassified),,,FALSE,1
+Donaldson,DONALDSON,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Donaldson Company, Inc.')",,,FALSE,1
+Dorman Products,DORMAN PRODUCTS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dorman Products'),,,FALSE,1
+Doug Newberry,DOUG NEWBERRY,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Doug Newberry'),,,FALSE,1
+Downtime Rebuild,DOWNTIME REBUILD,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Downtime Rebuild'),,,FALSE,1
 Downtown Property Solutions,DOWNTOWN PROPERTY SOLUTIONS,Commercial Real Estate,Property Ownership,531,Heuristic,,Low,Matched weak property-ownership signal; Weak-signal best guess (evidence: 'Downtown Property Solutions Llc'),,,FALSE,1
 Downtown West Village II Owners Association,DOWNTOWN WEST VILLAGE II OWNERS ASSOCIATION,Commercial Real Estate,HOA/owners association,8139,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Dpsg,DPSG,Manufacturing,Beverage Manufacturing,312111,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,keurigdrpepper.com,FALSE,1
-Dr Eli Karam Phd,DR ELI KARAM PHD,Healthcare / Senior Living,Therapy Practice,621330,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,elikaram.com,FALSE,1
-Dr Monica Newby,DR MONICA NEWBY,Healthcare / Senior Living,Orthodontist,621210,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,newbyorthodontics.com,FALSE,1
-Dr Newby,DR NEWBY,Healthcare / Senior Living,Orthodontist,621210,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,newbyorthodontics.com,FALSE,1
-Dream Logistics,DREAM LOGISTICS,Commercial Services,Logistics,488510,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
+Dpsg,DPSG,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dpsg'),,,FALSE,1
+Dr Eli Karam Phd,DR ELI KARAM PHD,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dr Eli Karam  Phd'),,,FALSE,1
+Dr Monica Newby,DR MONICA NEWBY,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dr. Monica Newby'),,,FALSE,1
+Dr Newby,DR NEWBY,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dr Newby'),,,FALSE,1
+Dream Logistics,DREAM LOGISTICS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dream Logistics'),,,FALSE,1
 Drk Construction Services,DRK CONSTRUCTION SERVICES,Construction,,23,Rule-Based,,High,Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Drk Construction Services'),,,FALSE,1
 Dry Creek Waste Water Treatment,DRY CREEK WASTE WATER TREATMENT,Utilities,,22,Rule-Based,,High,Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Dry Creek Waste Water Treatment'),,,FALSE,1
 Dsh and Associates,DSH AND ASSOCIATES,Commercial Services,Business Services,,Heuristic,,Low,Matched weak business-services signal; Weak-signal best guess (evidence: 'Dsh & Associates Llc'),,,FALSE,1
 Dtwp,DTWP,Commercial Real Estate,Property entity (coded),5311,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
 Duck Donuts Knoxville,DUCK DONUTS KNOXVILLE,Commercial Services,Restaurant/food service,7225,Entity Inference,Final,High,Analyst-approved override (method: Entity Inference),Hospitality,,FALSE,1
-Dugan and Meyers,DUGAN AND MEYERS,Construction,Construction Contractor,236220,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dugan-meyers.com,FALSE,1
+Dugan and Meyers,DUGAN AND MEYERS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dugan & Meyers'),,,FALSE,1
 Duke Construction LP,DUKE CONSTRUCTION LP,Construction,,23,Rule-Based,,High,Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Duke Construction L.P.'),,,FALSE,1
 Duke Realty,DUKE REALTY,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Duke Realty'),,,FALSE,1
-Dunnhumby,DUNNHUMBY,Commercial Services,Data Science & Marketing,541910,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,dunnhumby.com,FALSE,1
-Duro Dyne,DURO DYNE,Manufacturing,HVAC Accessories Mfg,332322,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,durodyne.com,FALSE,1
-E Beam,E BEAM,Manufacturing,Electron Beam Processing,332811,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
+Dunnhumby,DUNNHUMBY,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Dunnhumby'),,,FALSE,1
+Duro Dyne,DURO DYNE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Duro Dyne Corp'),,,FALSE,1
+E Beam,E BEAM,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'E Beam'),,,FALSE,1
 E and E Manufacturing of TN,E AND E MANUFACTURING OF TN,Manufacturing,,31-33,Rule-Based,,High,Matched manufacturing keyword; Deterministic keyword/pattern match (evidence: 'E&E Manufacturing Of Tn Llc'),,,FALSE,1
 Eagle Bend Manufacturing,EAGLE BEND MANUFACTURING,Manufacturing,,31-33,Rule-Based,,High,Matched manufacturing keyword; Deterministic keyword/pattern match (evidence: 'Eagle Bend Manufacturing'),,,FALSE,1
-Eagle Composites,EAGLE COMPOSITES,Manufacturing,Aerospace Composites Mfg,336413,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
+Eagle Composites,EAGLE COMPOSITES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Eagle Composites'),,,FALSE,1
 Eagle Dayton Properties,EAGLE DAYTON PROPERTIES,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Eagle Dayton Properties Llc'),,,FALSE,1
 Eagle Realty Group,EAGLE REALTY GROUP,Commercial Real Estate,,531,Rule-Based,,High,Matched real estate keyword; Deterministic keyword/pattern match (evidence: 'Eagle Realty Group'),,,TRUE,2
 East Tennessee Public Television,EAST TENNESSEE PUBLIC TELEVISION,Municipal / Local Government,Public broadcasting,5151,Heuristic,Final,High,Analyst-approved override (method: Heuristic),,,FALSE,1
-Eastway Supplies,EASTWAY SUPPLIES,Commercial Services,Plumbing Distribution,423720,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,eastwaysupplies.com,FALSE,1
-Ebay Enterprise,EBAY ENTERPRISE,Commercial Services,E-commerce Services,541511,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,,FALSE,1
-Eby Brown,EBY BROWN,Commercial Services,Wholesale Convenience Dist.,424410,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,eby-brown.com,TRUE,2
-Ec Shaw,EC SHAW,Commercial Services,Prepress & Platemaking,323120,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,ecshaw.com,FALSE,1
+Eastway Supplies,EASTWAY SUPPLIES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Eastway Supplies Inc'),,,FALSE,1
+Ebay Enterprise,EBAY ENTERPRISE,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Ebay Enterprise, Inc')",,,FALSE,1
+Eby Brown,EBY BROWN,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Eby Brown'),,,TRUE,2
+Ec Shaw,EC SHAW,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'E.C. Shaw'),,,FALSE,1
 Echo Electric,ECHO ELECTRIC,Utilities,,22,Rule-Based,,High,Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Echo Electric'),,,FALSE,1
 Echo Power,ECHO POWER,Utilities,,22,Rule-Based,,High,Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Echo Power Llc'),,,FALSE,1
-Ecl Corbin Dba the Mint Gaming Hall,ECL CORBIN DBA THE MINT GAMING HALL,Commercial Services,Casino & Gaming,713210,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,themintgaming.com,FALSE,1
-Eco Tec Engineering,ECO TEC ENGINEERING,Unknown / Needs Review,Unidentified,,Unclassified,Final,High,Analyst-approved override (method: Unclassified),,,FALSE,1
+Ecl Corbin Dba the Mint Gaming Hall,ECL CORBIN DBA THE MINT GAMING HALL,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Ecl Corbin Llc Dba The Mint Gaming Hall'),,,FALSE,1
+Eco Tec Engineering,ECO TEC ENGINEERING,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Eco Tec Engineering'),,,FALSE,1
 Ecs Central PLLC Knoxville,ECS CENTRAL PLLC KNOXVILLE,Commercial Services,Food distribution,424490,Rule-Based,Final,High,Analyst-approved override (method: Rule-Based),,,FALSE,1
-Ed Bullard,ED BULLARD,Manufacturing,Safety Equipment Mfg,339113,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,bullard.com,FALSE,1
-Edfinancial Services Billing,EDFINANCIAL SERVICES BILLING,Financial Services,Student Loan Servicing,522390,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,edfinancial.com,FALSE,1
+Ed Bullard,ED BULLARD,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'E.D. Bullard Co.'),,,FALSE,1
+Edfinancial Services Billing,EDFINANCIAL SERVICES BILLING,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Edfinancial Services - Billing'),,,FALSE,1
 Edison State Community College,EDISON STATE COMMUNITY COLLEGE,University / College,,611,Rule-Based,,High,Matched education keyword; Deterministic keyword/pattern match (evidence: 'Edison State Community College'),,,FALSE,1
-Egc,EGC,Manufacturing,Industrial Seals/Heaters,339991,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,egcgraphite.com,FALSE,1
-Ei Ceramics,EI CERAMICS,Manufacturing,Ceramic Manufacturing,327110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,eiceramics.com,FALSE,1
+Egc,EGC,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'E.G.C. Corporation'),,,FALSE,1
+Ei Ceramics,EI CERAMICS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Ei Ceramics Llc'),,,FALSE,1
 El Tequlia Bar and Grill,EL TEQULIA BAR AND GRILL,Commercial Services,Hospitality,72,Rule-Based,,High,Matched hospitality keyword; Deterministic keyword/pattern match (evidence: 'El Tequlia Bar & Grill'),Hospitality,,FALSE,1
 Electric Power Research Institute,ELECTRIC POWER RESEARCH INSTITUTE,Utilities,,22,Rule-Based,,High,Matched utility keyword; Deterministic keyword/pattern match (evidence: 'Electric Power Research Institute'),,,FALSE,1
-Element Materials Technology,ELEMENT MATERIALS TECHNOLOGY,Commercial Services,Materials Testing Labs,541380,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,element.com,FALSE,1
-Elitaire,ELITAIRE,Commercial Services,HVAC Equipment Rep,423730,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,elitaire.com,FALSE,1
-Ellison Technologies,ELLISON TECHNOLOGIES,Commercial Services,Machine Tool Distributor,423830,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,ellisontechnologies.com,FALSE,1
-Elmington Capital Group,ELMINGTON CAPITAL GROUP,Commercial Real Estate,Real Estate Investment,531110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,elmington.com,FALSE,1
-Embassy Suites Charleston,EMBASSY SUITES CHARLESTON,Commercial Services,Hotel,721110,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,hilton.com,FALSE,1
-Embraer Aircraft Maintenance,EMBRAER AIRCRAFT MAINTENANCE,Commercial Services,Aircraft MRO,488190,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,embraer.com,FALSE,1
-Emcor Facility Services,EMCOR FACILITY SERVICES,Commercial Services,Facility Management,561210,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,emcorfacilities.com,FALSE,1
-Emergency Radio Services,EMERGENCY RADIO SERVICES,Commercial Services,Comm Systems,517312,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,erswireless.com,FALSE,1
-Emerson Hermetic Motor,EMERSON HERMETIC MOTOR,Manufacturing,Electric Motor Mfg,335312,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,emerson.com,FALSE,1
+Element Materials Technology,ELEMENT MATERIALS TECHNOLOGY,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Element Materials Technology'),,,FALSE,1
+Elitaire,ELITAIRE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Elitaire'),,,FALSE,1
+Ellison Technologies,ELLISON TECHNOLOGIES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Ellison Technologies'),,,FALSE,1
+Elmington Capital Group,ELMINGTON CAPITAL GROUP,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Elmington Capital Group'),,,FALSE,1
+Embassy Suites Charleston,EMBASSY SUITES CHARLESTON,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Embassy Suites Charleston'),,,FALSE,1
+Embraer Aircraft Maintenance,EMBRAER AIRCRAFT MAINTENANCE,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Embraer Aircraft Maintenance'),,,FALSE,1
+Emcor Facility Services,EMCOR FACILITY SERVICES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Emcor Facility Services'),,,FALSE,1
+Emergency Radio Services,EMERGENCY RADIO SERVICES,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Emergency Radio Services'),,,FALSE,1
+Emerson Hermetic Motor,EMERSON HERMETIC MOTOR,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Emerson Hermetic Motor'),,,FALSE,1
 Emily Lichtenberg Construction,EMILY LICHTENBERG CONSTRUCTION,Construction,,23,Rule-Based,,High,"Matched construction keyword; Deterministic keyword/pattern match (evidence: 'Emily Lichtenberg Construction, Inc.')",,,TRUE,2
-Emj,EMJ,Manufacturing,Metals Service Center,423510,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,emjmetals.com,FALSE,1
-Employers Resource Association,EMPLOYERS RESOURCE ASSOCIATION,Non-Profit / Religious,HR Association,813910,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,hrxperts.org,FALSE,1
-Enable Injections,ENABLE INJECTIONS,Manufacturing,Medical Device Mfg,339112,AI Analyst Research,Final,High,Analyst-approved override (method: AI Analyst Research),,enableinjections.com,FALSE,1
+Emj,EMJ,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Emj Corporation'),,,FALSE,1
+Employers Resource Association,EMPLOYERS RESOURCE ASSOCIATION,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Employers Resource Association'),,,FALSE,1
+Enable Injections,ENABLE INJECTIONS,Unknown / Needs Review,,,Unclassified,,Low,Insufficient information (evidence: 'Enable Injections'),,,FALSE,1
 Enable Medical,ENABLE MEDICAL,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Enable Medical'),,,FALSE,1
 Encompass Health,ENCOMPASS HEALTH,Healthcare / Senior Living,,62,Rule-Based,,High,Matched healthcare keyword; Deterministic keyword/pattern match (evidence: 'Encompass Health Corporation'),,,FALSE,1
 Endress and Hauser,ENDRESS AND HAUSER,Unknown / Needs Review,,,Unclassified,,Low,"Insufficient information (evidence: 'Endress & Hauser, Inc.')",,,TRUE,2

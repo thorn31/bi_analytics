@@ -127,7 +127,7 @@ Fields:
 | US HAZMAT RENTALS | Equipment rental | 532490 | Rule-Based | |
 | WAREHOUSE OPTIMIZERS | Warehouse consulting | 541614 | Rule-Based | |
 | XTRALEASE | Equipment leasing | 532120 | Rule-Based | |
-| WSAZ / WVLT TV CHANNEL 8 | Television broadcasting | 515120 | Rule-Based | |
+| WVLT TV CHANNEL 8 | Television broadcasting | 515120 | Rule-Based | |
 
 ---
 

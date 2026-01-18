@@ -54,7 +54,7 @@ Scope note: You pasted a very large “last batch,” but in this chat turn I on
 | DMAC STATIONARY DEVELOPMENTS | Development entity | 5311 | Rule-Based | Yes |
 | DOMINIUM | Multifamily developer/property | 5311 | Entity Inference | No |
 | DOWNTOWN WEST VILLAGE II OWNERS ASSOCIATION | HOA/owners association | 8139 | Rule-Based | No |
-| DTWPH2 | Property entity (coded) | 5311 | Heuristic | Yes |
+| DTWPH2 / DTWP | Property entity (coded) | 5311 | Heuristic | Yes |
 | EXCHANGE RIGHT NET LEASED PORTFOLIO 29 DST | Net lease DST portfolio | 5311 | Rule-Based | No |
 | EXETER 1415 COLLINS LP | Property LP | 5311 | Rule-Based | No |
 | EXETER 55015599 WEST 74TH ST IN | Property entity | 5311 | Rule-Based | No |
@@ -129,7 +129,7 @@ Scope note: You pasted a very large “last batch,” but in this chat turn I on
 | ALI INDUSTRIES | Manufacturing (unclear) | — | AI-Assisted Search | Yes |
 | ALPLA | Packaging (plastics) manufacturing | 3261 | Entity Inference | No |
 | ALSTOM | Rail/industrial manufacturing | 3365 | Entity Inference | No |
-| AMCOR RIGID PLASTICS | Packaging (plastics) manufacturing | 3261 | Entity Inference | No |
+| AMCOR RIGID PLASTICS USA / AMCOR RIGIDS | Packaging (plastics) manufacturing | 3261 | Entity Inference | No |
 | AMMEGA US DBA MIDWEST INDUSTRIAL RUBBER | Industrial rubber products | 3262 | Entity Inference | No |
 | ANALYSIS AND MEASUREMENT SERVICES | Manufacturing/engineering services | — | AI-Assisted Search | Yes |
 | ANCRA CARGO | Cargo securing equipment | 3339 | Heuristic | Yes |
@@ -384,6 +384,7 @@ Scope note: You pasted a very large “last batch,” but in this chat turn I on
 | COMPUTER PLUS REPAIR | IT repair | 8112 | Rule-Based | No |
 | CONNORS STEAK AND SEAFOOD | Restaurant | 7225 | Rule-Based | No |
 | CONVIRON | Environmental equipment | 3334 | Heuristic | Yes |
+| CORE GROUP / CORE RESOURCES / CORE OF SCOTTSVILLE | Too ambiguous (multiple “CORE”) | — | AI-Assisted Search | Yes |
 | CORNERSTONE COMPANIES / CORNERSTONE SERVICES | Services/property/contracting (unclear) | — | AI-Assisted Search | Yes |
 | CORSICANA | Manufacturing/real estate (unclear) | — | AI-Assisted Search | Yes |
 | COTTINGHAM RETIREMENT COMMUNITY | Senior living | 6233 | Heuristic | Yes |
@@ -429,9 +430,7 @@ These are too ambiguous to lock without lookup (entity type, location, or indust
 - CATALYST PDG
 - CBT
 - CER SERVICES
-- CHARLIE POND 
-- CHUCK DAVIDSON 
-- CI THORNBURG
+- CHARLIE POND / CHUCK DAVIDSON / CI THORNBURG
 - CHILDREN
 - CINCINNATI LANDMARK PRODUCTIONS
 - CINCINNATI PHYSICIANS
@@ -440,18 +439,14 @@ These are too ambiguous to lock without lookup (entity type, location, or indust
 - CLEAN SLATE SERVICES
 - COMMUNITY CORRECTIONAL CENTER
 - CONVIRON
-- CORE GROUP 
-- CORE RESOURCES 
-- CORE OF SCOTTSVILLE
-- CORNERSTONE COMPANIES
-- CORNERSTONE SERVICES
+- CORE GROUP / CORE RESOURCES / CORE OF SCOTTSVILLE
+- CORNERSTONE COMPANIES / CORNERSTONE SERVICES
 - CORSICANA
 - COTTINGHAM RETIREMENT COMMUNITY
 - CPS
 - CREATIVE STRUCTURES
 - CREATIVE LIQUID COATINGS
 - CROSSROADS
-- DTWP
 
 ---
 
