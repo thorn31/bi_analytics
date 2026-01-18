@@ -40,6 +40,8 @@ python3 segment_customers.py
 
 ## Batch Workflow (Recommended)
 
+For a detailed guide on the interactive research and classification loop, see [docs/RESEARCH_WORKFLOW.md](docs/RESEARCH_WORKFLOW.md).
+
 1) Put analyst batch decisions in `input/BatchN.md`
 2) Import into the governance CSV:
 ```bash

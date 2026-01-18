@@ -1,4 +1,4 @@
-Customer Key,Customer Number,Original Name,Master Customer Name,Master Customer Name Canonical,Segment Source Name,IsMerge,MergeGroupSize,Source,Last Billing Date (Any Stream)
+﻿Customer Key,Customer Number,Original Name,Master Customer Name,Master Customer Name Canonical,Segment Source Name,IsMerge,MergeGroupSize,Source,Last Billing Date (Any Stream)
 CN992368SERV_GP,CN992368,10% Cabinetry,10% Cabinetry,10% CABINETRY,10% Cabinetry,FALSE,1,SERV_GP,2025-11-01 00:00:00
 TN992067SERV_GP,TN992067,"109 Independence Lane, Llc",109 Independence Lane,109 INDEPENDENCE LANE,"109 Independence Lane, Llc",FALSE,1,SERV_GP,2024-04-09 00:00:00
 16POINTSOLUTIONMECH_GP,16POINTSOLUTION,16 Point Solution,16 Point Solution,16 POINT SOLUTION,16 Point Solution,FALSE,1,MECH_GP,2019-11-01 00:00:00
@@ -963,8 +963,8 @@ CN991830SERV_GP,CN991830,Four Star Mechanical,Four Star Mechanical,FOUR STAR MEC
 LX990425SERV_GP,LX990425,Fox 56 News (Wdky),Fox 56 News Wdky,FOX 56 NEWS WDKY,Fox 56 News (Wdky),FALSE,1,SERV_GP,2023-01-11 00:00:00
 FOXXMECH_GP,FOXX,Foxx Construction,Foxx Construction,FOXX CONSTRUCTION,Foxx Construction,FALSE,1,MECH_GP,2021-03-01 00:00:00
 IN990242SERV_GP,IN990242,Franciscan St. Francis Health - Carmel,Franciscan St Francis Health Carmel,FRANCISCAN ST FRANCIS HEALTH CARMEL,Franciscan St. Francis Health - Carmel,FALSE,1,SERV_GP,2021-10-01 00:00:00
-CN991985SERV_GP,CN991985,Franklin Brazing,Franklin Brazing,FRANKLIN BRAZING,Franklin Brazing,FALSE,1,SERV_GP,2025-11-05 00:00:00
-FRANKLIN BRAZINMECH_GP,FRANKLIN BRAZIN,Franklin Brazing & Metal Treatment,Franklin Brazing and Metal Treatment,FRANKLIN BRAZING AND METAL TREATMENT,Franklin Brazing & Metal Treatment,FALSE,1,MECH_GP,2020-12-01 00:00:00
+CN991985SERV_GP,CN991985,Franklin Brazing,Franklin Brazing and Metal Treatment,FRANKLIN BRAZING AND METAL TREATMENT,Franklin Brazing,TRUE,2,SERV_GP,2025-11-05 00:00:00
+FRANKLIN BRAZINMECH_GP,FRANKLIN BRAZIN,Franklin Brazing & Metal Treatment,Franklin Brazing and Metal Treatment,FRANKLIN BRAZING AND METAL TREATMENT,Franklin Brazing & Metal Treatment,TRUE,2,MECH_GP,2020-12-01 00:00:00
 NV00090SERV_GP,NV00090,Freed-Hardeman University,Freedhardeman University,FREEDHARDEMAN UNIVERSITY,Freed-Hardeman University,FALSE,1,SERV_GP,2022-08-01 00:00:00
 NV00047SERV_GP,NV00047,"Freeman Expositions, Llc",Freeman Expositions,FREEMAN EXPOSITIONS,"Freeman Expositions, Llc",FALSE,1,SERV_GP,2020-10-01 00:00:00
 CN992003SERV_GP,CN992003,Freeman Schwabe,Freeman Schwabe,FREEMAN SCHWABE,Freeman Schwabe,TRUE,2,SERV_GP,2025-07-29 00:00:00
@@ -1004,10 +1004,10 @@ TN991938SERV_GP,TN991938,Fresenius Medical Care Tri Cities - Billing,Fresenius M
 LX990431SERV_GP,LX990431,Freshies Ice Cream And Soda,Fresenius Medical Care,FRESENIUS MEDICAL CARE,Fresenius Medical Care,TRUE,34,SERV_GP,2023-07-28 00:00:00
 LV990470SERV_GP,LV990470,Freudenburg Medical Llc,Fresenius Medical Care,FRESENIUS MEDICAL CARE,Fresenius Medical Care,TRUE,34,SERV_GP,2025-12-04 00:00:00
 LX990360SERV_GP,LX990360,Fritz Farm Retail Company Llc C/O Bayer Properties Llc,Fritz Farm Retail,FRITZ FARM RETAIL,Fritz Farm Retail Company Llc C/O Bayer Properties Llc,FALSE,1,SERV_GP,2025-09-22 00:00:00
-TN200209SERV_GP,TN200209,Frontier A Citizens Communications Company,Frontier a Citizens Communications,FRONTIER A CITIZENS COMMUNICATIONS,Frontier A Citizens Communications Company,TRUE,2,SERV_GP,2025-09-01 00:00:00
-WV200209SERV_GP,WV200209,Frontier Communications,Frontier Communications,FRONTIER COMMUNICATIONS,Frontier Communications,FALSE,1,SERV_GP,2026-01-01 00:00:00
-CN991391SERV_GP,CN991391,"Frontier Communications Corporate Services, Inc.",Frontier Communications Corporate Services,FRONTIER COMMUNICATIONS CORPORATE SERVICES,"Frontier Communications Corporate Services, Inc.",FALSE,1,SERV_GP,2026-01-01 00:00:00
-WV990097SERV_GP,WV990097,"Frontier, A Citizens Communications Company",Frontier a Citizens Communications,FRONTIER A CITIZENS COMMUNICATIONS,"Frontier, A Citizens Communications Company",TRUE,2,SERV_GP,2022-04-30 00:00:00
+TN200209SERV_GP,TN200209,Frontier A Citizens Communications Company,Frontier Communications,FRONTIER COMMUNICATIONS,Frontier A Citizens Communications Company,TRUE,4,SERV_GP,2025-09-01 00:00:00
+WV200209SERV_GP,WV200209,Frontier Communications,Frontier Communications,FRONTIER COMMUNICATIONS,Frontier Communications,TRUE,4,SERV_GP,2026-01-01 00:00:00
+CN991391SERV_GP,CN991391,"Frontier Communications Corporate Services, Inc.",Frontier Communications,FRONTIER COMMUNICATIONS,"Frontier Communications Corporate Services, Inc.",TRUE,4,SERV_GP,2026-01-01 00:00:00
+WV990097SERV_GP,WV990097,"Frontier, A Citizens Communications Company",Frontier Communications,FRONTIER COMMUNICATIONS,"Frontier, A Citizens Communications Company",TRUE,4,SERV_GP,2022-04-30 00:00:00
 FRYEMECH_GP,FRYE,"Frye Mechanical, Inc.",Frye Mechanical,FRYE MECHANICAL,"Frye Mechanical, Inc.",FALSE,1,MECH_GP,2015-07-01 00:00:00
 LX990396SERV_GP,LX990396,Fsf Manufacturing Inc,Fsf Manufacturing,FSF MANUFACTURING,Fsf Manufacturing Inc,FALSE,1,SERV_GP,2022-05-21 00:00:00
 CN992260SERV_GP,CN992260,Ft Scott Hoa,Ft Scott Hoa,FT SCOTT HOA,Ft Scott Hoa,FALSE,1,SERV_GP,2023-10-31 00:00:00
@@ -1718,7 +1718,7 @@ NICKLES BAKERYMECH_GP,NICKLES BAKERY,Nickles Bakery,Nickles Bakery,NICKLES BAKER
 LX990288SERV_GP,LX990288,"Nitto, Inc.",Nitto,NITTO,"Nitto, Inc.",FALSE,1,SERV_GP,2025-04-03 00:00:00
 CN992283SERV_GP,CN992283,Nlign Analytics Etegent,Nlign Analytics Etegent,NLIGN ANALYTICS ETEGENT,Nlign Analytics Etegent,FALSE,1,SERV_GP,2024-04-16 00:00:00
 CN991887SERV_GP,CN991887,Nnodum Pharmaceuticals,Nnodum Pharmaceuticals,NNODUM PHARMACEUTICALS,Nnodum Pharmaceuticals,FALSE,1,SERV_GP,2022-09-15 00:00:00
-NORTHPOINT IIIMECH_GP,NORTHPOINT III,Norhtpoint Development,Norhtpoint Development,NORHTPOINT DEVELOPMENT,Norhtpoint Development,TRUE,2,MECH_GP,2023-01-01 00:00:00
+NORTHPOINT IIIMECH_GP,NORTHPOINT III,Norhtpoint Development,Northpoint Development,NORTHPOINT DEVELOPMENT,Norhtpoint Development,TRUE,2,MECH_GP,2023-01-01 00:00:00
 CN991259SERV_GP,CN991259,Noritake Usa Inc,Noritake USA,NORITAKE USA,Noritake Usa Inc,FALSE,1,SERV_GP,2025-12-05 00:00:00
 NAPCINCINNATIMECH_GP,NAPCINCINNATI,North American Properties - Cincinnati,North American Properties Cincinnati,NORTH AMERICAN PROPERTIES CINCINNATI,North American Properties - Cincinnati,FALSE,1,MECH_GP,2016-11-01 00:00:00
 N AMERICAN STNMECH_GP,N AMERICAN STN,North American Stainless,North American Stainless,NORTH AMERICAN STAINLESS,North American Stainless,FALSE,1,MECH_GP,2010-10-01 00:00:00
@@ -1729,7 +1729,7 @@ LX990407SERV_GP,LX990407,Northern Kentucky Eyecare,Northern Kentucky Eyecare,NOR
 NORTHERN KY ELEMECH_GP,NORTHERN KY ELE,Northern Ky Electric Service,Northern KY Electric Service,NORTHERN KY ELECTRIC SERVICE,Northern Ky Electric Service,FALSE,1,MECH_GP,2006-07-01 00:00:00
 CN992248SERV_GP,CN992248,Northern Ky Health Department,Northern KY Health Department,NORTHERN KY HEALTH DEPARTMENT,Northern Ky Health Department,FALSE,1,SERV_GP,2025-11-10 00:00:00
 NKY ORTHOMECH_GP,NKY ORTHO,Northern Ky Orthopaedics,Northern KY Orthopaedics,NORTHERN KY ORTHOPAEDICS,Northern Ky Orthopaedics,FALSE,1,MECH_GP,2005-09-01 00:00:00
-NORTHPOINTMECH_GP,NORTHPOINT,Northpoint Development,Norhtpoint Development,NORHTPOINT DEVELOPMENT,Northpoint Development,TRUE,2,MECH_GP,2021-12-01 00:00:00
+NORTHPOINTMECH_GP,NORTHPOINT,Northpoint Development,Northpoint Development,NORTHPOINT DEVELOPMENT,Northpoint Development,TRUE,2,MECH_GP,2021-12-01 00:00:00
 DY991072SERV_GP,DY991072,Northrop Grumman,Northrop Grumman,NORTHROP GRUMMAN,Northrop Grumman,FALSE,1,SERV_GP,2023-07-13 00:00:00
 CN990887SERV_GP,CN990887,Northrop/Grumman/Xetron,Northropgrummanxetron,NORTHROPGRUMMANXETRON,Northrop/Grumman/Xetron,FALSE,1,SERV_GP,2025-11-24 00:00:00
 IN990439SERV_GP,IN990439,Northside Baptist Church,Northside Baptist Church,NORTHSIDE BAPTIST CHURCH,Northside Baptist Church,FALSE,1,SERV_GP,2025-12-02 00:00:00
@@ -2394,8 +2394,8 @@ CN990799SERV_GP,CN990799,Towne Management,Towne Properties,TOWNE PROPERTIES,Town
 CN991067SERV_GP,CN991067,Towne Prop Asset Mgmnt Company,Towne Properties,TOWNE PROPERTIES,Towne Properties,TRUE,3,SERV_GP,2025-10-01 00:00:00
 CN991178SERV_GP,CN991178,Towne Properties - Park Place At Lytle,Towne Properties,TOWNE PROPERTIES,Towne Properties,TRUE,3,SERV_GP,2025-11-19 00:00:00
 NV00134SERV_GP,NV00134,Toyo Automotive Parts Usa Inc,Toyo Automotive Parts USA,TOYO AUTOMOTIVE PARTS USA,Toyo Automotive Parts Usa Inc,FALSE,1,SERV_GP,2023-11-14 00:00:00
-TN200302SERV_GP,TN200302,Toyota Tsusho,Toyota Tsusho,TOYOTA TSUSHO,Toyota Tsusho,FALSE,1,SERV_GP,2025-12-17 00:00:00
-TN991893SERV_GP,TN991893,"Toyota Tsusho Nexty Electronics America, Inc. (Ttnea)",Toyota Tsusho Nexty Electronics America Ttnea,TOYOTA TSUSHO NEXTY ELECTRONICS AMERICA TTNEA,"Toyota Tsusho Nexty Electronics America, Inc. (Ttnea)",FALSE,1,SERV_GP,2026-01-06 00:00:00
+TN200302SERV_GP,TN200302,Toyota Tsusho,Toyota Tsusho,TOYOTA TSUSHO,Toyota Tsusho,TRUE,2,SERV_GP,2025-12-17 00:00:00
+TN991893SERV_GP,TN991893,"Toyota Tsusho Nexty Electronics America, Inc. (Ttnea)",Toyota Tsusho,TOYOTA TSUSHO,"Toyota Tsusho Nexty Electronics America, Inc. (Ttnea)",TRUE,2,SERV_GP,2026-01-06 00:00:00
 CN991535SERV_GP,CN991535,Tp Mechanical,Tp Mechanical,TP MECHANICAL,Tp Mechanical,FALSE,1,SERV_GP,2023-05-24 00:00:00
 NV15027SERV_GP,NV15027,Tpg Plastics Llc,Tpg Plastics,TPG PLASTICS,Tpg Plastics Llc,FALSE,1,SERV_GP,2025-08-11 00:00:00
 NV15101SERV_GP,NV15101,Tractor Supply Company,Tractor Supply,TRACTOR SUPPLY,Tractor Supply Company,FALSE,1,SERV_GP,2026-01-01 00:00:00
@@ -2435,8 +2435,8 @@ DY990923SERV_GP,DY990923,Tsg Manufacturing,Tsg Manufacturing,TSG MANUFACTURING,T
 IN990391SERV_GP,IN990391,Tsuda Usa Corporation,Tsuda USA,TSUDA USA,Tsuda Usa Corporation,FALSE,1,SERV_GP,2025-03-27 00:00:00
 CN992314SERV_GP,CN992314,Ttgroup America Inc.,Ttgroup America,TTGROUP AMERICA,Ttgroup America Inc.,FALSE,1,SERV_GP,2025-09-01 00:00:00
 TN992188SERV_GP,TN992188,Tuff 2200 Sutherland Ave Llc,Tuff 2200 Sutherland Ave,TUFF 2200 SUTHERLAND AVE,Tuff 2200 Sutherland Ave Llc,FALSE,1,SERV_GP,2026-01-01 00:00:00
-TN991929SERV_GP,TN991929,Tuff Torq - Residence,Tuff Torq Residence,TUFF TORQ RESIDENCE,Tuff Torq - Residence,FALSE,1,SERV_GP,2022-09-15 00:00:00
-TN960653SERV_GP,TN960653,Tuff Torq Corporation,Tuff Torq,TUFF TORQ,Tuff Torq Corporation,FALSE,1,SERV_GP,2025-12-16 00:00:00
+TN991929SERV_GP,TN991929,Tuff Torq - Residence,Tuff Torq,TUFF TORQ,Tuff Torq - Residence,TRUE,2,SERV_GP,2022-09-15 00:00:00
+TN960653SERV_GP,TN960653,Tuff Torq Corporation,Tuff Torq,TUFF TORQ,Tuff Torq Corporation,TRUE,2,SERV_GP,2025-12-16 00:00:00
 TURNBULLMECH_GP,TURNBULL,"Turnbull Wahlert Construction, Inc. Llc",Turnbull Wahlert Construction,TURNBULL WAHLERT CONSTRUCTION,"Turnbull Wahlert Construction, Inc. Llc",FALSE,1,MECH_GP,2022-04-01 00:00:00
 TURNERMECH_GP,TURNER,Turner Construction Co.,Turner Construction,TURNER CONSTRUCTION,Turner Construction Co.,FALSE,1,MECH_GP,2005-09-01 00:00:00
 CN992112SERV_GP,CN992112,Tw Development Group Llc,Tw Development Group,TW DEVELOPMENT GROUP,Tw Development Group Llc,FALSE,1,SERV_GP,2021-03-30 00:00:00
