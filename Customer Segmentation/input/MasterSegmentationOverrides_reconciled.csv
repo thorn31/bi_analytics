@@ -603,7 +603,7 @@ HAMILTON SAFE,Manufacturing,Safes & Vaults Mfg,332439,AI Analyst Research,Final,
 HAMMACHER SCHLEMMER,Commercial Services,Online & Catalog Retail,454110,AI Analyst Research,Final,,hammacher.com,Imported from Batch_20260118_Batch10.md
 HAMPTON LUMBER SALES,Manufacturing,Sawmills,321113,AI Analyst Research,Final,,hamptonlumber.com,Imported from Batch_20260118_Batch10.md
 HANGER,Healthcare / Senior Living,Orthotic & Prosthetic Mfg,339113,AI Analyst Research,Final,,hanger.com,Imported from Batch_20260118_Batch10.md
-HARMONY AT TUCKER STATION,Healthcare / Senior Living,Assisted Living,623312,AI Analyst Research,Final,,harmonyseniorservices.com,Imported from Batch_20260118_Batch10.md
+HARMONY AT TUCKER STATION,Healthcare / Senior Living,Senior Living / Assisted Living,623312,AI Analyst Research,Final,,harmonyseniorservices.com,Imported from Batch_20260119_Batch4.md
 HARPER AUTO,Commercial Services,New Car Dealers,441110,AI Analyst Research,Final,,harperauto.com,Imported from Batch_20260118_Batch10.md
 HARRINGTON PLASTICS,Manufacturing,Plastics Wholesale,424610,AI Analyst Research,Final,,hipco.com,Imported from Batch_20260118_Batch10.md
 HARVIA US,Manufacturing,Sauna & Heating Equipment Mfg,333414,AI Analyst Research,Final,,harvia.com,Imported from Batch_20260118_Batch10.md
@@ -670,6 +670,7 @@ INDUSTRY PRODUCTS,Manufacturing,Industrial Components & Fabricated Products,332,
 INDYLEX,Commercial Services,Testing services,6117,Entity Inference,Final,,,Imported from Batch3.md; unresolved master canonical 'INDYLEX'
 INFINITI PLASTICS AND ENGINEERING,Manufacturing,Precision Plastics & Engineered Components,326,AI Analyst Research,Final,,https://www.infinitiplastics.com,Imported from Batch_20260118_Batch14.md
 INFINITY GLOBAL DAYTON DC,Commercial Services,Distribution & Logistics Facility,493,Heuristic (Facility Context),Final,,,Imported from Batch_20260118_Batch14.md
+INFINTECH,Commercial Services,Custom Computer Programming / Software Services,541511,Manual Override,Final,,,Imported from Batch_20260119_AI_Analyst_2.md
 INGERSOLL-RAND,Manufacturing,Industrial Equipment & HVAC Manufacturing,333,AI Analyst Research,Final,,https://www.irco.com,Imported from Batch_20260118_Batch15.md; resolved 'INGERSOLLRAND' -> 'INGERSOLL-RAND'
 INGREDION,Manufacturing,Food Ingredient & Sweetener Manufacturing,311,AI Analyst Research,Final,,https://www.ingredion.com,Imported from Batch_20260118_Batch15.md
 INNERWOOD AND,Construction,Commercial Interior Construction & Millwork,236,AI Analyst Research,Final,,https://www.innerwood.com,Imported from Batch_20260118_Batch15.md
@@ -684,33 +685,84 @@ INTERRA SKY WATERFRONT,Commercial Real Estate,Property/community,5311,Heuristic,
 INTERTECH MECHANICAL SERVICES,Construction,Mechanical / HVAC Contracting,2382,AI Analyst Research,Final,,https://www.intertechmechanical.com,Imported from Batch_20260118_Batch15.md
 INTRALOT,Commercial Services,Lottery Systems & Gaming Technology,5415,AI Analyst Research,Final,,https://www.intralot.com,Imported from Batch_20260118_Batch15.md
 INX INTERNATIONAL,Manufacturing,Printing Inks & Coatings Manufacturing,325,AI Analyst Research,Final,,https://www.inxinternational.com,Imported from Batch_20260118_Batch15.md
+IPEG BILLING,Commercial Services,Waste Management / Environmental Services,562,Manual Override,Final,,ipeg.net,Imported from Batch_20260119_AI_Analyst_2.md
 IRG BATAVIA 1,Commercial Real Estate,Industrial property entity,5311,Rule-Based,Final,,,Imported from Batch4.md
 ISLAMIC ASSOCIATION OF CINCINNATI,Non-Profit / Religious,Religious organization,8131,Rule-Based,Final,,,Imported from Batch4.md
 ITW,Manufacturing,Diversified Industrial Manufacturing,332,AI Analyst Research,Final,,https://www.itw.com,Imported from Batch_20260118_Batch15.md
 ITW FOOD EQUIPMENT GROUP,Manufacturing,Commercial Foodservice Equipment Manufacturing,333,AI Analyst Research,Final,,https://www.itwfoodequipment.com,Imported from Batch_20260118_Batch15.md
-IVAX PHARMACEUTICALS,Manufacturing,Pharmaceutical Manufacturing,3254,Trade keyword + Entity,Final,,https://www.ivax.com,Imported from Batch_20260118_Batch16.md
-IVEY MECHANICAL,Construction,Mechanical / HVAC Contracting,2382,Trade keyword,Final,,https://www.iveymechanical.com,Imported from Batch_20260118_Batch16.md
-J AND F MECHANICAL,Construction,Mechanical / HVAC Contracting,2382,Trade keyword,Final,,,Imported from Batch_20260118_Batch16.md
-J AND J GENERAL MAINTENANCE,Commercial Services,Building Maintenance & Repair Services,5617,Trade keyword,Final,,,Imported from Batch_20260118_Batch16.md
-J AND N DISTRIBUTION AND DESIGN,Commercial Services,Distribution & Commercial Design Services,423,Trade keywords,Final,,,Imported from Batch_20260118_Batch16.md
-JABIL CIRCUIT,Manufacturing,Electronics Manufacturing Services,3344,Known manufacturer,Final,,https://www.jabil.com,Imported from Batch_20260118_Batch16.md
-JACKSON CONTROL,Commercial Services,HVAC Controls & Building Automation Services,5415,Trade keyword,Final,,https://www.jacksoncontrol.com,Imported from Batch_20260118_Batch16.md
-JAGUAR LAND ROVER CINCINNATI,Commercial Services,Automotive Dealership,4411,Explicit brand,Final,,https://www.jaguarcincinnatioh.com,Imported from Batch_20260118_Batch16.md
-JANELL CONCRETE,Construction,Concrete Construction & Foundations,2381,Trade keyword,Final,,https://www.janell.com,Imported from Batch_20260118_Batch16.md
-JAYCO CLEANING TECHNOLOGIES,Manufacturing,Industrial Cleaning & Sanitation Equipment,3333,Trade keyword,Final,,https://www.jaycocleaning.com,Imported from Batch_20260118_Batch16.md
-JEFFERSONVILLE ANIMAL SHELTER,Municipal / Local Government,Municipal Animal Control & Shelter,8129,Explicit public entity,Final,,https://www.jeffersonville.in.us/animal-shelter,Imported from Batch_20260118_Batch16.md
-JENNIFER HAWKINS STATE FARM,Financial Services,Insurance Agency,5242,Explicit brand,Final,,https://www.statefarm.com/agent/us/ky/nicholasville/jennifer-hawkins,Imported from Batch_20260118_Batch16.md
-JERRY R SMITH ARCHITECT,Commercial Services,Architectural Design Services,5413,Licensed profession keyword,Final,,,Imported from Batch_20260118_Batch16.md
-JM SMUCKER,Manufacturing,Branded Food Manufacturing,311,Known manufacturer,Final,,https://www.jmsmucker.com,Imported from Batch_20260118_Batch16.md
+IVAN FUNK,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+IVAX PHARMACEUTICALS,Manufacturing,Pharmaceutical Manufacturing,3254,Entity Inference,Final,,ivax.com,Imported from Batch_20260119_AI_Analyst.md
+IVEY MECHANICAL,Construction,Mechanical / HVAC Contracting,2382,Rule-Based,Final,,iveymechanical.com,Imported from Batch_20260119_AI_Analyst.md
+J AND F MECHANICAL,Construction,Mechanical / HVAC Contracting,2382,Rule-Based,Final,,,Imported from Batch_20260119_AI_Analyst.md
+J AND J GENERAL MAINTENANCE,Commercial Services,Building Maintenance & Repair Services,5617,Rule-Based,Final,,,Imported from Batch_20260119_AI_Analyst.md
+J AND N DISTRIBUTION AND DESIGN,Commercial Services,Distribution & Commercial Design Services,423,Rule-Based,Final,,,Imported from Batch_20260119_AI_Analyst.md
+JA FIELDEN,Construction,Commercial Building Construction,236220,Manual Override,Final,,jafielden.com,Imported from Batch_20260119_AI_Analyst_2.md
+JABIL CIRCUIT,Manufacturing,Electronics Manufacturing Services,3344,Entity Inference,Final,,jabil.com,Imported from Batch_20260119_AI_Analyst.md
+JACK ALBRECHT,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+JACK ALBRECHT RESIDENTS,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+JACKSON CONTROL,Commercial Services,HVAC Controls & Building Automation Services,5415,Rule-Based,Final,,jacksoncontrol.com,Imported from Batch_20260119_AI_Analyst.md
+JAGUAR LAND ROVER CINCINNATI,Commercial Services,Automotive Dealership,4411,Entity Inference,Final,,jaguarcincinnatioh.com,Imported from Batch_20260119_AI_Analyst.md
+JAMIE ENDAYA,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+JANELL CONCRETE,Construction,Concrete Construction & Foundations,2381,Rule-Based,Final,,janell.com,Imported from Batch_20260119_AI_Analyst.md
+JAY HEWITT,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+JAYCO CLEANING TECHNOLOGIES,Manufacturing,Industrial Cleaning & Sanitation Equipment,3333,Rule-Based,Final,,jaycocleaning.com,Imported from Batch_20260119_AI_Analyst.md
+JDL WARM,Construction,Commercial Building Construction,236220,Manual Override,Final,,jdlwarm.com,Imported from Batch_20260119_AI_Analyst_2.md
+JEFF WYLER FAIRFIELD,Commercial Services,Automotive Dealership,4411,Entity Inference,Final,,jeffwylerfairfield.com,Imported from Batch_20260119_AI_Analyst_2.md
+JEFFERSONVILLE ANIMAL SHELTER,Municipal / Local Government,Municipal Animal Control & Shelter,8129,Entity Inference,Final,,jeffersonville.in.us,Imported from Batch_20260119_AI_Analyst.md
+JENNIFER BANNER RESIDENCE,Individual / Misc,Residential / Individual,814110,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch3.md
+JENNIFER HAWKINS STATE FARM,Financial Services,Insurance Agency,5242,Entity Inference,Final,,statefarm.com,Imported from Batch_20260119_AI_Analyst.md
+JERROD HERRON,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md; resolved 'JEROD HERRON' -> 'JERROD HERRON'
+JERRY R SMITH ARCHITECT,Commercial Services,Architectural Design Services,5413,Rule-Based,Final,,,Imported from Batch_20260119_AI_Analyst.md
+JF BERNS,Manufacturing,Machine Tool Manufacturing,333515,Manual Override,Final,,jfberns.com,Imported from Batch_20260119_AI_Analyst_2.md
+JFK ENTERPRISES,Healthcare / Senior Living,Psychiatric Hospital,622210,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch3.md
+JM SMUCKER,Manufacturing,Branded Food Manufacturing,311,Entity Inference,Final,,jmsmucker.com,Imported from Batch_20260119_AI_Analyst.md
 JML CAPITAL,Commercial Real Estate,Industrial Real Estate Development & Property Management,5313,AI-Assisted Search + Local Context,Final,,,Imported from Batch_20260118_Batch16.md
+JN LINROSE,Construction,Industrial Equipment Distribution,423510,Manual Override,Final,,jnlinrose.com,Imported from Batch_20260119_AI_Analyst_2.md
+JOHNSON AND GALYON,Construction,Mechanical / Electrical Contracting,2382,Rule-Based,Final,,johnsongalyon.com,Imported from Batch_20260119_AI_Analyst_2.md
+JOHNSONNORTHWEST,Construction,Mechanical / HVAC Contracting,2382,Rule-Based,Final,,johnson-northwest.com,Imported from Batch_20260119_AI_Analyst_2.md
+JONES LANG LASALLE AMERICAS,Commercial Real Estate,Commercial Property Management & Brokerage,531,Entity Inference,Final,,us.jll.com,Imported from Batch_20260119_AI_Analyst_2.md
+JONES LANG LASALLE JLL AMAZON,Commercial Real Estate,Commercial Property Management & Brokerage,531,Entity Inference,Final,,us.jll.com,Imported from Batch_20260119_AI_Analyst_2.md
+JOSEPH GRENVICZ,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+JOY GLOBAL UNDERGROUND MINING,Manufacturing,Underground Mining Equipment Manufacturing,3331,Entity Inference,Final,,joyglobal.com,Imported from Batch_20260119_AI_Analyst_2.md
+JS HELD,Commercial Services,"Engineering, Forensics & Consulting Services",5413,Entity Inference,Final,,jsheld.com,Imported from Batch_20260119_AI_Analyst_2.md
+JTEKT NORTH AMERICA,Manufacturing,Automotive Bearings & Steering Systems,3363,Entity Inference,Final,,jtekt-na.com,Imported from Batch_20260119_AI_Analyst_2.md
+JW HARRIS,Manufacturing,Welding Wire & Filler Metal Manufacturing,332,Entity Inference,Final,,jwharris.com,Imported from Batch_20260119_AI_Analyst_2.md
+JW MARRIOTT,Commercial Real Estate,Hospitality / Hotel Operations,7211,Entity Inference,Final,,marriott.com,Imported from Batch_20260119_AI_Analyst_2.md; resolved 'JW MARRIOTT' -> 'JW MARRIOT'; auto-reconciled 'JW MARRIOT' -> 'JW MARRIOTT'
+JWF TECHNOLOGIES,Manufacturing,Precision Machining & Engineered Components,3327,Entity Inference,Final,,jwftech.com,Imported from Batch_20260119_AI_Analyst_2.md
+K AND L ALLSTAR INVESTMENTS,Commercial Real Estate,Real Estate Investment,531390,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch3.md
+K4 ARCHITECTURE,Commercial Services,Architecture Firm,541310,AI Analyst Research,Final,,k4architecture.com,Imported from Batch_20260119_Batch3.md
+KAESER AND BLAIR,Commercial Services,Promotional Products,424990,AI Analyst Research,Final,,kaeser-blair.com,Imported from Batch_20260119_Batch3.md
+KAJIMA BUILDING AND DESIGN GROUP,Construction,Design-Build Construction,236220,AI Analyst Research,Final,,kbdgroupusa.com,Imported from Batch_20260119_Batch3.md
+KAO BRANDS,Manufacturing,Consumer Products,325611,AI Analyst Research,Final,,kaobrands.com,Imported from Batch_20260119_Batch3.md
+KAREN HARBIN,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+KARLA RICKING,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+KAY ROBINSON,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+KBC BUYER DBA KLOSTERMAN BAKING,Manufacturing,Commercial Bakery,311812,AI Analyst Research,Final,,klostermanbakery.com,"Imported from Batch_20260119_Batch3.md; expanded tokens ['KLOSTERMAN', 'BAKING'] -> 'KBC BUYER DBA KLOSTERMAN BAKING'"
+KBD GROUP,Construction,Design-Build Construction,236220,AI Analyst Research,Final,,kbdgroupusa.com,Imported from Batch_20260119_Batch3.md
+KDC ONE,Manufacturing,Contract Manufacturing,325620,AI Analyst Research,Final,,kdc-one.com,Imported from Batch_20260119_Batch3.md
+KEENLAND HEIGHTS,Commercial Real Estate,Apartments / Residential,531110,AI Analyst Research,Final,,keenelandcrest.info,Imported from Batch_20260119_Batch3.md
+KEIDEL SUPPLY,Commercial Services,Plumbing & Cabinetry Dist,423720,AI Analyst Research,Final,,keidel.com,Imported from Batch_20260119_Batch3.md
+KELLER WAREHOUSING AND PACKING,Commercial Services,Logistics / Warehousing,493110,AI Analyst Research,Final,,kellerlogistics.com,Imported from Batch_20260119_Batch3.md
+KENCO LOGISTIC SERVICES,Commercial Services,3PL Provider,488510,AI Analyst Research,Final,,kencogroup.com,Imported from Batch_20260119_Batch3.md
+KENCO LOGISTICS,Commercial Services,3PL Provider,488510,AI Analyst Research,Final,,kencogroup.com,Imported from Batch_20260119_Batch3.md
+KENNETH C WOOD,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+KENTUCKY BLOOD CENTER,Healthcare / Senior Living,Blood Bank,621991,AI Analyst Research,Final,,kybloodcenter.org,Imported from Batch_20260119_Batch3.md
 KENTUCKY HIGH SCHOOL ATHLETIC ASSOCIATION,Non-Profit / Religious,Sports association,8134,Rule-Based,Final,,,Imported from Batch4.md
 KENTUCKY SCIENCE CENTER,Non-Profit / Religious,Museum/education nonprofit,7121,Entity Inference,Final,,,Imported from Batch4.md
+KENTUCKY UNDERGROUND STORAGE,Commercial Services,Secure Warehousing,493190,AI Analyst Research,Final,,kentuckyunderground.com,Imported from Batch_20260119_Batch3.md
 KENTUCKY VETERANS CEMETERY NORTH,Municipal / Local Government,Government cemetery,9211,Heuristic,Final,,,Imported from Batch4.md
+KENTWOOD OFFICE FURNITURE,Commercial Services,Office Furniture Dealer,423210,AI Analyst Research,Final,,kentwoodoffice.com,Imported from Batch_20260119_Batch3.md
+KEVIN WILSON,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+KEYME,Commercial Services,Consumer Services / Kiosks,812990,AI Analyst Research,Final,,key.me,Imported from Batch_20260119_Batch3.md
+KI USA,Manufacturing,Automotive Parts Mfg,336370,AI Analyst Research,Final,,kiusa.com,Imported from Batch_20260119_Batch4.md
+KID CITY USA FRANKLIN,Commercial Services,Child Day Care Services,624410,AI Analyst Research,Final,,kidcityusa.com,Imported from Batch_20260119_Batch4.md
+KIESLAND,Construction,Commercial Contractor,236220,AI Analyst Research,Final,,kiesland.com,Imported from Batch_20260119_Batch4.md
 KIM M ORTMAN,Individual / Misc,Individual,,Rule-Based,Final,,,Imported from Batch3.md
 KIMBALL ELECTRONICS,Manufacturing,Electronics manufacturing,3344,Entity Inference,Final,,,Imported from Batch3.md
+KINDEVA,Manufacturing,Pharma CDMO,325412,AI Analyst Research,Final,,kindevadd.com,Imported from Batch_20260119_Batch4.md
 KINGS LOCAL SCHOOLS,Public Schools (K–12),Public school district,6111,Rule-Based,Final,,,Imported from Batch3.md
 KINNECTION CHIROPRACTIC,Commercial Services,Chiropractic clinic,6213,Rule-Based,Final,,,Imported from Batch3.md
-KKT CHILLERS,Commercial Services,HVAC equipment/services (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+KKT CHILLERS,Manufacturing,Industrial Cooling Mfg,333415,AI Analyst Research,Final,,kkt-chillersusa.com,Imported from Batch_20260119_Batch10.md
 KLH ENGINEERS,Commercial Services,Engineering services,5413,Rule-Based,Final,,,Imported from Batch3.md
 KNAUF INSULATION,Manufacturing,Insulation manufacturing,3279,Entity Inference,Final,,,Imported from Batch3.md
 KNOXVILLE DENTAL CARE,Commercial Services,Food distribution,424490,Rule-Based,Final,,,Imported from Batch Process 1.md; expanded tokens ['KNOXVILLE'] -> 'KNOXVILLE DENTAL CARE'
@@ -723,8 +775,10 @@ KOCH FOODS,Manufacturing,Poultry/food manufacturing,3116,Entity Inference,Final,
 KODIAK CONSTRUCTORS,Construction,Contractor,2362,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
 KOHRS LONNEMANN HEIL ENGINEERS,Commercial Services,Engineering services,5413,Rule-Based,Final,,,Imported from Batch3.md
 KPA NIGHTINGALE LANE,Commercial Real Estate,Property entity (address/LP-style),5311,Rule-Based,Final,,,Imported from Batch3.md
+KPPE,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch4.md
 KT DESIGN GROUP,Commercial Services,Design/architecture (unclear),5414,Heuristic,Final,,,Imported from Batch3.md
 KY CHAMBER OF COMMERCE,Non-Profit / Religious,Business association,8139,Rule-Based,Final,,,Imported from Batch4.md
+KY SMELTING TECHNOLGIES,Manufacturing,Aluminum Smelting,331313,AI Analyst Research,Final,,kstparis.com,Imported from Batch_20260119_Batch3.md
 L3 FUZING AND ORDNANCE SYSTEMS,Manufacturing,Defense manufacturing,3329,Entity Inference,Final,,,Imported from Batch3.md
 L3 HARRIS TECHNOLOGIES,Manufacturing,Defense/aerospace,3364,Entity Inference,Final,,,Imported from Batch3.md
 LA COMEDIA ENTERPRISES,Commercial Services,Performing arts/venue,7111,Heuristic,Final,,,Imported from Batch3.md
@@ -734,11 +788,15 @@ LANCE CUNNINGHAM FORD,Commercial Services,Auto dealership,4411,Rule-Based,Final,
 LAND OAK 2,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 LAND ROVER OF KNOXVILLE,Commercial Services,Auto dealership,4411,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 LANDEN SQUARE 3,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
+LANDFORM,Commercial Services,Landscape / Site Construction,561730,AI Analyst Research,Final,,landformteam.com,Imported from Batch_20260119_Batch4.md
 LANDMARK CENTER,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 LANDMARK SPRINKLER,Construction,Fire sprinkler contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
+LASERSHIP DBA ONTRAC,Commercial Services,Last-Mile Delivery,492110,AI Analyst Research,Final,,ontrac.com,Imported from Batch_20260119_Batch4.md; expanded tokens ['ONTRAC'] -> 'LASERSHIP DBA ONTRAC'
 LAST STOP BREWING,Commercial Services,Brewery/taproom,3121,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 LATHAM MECHANICAL,Construction,Mechanical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
+LATONIA BULK,Commercial Services,Industrial Development / Real Estate,531120,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch4.md
 LAW OFFICE OF C M WATSON,Commercial Services,Legal services,5411,Rule-Based,Final,,,Imported from Batch3.md
+LAWRENCE BROTHERS,Manufacturing,Heavy Metal Fabrication,332313,AI Analyst Research,Final,,lbimanufacturing.com,Imported from Batch_20260119_Batch4.md
 LAZARUS PARTNERSHIP NMP,Commercial Real Estate,Partnership/property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 LBMC KNOXVILLE CPA ADVISORS AND CONSULTANTS,Commercial Services,Accounting/consulting,5412,Rule-Based,Final,,,Imported from Batch3.md
 LCNB,Commercial Services,Banking/financial services,5221,Entity Inference,Final,,,Imported from Batch3.md
@@ -746,19 +804,26 @@ LEE,Commercial Services,Legal services (verify names),5411,Heuristic,Final,,,Imp
 LEE LELLYETT AND ROGERS LEWIS THOMASON,Commercial Services,Legal services (verify names),5411,Heuristic,Final,,,Imported from Batch3.md
 LELLYETT AND ROGERS,Commercial Services,Legal services (verify names),5411,Heuristic,Final,,,Imported from Batch3.md
 LEMON D BIKES LEMOND BIKES,Commercial Services,Retail/brand (verify),,AI Analyst Research,Final,Hospitality,,Imported from Batch3.md
-LEMOND BIKES,Commercial Services,Retail/brand (verify),,AI Analyst Research,Queued,Hospitality,,Imported from Batch3.md
+LEMOND BIKES,Manufacturing,Electric Bicycle Mfg,336991,AI Analyst Research,Final,,lemond.com,Imported from Batch_20260119_Batch10.md
+LEMOND COMPOSITES,Manufacturing,Carbon Fiber Mfg,325314,AI Analyst Research,Final,,lemondcarbon.com,Imported from Batch_20260119_Batch4.md
 LEMS SHOES,Commercial Services,Footwear retail/brand,4482,Heuristic,Final,Hospitality,,Imported from Batch3.md
 LEN RIEGLER BLACKTOP,Construction,Paving/asphalt,2373,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
 LENNOX INDUSTRIES,Manufacturing,HVAC equipment manufacturing,3334,Entity Inference,Final,,,Imported from Batch3.md
-LEOPARDO COMPANIES,Commercial Services,Property/contracting (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+LENNOX INDUSTRY WARRANTY DEPT,Commercial Services,HVAC Warranty Services,541990,AI Analyst Research,Final,,lennoxpros.com,Imported from Batch_20260119_Batch4.md
+LEOPARDO COMPANIES,Construction,General Contractor,236220,AI Analyst Research,Final,,leopardo.com,Imported from Batch_20260119_Batch10.md
 LES NAILS AND SPA,Commercial Services,Nail salon,8121,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 LESLIES SALON,Commercial Services,Salon,8121,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 LETS PLAY SPORTS,Commercial Services,Recreation/retail (unclear),7139,Heuristic,Final,Hospitality,,Imported from Batch3.md
 LEVEL UP GAMES AND HOBBIES,Commercial Services,(also retail; kept retail above),4511,Rule-Based,Final,,,Imported from Batch3.md
+LEVI STRAUSS AND,Manufacturing,Apparel Manufacturing,315220,AI Analyst Research,Final,,levistrauss.com,Imported from Batch_20260119_Batch4.md
 LEWIS THOMASON,Commercial Services,Legal services (verify names),5411,Heuristic,Final,,,Imported from Batch3.md
+LHP TELEMATIC,Commercial Services,IoT / Telematics Software,541511,AI Analyst Research,Final,,lhptelematics.com,Imported from Batch_20260119_Batch4.md
 LIBERTY DIALYSIS OF NORWOOD,Healthcare / Senior Living,Dialysis clinic,6214,Rule-Based,Final,,,Imported from Batch3.md
 LIBERTY MARKING SYSTEMS,Commercial Services,Industrial marking equipment/services,3339,Heuristic,Final,,,Imported from Batch3.md
 LICHTENBERG CONSTUCTION,Construction,Contractor,2362,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md; resolved 'LICHTENBERG CONSTRUCTION' -> 'LICHTENBERG CONSTUCTION'
+LIFETIME PRODUCTS,Manufacturing,Consumer Goods Mfg,337126,AI Analyst Research,Final,,lifetime.com,Imported from Batch_20260119_Batch4.md
+LIGHT SOURCE,Individual / Misc,Invalid Record / Closed,,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch4.md
+LIMA USA,Manufacturing,Medical Device Mfg,339113,AI Analyst Research,Final,,limacorporate.com,Imported from Batch_20260119_Batch4.md
 LINDYDAYTON TOWERS,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 LINK BELT CRANES,Manufacturing,Crane manufacturing,3331,Entity Inference,Final,,,Imported from Batch3.md
 LINK LOGISTICS,Commercial Real Estate,Logistics real estate (industrial),5311,Entity Inference,Final,,,Imported from Batch3.md
@@ -770,7 +835,9 @@ LOREAL USA,Manufacturing,Consumer products manufacturing,3256,Entity Inference,F
 LOUISVILLE BEDDING,Manufacturing,Bedding manufacturing,3379,Heuristic,Final,,,Imported from Batch3.md
 LOUISVILLE CENTRAL COMMUNITY CENTER,Non-Profit / Religious,Community nonprofit,8133,Rule-Based,Final,,,Imported from Batch3.md
 LOUISVILLE ENDOSCOPY CENTER,Healthcare / Senior Living,Outpatient endoscopy,6214,Rule-Based,Final,,,Imported from Batch3.md
+LOUISVILLE ILAL OPERATIONS DBA HARMONY AT TUCKER STATION,Healthcare / Senior Living,Senior Living / Assisted Living,623312,AI Analyst Research,Final,,harmonyseniorservices.com,Imported from Batch_20260119_Batch4.md; resolved 'LOUISVILLE ILAL OPERATIONS' -> 'LOUISVILLE ILAL OPERATIONS DBA HARMONY AT TUCKER STATION'
 LOUISVILLE PUBLC WAREHOUSE DBA AMERICA PLACE,Commercial Real Estate,Warehouse property/operations (verify owner/operator),4931,Heuristic,Final,,,"Imported from Batch3.md; expanded tokens ['AMERICA', 'PLACE'] -> 'LOUISVILLE PUBLC WAREHOUSE DBA AMERICA PLACE'"
+LOUISVILLE VEGAN JERKY,Manufacturing,Food Manufacturing,311991,AI Analyst Research,Final,,lvjco.com,Imported from Batch_20260119_Batch4.md
 LOWES,Commercial Services,Home improvement retail,4441,Entity Inference,Final,Hospitality,,Imported from Batch3.md
 LUCAS OIL LATE MODEL DIRT SERIES,Commercial Services,Sports/entertainment,7113,Heuristic,Final,Hospitality,,Imported from Batch3.md
 LULULEMON,Commercial Services,Apparel retail,4481,Entity Inference,Final,Hospitality,,Imported from Batch3.md
@@ -778,42 +845,60 @@ LULULEMON USA,Commercial Services,Apparel retail,4481,Entity Inference,Final,Hos
 LUXOTTICA RETAIL,Commercial Services,Optical retail,4461,Entity Inference,Final,Hospitality,,Imported from Batch3.md
 LW OFFICE FURNITURE WAREHOUSE,Commercial Services,Office furniture distribution,4232,Rule-Based,Final,,,Imported from Batch3.md
 M AND H CABINETS,Manufacturing,Millwork/cabinets manufacturing,3371,Heuristic,Final,,,Imported from Batch3.md
+MA FOLKES,Commercial Services,Logistics / Warehousing,493110,AI Analyst Research,Final,,mafolkes.com,Imported from Batch_20260119_Batch4.md
 MAC PAPERS NASHVILLE,Commercial Services,Paper distribution,4241,Rule-Based,Final,,,Imported from Batch3.md
 MACOMB GROUP,Commercial Services,Industrial supply distribution,4238,Heuristic,Final,,,Imported from Batch3.md
 MACYS BACKSTAGE DISTRIBUTION CENTER,Commercial Services,Retail distribution,4931,Entity Inference,Final,Hospitality,,Imported from Batch3.md
+MADISON FARM,Non-Profit / Religious,Non-Profit Education Farm,624190,AI Analyst Research,Final,,the-madison-farm.square.site,Imported from Batch_20260119_Batch5.md
+MADISONCHAMPAIGN EDUCATIONAL SERVICE CENTER,University / College,Educational Support Services,611710,AI Analyst Research,Final,,mccesc.org,Imported from Batch_20260119_Batch5.md
 MAGNOLIA CAPITAL INVESTMENTS,Commercial Real Estate,Investment/property entity,5311,Heuristic,Final,,,Imported from Batch3.md
 MAGNOLIA CHEROKEE MILLS LP,Commercial Real Estate,Property LP,5311,Rule-Based,Final,,,Imported from Batch3.md
 MAGNOLIA HILLSBORO LP,Commercial Real Estate,Property LP,5311,Rule-Based,Final,,,Imported from Batch3.md
 MAGNUM PIERING,Commercial Services,Body art services,8121,Rule-Based,Final,Hospitality,,Imported from Batch3.md; resolved 'MAGNUM PIERCING' -> 'MAGNUM PIERING'
 MALIBU BOATS,Manufacturing,Boat manufacturing,3366,Entity Inference,Final,,,Imported from Batch3.md
+MANTIS INNOVATION,Commercial Services,Facility Management / Energy,541350,AI Analyst Research,Final,,mantisinnovation.com,Imported from Batch_20260119_Batch5.md
 MARBLE PRODUCTS INTERNATIONAL,Manufacturing,Stone products,3279,Heuristic,Final,,,Imported from Batch3.md
 MARK LAUGHNER,Individual / Misc,Individual,,Rule-Based,Final,,,Imported from Batch3.md
+MARKSBURY FARM,Manufacturing,Meat Processing,311611,AI Analyst Research,Final,,marksburyfarm.com,Imported from Batch_20260119_Batch5.md
 MARS CHOCOLATE,Manufacturing,Confectionery manufacturing,3113,Entity Inference,Final,,,Imported from Batch3.md
+MARSHALL RECREATION CENTER,University / College,University Recreation,611310,AI Analyst Research,Final,,marshall.edu,Imported from Batch_20260119_Batch5.md
+MARTIN BROWER,Commercial Services,Logistics / Supply Chain,488510,AI Analyst Research,Final,,martinbrower.com,Imported from Batch_20260119_Batch5.md
 MARTINREA HEAVY STAMPING,Manufacturing,Automotive stamping,3363,Entity Inference,Final,,,Imported from Batch3.md
 MARY K BRIGGS,Individual / Misc,Individual,,Rule-Based,Final,,,Imported from Batch3.md
 MARYANN STRALEY,Individual / Misc,Individual,,Rule-Based,Final,,,Imported from Batch3.md
 MASONITE,Manufacturing,Doors manufacturing,3219,Entity Inference,Final,,,Imported from Batch3.md
+MASS MARKETING,Commercial Services,Marketing Services,541810,AI Analyst Research,Final,,massmarketinginc.com,Imported from Batch_20260119_Batch5.md
+MASSEY SERVICES,Commercial Services,Pest Control / Landscaping,561710,AI Analyst Research,Final,,masseyservices.com,Imported from Batch_20260119_Batch5.md
+MASTERS PHARMACEUTICALS,Commercial Services,Pharmaceutical Distribution,424210,AI Analyst Research,Final,,mastersglobal.com,Imported from Batch_20260119_Batch5.md
+MASTRONARDI BEREA,Manufacturing,Greenhouse Farming / Food Mfg,111419,AI Analyst Research,Final,,sunsetgrown.com,Imported from Batch_20260119_Batch5.md
+MATRIX TECHNOLOGIES,Commercial Services,Engineering / Systems Integration,541512,AI Analyst Research,Final,,matrixti.com,Imported from Batch_20260119_Batch5.md
 MATT WARREN RENTAL,Commercial Real Estate,Property rental entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 MATT WILLIAMS RESIDENCE,Commercial Real Estate,Residential entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 MATTAR ELECTIC,Construction,Electrical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
+MAX TECHNICAL TRAINING,Commercial Services,IT Training,611420,AI Analyst Research,Final,,maxtrain.com,Imported from Batch_20260119_Batch5.md
 MAYDAY BREWERY,Commercial Services,Brewery/taproom,3121,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 MAYERSON JCC,Non-Profit / Religious,Community center nonprofit,8134,Heuristic,Final,,,Imported from Batch3.md
+MAYERSON THE,Commercial Real Estate,Real Estate Development,531110,AI Analyst Research,Final,,themayersoncompany.com,Imported from Batch_20260119_Batch5.md
 MAZAK,Manufacturing,Machine tools manufacturing,3335,Entity Inference,Final,,,Imported from Batch3.md
+MBM REFRIGERATION,Commercial Services,Commercial HVAC/R Services,811310,AI Analyst Research,Final,,mbmrefrigeration.com,Imported from Batch_20260119_Batch5.md
 MBX BIOSCIENCES,Manufacturing,Biotech (verify mfg vs R&D),3254,Heuristic,Final,,,Imported from Batch3.md
+MCH,Commercial Real Estate,Real Estate Services,531210,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch5.md
 MCLANE,Commercial Services,Wholesale distribution,4244,Entity Inference,Final,,,Imported from Batch3.md
 MCLANE DISTRIBUTION,Commercial Services,Wholesale distribution,4244,Entity Inference,Final,,,Imported from Batch3.md
 MCLANE FOODSERVICE DISTRIBUTION,Commercial Services,Wholesale distribution,4244,Entity Inference,Final,,,Imported from Batch3.md
+MCQUAY INTERNATIONAL,Manufacturing,HVAC Equipment Mfg,333415,AI Analyst Research,Final,,daikinapplied.com,Imported from Batch_20260119_Batch5.md
 MCSCROOGES WINES AND SPIRITS,Commercial Services,Alcohol retail,4453,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 ME LYONS YMCA,Non-Profit / Religious,YMCA nonprofit,8134,Rule-Based,Final,,,Imported from Batch3.md
 MECHANICAL SYSTEMS OF DAYTON,Construction,Mechanical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
-MECO,Commercial Services,Services/manufacturing (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+MECO,Manufacturing,Consumer Goods Mfg (Grills),335220,AI Analyst Research,Final,,mecocorp.com,Imported from Batch_20260119_Batch10.md
 MEDIC DBA MEDIC REGIONAL BLOOD CENTER,Commercial Services,Blood center,6219,Rule-Based,Final,,,"Imported from Batch3.md; expanded tokens ['MEDIC', 'REGIONAL', 'BLOOD', 'CENTER'] -> 'MEDIC DBA MEDIC REGIONAL BLOOD CENTER'"
 MEDPACE,Healthcare / Senior Living,Clinical research organization,5417,Entity Inference,Final,,,Imported from Batch3.md
-MEGACITY OF CINCINNATI,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
+MEGACITY OF CINCINNATI,Construction,General Contractor,236220,AI Analyst Research,Final,,megacityofcincinnati.com,Imported from Batch_20260119_Batch10.md
 MEGAN CARTY,Individual / Misc,Individual,,Rule-Based,Final,,,Imported from Batch3.md
 MELALEUCA,Commercial Services,Consumer products (direct sales),4543,Heuristic,Final,,,Imported from Batch3.md
 MELINK,Commercial Services,Energy efficiency services,5413,Heuristic,Final,,,Imported from Batch3.md
 MELINK SOLAR,Commercial Services,Energy efficiency services,5413,Heuristic,Final,,,Imported from Batch3.md
+MELLOW RIVER DBA HH2HOME,Commercial Services,Furniture Distribution,423210,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch5.md; expanded tokens ['HH2HOME'] -> 'MELLOW RIVER DBA HH2HOME'
 MELROSE PLACE GP,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md; unresolved master canonical 'MELROSE PLACE GP'
 MELROSE PLACE GP DBA MELROSE PLACE,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 MELROSE PLACE TENNESSEE GENERAL PARTNERSHIP DBA MELROSE PLACE,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md; resolved 'MELROSE PLACE' -> 'MELROSE PLACE TENNESSEE GENERAL PARTNERSHIP DBA MELROSE PLACE'
@@ -821,28 +906,29 @@ MERLIN KING,Individual / Misc,Individual (verify),,Heuristic,Final,,,Imported fr
 METAL IMPROVEMENT,Commercial Services,Metal fabrication/services,3323,Heuristic,Final,,,Imported from Batch3.md
 METAL TECH BUILDING SPECIALISTS,Construction,Metal building contractor,2362,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
 METALKRAFT COACHWERKES,Commercial Services,Vehicle upfitting,3363,Heuristic,Final,,,Imported from Batch3.md
-METZCOR,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
+METZCOR,Healthcare / Senior Living,Adult Day Care / Disability Services,624120,AI Analyst Research,Final,,metzcor.com,Imported from Batch_20260119_Batch10.md
 MIAMI VALLEY GAMING AND RACING,Commercial Services,Gaming/casino,7132,Entity Inference,Final,Hospitality,,Imported from Batch3.md
 MIDAMERICA MGMTWEST CRESCENTVILLE,Commercial Real Estate,Property mgmt/entity,5313,Heuristic,Final,,,Imported from Batch3.md
-MIDPARK KNOXVILLE,Commercial Services,Business entity (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+MIDPARK KNOXVILLE,Commercial Real Estate,Business Park,531120,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch10.md
 MIDSOUTH BUILDING III REIT,Commercial Real Estate,REIT/property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 MIDWEST EYE INSTITUTE,Healthcare / Senior Living,Eye care / clinic,6213,Rule-Based,Final,,,Imported from Batch3.md
 MIDWEST FINISHING SYSTEMS,Commercial Services,Industrial finishing services,3328,Heuristic,Final,,,Imported from Batch3.md
 MIDWEST MOLD AND TEXTURE,Commercial Services,Mold/texturing services,3335,Heuristic,Final,,,Imported from Batch3.md
-MIDWEST SEA SALT,Commercial Services,Food/wholesale (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+MIDWEST SEA SALT,Manufacturing,Personal Care Mfg,325620,AI Analyst Research,Final,,midwestseasaltcompany.com,Imported from Batch_20260119_Batch10.md
 MIKE ALBERT,Commercial Services,Fleet/leasing services,5321,Entity Inference,Final,,,Imported from Batch3.md
 MILACRON,Manufacturing,Plastics machinery,3332,Entity Inference,Final,,,Imported from Batch3.md
 MILACRON PLASTICS TECHNOLOGY GROUP,Manufacturing,Plastics machinery,3332,Entity Inference,Final,,,Imported from Batch3.md
 MILESTONE CONTRACTORS,Construction,Civil contractor,2373,Entity Inference,Final,Mechanical Contractor,,Imported from Batch3.md
-MILLAN ENTERPRISES,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
+MILLAN ENTERPRISES,Commercial Real Estate,Real Estate Investment,531110,AI Analyst Research,Final,,millanenterprises.com,Imported from Batch_20260119_Batch10.md
 MILLAN ENTERPRISES BILLING,Commercial Services,Ambiguous,,AI Analyst Research,Final,,,Imported from Batch3.md; auto-expanded 'MILLAN ENTERPRISES INCL BILLING' -> 'MILLAN ENTERPRISES BILLING'
-MILLAT INDUSTRIES,Manufacturing,Manufacturing (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+MILLAT INDUSTRIES,Manufacturing,Precision Machining,332710,AI Analyst Research,Final,,millatindustries.com,Imported from Batch_20260119_Batch10.md
 MILLER VALENTINE GROUP,Commercial Services,Real estate development/services,5313,Entity Inference,Final,,,Imported from Batch3.md
 MILLERS TEXTILE SERVICES,Commercial Services,Textile rental services,8123,Entity Inference,Final,,,Imported from Batch3.md
 MITSUI KINZOKU CATALYSTS AMERICA,Manufacturing,Chemical catalysts,325,Entity Inference,Final,,,Imported from Batch3.md
+ML BARNARD,Construction,Commercial Contractor,236220,AI Analyst Research,Final,,mlbarnard.com,Imported from Batch_20260119_Batch5.md
 MOELLER PRECISION TOOL,Manufacturing,Precision machining,3327,Entity Inference,Final,,,Imported from Batch3.md
-MOMENTUM,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
-MONAIRE,Commercial Services,HVAC services (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+MOMENTUM,Construction,Design-Build Firm,541310,AI Analyst Research,Final,,momentumbuilds.com,Imported from Batch_20260119_Batch10.md
+MONAIRE,Manufacturing,HVAC Tech / Cleantech,333415,AI Analyst Research,Final,,monaire.ai,Imported from Batch_20260119_Batch10.md
 MONDELEZ GLOBAL,Manufacturing,Food manufacturing,311,Entity Inference,Final,,,Imported from Batch3.md
 MONOPRICE,Commercial Services,E-commerce retail,4541,Entity Inference,Final,Hospitality,,Imported from Batch3.md
 MONSTER GOLF,Commercial Services,Recreation/entertainment,7139,Rule-Based,Final,Hospitality,,Imported from Batch3.md
@@ -851,41 +937,50 @@ MORE THAN A BAKERY,Commercial Services,Bakery/food service,7225,Rule-Based,Final
 MORGAN FOODS,Manufacturing,Food manufacturing,311,Entity Inference,Final,,,Imported from Batch3.md
 MORNING POINTE,Healthcare / Senior Living,Senior living,6233,Entity Inference,Final,,,Imported from Batch3.md
 MOTION INDUSTRIES,Commercial Services,Industrial parts distribution,4238,Entity Inference,Final,,,Imported from Batch3.md
-MOUNT VERNON DEVELOPMENTAL CENTER,Commercial Real Estate,Govt/health (ambiguous),,AI Analyst Research,Queued,,,Imported from Batch3.md
+MOUNT VERNON DEVELOPMENTAL CENTER,Healthcare / Senior Living,Intermediate Care Facility,623210,AI Analyst Research,Final,,dodd.ohio.gov,Imported from Batch_20260119_Batch10.md
 MOUNTAIN LINEN SERVICE,Commercial Services,Linen services,8123,Rule-Based,Final,,,Imported from Batch3.md
 MOUNTAIN VALLEY PIPELINE,Commercial Services,Pipeline operator,4862,Entity Inference,Final,,,Imported from Batch3.md
 MQ BUILDING,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
+MS MCCLELLAN AND,Commercial Services,Specialty Retail / Apparel,448110,AI Analyst Research,Final,,msmcclellan.com,Imported from Batch_20260119_Batch4.md
 MSD OF GREATER CINCINNATI,Public Schools (K–12),Public school district,6111,Rule-Based,Final,,,Imported from Batch3.md
+MSI EXPRESS,Manufacturing,Contract Packaging,561910,AI Analyst Research,Final,,msiexpress.com,Imported from Batch_20260119_Batch5.md
+MSP WELLNESS BILLING,Commercial Services,Medical Billing Services,541219,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch6.md
+MT AND L,Manufacturing,Card Manufacturing / Printing,323111,AI Analyst Research,Final,,magticket.com,Imported from Batch_20260119_Batch5.md
 MTM MOLDED PRODUCTS,Manufacturing,Plastics manufacturing,3261,Heuristic,Final,,,Imported from Batch3.md
 MUBEA,Manufacturing,Automotive components,3363,Entity Inference,Final,,,Imported from Batch3.md
-MUELLER,Commercial Services,Manufacturing/distribution (too broad),,AI Analyst Research,Queued,,,Imported from Batch3.md
+MUELLER,Manufacturing,Gas Products Mfg,332911,AI Analyst Research,Final,,muellergas.com,Imported from Batch_20260119_Batch10.md
 MULTICOLOR,Manufacturing,Labels/packaging printing,3231,Entity Inference,Final,,,Imported from Batch3.md
 MUNDET TENNESSEE,Manufacturing,Plastics/packaging (verify),3261,Heuristic,Final,,,Imported from Batch3.md
 MURAKAMI USA,Manufacturing,Automotive components,3363,Heuristic,Final,,,Imported from Batch3.md
+MURPHY,Construction,Mechanical Contractor,238220,AI Analyst Research,Final,,murphynet.com,Imported from Batch_20260119_Batch6.md
 MURPHY RESIDENCE,Commercial Real Estate,Residential entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 MURPHY TRACTOR AND EQUIPMENT,Commercial Services,Heavy equipment dealer,4238,Rule-Based,Final,,,Imported from Batch3.md
 MYRIAD GENETICS,Healthcare / Senior Living,Clinical/genetic testing,6215,Entity Inference,Final,,,Imported from Batch3.md
 N SALON,Commercial Services,Salon,8121,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 NAILS DESIRE,Commercial Services,Nail salon,8121,Rule-Based,Final,Hospitality,,Imported from Batch3.md
-NASCO,Commercial Services,Distribution/education supplies (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+NASCO,Manufacturing,Automotive Spring Mfg,336330,AI Analyst Research,Final,,nhknasco.com,Imported from Batch_20260119_Batch10.md
 NASHVILLE OFFICE 1,Commercial Real Estate,Office property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
+NASHVILLE OPERA ASSOCIATION,Non-Profit / Religious,Performing Arts / Opera,711110,AI Analyst Research,Final,,nashvilleopera.org,Imported from Batch_20260119_Batch6.md
 NASHVILLE SHEET METAL,Construction,Sheet metal/HVAC,2381,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
+NATIONAL BEDDING,Manufacturing,Mattress Manufacturing,337910,AI Analyst Research,Final,,serta.com,Imported from Batch_20260119_Batch6.md
 NATIONAL CITY EQUIPMENT FINANCE,Commercial Services,Equipment finance,5222,Rule-Based,Final,,,Imported from Batch3.md
 NATIONAL INDOOR RV CENTER,Commercial Services,RV sales/service,4412,Rule-Based,Final,,,Imported from Batch3.md
 NDH REIT OP LP,Commercial Real Estate,REIT property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
-NEHEMIAH,Commercial Services,Nonprofit/education (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+NEHEMIAH,Manufacturing,Consumer Goods / Packaging,325611,AI Analyst Research,Final,,nehemiahcompanies.org,Imported from Batch_20260119_Batch10.md
 NEOGEN,Commercial Services,Life sciences/testing,5417,Entity Inference,Final,,,Imported from Batch3.md
 NEPTUNE EYE,Healthcare / Senior Living,Eye care (verify),6213,Heuristic,Final,,,Imported from Batch3.md
 NESTLE USA,Manufacturing,Food manufacturing,311,Entity Inference,Final,,,Imported from Batch3.md
-NETFOR,Commercial Services,Staffing/services (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+NETFOR,Commercial Services,BPO / IT Services,541513,AI Analyst Research,Final,,netfor.com,Imported from Batch_20260119_Batch10.md
 NEW HOPE OF INDIANA,Non-Profit / Religious,Social services nonprofit,8133,Heuristic,Final,,,Imported from Batch3.md
+NEW RIFF DISTILLING,Manufacturing,Distillery,312140,AI Analyst Research,Final,,newriffdistilling.com,Imported from Batch_20260119_Batch6.md
 NEWLY WEDS FOODS,Manufacturing,Food manufacturing,311,Entity Inference,Final,,,Imported from Batch3.md
 NEWPAGE,Manufacturing,Paper manufacturing,3221,Entity Inference,Final,,,Imported from Batch3.md
 NEXT GENERATION CHILDCARE,Commercial Services,Childcare,6244,Rule-Based,Final,,,Imported from Batch3.md
 NIAGARA BOTTLING,Manufacturing,Beverage manufacturing,3121,Entity Inference,Final,,,Imported from Batch3.md
+NICKLES BAKERY,Manufacturing,Commercial Bakery,311812,AI Analyst Research,Final,,nicklesbakery.com,Imported from Batch_20260119_Batch6.md
 NITTO,Manufacturing,Industrial materials (verify entity),325,Heuristic,Final,,,Imported from Batch3.md
-NLIGN ANALYTICS ETEGENT,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
-NNODUM PHARMACEUTICALS,Commercial Services,Pharma (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+NLIGN ANALYTICS ETEGENT,Commercial Services,Aerospace Software / Analytics,541511,AI Analyst Research,Final,,nlign.com,Imported from Batch_20260119_Batch10.md
+NNODUM PHARMACEUTICALS,Manufacturing,Pharmaceutical Mfg,325412,AI Analyst Research,Final,,zikspain.com,Imported from Batch_20260119_Batch10.md
 NORITAKE USA,Manufacturing,Ceramics/industrial materials,327,Entity Inference,Final,,,Imported from Batch3.md
 NORTH AMERICAN STAINLESS,Manufacturing,Steel manufacturing,3311,Entity Inference,Final,,,Imported from Batch3.md
 NORTHERN KENTUCKY ASSOCIATION OF REALTORS,Commercial Services,Trade association,8139,Rule-Based,Final,,,Imported from Batch3.md
@@ -898,6 +993,7 @@ NP DAYON BUILDING VIII NP DWBA NP FTC LLL,Commercial Real Estate,Property entiti
 NP DWBA,Commercial Real Estate,Property entities,5311,Rule-Based,Final,,,Imported from Batch3.md
 NP FTC LLL,Commercial Real Estate,Property entities,5311,Rule-Based,Final,,,Imported from Batch3.md
 NUCO2,Commercial Services,Beverage gas services,4246,Entity Inference,Final,,,Imported from Batch3.md
+OAK GROVE GAMING,Commercial Services,Casino / Gaming,713210,AI Analyst Research,Final,,oakgrovegaming.com,Imported from Batch_20260119_Batch6.md
 OAK HILL SCHOOL,Private Schools (K–12),Private/parochial school (verify),6111,Heuristic,Final,,,Imported from Batch3.md
 OAK RIDGE LOCKSMITH,Commercial Services,Locksmith services,5616,Rule-Based,Final,,,Imported from Batch3.md
 OAK RIDGE NATIONAL LABORATORY,Municipal / Local Government,Federal research laboratory,5417,Entity Inference,Final,,,Imported from Batch3.md
@@ -905,6 +1001,7 @@ OBARA,Manufacturing,Welding automation (verify),3339,Heuristic,Final,,,Imported 
 ODW LOGISTICS,Commercial Services,Logistics/3PL,4931,Entity Inference,Final,,,Imported from Batch3.md
 OFFICE FURNITURE SOURCE,Commercial Services,Office furniture distribution,4232,Rule-Based,Final,,,Imported from Batch3.md
 OGARA HESS AND EISENHARGT ARMORING,Manufacturing,Vehicle armoring,3369,Entity Inference,Final,,,Imported from Batch3.md; resolved 'OGARA HESS AND EISENHARDT ARMORING' -> 'OGARA HESS AND EISENHARGT ARMORING'
+OHIO VALLEY CHAPTER ABC,Non-Profit / Religious,Trade Association,813910,AI Analyst Research,Final,,ovabc.org,Imported from Batch_20260119_Batch6.md
 OHIO VALLEY EDUCATIONAL COOPERATIVE,Municipal / Local Government,Education cooperative,6117,Rule-Based,Final,,,Imported from Batch3.md
 OHIO VALLEY ELECTRICAL SERVICES,Construction,Electrical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
 OIA GLOBAL,Commercial Services,Logistics/freight forwarding,4885,Entity Inference,Final,,,Imported from Batch3.md
@@ -913,16 +1010,17 @@ OLD TIME POTTERY BILLING,Commercial Services,Retail,4422,Entity Inference,Final,
 OLIVE GARDEN,Commercial Services,Restaurant,7225,Entity Inference,Final,Hospitality,,Imported from Batch3.md
 OLLIES BARGAIN OUTLET,Commercial Services,Discount retail,4523,Entity Inference,Final,Hospitality,,Imported from Batch3.md
 OLYMBEC USA,Commercial Real Estate,Industrial real estate (verify),5311,Heuristic,Final,,,Imported from Batch3.md
-OMNIA360 FACILITY SOLUTIONS,Commercial Services,Facilities services (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
-ON DISPLAY,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
+OMNIA360 FACILITY SOLUTIONS,Commercial Services,Facilities Management,561210,AI Analyst Research,Final,,omnia360fs.com,Imported from Batch_20260119_Batch10.md
+ON DISPLAY,Manufacturing,Specialty Printing / POP Displays,323111,AI Analyst Research,Final,,ondisplay.net,Imported from Batch_20260119_Batch11.md
 ONEC1TY,Commercial Real Estate,Mixed-use development (verify),5311,Heuristic,Final,,,Imported from Batch3.md
-OPTIMIRA ENERGY,Commercial Services,Energy services (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+OPTIMIRA ENERGY,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch12.md
 OROURKE WRECKING,Construction,Demolition contractor,2389,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
 ORSANCO,Municipal / Local Government,Regional commission/public authority,9211,Heuristic,Final,,,Imported from Batch3.md
 ORTHOPEDIC SPORTS MEDICINE,Healthcare / Senior Living,Ortho / sports medicine,6211,Rule-Based,Final,,,Imported from Batch3.md
+OSBORN ENTERPRISES,Commercial Real Estate,Real Estate Development,531110,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch6.md
 OSWALD,Commercial Services,Insurance services (likely),5242,Heuristic,Final,,,Imported from Batch3.md
 OTC INDUSTRIAL TECHNOLOGIES,Commercial Services,Industrial distribution,4238,Entity Inference,Final,,,Imported from Batch3.md
-OTICS USA,Manufacturing,Manufacturing (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+OTICS USA,Manufacturing,Automotive Parts Mfg,336390,AI Analyst Research,Final,,oticsusa.com,Imported from Batch_20260119_Batch11.md
 OTTERBEIN HOMES,Healthcare / Senior Living,Senior living,6233,Entity Inference,Final,,,Imported from Batch3.md
 OUTPOST ARMORY,Commercial Services,Retail (firearms-related; classify only),4539,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 OVER THE RHINE COMMUNITY HOUSING,Non-Profit / Religious,Community housing nonprofit,8133,Rule-Based,Final,,,Imported from Batch3.md
@@ -930,68 +1028,72 @@ OVERHEAD DOOR OF GREATER CINCINNATI,Construction,Overhead doors contractor,2382,
 PAIN TREATMENT CENTER,Healthcare / Senior Living,Pain management clinic,6211,Rule-Based,Final,,,Imported from Batch3.md
 PALM RIDGE CAPITAL GROUP,Commercial Services,Investment entity,5239,Heuristic,Final,,,Imported from Batch3.md
 PALMER CONSERVATION CONSULTING,Commercial Services,Consulting,5416,Rule-Based,Final,,,Imported from Batch3.md
-PAM SPRAGUEDAVE COLLINS,Commercial Services,Person/entity ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
+PAM SPRAGUEDAVE COLLINS,Individual / Misc,Residential / Individual,,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch12.md
 PANDORA JEWELLERY INCL PANDORA S9,Commercial Services,Jewelry retail,4483,Entity Inference,Final,Hospitality,,Imported from Batch3.md
 PANDORA JEWLLERY,Commercial Services,Jewelry retail,4483,Entity Inference,Final,Hospitality,,Imported from Batch3.md; resolved 'PANDORA JEWELLERY' -> 'PANDORA JEWLLERY'
 PANDORA S9,Commercial Services,Jewelry retail,4483,Entity Inference,Final,Hospitality,,Imported from Batch3.md
-PANORAMA,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
+PANORAMA,Commercial Real Estate,Apartment Building,531110,AI Analyst Research,Final,,panorama-apts.com,Imported from Batch_20260119_Batch12.md
 PARIS BOURBON COUNTY YMCA,Non-Profit / Religious,YMCA nonprofit,8134,Rule-Based,Final,,,Imported from Batch3.md
 PARIS INDEPENDENT SCHOOLS,Public Schools (K–12),Public school district,6111,Rule-Based,Final,,,Imported from Batch3.md
 PARK PLACE AT LYTLE,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 PARKSTONE INDIANAPOLIS,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
-PASSAGEWAYS DBA ONBOARD,Commercial Services,Services (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md; expanded tokens ['ONBOARD'] -> 'PASSAGEWAYS DBA ONBOARD'
+PASSAGEWAYS DBA ONBOARD,Commercial Services,Board Management Software,541511,AI Analyst Research,Final,,onboardmeetings.com,Imported from Batch_20260119_Batch11.md; expanded tokens ['ONBOARD'] -> 'PASSAGEWAYS DBA ONBOARD'
 PASTELITOS CUBAN BAKERY,Commercial Services,Bakery/food service,7225,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 PATHOLOGY AND CYTOLOGY LAB,Commercial Services,Medical lab,6215,Rule-Based,Final,,,Imported from Batch3.md
 PATRICK SHAAD,Commercial Services,Individual,,Rule-Based,Final,,,Imported from Batch3.md
+PATRIOT ARMOR,Manufacturing,Armored Glass Mfg,332999,AI Analyst Research,Final,,pasarmor.com,Imported from Batch_20260119_Batch6.md
 PATTI ENGINEERING,Construction,Engineering services,5413,Rule-Based,Final,Mechanical Contractor,,Imported from Batch3.md
-PAW PET ADVENTURES WORLDWIDE,Commercial Services,Pet services (unclear),,AI Analyst Research,Queued,Hospitality,,Imported from Batch3.md
+PAW PET ADVENTURES WORLDWIDE,Manufacturing,Pet Product Mfg,339999,AI Analyst Research,Final,,petadventuresworldwide.com,Imported from Batch_20260119_Batch11.md
 PCS PURIFIED PHOSPHATES,Manufacturing,Chemical processing,325,Heuristic,Final,,,Imported from Batch3.md
 PD PHARMATECH,Manufacturing,Pharmaceutical equipment/services,3339,Heuristic,Final,,,Imported from Batch3.md
-PEACE COMMUNICATIONS,Commercial Services,Telecom/IT (unclear),,AI Analyst Research,Queued,,,Imported from Batch3.md
+PEACE COMMUNICATIONS,Commercial Services,IT / Telecom Services,541512,AI Analyst Research,Final,,scipiotech.com,Imported from Batch_20260119_Batch11.md
 PEACOCK NORTHGATE,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch3.md
 PEARSON VUE INDY,Commercial Services,Testing services,6117,Entity Inference,Final,,,"Imported from Batch3.md; expanded tokens ['PEARSON', 'VUE'] -> 'PEARSON VUE INDY'"
 PEARSON VUE INDYLEX,Commercial Services,Testing services,6117,Entity Inference,Final,,,Imported from Batch3.md
 PEARSON VUE LEX,Commercial Services,Testing services,6117,Entity Inference,Final,,,"Imported from Batch3.md; expanded tokens ['PEARSON', 'VUE'] -> 'PEARSON VUE LEX'"
 PEASLEE NEIGHBORHOOD CENTER,Non-Profit / Religious,Community nonprofit,8133,Rule-Based,Final,,,Imported from Batch3.md
 PEBBLE BROOK GOLF CLUB,Commercial Services,Golf club,7139,Rule-Based,Final,Hospitality,,Imported from Batch3.md
-PENTAGON GROUP,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch3.md
+PENTAGON GROUP,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch11.md
 PEOPLE WORKING COOPERATIVELY,Non-Profit / Religious,Social services nonprofit,8133,Rule-Based,Final,,,Imported from Batch3.md
 PEPOS BURRITO BAR 2,Commercial Services,Restaurant,7225,Rule-Based,Final,Hospitality,,Imported from Batch3.md
 PEPSIAMERICAS,Manufacturing,Beverage (distribution/manufacturing),3121,Entity Inference,Final,,,Imported from Batch3.md
 PEPSICO,Manufacturing,Food/beverage manufacturing,311/312,Entity Inference,Final,,,Imported from Batch3.md
 PEPSICO NASS ACCOUNTS PAYABLES,Commercial Services,Corporate AP entity,311/312,Entity Inference,Final,,,Imported from Batch3.md
-PERFECTION GROUP,Unknown / Needs Review,Your organization (internal),2382,Manual Override,Final,,,Imported from Batch3.md
-PERFECTION MECHANICAL,Unknown / Needs Review,Mechanical contractor (internal brand),2382,Manual Override,Final,,,Imported from Batch3.md
+PERFECTION GROUP,Construction,Mechanical / HVAC Contracting,2382,Manual Override,Final,,,Imported from Batch_20260119_PerfectionGroup.md
 PERFECTION PRINTING,Commercial Services,Printing services,3231,Heuristic,Final,Hospitality,,Imported from Batch3.md
-PERFECTION SERVICES,Unknown / Needs Review,Services (internal brand),2382,Manual Override,Final,,,Imported from Batch3.md
 PERFECTSERVE,Commercial Services,Healthcare communications software,5112,Entity Inference,Final,,,Imported from Batch2.md
 PERFETTI VANMELLE,Manufacturing,Confectionery manufacturing,3113,Entity Inference,Final,,,Imported from Batch2.md
 PERFORMANCE CONTRACTING,Construction,Specialty contracting (insulation/interiors),2383,Entity Inference,Final,Mechanical Contractor,,Imported from Batch2.md
 PERFORMANCE FOOD SERVICE,Commercial Services,Food distribution,4244,Entity Inference,Final,,,Imported from Batch2.md
 PERKINS PLACE II,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
 PETERS ROAD PARTNERSHIP,Commercial Real Estate,Property partnership,5311,Rule-Based,Final,,,Imported from Batch2.md
+PETERSON,Construction,Commercial General Contractor,236220,AI Analyst Research,Final,,thepetersonco.com,Imported from Batch_20260119_Batch6.md
 PETLAND,Commercial Services,Pet retail,4539,Entity Inference,Final,Hospitality,,Imported from Batch2.md
-PETRIA LOWENSTINE,Commercial Services,Professional services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+PETRIA LOWENSTINE,Individual / Misc,Residential / Individual,,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch12.md
 PFG CUSTOMIZED,Commercial Services,Food distribution,4244,Entity Inference,Final,,,Imported from Batch2.md
 PG AND A,Commercial Services,Ambiguous acronym,,AI Analyst Research,Final,,,Imported from Batch2.md
 PG AND A PGNA PGNA,Commercial Services,Ambiguous acronym,,AI Analyst Research,Queued,,,Imported from Batch2.md; unresolved master canonical 'PG AND A PGNA PGNA'
 PGNA,Commercial Services,Ambiguous acronym,,AI Analyst Research,Final,,,Imported from Batch2.md
 PGP HARRISON CROSSING OWNER,Commercial Real Estate,Shopping center owner entity,5311,Rule-Based,Final,,,Imported from Batch2.md
 PHILLIPS EDISON,Commercial Real Estate,Retail REIT / property owner,5311,Entity Inference,Final,,,Imported from Batch2.md
+PHILLIPS EDISON AND,Commercial Real Estate,Retail REIT,531120,AI Analyst Research,Final,,phillipsedison.com,Imported from Batch_20260119_Batch6.md
 PHOENIX METALS,Manufacturing,Metal manufacturing/processing,331,Heuristic,Final,,,Imported from Batch2.md
 PHOENIX VERSAILLES INDUSTRIAL INVESTORS,Commercial Real Estate,Industrial property owner,5311,Rule-Based,Final,,,Imported from Batch2.md
 PILOT CONTRACTING,Construction,General/specialty contractor,2362,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 PINNACLE TURKEY CREEK,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
 PIONEER AUTOMOTIVE TECHNOLOGIES,Manufacturing,Automotive components,3363,Heuristic,Final,,,Imported from Batch2.md
+PIONEER VOCATIONAL INDUSTRIAL SERVICES,Non-Profit / Religious,Vocational Rehabilitation,624310,AI Analyst Research,Final,,pioneerservices.org,Imported from Batch_20260119_Batch6.md
 PIRAMAL PHARMA SOLUTIONS,Manufacturing,Pharmaceutical manufacturing,3254,Entity Inference,Final,,,Imported from Batch2.md
-PITT AND FRANK,Commercial Services,Professional services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
-PLANET XCHANGE,Commercial Services,Recycling/IT? (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+PITT AND FRANK,Commercial Services,Real Estate Legal Services,541110,AI Analyst Research,Final,,pittandfrank.com,Imported from Batch_20260119_Batch11.md
+PLANET XCHANGE,Commercial Services,Resale Retail / Clothing,448140,AI Analyst Research,Final,,planetxchange.com,Imported from Batch_20260119_Batch11.md
 PLUMB TECH SERVICES,Construction,Plumbing contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 PLUMBERS SUPPLY,Commercial Services,Plumbing wholesale,4237,Rule-Based,Final,,,Imported from Batch2.md
 PNK OHIO DBA BELTERRA PARK,Commercial Services,Casino/entertainment venue,7132,Entity Inference,Final,Hospitality,,"Imported from Batch2.md; expanded tokens ['BELTERRA', 'PARK'] -> 'PNK OHIO DBA BELTERRA PARK'"
 POINT BLANK RANGE AND GUNSHOP,Commercial Services,Retail/entertainment (range),7139,Rule-Based,Final,Hospitality,,Imported from Batch2.md
+POINTE AT LIFESPRING,Healthcare / Senior Living,Senior Living Community,623312,AI Analyst Research,Final,,pointeatlifespring.com,Imported from Batch_20260119_Batch6.md
 POLYMER SHAPES,Manufacturing,Plastics distribution/manufacturing,3261,Heuristic,Final,,,Imported from Batch2.md
 POST GLOVER RESISTORS,Manufacturing,Electronic components,3344,Heuristic,Final,,,Imported from Batch2.md
+POWERHOUSE NOW CENTRAL REGION,Commercial Services,Facilities Maintenance / Rollouts,561210,AI Analyst Research,Final,,powerhousenow.com,Imported from Batch_20260119_Batch6.md
 POWERSCHOOL GROUP,Commercial Services,Education software,5112,Entity Inference,Final,,,Imported from Batch2.md
 PPA CASTLE CREEK I AND II LP,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
 PRATT INDUSTRIES,Manufacturing,Packaging/paper products,3222,Entity Inference,Final,,,Imported from Batch2.md
@@ -1002,32 +1104,38 @@ PREMIER DESIGN AND BUILD GROUP,Construction,Design-build contractor,2362,Rule-Ba
 PREMIER TRANSPORTATION,Commercial Services,Transportation/logistics,4841,Rule-Based,Final,,,Imported from Batch2.md
 PRIDE DELIVERY AND INSTALLATION,Commercial Services,Delivery/installation services,4842,Heuristic,Final,,,Imported from Batch2.md
 PRO LIFT,Commercial Services,Equipment/material handling services,5324,Heuristic,Final,,,Imported from Batch2.md
-PRO ONCALL TECHNOLOGIES,Commercial Services,IT/services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+PRO ONCALL TECHNOLOGIES,Commercial Services,IT / VoIP Services,541512,AI Analyst Research,Final,,prooncall.com,Imported from Batch_20260119_Batch11.md
 PROCTOR AND GAMBLE,Manufacturing,Consumer products manufacturing,3256,Entity Inference,Final,,,Imported from Batch2.md
+PROFILE BY SANFORD,Healthcare / Senior Living,Weight Loss / Wellness,812199,AI Analyst Research,Final,,profileplan.com,Imported from Batch_20260119_Batch6.md
 PROGRESSIVE LOGISTICS,Commercial Services,Logistics,4885,Rule-Based,Final,,,Imported from Batch2.md
 PROLOGIS LP,Commercial Real Estate,Industrial REIT / logistics real estate,5311,Entity Inference,Final,,,Imported from Batch2.md
-PROMOTION,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+PROMOTION,Commercial Services,Marketing / Media Services,541810,AI Analyst Research,Final,,promotionmngt.com,Imported from Batch_20260119_Batch11.md
+PROSPIANT,Manufacturing,AgTech / Greenhouse Mfg,332311,AI Analyst Research,Final,,prospiant.com,Imported from Batch_20260119_Batch6.md
 PROTERIAL CABLE AMERICA,Manufacturing,Wire/cable manufacturing,3359,Heuristic,Final,,,Imported from Batch2.md
 PROVISION CARES PROTON THERAPY CENTER,Healthcare / Senior Living,Specialty healthcare,6211,Rule-Based,Final,,,Imported from Batch2.md
-PRUDENT GROWTH OPERATION,Commercial Real Estate,Investment/property (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+PRUDENT GROWTH OPERATION,Commercial Real Estate,Property Management,531312,AI Analyst Research,Final,,prudentgrowthoperations.com,Imported from Batch_20260119_Batch11.md
 PSC CENTRAL PARK,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
 PURE CONCEPT SALON AND SPA,Commercial Services,Salon/spa,8121,Rule-Based,Final,Hospitality,,Imported from Batch2.md
 PUREMAXX FILTRATION,Manufacturing,Filtration products,3334,Heuristic,Final,,,Imported from Batch2.md
 PVS NOLWOOD CHEMICALS,Manufacturing,Chemicals manufacturing,325,Entity Inference,Final,,,Imported from Batch2.md
-QUALITY CONTROLS,Commercial Services,QA/testing services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+QUALITY CONTROLS,Manufacturing,Industrial Control Panels,335314,AI Analyst Research,Final,,qcipanels.com,Imported from Batch_20260119_Batch11.md
+QUALITY INDUSTRIES DBA ANCHOR FABRICATION TN,Manufacturing,Metal Fabrication,332313,AI Analyst Research,Final,,anchorfabrication.com,"Imported from Batch_20260119_Batch6.md; expanded tokens ['ANCHOR', 'FABRICATION', 'TN'] -> 'QUALITY INDUSTRIES DBA ANCHOR FABRICATION TN'"
 QUALITY MECHANICALS,Construction,Mechanical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
-QUANDELL GROUP,Commercial Services,Construction services/engineering (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+QUANDELL GROUP,Construction,Commercial Construction,236220,AI Analyst Research,Final,,quandel.com,Imported from Batch_20260119_Batch11.md
 QUANTUM INVESTMENTS AND MGMT,Commercial Real Estate,Investment/property mgmt (unclear),5313,Heuristic,Final,,,Imported from Batch2.md
 QUEBECOR WORLD,Manufacturing,Printing manufacturing,3231,Entity Inference,Final,,,Imported from Batch2.md
 QUEST DIAGNOSTICS LOUISVILLE,Healthcare / Senior Living,Clinical lab services,6215,Entity Inference,Final,,,Imported from Batch2.md
-QUESTAR,Commercial Services,Ambiguous (utilities/telecom?),,AI Analyst Research,Queued,,,Imported from Batch2.md
+QUESTAR,Commercial Services,Industrial Packaging Solutions,424310,AI Analyst Research,Final,,questarsolutions.com,Imported from Batch_20260119_Batch11.md
+RA PHILLIPS INDUSTRIES,Manufacturing,Truck Parts Manufacturing,336320,AI Analyst Research,Final,,phillipsind.com,Imported from Batch_20260119_Batch6.md
 RAINBOW RESTORATION,Construction,Restoration contractor,2361,Entity Inference,Final,Mechanical Contractor,,Imported from Batch2.md
+RAMSEY PIKE,Commercial Real Estate,Real Estate Agency,531210,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch6.md
+RAMSEYS,Commercial Services,Restaurant / Dining,722511,AI Analyst Research,Final,,ramseysdiners.com,Imported from Batch_20260119_Batch7.md
 RAVEN COMMERCIAL GROUP,Commercial Real Estate,Commercial property entity,5311,Heuristic,Final,,,Imported from Batch2.md
 RAWLINGS GROUP,Commercial Services,Healthcare services (subrogation/claims),5242,Entity Inference,Final,,,Imported from Batch2.md
 RAYMOND JAMES,Commercial Services,Financial services,5231,Entity Inference,Final,,,Imported from Batch2.md
 RAYPAK,Manufacturing,HVAC/boilers/water heating equipment,3334,Entity Inference,Final,,,Imported from Batch2.md
 RED BULL DISTRIBUTION CENTER,Manufacturing,Beverage distribution (not mfg),4244,Heuristic,Final,,,Imported from Batch2.md
-REECECAMPBELL,Commercial Services,Professional services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+REECECAMPBELL,Construction,General Contractor,236220,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch11.md
 REED CONTRACTING GROUP,Construction,Contractor,2362,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 REEDS JEWELERS,Commercial Services,Jewelry retail,4483,Entity Inference,Final,Hospitality,,Imported from Batch2.md
 REFRESCO BEVERAGES US,Manufacturing,Beverage manufacturing,3121,Entity Inference,Final,,,Imported from Batch2.md
@@ -1036,42 +1144,53 @@ REGENCY,Commercial Real Estate,Property entity,5311,Heuristic,Final,,,Imported f
 REGENCY WEST VIRGINIA VENTURES LL,Commercial Real Estate,Property entity,5311,Heuristic,Final,,,Imported from Batch2.md
 REGENERATION BOND HILL SCHOOL,Public Schools (K–12),School entity (verify public/charter),6111,Heuristic,Final,,,Imported from Batch2.md
 REILY FOODS,Manufacturing,Food manufacturing,311,Entity Inference,Final,,,Imported from Batch2.md
+REINHART FOOD SERVICE JOHNSON CITY,Commercial Services,Food Distribution,424410,AI Analyst Research,Final,,rfsdelivers.com,Imported from Batch_20260119_Batch7.md
+REINHART FOODSERVICE,Commercial Services,Food Distribution,424410,AI Analyst Research,Final,,rfsdelivers.com,Imported from Batch_20260119_Batch7.md
+REJAY GROUP,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch7.md
 RELIABLE TRANSMISSION SERVICE,Commercial Services,Automotive repair/service,8111,Rule-Based,Final,,,Imported from Batch2.md
 REMAX,Commercial Services,Real estate brokerage,5312,Entity Inference,Final,,,Imported from Batch2.md
 RENEWAL BY ANDERSEN,Commercial Services,Home improvement services,4441,Entity Inference,Final,,,Imported from Batch2.md
-RESISTATEMPS,Commercial Services,Products/services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+RESISTATEMPS,Healthcare / Senior Living,Dental Laboratory,339116,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch11.md; resolved 'RESISTA TEMPS' -> 'RESISTATEMPS'
 RESOURCE LABEL GROUP,Manufacturing,Label/packaging printing,3231,Entity Inference,Final,,,Imported from Batch2.md
 RESULTANT,Commercial Services,Consulting,5416,Entity Inference,Final,,,Imported from Batch2.md
 REVERE PLASTICS SYSTEMS CLYDE,Manufacturing,Plastics manufacturing,3261,Entity Inference,Final,,,Imported from Batch2.md
 REXARC INTERNATIONAL,Commercial Services,Industrial gases equipment/service,3339,Heuristic,Final,,,Imported from Batch2.md
 REYNOLDS FARM EQUIPMENT,Commercial Services,Equipment dealer/service,4238,Heuristic,Final,,,Imported from Batch2.md
-RGBS ENTERPRISES,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+RGBS ENTERPRISES,Commercial Services,Facility Maintenance / Engineering,561210,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch12.md
 RHINEGEIST,Commercial Services,Brewery/taproom,3121,Entity Inference,Final,Hospitality,,Imported from Batch2.md
 RICH PRODUCTS,Manufacturing,Food manufacturing,311,Entity Inference,Final,,,Imported from Batch2.md
+RICH PRODUCTS GALLATIN,Manufacturing,Food Manufacturing,311611,AI Analyst Research,Final,,richsusa.com,Imported from Batch_20260119_Batch8.md
+RICHMOND AUTO PARTS TECHNOLOGY,Manufacturing,Automotive Parts Mfg,336390,AI Analyst Research,Final,,raptech.com,Imported from Batch_20260119_Batch7.md
 RICHWOOD BUILDING ONE,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
 RICHWOOD BUILDING TWO,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch2.md; unresolved master canonical 'RICHWOOD BUILDING ONE TWO'; auto-expanded 'RICHWOOD BUILDING ONE TWO' -> 'RICHWOOD BUILDING TWO'
+RIDGE K,Construction,Home Renovations,236118,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch7.md
 RIEGLER BLACKTOP,Construction,Paving/asphalt,2373,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 RITCHIE MECHANICAL,Construction,Mechanical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 RITE BOILER,Construction,Boiler/HVAC service,2382,Heuristic,Final,Mechanical Contractor,,Imported from Batch2.md
 RITETRACK,Commercial Services,Logistics/distribution (unclear),,AI Analyst Research,Final,,,Imported from Batch2.md
 RITETRACK RITWAY,Commercial Services,Logistics/distribution (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md; unresolved master canonical 'RITETRACK RITWAY'
 RITWAY,Commercial Services,Logistics/distribution (unclear),,AI Analyst Research,Final,,,Imported from Batch2.md
+RIVERSIDE INDUSTRIAL,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch7.md
 RIVERSIDE INDUSTRIAL SERVICES,Commercial Services,Industrial services,5617,Rule-Based,Final,,,Imported from Batch2.md
 RIVERTOWN BREWING,Commercial Services,Brewery/taproom,3121,Rule-Based,Final,Hospitality,,Imported from Batch2.md
+RIVIAN,Manufacturing,Electric Vehicle Mfg,336112,AI Analyst Research,Final,,rivian.com,Imported from Batch_20260119_Batch7.md
 RJ BEISCHEL BUILDING,Commercial Real Estate,Property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
 RMR LOUISVILLE,Commercial Real Estate,Property/asset mgmt (unclear),5313,Heuristic,Final,,,Imported from Batch2.md
 ROADHOUSE DEPOT BREWING,Commercial Services,Brewery/taproom,3121,Rule-Based,Final,Hospitality,,Imported from Batch2.md
 ROBERT BOSCH AUTOMOTIVE,Manufacturing,Automotive components,3363,Entity Inference,Final,,,Imported from Batch2.md
 ROBERT BOSCH AUTOMOTIVE STEERING,Manufacturing,Automotive steering systems,3363,Entity Inference,Final,,,Imported from Batch2.md
 ROBERT SEAGO,Individual / Misc,Individual,,Rule-Based,Final,,,Imported from Batch3.md
+ROBERT W BAIRD AND,Financial Services,Investment Banking / Wealth Mgmt,523110,AI Analyst Research,Final,,rwbaird.com,Imported from Batch_20260119_Batch7.md
 ROCK OF ISRAEL,Non-Profit / Religious,Religious organization,8131,Rule-Based,Final,,,Imported from Batch2.md
-ROCKY TOP NUTRITION BILLING,Commercial Services,Retail/health services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+ROCKQUEST,Commercial Services,Indoor Climbing Gym,713940,AI Analyst Research,Final,,rockquest.com,Imported from Batch_20260119_Batch7.md
+ROCKTENN,Manufacturing,Paper & Packaging Mfg,322211,AI Analyst Research,Final,,westrock.com,Imported from Batch_20260119_Batch7.md
+ROCKY TOP NUTRITION BILLING,Commercial Services,Retail / Health Services,722515,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch12.md
 ROCKY TOP SPORTS WORLD,Commercial Services,Sports complex,7139,Rule-Based,Final,,,Imported from Batch2.md
 ROHM AND HAAS,Manufacturing,Chemicals manufacturing,325,Entity Inference,Final,,,Imported from Batch2.md
 ROUGH BROTHERS,Manufacturing,Industrial process equipment,3339,Heuristic,Final,,,Imported from Batch2.md
 ROUSE COMPANIES,Commercial Real Estate,Real estate/property (unclear),5311,Heuristic,Final,,,Imported from Batch2.md
 ROYAL CANIN NORTH AMERICA,Commercial Services,Pet food brand (mfg/distribution),3111,Entity Inference,Final,,,Imported from Batch2.md
-ROYAL SERVICES,Commercial Services,Services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+ROYAL SERVICES,Commercial Services,Facilities Management,561210,AI Analyst Research,Final,,royalsolves.com,Imported from Batch_20260119_Batch12.md
 RPC MECHANICAL,Construction,Mechanical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 RSC MECHANICAL,Construction,Mechanical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 RUBBERSEAL PRODUCTS,Manufacturing,Rubber products,3262,Heuristic,Final,,,Imported from Batch2.md
@@ -1088,41 +1207,49 @@ RYANS ALL GLASS,Construction,Glazing contractor,2381,Rule-Based,Final,Mechanical
 RYDER LOGISTICS 6517,Commercial Services,Logistics,4931,Entity Inference,Final,,,"Imported from Batch2.md; expanded tokens ['RYDER', 'LOGISTICS'] -> 'RYDER LOGISTICS 6517'"
 RYDER LOGISTICS BUCKNER KY,Commercial Services,Logistics,4931,Entity Inference,Final,,,"Imported from Batch2.md; expanded tokens ['RYDER', 'LOGISTICS'] -> 'RYDER LOGISTICS BUCKNER KY'"
 SA RECYCLING,Manufacturing,Scrap processing,4239,Heuristic,Final,,,Imported from Batch2.md
-SAKSCOM,Commercial Services,E-commerce/retail ops (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SAKSCOM,Commercial Services,Luxury Online Retail,454110,AI Analyst Research,Final,,saks.com,Imported from Batch_20260119_Batch12.md
 SALON LOFTS,Commercial Services,Salon suites / personal care,8121,Entity Inference,Final,Hospitality,,Imported from Batch2.md
 SALT AND LIGHT SALON AND SPA,Commercial Services,Salon/spa,8121,Rule-Based,Final,Hospitality,,Imported from Batch2.md
 SAM ASH MUSIC,Commercial Services,Music retail,4511,Entity Inference,Final,Hospitality,,Imported from Batch2.md
+SAMS CLUB FC9475,Commercial Services,Retail Fulfillment Center,493110,AI Analyst Research,Final,,samsclub.com,Imported from Batch_20260119_Batch7.md
 SAMUEL ADAMS BREWING,Commercial Services,Brewery,3121,Entity Inference,Final,Hospitality,,Imported from Batch2.md
-SANDPIPER DATA SYSTEMS,Commercial Services,IT/services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SANDPIPER DATA SYSTEMS,Commercial Services,IT Asset Disposition / Data Wiping,541519,AI Analyst Research,Final,,sandpiperdata.com,Imported from Batch_20260119_Batch12.md
 SANDVIK,Manufacturing,Industrial tools/materials,3335,Entity Inference,Final,,,Imported from Batch2.md
 SANDVIK ABC,Manufacturing,Industrial tools/materials,3335,Entity Inference,Final,,,Imported from Batch2.md
 SANDWICH SQUAD,Commercial Services,Quick service restaurant,7225,Rule-Based,Final,Hospitality,,Imported from Batch2.md
 SARGENT AND GREENLEAF,Manufacturing,Security hardware manufacturing,3325,Entity Inference,Final,,,Imported from Batch2.md
-SATCO,Manufacturing,Lighting products (ambiguous entity),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SATCO,Manufacturing,Unit Load Device Mfg (Aerospace),332439,AI Analyst Research,Final,,satco-inc.com,Imported from Batch_20260119_Batch12.md
+SAVOR SEASONINGS,Manufacturing,Custom Spices / Food Ingredients,311942,AI Analyst Research,Final,,savorseasonings.com,Imported from Batch_20260119_Batch7.md
 SAYRE SCHOOL,Public Schools (K–12),Private school,6111,Rule-Based,Final,,,Imported from Batch2.md
 SAZERAC OF INDIANA,Manufacturing,Beverage manufacturing,3121,Entity Inference,Final,,,Imported from Batch2.md
-SCENIC INDUSTRIES,Manufacturing,Manufacturing (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SCENIC INDUSTRIES,Manufacturing,Machining & Fabrication,332710,AI Analyst Research,Final,,scenicind.com,Imported from Batch_20260119_Batch12.md
 SCGIV KARCHS CROSSING,Commercial Real Estate,Property entities,5311,Rule-Based,Final,,,Imported from Batch2.md
 SCGIV KARCHS CROSSING SCGIXHARVEST TOWNE SCGVI WASHINGTON MARKET,Commercial Real Estate,Property entities,5311,Rule-Based,Final,,,Imported from Batch2.md
 SCGIXHARVEST TOWNE,Commercial Real Estate,Property entities,5311,Rule-Based,Final,,,Imported from Batch2.md
 SCGVI WASHINGTON MARKET,Commercial Real Estate,Property entities,5311,Rule-Based,Final,,,Imported from Batch2.md
+SCHAAD COMPANIES,Commercial Real Estate,Real Estate Development / Mgmt,531110,AI Analyst Research,Final,,schaadcompanies.com,Imported from Batch_20260119_Batch7.md
 SCHENKER LOGISTICS SUITE A,Commercial Services,Logistics,4931,Entity Inference,Final,,,Imported from Batch2.md
-SCHUMACHER DUGAN,Commercial Services,Professional services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
-SCI,Commercial Services,Ambiguous acronym,,AI Analyst Research,Queued,,,Imported from Batch2.md
-SCOS,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SCHUMACHER DUGAN,Construction,General Contractor,236220,AI Analyst Research,Final,,schumacher-dugan.com,Imported from Batch_20260119_Batch12.md
+SCI,Commercial Real Estate,Real Estate Investment / Brokerage,531312,AI Analyst Research,Final,,koellamoore.com,Imported from Batch_20260119_Batch12.md
+SCOS,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch12.md
 SEAPINE SOFTWARE,Commercial Services,Software,5112,Entity Inference,Final,,,Imported from Batch2.md
 SEHLHORST EQUIPMENT SERVICES,Commercial Services,Equipment services,8113,Heuristic,Final,,,Imported from Batch2.md
 SENTINEL AMAZON I,Commercial Real Estate,Industrial property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
+SERTA SIMMONS BEDDING,Manufacturing,Mattress Manufacturing,337910,AI Analyst Research,Final,,sertasimmons.com,Imported from Batch_20260119_Batch7.md
 SERVICE WHOLESALE,Commercial Services,Wholesale distribution,423,Heuristic,Final,,,Imported from Batch2.md
 SESE INDUSTRIAL SERVICES US,Commercial Services,Industrial services,5617,Rule-Based,Final,,,Imported from Batch2.md
 SEVEN HILLS SCHOOL,Public Schools (K–12),Private school,6111,Rule-Based,Final,,,Imported from Batch2.md
-SHARES,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SEW EURODRIVE,Manufacturing,Drive Technology Mfg,333612,AI Analyst Research,Final,,sew-eurodrive.com,Imported from Batch_20260119_Batch7.md
+SHARES,Non-Profit / Religious,Vocational Rehabilitation,624310,AI Analyst Research,Final,,sharesinc.com,Imported from Batch_20260119_Batch12.md
 SHARONVILLE CHAMBER OF COMMERCE,Non-Profit / Religious,Chamber of commerce,8139,Rule-Based,Final,,,Imported from Batch2.md
 SHAW INDUSTRIES GROUP,Manufacturing,Flooring manufacturing,3141,Entity Inference,Final,,,Imported from Batch2.md
 SHELBYKY TOURISM COMMISSION AND VISITORS BUREAU,Non-Profit / Religious,Tourism bureau,8139,Heuristic,Final,,,Imported from Batch2.md
 SHERWIN WILLIAMS,Manufacturing,Paint/coatings manufacturing,3255,Entity Inference,Final,,,Imported from Batch2.md
+SHERWOOD MIDWEST,Manufacturing,Mattress Manufacturing,337910,AI Analyst Research,Final,,sherwoodbedding.com,Imported from Batch_20260119_Batch7.md
 SHOALS TECHNOLOGIES GROUP,Manufacturing,Electrical components,3359,Entity Inference,Final,,,Imported from Batch2.md
 SHOFFNER KALTHOFF MES,Construction,Mechanical/Electrical services,2382,Heuristic,Final,Mechanical Contractor,,Imported from Batch2.md
+SHOOK,Construction,Commercial Construction,236220,AI Analyst Research,Final,,shookconstruction.com,Imported from Batch_20260119_Batch7.md
+SHOOT POINT BLANK,Commercial Services,Indoor Shooting Range,713990,AI Analyst Research,Final,,rangeusa.com,Imported from Batch_20260119_Batch7.md
 SIBCY CLINE,Commercial Services,Real estate services,5312,Entity Inference,Final,,,Imported from Batch2.md
 SIEMENS MOBILITY,Manufacturing,Rail systems/equipment,3365,Entity Inference,Final,,,Imported from Batch2.md
 SIGS SPORTSPLEX,Commercial Services,Sports facility,7139,Rule-Based,Final,,,Imported from Batch2.md
@@ -1131,70 +1258,73 @@ SILCO FIRE AND SECURITY,Construction,Fire/security systems contractor,2382,Rule-
 SILCO FIRE AND SECURITY CENTERVILLECINCINNATI,Construction,Fire/security systems contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
 SIMPSON ORGANIZATION,Commercial Real Estate,Real Estate Development,531,AI Analyst Research,Final,,[https://simpsonorganization.com](https://simpsonorganization.com),Imported from Batch 5.md
 SIMS METAL,Manufacturing,Scrap metal processing,4239,Entity Inference,Final,,,Imported from Batch2.md
-SINGLETON COMPANIES,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SINGLETON COMPANIES,Commercial Real Estate,Commercial Real Estate Mgmt,531120,AI Analyst Research,Final,,singletoncompanies.com,Imported from Batch_20260119_Batch12.md
 SINOMAX EAST,Manufacturing,Foam/furnishings manufacturing,337,Heuristic,Final,,,Imported from Batch2.md
 SKEENS WAREHOUSE SERVICES,Commercial Services,Warehousing,4931,Rule-Based,Final,,,Imported from Batch2.md
-SKICO,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SKICO,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch12.md
 SKILLED TRADES,Commercial Services,Staffing/trades services,5613,Heuristic,Final,,,Imported from Batch2.md
 SKYLINE CHILI,Commercial Services,Restaurant,7225,Entity Inference,Final,Hospitality,,Imported from Batch2.md
-SL TENNESSEE,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SL TENNESSEE,Manufacturing,Automotive Parts Mfg,336320,AI Analyst Research,Final,,slworld.com,Imported from Batch_20260119_Batch12.md
 SLAMDOT,Commercial Services,IT services,5415,Entity Inference,Final,,,Imported from Batch2.md
 SLEEP OUTFITTERS OUTLET,Commercial Services,Furniture retail,4421,Rule-Based,Final,Hospitality,,Imported from Batch2.md
 SLICE OF STAINLESS,Manufacturing,Metal fabrication,3323,Heuristic,Final,,,Imported from Batch2.md
 SMART TECHNOLOGIES ULC,Commercial Services,EdTech/technology,5112,Entity Inference,Final,,,Imported from Batch2.md
 SMC OF AMERICA,Manufacturing,Industrial automation components,3339,Entity Inference,Final,,,Imported from Batch2.md
-SMOBEE,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SMOBEE,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch12.md
 SMURFITSTONE,Manufacturing,Packaging/paper,3222,Entity Inference,Final,,,Imported from Batch2.md
 SNYDERS LANCE,Manufacturing,Food manufacturing,311,Entity Inference,Final,,,Imported from Batch2.md
 SOHO HOUSE NASHVILLE,Commercial Services,Private club/hospitality,7211,Entity Inference,Final,Hospitality,,Imported from Batch2.md
-SOLID BLEND TECHNOLOGIES,Commercial Services,Industrial services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
-SOLTECH,Commercial Services,Technology/services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SOLID BLEND TECHNOLOGIES,Commercial Services,Water Treatment Services,561210,AI Analyst Research,Final,,solidblendtechnologies.com,Imported from Batch_20260119_Batch13.md
+SOLTECH,Commercial Services,Industrial Equipment Rep / Sales,423830,AI Analyst Research,Final,,sol-techgroup.com,Imported from Batch_20260119_Batch12.md
 SONOCO CORRFLEX,Manufacturing,Packaging products,3222,Entity Inference,Final,,,Imported from Batch2.md
 SONOCO FLEXIBLE,Manufacturing,Packaging products,3222,Entity Inference,Final,,,Imported from Batch2.md
 SOUTH CHARLESTON SANTIARY BOARD,Commercial Services,Municipal utility board,2213,Rule-Based,Final,,,Imported from Batch2.md
 SOUTH COAST MANAGMENT,Commercial Services,Property management (unclear),5313,Heuristic,Final,,,Imported from Batch2.md
-SOUTH WESTERN COMMUNICATIONS,Commercial Services,Telecom/services (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SOUTH WESTERN COMMUNICATIONS,Commercial Services,Security & Comm Solutions,561621,AI Analyst Research,Final,,swc.net,Imported from Batch_20260119_Batch12.md
 SOUTHEASTERN ENVIRONMENTAL SOLUTIONS,Commercial Services,Environmental services,5629,Rule-Based,Final,,,Imported from Batch2.md
 SOUTHERN OHIO BREWING,Commercial Services,Brewery/taproom,3121,Rule-Based,Final,Hospitality,,Imported from Batch2.md
-SOUTHERN TENNESEE REGIONAL,Commercial Services,Healthcare or government (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SOUTHERN TENNESEE REGIONAL,Healthcare / Senior Living,Hospital / Acute Care,622110,AI Analyst Research,Final,,southerntnlawrenceburg.com,Imported from Batch_20260119_Batch12.md
 SPARKZ,Commercial Services,Recreation/entertainment (unclear),7139,Heuristic,Final,,,Imported from Batch2.md
 SPARTECH,Manufacturing,Plastics manufacturing,3261,Entity Inference,Final,,,Imported from Batch2.md
 SPCA CINCINNATI,Non-Profit / Religious,Animal nonprofit,8133,Rule-Based,Final,,,Imported from Batch2.md
 SPEEDWAY SUPERAMERICA,Commercial Services,Convenience/fuel retail,4471,Entity Inference,Final,Hospitality,,Imported from Batch2.md
 SPIRALEDGE DBA SWIMOUTLETCOM,Commercial Services,E-commerce retail,4541,Heuristic,Final,,,Imported from Batch2.md; expanded tokens ['SWIMOUTLETCOM'] -> 'SPIRALEDGE DBA SWIMOUTLETCOM'
-SPOHN GLOBAL ENTERPRISES,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SPOHN GLOBAL ENTERPRISES,Commercial Services,Specialty Online Retail,454110,AI Analyst Research,Final,,spohnglobal.com,Imported from Batch_20260119_Batch12.md
 SPRING GROVE CEMETERY,Non-Profit / Religious,Cemetery (often nonprofit),8122,Heuristic,Final,,,Imported from Batch2.md
 SPRINGFIELD MUSEUM OF ART,Non-Profit / Religious,Arts nonprofit,7121,Rule-Based,Final,,,Imported from Batch2.md
 SPRINGS AT OLDHAM RESERVE,Commercial Real Estate,Residential/community property,5311,Heuristic,Final,,,Imported from Batch2.md
 SPRINGS WINDOW FASHIONS,Manufacturing,Window coverings manufacturing,337,Entity Inference,Final,,,Imported from Batch2.md
 SQUARE,Commercial Services,Payments/fintech services,5223,Entity Inference,Final,,,Imported from Batch2.md
 SQUARE ROOTS URBAN GROWERS,Commercial Services,Urban agriculture,1114,Heuristic,Final,,,Imported from Batch2.md
-SSSB,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+SSSB,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch13.md
 ST JOSEPH SCHOOL,Public Schools (K–12),Private/parochial school,6111,Rule-Based,Final,,,Imported from Batch2.md
 ST WALBURG MONASTERY,Non-Profit / Religious,Religious organization,8131,Rule-Based,Final,,,Imported from Batch2.md
 STANDEX ELECTRONICS,Manufacturing,Electronics manufacturing,3344,Entity Inference,Final,,,Imported from Batch2.md
 STATUS DOUGH,Commercial Services,(listed above; may remain Retail/Hospitality),7225,Heuristic,Final,,,Imported from Batch2.md
 STEAK ESCAPE,Commercial Services,Restaurant,7225,Rule-Based,Final,Hospitality,,Imported from Batch2.md
-STEP RESOURCES,Commercial Services,Energy/resources (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+STEP RESOURCES,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch13.md
 STEPTOE AND JOHNSON PLLC,Commercial Services,Legal services,5411,Rule-Based,Final,,,Imported from Batch2.md
 STERIS,Manufacturing,Medical equipment manufacturing,3391,Entity Inference,Final,,,Imported from Batch2.md
 STEWART TITLE OF CINCINNATI,Commercial Services,Title/settlement services,5411,Heuristic,Final,,,Imported from Batch2.md
 STITCHFIX,Commercial Services,E-commerce retail,4541,Entity Inference,Final,Hospitality,,Imported from Batch2.md
+STOERMERANDERSON,Commercial Services,HVAC Manufacturer Rep,423730,AI Analyst Research,Final,,stoermer-anderson.com,Imported from Batch_20260119_Batch8.md
 STOKELY HOSPITALITY ENTERPRISES,Commercial Services,Hospitality operator,7211,Heuristic,Final,,,Imported from Batch2.md
 STONEPEAK CERAMICS,Manufacturing,Ceramic tile manufacturing,3271,Entity Inference,Final,,,Imported from Batch2.md
 STORD FULLFILLMENT,Commercial Services,E-commerce fulfillment,4931,Entity Inference,Final,,,Imported from Batch2.md
 STOROPACK,Manufacturing,Protective packaging,3222,Entity Inference,Final,,,Imported from Batch2.md
 STOROPACK CSC,Manufacturing,Protective packaging,3222,Entity Inference,Final,,,Imported from Batch2.md
 STRATA ENVIRONMETAL SERVICES,Commercial Services,Environmental services,5629,Rule-Based,Final,,,Imported from Batch2.md
-STRATFORD,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+STRATFORD,Healthcare / Senior Living,Retirement Community,623312,AI Analyst Research,Final,,stratford-living.com,Imported from Batch_20260119_Batch13.md
 STS PETER AND PAUL EARLY CHILDHOOD CENTER,Public Schools (K–12),Early childhood education,6244,Heuristic,Final,,,Imported from Batch2.md
 SUBARU OF AMERICA,Manufacturing,Automotive (sales/ops),4411,Entity Inference,Final,,,Imported from Batch2.md
 SUMCO PHOENIX,Manufacturing,Semiconductor manufacturing,3344,Entity Inference,Final,,,Imported from Batch2.md
+SUMLEX INVESTMENTS,Commercial Real Estate,Real Estate Investment,531390,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch8.md
 SUMMIT BHC,Healthcare / Senior Living,Behavioral health services,6223,Entity Inference,Final,,,Imported from Batch2.md
 SUMMIT ENERGY SERVICES,Commercial Services,Energy services,2213,Heuristic,Final,,,Imported from Batch2.md
-SUMMIT EXPRESS POWELL,Commercial Services,Retail/service location (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+SUMMIT EXPRESS POWELL,Healthcare / Senior Living,Urgent Care Clinic,621111,AI Analyst Research,Final,,summitmedical.com,Imported from Batch_20260119_Batch13.md
 SUMMIT SUPPLY GROUP,Commercial Services,Wholesale distribution,4238,Heuristic,Final,,,Imported from Batch2.md
 SUNBELT RENTALS,Commercial Services,Equipment rental,5324,Entity Inference,Final,,,Imported from Batch2.md
+SUNBELT RENTALS 1466,Commercial Services,Equipment Rental,532412,AI Analyst Research,Final,,sunbeltrentals.com,Imported from Batch_20260119_Batch8.md
 SUNBELT RENTALS CLIMATE CONTROL,Commercial Services,Equipment rental,5324,Entity Inference,Final,,,"Imported from Batch2.md; expanded tokens ['CLIMATE', 'CONTROL'] -> 'SUNBELT RENTALS CLIMATE CONTROL'"
 SUNGWOO HITECH AMERICA,Manufacturing,Automotive components,3363,Entity Inference,Final,,,Imported from Batch2.md
 SUNRISE MANOR,Healthcare / Senior Living,Senior living / nursing,6231,Heuristic,Final,,,Imported from Batch2.md
@@ -1205,53 +1335,73 @@ SUPREMEX MIDWEST,Commercial Services,Envelope/packaging,3222,Entity Inference,Fi
 SUR LA TABLE BDC,Commercial Services,Retail distribution center,4931,Heuristic,Final,Hospitality,,Imported from Batch2.md
 SURE GROUP DBA THE CINCINNATI AIR CONDITIONING,Construction,HVAC contractor,2382,Rule-Based,Final,Mechanical Contractor,,"Imported from Batch2.md; expanded tokens ['CINCINNATI', 'AIR', 'CONDITIONING'] -> 'SURE GROUP DBA THE CINCINNATI AIR CONDITIONING'"
 SURE MECHANICAL,Construction,Mechanical contractor,2382,Rule-Based,Final,Mechanical Contractor,,Imported from Batch2.md
+SWAGGERTYS SAUSAGE,Manufacturing,Food Manufacturing,311612,AI Analyst Research,Final,,swaggertys.com,Imported from Batch_20260119_Batch8.md
 SWING FIT GOLF CLUB,Commercial Services,Recreation/fitness,7139,Rule-Based,Final,Hospitality,,Imported from Batch2.md
 SYCAMORE COMMUNITY SCHOOLS,Public Schools (K–12),Public school district,6111,Rule-Based,Final,,,Imported from Batch2.md
 SYENSQO MOUNT PLEASANT,Manufacturing,Specialty chemicals/materials,325,Entity Inference,Final,,,Imported from Batch2.md
 SYMMETRY SURGICAL,Manufacturing,Medical devices,3391,Entity Inference,Final,,,Imported from Batch2.md
-SYSTECON,Commercial Services,Consulting/engineering (unclear),,AI Analyst Research,Queued,,,"Imported from Batch2.md; expanded tokens ['SYSTECON', 'SYSTECON'] -> 'SYSTECON'"
-T REX ARMS,Commercial Services,Retail (ambiguous),,AI Analyst Research,Queued,Hospitality,,Imported from Batch2.md
+SYSTECON,Manufacturing,HVAC Pumping Systems,333914,AI Analyst Research,Final,,systecon.com,Imported from Batch_20260119_Batch13.md
+T REX ARMS,Manufacturing,Tactical Gear / Holsters,339999,AI Analyst Research,Final,,trex-arms.com,Imported from Batch_20260119_Batch13.md
 TAIN INVESTMENTS III,Commercial Real Estate,Investment/property (unclear),5311,Heuristic,Final,,,Imported from Batch2.md
+TALLULAH,Commercial Services,Retail Boutique,448120,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch8.md
 TAMARACK MARKETPLACE,Commercial Real Estate,Retail property entity,5311,Rule-Based,Final,,,Imported from Batch2.md
+TAMMIE PRICE,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
+TAMSAH ENTERPRISES,Construction,General Contractor,236220,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch8.md
 TAPE PRODUCTS,Manufacturing,Packaging tapes,3261,Heuristic,Final,,,Imported from Batch2.md
+TAYLORED FMI,Commercial Services,3PL / Logistics,488510,AI Analyst Research,Final,,tayloredservices.com,Imported from Batch_20260119_Batch8.md
 TBD FOODS DBA GOLDEN CORRAL,Commercial Services,Restaurant franchise,7225,Rule-Based,Final,Hospitality,,"Imported from Batch2.md; expanded tokens ['GOLDEN', 'CORRAL'] -> 'TBD FOODS DBA GOLDEN CORRAL'"
-TECHMAH CMF,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+TECHMAH CMF,Manufacturing,Medical Device Mfg,334510,AI Analyst Research,Final,,techmahcmf.com,Imported from Batch_20260119_Batch13.md
 TECHMER PM,Manufacturing,Plastics compounds,3259,Entity Inference,Final,,,Imported from Batch2.md
 TEKRAN INSTRUMENTS,Manufacturing,Scientific instruments,3345,Entity Inference,Final,,,Imported from Batch2.md
 TEKWORX,Commercial Services,(covered as TEKWORX),5415,Entity Inference,Final,,,Imported from Batch2.md; resolved 'TEKWO RX' -> 'TEKWORX'
 TELEDYNE,Manufacturing,Aerospace/electronics manufacturing,3364,Entity Inference,Final,,,Imported from Batch2.md
-TENBARGE,Commercial Services,Ambiguous,,AI Analyst Research,Queued,,,Imported from Batch2.md
+TENBARGE,Commercial Services,Ag & Turf Supplies Dist,424910,AI Analyst Research,Final,,tenbargeseeds.com,Imported from Batch_20260119_Batch13.md
 TENDER MERCIES,Non-Profit / Religious,Nonprofit social services,8133,Entity Inference,Final,,,Imported from Batch2.md
 TENNESSEAN HOA BILLING,Commercial Real Estate,HOA/property association,8139,Heuristic,Final,,,Imported from Batch2.md
 TENNESSEE CANCER SPECIALISTS,Healthcare / Senior Living,Oncology practice,6211,Rule-Based,Final,,,Imported from Batch2.md
 TENNESSEE ENDOSCOPY CENTER,Healthcare / Senior Living,Outpatient endoscopy,6214,Rule-Based,Final,,,Imported from Batch2.md
 TENNISPOINT,Commercial Services,Sporting goods retail (online),4541,Heuristic,Final,Hospitality,,Imported from Batch2.md
-TERA DATA,Commercial Services,Technology (unclear entity string),,AI Analyst Research,Queued,,,Imported from Batch2.md
+TERA DATA,Commercial Services,Data Analytics Software,541511,AI Analyst Research,Final,,teradata.com,Imported from Batch_20260119_Batch13.md
+TERESA TAYLOR,Individual / Misc,Individual,,Manual Override,Final,,,Imported from Batch_20260119_IndividualMisc.md
 TERILLIUM,Commercial Services,Consulting/technology,5416,Entity Inference,Final,,,Imported from Batch2.md
 TGT TRANSPORTATION,Commercial Services,Transportation/logistics,4841,Rule-Based,Final,,,Imported from Batch2.md
 THALER MACHINE,Manufacturing,Machinery manufacturing,3339,Heuristic,Final,,,Imported from Batch2.md
 THERMAL CARE,Manufacturing,Industrial chillers/HVAC equipment,3334,Heuristic,Final,,,Imported from Batch2.md
-THERMATRONX,Manufacturing,Industrial equipment (unclear),,AI Analyst Research,Queued,,,Imported from Batch2.md
+THERMATRONX,Manufacturing,Industrial Finishing Systems,333999,AI Analyst Research,Final,,thermatronx.com,Imported from Batch_20260119_Batch13.md
 THIRD EYE BREWING,Commercial Services,Brewery / taproom,312120,Rule-Based,Final,Hospitality,,Imported from Batch Process 1.md
 THIRD ROCK CONSULTANTS,Commercial Services,Management consulting,541690,Rule-Based,Final,,,Imported from Batch Process 1.md
+THOMA AND SUTTON OFC,Healthcare / Senior Living,Optometry / Eye Care,621320,AI Analyst Research,Final,,thomaandsutton.com,Imported from Batch_20260119_Batch8.md
+THOMAS CLARK SOLUTIONS,Commercial Services,Business Consulting,541611,AI Analyst Research,Final,,thomasclark.solutions,Imported from Batch_20260119_Batch8.md
 THOMAS OVERTON,Individual / Misc,Individual,,Rule-Based,Final,,,Imported from Batch Process 1.md
 THOMPSON HINE LLP,Commercial Services,Legal services,541110,Rule-Based,Final,,,Imported from Batch Process 1.md
+THOTH,Unknown / Needs Review,Unidentified,,Unclassified,Final,,,Imported from Batch_20260119_Batch8.md
+THREE BOND INTERNATIONAL,Manufacturing,Adhesives / Sealants Mfg,325520,AI Analyst Research,Final,,threebond.com,Imported from Batch_20260119_Batch8.md
 THREE RIVERS SHEET METAL,Construction,Sheet metal & HVAC,238160,Rule-Based,Final,Mechanical Contractor,,Imported from Batch Process 1.md
 THYSSENKRUPP BILSTEIN,Manufacturing,Automotive shock absorbers,336390,Entity Inference,Final,,,Imported from Batch Process 1.md
 TIPPECANOE SCHOOL,Public Schools (K–12),Public school,611110,Rule-Based,Final,,,Imported from Batch Process 1.md
+TIPTON INTEREST,Commercial Real Estate,Real Estate Development,531390,AI Analyst Research,Final,,tiptoninterests.com,Imported from Batch_20260119_Batch8.md
+TIPTON MILLS FOODS,Manufacturing,Food Manufacturing,311999,AI Analyst Research,Final,,tiptonmills.com,Imported from Batch_20260119_Batch8.md
 TITLE BOXING CLUB,Individual / Misc,Fitness Club Franchise,713,AI Analyst Research,Final,,[https://titleboxingclub.com](https://titleboxingclub.com),Imported from Batch 5.md
 TKO GRAPHIX,Commercial Services,Printing & graphics,323111,Rule-Based,Final,,,Imported from Batch Process 1.md
 TLG PETERBILT,Commercial Services,Truck sales & service,441228,Rule-Based,Final,,,Imported from Batch Process 1.md
 TLP 117 COLLINS,Commercial Real Estate,Property holding entity,531120,Rule-Based,Final,,,Imported from Batch Process 1.md
+TOLSMA LEGACY TRUST,Financial Services,Trust / Estate,523991,AI Analyst Research,Final,,,Imported from Batch_20260119_Batch8.md
+TOMZ,Manufacturing,Medical Device Mfg,339112,AI Analyst Research,Final,,tomz.com,Imported from Batch_20260119_Batch8.md
+TOP SEED TENNIS CLUB,Commercial Services,Sports / Recreation,713940,AI Analyst Research,Final,,topseedtennis.net,Imported from Batch_20260119_Batch8.md
 TOPGOLF,Commercial Services,Entertainment venue,713990,Entity Inference,Final,Hospitality,,Imported from Batch Process 1.md
 TOPGOLF NASHVILLE,Commercial Services,Entertainment venue,713990,Entity Inference,Final,Hospitality,,Imported from Batch Process 1.md
 TOPURA AMERICA FASTENER,Manufacturing,Industrial fasteners,332722,Heuristic,Final,,,Imported from Batch Process 1.md
+TOPY AMERICA,Manufacturing,Automotive Parts Mfg,336390,AI Analyst Research,Final,,topyamerica.com,Imported from Batch_20260119_Batch8.md
 TOTAL RESTORATION SOLUTIONS,Construction,Building restoration,236118,Rule-Based,Final,Mechanical Contractor,,Imported from Batch Process 1.md
 TOWER CONDOMINIUMS,Commercial Real Estate,Condominium ownership,531110,Rule-Based,Final,,,Imported from Batch Process 1.md
 TOWN AND COUNTRY FORD,Commercial Services,Auto dealership,441110,Rule-Based,Final,Hospitality,,Imported from Batch Process 1.md
+TOWN AND COUNTRY INDUSTRIES,Commercial Services,Building Products Dist,423310,AI Analyst Research,Final,,tc-alum.com,Imported from Batch_20260119_Batch8.md
+TOYO AUTOMOTIVE PARTS USA,Manufacturing,Automotive Parts Mfg,336390,AI Analyst Research,Final,,toyoautoparts.com,Imported from Batch_20260119_Batch8.md
+TOYOTA TSUSHO,Manufacturing,Automotive Parts / Logistics,423120,AI Analyst Research,Final,,toyotatsusho.com,Imported from Batch_20260119_Batch8.md
 TP MECHANICAL,Construction,Mechanical contractor,238220,Rule-Based,Final,Mechanical Contractor,,Imported from Batch Process 1.md
 TPG PLASTICS,Manufacturing,Plastics manufacturing,326199,Heuristic,Final,,,Imported from Batch Process 1.md
 TRACTOR SUPPLY,Commercial Services,Farm & ranch retail,444130,Entity Inference,Final,Hospitality,tractorsupply.com,Imported from Batch Process 1.md
+TRADE MARK INDUSTRIAL,Construction,Industrial Multi-Trade Contractor,236210,AI Analyst Research,Final,,trade-markllc.com,Imported from Batch_20260119_Batch9.md
 TRANE,Manufacturing,HVAC equipment manufacturing,333415,Entity Inference,Final,,trane.com,Imported from Batch Process 1.md
 TRANS AMERICAN MGMT,Commercial Services,Contract Management & Business Services,5614,AI Analyst Research,Final,,https://transamericanmgmt.com,Imported from Batch_20260118_Batch12.md
 TRANSPORT INTERNATIONAL POOL,Commercial Services,Transportation asset pooling,488510,Heuristic,Final,,,Imported from Batch Process 1.md

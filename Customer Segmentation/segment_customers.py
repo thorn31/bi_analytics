@@ -8,12 +8,12 @@ from pathlib import Path
 
 from customer_processing import (
     build_master_segmentation_rows,
-    build_segmentation_rows,
     confidence_for_method,
     default_paths,
     load_master_websites,
     load_master_segmentation_overrides,
     load_overrides,
+    map_legacy_segment_to_industrial_group,
     read_csv_dicts,
     write_csv_dicts,
 )
@@ -161,7 +161,59 @@ def main() -> None:
                     row["Rationale"] = f"{base} override"
         if not row.get("Company Website"):
             row["Company Website"] = websites.get(canonical, "")
-    segmentation_rows = build_segmentation_rows(master_rows, overrides=overrides)
+
+    master_dim_by_canonical = {
+        (r.get("Master Customer Name Canonical") or "").strip(): r for r in master_segmentation_rows
+    }
+
+    # Customer-grain output should inherit master-grain segmentation (after overrides),
+    # then optionally apply any legacy key-level segment overrides.
+    segmentation_rows: list[dict] = []
+    for row in master_rows:
+        customer_key = row["Customer Key"]
+        master_canonical = (row.get("Master Customer Name Canonical") or "").strip()
+        dim = master_dim_by_canonical.get(master_canonical) or {}
+
+        seg_row: dict[str, str] = {
+            "Customer Key": customer_key,
+            "Original Name": row.get("Original Name", ""),
+            "Master Customer Name": row.get("Master Customer Name", ""),
+            "Industrial Group": dim.get("Industrial Group", ""),
+            "Industry Detail": dim.get("Industry Detail", ""),
+            "NAICS": dim.get("NAICS", ""),
+            "Method": dim.get("Method", ""),
+            "Status": dim.get("Status", ""),
+            "Confidence": dim.get("Confidence", ""),
+            "Rationale": dim.get("Rationale", ""),
+            "Support Category": dim.get("Support Category", ""),
+            "Company Website": dim.get("Company Website", ""),
+            "Source": row.get("Source", ""),
+        }
+
+        # Key-level manual segment override (legacy behavior). This can cause
+        # inconsistency within a master; long-term, prefer master-level overrides.
+        segment_override = overrides.get(customer_key).segment if customer_key in overrides else ""
+        if segment_override.strip():
+            group = (segment_override or "").strip()
+            mapped_group = map_legacy_segment_to_industrial_group(group)
+            method = "Manual Override"
+            conf, rationale = confidence_for_method(method)
+            if mapped_group:
+                seg_row["Industrial Group"] = mapped_group
+                seg_row["Industry Detail"] = ""
+                seg_row["NAICS"] = ""
+            else:
+                seg_row["Industrial Group"] = "Unknown / Needs Review"
+                seg_row["Industry Detail"] = f"Override: {group}"
+                seg_row["NAICS"] = ""
+            seg_row["Method"] = method
+            seg_row["Status"] = (seg_row.get("Status") or "").strip() or "Final"
+            seg_row["Confidence"] = conf
+            seg_row["Rationale"] = rationale
+            seg_row["Support Category"] = ""
+            seg_row["Company Website"] = ""
+
+        segmentation_rows.append(seg_row)
 
     master_seg_written = write_csv_dicts(
         output_master_segmentation,
@@ -197,6 +249,7 @@ def main() -> None:
             "Confidence",
             "Rationale",
             "Support Category",
+            "Company Website",
             "Source",
         ],
     )

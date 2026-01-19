@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import difflib
 import re
+import urllib.parse
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
@@ -173,7 +174,7 @@ def load_master_websites(path: Path) -> Dict[str, str]:
         reader = csv.DictReader(handle)
         for row in reader:
             canonical = (row.get("Master Customer Name Canonical") or "").strip()
-            website = (row.get("Company Website") or "").strip()
+            website = normalize_company_website(row.get("Company Website") or "")
             if not canonical or canonical.startswith("#"):
                 continue
             if website:
@@ -200,10 +201,56 @@ def load_master_segmentation_overrides(path: Path) -> Dict[str, dict]:
                 "Method": (row.get("Method") or "").strip(),
                 "Status": status,
                 "Support Category": (row.get("Support Category") or "").strip(),
-                "Company Website": (row.get("Company Website") or "").strip(),
+                "Company Website": normalize_company_website(row.get("Company Website") or ""),
                 "Notes": (row.get("Notes") or "").strip(),
             }
     return overrides
+
+
+def normalize_company_website(value: str) -> str:
+    """
+    Normalize a website field into a bare domain (e.g., 'coldjet.com').
+
+    Accepts common formats from analyst batches and ad-hoc notes:
+      - https://example.com/path
+      - example.com
+      - [https://example.com](https://example.com)
+    """
+    v = (value or "").strip()
+    if not v:
+        return ""
+
+    # Markdown link: [text](url)
+    m = re.search(r"\((https?://[^)\s]+)\)", v)
+    if m:
+        v = m.group(1).strip()
+
+    # First URL-ish token if present (keep it lightweight / predictable)
+    m = re.search(r"(https?://\S+)", v)
+    if m:
+        v = m.group(1).strip().rstrip(").,;")
+
+    # If it's already a bare domain, add a scheme so urlparse uses netloc.
+    candidate = v
+    if "://" not in candidate and "/" not in candidate and " " not in candidate:
+        candidate = "https://" + candidate
+
+    try:
+        parsed = urllib.parse.urlparse(candidate)
+    except Exception:
+        parsed = None
+
+    host = ""
+    if parsed:
+        host = (parsed.netloc or "").strip().lower()
+        if not host and parsed.path and "://" in candidate:
+            host = parsed.path.strip().lower()
+
+    if host.startswith("www."):
+        host = host[4:]
+    # Remove any residual path/query fragments if the input was malformed.
+    host = host.split("/")[0].split("?")[0].split("#")[0].strip()
+    return host
 
 
 def map_legacy_segment_to_industrial_group(value: str) -> str:
