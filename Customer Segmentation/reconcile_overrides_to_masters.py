@@ -131,12 +131,12 @@ def safe_open_for_write(path: Path):
 
 
 def main() -> None:
-    overrides_path = Path("input/MasterSegmentationOverrides.csv")
-    reconciled_path = Path("input/MasterSegmentationOverrides_reconciled.csv")
+    overrides_path = Path("data/governance/MasterSegmentationOverrides.csv")
+    reconciled_path = Path("output/work/MasterSegmentationOverrides_reconciled.csv")
     master_map_path = Path("output/dedupe/CustomerMasterMap.csv")
-    report_path = Path("output/OverrideCanonicalReconcile.csv")
-    mismatch_report_path = Path("output/OverrideMismatchReport.csv")
-    master_merge_overrides_path = Path("input/MasterMergeOverrides.csv")
+    report_path = Path("output/work/OverrideCanonicalReconcile.csv")
+    mismatch_report_path = Path("output/work/OverrideMismatchReport.csv")
+    master_merge_overrides_path = Path("data/governance/MasterMergeOverrides.csv")
 
     if not overrides_path.exists():
         raise SystemExit(f"Missing {overrides_path}")

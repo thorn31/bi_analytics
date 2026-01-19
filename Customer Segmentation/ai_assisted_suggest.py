@@ -208,7 +208,8 @@ def main() -> None:
     unclassified.sort(key=key, reverse=True)
     top = unclassified[: max(0, args.limit)]
 
-    out_path = paths["segmentation_output"].parent / "AI_Assisted_Suggestions.csv"
+    output_root = paths.get("output_root") or Path("output")
+    out_path = output_root / "work" / "AI_Assisted_Suggestions.csv"
     rows_out: list[dict] = []
 
     for idx, m in enumerate(top, start=1):

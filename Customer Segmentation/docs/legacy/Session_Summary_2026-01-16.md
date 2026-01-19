@@ -7,7 +7,7 @@ To create a clean, deduplicated, and segmented "Master Customer" dimension for t
 
 ### 1. Project Structure
 Created a dedicated workspace folder: `powerbi/Customer Segmentation/`
-*   `input/`: Contains source data (`CustomerLastBillingDate.csv`) and `ManualOverrides.csv`.
+*   `data/`: Contains source data (`data/sources/CustomerLastBillingDate.csv`) and governance files like `data/governance/ManualOverrides.csv`.
 *   `output/`: Contains the processed results (`CustomerSegmentation.csv`) and audit logs (`CustomerDeduplicationLog.csv`).
 *   `segment_customers.py`: The Python logic engine.
 *   `CUSTOMERS_D.m`: Power Query script for model integration.
@@ -45,7 +45,7 @@ Assigns a segment based on keywords in the **Original Name** (to capture suffixe
 
 ### 3. Manual Overrides
 A key-based system allows precise user control.
-*   File: `input/ManualOverrides.csv`
+*   File: `data/governance/ManualOverrides.csv`
 *   Format: `Customer Key, Manual Master Name, Manual Segment`
 *   Usage: Forces a specific outcome for a customer, bypassing automated logic.
 

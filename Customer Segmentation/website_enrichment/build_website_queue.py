@@ -16,6 +16,25 @@ def _read_csv(path: Path) -> list[dict]:
         return list(csv.DictReader(handle))
 
 
+def _load_city_state_by_customer_key(path: Path) -> dict[str, tuple[str, str]]:
+    """
+    Loads a lightweight lookup used only for research context in queues.
+    Expected columns (case-sensitive as exported): CUSTOMER_KEY, CITY, STATE.
+    """
+    if not path.exists():
+        return {}
+    out: dict[str, tuple[str, str]] = {}
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle):
+            key = (row.get("CUSTOMER_KEY") or "").strip()
+            if not key:
+                continue
+            city = (row.get("CITY") or "").strip()
+            state = (row.get("STATE") or "").strip()
+            out[key] = (city, state)
+    return out
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Build a ranked queue of masters missing websites for review/enrichment."
@@ -42,11 +61,17 @@ def main() -> None:
         default=3,
         help="Number of example customer names to include per master (default: 3).",
     )
+    parser.add_argument(
+        "--customer-dim-path",
+        default="data/sources/CUSTOMERS.D_DB.csv",
+        help="Optional customer dimension extract for City/State context (default: data/sources/CUSTOMERS.D_DB.csv).",
+    )
     args = parser.parse_args()
 
     paths = default_paths()
     master_seg_path = paths["master_segmentation_output"]
     master_map_path = paths["dedupe_output"]
+    customer_dim_path = Path(args.customer_dim_path)
 
     if not master_seg_path.exists():
         raise SystemExit(f"Missing {master_seg_path}. Run `python3 segment_customers.py` first.")
@@ -55,16 +80,22 @@ def main() -> None:
 
     masters = _read_csv(master_seg_path)
     master_rows = _read_csv(master_map_path)
+    city_state_by_key = _load_city_state_by_customer_key(customer_dim_path)
 
     examples_by_canonical: dict[str, list[str]] = {}
+    example_keys_by_canonical: dict[str, list[str]] = {}
     for r in master_rows:
         canonical = (r.get("Master Customer Name Canonical") or "").strip()
         orig = (r.get("Original Name") or "").strip()
+        key = (r.get("Customer Key") or "").strip()
         if not canonical or not orig:
             continue
         examples_by_canonical.setdefault(canonical, [])
+        example_keys_by_canonical.setdefault(canonical, [])
         if orig not in examples_by_canonical[canonical] and len(examples_by_canonical[canonical]) < args.examples_per_master:
             examples_by_canonical[canonical].append(orig)
+        if key and key not in example_keys_by_canonical[canonical] and len(example_keys_by_canonical[canonical]) < args.examples_per_master:
+            example_keys_by_canonical[canonical].append(key)
 
     out_rows: list[dict[str, str]] = []
     for m in masters:
@@ -74,6 +105,15 @@ def main() -> None:
             continue
 
         examples = examples_by_canonical.get(canonical, [])
+        example_keys = example_keys_by_canonical.get(canonical, [])
+        locations: list[str] = []
+        for k in example_keys:
+            city, state = city_state_by_key.get(k, ("", ""))
+            if not city and not state:
+                continue
+            loc = ", ".join([x for x in [city, state] if x])
+            if loc and loc not in locations:
+                locations.append(loc)
         out_rows.append(
             {
                 "Master Customer Name": (m.get("Master Customer Name") or "").strip(),
@@ -86,6 +126,7 @@ def main() -> None:
                 "Status": (m.get("Status") or "").strip(),
                 "Company Website": website,
                 "Example Customer Names": " | ".join(examples),
+                "Example Locations": " | ".join(locations),
                 "Approved Website (fill in)": "",
                 "Notes (optional)": "",
             }
@@ -121,6 +162,7 @@ def main() -> None:
             "Status",
             "Company Website",
             "Example Customer Names",
+            "Example Locations",
             "Approved Website (fill in)",
             "Notes (optional)",
         ],

@@ -9,7 +9,7 @@ def main():
         except ValueError:
             pass
 
-    path = "output/SegmentationReviewWorklist.csv"
+    path = "output/final/SegmentationReviewWorklist.csv"
     with open(path, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         candidates = []

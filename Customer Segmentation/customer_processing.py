@@ -92,22 +92,63 @@ def repo_root() -> Path:
 
 def default_paths() -> dict[str, Path]:
     root = repo_root()
+    data = root / "data"
+    output = root / "output"
+    final_dir = output / "final"
+    work_dir = output / "work"
+    dedupe_dir = output / "dedupe"
+
     # Prefer the reconciled overrides file when available, since it aligns override
     # canonicals to the current master canonical list produced by dedupe.
-    reconciled_overrides = root / "input" / "MasterSegmentationOverrides_reconciled.csv"
-    base_overrides = root / "input" / "MasterSegmentationOverrides.csv"
-    dedupe_dir = root / "output" / "dedupe"
+    reconciled_overrides = work_dir / "MasterSegmentationOverrides_reconciled.csv"
+    base_overrides = data / "governance" / "MasterSegmentationOverrides.csv"
     return {
-        "input_customers": root / "input" / "CustomerLastBillingDate.csv",
-        "manual_overrides": root / "input" / "ManualOverrides.csv",
-        "master_merge_overrides": root / "input" / "MasterMergeOverrides.csv",
-        "master_websites": root / "input" / "MasterWebsites.csv",
+        "input_customers": data / "sources" / "CustomerLastBillingDate.csv",
+        "manual_overrides": data / "governance" / "ManualOverrides.csv",
+        "master_merge_overrides": data / "governance" / "MasterMergeOverrides.csv",
+        "master_websites": data / "enrichment" / "MasterWebsites.csv",
+        "master_enrichment": data / "enrichment" / "MasterEnrichment.csv",
         "master_segmentation_overrides": reconciled_overrides if reconciled_overrides.exists() else base_overrides,
         "dedupe_output": dedupe_dir / "CustomerMasterMap.csv",
-        "segmentation_output": root / "output" / "CustomerSegmentation.csv",
-        "master_segmentation_output": root / "output" / "MasterCustomerSegmentation.csv",
+        "segmentation_output": final_dir / "CustomerSegmentation.csv",
+        "master_segmentation_output": final_dir / "MasterCustomerSegmentation.csv",
         "dedupe_log": dedupe_dir / "CustomerDeduplicationLog.csv",
+        "output_root": output,
+        "final_dir": final_dir,
+        "work_dir": work_dir,
     }
+
+
+def load_master_enrichment(path: Path) -> Dict[str, dict]:
+    """
+    Load master-level enrichment values (website/NAICS/industry detail + confidence/rationale).
+    This is separate from segmentation governance overrides.
+    """
+    if not path.exists():
+        return {}
+
+    enrichment: Dict[str, dict] = {}
+    with path.open(mode="r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            canonical = (row.get("Master Customer Name Canonical") or "").strip()
+            if not canonical or canonical.startswith("#"):
+                continue
+            enrichment[canonical] = {
+                "Company Website": normalize_company_website(row.get("Company Website") or ""),
+                "NAICS": (row.get("NAICS") or "").strip(),
+                "Industry Detail": (row.get("Industry Detail") or "").strip(),
+                "Enrichment Status": (row.get("Enrichment Status") or "").strip(),
+                "Enrichment Confidence": (row.get("Enrichment Confidence") or "").strip(),
+                "Enrichment Rationale": (row.get("Enrichment Rationale") or "").strip(),
+                "Enrichment Source": (row.get("Enrichment Source") or "").strip(),
+                "Attempt Count": (row.get("Attempt Count") or "").strip(),
+                "Last Attempted At": (row.get("Last Attempted At") or "").strip(),
+                "Attempt Outcome": (row.get("Attempt Outcome") or "").strip(),
+                "Notes": (row.get("Notes") or "").strip(),
+                "Updated At": (row.get("Updated At") or "").strip(),
+            }
+    return enrichment
 
 
 def load_master_merge_overrides(path: Path) -> Dict[str, str]:

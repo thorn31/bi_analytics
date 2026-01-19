@@ -9,7 +9,7 @@ from customer_processing import default_paths, normalize_company_website
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Populate input/MasterWebsites.csv from website values already present in master segmentation overrides."
+        description="Populate data/enrichment/MasterWebsites.csv from website values already present in master segmentation overrides."
     )
     parser.add_argument(
         "--overrides-path",
@@ -19,7 +19,7 @@ def main() -> None:
     parser.add_argument(
         "--output-path",
         default="",
-        help="Master websites CSV to write (defaults to input/MasterWebsites.csv).",
+        help="Master websites CSV to write (defaults to data/enrichment/MasterWebsites.csv).",
     )
     parser.add_argument(
         "--overwrite-existing",

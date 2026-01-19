@@ -10,6 +10,7 @@ from customer_processing import (
     build_master_segmentation_rows,
     confidence_for_method,
     default_paths,
+    load_master_enrichment,
     load_master_websites,
     load_master_segmentation_overrides,
     load_overrides,
@@ -104,6 +105,8 @@ def _append_run_history(path: Path, row: dict[str, int | str]) -> None:
 
 def main() -> None:
     paths = default_paths()
+    output_root = paths.get("output_root") or Path("output")
+    work_dir = paths.get("work_dir") or (output_root / "work")
 
     master_map_path = paths["dedupe_output"]
     input_customers_path = paths["input_customers"]
@@ -112,7 +115,7 @@ def main() -> None:
     master_seg_overrides_path = paths["master_segmentation_overrides"]
     output_segmentation = paths["segmentation_output"]
     output_master_segmentation = paths["master_segmentation_output"]
-    output_dir = output_master_segmentation.parent
+    output_dir = output_master_segmentation.parent  # final output folder
 
     if not master_map_path.exists():
         raise SystemExit(
@@ -121,6 +124,7 @@ def main() -> None:
 
     overrides = load_overrides(overrides_path)
     websites = load_master_websites(websites_path)
+    enrichment = load_master_enrichment(paths.get("master_enrichment", Path("data/enrichment/MasterEnrichment.csv")))
     master_seg_overrides = load_master_segmentation_overrides(master_seg_overrides_path)
     master_rows = read_csv_dicts(master_map_path)
 
@@ -159,6 +163,36 @@ def main() -> None:
                     row["Rationale"] = f"{base} override (method: {method})"
                 else:
                     row["Rationale"] = f"{base} override"
+
+        # Apply verified enrichment (website/NAICS/industry detail), without overriding governance overrides.
+        e = enrichment.get(canonical) if canonical else None
+        if e and (e.get("Enrichment Status") or "").strip() == "Verified":
+            updated_fields: list[str] = []
+
+            # Governance override always wins per field.
+            o = master_seg_overrides.get(canonical) if canonical else None
+            if (e.get("NAICS") or "").strip() and not (o and (o.get("NAICS") or "").strip()):
+                row["NAICS"] = (e.get("NAICS") or "").strip()
+                updated_fields.append("NAICS")
+            if (e.get("Industry Detail") or "").strip() and not (o and (o.get("Industry Detail") or "").strip()):
+                row["Industry Detail"] = (e.get("Industry Detail") or "").strip()
+                updated_fields.append("Industry Detail")
+            if (e.get("Company Website") or "").strip() and not (o and (o.get("Company Website") or "").strip()):
+                row["Company Website"] = (e.get("Company Website") or "").strip()
+                updated_fields.append("Company Website")
+
+            # If enrichment materially affected the output, adopt its confidence/rationale.
+            if updated_fields:
+                conf = (e.get("Enrichment Confidence") or "").strip()
+                rationale = (e.get("Enrichment Rationale") or "").strip()
+                if conf:
+                    row["Confidence"] = conf
+                if rationale:
+                    row["Rationale"] = f"Verified enrichment updated: {', '.join(updated_fields)} — {rationale}"
+                else:
+                    row["Rationale"] = f"Verified enrichment updated: {', '.join(updated_fields)}"
+
+        # Fill remaining website gaps from the approved websites table.
         if not row.get("Company Website"):
             row["Company Website"] = websites.get(canonical, "")
 
@@ -284,7 +318,7 @@ def main() -> None:
 
     # Per-run snapshot folder and trend logging.
     run_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    runs_dir = output_dir / "runs" / run_ts
+    runs_dir = output_root / "runs" / run_ts
     runs_dir.mkdir(parents=True, exist_ok=True)
     write_csv_dicts(
         runs_dir / "SegmentationReviewWorklist.csv",
@@ -306,7 +340,7 @@ def main() -> None:
         ],
     )
 
-    mismatch_report = _latest_override_mismatch_report(output_dir)
+    mismatch_report = _latest_override_mismatch_report(work_dir)
     mismatch_count = 0
     if mismatch_report:
         _copy_if_possible(mismatch_report, runs_dir / "OverrideMismatchReport.csv")
@@ -342,7 +376,7 @@ def main() -> None:
     except Exception as exc:
         print(f"Warning: could not compute Customer Key coverage metrics: {exc}")
     _write_run_summary(runs_dir / "RunSummary.csv", summary)
-    _append_run_history(output_dir / "RunHistory.csv", summary)
+    _append_run_history(output_root / "RunHistory.csv", summary)
 
     print(f"Loaded {len(overrides)} manual overrides from {overrides_path}.")
     print(f"Loaded {len(websites)} master websites from {websites_path}.")
@@ -352,7 +386,7 @@ def main() -> None:
     print(f"Saved segmentation output to {seg_written}")
     print(f"Saved review worklist to {worklist_written}")
     print(f"Wrote run snapshot to {runs_dir}")
-    print(f"Appended run history to {output_dir / 'RunHistory.csv'}")
+    print(f"Appended run history to {output_root / 'RunHistory.csv'}")
 
 
 if __name__ == "__main__":

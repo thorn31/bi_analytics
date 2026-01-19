@@ -338,7 +338,7 @@ def support_category_from_section(section: str) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Import a markdown batch file into master segmentation overrides CSV.")
-    parser.add_argument("--input-md", default="input/Batch Process 1.md")
+    parser.add_argument("--input-md", default="data/batches/Batch Process 1.md")
     args = parser.parse_args()
 
     md_path = Path(args.input_md)
@@ -351,9 +351,9 @@ def main() -> None:
         raise SystemExit("No tables found to import.")
 
     paths = default_paths()
-    repo_root = paths["manual_overrides"].parent.parent
-    out_path = repo_root / "input" / "MasterSegmentationOverrides.csv"
-    reconciled_out_path = repo_root / "input" / "MasterSegmentationOverrides_reconciled.csv"
+    repo_root = paths["manual_overrides"].parent.parent.parent
+    out_path = repo_root / "data" / "governance" / "MasterSegmentationOverrides.csv"
+    reconciled_out_path = repo_root / "output" / "work" / "MasterSegmentationOverrides_reconciled.csv"
 
     # Load existing overrides to avoid duplicates (last write wins for the same canonical)
     existing: dict[str, dict] = {}

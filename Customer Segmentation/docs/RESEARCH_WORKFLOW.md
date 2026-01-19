@@ -4,7 +4,7 @@ This document outlines the interactive process for researching and classifying "
 
 ## Prerequisites
 
-- Ensure the pipeline has been run recently (`dedupe_customers.py` -> `reconcile_overrides_to_masters.py` -> `segment_customers.py`) so `output/SegmentationReviewWorklist.csv` is up to date.
+- Ensure the pipeline has been run recently (`dedupe_customers.py` -> `reconcile_overrides_to_masters.py` -> `segment_customers.py`) so `output/final/SegmentationReviewWorklist.csv` is up to date.
 - Have `find_next_batch.py` available in the root directory.
 
 ## The Loop
@@ -26,7 +26,7 @@ For each customer in the list, perform web searches to determine:
 *Tip: Use "AI-Assisted Search" as the `Method` for these batches.*
 
 ### 3. Create Batch File
-Create a new markdown file in `input/` (e.g., `input/Batch_YYYYMMDD_BatchN.md`).
+Create a new markdown file in `data/batches/` (e.g., `data/batches/Batch_YYYYMMDD_BatchN.md`).
 Format it as a series of markdown tables, grouped by `Industrial Group` for readability.
 
 **Format:**
@@ -49,7 +49,7 @@ Format it as a series of markdown tables, grouped by `Industrial Group` for read
 ### 4. Import Decisions
 Run the import script to apply these decisions to the master overrides file.
 ```bash
-python import_batch_overrides.py --input-md "input/Batch_YYYYMMDD_BatchN.md"
+python import_batch_overrides.py --input-md "data/batches/Batch_YYYYMMDD_BatchN.md"
 ```
 
 ### 5. Reconcile & Refresh
