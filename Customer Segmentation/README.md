@@ -17,21 +17,24 @@ python3 dedupe_customers.py
 python3 segment_customers.py
 ```
 
+For the current “operating mode” (ongoing enrichment + future customer ingestion), see `docs/PROCESS.md`.
+
 ## Key Files
 
-**Inputs (`input/`)**
-- `input/CustomerLastBillingDate.csv`: raw customer list from source system.
-- `input/ManualOverrides.csv`: key-level overrides for **master naming** (dedupe).
-- `input/MasterSegmentationOverrides.csv`: master-level overrides for **segmentation** (governance).
-- `input/MasterWebsites.csv`: master canonical → official website.
-- `input/Batch*.md`: analyst-produced batch classifications (importable).
+**Inputs (`data/`)**
+- `data/sources/CustomerLastBillingDate.csv`: raw customer list from source system.
+- `data/governance/ManualOverrides.csv`: key-level overrides for **master naming** (dedupe).
+- `data/governance/MasterSegmentationOverrides.csv`: master-level overrides for **segmentation** (governance).
+- `data/governance/MasterMergeOverrides.csv`: master-level rollups for canonical naming.
+- `data/enrichment/MasterWebsites.csv`: master canonical → approved website domain (bare hostname).
+- `data/batches/Batch*.md`: analyst-produced batch classifications (importable).
 
 **Outputs (`output/`)**
 - Final deliverables:
-  - `output/MasterCustomerSegmentation.csv`: master-level dimension (one row per master canonical).
-  - `output/CustomerSegmentation.csv`: key-level join output (classification inherited from master).
+  - `output/final/MasterCustomerSegmentation.csv`: master-level dimension (one row per master canonical).
+  - `output/final/CustomerSegmentation.csv`: key-level join output (classification inherited from master).
 - Review deliverables:
-  - `output/SegmentationReviewWorklist.csv`: “what’s left to review” for segmentation.
+  - `output/final/SegmentationReviewWorklist.csv`: “what’s left to review” for segmentation.
   - `output/RunHistory.csv`: run-to-run trend log (counts).
 - Supporting/audit outputs:
   - `output/dedupe/CustomerMasterMap.csv`: customer-level bridge table (dedupe output).
@@ -42,10 +45,10 @@ python3 segment_customers.py
 
 For a detailed guide on the interactive research and classification loop, see [docs/RESEARCH_WORKFLOW.md](docs/RESEARCH_WORKFLOW.md).
 
-1) Put analyst batch decisions in `input/BatchN.md`
+1) Put analyst batch decisions in `data/batches/BatchN.md`
 2) Import into the governance CSV:
 ```bash
-python3 import_batch_overrides.py --input-md "input/BatchN.md"
+python3 import_batch_overrides.py --input-md "data/batches/BatchN.md"
 ```
 3) Regenerate outputs:
 ```bash
@@ -58,13 +61,13 @@ Generate suggestion rows for unclassified masters:
 ```bash
 python3 ai_assisted_suggest.py --limit 200 --sleep-seconds 0.2
 ```
-Output: `output/AI_Assisted_Suggestions.csv`
+Output: `output/work/AI_Assisted_Suggestions.csv`
 
 Generate suggested official websites:
 ```bash
 python3 suggest_master_websites.py
 ```
-Output: `output/MasterWebsiteSuggestions.csv`
+Output: `output/website_enrichment/MasterWebsiteSuggestions.csv`
 
 ## Notes
 - Windows file locks: if a CSV is open in Excel/Power BI, scripts may write a timestamped fallback file instead of overwriting.
@@ -72,7 +75,7 @@ Output: `output/MasterWebsiteSuggestions.csv`
 
 ## Current Status
 
-From `output/MasterCustomerSegmentation.csv` (masters = 2309):
+From `output/final/MasterCustomerSegmentation.csv` (masters = 2309):
 - `Unknown / Needs Review` (Industrial Group): 663
 - `Unclassified` (Method): 659
 - `AI-Assisted Search` queued: 108

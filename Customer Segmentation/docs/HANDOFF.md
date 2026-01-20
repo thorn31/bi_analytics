@@ -1,5 +1,7 @@
 # Handoff (Resume Notes)
 
+For the up-to-date operating mode (enrichment + iterative master maintenance), see `docs/PROCESS.md`.
+
 ## Current Pipeline
 
 1) Dedupe / master mapping
@@ -15,22 +17,22 @@ Outputs:
 python3 segment_customers.py
 ```
 Outputs:
-- `output/MasterCustomerSegmentation.csv` (master dimension)
-- `output/CustomerSegmentation.csv` (key-level join output)
+- `output/final/MasterCustomerSegmentation.csv` (master dimension)
+- `output/final/CustomerSegmentation.csv` (key-level join output)
 
 ## Governance Inputs (What to Edit)
 
-- `input/MasterSegmentationOverrides.csv`: master-level segmentation governance (imported from batch markdowns).
-- `input/ManualOverrides.csv`: key-level dedupe override (master naming only).
-- `input/MasterWebsites.csv`: optional website enrichment (canonical → URL).
+- `data/governance/MasterSegmentationOverrides.csv`: master-level segmentation governance (imported from batch markdowns).
+- `data/governance/ManualOverrides.csv`: key-level dedupe override (master naming only).
+- `data/enrichment/MasterWebsites.csv`: optional website enrichment (canonical → domain).
 
 ## Batch Import Workflow
 
-Batch markdown files live in `input/` (e.g. `input/Batch4.md`).
+Batch markdown files live in `data/batches/` (e.g. `data/batches/Batch4.md`).
 
 Import a batch into the governance CSV:
 ```bash
-python3 import_batch_overrides.py --input-md "input/Batch4.md"
+python3 import_batch_overrides.py --input-md "data/batches/Batch4.md"
 python3 segment_customers.py
 ```
 
@@ -41,7 +43,7 @@ Notes:
 
 ## Current Status (As of last run)
 
-From `output/MasterCustomerSegmentation.csv` (masters = 2309):
+From `output/final/MasterCustomerSegmentation.csv` (masters = 2309):
 - `Unknown / Needs Review` (Industrial Group): 663
 - `Unclassified` (Method): 659
 - `AI-Assisted Search` queued: 108

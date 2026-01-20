@@ -2,9 +2,9 @@
 
 ## 1) Burn Down the AI Queue (Fastest ROI)
 
-Filter `output/MasterCustomerSegmentation.csv` where `Method == AI-Assisted Search` (currently 108 masters).
+Filter `output/final/MasterCustomerSegmentation.csv` where `Method == AI-Assisted Search` (currently 108 masters).
 - Research and decide `Industrial Group` / `Industry Detail` / `NAICS` / `Method`
-- Persist decisions in `input/MasterSegmentationOverrides.csv`
+- Persist decisions in `data/governance/MasterSegmentationOverrides.csv`
 - Re-run `python3 segment_customers.py`
 
 ## 2) Prioritize Remaining Unclassified Masters
@@ -26,6 +26,6 @@ Goal: prevent future Unknowns rather than only fixing existing ones.
 
 If needed:
 - Run `python3 suggest_master_websites.py --limit 50`
-- Copy approved URLs into `input/MasterWebsites.csv`
+- Copy approved URLs into `data/enrichment/MasterWebsites.csv`
 - Re-run `python3 segment_customers.py`
 

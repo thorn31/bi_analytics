@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "427689f68008c1e6e864",
   "position": {
-    "x": 974.0273037542662,
+    "x": 973.4375,
     "y": 0,
     "z": 3000,
-    "height": 107.81569965870307,
-    "width": 323.4470989761092,
+    "height": 270.3125,
+    "width": 366.40625,
     "tabOrder": 2000
   },
   "visual": {
@@ -81,7 +81,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Green'"
+                                "Value": "'Cincinnati'"
                               }
                             }
                           ]
@@ -97,5 +97,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f1f42372dcc401c1e601",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIVISIONS_D"
+              }
+            },
+            "Property": "Division"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

@@ -104,54 +104,13 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'greater'"
+                            "Value": "'al.'"
                           }
                         }
                       }
                     },
                     "Annotations": {
                       "PowerBI.MParameterBehavior": 1
-                    }
-                  }
-                ]
-              }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "c",
-                    "Entity": "CUSTOMERS_D",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "c"
-                                }
-                              },
-                              "Property": "Customer Name"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Greater Clark County Schools'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
                     }
                   }
                 ]

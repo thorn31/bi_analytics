@@ -9,7 +9,7 @@ def main():
         except ValueError:
             pass
 
-    path = "output/SegmentationReviewWorklist.csv"
+    path = "output/final/SegmentationReviewWorklist.csv"
     with open(path, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         candidates = []
@@ -18,8 +18,8 @@ def main():
             if (row.get("Status") or "").strip() == "Final":
                 continue
             # Skip if already Queued (unless we want to re-do them, but let's find fresh ones first)
-            if (row.get("Status") or "").strip() == "Queued":
-                continue
+            # if (row.get("Status") or "").strip() == "Queued":
+            #    continue
             
             candidates.append(row["Master Customer Name"])
             if len(candidates) >= limit:

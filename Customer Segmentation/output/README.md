@@ -2,14 +2,14 @@
 
 ## Final deliverables (for Power BI / `CUSTOMERS_D` integration)
 
-- `MasterCustomerSegmentation.csv`: **master-grain** customer dimension (one row per `Master Customer Name Canonical`)
-- `CustomerSegmentation.csv`: **customer-key grain** join output (classification inherited from master)
+- `final/MasterCustomerSegmentation.csv`: **master-grain** customer dimension (one row per `Master Customer Name Canonical`)
+- `final/CustomerSegmentation.csv`: **customer-key grain** join output (classification inherited from master)
 
 These two files are the primary “final outputs” of the segmentation pipeline.
 
 ## Review outputs (what’s left to classify)
 
-- `SegmentationReviewWorklist.csv`: masters that still need review (any of: `Method=Unclassified`, `Method=AI-Assisted Search`, or `Industrial Group=Unknown / Needs Review`)
+- `final/SegmentationReviewWorklist.csv`: masters that still need review (any of: `Method=Unclassified`, `Method=AI-Assisted Search`, or `Industrial Group=Unknown / Needs Review`)
 - `runs/<timestamp>/SegmentationReviewWorklist.csv`: per-run snapshot copy of the worklist
 - `runs/<timestamp>/RunSummary.csv`: per-run counts
 - `RunHistory.csv`: append-only trend log of per-run counts
@@ -26,9 +26,9 @@ These two files are the primary “final outputs” of the segmentation pipeline
 
 ## Workflow / helper artifacts (not final model outputs)
 
-- `OverrideMismatchReport*.csv`, `OverrideCanonicalReconcile.csv`: help keep overrides aligned to the current master list
-- `AI_Assisted_Suggestions.csv`: optional research queue / suggestion sheet
-- `MasterWebsiteSuggestions.csv`: optional website suggestion sheet
+- `work/OverrideMismatchReport*.csv`, `work/OverrideCanonicalReconcile.csv`, `work/MasterSegmentationOverrides_reconciled.csv`: help keep overrides aligned to the current master list
+- `work/AI_Assisted_Suggestions.csv`: optional research queue / suggestion sheet
+- `website_enrichment/MasterWebsiteSuggestions.csv`: optional website suggestion sheet
 
 ## File locks
 

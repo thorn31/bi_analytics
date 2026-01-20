@@ -5,6 +5,7 @@ import csv
 import re
 import time
 import urllib.parse
+from pathlib import Path
 
 from ai_assisted_suggest import duckduckgo_search
 from customer_processing import default_paths
@@ -83,7 +84,8 @@ def main() -> None:
     candidates.sort(key=sort_key, reverse=True)
     top = candidates[: max(0, args.limit)]
 
-    out_path = paths["segmentation_output"].parent / "MasterWebsiteSuggestions.csv"
+    output_root = paths.get("output_root") or Path("output")
+    out_path = output_root / "website_enrichment" / "MasterWebsiteSuggestions.csv"
     rows_out: list[dict] = []
 
     for idx, m in enumerate(top, start=1):
