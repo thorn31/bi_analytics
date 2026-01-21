@@ -69,6 +69,23 @@ python3 suggest_master_websites.py
 ```
 Output: `output/website_enrichment/MasterWebsiteSuggestions.csv`
 
+## Publish to Azure Blob (Power BI)
+
+Upload the two Power BI dataset inputs to Azure Blob Storage (and nothing else):
+- `output/final/CustomerSegmentation.csv`
+- `output/final/MasterCustomerSegmentation.csv`
+
+Target path: `stgreen/datasets/customer_segmentation/`
+
+Run:
+```bash
+py -3 publish_datasets_to_blob.py
+```
+If `az` is not on PATH:
+```bash
+py -3 publish_datasets_to_blob.py --az-path "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.cmd"
+```
+
 ## Notes
 - Windows file locks: if a CSV is open in Excel/Power BI, scripts may write a timestamped fallback file instead of overwriting.
 - Segmentation is computed **once per unique master**, then joined back to all customer keys.

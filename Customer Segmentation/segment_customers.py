@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import os
 import shutil
 from collections import Counter
 from datetime import datetime
@@ -11,8 +12,11 @@ from customer_processing import (
     confidence_for_method,
     default_paths,
     load_master_enrichment,
-    load_master_websites,
+    load_master_display_name_overrides,
+    load_master_logos,
     load_master_segmentation_overrides,
+    load_master_websites,
+    load_naics_titles_2022,
     load_overrides,
     map_legacy_segment_to_industrial_group,
     read_csv_dicts,
@@ -40,6 +44,58 @@ def _confidence_for_status(status: str) -> str:
     if s == "Queued":
         return "Low"
     return ""
+
+
+def _set_if_blank(row: dict, key: str, value: str) -> None:
+    if not (row.get(key) or "").strip():
+        row[key] = value
+
+
+def _build_apistemic_logo_url(domain: str) -> str:
+    d = (domain or "").strip()
+    if not d:
+        return ""
+    return f"https://logos-api.apistemic.com/domain:{d}"
+
+
+def _build_logo_dev_url(domain: str) -> str:
+    d = (domain or "").strip()
+    if not d:
+        return ""
+    token = (os.environ.get("LOGO_DEV_PUBLISHABLE_KEY") or "").strip()
+    base = f"https://img.logo.dev/{d}"
+    params = "size=256&format=png&retina=true"
+    if token:
+        return f"{base}?token={token}&{params}"
+    return f"{base}?{params}"
+
+
+def _normalize_naics_single(value: str) -> tuple[str, str]:
+    raw = (value or "").strip()
+    if not raw:
+        return "", ""
+    if raw in {"31-33", "44-45", "48-49"}:
+        return "", raw
+    if "-" in raw:
+        return "", raw
+    digits = "".join(ch for ch in raw if ch.isdigit())
+    if not digits:
+        return "", raw
+    return digits, raw
+
+
+def _naics_sector_code(naics_digits: str) -> str:
+    d = (naics_digits or "").strip()
+    if len(d) < 2:
+        return ""
+    first2 = d[:2]
+    if first2 in {"31", "32", "33"}:
+        return "31-33"
+    if first2 in {"44", "45"}:
+        return "44-45"
+    if first2 in {"48", "49"}:
+        return "48-49"
+    return first2
 
 
 def _latest_override_mismatch_report(output_dir: Path) -> Path | None:
@@ -80,7 +136,6 @@ def _append_run_history(path: Path, row: dict[str, int | str]) -> None:
         "Missing Customer Keys",
         "Extra Customer Keys",
     ]
-    # If the file exists but has an older header, avoid corrupting it; start a v2 file.
     target = path
     if exists:
         try:
@@ -112,7 +167,10 @@ def main() -> None:
     input_customers_path = paths["input_customers"]
     overrides_path = paths["manual_overrides"]
     websites_path = paths["master_websites"]
+    display_overrides_path = paths.get("master_display_name_overrides", Path("data/governance/MasterDisplayNameOverrides.csv"))
     master_seg_overrides_path = paths["master_segmentation_overrides"]
+    naics_codes_path = paths.get("naics_codes_2022") or (Path("data") / "sources" / "NAICS 2-6 Digit_2022_Codes.csv")
+
     output_segmentation = paths["segmentation_output"]
     output_master_segmentation = paths["master_segmentation_output"]
     output_dir = output_master_segmentation.parent  # final output folder
@@ -124,32 +182,63 @@ def main() -> None:
 
     overrides = load_overrides(overrides_path)
     websites = load_master_websites(websites_path)
+    display_name_overrides = load_master_display_name_overrides(display_overrides_path)
     enrichment = load_master_enrichment(paths.get("master_enrichment", Path("data/enrichment/MasterEnrichment.csv")))
+    logos = load_master_logos(paths.get("master_logos", Path("data/enrichment/MasterLogos.csv")))
     master_seg_overrides = load_master_segmentation_overrides(master_seg_overrides_path)
+    naics_titles = load_naics_titles_2022(naics_codes_path)
     master_rows = read_csv_dicts(master_map_path)
 
     master_segmentation_rows = build_master_segmentation_rows(master_rows)
     for row in master_segmentation_rows:
         row.setdefault("Status", "")
         canonical = (row.get("Master Customer Name Canonical") or "").strip()
+        if canonical and canonical.upper() in display_name_overrides:
+            row["Master Customer Name"] = display_name_overrides[canonical.upper()]
+
+        _set_if_blank(row, "Industrial Group Source", "Segmentation Logic")
+        _set_if_blank(row, "Industry Detail Source", "Segmentation Logic" if (row.get("Industry Detail") or "").strip() else "")
+        _set_if_blank(row, "NAICS Source", "Segmentation Logic" if (row.get("NAICS") or "").strip() else "")
+        _set_if_blank(row, "Support Category Source", "Segmentation Logic" if (row.get("Support Category") or "").strip() else "")
+        _set_if_blank(row, "Company Website Source", "Segmentation Logic" if (row.get("Company Website") or "").strip() else "")
+
+        row.setdefault("Company Logo URL", "")
+        row.setdefault("Company Logo URL Source", "")
+        row.setdefault("Company Logo URL (Apistemic)", "")
+        row.setdefault("Company Logo URL (Apistemic) Source", "")
+        row.setdefault("Company Logo URL (Logo.dev)", "")
+        row.setdefault("Company Logo URL (Logo.dev) Source", "")
+
+        row.setdefault("Enrichment Status", "")
+        row.setdefault("Enrichment Rationale", "")
+
+        e = enrichment.get(canonical) if canonical else None
+        if e:
+            row["Enrichment Status"] = (e.get("Enrichment Status") or "").strip()
+            row["Enrichment Rationale"] = (e.get("Enrichment Rationale") or "").strip()
+
         if canonical in master_seg_overrides:
             o = master_seg_overrides[canonical]
             if o.get("Industrial Group"):
                 row["Industrial Group"] = o["Industrial Group"]
+                row["Industrial Group Source"] = "Master Override"
             if o.get("Industry Detail"):
                 row["Industry Detail"] = o["Industry Detail"]
+                row["Industry Detail Source"] = "Master Override"
             if o.get("NAICS"):
                 row["NAICS"] = o["NAICS"]
+                row["NAICS Source"] = "Master Override"
             if o.get("Method"):
                 row["Method"] = _normalize_override_method(o["Method"])
             if o.get("Status"):
                 row["Status"] = o["Status"]
             if o.get("Support Category"):
                 row["Support Category"] = o["Support Category"]
+                row["Support Category Source"] = "Master Override"
             if o.get("Company Website"):
                 row["Company Website"] = o["Company Website"]
+                row["Company Website Source"] = "Master Override"
 
-            # Confidence/rationale should reflect governance posture (Status first).
             status = (row.get("Status") or "").strip() or "Final"
             row["Status"] = status
             method = (row.get("Method") or "").strip()
@@ -159,29 +248,24 @@ def main() -> None:
             else:
                 row["Confidence"] = _confidence_for_status(status) or "High"
                 base = "Analyst-approved" if status == "Final" else "Analyst draft"
-                if method:
-                    row["Rationale"] = f"{base} override (method: {method})"
-                else:
-                    row["Rationale"] = f"{base} override"
+                row["Rationale"] = f"{base} override (method: {method})" if method else f"{base} override"
 
-        # Apply verified enrichment (website/NAICS/industry detail), without overriding governance overrides.
-        e = enrichment.get(canonical) if canonical else None
         if e and (e.get("Enrichment Status") or "").strip() == "Verified":
             updated_fields: list[str] = []
-
-            # Governance override always wins per field.
             o = master_seg_overrides.get(canonical) if canonical else None
             if (e.get("NAICS") or "").strip() and not (o and (o.get("NAICS") or "").strip()):
                 row["NAICS"] = (e.get("NAICS") or "").strip()
+                row["NAICS Source"] = "Verified Enrichment"
                 updated_fields.append("NAICS")
             if (e.get("Industry Detail") or "").strip() and not (o and (o.get("Industry Detail") or "").strip()):
                 row["Industry Detail"] = (e.get("Industry Detail") or "").strip()
+                row["Industry Detail Source"] = "Verified Enrichment"
                 updated_fields.append("Industry Detail")
             if (e.get("Company Website") or "").strip() and not (o and (o.get("Company Website") or "").strip()):
                 row["Company Website"] = (e.get("Company Website") or "").strip()
+                row["Company Website Source"] = "Verified Enrichment"
                 updated_fields.append("Company Website")
 
-            # If enrichment materially affected the output, adopt its confidence/rationale.
             if updated_fields:
                 conf = (e.get("Enrichment Confidence") or "").strip()
                 rationale = (e.get("Enrichment Rationale") or "").strip()
@@ -192,16 +276,60 @@ def main() -> None:
                 else:
                     row["Rationale"] = f"Verified enrichment updated: {', '.join(updated_fields)}"
 
-        # Fill remaining website gaps from the approved websites table.
-        if not row.get("Company Website"):
-            row["Company Website"] = websites.get(canonical, "")
+        if not (row.get("Company Website") or "").strip():
+            fallback = websites.get(canonical, "")
+            if fallback:
+                row["Company Website"] = fallback
+                row["Company Website Source"] = "Approved Website"
+
+        if not (row.get("Company Logo URL") or "").strip():
+            hosted = (logos.get(canonical, {}).get("Hosted Logo URL") or "").strip() if canonical else ""
+            if hosted:
+                row["Company Logo URL"] = hosted
+                row["Company Logo URL Source"] = "Master Logos"
+
+        domain = (row.get("Company Website") or "").strip()
+        if not (row.get("Company Logo URL (Apistemic)") or "").strip() and domain:
+            row["Company Logo URL (Apistemic)"] = _build_apistemic_logo_url(domain)
+            if (row.get("Company Logo URL (Apistemic)") or "").strip():
+                row["Company Logo URL (Apistemic) Source"] = "Computed from Company Website"
+        if not (row.get("Company Logo URL (Logo.dev)") or "").strip() and domain:
+            row["Company Logo URL (Logo.dev)"] = _build_logo_dev_url(domain)
+            if (row.get("Company Logo URL (Logo.dev)") or "").strip():
+                row["Company Logo URL (Logo.dev) Source"] = "Computed from Company Website"
+
+        naics_norm, naics_raw = _normalize_naics_single(row.get("NAICS") or "")
+        row["NAICS Raw"] = naics_raw
+        row["NAICS"] = naics_norm
+        if not naics_norm:
+            row["NAICS Source"] = ""
+
+        row["NAICS 2 Digit"] = naics_norm[:2] if len(naics_norm) >= 2 else ""
+        row["NAICS 4 Digit"] = naics_norm[:4] if len(naics_norm) >= 4 else ""
+        row["NAICS 6 Digit"] = naics_norm[:6] if len(naics_norm) >= 6 else ""
+        row["NAICS 2 Digit Title"] = naics_titles.get(row["NAICS 2 Digit"], "") if row["NAICS 2 Digit"] else ""
+        row["NAICS 4 Digit Title"] = naics_titles.get(row["NAICS 4 Digit"], "") if row["NAICS 4 Digit"] else ""
+        row["NAICS 6 Digit Title"] = naics_titles.get(row["NAICS 6 Digit"], "") if row["NAICS 6 Digit"] else ""
+
+        row["NAICS Sector Code"] = _naics_sector_code(naics_norm)
+        row["NAICS Sector Title"] = naics_titles.get(row["NAICS Sector Code"], "") if row["NAICS Sector Code"] else ""
+        row["NAICS Subsector Code"] = naics_norm[:3] if len(naics_norm) >= 3 else ""
+        row["NAICS Subsector Title"] = naics_titles.get(row["NAICS Subsector Code"], "") if row["NAICS Subsector Code"] else ""
+        row["NAICS Industry Group Code"] = naics_norm[:4] if len(naics_norm) >= 4 else ""
+        row["NAICS Industry Group Title"] = (
+            naics_titles.get(row["NAICS Industry Group Code"], "") if row["NAICS Industry Group Code"] else ""
+        )
+        row["NAICS Industry Code"] = naics_norm[:5] if len(naics_norm) >= 5 else ""
+        row["NAICS Industry Title"] = naics_titles.get(row["NAICS Industry Code"], "") if row["NAICS Industry Code"] else ""
+        row["NAICS National Industry Code"] = naics_norm[:6] if len(naics_norm) >= 6 else ""
+        row["NAICS National Industry Title"] = (
+            naics_titles.get(row["NAICS National Industry Code"], "") if row["NAICS National Industry Code"] else ""
+        )
 
     master_dim_by_canonical = {
         (r.get("Master Customer Name Canonical") or "").strip(): r for r in master_segmentation_rows
     }
 
-    # Customer-grain output should inherit master-grain segmentation (after overrides),
-    # then optionally apply any legacy key-level segment overrides.
     segmentation_rows: list[dict] = []
     for row in master_rows:
         customer_key = row["Customer Key"]
@@ -211,41 +339,43 @@ def main() -> None:
         seg_row: dict[str, str] = {
             "Customer Key": customer_key,
             "Original Name": row.get("Original Name", ""),
-            "Master Customer Name": row.get("Master Customer Name", ""),
+            # Prefer the master-dimension display name (includes MasterDisplayNameOverrides).
+            "Master Customer Name": dim.get("Master Customer Name", row.get("Master Customer Name", "")),
+            "Master Customer Name Canonical": master_canonical,
             "Industrial Group": dim.get("Industrial Group", ""),
             "Industry Detail": dim.get("Industry Detail", ""),
             "NAICS": dim.get("NAICS", ""),
+            "NAICS Raw": dim.get("NAICS Raw", ""),
+            "NAICS Source": dim.get("NAICS Source", ""),
+            "NAICS Sector Code": dim.get("NAICS Sector Code", ""),
+            "NAICS Sector Title": dim.get("NAICS Sector Title", ""),
+            "NAICS Subsector Code": dim.get("NAICS Subsector Code", ""),
+            "NAICS Subsector Title": dim.get("NAICS Subsector Title", ""),
+            "NAICS Industry Group Code": dim.get("NAICS Industry Group Code", ""),
+            "NAICS Industry Group Title": dim.get("NAICS Industry Group Title", ""),
+            "NAICS Industry Code": dim.get("NAICS Industry Code", ""),
+            "NAICS Industry Title": dim.get("NAICS Industry Title", ""),
+            "NAICS National Industry Code": dim.get("NAICS National Industry Code", ""),
+            "NAICS National Industry Title": dim.get("NAICS National Industry Title", ""),
             "Method": dim.get("Method", ""),
             "Status": dim.get("Status", ""),
             "Confidence": dim.get("Confidence", ""),
             "Rationale": dim.get("Rationale", ""),
             "Support Category": dim.get("Support Category", ""),
             "Company Website": dim.get("Company Website", ""),
+            "Company Logo URL": dim.get("Company Logo URL", ""),
+            "Company Logo URL (Apistemic)": dim.get("Company Logo URL (Apistemic)", ""),
+            "Company Logo URL (Logo.dev)": dim.get("Company Logo URL (Logo.dev)", ""),
             "Source": row.get("Source", ""),
         }
 
-        # Key-level manual segment override (legacy behavior). This can cause
-        # inconsistency within a master; long-term, prefer master-level overrides.
-        segment_override = overrides.get(customer_key).segment if customer_key in overrides else ""
-        if segment_override.strip():
-            group = (segment_override or "").strip()
-            mapped_group = map_legacy_segment_to_industrial_group(group)
-            method = "Manual Override"
-            conf, rationale = confidence_for_method(method)
-            if mapped_group:
-                seg_row["Industrial Group"] = mapped_group
-                seg_row["Industry Detail"] = ""
-                seg_row["NAICS"] = ""
-            else:
-                seg_row["Industrial Group"] = "Unknown / Needs Review"
-                seg_row["Industry Detail"] = f"Override: {group}"
-                seg_row["NAICS"] = ""
-            seg_row["Method"] = method
-            seg_row["Status"] = (seg_row.get("Status") or "").strip() or "Final"
-            seg_row["Confidence"] = conf
-            seg_row["Rationale"] = rationale
-            seg_row["Support Category"] = ""
-            seg_row["Company Website"] = ""
+        # IMPORTANT: CustomerSegmentation is a master-derived join output. To keep it
+        # perfectly aligned with MasterCustomerSegmentation, we do not apply key-level
+        # Manual Segment overrides here.
+        #
+        # If you need to change a segmentation decision, do it at master-grain via:
+        # - data/governance/MasterSegmentationOverrides.csv (segmentation)
+        # - data/enrichment/MasterEnrichment.csv (website/NAICS/detail enrichment)
 
         segmentation_rows.append(seg_row)
 
@@ -256,14 +386,38 @@ def main() -> None:
             "Master Customer Name",
             "Master Customer Name Canonical",
             "Industrial Group",
+            "Industrial Group Source",
             "Industry Detail",
+            "Industry Detail Source",
             "NAICS",
+            "NAICS Raw",
+            "NAICS Source",
+            "NAICS Sector Code",
+            "NAICS Sector Title",
+            "NAICS Subsector Code",
+            "NAICS Subsector Title",
+            "NAICS Industry Group Code",
+            "NAICS Industry Group Title",
+            "NAICS Industry Code",
+            "NAICS Industry Title",
+            "NAICS National Industry Code",
+            "NAICS National Industry Title",
             "Method",
             "Status",
             "Confidence",
             "Rationale",
             "Support Category",
+            "Support Category Source",
             "Company Website",
+            "Company Website Source",
+            "Company Logo URL",
+            "Company Logo URL Source",
+            "Company Logo URL (Apistemic)",
+            "Company Logo URL (Apistemic) Source",
+            "Company Logo URL (Logo.dev)",
+            "Company Logo URL (Logo.dev) Source",
+            "Enrichment Status",
+            "Enrichment Rationale",
             "IsMerge",
             "MergeGroupSize",
         ],
@@ -275,20 +429,35 @@ def main() -> None:
             "Customer Key",
             "Original Name",
             "Master Customer Name",
+            "Master Customer Name Canonical",
             "Industrial Group",
             "Industry Detail",
             "NAICS",
+            "NAICS Raw",
+            "NAICS Source",
+            "NAICS Sector Code",
+            "NAICS Sector Title",
+            "NAICS Subsector Code",
+            "NAICS Subsector Title",
+            "NAICS Industry Group Code",
+            "NAICS Industry Group Title",
+            "NAICS Industry Code",
+            "NAICS Industry Title",
+            "NAICS National Industry Code",
+            "NAICS National Industry Title",
             "Method",
             "Status",
             "Confidence",
             "Rationale",
             "Support Category",
             "Company Website",
+            "Company Logo URL",
+            "Company Logo URL (Apistemic)",
+            "Company Logo URL (Logo.dev)",
             "Source",
         ],
     )
 
-    # Review worklist (masters still needing segmentation attention).
     worklist_rows = [
         r
         for r in master_segmentation_rows
@@ -303,20 +472,43 @@ def main() -> None:
             "Master Customer Name",
             "Master Customer Name Canonical",
             "Industrial Group",
+            "Industrial Group Source",
             "Industry Detail",
+            "Industry Detail Source",
             "NAICS",
+            "NAICS Raw",
+            "NAICS Source",
+            "NAICS Sector Code",
+            "NAICS Sector Title",
+            "NAICS Subsector Code",
+            "NAICS Subsector Title",
+            "NAICS Industry Group Code",
+            "NAICS Industry Group Title",
+            "NAICS Industry Code",
+            "NAICS Industry Title",
+            "NAICS National Industry Code",
+            "NAICS National Industry Title",
             "Method",
             "Status",
             "Confidence",
             "Rationale",
             "Support Category",
+            "Support Category Source",
             "Company Website",
+            "Company Website Source",
+            "Company Logo URL",
+            "Company Logo URL Source",
+            "Company Logo URL (Apistemic)",
+            "Company Logo URL (Apistemic) Source",
+            "Company Logo URL (Logo.dev)",
+            "Company Logo URL (Logo.dev) Source",
+            "Enrichment Status",
+            "Enrichment Rationale",
             "IsMerge",
             "MergeGroupSize",
         ],
     )
 
-    # Per-run snapshot folder and trend logging.
     run_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     runs_dir = output_root / "runs" / run_ts
     runs_dir.mkdir(parents=True, exist_ok=True)
@@ -329,12 +521,20 @@ def main() -> None:
             "Industrial Group",
             "Industry Detail",
             "NAICS",
+            "NAICS Sector Code",
+            "NAICS Subsector Code",
+            "NAICS Industry Group Code",
+            "NAICS Industry Code",
+            "NAICS National Industry Code",
             "Method",
             "Status",
             "Confidence",
             "Rationale",
             "Support Category",
             "Company Website",
+            "Company Logo URL",
+            "Company Logo URL (Apistemic)",
+            "Company Logo URL (Logo.dev)",
             "IsMerge",
             "MergeGroupSize",
         ],
@@ -363,7 +563,7 @@ def main() -> None:
         "Method=AI Analyst Research": method_counts.get("AI Analyst Research", 0),
         "Override Mismatch Canonicals": mismatch_count,
     }
-    # Key coverage verification: output CustomerSegmentation should cover all input Customer Keys.
+
     try:
         with input_customers_path.open("r", encoding="utf-8-sig", newline="") as handle:
             input_keys = {row.get("Customer Key", "").strip() for row in csv.DictReader(handle) if row.get("Customer Key")}
@@ -375,6 +575,7 @@ def main() -> None:
         summary["Extra Customer Keys"] = len(output_keys - input_keys)
     except Exception as exc:
         print(f"Warning: could not compute Customer Key coverage metrics: {exc}")
+
     _write_run_summary(runs_dir / "RunSummary.csv", summary)
     _append_run_history(output_root / "RunHistory.csv", summary)
 

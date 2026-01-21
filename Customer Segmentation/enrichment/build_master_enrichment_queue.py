@@ -108,6 +108,31 @@ def main() -> None:
         action="store_true",
         help="Include masters marked Deferred in MasterEnrichment.csv (default: false).",
     )
+    parser.add_argument(
+        "--missing-website-only",
+        action="store_true",
+        help="Only include masters that are missing a website (default: false).",
+    )
+    parser.add_argument(
+        "--industrial-group",
+        action="append",
+        dest="industrial_groups",
+        default=[],
+        help=(
+            "Only include masters whose Industrial Group matches (case-insensitive). "
+            "Can be supplied multiple times."
+        ),
+    )
+    parser.add_argument(
+        "--exclude-industrial-group",
+        action="append",
+        dest="exclude_industrial_groups",
+        default=[],
+        help=(
+            "Exclude masters whose Industrial Group matches (case-insensitive). "
+            "Can be supplied multiple times."
+        ),
+    )
     args = parser.parse_args()
 
     paths = default_paths()
@@ -150,9 +175,19 @@ def main() -> None:
                 example_keys_by_canonical[canonical].append(key)
 
     out_rows: list[dict[str, str]] = []
+
+    include_groups = {g.strip().casefold() for g in (args.industrial_groups or []) if (g or "").strip()}
+    exclude_groups = {g.strip().casefold() for g in (args.exclude_industrial_groups or []) if (g or "").strip()}
     for m in masters:
         canonical = (m.get("Master Customer Name Canonical") or "").strip()
         if not canonical:
+            continue
+
+        industrial_group = (m.get("Industrial Group") or "").strip()
+        ig_key = industrial_group.casefold()
+        if include_groups and ig_key not in include_groups:
+            continue
+        if exclude_groups and ig_key in exclude_groups:
             continue
 
         website = (m.get("Company Website") or "").strip()
@@ -162,6 +197,10 @@ def main() -> None:
         missing_website = not website
         missing_naics = _needs_naics_enrichment(naics)
         missing_detail = _is_generic_industry_detail(detail)
+
+        if args.missing_website_only and not missing_website:
+            continue
+
         if not args.include_complete and not (missing_website or missing_naics or missing_detail):
             continue
 

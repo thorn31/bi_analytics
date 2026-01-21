@@ -1,11 +1,6 @@
 __pycache__/
 *.pyc
 
-# Generated outputs (keep docs)
-output/**
-!output/README.md
-!output/.gitkeep
-
 ## Note: `data/sources/` is intentionally tracked (Power BI + enrichment workflows
 ## rely on stable, versioned source extracts).
 

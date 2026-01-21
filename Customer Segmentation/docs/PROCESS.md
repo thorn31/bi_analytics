@@ -81,27 +81,55 @@ python3 segment_customers.py
 
 ### C) Website enrichment (current enrichment focus)
 
-Source of truth: `data/enrichment/MasterWebsites.csv` (bare domains only).
+There are two website-related sources of truth:
+- **Verified enrichment** (web + NAICS + detail + audit metadata): `data/enrichment/MasterEnrichment.csv`
+- **Approved websites** (lightweight fallback, bare domains): `data/enrichment/MasterWebsites.csv`
 
-Recommended loop:
+Recommended enrichment loop (Verified vs Deferred):
 1) Build a ranked queue:
 ```bash
-python3 website_enrichment/build_website_queue.py --limit 500
+python3 enrichment/build_master_enrichment_queue.py --limit 50
 ```
-2) Research and approve domains, then persist approved values into `data/enrichment/MasterWebsites.csv`.
-2) Research and fill `Approved Website (fill in)` in the queue, then apply it:
+2) Research and fill approved values in `output/work/enrichment/MasterEnrichmentQueue.csv`:
+   - Verified: populate one or more of `Company Website (Approved)`, `NAICS (Approved)`, `Industry Detail (Approved)`
+   - Deferred: set `Enrichment Status = Deferred` and fill `Enrichment Rationale` + `Notes` (narrative)
+3) Human-in-the-loop check: summarize your intended Verified + Deferred updates and get explicit approval.
+4) Apply the queue:
 ```bash
-python3 website_enrichment/apply_website_queue.py
+python3 enrichment/apply_master_enrichment_queue.py
 ```
-3) Regenerate final outputs:
+5) Regenerate final outputs:
 ```bash
 python3 segment_customers.py
 ```
-
-Optional: if batch imports already captured websites in overrides, you can harvest them into `MasterWebsites.csv`:
+6) Verify persistence:
 ```bash
-python3 sync_master_websites_from_overrides.py
+python3 audit_enrichment_persistence.py
 ```
+
+Optional helpers:
+- Generate website suggestions: `python3 suggest_master_websites.py` (writes `output/website_enrichment/MasterWebsiteSuggestions.csv`)
+- Harvest approved websites from overrides: `python3 sync_master_websites_from_overrides.py` (populates `data/enrichment/MasterWebsites.csv`)
+
+Note: older scripts under `deprecated/website_enrichment/` are no longer the primary workflow.
+
+## Publishing Outputs to Azure Blob (Power BI)
+
+Recommended setup:
+- Public logos: `stgreen/logos/` (already in place)
+- Private datasets: `stgreen/datasets/customer_segmentation/`
+
+After generating outputs, publish the two Power BI inputs:
+```bash
+py -3 publish_datasets_to_blob.py
+```
+If `az` is not on PATH:
+```bash
+py -3 publish_datasets_to_blob.py --az-path "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.cmd"
+```
+This uploads only:
+- `output/final/CustomerSegmentation.csv`
+- `output/final/MasterCustomerSegmentation.csv`
 
 ## Adding New Customers (Future-Proofing)
 

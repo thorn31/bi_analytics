@@ -1,13 +1,18 @@
 # Research & Batching Workflow
 
-This document outlines the interactive process for researching and classifying "Unknown" or "Unclassified" master customers to burn down the review worklist.
+This document outlines two related (but distinct) interactive workflows:
+
+1) **Segmentation classification batching** (Industrial Group / Industry Detail / NAICS / Method) that flows into the segmentation overrides.
+2) **Master enrichment batching** (Company Website + enrichment metadata) that flows into `data/enrichment/MasterEnrichment.csv`.
 
 ## Prerequisites
 
 - Ensure the pipeline has been run recently (`dedupe_customers.py` -> `reconcile_overrides_to_masters.py` -> `segment_customers.py`) so `output/final/SegmentationReviewWorklist.csv` is up to date.
 - Have `find_next_batch.py` available in the root directory.
 
-## The Loop
+For the enrichment queue workflow, also ensure `output/final/MasterCustomerSegmentation.csv` exists (run `python segment_customers.py` first).
+
+## A) Segmentation Classification Loop (Overrides)
 
 ### 1. Identify Candidates
 Run the helper script to find the next set of actionable customers (default 20, or specify a number).
@@ -61,6 +66,56 @@ python segment_customers.py
 
 ### 6. Repeat
 Go back to **Step 1** to pull the next batch of unclassified records.
+
+## B) Master Enrichment Loop (Websites / Verified vs Deferred)
+
+This loop produces auditable master-level enrichment in `data/enrichment/MasterEnrichment.csv` and propagates into `output/final/MasterCustomerSegmentation.csv` on the next segmentation run.
+
+If you are using Codex skills, this loop corresponds to `skills/batch_enrichment/SKILL.md`.
+
+### 1. Build the Enrichment Queue
+Generate a prioritized queue of masters that are missing website and/or have generic NAICS/detail.
+```bash
+python enrichment/build_master_enrichment_queue.py --limit 50
+```
+This writes `output/work/enrichment/MasterEnrichmentQueue.csv`.
+
+### 2. Research & Populate Approved Fields
+For each row you work:
+- **Verified** (high confidence): fill one or more of:
+  - `Company Website (Approved)`
+  - `NAICS (Approved)`
+  - `Industry Detail (Approved)`
+  - set `Enrichment Status = Verified` and `Enrichment Source = Analyst`
+- **Deferred** (ambiguous / no website): do not leave it blank:
+  - set `Enrichment Status = Deferred`
+  - fill `Enrichment Rationale` (short reason)
+  - fill `Notes` (research narrative)
+
+**Rule:** a `Verified` row must include at least one approved value, otherwise it will not be applied.
+
+### 3. Human-In-The-Loop Review (Required)
+Before applying, summarize what you’re about to apply (Verified list + Deferred list) and get an explicit “go” from the analyst/user.
+
+### 4. Apply the Queue (Persist to MasterEnrichment)
+Apply the queue into `data/enrichment/MasterEnrichment.csv`:
+```bash
+python enrichment/apply_master_enrichment_queue.py
+```
+Notes:
+- Deferred-only rows are persisted (prevents “ghost deferrals” that only exist in markdown logs).
+- The apply script writes a timestamped backup (`data/enrichment/MasterEnrichment_backup_before_apply_*.csv`) and refuses to massively shrink the file unless explicitly allowed.
+
+### 5. Regenerate Final Outputs
+```bash
+python segment_customers.py
+```
+
+### 6. Verify Persistence
+```bash
+python audit_enrichment_persistence.py
+```
+Confirm `output/work/enrichment/EnrichmentPersistenceAudit_missing.csv` is empty.
 
 ## Handling Specific Cases
 

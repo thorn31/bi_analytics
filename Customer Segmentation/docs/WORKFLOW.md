@@ -81,5 +81,11 @@ python3 segment_customers.py
 
 ## Enrichment
 
-- `data/enrichment/MasterWebsites.csv` can be used to populate `Company Website` in the master dimension.
-- `suggest_master_websites.py` generates a suggestion sheet you can review before approving.
+- Verified enrichment (websites + NAICS + detail + audit metadata) lives in `data/enrichment/MasterEnrichment.csv` and is applied via the enrichment queue:
+  ```bash
+  python3 enrichment/build_master_enrichment_queue.py --limit 50
+  python3 enrichment/apply_master_enrichment_queue.py
+  python3 segment_customers.py
+  ```
+- Approved website fallback lives in `data/enrichment/MasterWebsites.csv` (bare domains only).
+- Optional helper: `python3 suggest_master_websites.py` writes `output/website_enrichment/MasterWebsiteSuggestions.csv` for review.

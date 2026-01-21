@@ -5,6 +5,7 @@ import csv
 from datetime import datetime
 from pathlib import Path
 import sys
+import shutil
 
 # Ensure repo-root imports work when executed as `python3 enrichment/...`.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -52,6 +53,11 @@ def main() -> None:
         action="store_true",
         help="Print what would change without writing files.",
     )
+    parser.add_argument(
+        "--allow-shrink",
+        action="store_true",
+        help="Allow MasterEnrichment.csv row count to shrink significantly (default: false).",
+    )
     args = parser.parse_args()
 
     queue_path = Path(args.queue_path).resolve()
@@ -89,6 +95,8 @@ def main() -> None:
                 continue
             existing[canonical] = r
 
+    prior_row_count = len(existing)
+
     adds = 0
     updates = 0
     skipped = 0
@@ -104,13 +112,24 @@ def main() -> None:
         approved_naics = _normalize_naics(r.get("NAICS (Approved)") or "")
         approved_detail = (r.get("Industry Detail (Approved)") or "").strip()
 
-        if not (approved_website or approved_naics or approved_detail):
-            continue
-
         status = (r.get("Enrichment Status") or "").strip() or "Verified"
         confidence = (r.get("Enrichment Confidence") or "").strip()
         rationale = (r.get("Enrichment Rationale") or "").strip()
         source = (r.get("Enrichment Source") or "").strip() or "Analyst"
+        attempt_outcome = (r.get("Attempt Outcome") or "").strip()
+        notes = (r.get("Notes") or "").strip()
+
+        has_approved_values = bool(approved_website or approved_naics or approved_detail)
+        is_deferred = status.lower() == "deferred"
+        has_attempt_signal = bool(has_approved_values or attempt_outcome or rationale or notes or is_deferred)
+
+        # No-op rows: keep the queue clean; don't mutate MasterEnrichment.
+        if not has_attempt_signal:
+            continue
+
+        # Guardrail: a Verified row must supply at least one approved value.
+        if status.lower() == "verified" and not has_approved_values:
+            continue
 
         base = dict(existing.get(canonical, {}))
         if not base:
@@ -144,6 +163,11 @@ def main() -> None:
             "Attempt Outcome": (base.get("Attempt Outcome") or "").strip(),
         }
 
+        # Safety: don't allow a Deferred attempt to overwrite an existing Verified record unless explicitly asked.
+        base_status = (base.get("Enrichment Status") or "").strip().lower()
+        if is_deferred and base_status == "verified" and not args.overwrite_existing:
+            continue
+
         def set_if_allowed(field: str, value: str) -> None:
             if not value:
                 return
@@ -160,9 +184,6 @@ def main() -> None:
         set_if_allowed("Enrichment Source", source)
 
         # Track attempts when the row is actively processed.
-        attempt_outcome = (r.get("Attempt Outcome") or "").strip()
-        notes = (r.get("Notes") or "").strip()
-        has_attempt_signal = bool(approved_website or approved_naics or approved_detail or attempt_outcome or rationale or notes)
         if has_attempt_signal:
             try:
                 current_attempts = int((base.get("Attempt Count") or "0").strip() or "0")
@@ -284,6 +305,23 @@ def main() -> None:
             }
         )
 
+    # Safety rail: we should almost never shrink this file materially during apply.
+    # Shrinks can happen if the existing file had duplicate canonicals that are now de-duped.
+    # But catastrophic shrink is usually a signal of a bad read/write or wrong input.
+    new_row_count = len(out_rows)
+    if prior_row_count > 0 and new_row_count < int(prior_row_count * 0.95) and not args.allow_shrink:
+        raise SystemExit(
+            f"Refusing to shrink {enrichment_path} from {prior_row_count} -> {new_row_count} rows. "
+            f"Re-run with --allow-shrink if intentional."
+        )
+
+    # Backup before write (cheap insurance against accidental truncation or user error).
+    backup_path: Path | None = None
+    if enrichment_path.exists() and not args.dry_run:
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        backup_path = enrichment_path.with_name(f"{enrichment_path.stem}_backup_before_apply_{ts}{enrichment_path.suffix}")
+        shutil.copy2(enrichment_path, backup_path)
+
     write_csv_dicts(
         enrichment_path,
         out_rows,
@@ -303,12 +341,14 @@ def main() -> None:
             "Updated At",
         ],
     )
+    if backup_path:
+        print(f"Backed up {enrichment_path} to {backup_path}")
 
     paths = default_paths()
     work_dir = paths.get("work_dir") or Path("output/work")
     report_dir = Path(work_dir) / "enrichment"
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    report_path = report_dir / f"MasterEnrichmentApplyReport_{ts}.csv"
+    report_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    report_path = report_dir / f"MasterEnrichmentApplyReport_{report_ts}.csv"
     write_csv_dicts(
         report_path,
         changes,

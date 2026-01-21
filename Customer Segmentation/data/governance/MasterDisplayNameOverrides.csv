@@ -1,0 +1,62 @@
+﻿# Optional: override the *display* master name without changing the canonical key.
+# This is useful for brands where dropping a leading "The" (or similar) hurts readability.
+#
+# Columns:
+# - Master Customer Name Canonical: the canonical master key used throughout the model (case-insensitive)
+# - Master Customer Name: the desired display name to surface in outputs/Power BI
+#
+# Example:
+# Master Customer Name Canonical,Master Customer Name
+# AZEK,The AZEK Company
+Master Customer Name Canonical,Master Customer Name
+MUELLER,Mueller Company
+AZEK,The Azek Company
+BENISON,The Benison
+BRISTOL GROUP,The Bristol Group
+CHOP HOUSE HENDERSONVILLE,The Chop House Hendersonville
+CHOP HOUSE MURFREESBORO,The Chop House Murfreesboro
+CW ZUMBIEL,The Cw Zumbiel Company
+DENNIS GROUP,The Dennis Group
+EQUITY GROUP FIVE,The Equity Group Five
+EQUITY GROUP FOUR,The Equity Group Four
+ESCAPE GAME,The Escape Game
+EW SCRIPPS,The Ew Scripps Co
+HEARING AND SPEECH CENTER,The Hearing and Speech Center
+HT HACKNEY WV,The Ht Hackney WV Co
+INDOOR TENNIS CLUB,The Indoor Tennis Club
+LEASING GROUP,The Leasing Group
+MACOMB GROUP,The Macomb Group
+MADISON FARM,The Madison Farm
+MARTIN BROWER,The Martin Brower Company
+MIDWEST SEA SALT,The Midwest Sea Salt Company
+PAIN TREATMENT CENTER,The Pain Treatment Center
+PETERSON,The Peterson Company
+PICKLE LODGE,The Pickle Lodge
+PROCTOR AND GAMBLE,The Proctor and Gamble Company
+REGENCY,The Regency
+WALKER,The Walker Company
+TIPPECANOE SCHOOL,Tippecanoe School Corporation
+OSWALD,Oswald Company
+CITY OF ST BERNARD,"City of St Bernard, OH"
+CITY OF ATHENS,"City of Athens, OH"
+CITY OF CHEVIOT,"City of Cheviot, OH"
+CITY OF CLIFTON,"City of Clifton, TN"
+CITY OF COLUMBIA CITY INDIANA,"City of Columbia City, IN"
+CITY OF CYNTHIANA,"City of Cynthiana, KY"
+CITY OF FORT MITCHELL,"City of Fort Mitchell, KY"
+CITY OF FRANKLIN IN,"City of Franklin, IN"
+CITY OF GLASGOW KY,"City of Glasgow, KY"
+CITY OF HAMMOND IN,"City of Hammond, IN"
+CITY OF JEFFERSONVILLE,"City of Jeffersonville, IN"
+CITY OF LAWRENCE INDIANA,"City of Lawrence, IN"
+CITY OF LOGAN,"City of Logan, OH"
+CITY OF LOUISA KENTUCKY,"City of Louisa, KY"
+CITY OF MIDDLETOWN,"City of Middletown, OH"
+CITY OF MONROE,"City of Monroe, OH"
+CITY OF NORTH COLLEGE HILL,"City of North College Hill, OH"
+CITY OF PARIS,"City of Paris, KY"
+CITY OF SHARONVILLE,"City of Sharonville, OH"
+CITY OF SHELBYVILLE,"City of Shelbyville, IN"
+CITY OF SOUTH CHARLESTON WV,"City of South Charleston, WV"
+CITY OF WESTFIELD,"City of Westfield, IN"
+CITY OF WINCHESTER,"City of Winchester, KY"

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import difflib
+import io
 import re
 import urllib.parse
 from dataclasses import dataclass
@@ -104,8 +105,11 @@ def default_paths() -> dict[str, Path]:
     base_overrides = data / "governance" / "MasterSegmentationOverrides.csv"
     return {
         "input_customers": data / "sources" / "CustomerLastBillingDate.csv",
+        "naics_codes_2022": data / "sources" / "NAICS 2-6 Digit_2022_Codes.csv",
         "manual_overrides": data / "governance" / "ManualOverrides.csv",
+        "master_display_name_overrides": data / "governance" / "MasterDisplayNameOverrides.csv",
         "master_merge_overrides": data / "governance" / "MasterMergeOverrides.csv",
+        "master_logos": data / "enrichment" / "MasterLogos.csv",
         "master_websites": data / "enrichment" / "MasterWebsites.csv",
         "master_enrichment": data / "enrichment" / "MasterEnrichment.csv",
         "master_segmentation_overrides": reconciled_overrides if reconciled_overrides.exists() else base_overrides,
@@ -221,6 +225,109 @@ def load_master_websites(path: Path) -> Dict[str, str]:
             if website:
                 websites[canonical] = website
     return websites
+
+
+def load_master_display_name_overrides(path: Path) -> Dict[str, str]:
+    """
+    Load display-only master name overrides.
+
+    These do not change the canonical key; they only affect the rendered
+    `Master Customer Name` shown in outputs (Power BI-friendly).
+    """
+    if not path.exists():
+        return {}
+
+    # This file is allowed to include leading comment lines before the real header.
+    lines = path.read_text(encoding="utf-8-sig", errors="ignore").splitlines()
+    cleaned: list[str] = []
+    for line in lines:
+        s = line.strip()
+        if not s:
+            continue
+        if s.startswith("#"):
+            continue
+        cleaned.append(line)
+
+    if not cleaned:
+        return {}
+
+    overrides: Dict[str, str] = {}
+    reader = csv.DictReader(io.StringIO("\n".join(cleaned)))
+    for row in reader:
+        canonical = (row.get("Master Customer Name Canonical") or "").strip()
+        display = (row.get("Master Customer Name") or "").strip()
+        if not canonical or canonical.startswith("#"):
+            continue
+        if not display:
+            continue
+        overrides[canonical.upper()] = display
+    return overrides
+
+
+def load_master_logos(path: Path) -> Dict[str, dict]:
+    """
+    Load master-level logo mappings (typically self-hosted URLs).
+    """
+    if not path.exists():
+        return {}
+
+    logos: Dict[str, dict] = {}
+    with path.open(mode="r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            canonical = (row.get("Master Customer Name Canonical") or "").strip()
+            if not canonical or canonical.startswith("#"):
+                continue
+            logos[canonical] = {
+                "Hosted Logo URL": (row.get("Hosted Logo URL") or "").strip(),
+                "Logo Status": (row.get("Logo Status") or "").strip(),
+                "Logo Domain": (row.get("Logo Domain") or "").strip(),
+                "Attempt Count": (row.get("Attempt Count") or "").strip(),
+                "Last Attempted At": (row.get("Last Attempted At") or "").strip(),
+                "Notes": (row.get("Notes") or "").strip(),
+                "Updated At": (row.get("Updated At") or "").strip(),
+            }
+    return logos
+
+
+def load_naics_titles_2022(path: Path) -> Dict[str, str]:
+    """
+    Load NAICS code -> official title mapping from the 2022 NAICS codes extract.
+
+    This supports both digits-only codes (e.g., 326110) and official combined-sector
+    codes like 31-33 / 44-45 / 48-49.
+    """
+    if not path.exists():
+        return {}
+
+    with path.open(mode="r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        fieldnames = [f or "" for f in (reader.fieldnames or [])]
+        code_field = next((f for f in fieldnames if "naics" in f.lower() and "code" in f.lower()), "")
+        title_field = next((f for f in fieldnames if "naics" in f.lower() and "title" in f.lower()), "")
+        if not code_field or not title_field:
+            return {}
+
+        out: Dict[str, str] = {}
+        for row in reader:
+            raw_code = (row.get(code_field) or "").strip()
+            if not raw_code:
+                continue
+
+            cleaned = raw_code.replace(" ", "")
+            if len(cleaned) == 5 and cleaned[2] == "-" and cleaned[:2].isdigit() and cleaned[3:].isdigit():
+                code_key = cleaned
+            else:
+                digits = "".join(ch for ch in raw_code if ch.isdigit())
+                if not digits:
+                    continue
+                code_key = digits
+
+            title = (row.get(title_field) or "").strip()
+            if not title:
+                continue
+            out[code_key] = title
+        return out
 
 
 def load_master_segmentation_overrides(path: Path) -> Dict[str, dict]:
