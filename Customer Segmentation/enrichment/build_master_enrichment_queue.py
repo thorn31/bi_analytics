@@ -47,9 +47,6 @@ def _is_generic_industry_detail(value: str) -> bool:
     }
     if v in generic:
         return True
-    # Very short details tend to be unhelpful.
-    if len(v) < 6:
-        return True
     return False
 
 
@@ -107,6 +104,11 @@ def main() -> None:
         "--include-deferred",
         action="store_true",
         help="Include masters marked Deferred in MasterEnrichment.csv (default: false).",
+    )
+    parser.add_argument(
+        "--include-attempted",
+        action="store_true",
+        help="Include masters that have prior attempt history in MasterEnrichment.csv (default: false).",
     )
     parser.add_argument(
         "--missing-website-only",
@@ -220,6 +222,13 @@ def main() -> None:
         last_attempted = (existing_enrichment.get("Last Attempted At") or "").strip()
         attempt_outcome = (existing_enrichment.get("Attempt Outcome") or "").strip()
 
+        try:
+            attempt_count_int = int(attempt_count_raw or "0")
+        except ValueError:
+            attempt_count_int = 0
+        if attempt_count_int > 0 and not args.include_attempted:
+            continue
+
         examples = examples_by_canonical.get(canonical, [])
         example_keys = example_keys_by_canonical.get(canonical, [])
         locations: list[str] = []
@@ -248,7 +257,7 @@ def main() -> None:
                 "Enrichment Targets": " | ".join(targets),
                 "Attempt Count": attempt_count_raw,
                 "Last Attempted At": last_attempted,
-                "Attempt Outcome": attempt_outcome,
+                "Attempt Outcome (Current)": attempt_outcome,
                 "Example Customer Names": " | ".join(examples),
                 "Example Locations": " | ".join(locations),
                 "Industry Detail (Approved)": "",
@@ -314,7 +323,7 @@ def main() -> None:
             "Enrichment Targets",
             "Attempt Count",
             "Last Attempted At",
-            "Attempt Outcome",
+            "Attempt Outcome (Current)",
             "Example Customer Names",
             "Example Locations",
             "Industry Detail (Approved)",
@@ -329,6 +338,8 @@ def main() -> None:
         ],
     )
     print(f"Wrote {len(out_rows)} rows to {written}")
+    if not out_rows and not args.include_attempted:
+        print("Note: 0 rows because all remaining targets have prior attempts; re-run with --include-attempted to revisit them.")
 
 
 if __name__ == "__main__":

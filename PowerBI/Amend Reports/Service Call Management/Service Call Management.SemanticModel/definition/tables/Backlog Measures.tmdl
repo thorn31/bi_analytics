@@ -1,0 +1,124 @@
+table 'Backlog Measures'
+	lineageTag: 5ebdd953-faf6-44b3-bde6-c456a858eb16
+
+	measure 'Cost to Complete - Backlog' =
+			//sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], "Proj", [Cumulative Forecast], "Actual", 'Cost Measures'[Cumulative Actual Cost]), [Proj] - [Actual] )
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "Proj", [Available Budget]), [Proj]  )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: bc2c585c-233b-4011-8b54-cc5d848e18f6
+
+	measure 'Actual Monthly Cost (GL)' = ```
+			//[Actual Cost] 
+			calculate(sum('POSTING_DATA_F'[PERDBLNC]), filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACTNUMBR_1] = "340"))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c565a4d9-89bd-4164-81b4-a5838bb8efc2
+
+	measure 'Average Cost (Prior 6 Mo)' = DIVIDE(CALCULATE([Actual Monthly Cost (GL)], FILTER(ALL('*Calendar'), '*Calendar'[Running Total Month] <= MAX('*Calendar'[Running Total Month]) - 1 && '*Calendar'[Running Total Month] >= MAX('*Calendar'[Running Total Month]) - 6)), 6, BLANK())
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 648f57a8-d662-4671-a3ec-7f0a965c4bd3
+
+	measure 'Backlog Months' = DIVIDE([Available Budget], [Average Cost (Prior 6 Mo)] , BLANK())
+		lineageTag: 4ee796c3-341f-40f6-9326-e0f19573aa2e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Backlog TM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			
+			return
+			calculate([Backlog Months], filter(all('*Calendar'), '*Calendar'[Running Total Month] = runtot))
+		formatString: 0.0
+		lineageTag: 469fe78b-c5dd-4515-a29e-bd6a1b6d34b0
+
+	measure 'Backlog LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			var lm = runtot - 1
+			return
+			calculate([Backlog Months], filter(all('*Calendar'), '*Calendar'[Running Total Month] = lm))
+		formatString: 0.0
+		lineageTag: 7fbb561e-37e2-4602-8335-189d872cbe9d
+
+	measure 'Cost of Contract Rev TM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			
+			return
+			calculate([Actual Monthly Cost (GL)], filter(all('*Calendar'), '*Calendar'[Running Total Month] = runtot))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 9a2e7803-6184-49b4-9915-61b135305e1d
+
+	measure 'Cost to Complete LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			var lm = runtot - 1
+			return
+			calculate([Available Budget], filter(all('*Calendar'), '*Calendar'[Running Total Month] = lm))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3d56fd28-2350-4d32-8c6d-498f264bb6c5
+
+	measure 'Actual GP' = [GL Revenue] - [GL Equipment and Material] -[GL Labor] -  [GL Subcontract] - [GL Operations Expense] - [GL Vehicle] - [GL Discounts]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3f86263f-75a1-4af3-98c4-b5c7d89103bb
+
+	measure 'GL Revenue' = calculate([Amount], filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACCOUNT_TYPE] = "REVENUE"))* -1
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2b1fbe4d-de24-4ed7-9879-1cae6c697fb3
+
+	measure Amount = sum('POSTING_DATA_F'[PERDBLNC])
+		lineageTag: 482610f1-aba8-4ecc-8c39-a7bb67f2cfad
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Discounts' = calculate([Amount], filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACCOUNT_TYPE] = "Discounts"))
+		lineageTag: 80386cd0-4c1b-43c4-b5f0-2e042025736b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Equipment and Material' = calculate([Amount], filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACCOUNT_TYPE] = "EQUIP & MATERIAL"))
+		lineageTag: 51409755-bb09-4c4f-b8d0-57a0c93c1bab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Labor' = calculate([Amount], filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACCOUNT_TYPE] = "LABOR & BURDEN"))
+		lineageTag: 3b43918e-f697-475f-b992-b0338e830e1c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Operations Expense' = calculate([Amount], filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACCOUNT_TYPE] = "OPERATIONS EXPENSE"))
+		lineageTag: 5dc1544e-9a50-48af-ba43-e4b85e34eed3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Subcontract' = calculate([Amount], filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACCOUNT_TYPE] = "SUBCONTRACT"))
+		lineageTag: bcfaba30-c891-4fd6-a050-f8f5ba724e59
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Vehicle' = calculate([Amount], filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACCOUNT_TYPE] = "Vehicle"))
+		lineageTag: f1ea2b60-3793-4f1d-979b-3b972f4d73b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Backlog Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

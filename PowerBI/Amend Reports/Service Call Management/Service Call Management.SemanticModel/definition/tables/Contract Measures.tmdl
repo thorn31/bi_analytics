@@ -1,0 +1,223 @@
+table 'Contract Measures'
+	lineageTag: 61e51134-14f7-47c8-a567-a583c4268140
+
+	measure '% Complete Costs' = Divide([Actual Costs], [Estimated Call Costs], blank())
+		formatString: 0%;-0%;0%
+		lineageTag: d010d3d1-c341-40c6-8dde-c21fe991a714
+
+	measure 'Forecasted Costs' =
+			
+			//calculate(sum(CONTRACTS_D[FORECAST_TOTAL_COST]), CONTRACTS_D[Current Contract Flag] = 1)
+			[Estimated Total Costs]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 82ee1d76-340d-47f6-86aa-f6d73a5684b9
+
+	measure 'Cost Check' = [YTD Total Cost] - [Actual Costs]
+		lineageTag: 54f329c1-ae13-4d1c-a41d-97cb5c01d830
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Estimated Total Costs' = calculate(sum(CONTRACTS_D[ESTIMATE_TOTAL_COST]), CONTRACTS_D[Current Contract Flag] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 54b42691-8c7f-4f1b-8b46-1dd5907ba21b
+
+	measure 'Contract Amount' = calculate(sum(CONTRACTS_D[ANNUAL_CONTRACT_VALUE]), CONTRACTS_D[Current Contract Flag] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 5213c058-316b-41d3-86c5-dd8ae35c5e5a
+
+	measure 'Estimated GP$' = [Contract Amount] - [Estimated Total Costs]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: dcea6e49-5d98-48dd-b47c-3659f19ce324
+
+	measure 'Forecasted GP$' = [Contract Amount] - [Forecasted Costs]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4a0fb680-1e94-43cf-84be-938bf1a1fb8b
+
+	measure 'Monthly Recognzied Revenue' = Divide([Contract Amount] , datediff(max(CONTRACTS_D[CONTRACT_START_DATE]), max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), MONTH)+1, blank())
+		lineageTag: cf08ae2d-f620-4bba-b298-44310cec05a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YTD Total Cost' = CALCULATE(sum(CONTRACTS_D[YTD_TOTAL_COST]), CONTRACTS_D[Current Contract Flag] = 1)
+		lineageTag: a9899bb1-3b57-4ffb-a0d1-2e8d5134be37
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Revenue Recognized' =
+			//[Monthly Recognzied Revenue] * (Datediff(max(CONTRACTS_D[CONTRACT_START_DATE]), calculate(max('Calendar'[Date]), 'Calendar'[Date] <= today()), MONTH) )
+			[Number of months since start] * [Monthly Recognzied Revenue]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b75ea4dd-29c5-4238-9cf2-a5151b4997bb
+
+	measure 'Months Recognized' = Datediff(max(CONTRACTS_D[CONTRACT_START_DATE]), calculate(max('*Calendar'[Date]), '*Calendar'[Date] <= today()), MONTH) + 1
+		formatString: 0
+		lineageTag: 9a82dddf-2dac-4077-bb3f-ce4ef5e9061c
+
+	measure 'YTD Recognized Revenue' = CALCULATE(sum(CONTRACTS_D[YTD_REVENUE_RECOGNIZED]), CONTRACTS_D[Current Contract Flag] = 1)
+		lineageTag: 64bd8024-2ae3-4579-bb0a-7d0c05f1c565
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Complete Schedule' =
+			divide(
+			    datediff(max(CONTRACTS_D[CONTRACT_START_DATE]), today(), DAY),
+			    datediff(max(CONTRACTS_D[CONTRACT_START_DATE]), max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), DAY), blank())
+		formatString: 0%;-0%;0%
+		lineageTag: cf782f79-f439-48da-8bb9-54c4fc08f483
+
+	measure 'YTD Billed Amount' = sum(CONTRACTS_D[YTD_BILLED])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 46953870-82a7-4414-9442-ec3295ac0ad5
+
+	measure 'Over-Under Billed' = [Amount Billed] - [Total Revenue Recognized Across Jobs]
+		lineageTag: e308dc75-fb55-4554-9956-c0d9fc62f63c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Contract Over Under Billed Across Jobs' =
+			
+			sumx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "contract", [Over-Under Billed]), [contract])
+		lineageTag: 53b5bab2-060e-4c03-9405-ac16022efa64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Over/(Under) Billed Cumulative Across Jobs' =
+			
+			var maxdat = [Max Date]
+			return
+			calculate([Contract Over Under Billed Across Jobs], filter(all('*Calendar'), '*Calendar'[Date] <= maxdat))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f447d523-8488-4063-a343-56096fbaf411
+
+	measure 'Count Under Billed Contracts' = COUNTROWS(filter(summarize('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "Under Billed", [Contract Over Under Billed Across Jobs]), [Under Billed] < 0))
+		formatString: 0
+		lineageTag: 5f893b91-f450-495c-8a27-426d1e988787
+
+	measure 'Total Revenue Recognized Across Jobs' = ```
+			
+			var mx = max('*Calendar'[Date])
+			var mn = min('*Calendar'[Date])
+			return
+			sumx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], 
+			"amount", [Contract Amount], 
+			"rev", [Monthly Recognzied Revenue],
+			"xxx", Divide([Contract Amount] , datediff(max(CONTRACTS_D[CONTRACT_START_DATE]), max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), MONTH), blank()), 
+			"start_", calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract])), 
+			"months_", if(calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract])) >= max('*Calendar'[Date]), blank(), (Datediff(calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract])), mx, MONTH))),
+			"end_", calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract]))), 
+			if([start_] >= max('*Calendar'[Date]), blank(), (Datediff([start_], mx, MONTH)+ 1)* [rev]))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: e061a75a-9f67-4c5b-8a4a-db6f4c295be2
+
+	measure 'Estimated GP$ Across Contract' =
+			
+			sumx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "contract", [Estimated GP$]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4da7b1ac-625c-48d4-9b86-7139af3db049
+
+	measure 'Estimated GP%_Contract' = divide([Estimated GP$ Across Contract], [Contract Amount], blank())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 978eb538-f27c-4b74-a24c-c092e11e5d93
+
+	measure 'Forecasted GP$ Across Contract' =
+			
+			sumx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "contract", [Forecasted GP$]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 67075dc8-ce61-4f94-ae91-6110b9b24f6e
+
+	measure 'Forecasted GP%_Contract' = divide([Forecasted GP$ Across Contract], [Contract Amount], blank())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 29ee6b05-4d66-40a5-9ece-48a99985c17f
+
+	measure 'GP% Difference_Contract' = if([Actual GP%] <> 0 && [Estimated GP%_Contract] <> 0, [Actual GP%] - [Estimated GP%_Contract], blank())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d2f8e873-2653-4806-b2c2-faff254c7a18
+
+	measure '% Complete Variance' = if([% Complete Costs] > 0, [% Complete Schedule] - [% Complete Costs])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 19004853-011a-4f54-9183-42787409dbcc
+
+	measure 'Forecasted Cost by Month' = sumx(summarize('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "Start", calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract])), "End", calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract])), "Costs", divide([Forecasted Costs], 12, blank())), if([Start] >= min('*Calendar'[Date]) && [End] <= max('*Calendar'[Date]), [Costs], 0))
+		lineageTag: a466f83d-8c01-4213-96e1-38e824ecc271
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cumulative Estimated Costs' =
+			
+			var maxdat = [Max Date]
+			var start_ = calculate(max(CONTRACTS_D[CONTRACT_START_DATE]))
+			var end_ = max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE])
+			return
+			calculate([Estimated Call Costs], filter(all('*Calendar'), '*Calendar'[Date] >= start_ && '*Calendar'[Date] <= end_))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b6f6a47e-38ae-4b00-be25-401540b5e094
+
+	measure 'Date filter' = if(min('*Calendar'[Date]) >= max(CONTRACTS_D[CONTRACT_START_DATE]) && max('*Calendar'[Date]) <= max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), 1, 0)
+		formatString: 0
+		lineageTag: 411c75f5-5c9b-45ae-983c-921f7611f19e
+
+	measure 'Actual Labor Costs' = calculate(sum('*CALLS_F'[COST_LABOR]), '*CALLS_F'[In Current Contract] = 1)
+		lineageTag: 3788e001-a6ee-45d9-bef1-a1e00496e2de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Number of months since start' =
+			
+			//minx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "start", calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract]))), (Datediff([start], calculate(max('Calendar'[Date]),  'Calendar'[Date] <= today()), MONTH) ))
+			var mx = max('*Calendar'[Date])
+			var mn = min('*Calendar'[Date])
+			return
+			maxx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "start_", calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract])), "end_", calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CONTRACTS MAPPING'[Customer-Contract]))), if([start_] >= mx, blank(), (Datediff([start_], mx, MONTH)+1)))
+		lineageTag: 8826566d-fddc-48e0-8c1c-0a269fb5e270
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Available Budget_Contract' = [Estimated Call Costs] - [Actual Costs]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c346ee0d-a26e-41a0-aad7-fef65c0f2f7d
+
+	measure 'Months Remaining' = if(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]) = blank(), blank(), Datediff(today(), max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), MONTH) +1)
+		formatString: 0
+		lineageTag: 11d80a68-6fe5-4096-bb46-82d4430a877f
+
+	measure 'Costs Remaining - Current Run Rate' = ```
+			//Divide([Actual Costs], [Months Recognized], blank()) * [Months Remaining]
+			sumx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "actual", [Actual Costs], "months", [Months Recognized], "remaining", [Months Remaining]), 
+			divide([actual], [months], blank()) * [remaining])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 86cd0edf-c2bc-4e1a-bc4f-126bc7e2d314
+
+	measure 'Available - Run Rate' = [Available Budget_Contract Calls] - [Costs Remaining - Current Run Rate]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f90e617d-d904-43c4-b1f5-7bee34ce66fc
+
+	measure 'Estimated Call Costs' = ```
+			
+			 //Forecasted calls cost was originally built on forecast values but then after errors were found with Winnsoft, it was switched to estimated for the time being
+			calculate(sum('FORECASTED CALLS COST'[Value]), filter('FORECASTED CALLS COST', 'FORECASTED CALLS COST'[Cost Type] <> "HOURS" && 'FORECASTED CALLS COST'[In Current Contract] = 1))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: bbd377d9-92fa-4bea-b37b-1a6d56bacd5a
+
+	measure 'Available Budget_Contract Calls' = [Estimated Call Costs] - [Actual Costs]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7db7f0ab-c1d5-46c0-adef-4e4935cc659d
+
+	measure 'Months test' = datediff(max(CONTRACTS_D[CONTRACT_START_DATE]), max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), MONTH)
+		formatString: 0
+		lineageTag: 943a4992-065f-4093-b180-d6d2301ff9db
+
+	partition 'Contract Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

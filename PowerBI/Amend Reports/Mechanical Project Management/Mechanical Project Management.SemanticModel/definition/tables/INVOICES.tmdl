@@ -1,0 +1,412 @@
+table INVOICES
+	lineageTag: f6eda591-55ab-45ce-b55a-d38bd160b9a1
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: 04113249-eb36-44e9-97a6-1aecd5b34fd2
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_NUMBER
+		dataType: string
+		lineageTag: 96b2aaf2-e46a-4c28-99c6-6822f3a5c7db
+		summarizeBy: none
+		sourceColumn: PROJECT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column RM_DOCUMENT_NUMBER_WORK
+		dataType: string
+		lineageTag: 595bbd40-c846-4c7a-a9df-f64d5f42c921
+		summarizeBy: none
+		sourceColumn: RM_DOCUMENT_NUMBER_WORK
+
+		annotation SummarizationSetBy = Automatic
+
+	column RM_DOCUMENT_TYPE_ALL
+		dataType: double
+		lineageTag: 41031816-6b0b-493e-8d99-505a88383070
+		summarizeBy: sum
+		sourceColumn: RM_DOCUMENT_TYPE_ALL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column APPLICATION_NUMBER
+		dataType: string
+		lineageTag: 7998e647-9856-4591-87b1-77865cc2d33d
+		summarizeBy: none
+		sourceColumn: APPLICATION_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOCUMENT_NUMBER
+		dataType: string
+		lineageTag: adc72079-f6d1-42f1-a8c6-cbddd35327a3
+		summarizeBy: none
+		sourceColumn: DOCUMENT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRX_SOURCE
+		dataType: string
+		lineageTag: 644739a7-512b-4ede-af1c-a0f8a95d52e5
+		summarizeBy: none
+		sourceColumn: TRX_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DYNAMICS_STATUS
+		dataType: string
+		lineageTag: 296f44d0-99b4-47c5-9299-aa7fe9702e56
+		summarizeBy: none
+		sourceColumn: DYNAMICS_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOCUMENT_TYPE
+		dataType: double
+		lineageTag: ad60a99b-32cc-4092-b860-109809e85e35
+		summarizeBy: sum
+		sourceColumn: DOCUMENT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BATCH_NUMBER
+		dataType: string
+		lineageTag: 55b2408d-547a-4178-a5f0-c599e965045d
+		summarizeBy: none
+		sourceColumn: BATCH_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column BATCH_SOURCE
+		dataType: string
+		lineageTag: 0d4972e4-af32-4c07-8944-c76b3b383f6a
+		summarizeBy: none
+		sourceColumn: BATCH_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_AMOUNT
+		dataType: double
+		lineageTag: 2937610b-b504-487e-98ed-0bb7681c3e04
+		summarizeBy: sum
+		sourceColumn: ACCOUNT_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PAYMENT_TERMS_ID
+		dataType: string
+		lineageTag: 8182409a-ed00-4834-9e33-ee636bf32177
+		summarizeBy: none
+		sourceColumn: PAYMENT_TERMS_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAX_SCHEDULE_ID
+		dataType: string
+		lineageTag: b9aca878-18b1-4b53-ae43-5add48ad9422
+		summarizeBy: none
+		sourceColumn: TAX_SCHEDULE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CASH_AMOUNT
+		dataType: double
+		lineageTag: 1e6fbd13-d698-4e7b-b3c6-434387156b4d
+		summarizeBy: sum
+		sourceColumn: CASH_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DOCUMENT_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0bf314ec-d566-43e6-9b0f-ed4d0af0d185
+		summarizeBy: none
+		sourceColumn: DOCUMENT_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column POST_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 76eefe66-7d69-4d84-b083-2e8a3c43c7ca
+		summarizeBy: none
+		sourceColumn: POST_DATE
+
+		variation Variation
+			isDefault
+			relationship: ac2fc89d-f4d2-46b5-8aff-3fcbce1c5dcb
+			defaultHierarchy: LocalDateTable_e2d949a2-51a9-4559-aff7-c4bc089c82a9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column POST_USER_ID
+		dataType: string
+		lineageTag: 267ae4d5-d3e9-42b1-adac-d3510a4c570c
+		summarizeBy: none
+		sourceColumn: POST_USER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GL_POSTING_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5815869d-9f8c-4202-83da-1bd2648dec7a
+		summarizeBy: none
+		sourceColumn: GL_POSTING_DATE
+
+		variation Variation
+			isDefault
+			relationship: 96c0e890-02d1-4c44-aff1-4f4722c11c01
+			defaultHierarchy: LocalDateTable_a1304e08-f471-47dc-bbfc-f6653e634bfb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_NUMBER
+		dataType: string
+		lineageTag: a8fa47dd-573c-4d5e-9547-2ca2338038e1
+		summarizeBy: none
+		sourceColumn: CUSTOMER_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESS_CODE
+		dataType: string
+		lineageTag: f7a65996-7054-465a-bb49-596d09a0cc36
+		summarizeBy: none
+		sourceColumn: ADDRESS_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESPERSON_ID
+		dataType: string
+		lineageTag: 770b9382-4446-40cd-ac72-ee415f540b57
+		summarizeBy: none
+		sourceColumn: SALESPERSON_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMMISSION_PERCENT
+		dataType: double
+		lineageTag: 3676e6b8-5014-4fff-8ad1-6a3fc7aac847
+		summarizeBy: sum
+		sourceColumn: COMMISSION_PERCENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COMMISSION_EARNINGS
+		dataType: double
+		lineageTag: a810fba9-ff9e-4ffa-bb1b-a454080a1378
+		summarizeBy: sum
+		sourceColumn: COMMISSION_EARNINGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SALES_TERRITORY
+		dataType: string
+		lineageTag: 620e3106-bd41-4d94-af7e-77da43b687f0
+		summarizeBy: none
+		sourceColumn: SALES_TERRITORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_PO_NUMBER
+		dataType: string
+		lineageTag: 1dd31ddb-8af7-44a3-b878-8a6c022c0da5
+		summarizeBy: none
+		sourceColumn: CUSTOMER_PO_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRADE_DISCOUNT_AMOUNT
+		dataType: double
+		lineageTag: a0d5ac93-283f-487c-8dd5-d51298938548
+		summarizeBy: sum
+		sourceColumn: TRADE_DISCOUNT_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISCOUNT_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c4e70b2a-4e3b-473f-abfb-e045dca09335
+		summarizeBy: none
+		sourceColumn: DISCOUNT_DATE
+
+		variation Variation
+			isDefault
+			relationship: 62bc2e2b-21b3-4f74-97c9-ca41522892c0
+			defaultHierarchy: LocalDateTable_7c0dba22-51a6-475f-9385-01ea578d2301.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DUE_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b94326d7-4cfe-46ba-be5c-1f3c8b478815
+		summarizeBy: none
+		sourceColumn: DUE_DATE
+
+		variation Variation
+			isDefault
+			relationship: d5a87f0e-b202-4c7c-bca7-bc7da6ea0cb6
+			defaultHierarchy: LocalDateTable_df4ab1e5-1799-472a-b536-48d903e2a6f1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DATE_PAID
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9cc2752f-78b0-48d6-b18a-77ac3a26e74e
+		summarizeBy: none
+		sourceColumn: DATE_PAID
+
+		variation Variation
+			isDefault
+			relationship: 1659b72d-7b23-4563-9bf9-d0a840b8f0c1
+			defaultHierarchy: LocalDateTable_4d5c68a9-1016-4c7f-8bd6-94b091483340.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AMOUNT_RECEIVED
+		dataType: double
+		lineageTag: 4bdb76cc-cd38-49a2-9e1a-decafcbbdb72
+		summarizeBy: sum
+		sourceColumn: AMOUNT_RECEIVED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FREIGHT_TAX_AMOUNT
+		dataType: double
+		lineageTag: 23bb80aa-46c2-4179-82d9-19fff17e9e92
+		summarizeBy: sum
+		sourceColumn: FREIGHT_TAX_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MISC_TAX_AMOUNT
+		dataType: double
+		lineageTag: 782ecd02-c5a1-4b5b-bc9f-962447b8775d
+		summarizeBy: sum
+		sourceColumn: MISC_TAX_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAX_AMOUNT
+		dataType: double
+		lineageTag: 6cade1d2-6561-4ba5-b9c7-55fde0645f49
+		summarizeBy: sum
+		sourceColumn: TAX_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAX_DETAIL_ID
+		dataType: string
+		lineageTag: e01ed0fc-3b38-4413-a7f4-5efb81b61f66
+		summarizeBy: none
+		sourceColumn: TAX_DETAIL_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBTOTAL
+		dataType: double
+		lineageTag: 543f8872-e6ce-45fa-a3b5-a94280f46986
+		summarizeBy: sum
+		sourceColumn: SUBTOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DOCUMENT_AMOUNT
+		dataType: double
+		lineageTag: a2f88eef-da29-4b82-a31c-39ea0e765f35
+		summarizeBy: sum
+		sourceColumn: DOCUMENT_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COMMENT_ID
+		dataType: string
+		lineageTag: ee9427ca-348d-4aa8-87da-1eee6a4a7a9b
+		summarizeBy: none
+		sourceColumn: COMMENT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURRENCY_ID
+		dataType: string
+		lineageTag: 955eca72-1d88-44a5-918e-62940d06fbfd
+		summarizeBy: none
+		sourceColumn: CURRENCY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 7449cbe7-bf6d-4ba0-8012-9be967bcb223
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: 64d25513-a444-4787-ad95-d7a504cd5896
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition INVOICES = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    INVOICES_F_Table = DW_FINAL_Schema{[Name="INVOICES_F",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(INVOICES_F_Table, each ([SOURCE] = "MECH_GP"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

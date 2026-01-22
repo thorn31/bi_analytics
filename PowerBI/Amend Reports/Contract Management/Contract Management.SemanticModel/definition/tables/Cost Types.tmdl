@@ -1,0 +1,38 @@
+table 'Cost Types'
+	lineageTag: 64a08df8-82ac-4d24-bf56-7ece459533a5
+
+	column 'Cost Type'
+		dataType: string
+		lineageTag: c69c09ef-b3ec-47bb-893c-4a9b8d8726ce
+		summarizeBy: none
+		sourceColumn: Cost Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Cost Types' = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CALLS_F_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data],
+				    #"Duplicated Column" = Table.DuplicateColumn(CALLS_F_Table, "CUSTNMBR", "CUSTNMBR - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "CONTRACT_NUMBER", "CONTRACT_NUMBER - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"CUSTNMBR - Copy", "CONTRACT_NUMBER - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer - Contract"),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Merged Columns",{ "CONTRACT_NUMBER", "FORECAST_HOURS", "FORECAST_LABOR", "FORECAST_EQUIPMENT", "FORECAST_MATERIAL", "FORECAST_SUBS", "FORECAST_OTHER",  "Customer - Contract"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Removed Other Columns", { "CONTRACT_NUMBER",  "Customer - Contract"}, "Attribute", "Value"),
+				    #"Replaced Value" = Table.ReplaceValue(#"Unpivoted Columns","FORECAST_EQUIPMENT","EQUIPMENT",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","FORECAST_LABOR","LABOR",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","FORECAST_MATERIAL","MATERIAL",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","FORECAST_OTHER","OTHER",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","FORECAST_SUBS","SUBS",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","FORECAST_HOURS","HOURS",Replacer.ReplaceText,{"Attribute"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value5",{{"Attribute", "Cost Type"}}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns",{"Cost Type"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns1")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+

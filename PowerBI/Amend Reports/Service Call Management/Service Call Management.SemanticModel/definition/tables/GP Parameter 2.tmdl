@@ -1,0 +1,48 @@
+table 'GP Parameter 2'
+	lineageTag: 5ea0136f-4bcf-47fd-98df-9c2d2519afe6
+
+	column 'GP Parameter'
+		lineageTag: 26634497-f175-469d-88fb-e6c44c1fe5d5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'GP Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'GP Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Parameter Fields'
+		isHidden
+		lineageTag: e3c4cea8-4eba-49a9-b18b-d47fe4b32037
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'GP Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 66916dbd-1c74-4038-bcdf-d35281024e8b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GP Parameter 2' = calculated
+		mode: import
+		source =
+				{
+				    ("GP$ FYTD", NAMEOF([GP$ FYTD]), 0),
+				    ("GP% FYTD", NAMEOF([GP% FYTD]), 1)
+				}
+
+	annotation PBI_Id = 37472477551243e581638d22477dba6d
+

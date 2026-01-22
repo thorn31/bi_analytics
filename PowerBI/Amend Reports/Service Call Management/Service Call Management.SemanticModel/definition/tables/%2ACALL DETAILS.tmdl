@@ -1,0 +1,53 @@
+table '*CALL DETAILS'
+	lineageTag: 0558535d-bc10-41a1-8a18-d2054315f77c
+
+	column SERVICE_CALL_ID
+		dataType: string
+		lineageTag: c57684db-b9b3-448d-a940-83f25cd1a156
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 556db97e-6da2-45ef-99df-08c6b3756dca
+		summarizeBy: none
+		sourceColumn: DATE
+
+		variation Variation
+			isDefault
+			relationship: fcb1873d-05a0-4406-ae6a-94a942d35788
+			defaultHierarchy: LocalDateTable_bbf43f8a-d468-47fb-ac04-f39d8ec857ca.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BILLING_AMOUNT
+		dataType: double
+		lineageTag: 92284882-96bf-47d0-801b-67a1d0fea3dd
+		summarizeBy: sum
+		sourceColumn: BILLING_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '*CALL DETAILS' = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CALL_DETAILS_F_Table = DW_FINAL_Schema{[Name="CALL_DETAILS_F",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(CALL_DETAILS_F_Table, each ([SERVICE_CALL_ID] <> ""))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

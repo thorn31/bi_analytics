@@ -1,0 +1,233 @@
+table JOB_LABOR_HOURS
+	lineageTag: 1af0f70a-36e5-44e9-a83d-d47d23c6d8ff
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: f0246d9b-f108-4cf0-acc7-302e8bd90d42
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE
+		dataType: string
+		lineageTag: 0162b23e-e1b4-4b50-a3b6-20cbfa7cb0da
+		summarizeBy: none
+		sourceColumn: COST_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENTRYDATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 14969de1-0ce7-447f-a1b6-885761562c5a
+		summarizeBy: none
+		sourceColumn: ENTRYDATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EMPLOYID
+		dataType: string
+		lineageTag: 9300e0c2-a21f-46d8-a61b-6d5bc863fd04
+		summarizeBy: none
+		sourceColumn: EMPLOYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPRTRXCD
+		dataType: string
+		lineageTag: 6c39aad0-8ea0-4244-98f2-707abd3c284e
+		summarizeBy: none
+		sourceColumn: UPRTRXCD
+
+		annotation SummarizationSetBy = Automatic
+
+	column FIRST_DAY
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 525a4f62-a63c-4f01-8b9c-8bc90f510f2a
+		summarizeBy: none
+		sourceColumn: FIRST_DAY
+
+		variation Variation
+			isDefault
+			relationship: f4a4709f-fe5d-47b0-bc4c-af4c54aa832d
+			defaultHierarchy: LocalDateTable_69547476-3a6b-4a5f-8fcf-f5f0ffbaa28e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column LAST_DAY
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 46bd7dd6-805b-454e-8b83-a1848ec4b277
+		summarizeBy: none
+		sourceColumn: LAST_DAY
+
+		variation Variation
+			isDefault
+			relationship: 82e8cc7f-e0d6-4690-9190-08e40124157b
+			defaultHierarchy: LocalDateTable_39148a68-5226-4488-8b67-dc23f90c2fda.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MONDAY
+		dataType: double
+		lineageTag: 4b9a0f80-eb3d-4993-a91d-d70def6c4b0e
+		summarizeBy: sum
+		sourceColumn: MONDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TUESDAY
+		dataType: double
+		lineageTag: 336627fe-f1dd-4408-9723-85cf468c416f
+		summarizeBy: sum
+		sourceColumn: TUESDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WEDNESDAY
+		dataType: double
+		lineageTag: b82f84c5-ba5f-40bb-9eea-35ada051422c
+		summarizeBy: sum
+		sourceColumn: WEDNESDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column THURSDAY
+		dataType: double
+		lineageTag: db65c591-7888-4945-9e41-8d1f94700bf9
+		summarizeBy: sum
+		sourceColumn: THURSDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FRIDAY
+		dataType: double
+		lineageTag: acdc02e0-a03d-40b2-b0ee-db783b0aefbb
+		summarizeBy: sum
+		sourceColumn: FRIDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Job_Cost Code'
+		dataType: string
+		lineageTag: f8ab7d8d-09a5-4615-8a86-349d77a0294a
+		summarizeBy: none
+		sourceColumn: Job_Cost Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 1d1e1d52-1ac6-405b-90ee-07bbd7c00dcc
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: f831a1cd-6307-454e-aa0e-99815a8debcf
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_COST_KEY
+		dataType: string
+		lineageTag: b8f9d500-104d-4c44-b0b8-68e017703128
+		summarizeBy: none
+		sourceColumn: JOB_COST_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column HOURS
+		dataType: double
+		lineageTag: f14268e9-c81c-4176-a0c3-3141351d62de
+		summarizeBy: sum
+		sourceColumn: HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MANUAL_ADJUSMENTS
+		dataType: double
+		lineageTag: 1e517402-7e14-4444-9186-7b1299091165
+		summarizeBy: sum
+		sourceColumn: MANUAL_ADJUSMENTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SATURDAY
+		dataType: double
+		lineageTag: a10b0040-d6bc-4069-8852-2ec21c5daeb8
+		summarizeBy: sum
+		sourceColumn: SATURDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUNDAY
+		dataType: double
+		lineageTag: c255b7d9-23da-4b61-83a7-c219ed8af74f
+		summarizeBy: sum
+		sourceColumn: SUNDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_HOURS
+		dataType: double
+		lineageTag: 01a951da-8d89-43e8-8219-b00ec8f5e63b
+		summarizeBy: sum
+		sourceColumn: TOTAL_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Element' = calculate(FIRSTNONBLANK(COST_CODE_MAPPING[Cost Code Element], 1), filter(COST_CODE_MAPPING, COST_CODE_MAPPING[JOB_COST_KEY] = JOB_LABOR_HOURS[JOB_COST_KEY]))
+		lineageTag: 0ef64bc1-c9c7-4a8f-973a-44c246b1087b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition JOB_LABOR_HOURS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOB_LABOR_HOURS_F_Table = DW_FINAL_Schema{[Name="JOB_LABOR_HOURS_F",Kind="Table"]}[Data],
+				    #"Duplicated Column" = Table.DuplicateColumn(JOB_LABOR_HOURS_F_Table, "JOB_NUMBER", "JOB_NUMBER - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "COST_CODE", "COST_CODE - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"JOB_NUMBER - Copy", "COST_CODE - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Job_Cost Code"),
+				    #"Filtered Rows" = Table.SelectRows(#"Merged Columns", each ([SOURCE] = "MECH_GP"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

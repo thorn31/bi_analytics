@@ -1,0 +1,48 @@
+table 'Backlog Parameter 2'
+	lineageTag: ff249076-a2e5-4aaf-8a06-6ff747c0522f
+
+	column 'Backlog Parameter 2'
+		lineageTag: c9f86173-8940-4ce1-8593-086c22a8aea5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Backlog Parameter 2 Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Backlog Parameter 2 Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Backlog Parameter 2 Fields'
+		isHidden
+		lineageTag: 1a959add-c192-4cd5-99fc-2587d9f8b402
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Backlog Parameter 2 Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Backlog Parameter 2 Order'
+		isHidden
+		formatString: 0
+		lineageTag: a2b4df4f-b019-43ee-9d0b-4f44fe10457e
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Backlog Parameter 2' = calculated
+		mode: import
+		source =
+				{
+				    ("Backlog Revenue $", NAMEOF('Backlog Measures'[Backlog_Remaining Monthly Revenue]), 0),
+				    ("Backlog GP $", NAMEOF('Backlog Measures'[Monthly GP Backlog]), 1)
+				}
+
+	annotation PBI_Id = 98df2085dbfc4d56a7f90f3a92f75ef4
+

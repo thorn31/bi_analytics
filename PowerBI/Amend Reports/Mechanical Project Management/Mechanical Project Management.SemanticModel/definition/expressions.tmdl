@@ -1,0 +1,62 @@
+expression EMPLOYEES =
+		let
+		    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    EMPLOYEES_D_Table = DW_FINAL_Schema{[Name="EMPLOYEES_D",Kind="Table"]}[Data],
+		    #"Capitalized Each Word" = Table.TransformColumns(EMPLOYEES_D_Table,{{"FULL_NAME", Text.Proper, type text}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Capitalized Each Word", each ([SOURCE] = "MECH_GP")),
+		    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Active Employees", each if [INACTIVE] = true then null else [FULL_NAME])
+		in
+		    #"Added Custom"
+	lineageTag: 0aa80070-b5a3-4884-802b-f7332f9ba771
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Tables =
+		let
+		    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    JOB_LABOR_HOURS_F_Table = DW_FINAL_Schema{[Name="JOB_LABOR_HOURS_F",Kind="Table"]}[Data]
+		in
+		    JOB_LABOR_HOURS_F_Table
+	lineageTag: f1c9bc20-3261-404c-823e-3d0a5ff31a02
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'PO JOB DETAILS' =
+		let
+		    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    PO_JOB_DETAILS_F_Table = DW_FINAL_Schema{[Name="PO_JOB_DETAILS_F",Kind="Table"]}[Data],
+		    #"Filtered Rows1" = Table.SelectRows(PO_JOB_DETAILS_F_Table, each ([SOURCE] = "MECH_GP")),
+		    #"Sorted Rows" = Table.Sort(#"Filtered Rows1",{{"COMMITTED_COST", Order.Descending}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Sorted Rows", each [JOB_NUMBER] = "23056")
+		in
+		    #"Filtered Rows"
+	lineageTag: 26549356-ffdb-4dd8-a571-1aea3f4e3d41
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'JOB PROFILE _ PROJECTION TRENDS' =
+		let
+		    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_DEV_Database = Source{[Name="DATA_WAREHOUSE_DEV",Kind="Database"]}[Data],
+		    PUBLIC_Schema = DATA_WAREHOUSE_DEV_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+		    JOB_PROFILE_View = PUBLIC_Schema{[Name="JOB_PROFILE",Kind="View"]}[Data]
+		in
+		    JOB_PROFILE_View
+	lineageTag: 2fa16efc-008c-44f5-8a56-e97f06392894
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

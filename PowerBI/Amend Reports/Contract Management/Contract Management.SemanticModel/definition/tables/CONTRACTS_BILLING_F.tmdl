@@ -1,0 +1,169 @@
+table CONTRACTS_BILLING_F
+	lineageTag: da7a34c1-6967-40bc-8d73-4db9eacf68fd
+
+	column CUSTNMBR
+		dataType: string
+		lineageTag: 280d89db-e5ef-4894-8379-f95e03f22a16
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		lineageTag: d557ba80-2e55-44ab-a777-ef29beb93064
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE1
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 04d4d12b-1b1b-49ca-a136-548d550fdbfd
+		summarizeBy: none
+		sourceColumn: DATE1
+
+		variation Variation
+			isDefault
+			relationship: 6e80a280-a859-4bff-ae9c-a14f0f9dce20
+			defaultHierarchy: LocalDateTable_c357c417-93f4-4ea3-badf-ef0dec761ede.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column WENNSOFT_BILLING_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa6b9fcf-eb57-4586-9a3b-33f96f89474b
+		summarizeBy: none
+		sourceColumn: WENNSOFT_BILLING_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column WENNSOFT_PERIOD_ID
+		dataType: double
+		lineageTag: d26edf65-dd33-4cc7-924e-ba4a4ac74dce
+		summarizeBy: count
+		sourceColumn: WENNSOFT_PERIOD_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_ALL
+		dataType: double
+		lineageTag: 1d12f270-ac3e-4040-bf22-caa22da555a6
+		summarizeBy: sum
+		sourceColumn: BILLABLE_ALL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_SUBTOTAL
+		dataType: double
+		lineageTag: bac92ab3-9bdb-422c-bf68-28f3a3be4387
+		summarizeBy: sum
+		sourceColumn: BILLABLE_SUBTOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PORDNMBR
+		dataType: string
+		lineageTag: 0867f42e-c1dc-45ce-b6dd-4a86fbc4d453
+		summarizeBy: none
+		sourceColumn: PORDNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column WS_GL_POSTING_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a7062fee-cfa9-4231-a5c8-dddc4a67cd33
+		summarizeBy: none
+		sourceColumn: WS_GL_POSTING_DATE
+
+		variation Variation
+			isDefault
+			relationship: 741e346d-0da7-415f-8b50-c21b0908dfe0
+			defaultHierarchy: LocalDateTable_e59f379f-de3d-42a7-bd84-6e80ef7a5ed8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAX_WSCONTSQ
+		dataType: double
+		lineageTag: ee6f74f7-08ff-44ed-bd4a-3aeada9acec6
+		summarizeBy: sum
+		sourceColumn: MAX_WSCONTSQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: 6bc01700-565b-4489-9ff6-fc0385ca1ede
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER_KEY
+		dataType: string
+		lineageTag: 34e3cfde-c022-45e9-9915-7946fd44b3c9
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTNMBR_KEY
+		dataType: string
+		lineageTag: 95248b02-1128-4aa0-8eef-32ab911f91ec
+		summarizeBy: none
+		sourceColumn: CUSTNMBR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer-Contract
+		dataType: string
+		lineageTag: 210ef2d1-4e7f-415c-89a7-0c6e06d1beaa
+		summarizeBy: none
+		sourceColumn: Customer-Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Current Contract' =
+			
+			var start_ = calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CONTRACTS_BILLING_F[Customer-Contract]))
+			var end_ = calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CONTRACTS_BILLING_F[Customer-Contract]))
+			return
+			if(CONTRACTS_BILLING_F[WENNSOFT_BILLING_DATE] >= start_ &&  CONTRACTS_BILLING_F[WENNSOFT_BILLING_DATE] <= end_, 1, 0)
+		formatString: 0
+		lineageTag: 0fe3f840-0e58-41e4-968f-88370c32c933
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CONTRACTS_BILLING_F = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CONTRACT_BILLING_F_Table = DW_FINAL_Schema{[Name="CONTRACT_BILLING_F",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(CONTRACT_BILLING_F_Table,{{"DATE1", type date}, {"WENNSOFT_BILLING_DATE", type date}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "CUSTNMBR", "CUSTNMBR - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "CONTRACT_NUMBER", "CONTRACT_NUMBER - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"CUSTNMBR - Copy", "CONTRACT_NUMBER - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer-Contract")
+				in
+				    #"Merged Columns"
+
+	annotation PBI_ResultType = Table
+

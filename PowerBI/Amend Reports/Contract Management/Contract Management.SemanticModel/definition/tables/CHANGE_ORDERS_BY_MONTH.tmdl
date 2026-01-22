@@ -1,0 +1,105 @@
+table CHANGE_ORDERS_BY_MONTH
+	lineageTag: 1d71669b-52dd-4b07-bb05-8063564cb962
+
+	column CHANGE_ORDER_EST_COST
+		dataType: double
+		lineageTag: 3f48e830-3a53-4c07-a777-c8d423287d79
+		summarizeBy: sum
+		sourceColumn: CHANGE_ORDER_EST_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date =
+			
+			var mon = date(CHANGE_ORDERS_BY_MONTH[FIRSCAL_YEAR], CHANGE_ORDERS_BY_MONTH[FISCAL_MONTH], 1)
+			return
+			EDATE(mon, -3)
+		formatString: Long Date
+		lineageTag: 977ddd9a-74dd-450d-823b-38f643f69388
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: 47e60892-8e97-4d90-a5fe-654c04f9ce18
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHANGE_ORDER_NUMBER
+		dataType: string
+		lineageTag: a6bd1e16-e5c3-46a3-8c5b-15ebbcdeec8b
+		summarizeBy: none
+		sourceColumn: CHANGE_ORDER_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column FIRSCAL_YEAR
+		dataType: double
+		lineageTag: c63df5b0-36b2-44f7-b4fe-a00c2cce4226
+		summarizeBy: sum
+		sourceColumn: FIRSCAL_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_MONTH
+		dataType: double
+		lineageTag: 6fc73885-7f70-46dc-8a2d-6e3f265969e7
+		summarizeBy: sum
+		sourceColumn: FISCAL_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: 1035dd10-892d-41a9-a6d2-84da3ac7e0e1
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RN
+		dataType: double
+		lineageTag: 6929ddef-7b91-4875-aa4a-c379d807143c
+		summarizeBy: sum
+		sourceColumn: RN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: 2a8e73a5-17f4-4c06-aecb-a84ea107fe7a
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CHANGE_ORDERS_BY_MONTH = m
+		mode: import
+		source =
+				let
+				     Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_CLEAN_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
+				    JOB_CHANGE_ORDERS_View = DW_CLEAN_Schema{[Name="JOB_CHANGE_ORDERS",Kind="View"]}[Data],
+				    #"Removed Duplicates" = Table.Distinct(JOB_CHANGE_ORDERS_View),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Duplicates", each ([SOURCE] = "SERV_GP"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

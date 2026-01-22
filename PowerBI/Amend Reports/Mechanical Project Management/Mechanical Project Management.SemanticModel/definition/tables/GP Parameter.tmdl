@@ -1,0 +1,49 @@
+table 'GP Parameter'
+	lineageTag: 60962ef5-2f16-4208-a93d-a0fdad466dcd
+
+	column 'GP Parameter'
+		lineageTag: 55690074-da83-4262-926d-e504c88b4bb2
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'GP Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'GP Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Parameter Fields'
+		isHidden
+		lineageTag: 15bc0628-2d5f-44db-a347-426f829154a2
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'GP Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: c6a99b9c-b9fb-4c48-ae29-83e9299b37a3
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GP Parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("GP% Difference", NAMEOF('Revenue Measures'[GP% Difference]), 0),
+				    ("Forecasted GP%", NAMEOF('Revenue Measures'[Forecasted GP% Across Jobs]), 1),
+				    ("Forecasted GP$", NAMEOF('Revenue Measures'[Forecasted GP$ Across Jobs]), 2)
+				}
+
+	annotation PBI_Id = 8c7af060a7904f79ae2ea75dd738b373
+

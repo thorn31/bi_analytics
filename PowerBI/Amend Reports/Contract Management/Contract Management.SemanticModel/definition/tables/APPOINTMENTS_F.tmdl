@@ -1,0 +1,140 @@
+table APPOINTMENTS_F
+	lineageTag: 50a24209-18c0-44d9-8e34-1cdec0bc0ddf
+
+	column SERVICE_CALL_ID
+		dataType: string
+		lineageTag: f3b5fe3b-8ee2-4f31-b65a-dcf3acb6d7a7
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column APPOINTMENT
+		dataType: string
+		lineageTag: 8fbb51af-8816-4725-9994-ad712a29e03e
+		summarizeBy: none
+		sourceColumn: APPOINTMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column TECHNICIAN
+		dataType: string
+		lineageTag: e7bfded0-869c-4cbc-9a73-2643ee751133
+		summarizeBy: none
+		sourceColumn: TECHNICIAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TASK_DATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d83f3f9a-5a7e-4ad8-873b-ffcaf8a33858
+		summarizeBy: none
+		sourceColumn: TASK_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column STRTTIME
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 3ae80703-accc-4b60-a942-5c67dc54fe8b
+		summarizeBy: none
+		sourceColumn: STRTTIME
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column ENDTIME
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: bfdbd18d-7819-46c8-a664-164ed155db9b
+		summarizeBy: none
+		sourceColumn: ENDTIME
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column ESTIMATE_HOURS
+		dataType: double
+		lineageTag: e795bc41-1177-4142-a892-f2f4a8c5d5db
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_HOURS
+		dataType: double
+		lineageTag: cc11a7ce-76a9-4e4b-b741-cb83c326b83f
+		summarizeBy: sum
+		sourceColumn: ACTUAL_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column APPOINTMENT_STATUS
+		dataType: string
+		lineageTag: 17af1dac-089b-4a05-a50b-bbea7d8a3530
+		summarizeBy: none
+		sourceColumn: APPOINTMENT_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: b6010bac-2e01-4b01-8c34-da1219267488
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICE_CALL_KEY
+		dataType: string
+		lineageTag: b668cb12-9e82-4c44-9a6b-722bbfaa16bd
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICE_CALL_APPOINTMENT_KEY
+		dataType: string
+		lineageTag: 27dfb2e9-ab35-45d9-bd55-6df6c0d3bdcd
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_APPOINTMENT_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer-Contract
+		dataType: string
+		lineageTag: 2b910110-870f-4894-97bd-1bf52436dd63
+		summarizeBy: none
+		sourceColumn: Customer-Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	partition APPOINTMENTS_F = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    APPOINTMENTS_F_Table = DW_FINAL_Schema{[Name="APPOINTMENTS_F",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(APPOINTMENTS_F_Table,{{"TASK_DATE", type date}, {"STRTTIME", type time}, {"ENDTIME", type time}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"SERVICE_CALL_ID", Text.Trim, type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Trimmed Text", {"SERVICE_CALL_ID"}, CALLS_F, {"SERVICE_CALL_ID"}, "CALLS_F", JoinKind.LeftOuter),
+				    #"Expanded CALLS_F" = Table.ExpandTableColumn(#"Merged Queries", "CALLS_F", {"CUSTNMBR", "CONTRACT_NUMBER"}, {"CALLS_F.CUSTNMBR", "CALLS_F.CONTRACT_NUMBER"}),
+				    #"Merged Columns" = Table.CombineColumns(#"Expanded CALLS_F",{"CALLS_F.CUSTNMBR", "CALLS_F.CONTRACT_NUMBER"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer-Contract")
+				in
+				    #"Merged Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

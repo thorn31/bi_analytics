@@ -1,0 +1,66 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Cost Measures","CUSTOMERS_D","Revenue Measures","CHANGE_ORDERS_BY_MONTH","BUDGET_F","DIVISION","POSTING_DATA_F","EMPLOYEES_D","PO_JOB _DETAILS_F","JOB PROFILE _ PROJECTION TRENDS","Refresh Date","CONTRACTS_D","APPOINTMENTS_F","CALLS_F","SERV_TASKS_F","Contract Measures","CONTRACTS MAPPING","CALLS COSTS","CONTRACTS_BILLING_F","FORECASTED CALLS COST","Cost Types","Hour Measures","CONTRACT_Hour_Breakout","CONTRACTS_TASK_SCHEDULE","CONTRACT_LABOR_HOURS_F"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_ae1bc3b8-dd10-47c1-913a-5f4a589902e6
+ref table Calendar
+ref table 'Cost Measures'
+ref table CUSTOMERS_D
+ref table LocalDateTable_2f4d25e8-226e-4bdb-90b8-80d5e36a201f
+ref table LocalDateTable_5b54adca-a1fe-49cb-afdc-803881595356
+ref table 'Revenue Measures'
+ref table CHANGE_ORDERS_BY_MONTH
+ref table BUDGET_F
+ref table DIVISION
+ref table POSTING_DATA_F
+ref table 'GP Parameter'
+ref table 'Refresh Date'
+ref table LocalDateTable_8931b809-08ab-4252-8179-ca3c21383cd6
+ref table CONTRACTS_D
+ref table APPOINTMENTS_F
+ref table CALLS_F
+ref table SERV_TASKS_F
+ref table LocalDateTable_8d221eb4-201c-477f-89c5-03c6e03aa65e
+ref table 'Contract Measures'
+ref table 'CONTRACTS MAPPING'
+ref table 'CALLS COSTS'
+ref table LocalDateTable_2a249574-7315-48a3-bf2c-4c9bbab9a923
+ref table CONTRACTS_BILLING_F
+ref table LocalDateTable_c357c417-93f4-4ea3-badf-ef0dec761ede
+ref table LocalDateTable_e59f379f-de3d-42a7-bd84-6e80ef7a5ed8
+ref table LocalDateTable_e8656d71-0ea4-4096-9b0f-9ce7240092ae
+ref table LocalDateTable_ca9e521e-a39c-4bbf-a6fd-098d037b5a98
+ref table LocalDateTable_45849c3c-e06d-451f-8616-e45b735dd37f
+ref table 'FORECASTED CALLS COST'
+ref table 'Cost Types'
+ref table LocalDateTable_287ff984-7355-4b13-9018-95e3a16e18e9
+ref table LocalDateTable_68db00b3-6e04-4ee2-a4a3-b33365193de7
+ref table 'GP Parameter 2'
+ref table 'Hour Measures'
+ref table LocalDateTable_de817910-54ca-42f0-b798-d1ae454cca2b
+ref table CONTRACT_Hour_Breakout
+ref table LocalDateTable_36fb0cc6-3a6a-46f4-99fe-6340fb69c6b3
+ref table LocalDateTable_4ed2ebea-2956-4a45-b593-72e2e76dd90c
+ref table LocalDateTable_1997b5af-fbda-41ee-846d-31f24c5d8bd7
+ref table LocalDateTable_7568775e-9707-49cb-bf23-8bca38b29542
+ref table LocalDateTable_a823d9da-2d68-472e-bea7-b1c1f0ea5afc
+ref table CONTRACTS_TASK_SCHEDULE
+ref table LocalDateTable_dea31c23-1eaa-490c-ab59-1e5b655fb2ca
+ref table LocalDateTable_2e841b8c-c7b1-4df6-aaad-a1a446fc7c01
+ref table LocalDateTable_7b8a7d6f-03de-4370-ab61-70ffffb79124
+ref table LocalDateTable_00e51d8d-231f-4d65-881b-7cd775844859
+ref table CONTRACT_LABOR_HOURS_F
+ref table LocalDateTable_38f12a90-c3e3-476c-8af6-3b87ccdcdb64
+
+ref cultureInfo en-US
+

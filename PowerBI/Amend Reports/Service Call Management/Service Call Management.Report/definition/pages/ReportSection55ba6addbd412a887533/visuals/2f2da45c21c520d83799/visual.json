@@ -1,0 +1,1281 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "2f2da45c21c520d83799",
+  "position": {
+    "x": 11.962616822429906,
+    "y": 1042.9226847918437,
+    "z": 11000,
+    "height": 437.17926932880204,
+    "width": 1248.4621920135939,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CONTRACTS MAPPING"
+                    }
+                  },
+                  "Property": "Divisions"
+                }
+              },
+              "queryRef": "CONTRACTS MAPPING.Divisions",
+              "nativeQueryRef": "Divisions",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "*CALLS_F"
+                    }
+                  },
+                  "Property": "TYPE_OF_CALL"
+                }
+              },
+              "queryRef": "*CALLS_F.TYPE_OF_CALL",
+              "nativeQueryRef": "Type of Call",
+              "active": false,
+              "displayName": "Type of Call"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "*Calendar"
+                    }
+                  },
+                  "Property": "WeekEndDate"
+                }
+              },
+              "queryRef": "*Calendar.WeekEndDate",
+              "nativeQueryRef": "WeekEndDate",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "CUSTOMER_NAME"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.CUSTOMER_NAME",
+              "nativeQueryRef": "Customer",
+              "active": false,
+              "displayName": "Customer"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "*CALLS_F"
+                    }
+                  },
+                  "Property": "SERVICE_CALL_ID"
+                }
+              },
+              "queryRef": "*CALLS_F.SERVICE_CALL_ID",
+              "nativeQueryRef": "Service Call ID",
+              "active": false,
+              "displayName": "Service Call ID"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Service Call Measures"
+                    }
+                  },
+                  "Property": "Actual Costs"
+                }
+              },
+              "queryRef": "Service Call Measures.Actual Costs",
+              "nativeQueryRef": "Actual Costs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Service Call Measures"
+                    }
+                  },
+                  "Property": "Amount Billed"
+                }
+              },
+              "queryRef": "Service Call Measures.Amount Billed",
+              "nativeQueryRef": "Amount Billed"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Service Call Measures"
+                    }
+                  },
+                  "Property": "Actual GP$ _"
+                }
+              },
+              "queryRef": "Contract Measures.Actual GP$ Across Jobs_Contract",
+              "nativeQueryRef": "Actual GP$",
+              "displayName": "Actual GP$"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Service Call Measures"
+                    }
+                  },
+                  "Property": "Actual GP%"
+                }
+              },
+              "queryRef": "Contract Measures.Actual GP%_Contract",
+              "nativeQueryRef": "Actual GP%",
+              "displayName": "Actual GP%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Service Call Measures"
+                    }
+                  },
+                  "Property": "Billings Forward_Created Date"
+                }
+              },
+              "queryRef": "Service Call Measures.Billings Forward_Created Date",
+              "nativeQueryRef": "Billings Forward",
+              "displayName": "Billings Forward"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "CONTRACTS MAPPING"
+                  }
+                },
+                "Property": "Divisions"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "CONTRACTS MAPPING.Divisions"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CONTRACTS MAPPING"
+                    }
+                  },
+                  "Property": "Divisions"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "*CALLS_F.TYPE_OF_CALL"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "*CALLS_F"
+                    }
+                  },
+                  "Property": "TYPE_OF_CALL"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "*Calendar.WeekEndDate"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "*Calendar"
+                    }
+                  },
+                  "Property": "WeekEndDate"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "CUSTOMERS_D.CUSTOMER_NAME"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "CUSTOMER_NAME"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "*CALLS_F.SERVICE_CALL_ID"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "gridHorizontalWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'IconOnly'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Middle'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 1,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Cash Flow Measures"
+                                      }
+                                    },
+                                    "Property": "Open AR"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 4,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Cash Flow Measures"
+                                      }
+                                    },
+                                    "Property": "Open AR"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "10000000000D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Cash Flow Measures"
+                                      }
+                                    },
+                                    "Property": "Open AR"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "-1000000D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 4,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Cash Flow Measures"
+                                      }
+                                    },
+                                    "Property": "Open AR"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Cash Flow Measures.Paid Flag"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Service Call Measures"
+                            }
+                          },
+                          "Property": "Actual GP%"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#e6e6e6'"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#FFFFFF'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#99dbc8'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Contract Measures.Actual GP%_Contract"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.56773355024363D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Invoice Header.Invoice Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.29381185220568D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AR Aging Detail.Payment_Due_Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103.66078104615082D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cash Flow Measures.Invoice Balance"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94.39241243658034D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Invoice Mapping.Invoice_Or_Transaction"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "191.11111111111111D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Job List.Job Description"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.71879455938665D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Revenue Measures.Cumulative Current Contract"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Revenue Measures.Estimated GP% Across Jobs"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76.85217391304349D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Revenue Measures.Projected GP% Across Jobs"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "68.78134486731152D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cost Measures.% Complete"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72.94782608695652D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Revenue Measures.GP% Difference"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "105.38741187495646D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cost Measures.Cumulative Forecast"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.95972773139077D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Revenue Measures.Estimated GP$ Across Jobs"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.55176299969526D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cost Measures.Original Cost Estimate"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102.74576759444022D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cost Measures.Cumulative Actual Cost"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "431.21225180064033D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CONTRACTS MAPPING.Divisions"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "159.60361592542102D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Service Call Measures.Amount Billed"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "128.5490076110147D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contract Measures.Actual GP$ Across Jobs_Contract"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "154.35071456933974D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contract Measures.Actual GP%_Contract"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "142.7772925764192D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Service Call Measures.Actual Costs"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "136.3013100436681D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Service Call Measures.Billings Forward_Created Date"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gross Profit Metrics by Division and Service Call ID'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "null"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#DCA46C'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bc7661bc1afa5411dc75",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*Calendar"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "*",
+              "Entity": "*Calendar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "*"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -12,
+                          "TimeUnit": 2
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "56baaabc3a708009147c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Service Call Measures"
+              }
+            },
+            "Property": "Actual GP%"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "13431df35d4e8a8bc42a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Service Call Measures"
+              }
+            },
+            "Property": "Actual GP$ _"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f23500982ce6c47476a2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CONTRACTS MAPPING"
+              }
+            },
+            "Property": "Divisions"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5e026597a4a7081a3391",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "CUSTOMER_NAME"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9cbc0b700263bd4c8508",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*CALLS_F"
+              }
+            },
+            "Property": "TYPE_OF_CALL"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8703f195cea317208470",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*CALLS_F"
+              }
+            },
+            "Property": "SERVICE_CALL_ID"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a73d7e37402c0a74ae22",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*Calendar"
+              }
+            },
+            "Property": "WeekEndDate"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "eafdf87c99bb0d1ed0a2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Service Call Measures"
+              }
+            },
+            "Property": "Amount Billed"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bcd04851cec873c71d82",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Service Call Measures"
+              }
+            },
+            "Property": "Actual Costs"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "97d54b910648220e5e03",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Service Call Measures"
+              }
+            },
+            "Property": "Billings Forward_Created Date"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

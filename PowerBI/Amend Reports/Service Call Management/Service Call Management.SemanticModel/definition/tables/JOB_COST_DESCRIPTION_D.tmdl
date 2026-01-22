@@ -1,0 +1,102 @@
+table JOB_COST_DESCRIPTION_D
+	lineageTag: ed2fbb02-dba4-4d03-999e-2cab6e1f14f3
+
+	column COST_CODE
+		dataType: string
+		lineageTag: 91e67b9d-15da-403a-95d4-023ef213d867
+		summarizeBy: none
+		sourceColumn: COST_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: c0c2a2ff-9c06-4f68-b4a5-90eff6385247
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Code Element'
+		dataType: string
+		lineageTag: 7040e6ea-6105-4235-a76e-d16b6fb5ff66
+		summarizeBy: none
+		sourceColumn: Cost Code Element
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 8dcad91b-b932-4906-a262-431117712ffa
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: 70d027d5-4351-43e3-97be-be1e56876aa8
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_COST_KEY
+		dataType: string
+		lineageTag: 4cda1992-4736-43d1-ab8a-9afd32e78f32
+		summarizeBy: none
+		sourceColumn: JOB_COST_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job_Cost Code'
+		dataType: string
+		lineageTag: 758696b9-9f09-4eb0-aaf7-cc0da6123f15
+		summarizeBy: none
+		sourceColumn: Job_Cost Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column RN
+		dataType: double
+		lineageTag: 00ab4c8f-9117-41e5-b5a6-a383f78229a3
+		summarizeBy: sum
+		sourceColumn: RN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Code Description'
+		dataType: string
+		lineageTag: 09c84c32-823f-4d39-a3aa-594ea01c320c
+		summarizeBy: none
+		sourceColumn: Cost Code Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contingency Flag'
+		dataType: string
+		lineageTag: f84704ac-d7fc-40ef-a619-80d13023aa60
+		summarizeBy: none
+		sourceColumn: Contingency Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition JOB_COST_DESCRIPTION_D = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOB_COST_DESCRIPTION_D_Table = DW_FINAL_Schema{[Name="JOB_COST_DESCRIPTION_D",Kind="Table"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(JOB_COST_DESCRIPTION_D_Table,{{"COST_ELEMENT_DESC", "Cost Code Element"}, {"COST_DESCRIPTION", "Cost Code Description"}, {"CONTINGENCY_FLAG", "Contingency Flag"}, {"JOB_COST_CODE", "Job_Cost Code"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([SOURCE] = "SERV_GP")),
+				    #"Trimmed Text" = Table.TransformColumns(#"Filtered Rows",{{"JOB_NUMBER", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"JOB_NUMBER", Text.Clean, type text}})
+				in
+				    #"Cleaned Text"
+
+	annotation PBI_ResultType = Table
+

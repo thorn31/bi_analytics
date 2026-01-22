@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "40aa1fabdc0e75bee4b7",
+  "position": {
+    "x": 459.92831541218641,
+    "y": 0,
+    "z": 5000,
+    "height": 100.93189964157706,
+    "width": 186.95340501792117,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "JOB"
+                        }
+                      },
+                      "Property": "ORIG_CONTRACT_AMOUNT"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(JOB.ORIG_CONTRACT_AMOUNT)",
+              "nativeQueryRef": "Original Contract",
+              "displayName": "Original Contract"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "JOB"
+                      }
+                    },
+                    "Property": "ORIG_CONTRACT_AMOUNT"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "30D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

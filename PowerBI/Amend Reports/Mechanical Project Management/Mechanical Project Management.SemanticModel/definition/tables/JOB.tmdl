@@ -1,0 +1,862 @@
+table JOB
+	lineageTag: 8e32a563-b709-4c19-941b-27598fbd07b7
+
+	measure 'Selected Project Name' = ```
+			"Name : " & selectedvalue(JOB[Job Number - Name], "Multiple Jobs") 
+			```
+		lineageTag: eee4787a-a140-4414-a82b-04788772641c
+
+	measure 'Selected Division' = ```
+			"Division : " & selectedvalue(JOB[DIVISIONS], "Multiple") 
+			```
+		lineageTag: ca5b0a6e-1827-409d-88fd-5e57f999c159
+
+	measure 'Selected PM' = ```
+			"PM : " & selectedvalue(JOB[Project Manager], "Multiple") 
+			```
+		lineageTag: 4d98d71a-855b-43e2-9180-f3df2febe3f4
+
+	measure 'Selected Sup' = ```
+			"Superintendent : " & selectedvalue(JOB[Superintendent], "Multiple") 
+			```
+		lineageTag: 56a6bbe2-6175-4d6a-a1b1-03eff94251c1
+
+	measure 'Selected Sales Rep' = ```
+			"Sales Rep : " & selectedvalue(JOB[Sales Rep], "Multiple") 
+			```
+		lineageTag: 425df889-52f2-487c-9fff-619510ad545b
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: e38f043c-2b5a-42f4-be44-f5b385516b52
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECT_NUMBER
+		dataType: string
+		lineageTag: 845222c2-fa6e-4951-83ab-cbf457f710ab
+		summarizeBy: none
+		sourceColumn: PROJECT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_NAME
+		dataType: string
+		lineageTag: cb61df8e-ce21-4efd-b29c-ef0269150eb0
+		summarizeBy: none
+		sourceColumn: JOB_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVISIONS
+		dataType: string
+		lineageTag: 74df1f0f-ac6a-4319-894f-cb6ad35a1502
+		summarizeBy: none
+		sourceColumn: DIVISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_NUMBER
+		dataType: string
+		lineageTag: cb79796d-54a0-4030-8d80-c083149e3ff8
+		summarizeBy: none
+		sourceColumn: CUSTOMER_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column START_DATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5f12feca-e9cc-4ada-acaf-1ed981405abd
+		summarizeBy: none
+		sourceColumn: START_DATE
+
+		variation Variation
+			isDefault
+			relationship: dbc7e650-d4f1-44e3-9661-1630c80e3aca
+			defaultHierarchy: LocalDateTable_820e8c9a-6a47-49de-b350-058a53302479.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TARGET_COMPLETION_DATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ab051386-7288-42ac-90ea-8933a6f115a6
+		summarizeBy: none
+		sourceColumn: TARGET_COMPLETION_DATE
+
+		variation Variation
+			isDefault
+			relationship: b25b6616-28bd-4915-8055-7312b52fedf2
+			defaultHierarchy: LocalDateTable_8f32177c-7b7f-4b5c-afda-6d8a43f3b74a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ACT_COMPLETION_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6d5f2e36-405f-4918-80f8-7b905d6e2da6
+		summarizeBy: none
+		sourceColumn: ACT_COMPLETION_DATE
+
+		variation Variation
+			isDefault
+			relationship: 0703711c-f090-4e35-ab12-7fbde3a5c963
+			defaultHierarchy: LocalDateTable_dbc8e48e-68af-4633-963c-bd15e3755808.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EST_LABOR_COST
+		dataType: double
+		lineageTag: 1e9e1abc-bc10-4013-9376-84b7735eb9a1
+		summarizeBy: sum
+		sourceColumn: EST_LABOR_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_MATERIAL_COST
+		dataType: double
+		lineageTag: e7063092-d9fa-4770-870d-5b796e48e930
+		summarizeBy: sum
+		sourceColumn: EST_MATERIAL_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_EQUIPMENT_COST
+		dataType: double
+		lineageTag: 9212edba-57d7-481b-a625-21914ec17c1a
+		summarizeBy: sum
+		sourceColumn: EST_EQUIPMENT_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_SUBS_COST
+		dataType: double
+		lineageTag: f4b47e2a-edd7-48d6-a6a1-9b0ecbd45e84
+		summarizeBy: sum
+		sourceColumn: EST_SUBS_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_MISC_OTHER_COST
+		dataType: double
+		lineageTag: 859dfc3f-8511-4491-95b1-2d12461c6f47
+		summarizeBy: sum
+		sourceColumn: EST_MISC_OTHER_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_COST_USERDEF1
+		dataType: double
+		lineageTag: d4426cb0-e260-42e1-ac1c-9a27e97689bd
+		summarizeBy: sum
+		sourceColumn: EST_COST_USERDEF1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_COST_USERDEF2
+		dataType: double
+		lineageTag: ad996faf-e7d9-47ab-aa48-ad7019a9e907
+		summarizeBy: sum
+		sourceColumn: EST_COST_USERDEF2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_COST_USERDEF3
+		dataType: double
+		lineageTag: c4eb2d37-6729-486f-a0f2-722347f7a5b5
+		summarizeBy: sum
+		sourceColumn: EST_COST_USERDEF3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_COST_USERDEF4
+		dataType: double
+		lineageTag: 78a7c32e-07ce-4a84-8e11-359b667561e5
+		summarizeBy: sum
+		sourceColumn: EST_COST_USERDEF4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_ESTIMATED_COST
+		dataType: double
+		lineageTag: e8b23611-3cfe-4513-8623-820010dbdced
+		summarizeBy: sum
+		sourceColumn: TOTAL_ESTIMATED_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_LABOR_COST_MKUP
+		dataType: double
+		lineageTag: 5f2489a1-a4fc-4317-997b-014502965e7c
+		summarizeBy: sum
+		sourceColumn: EST_LABOR_COST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_EQUIP_COST_MKUP
+		dataType: double
+		lineageTag: 23cf394d-002b-4ec1-abbb-7f9fe6645d44
+		summarizeBy: sum
+		sourceColumn: EST_EQUIP_COST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_MATERIALS_COST_MKUP
+		dataType: double
+		lineageTag: 10bb0cca-9dca-42f3-b705-49acb726d3e2
+		summarizeBy: sum
+		sourceColumn: EST_MATERIALS_COST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_SUBS_COST_MARKUP
+		dataType: double
+		lineageTag: 6d311a77-b217-4066-b901-605697620782
+		summarizeBy: sum
+		sourceColumn: EST_SUBS_COST_MARKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_MISC_OTHER_CST_MKUP
+		dataType: double
+		lineageTag: 6918cc78-5d18-40fe-b76a-adf445d4c9ce
+		summarizeBy: sum
+		sourceColumn: EST_MISC_OTHER_CST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_USERDEF1_COST_MKUP
+		dataType: double
+		lineageTag: 45c9f225-55d8-4439-9d84-05964881b165
+		summarizeBy: sum
+		sourceColumn: EST_USERDEF1_COST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_USERDEF2_COST_MKUP
+		dataType: double
+		lineageTag: acc27abd-d5d0-4c2a-961d-cf836b1000aa
+		summarizeBy: sum
+		sourceColumn: EST_USERDEF2_COST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_USERDEF3_COST_MKUP
+		dataType: double
+		lineageTag: 9831be90-9156-4596-9c37-c00900e53542
+		summarizeBy: sum
+		sourceColumn: EST_USERDEF3_COST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_USERDEF4_COST_MKUP
+		dataType: double
+		lineageTag: 0bad20b4-e48a-4268-960b-51294a7a12fd
+		summarizeBy: sum
+		sourceColumn: EST_USERDEF4_COST_MKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_EST_PLUS_MARKUP
+		dataType: double
+		lineageTag: 41c26fce-b953-4385-9b8f-5191fb01914c
+		summarizeBy: sum
+		sourceColumn: TOTAL_EST_PLUS_MARKUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONTRACT_TYPE
+		dataType: double
+		lineageTag: d181f003-6cf2-4701-a52b-43f27f5c5a97
+		summarizeBy: sum
+		sourceColumn: CONTRACT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WS_BILLING_TYPE
+		dataType: double
+		lineageTag: c3e8d6fd-33c0-4a35-9fc3-31594cae22b9
+		summarizeBy: sum
+		sourceColumn: WS_BILLING_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORIG_CONTRACT_AMOUNT
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 9c00aa95-b5ac-4601-9529-f3781a339e39
+		summarizeBy: sum
+		sourceColumn: ORIG_CONTRACT_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORIGINATING_CONTRACT_AMT
+		dataType: double
+		lineageTag: 394b4970-de41-4eb6-808d-f8006924f10f
+		summarizeBy: sum
+		sourceColumn: ORIGINATING_CONTRACT_AMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONTRACT_MAX_BILL_AMT
+		dataType: double
+		lineageTag: ec0d147f-2af5-49bc-9dd8-e168097c6b6d
+		summarizeBy: sum
+		sourceColumn: CONTRACT_MAX_BILL_AMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONFIRMED_CHG_ORDER_AMT
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: fd983464-627c-4e81-a90d-037671e6fd2c
+		summarizeBy: sum
+		sourceColumn: CONFIRMED_CHG_ORDER_AMT
+
+		annotation SummarizationSetBy = Automatic
+
+	column IN_PROCESS_CHG_ORD_AMT
+		dataType: double
+		lineageTag: e67cb50e-2f2c-45b4-a86c-b94d0ad7f6d9
+		summarizeBy: sum
+		sourceColumn: IN_PROCESS_CHG_ORD_AMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_EQUIPMENT_TTD
+		dataType: double
+		lineageTag: caa23031-47af-483d-b73a-58760fa8f978
+		summarizeBy: sum
+		sourceColumn: FORECAST_EQUIPMENT_TTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECASTED_LABOR_TTD
+		dataType: double
+		lineageTag: 1ed5aff5-d1a8-4afa-ad81-885e2a69ea49
+		summarizeBy: sum
+		sourceColumn: FORECASTED_LABOR_TTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_MATERIALS_TTD
+		dataType: double
+		lineageTag: 8e8a57c0-c368-4a35-9966-a9753b3a6db9
+		summarizeBy: sum
+		sourceColumn: FORECAST_MATERIALS_TTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_MISC_OTHER_TTD
+		dataType: double
+		lineageTag: 847c47d3-9ad2-4b4a-aac0-864d0900bf7c
+		summarizeBy: sum
+		sourceColumn: FORECAST_MISC_OTHER_TTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECASTED_SUBS_TTD
+		dataType: double
+		lineageTag: 5c85ffb7-eda7-466c-83f6-c0fc9948f4da
+		summarizeBy: sum
+		sourceColumn: FORECASTED_SUBS_TTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_USERDEF1
+		dataType: double
+		lineageTag: 57520d62-bfff-479b-8afb-783379b1125a
+		summarizeBy: sum
+		sourceColumn: FORECAST_USERDEF1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_USERDEF2
+		dataType: double
+		lineageTag: 176acc4f-c64a-4231-a2a5-eef73c00b03d
+		summarizeBy: sum
+		sourceColumn: FORECAST_USERDEF2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_USERDEF3
+		dataType: double
+		lineageTag: c59f53a3-9605-43bb-b3e2-f7659cb1f66c
+		summarizeBy: sum
+		sourceColumn: FORECAST_USERDEF3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_USERDEF4
+		dataType: double
+		lineageTag: baceb5e7-cc4e-4bdb-b9ff-d76ba52b1f6d
+		summarizeBy: sum
+		sourceColumn: FORECAST_USERDEF4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_FORECASTED_COST
+		dataType: double
+		lineageTag: 33e14c21-9306-4f5d-a756-8e74c0c95db1
+		summarizeBy: sum
+		sourceColumn: TOTAL_FORECASTED_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_EQUIP_FORECASTED
+		dataType: double
+		lineageTag: 25ddf500-882c-4055-878b-4a36d5164baa
+		summarizeBy: sum
+		sourceColumn: REVSD_EQUIP_FORECASTED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_LABOR_FORECASTED
+		dataType: double
+		lineageTag: 3b02b19e-59dd-4372-af64-d3d65f8c5780
+		summarizeBy: sum
+		sourceColumn: REVSD_LABOR_FORECASTED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_MATERIALS_FORECST
+		dataType: double
+		lineageTag: 02d74132-ec42-4e77-a238-33f7c076f91c
+		summarizeBy: sum
+		sourceColumn: REVSD_MATERIALS_FORECST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_SUBS_FORECAST_CST
+		dataType: double
+		lineageTag: 94c86f8f-3711-4207-b03c-a48b4031dcad
+		summarizeBy: sum
+		sourceColumn: REVSD_SUBS_FORECAST_CST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_OTHER_FORECST_CST
+		dataType: double
+		lineageTag: a53fb64b-4d66-405b-9327-625103da6026
+		summarizeBy: sum
+		sourceColumn: REVSD_OTHER_FORECST_CST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_FORECAST_USERDEF1
+		dataType: double
+		lineageTag: 0e1b017d-9783-4cc5-b162-387e985d27fe
+		summarizeBy: sum
+		sourceColumn: REVSD_FORECAST_USERDEF1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_FORECAST_USERDEF2
+		dataType: double
+		lineageTag: fb6bac45-9cac-499b-a863-366be2bc51fe
+		summarizeBy: sum
+		sourceColumn: REVSD_FORECAST_USERDEF2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_FORECAST_USERDEF3
+		dataType: double
+		lineageTag: bc544e4a-2e04-4f80-ac33-3265658efc48
+		summarizeBy: sum
+		sourceColumn: REVSD_FORECAST_USERDEF3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVSD_FORECAST_USERDEF4
+		dataType: double
+		lineageTag: 2d76ec93-5a98-4377-bb0d-077297ac2912
+		summarizeBy: sum
+		sourceColumn: REVSD_FORECAST_USERDEF4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOT_REVSD_FORECAST_COST
+		dataType: double
+		lineageTag: 22056f16-b837-4c2b-9831-876c575f61f0
+		summarizeBy: sum
+		sourceColumn: TOT_REVSD_FORECAST_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EST_LABOR_UNITS_TTD
+		dataType: double
+		lineageTag: c31a6e9c-f602-4e22-9aac-c0b4859015c1
+		summarizeBy: sum
+		sourceColumn: EST_LABOR_UNITS_TTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACT_LABOR_UNITS_TTD
+		dataType: double
+		lineageTag: 30d29212-633e-48d9-9a52-38d0cad199b1
+		summarizeBy: sum
+		sourceColumn: ACT_LABOR_UNITS_TTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: bbc2a1fa-1a4f-423c-a354-d5262d764519
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Status' =
+			
+			var dat = DATEDIFF(JOB[ACT_COMPLETION_DATE], today(), DAY)
+			var maxdat = calculate(max(JOB_COST_DETAILS[TRAN_DATE]), filter(JOB_COST_DETAILS, JOB[JOB_NUMBER] = JOB_COST_DETAILS[JOB_NUMBER]))
+			return
+			if(JOB[WARRANTY_START] <= Today() && JOB[WARRANTY_END] >= Today(), "Warranty", if(JOB[INACTIVE] = TRUE(), "Inactive", if(JOB[JOB_TYPE_FLAG] = "MV_JOB", "MV", "Active")))
+		lineageTag: ea565e66-2485-4779-9c08-110e77746faf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATOR_ID
+		dataType: string
+		lineageTag: 2be28d52-7852-48fa-ada8-31bed5047ebe
+		summarizeBy: none
+		sourceColumn: ESTIMATOR_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MANAGER_ID
+		dataType: string
+		lineageTag: 3c3ac21a-4a37-45f5-9e24-cdd8bf015f5c
+		summarizeBy: none
+		sourceColumn: MANAGER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column WARRANTY_START
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 70a35b0a-0729-429b-863f-afe47813f800
+		summarizeBy: none
+		sourceColumn: WARRANTY_START
+
+		variation Variation
+			isDefault
+			relationship: 81b1b6d4-c204-4616-9413-8d317adc6500
+			defaultHierarchy: LocalDateTable_3068354c-1934-4176-9b53-101d178cc7da.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column WARRANTY_END
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 588c21db-216c-4392-a039-91b24e2da44e
+		summarizeBy: none
+		sourceColumn: WARRANTY_END
+
+		variation Variation
+			isDefault
+			relationship: ab7d6c79-4762-4d91-a2b5-223d23976236
+			defaultHierarchy: LocalDateTable_dc9a7e8b-973c-4d72-ad27-3eff05a132d9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Max Transaction Date' =
+			
+			var dat = DATEDIFF(JOB[ACT_COMPLETION_DATE], today(), DAY)
+			var maxdat = calculate(max(JOB_COST_DETAILS[TRAN_DATE]), filter(JOB_COST_DETAILS, JOB[JOB_NUMBER] = JOB_COST_DETAILS[JOB_NUMBER]))
+			return
+			maxdat
+		formatString: Short Date
+		lineageTag: 798467bf-e375-4632-bd51-ddf2d5d8b097
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 1d025432-d5e9-4104-ae8e-d6d9c5de6c09
+			defaultHierarchy: LocalDateTable_103d4237-3f13-4fb8-908e-8f990ad5f6f8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: f06baed7-ac87-4238-a5aa-7e8281b74462
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_KEY
+		dataType: string
+		lineageTag: f62aed8b-64d8-49d7-a92f-0f0d1eafee3d
+		summarizeBy: none
+		sourceColumn: CUSTOMER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Number - Name' = JOB[JOB_NUMBER] & "-" & JOB[JOB_NAME]
+		lineageTag: b0603255-9a0a-445c-a941-0f046f8722e7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column INACTIVE
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4dd96178-b7ed-4c3c-91ce-4012cde5433f
+		summarizeBy: none
+		sourceColumn: INACTIVE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Check' =
+			var dat = DATEDIFF(JOB[ACT_COMPLETION_DATE], today(), DAY)
+			var maxdat = calculate(max(JOB_COST_DETAILS[TRAN_DATE]), filter(JOB_COST_DETAILS, JOB[JOB_NUMBER] = JOB_COST_DETAILS[JOB_NUMBER]))
+			return
+			if(today() > JOB[WARRANTY_END] && JOB[WARRANTY_END] <> Blank(), "Inactive", if(JOB[WARRANTY_START] <= Today() && JOB[WARRANTY_END] >= Today(), "Warranty", if(JOB[TARGET_COMPLETION_DATE] <> Blank(), "Inactive", if(maxdat = blank(), "Inactive", if(DATEDIFF(maxdat, today(), DAY) <= 90, "Active", "Inactive")))))
+		lineageTag: feafb2b4-8bc9-42c6-9e3a-761a4a93ba54
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATOR_KEY
+		dataType: string
+		lineageTag: 3b827e3a-b7be-4c62-8169-cf5e01a7d745
+		summarizeBy: none
+		sourceColumn: ESTIMATOR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column MANAGER_KEY
+		dataType: string
+		lineageTag: 7c582590-ade3-4672-84a7-76a5ee5a0da4
+		summarizeBy: none
+		sourceColumn: MANAGER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Manager'
+		dataType: string
+		lineageTag: 7f980858-c8c9-4a8f-9d6e-f9a2730a0bc5
+		summarizeBy: none
+		sourceColumn: Project Manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep'
+		dataType: string
+		lineageTag: 1640ac7a-8c6e-45a0-ad1c-b5db1b750bfd
+		summarizeBy: none
+		sourceColumn: Sales Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SUPERINTENDENT ID'
+		dataType: string
+		lineageTag: a31b23dc-70e9-439a-939a-bc51ab1e81d3
+		summarizeBy: none
+		sourceColumn: SUPERINTENDENT ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUPERINT_KEY
+		dataType: string
+		lineageTag: 290166f8-6f18-4878-8f13-bffd502bc9dd
+		summarizeBy: none
+		sourceColumn: SUPERINT_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column Superintendent
+		dataType: string
+		lineageTag: 3a8bbf9d-4eb4-4041-9fa7-95a4c892e931
+		summarizeBy: none
+		sourceColumn: Superintendent
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_TYPE_FLAG
+		dataType: string
+		lineageTag: 3c14c633-c79e-461c-b0dc-c55b737d6bbd
+		summarizeBy: none
+		sourceColumn: JOB_TYPE_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLEANED_DIVISIONS
+		dataType: string
+		lineageTag: 94c6f720-41c5-4c98-896e-05fdd939a9a4
+		summarizeBy: none
+		sourceColumn: CLEANED_DIVISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Min Transaction Date' =
+			
+			var dat = DATEDIFF(JOB[ACT_COMPLETION_DATE], today(), DAY)
+			var maxdat = calculate(min(JOB_COST_DETAILS[TRAN_DATE]), filter(JOB_COST_DETAILS, JOB[JOB_NUMBER] = JOB_COST_DETAILS[JOB_NUMBER]))
+			return
+			maxdat
+		formatString: General Date
+		lineageTag: 01d71ea8-89a8-4209-b01d-296cef0940b3
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 7c5ddff2-a549-4e9b-a9dd-4c293bb3e41a
+			defaultHierarchy: LocalDateTable_82986f2d-45c5-4243-bb17-c0844f70692b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date_Revised' = if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date])
+		formatString: Short Date
+		lineageTag: fea0bbda-702c-45ba-8a39-d0af01ba5ddb
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 716cde7b-30a6-4f6f-adc3-d86b0d9cdf34
+			defaultHierarchy: LocalDateTable_288a7e21-8bfa-49ce-90b0-3f281030da3e.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition JOB = m
+		mode: import
+		source =
+				let
+				      Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOBS_D_Table = DW_FINAL_Schema{[Name="JOBS_D",Kind="Table"]}[Data],
+				    #"Trimmed Text" = Table.TransformColumns(JOBS_D_Table,{{"JOB_NUMBER", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"JOB_NUMBER", Text.Clean, type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Cleaned Text","PERF CONTRACT","GREEN",Replacer.ReplaceText,{"DIVISIONS"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",#date(1900, 1, 1),null,Replacer.ReplaceValue,{"TARGET_COMPLETION_DATE"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1",#date(1900, 1, 1),null,Replacer.ReplaceValue,{"ACT_COMPLETION_DATE"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2",#date(1900, 1, 1),null,Replacer.ReplaceValue,{"WARRANTY_START"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3",#date(1900, 1, 1),null,Replacer.ReplaceValue,{"WARRANTY_END"}),
+				        #"Filtered Rows" = Table.SelectRows(#"Replaced Value4", each ([SOURCE] = "MECH_GP")),
+				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"MANAGER_KEY"}, EMPLOYEES, {"EMPLOYEE_KEY"}, "EMPLOYEES", JoinKind.LeftOuter),
+				    #"Expanded EMPLOYEES" = Table.ExpandTableColumn(#"Merged Queries", "EMPLOYEES", {"Active Employees"}, {"Project Manager"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded EMPLOYEES", {"ESTIMATOR_KEY"}, EMPLOYEES, {"EMPLOYEE_KEY"}, "EMPLOYEES", JoinKind.LeftOuter),
+				    #"Expanded EMPLOYEES1" = Table.ExpandTableColumn(#"Merged Queries1", "EMPLOYEES", {"Active Employees"}, {"Sales Rep"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Expanded EMPLOYEES1", {"SUPERINT_KEY"}, EMPLOYEES, {"EMPLOYEE_KEY"}, "EMPLOYEES", JoinKind.LeftOuter),
+				    #"Expanded EMPLOYEES2" = Table.ExpandTableColumn(#"Merged Queries2", "EMPLOYEES", {"FULL_NAME"}, {"FULL_NAME"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded EMPLOYEES2",{{"SUPERINTENDENT", "SUPERINTENDENT ID"}, {"FULL_NAME", "Superintendent"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

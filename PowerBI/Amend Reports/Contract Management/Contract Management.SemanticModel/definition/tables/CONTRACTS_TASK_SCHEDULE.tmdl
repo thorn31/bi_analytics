@@ -1,0 +1,227 @@
+table CONTRACTS_TASK_SCHEDULE
+	lineageTag: c21762dd-5613-40a1-ae58-1b57eef92e6f
+
+	column ADRSCODE
+		dataType: string
+		lineageTag: 3bc9b867-b055-4c64-9ca1-b855152eed95
+		summarizeBy: none
+		sourceColumn: ADRSCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column WSCONTSQ
+		dataType: double
+		lineageTag: f5a48fa5-24e1-4862-8fe4-1d67ae065b1b
+		summarizeBy: sum
+		sourceColumn: WSCONTSQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EQUIPMENT_ID
+		dataType: string
+		lineageTag: 86ec2106-7649-4bdf-9315-b7a393a9a298
+		summarizeBy: none
+		sourceColumn: EQUIPMENT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULE_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 83debfae-1895-4c81-904c-9d66428b6f90
+		summarizeBy: none
+		sourceColumn: SCHEDULE_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ORIGINAL_SCHEDULE_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 11f85989-e2c4-4ed5-9447-07ad0c8e7ac4
+		summarizeBy: none
+		sourceColumn: ORIGINAL_SCHEDULE_DATE
+
+		variation Variation
+			isDefault
+			relationship: a03faffe-7b64-4bdd-b45d-2cc70e55e4d3
+			defaultHierarchy: LocalDateTable_7b8a7d6f-03de-4370-ab61-70ffffb79124.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SCHEDULE_MODIFIED_FLAG
+		dataType: string
+		lineageTag: 9b751950-b561-401e-87f3-be53592995e5
+		summarizeBy: none
+		sourceColumn: SCHEDULE_MODIFIED_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEK_OF_MONTH
+		dataType: string
+		lineageTag: 11120e27-b647-46bf-861e-53b412917b3e
+		summarizeBy: none
+		sourceColumn: WEEK_OF_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAY_OF_THE_WEEK
+		dataType: string
+		lineageTag: 9f9e9da9-4164-4a52-bca0-404e85b9f942
+		summarizeBy: none
+		sourceColumn: DAY_OF_THE_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_YEAR
+		dataType: string
+		lineageTag: 8a3e29b6-41e2-4a47-97a7-51d8c0a8e3b7
+		summarizeBy: none
+		sourceColumn: CONTRACT_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULED_TIME
+		dataType: string
+		lineageTag: 54a99987-d694-4039-b693-daf933d9e1b0
+		summarizeBy: none
+		sourceColumn: SCHEDULED_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICE_CALL_ID
+		dataType: string
+		lineageTag: 70592d30-6e68-4b53-8d4d-412c43c1c0aa
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATE_HOURS
+		dataType: double
+		lineageTag: e67b30a4-37bc-4d5f-95ac-7b86ce2d5b79
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TASK_CODE
+		dataType: string
+		lineageTag: aa044e56-6c9f-406f-8fb1-0980ad491293
+		summarizeBy: none
+		sourceColumn: TASK_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TASK_HIERARCHY
+		dataType: string
+		lineageTag: 8e2b8989-a3aa-4371-bcd7-3cbc5f0d7688
+		summarizeBy: none
+		sourceColumn: TASK_HIERARCHY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_TASK_LIST_ID
+		dataType: string
+		lineageTag: e2fb5faf-b7f0-4621-8793-e8a5cea4254e
+		summarizeBy: none
+		sourceColumn: CONTRACT_TASK_LIST_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column REQUIRED
+		dataType: string
+		lineageTag: 9c43eaed-f09b-4669-8f0b-5183d93bb6c0
+		summarizeBy: none
+		sourceColumn: REQUIRED
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEX_ROW_ID
+		dataType: double
+		lineageTag: 7763d091-9c77-4fc4-a19d-cb047fdb75b0
+		summarizeBy: count
+		sourceColumn: DEX_ROW_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Estimated Hours_' = CONTRACTS_TASK_SCHEDULE[ESTIMATE_HOURS]
+		formatString: 0.00
+		lineageTag: 7610d537-27ac-4f08-a65f-a80924a453cc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer-Contract
+		dataType: string
+		lineageTag: 1bdf6633-1823-4b1f-b4d9-22f0e1ee42f7
+		summarizeBy: none
+		sourceColumn: Customer-Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Current Contract' =
+			
+			var start_ = calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CONTRACTS_TASK_SCHEDULE[Customer-Contract]))
+			var end_ = calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CONTRACTS_TASK_SCHEDULE[Customer-Contract]))
+			var contsq = calculate(max(CONTRACTS_D[WSCONTSQ]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CONTRACTS_TASK_SCHEDULE[Customer-Contract] && CONTRACTS_D[Current Contract Flag] = 1))
+			return
+			if(CONTRACTS_TASK_SCHEDULE[WSCONTSQ] = contsq, 1, 0)
+		formatString: 0
+		lineageTag: 675017fe-52e6-4449-a9f8-a8a77bca9d4a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 01ef872f-2689-4ba6-bc08-67b26053298e
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTNMBR_KEY
+		dataType: string
+		lineageTag: 210fab5a-e311-4efc-b7a2-c725e97bd862
+		summarizeBy: none
+		sourceColumn: CUSTNMBR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER_KEY
+		dataType: string
+		lineageTag: c43a5b80-9fb7-4275-8cc7-96a42bf99cb5
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CONTRACTS_TASK_SCHEDULE = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    SERV_CONTRACT_TASKS_F_Table = DW_FINAL_Schema{[Name="SERV_CONTRACT_TASKS_F",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(SERV_CONTRACT_TASKS_F_Table,{{"SCHEDULE_DATE", type date},{"WSCONTSQ", type number} ,{"ORIGINAL_SCHEDULE_DATE", type date}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"CUSTNMBR", Text.Trim, type text}, {"CONTRACT_NUMBER", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"CUSTNMBR", Text.Clean, type text}, {"CONTRACT_NUMBER", Text.Clean, type text}}),
+				    #"Merged Columns" = Table.CombineColumns(#"Cleaned Text",{"CUSTNMBR", "CONTRACT_NUMBER"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer-Contract")
+				in
+				    #"Merged Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

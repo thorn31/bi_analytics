@@ -1,0 +1,179 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "573de6eee5e2208a8842",
+  "displayName": "Service Call Summary",
+  "displayOption": "FitToWidth",
+  "height": 1500,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filterae7cb2c2d9b601325bac",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*Calendar"
+              }
+            },
+            "Property": "Future Flag"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "*Calendar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "Future Flag"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "1L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "4cd0c1edd8765c3d170d",
+        "displayName": "Type of Call",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*CALLS_F"
+              }
+            },
+            "Property": "TYPE_OF_CALL"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "8f5a37682e9d60bd8e52",
+        "displayName": "Call Resolution",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*CALLS_F"
+              }
+            },
+            "Property": "RESOLUTION_DESCRIPTION"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "5c9eed69381648858069",
+        "displayName": "Status of Call",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*CALLS_F"
+              }
+            },
+            "Property": "STATUS_OF_CALL"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "0339f5f249b4602b4b4d",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E1E0E0'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "93aff833780870217500",
+      "target": "56c5d3c8e8017ec9353d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8973efc9eae6d1d9c663",
+      "target": "56c5d3c8e8017ec9353d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "214d43620481c0700479",
+      "target": "56c5d3c8e8017ec9353d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "214d43620481c0700479",
+      "target": "93aff833780870217500",
+      "type": "DataFilter"
+    },
+    {
+      "source": "56c5d3c8e8017ec9353d",
+      "target": "93aff833780870217500",
+      "type": "DataFilter"
+    }
+  ]
+}

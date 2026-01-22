@@ -1,0 +1,131 @@
+table JOB_COST_DETAILS_F
+	lineageTag: 7c75cc65-f878-4871-b122-6df674bd4aaf
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: 33e4885f-fb51-45ef-ae93-08b688b9c6da
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE
+		dataType: string
+		lineageTag: 60050f2c-698b-414d-a249-c1afca50819b
+		summarizeBy: none
+		sourceColumn: COST_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_DESCRIPTION
+		dataType: string
+		lineageTag: ef4ea18e-dcf6-4ef7-bef5-e272622004ca
+		summarizeBy: none
+		sourceColumn: COST_DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRAN_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3b56b565-2f60-4b2f-9ca8-411f0d59a4a4
+		summarizeBy: none
+		sourceColumn: TRAN_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column COST_AMT
+		dataType: double
+		lineageTag: 2e54cea9-b453-45f5-819a-6fee4a8c7e98
+		summarizeBy: sum
+		sourceColumn: COST_AMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: c2cc76de-af9e-4f68-b644-7eeda6879171
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE_1
+		dataType: string
+		lineageTag: 8036bcee-1bc8-4449-b8c1-60772e6ca611
+		summarizeBy: none
+		sourceColumn: COST_CODE_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE_2
+		dataType: string
+		lineageTag: de326b38-8b6a-4395-9c5f-73fce0514ee8
+		summarizeBy: none
+		sourceColumn: COST_CODE_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE_3
+		dataType: string
+		lineageTag: d82f1fad-f1f1-490f-a90a-2946a7fe4dbd
+		summarizeBy: none
+		sourceColumn: COST_CODE_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job_Cost Code'
+		dataType: string
+		lineageTag: 1c1d7de1-2b63-48b5-b58f-2f8cc841a55a
+		summarizeBy: none
+		sourceColumn: Job_Cost Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: c2d561e5-4865-4c66-9a7e-31ae1c8d73f3
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_COST_KEY
+		dataType: string
+		lineageTag: b9d04560-0a2a-445d-bb9d-6285421e0b64
+		summarizeBy: none
+		sourceColumn: JOB_COST_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_ELEMENT_DESC
+		dataType: string
+		lineageTag: f3ad2a1e-f31a-4b04-983c-6de5242ee54b
+		summarizeBy: none
+		sourceColumn: COST_ELEMENT_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition JOB_COST_DETAILS_F = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOB_COST_DETAILS_F_Table = DW_FINAL_Schema{[Name="JOB_COST_DETAILS_F",Kind="Table"]}[Data],
+				    #"Trimmed Text" = Table.TransformColumns(JOB_COST_DETAILS_F_Table,{{"JOB_NUMBER", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"JOB_NUMBER", Text.Clean, type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Cleaned Text", "JOB_NUMBER", "JOB_NUMBER - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "COST_CODE", "COST_CODE - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"JOB_NUMBER - Copy", "COST_CODE - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Job_Cost Code"),
+				        #"Filtered Rows" = Table.SelectRows(#"Merged Columns", each ([SOURCE] = "SERV_GP"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

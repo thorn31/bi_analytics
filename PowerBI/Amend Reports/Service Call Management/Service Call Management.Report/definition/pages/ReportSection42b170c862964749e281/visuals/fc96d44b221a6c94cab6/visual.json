@@ -1,0 +1,127 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "fc96d44b221a6c94cab6",
+  "position": {
+    "x": 11.198600174978129,
+    "y": 139.9825021872266,
+    "z": 3000,
+    "height": 311.32108486439193,
+    "width": 715.59055118110234,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JOB_COST_DESCRIPTION_D"
+                    }
+                  },
+                  "Property": "COST_CODE"
+                }
+              },
+              "queryRef": "COST_CODE_MAPPING.COST_CODE",
+              "nativeQueryRef": "COST_CODE"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cost Measures"
+                    }
+                  },
+                  "Property": "Job_Actual Cost"
+                }
+              },
+              "queryRef": "Cost Measures.Actual Cost",
+              "nativeQueryRef": "Actual Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cost Measures"
+                    }
+                  },
+                  "Property": "Cost Budget"
+                }
+              },
+              "queryRef": "Cost Measures.Cost Estimates",
+              "nativeQueryRef": "Current Cost Budget",
+              "displayName": "Current Cost Budget"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cost Measures"
+                    }
+                  },
+                  "Property": "Original Cost Estimate"
+                }
+              },
+              "queryRef": "Cost Measures.Original Cost Estimate",
+              "nativeQueryRef": "Original Cost Estimate"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "126.17203868734433D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cost Measures.Actual Cost"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "161.96774276291927D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cost Measures.Cost Estimates"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "145.96610504189414D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "COST_CODE_MAPPING.COST_CODE"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

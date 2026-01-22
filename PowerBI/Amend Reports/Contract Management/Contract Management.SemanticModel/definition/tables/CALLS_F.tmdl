@@ -1,0 +1,609 @@
+table CALLS_F
+	lineageTag: fcd8e30f-0720-4a54-bce4-ecbf386f0aa1
+
+	measure 'Number of Calls' = ```
+			CALCULATE(COUNT(CALLS_F[SERVICE_CALL_ID])) 
+			```
+		formatString: 0
+		lineageTag: 3c6d937e-9fd1-4b12-abcf-8747c929fb6a
+
+	measure 'Late PMs' = ```
+			
+			CALCULATE( 
+			    COUNT(CALLS_F[SERVICE_CALL_ID]), 
+			    CALLS_F[TYPE_OF_CALL]="GENERATED MC",
+			    CALLS_F[STATUS_OF_CALL]="Open",
+			    CALLS_F[Calculated_Days_Open] > 60)
+			```
+		formatString: 0
+		lineageTag: 4f19689e-2b6e-4ec7-aa04-0e068469b027
+
+	measure 'Late PM Revenue' = ```
+			
+			CALCULATE( 
+			    sum(CALLS_F[Monthly Revenue]), 
+			    CALLS_F[TYPE_OF_CALL]="GENERATED MC",
+			    CALLS_F[STATUS_OF_CALL]="Open",
+			    CALLS_F[Calculated_Days_Open] > 60)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 912dc735-4855-4ea5-86fc-4cac5985b083
+
+	column SERVICE_CALL_ID
+		dataType: string
+		lineageTag: 473a3e59-04e2-407a-b4c0-711beb7948f9
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICE_DESCRIPTION
+		dataType: string
+		lineageTag: af20febd-cdca-43ae-9f3c-9e50b90f8d44
+		summarizeBy: none
+		sourceColumn: SERVICE_DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTNMBR
+		dataType: string
+		lineageTag: 78539a30-a75d-41df-8171-d36013a736e7
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column TECHNICIAN
+		dataType: string
+		lineageTag: 8dd41e28-eb8c-4346-8518-384d116011d8
+		summarizeBy: none
+		sourceColumn: TECHNICIAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TYPE_OF_PROBLEM
+		dataType: string
+		lineageTag: b23f223a-4ce5-4a2d-be94-e0199e7e809b
+		summarizeBy: none
+		sourceColumn: TYPE_OF_PROBLEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESOLUTION_DESCRIPTION
+		dataType: string
+		lineageTag: bf30e036-bf76-41e2-8136-27d99c4933be
+		summarizeBy: none
+		sourceColumn: RESOLUTION_DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column TYPE_OF_CALL
+		dataType: string
+		lineageTag: e440aee1-6f39-4b5c-a1fc-65b9ce672551
+		summarizeBy: none
+		sourceColumn: TYPE_OF_CALL
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE_OF_SERVICE_CALL
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 405a347a-e535-4801-98d7-8ed14f56ed42
+		summarizeBy: none
+		sourceColumn: DATE_OF_SERVICE_CALL
+
+		variation Variation
+			isDefault
+			relationship: dba1229d-cb3a-495e-92aa-88c24119b6e8
+			defaultHierarchy: LocalDateTable_de817910-54ca-42f0-b798-d1ae454cca2b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BILLING_AMOUNT_FIXED
+		dataType: double
+		lineageTag: 8843ecb3-afea-40a5-99f7-34fdd1139d2a
+		summarizeBy: sum
+		sourceColumn: BILLING_AMOUNT_FIXED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLING_AMOUNT_NTE
+		dataType: double
+		lineageTag: 71f8b413-7ba4-44f7-9b88-a91f7b829831
+		summarizeBy: sum
+		sourceColumn: BILLING_AMOUNT_NTE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_ALL
+		dataType: double
+		lineageTag: b3b5af87-d374-43e8-941f-5fe4ac1bfa68
+		summarizeBy: sum
+		sourceColumn: BILLABLE_ALL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COST_ALL
+		dataType: double
+		lineageTag: 617600a4-c5e2-4e2f-af40-c418bc21f3dc
+		summarizeBy: sum
+		sourceColumn: COST_ALL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAX_AMOUNT1
+		dataType: double
+		lineageTag: f063df8f-0119-4e57-ab65-44aa63347ebe
+		summarizeBy: sum
+		sourceColumn: TAX_AMOUNT1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAX_AMOUNT2
+		dataType: double
+		lineageTag: 44e84341-afee-4094-b787-13b6ce34e4db
+		summarizeBy: sum
+		sourceColumn: TAX_AMOUNT2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAX_AMOUNT3
+		dataType: double
+		lineageTag: af488e9a-a3b3-4dbf-b0fb-58bfa4826d0d
+		summarizeBy: sum
+		sourceColumn: TAX_AMOUNT3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_BILLING_CATAGORY_1
+		dataType: double
+		lineageTag: fcb2a676-72f8-400e-be5a-35c5dbcffc85
+		summarizeBy: sum
+		sourceColumn: LABOR_BILLING_CATAGORY_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_BILLING_CATAGORY_2
+		dataType: double
+		lineageTag: b33396d2-0470-4730-a892-495be4dfc200
+		summarizeBy: sum
+		sourceColumn: LABOR_BILLING_CATAGORY_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_BILLING_CATAGORY_3
+		dataType: double
+		lineageTag: 7587968e-c1e1-4614-a4b3-0264f8696c9c
+		summarizeBy: sum
+		sourceColumn: LABOR_BILLING_CATAGORY_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_BILLING_CATAGORY_4
+		dataType: double
+		lineageTag: 70b8a19e-460d-4659-8e76-58ed07257059
+		summarizeBy: sum
+		sourceColumn: LABOR_BILLING_CATAGORY_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_BILLING_CATAGORY_5
+		dataType: double
+		lineageTag: 9d945113-a5bc-457b-a0d9-53119ec7eb75
+		summarizeBy: sum
+		sourceColumn: LABOR_BILLING_CATAGORY_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_EQUIPMENT
+		dataType: double
+		lineageTag: 8d8c5e51-832c-4e13-9d1f-3e1a9e8f486b
+		summarizeBy: sum
+		sourceColumn: BILLABLE_EQUIPMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_LABOR
+		dataType: double
+		lineageTag: 0667d6bc-7714-418b-872b-f34595fc45ff
+		summarizeBy: sum
+		sourceColumn: BILLABLE_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_MATERIAL
+		dataType: double
+		lineageTag: 70253f6e-3d16-48ca-800f-83137b2c7bc9
+		summarizeBy: sum
+		sourceColumn: BILLABLE_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_OTHER
+		dataType: double
+		lineageTag: 0eb6d907-abcf-4110-ace3-fb764bc5feb2
+		summarizeBy: sum
+		sourceColumn: BILLABLE_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_SUBS
+		dataType: double
+		lineageTag: fd8292c1-731c-4574-9942-ed2483b67ff5
+		summarizeBy: sum
+		sourceColumn: BILLABLE_SUBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_TAX
+		dataType: double
+		lineageTag: 05ad2b7e-906f-44bf-846c-e9be0b141329
+		summarizeBy: sum
+		sourceColumn: BILLABLE_TAX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_COST_CATAGORY_1
+		dataType: double
+		lineageTag: 492d011e-ee04-4111-94aa-c0f0b10ed666
+		summarizeBy: sum
+		sourceColumn: LABOR_COST_CATAGORY_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_COST_CATAGORY_2
+		dataType: double
+		lineageTag: 978e811c-8fe6-4dd2-bba5-cbfd150de64f
+		summarizeBy: sum
+		sourceColumn: LABOR_COST_CATAGORY_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_COST_CATAGORY_3
+		dataType: double
+		lineageTag: 6a30bd28-9cf8-4394-9337-85d414d81954
+		summarizeBy: sum
+		sourceColumn: LABOR_COST_CATAGORY_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_COST_CATAGORY_4
+		dataType: double
+		lineageTag: a2688342-d684-4759-b4c3-78febde00f83
+		summarizeBy: sum
+		sourceColumn: LABOR_COST_CATAGORY_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LABOR_COST_CATAGORY_5
+		dataType: double
+		lineageTag: 2dd76268-4589-4374-917a-95349cb16556
+		summarizeBy: sum
+		sourceColumn: LABOR_COST_CATAGORY_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COST_EQUIPMENT
+		dataType: double
+		lineageTag: 06d6f5e8-fa6d-485e-90dc-b6b21b30c200
+		summarizeBy: sum
+		sourceColumn: COST_EQUIPMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COST_LABOR
+		dataType: double
+		lineageTag: 10010177-8093-4482-a95d-9bef2921686f
+		summarizeBy: sum
+		sourceColumn: COST_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COST_MATERIAL
+		dataType: double
+		lineageTag: e923978a-b839-48fe-b53e-2de80fd91b53
+		summarizeBy: sum
+		sourceColumn: COST_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COST_OTHER
+		dataType: double
+		lineageTag: 297d7a75-60d3-494f-8d09-2ef078420de1
+		summarizeBy: sum
+		sourceColumn: COST_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COST_SUBS
+		dataType: double
+		lineageTag: e4c53f45-ce62-42c3-ad80-eb204a303fcc
+		summarizeBy: sum
+		sourceColumn: COST_SUBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COST_TAX
+		dataType: double
+		lineageTag: 60c4b47c-98a2-4546-8b80-719240f2b88b
+		summarizeBy: sum
+		sourceColumn: COST_TAX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: 54732141-46fa-4772-a410-6382e8fffea6
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICE_CALL_KEY
+		dataType: string
+		lineageTag: 904fcc42-2340-459d-af69-527aed836353
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERNBR_KEY
+		dataType: string
+		lineageTag: 308c2329-3a62-4dfb-8eeb-327869f36263
+		summarizeBy: none
+		sourceColumn: CUSTOMERNBR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS_OF_CALL
+		dataType: string
+		lineageTag: 70714409-97bd-4488-b23f-4037ed8bfd0f
+		summarizeBy: none
+		sourceColumn: STATUS_OF_CALL
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPLETION_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fdf56bf0-cf49-445d-9de8-e315748ccf7f
+		summarizeBy: none
+		sourceColumn: COMPLETION_DATE
+
+		variation Variation
+			isDefault
+			relationship: 674a568a-c54c-47e3-83fe-1018f298427e
+			defaultHierarchy: LocalDateTable_8d221eb4-201c-477f-89c5-03c6e03aa65e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_DATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6eb6030f-81d3-47a8-83dd-b498820a1e4f
+		summarizeBy: none
+		sourceColumn: CREATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: cc27e8d9-7c37-4cac-9e58-302521f2ea85
+			defaultHierarchy: LocalDateTable_00e51d8d-231f-4d65-881b-7cd775844859.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BILLING_STATUS
+		dataType: string
+		lineageTag: 6bc06d2c-4548-42d2-a78a-e7da5c54423f
+		summarizeBy: none
+		sourceColumn: BILLING_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICE_STYLE
+		dataType: double
+		lineageTag: 7a4ecc6e-23fa-4388-8ced-ecab2a63e566
+		summarizeBy: sum
+		sourceColumn: INVOICE_STYLE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INVOICE_TYPE
+		dataType: double
+		lineageTag: 817628e0-51ce-4d59-aaa0-693c2f8c1bd3
+		summarizeBy: sum
+		sourceColumn: INVOICE_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Completion_Date_Cleaned = IF(CALLS_F[COMPLETION_DATE] = DATE(1900, 1, 1), TODAY(), CALLS_F[COMPLETION_DATE])
+		formatString: Long Date
+		lineageTag: 1f8c4ddb-a9e9-4a8a-bc23-fb3f42ddd5bd
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Calculated_Days_Open = DATEDIFF(CALLS_F[CREATED_DATE], CALLS_F[Completion_Date_Cleaned], DAY)
+		formatString: 0
+		lineageTag: 4df8cfca-7093-4d02-b5d3-9903228deffa
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		lineageTag: 80e2ed15-bcac-4e70-8de3-a90d0c526eec
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVISIONS
+		dataType: string
+		lineageTag: 61d59485-1147-4dec-8617-192e79b773b2
+		summarizeBy: none
+		sourceColumn: DIVISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer - Contract'
+		dataType: string
+		lineageTag: f6f73446-daff-46c7-9f47-82042fc45be1
+		summarizeBy: none
+		sourceColumn: Customer - Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Current Contract' =
+			
+			var start_ = calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CALLS_F[Customer - Contract]))
+			var end_ = calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CALLS_F[Customer - Contract]))
+			var contsq = calculate(max(CONTRACTS_D[WSCONTSQ]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CALLS_F[Customer - Contract] && CONTRACTS_D[Current Contract Flag] = 1))
+			return
+			if(CALLS_F[WSCONTSQ] = contsq, 1, 0)
+		formatString: 0
+		lineageTag: 43ca2881-9998-4f0c-a7e7-bb6428790ec0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Monthly Revenue' = [Monthly Recognzied Revenue]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 6bb4ccd2-892a-423e-9a9c-939b437bba32
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column WSCONTSQ
+		dataType: double
+		lineageTag: a49fefe1-4cbd-4ea0-870c-02db2aa42ac7
+		summarizeBy: sum
+		sourceColumn: WSCONTSQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INVOICE_TYPE_UDF1A
+		dataType: string
+		lineageTag: fc0fbcba-74f9-4e67-a83f-28d1804e4cde
+		summarizeBy: none
+		sourceColumn: INVOICE_TYPE_UDF1A
+
+		annotation SummarizationSetBy = Automatic
+
+	column BILLING_TYPE_UDF2A
+		dataType: string
+		lineageTag: 8e14840f-699c-4a1b-b3e6-a493c0752248
+		summarizeBy: none
+		sourceColumn: BILLING_TYPE_UDF2A
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVISIONS_CLEAN
+		dataType: string
+		lineageTag: ac70484e-f896-40b8-95df-6c335117b40e
+		summarizeBy: none
+		sourceColumn: DIVISIONS_CLEAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATED_HOURS
+		dataType: double
+		lineageTag: f11b0875-9d3e-40a2-a4c5-d2ba1e3aca1b
+		summarizeBy: sum
+		sourceColumn: ESTIMATED_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition CALLS_F = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CALLS_F_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(CALLS_F_Table,{{"DATE_OF_SERVICE_CALL", type date}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"SERVICE_CALL_ID", Text.Trim, type text}, {"CUSTNMBR", Text.Trim, type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Trimmed Text", "CUSTNMBR", "CUSTNMBR - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "CONTRACT_NUMBER", "CONTRACT_NUMBER - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"CUSTNMBR - Copy", "CONTRACT_NUMBER - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer - Contract")
+				in
+				    #"Merged Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

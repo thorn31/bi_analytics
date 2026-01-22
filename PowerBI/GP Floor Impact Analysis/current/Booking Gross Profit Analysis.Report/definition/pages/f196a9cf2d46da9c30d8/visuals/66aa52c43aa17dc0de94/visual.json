@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "66aa52c43aa17dc0de94",
   "position": {
-    "x": 360.30716723549483,
+    "x": 360.20654044750427,
     "y": 710,
     "z": 8000,
-    "height": 350.17064846416378,
+    "height": 350,
     "width": 1540,
     "tabOrder": 6000
   },
@@ -34,30 +34,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QUADRA_CONTRACTS"
+                      "Entity": "QUADRA_JOBS"
                     }
                   },
-                  "Property": "Contract Number"
+                  "Property": "Job Number"
                 }
               },
-              "queryRef": "QUADRA_CONTRACTS.Contract Number",
-              "nativeQueryRef": "Contract Number",
-              "displayName": "Contract Number"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QUADRA_CONTRACTS"
-                    }
-                  },
-                  "Property": "Contracttype"
-                }
-              },
-              "queryRef": "QUADRA_CONTRACTS.Contracttype",
-              "nativeQueryRef": "Contract Type",
-              "displayName": "Contract Type"
+              "queryRef": "QUADRA_JOBS.Job Number",
+              "nativeQueryRef": "Job Number",
+              "displayName": "Job Number"
             },
             {
               "field": {
@@ -67,10 +52,25 @@
                       "Entity": "QUADRA_JOBS"
                     }
                   },
-                  "Property": "CO Icon SVG"
+                  "Property": "Job Name"
                 }
               },
-              "queryRef": "QUADRA_JOBS.CO Icon SVG",
+              "queryRef": "QUADRA_JOBS.Job Name",
+              "nativeQueryRef": "Job Name",
+              "displayName": "Job Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "CO Icon SVG (Dynamic)"
+                }
+              },
+              "queryRef": "_Key Measures.CO Icon SVG (Dynamic)",
               "nativeQueryRef": "CO",
               "displayName": "CO"
             },
@@ -259,16 +259,16 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "CUSTOMERS_D"
+                    "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Customer Name"
+                "Property": "GP $ Shortfall to Floor"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -703,7 +703,7 @@
         },
         {
           "properties": {
-            "styleTotal": {
+            "styleHeader": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -722,7 +722,7 @@
                 }
               }
             },
-            "styleHeader": {
+            "styleTotal": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -731,7 +731,7 @@
             }
           },
           "selector": {
-            "metadata": "QUADRA_JOBS.CO Icon SVG"
+            "metadata": "_Key Measures.CO Icon SVG (Dynamic)"
           }
         }
       ],
@@ -741,7 +741,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "277.29370052391687D"
+                  "Value": "261.8876565691386D"
                 }
               }
             }
@@ -769,7 +769,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "107D"
+                  "Value": "93.78141800441854D"
                 }
               }
             }

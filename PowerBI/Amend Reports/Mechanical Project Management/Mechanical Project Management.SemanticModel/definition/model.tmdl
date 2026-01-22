@@ -1,0 +1,61 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["JOB","JOB_COST_DETAILS","COST_CODE_MAPPING","Cost Measures","JOB FORECAST","INVOICES","CUSTOMERS","JOB_LABOR_HOURS","Revenue Measures","CHANGE_ORDERS_BY_MONTH","Backlog Measures","BUDGET","DIVISION","GL POSTING","JOB_COST_SUMMARY","EMPLOYEES","Tables","PO JOB DETAILS","JOB PROFILE _ PROJECTION TRENDS","Refresh Date"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_ae1bc3b8-dd10-47c1-913a-5f4a589902e6
+ref table Calendar
+ref table JOB
+ref table LocalDateTable_820e8c9a-6a47-49de-b350-058a53302479
+ref table LocalDateTable_8f32177c-7b7f-4b5c-afda-6d8a43f3b74a
+ref table LocalDateTable_dbc8e48e-68af-4633-963c-bd15e3755808
+ref table JOB_COST_DETAILS
+ref table COST_CODE_MAPPING
+ref table 'Cost Measures'
+ref table 'JOB FORECAST'
+ref table INVOICES
+ref table LocalDateTable_a1304e08-f471-47dc-bbfc-f6653e634bfb
+ref table LocalDateTable_7c0dba22-51a6-475f-9385-01ea578d2301
+ref table LocalDateTable_df4ab1e5-1799-472a-b536-48d903e2a6f1
+ref table LocalDateTable_4d5c68a9-1016-4c7f-8bd6-94b091483340
+ref table CUSTOMERS
+ref table LocalDateTable_2f4d25e8-226e-4bdb-90b8-80d5e36a201f
+ref table LocalDateTable_5b54adca-a1fe-49cb-afdc-803881595356
+ref table JOB_LABOR_HOURS
+ref table LocalDateTable_69547476-3a6b-4a5f-8fcf-f5f0ffbaa28e
+ref table 'Revenue Measures'
+ref table CHANGE_ORDERS_BY_MONTH
+ref table LocalDateTable_3068354c-1934-4176-9b53-101d178cc7da
+ref table LocalDateTable_dc9a7e8b-973c-4d72-ad27-3eff05a132d9
+ref table LocalDateTable_103d4237-3f13-4fb8-908e-8f990ad5f6f8
+ref table 'Backlog Measures'
+ref table BUDGET
+ref table LocalDateTable_26e0a611-4938-40bf-8444-deab64adf683
+ref table DIVISION
+ref table 'GL POSTING'
+ref table JOB_COST_SUMMARY
+ref table LocalDateTable_39148a68-5226-4488-8b67-dc23f90c2fda
+ref table 'GP Parameter'
+ref table 'Backlog Parameter'
+ref table LocalDateTable_e2d949a2-51a9-4559-aff7-c4bc089c82a9
+ref table 'Refresh Date'
+ref table LocalDateTable_d9746aa8-c787-46e8-a0b0-2e5477439e51
+ref table LocalDateTable_82986f2d-45c5-4243-bb17-c0844f70692b
+ref table LocalDateTable_288a7e21-8bfa-49ce-90b0-3f281030da3e
+ref table 'Backlog Parameter 2'
+ref table LocalDateTable_e8656d71-0ea4-4096-9b0f-9ce7240092ae
+ref table LocalDateTable_ca9e521e-a39c-4bbf-a6fd-098d037b5a98
+ref table LocalDateTable_45849c3c-e06d-451f-8616-e45b735dd37f
+
+ref cultureInfo en-US
+

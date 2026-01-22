@@ -1,0 +1,26 @@
+table DIVISION
+	lineageTag: b9c64ae5-a479-47f6-ae70-782e293d98c1
+
+	column DIVISIONS
+		dataType: string
+		lineageTag: 1bab6caa-4799-49e8-82dc-3942962f2bd8
+		summarizeBy: none
+		sourceColumn: DIVISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIVISION = m
+		mode: import
+		source =
+				let
+				      Source = JOB,
+				    #"Replaced Value" = Table.ReplaceValue(Source,"PERF CONTRACT","GREEN",Replacer.ReplaceText,{"DIVISIONS"}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Replaced Value",{"DIVISIONS"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Removed Duplicates",{{"DIVISIONS", Text.Trim, type text}}),
+				    #"Cleaned Text1" = Table.TransformColumns(#"Trimmed Text1",{{"DIVISIONS", Text.Clean, type text}})
+				in
+				    #"Cleaned Text1"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,189 @@
+table POSTING_DATA_F
+	lineageTag: 75e27dea-ba7a-43f7-bdff-d212c6b710b8
+
+	column ACTINDX
+		dataType: string
+		lineageTag: 1f0188de-2ce2-42dd-9f92-2d82d7a7a0d6
+		summarizeBy: none
+		sourceColumn: ACTINDX
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_1
+		dataType: string
+		lineageTag: f6bfc152-c82d-4021-b46f-6274c47d75b6
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_2
+		dataType: string
+		lineageTag: b51e318c-ffa8-4a29-9942-3aa1cf6d96c4
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_3
+		dataType: string
+		lineageTag: 73b5bbb5-5c6e-4fd3-8768-0e39e8b40b2b
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMST
+		dataType: string
+		lineageTag: 76c0789e-8923-4f03-80ed-8627300fc905
+		summarizeBy: none
+		sourceColumn: ACTNUMST
+
+		annotation SummarizationSetBy = Automatic
+
+	column YEAR
+		dataType: double
+		lineageTag: 2c91274a-671c-43bd-ae17-192df2fa52aa
+		summarizeBy: sum
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_MONTH
+		dataType: double
+		lineageTag: 60dac41f-1abf-43eb-8a3d-3dbd19c9f0b2
+		summarizeBy: sum
+		sourceColumn: FISCAL_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LEDGER_ID
+		dataType: double
+		lineageTag: 4a087c95-22da-425d-b3b4-ea2ac3153e17
+		summarizeBy: count
+		sourceColumn: LEDGER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PERDBLNC
+		dataType: double
+		lineageTag: 58c7e469-356f-41b3-9083-6f325ef1cac8
+		summarizeBy: sum
+		sourceColumn: PERDBLNC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DEBITAMT
+		dataType: double
+		lineageTag: 4da5e211-1f58-4a4d-b363-b1a35af2522a
+		summarizeBy: sum
+		sourceColumn: DEBITAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CRDTAMNT
+		dataType: double
+		lineageTag: a42a28e5-4794-4eae-868d-e9a105b05b0d
+		summarizeBy: sum
+		sourceColumn: CRDTAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACCATNUM
+		dataType: string
+		lineageTag: 147bd757-fbc8-46f0-a4b5-96261510ed13
+		summarizeBy: none
+		sourceColumn: ACCATNUM
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 797fba4f-c904-47f6-a60e-4828ba576367
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_STATUS
+		dataType: string
+		lineageTag: e09decf4-c51f-46bb-b594-c33e1ceaf4e9
+		summarizeBy: none
+		sourceColumn: TRANSACTION_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTNUM_KEY
+		dataType: string
+		lineageTag: 8815d2b5-1295-4209-a885-9a85db280fef
+		summarizeBy: none
+		sourceColumn: ACCTNUM_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTIDX_KEY
+		dataType: string
+		lineageTag: 31708e21-809a-4ab5-b518-003cd20d7ab9
+		summarizeBy: none
+		sourceColumn: ACCTIDX_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_TYPE
+		dataType: string
+		lineageTag: 243222d9-e2ef-4d03-b0b6-f09eed25f8af
+		summarizeBy: none
+		sourceColumn: ACCOUNT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVISION
+		dataType: string
+		lineageTag: fa160cb8-3007-451a-a710-20fc67968e6a
+		summarizeBy: none
+		sourceColumn: DIVISION
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date =
+			
+			var mon = Date('POSTING_DATA_F'[YEAR], 'POSTING_DATA_F'[FISCAL_MONTH], 1)
+			return
+			EDATE(mon, -3)
+		formatString: Long Date
+		lineageTag: 411af6f4-44b4-406e-9f92-f3698e0c7fb7
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition POSTING_DATA_F = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    POSTING_DATA_F_Table = DW_FINAL_Schema{[Name="POSTING_DATA_F",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(POSTING_DATA_F_Table, each ([SOURCE] = "SERV_GP")),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","CFS","CFS PROJ JC",Replacer.ReplaceText,{"DIVISION"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_ResultType = Table
+

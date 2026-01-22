@@ -1,0 +1,1649 @@
+table CONTRACTS_D
+	lineageTag: 38dbd3ee-31d6-4613-8b03-d3f73a82ec38
+
+	measure 'GP Percentage' = CALCULATE(SUM(CONTRACTS_D[Backlog GP])/SUM(CONTRACTS_D[Backlog Amount]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 74fa1e91-df65-4931-8e71-0d65bd49a6bd
+
+	measure 'Number of Projects' = CALCULATE(COUNT(CONTRACTS_D[CONTRACT_NUMBER_KEY]), CONTRACTS_D[Contract Status Date]="Active", CONTRACTS_D[CONTRACT_TYPE]="P")
+		formatString: 0
+		lineageTag: f1c3b8b3-e830-4f36-87c9-318c780457c0
+
+	measure 'Project Value' = CALCULATE(SUM(CONTRACTS_D[ANNUAL_CONTRACT_VALUE]), CONTRACTS_D[Contract Status Date]="Active")
+		lineageTag: 2dc0ffb4-4b33-4389-a39d-8634ddd62279
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ROW_COUNT = COUNTROWS(CONTRACTS_D)
+		formatString: 0
+		lineageTag: d8095cad-d796-4cd3-a8ae-8bfb8ee4009a
+
+	measure 'YTD GP' = SUM(CONTRACTS_D[Calculated Gross Profit])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 559572af-66c4-405a-9fef-517b20dc7d1e
+
+	column 'Backlog Amount' = CONTRACTS_D[ANNUAL_CONTRACT_VALUE] - CONTRACTS_D[ACTUA_REVENUE_RECOGNIZED]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c7d7d29f-5ea2-4571-9e43-3733d1235cee
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Backlog GP' = IF(CONTRACTS_D[ANNUAL_CONTRACT_VALUE]=0, 0, IF(CONTRACTS_D[ACTUA_REVENUE_RECOGNIZED]=0, (CONTRACTS_D[ANNUAL_CONTRACT_VALUE]-CONTRACTS_D[ESTIMATE_TOTAL_COST]),(CONTRACTS_D[ANNUAL_CONTRACT_VALUE]-CONTRACTS_D[ACTUA_REVENUE_RECOGNIZED])*(CONTRACTS_D[ANNUAL_CONTRACT_VALUE]-CONTRACTS_D[ESTIMATE_TOTAL_COST])/CONTRACTS_D[ANNUAL_CONTRACT_VALUE]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a39e6781-8f3d-4d52-b0c5-3e565b7cddf9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Backlog Raw Hours Contract' = DIVIDE(CONTRACTS_D[ESTIMATE_HOURS] - CONTRACTS_D[ACTUAL_HOURS],100)
+		formatString: 0
+		lineageTag: 66982326-bda8-48fa-bdf2-ff76f1b956b9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% to Complete' = DIVIDE(CONTRACTS_D[ACTUAL_TOTAL_COST], CONTRACTS_D[ESTIMATE_TOTAL_COST])
+		formatString: 0%;-0%;0%
+		lineageTag: 82bce77c-ec0c-4a82-a985-9a71d8d7265e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Status Date' = IF(CONTRACTS_D[CONTRACT_EXPIRATION_DATE].[Date]>TODAY(),"Active","Inactive")
+		lineageTag: c2d0959f-ccd7-4461-953d-1d171afa9a15
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hours Owed' = IF(CONTRACTS_D[Backlog Raw Hours Contract] < 0, 0, CONTRACTS_D[Backlog Raw Hours Contract])
+		formatString: 0
+		lineageTag: 89e60208-1a50-4207-b4b6-95bea6727c33
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'YTD Expected GP' = CONTRACTS_D[ANNUAL_CONTRACT_VALUE]/((DATEDIFF(DATE(YEAR(TODAY()),1,1),TODAY(),DAY)+1)/365)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 7f14a5fa-18c0-48cd-aba4-811b94805a69
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calculated Gross Profit' = CONTRACTS_D[YTD_REVENUE_RECOGNIZED] - CONTRACTS_D[YTD_TOTAL_COST]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 3bce757e-0a15-4c86-a4b1-cda42ba8ab9b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Margin %' = DIVIDE(CONTRACTS_D[Calculated Gross Profit], CONTRACTS_D[YTD_REVENUE_RECOGNIZED], BLANK())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2e1ea6b2-8fa4-405d-91bd-02351cee51b7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer-Contract
+		dataType: string
+		lineageTag: 6b12da5d-efcc-4e7b-a5af-6090d641ec45
+		summarizeBy: none
+		sourceColumn: Customer-Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Contract Flag' =
+			
+			var mxdat = calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(all(CONTRACTS_D), CONTRACTS_D[Customer-Contract] = earlier(CONTRACTS_D[Customer-Contract])))
+			return
+			if(CONTRACTS_D[CONTRACT_EXPIRATION_DATE] = mxdat, 1, 0)
+		formatString: 0
+		lineageTag: c644208c-5d96-49d8-b9f0-4b3401e319a4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLEANED_DIVISIONS
+		dataType: string
+		lineageTag: 2cfb8c93-2f4e-4ecf-abaa-67a6e8016ac3
+		summarizeBy: none
+		sourceColumn: CLEANED_DIVISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_TYPE
+		dataType: string
+		lineageTag: f38b12b4-1ba1-4f48-97cf-110fb23aee72
+		summarizeBy: none
+		sourceColumn: CONTRACT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTNMBR
+		dataType: string
+		lineageTag: 5103bbcc-3a47-4a95-91ae-0726ec9a46c2
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		lineageTag: d21e95fa-682e-4433-9403-20eb9719c184
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_DESCRIPTION
+		dataType: string
+		lineageTag: b5c0f0af-86a9-43db-a4b1-bbcfae845955
+		summarizeBy: none
+		sourceColumn: CONTRACT_DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_STATUS
+		dataType: string
+		lineageTag: 591b7869-1635-4549-b25a-e91cdf0ece19
+		summarizeBy: none
+		sourceColumn: CONTRACT_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_INTERNAL_NAME
+		dataType: string
+		lineageTag: 6815339f-d787-4284-aa8c-0f80ef420983
+		summarizeBy: none
+		sourceColumn: CONTRACT_INTERNAL_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANCEL_BOX
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7b385096-959f-406b-bdd9-c9b4f55c2657
+		summarizeBy: none
+		sourceColumn: CANCEL_BOX
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVISIONS
+		dataType: string
+		lineageTag: 2c692c15-04a5-47f6-b6a5-bc7f239402a5
+		summarizeBy: none
+		sourceColumn: DIVISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_AMOUNT
+		dataType: double
+		lineageTag: 5b5b545c-d150-43a9-969d-e10eca340ad4
+		summarizeBy: sum
+		sourceColumn: CONTRACT_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WSCONTRACTRENEWALVALUE
+		dataType: double
+		lineageTag: 1a71f92b-7a31-4908-a430-c2a0a3f99f6d
+		summarizeBy: sum
+		sourceColumn: WSCONTRACTRENEWALVALUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILL_FREQ
+		dataType: double
+		lineageTag: e1d21c5e-8d3c-427b-bc44-9bf8aafbcf48
+		summarizeBy: sum
+		sourceColumn: BILL_FREQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WENNSOFT_CLOSE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 09babfe5-93eb-47b4-93c5-5d5235cc4ff1
+		summarizeBy: none
+		sourceColumn: WENNSOFT_CLOSE_DATE
+
+		variation Variation
+			isDefault
+			relationship: 72d8073e-ae6a-4ec4-823a-696f8eba24d4
+			defaultHierarchy: LocalDateTable_1997b5af-fbda-41ee-846d-31f24c5d8bd7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMOUNT_BILLED
+		dataType: double
+		lineageTag: 435f0e84-edb0-44b4-8914-4e8a1c77de50
+		summarizeBy: sum
+		sourceColumn: AMOUNT_BILLED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SLPRSNID
+		dataType: string
+		lineageTag: 883e5c68-6371-48d3-a380-97adf53a229e
+		summarizeBy: none
+		sourceColumn: SLPRSNID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAXSCHID
+		dataType: string
+		lineageTag: 49d93313-48cf-4b98-bcc9-fd90eeb67c36
+		summarizeBy: none
+		sourceColumn: TAXSCHID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANNUAL_CONTRACT_VALUE
+		dataType: double
+		lineageTag: 0883894b-f75a-497e-9eae-a62445f8dd1e
+		summarizeBy: sum
+		sourceColumn: ANNUAL_CONTRACT_VALUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVENUE_REC_METHOD_ID
+		dataType: double
+		lineageTag: 4b96f935-9dce-42a6-a2f9-60242d0af439
+		summarizeBy: count
+		sourceColumn: REVENUE_REC_METHOD_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INVOICE_STYLE
+		dataType: double
+		lineageTag: dd288b86-02ce-4de4-9b56-4861c69437f2
+		summarizeBy: sum
+		sourceColumn: INVOICE_STYLE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MULTIYEAR_CONTRACT_FLAG
+		dataType: double
+		lineageTag: fddca64c-7a4d-4056-96be-e469b3137f9f
+		summarizeBy: sum
+		sourceColumn: MULTIYEAR_CONTRACT_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONTRACT_START_DATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1cfc2d65-4d37-4b95-aa34-2198ee86581e
+		summarizeBy: none
+		sourceColumn: CONTRACT_START_DATE
+
+		variation Variation
+			isDefault
+			relationship: 250a7415-6b51-4399-b1d7-ef97aeacbd84
+			defaultHierarchy: LocalDateTable_7568775e-9707-49cb-bf23-8bca38b29542.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CONTRACT_EXPIRATION_DATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: be4e33d5-6cf7-4519-9257-3b0c3853672f
+		summarizeBy: none
+		sourceColumn: CONTRACT_EXPIRATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: b8dd41f8-03f0-42e1-8046-5bfdf87669a0
+			defaultHierarchy: LocalDateTable_a823d9da-2d68-472e-bea7-b1c1f0ea5afc.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FORECAST_ORIGINAL_EQUIP
+		dataType: double
+		lineageTag: b481a756-d851-4ca8-a4fe-772db43c939c
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIGINAL_EQUIP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIGINAL_LABOR
+		dataType: double
+		lineageTag: 47a1cc71-2f42-4229-a1ae-5d277c65d100
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIGINAL_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORE_ORIG_MATERIAL
+		dataType: double
+		lineageTag: 641a3dc4-e896-4fb8-badf-bd755cea8e91
+		summarizeBy: sum
+		sourceColumn: FORE_ORIG_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIGINAL_OTHER
+		dataType: double
+		lineageTag: add20d2d-69a8-492a-a7bf-cc6652866a92
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIGINAL_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIGINAL_SUBS
+		dataType: double
+		lineageTag: 3f38d180-2701-4e7c-9b45-956ae991de86
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIGINAL_SUBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR_1
+		dataType: double
+		lineageTag: 156496d5-6794-4c09-838c-a9220289ada7
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR1_HRS_REPAIR
+		dataType: double
+		lineageTag: cf2b6b12-6c95-4bf9-a3c4-23bdfc25de0f
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR1_HRS_REPAIR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR_2
+		dataType: double
+		lineageTag: 99f1843b-f938-444e-b875-c3e836f462aa
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORE_ORIG_LABOR_2_HRS_PM
+		dataType: double
+		lineageTag: 45a297cf-6a73-4f55-b5ff-9385af74a845
+		summarizeBy: sum
+		sourceColumn: FORE_ORIG_LABOR_2_HRS_PM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR_3
+		dataType: double
+		lineageTag: 08992f4f-3eb8-4090-84df-57b55cae66e5
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR3_HRS_TRAVEL
+		dataType: double
+		lineageTag: 15d83f36-c01a-43cf-a7be-45e8531a1075
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR3_HRS_TRAVEL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR_4
+		dataType: double
+		lineageTag: 3dae67c7-03ac-4c3b-8921-49bac092ba45
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR4_HRS
+		dataType: double
+		lineageTag: 1a27d559-014f-42d8-b45c-457386411ff0
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR4_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR_5
+		dataType: double
+		lineageTag: f36ae461-40f2-4134-b1b7-a632cf68df96
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_LABOR5_HRS
+		dataType: double
+		lineageTag: f961c666-c805-4bf3-afda-9017fe6be40e
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_LABOR5_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_ORIG_TOT_LABOR
+		dataType: double
+		lineageTag: 4b67fd34-595b-401d-abd4-c32f1e7b3a7a
+		summarizeBy: sum
+		sourceColumn: FORECAST_ORIG_TOT_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORE_ORIG_TOT_LBR_HRS
+		dataType: double
+		lineageTag: f4a1d4c6-b44b-465d-a0d1-fac5846a4bc2
+		summarizeBy: sum
+		sourceColumn: FORE_ORIG_TOT_LBR_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_EQUIPMENT
+		dataType: double
+		lineageTag: bd8b730f-c20e-4417-8ac0-5626061aee20
+		summarizeBy: sum
+		sourceColumn: ACTUAL_EQUIPMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR
+		dataType: double
+		lineageTag: dc6dad50-ca7c-46e6-88b3-241771e688c6
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_MATERIAL
+		dataType: double
+		lineageTag: 61d1a308-fe97-46d2-a4cb-cc18d488c4e5
+		summarizeBy: sum
+		sourceColumn: ACTUAL_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_SUBS
+		dataType: double
+		lineageTag: c1c5521b-9452-42a9-a895-477096344c0b
+		summarizeBy: sum
+		sourceColumn: ACTUAL_SUBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_OTHER
+		dataType: double
+		lineageTag: e7d7da0c-dccb-417f-816c-eaaf30638f20
+		summarizeBy: sum
+		sourceColumn: ACTUAL_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_COST_TAX
+		dataType: double
+		lineageTag: 04c615e6-5bd0-4d66-9439-9a9a2f0cc32d
+		summarizeBy: sum
+		sourceColumn: TOTAL_COST_TAX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_TOTAL_COST
+		dataType: double
+		lineageTag: fbefa52a-9260-429b-b0ed-ed61a077e2fd
+		summarizeBy: sum
+		sourceColumn: ACTUAL_TOTAL_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_HOURS
+		dataType: double
+		lineageTag: c9801bbf-2720-4b33-ab71-827aa7bdfd2e
+		summarizeBy: sum
+		sourceColumn: ACTUAL_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_1
+		dataType: double
+		lineageTag: 6db1c479-add2-4a04-ad47-7b2846623243
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_1_HOURS_REPAIR
+		dataType: double
+		lineageTag: 7d15c282-ed35-42f9-b30a-f9f912c95531
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_1_HOURS_REPAIR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_2
+		dataType: double
+		lineageTag: a6309172-d50f-4a8a-975d-b08f2ff4db48
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_2_HOURS_PM
+		dataType: double
+		lineageTag: 0bb0a5ec-dca4-416c-926e-e4608f603507
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_2_HOURS_PM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_3
+		dataType: double
+		lineageTag: aec8d5bb-611e-4af3-a6f3-e065930a63c5
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_3_HOURS_TRAVEL
+		dataType: double
+		lineageTag: 8361d9c2-8e30-4df9-9e61-a220e0a71844
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_3_HOURS_TRAVEL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_4
+		dataType: double
+		lineageTag: b49bee4b-441a-49b2-8262-6147273acfb4
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_4_HOURS
+		dataType: double
+		lineageTag: e8f9c052-dae1-46ea-b2b2-f8e402cc1188
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_4_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_5
+		dataType: double
+		lineageTag: c8514c48-9f5e-4211-bdc2-f0f034d62a2f
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_LABOR_5_HOURS
+		dataType: double
+		lineageTag: e7837e0a-42aa-47f9-8509-839431a23a35
+		summarizeBy: sum
+		sourceColumn: ACTUAL_LABOR_5_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_TOTAL_LABOR
+		dataType: double
+		lineageTag: 0f923f2a-31e2-4ba6-9367-850bc369f796
+		summarizeBy: sum
+		sourceColumn: ACTUAL_TOTAL_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_TOTAL_LABOR_HRS
+		dataType: double
+		lineageTag: e394556d-eb72-4274-ade3-cc08816ae137
+		summarizeBy: sum
+		sourceColumn: ACTUAL_TOTAL_LABOR_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_CONTRACT_EARNED
+		dataType: double
+		lineageTag: df3443c7-02cc-450e-a604-8fc2bacfc345
+		summarizeBy: sum
+		sourceColumn: ACTUAL_CONTRACT_EARNED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_GROSS_PROFIT
+		dataType: double
+		lineageTag: 696c7242-2298-4a72-8f71-01301ac804ba
+		summarizeBy: sum
+		sourceColumn: ACTUAL_GROSS_PROFIT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUA_REVENUE_RECOGNIZED
+		dataType: double
+		lineageTag: 668823a1-b1f5-483b-98d1-5bf3586469fe
+		summarizeBy: sum
+		sourceColumn: ACTUA_REVENUE_RECOGNIZED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACTUAL_BILLED
+		dataType: double
+		lineageTag: 04898df5-b79b-4da2-b730-3777bae8da57
+		summarizeBy: sum
+		sourceColumn: ACTUAL_BILLED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_EQUIPMENT
+		dataType: double
+		lineageTag: 1c32b977-828f-4a87-af21-1a5956671bbf
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_EQUIPMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR
+		dataType: double
+		lineageTag: 408d6f2d-b062-40fb-83ca-f18b535b4523
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_MATERIAL
+		dataType: double
+		lineageTag: a663f79b-3d2b-4049-b69c-6fe72e1daf32
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_SUBS
+		dataType: double
+		lineageTag: 865372e9-0acb-406a-b8d0-c32def7c9b7b
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_SUBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_OTHER
+		dataType: double
+		lineageTag: 2ba33ae1-007e-41ac-a54a-4dfabc26eb13
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_TOTAL_COST
+		dataType: double
+		lineageTag: 5272772f-1009-458e-9733-e6d3c6919237
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_TOTAL_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_HOURS
+		dataType: double
+		lineageTag: 9d5e1394-b3fd-44d7-b190-16eaa986a649
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_1
+		dataType: double
+		lineageTag: ba15fc83-4655-4012-a58e-1544a388ef3d
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_1_HOURS_REPAIR
+		dataType: double
+		lineageTag: 9c86b0d5-681a-4881-bc1a-8c650d059022
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_1_HOURS_REPAIR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_2
+		dataType: double
+		lineageTag: ea6325fe-c090-4573-adc3-c67b3b383c42
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_2_HOURS_PM
+		dataType: double
+		lineageTag: 347372d4-f61e-47c4-9ce6-93d985d82585
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_2_HOURS_PM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_3
+		dataType: double
+		lineageTag: 1babbae6-bd6d-4ba8-8053-0ef6de5b97dd
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_3_HOURS_TRAVEL
+		dataType: double
+		lineageTag: 92bde8a2-33b2-4615-8bb8-5f17e20a97dd
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_3_HOURS_TRAVEL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_4
+		dataType: double
+		lineageTag: 6159f505-47f2-423c-a637-e39265a4f011
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_4_HOURS
+		dataType: double
+		lineageTag: dbe548c3-10ab-4421-b9d0-853e15ae48db
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_4_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_5
+		dataType: double
+		lineageTag: 79c3012e-abe5-4059-99d8-89dcdb223052
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_5_HOURS
+		dataType: double
+		lineageTag: f691a7fd-82ff-40ba-924d-e4e1214c0d53
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_5_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_TOTAL_LABOR
+		dataType: double
+		lineageTag: 4f889b77-a432-4f3a-b2fc-3e00aa5997cb
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_TOTAL_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_TOTAL_LABOR_HRS
+		dataType: double
+		lineageTag: 04f0426d-fa19-4460-b7ab-b9c8036d810b
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_TOTAL_LABOR_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR
+		dataType: double
+		lineageTag: 0e6113c9-6cfe-4f14-bb83-aa9dcd52008c
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_EQUIPMENT
+		dataType: double
+		lineageTag: d54a958b-4666-4b80-9a7f-9956ed4c0760
+		summarizeBy: sum
+		sourceColumn: FORECAST_EQUIPMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_MATERIAL
+		dataType: double
+		lineageTag: 8a8bbb01-92ad-477b-99da-be983df1dc0d
+		summarizeBy: sum
+		sourceColumn: FORECAST_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_SUBS
+		dataType: double
+		lineageTag: 5dde56f5-f264-408f-9c9f-f9002169f636
+		summarizeBy: sum
+		sourceColumn: FORECAST_SUBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_OTHER
+		dataType: double
+		lineageTag: 0552473c-fea9-45bb-b943-631026e030a3
+		summarizeBy: sum
+		sourceColumn: FORECAST_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_TOTAL_COST
+		dataType: double
+		lineageTag: f099d5f4-1070-4f38-a5fd-0f19e863b1b5
+		summarizeBy: sum
+		sourceColumn: FORECAST_TOTAL_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_HOURS
+		dataType: double
+		lineageTag: 58e59527-6b77-4c67-8e7c-4676ead5a4ad
+		summarizeBy: sum
+		sourceColumn: FORECAST_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_1
+		dataType: double
+		lineageTag: 2864e6e2-a0cd-4eff-a686-c3a7937d61fc
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_1_HOURS_REPAIR
+		dataType: double
+		lineageTag: c852324a-bde0-41a1-9c91-5391860bb432
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_1_HOURS_REPAIR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_2
+		dataType: double
+		lineageTag: f28a3e16-ed3f-447a-acf6-6c599f8cadbd
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_2_HOURS_PM
+		dataType: double
+		lineageTag: 6acfccd0-7a0b-42c1-a258-be8a60fa9ca0
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_2_HOURS_PM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_3
+		dataType: double
+		lineageTag: 95985acd-034a-4d3f-8d59-a37e05ad6e6f
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_3_HOURS_TRAVEL
+		dataType: double
+		lineageTag: ac83405a-dec3-425a-b542-45551cd19849
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_3_HOURS_TRAVEL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_4
+		dataType: double
+		lineageTag: dfb831e0-a554-404a-baef-3f55647cf9a8
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_4_HOURS
+		dataType: double
+		lineageTag: 042718a1-9df1-47ab-8c64-097b69848cd3
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_4_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_5
+		dataType: double
+		lineageTag: cc911221-13e9-49f0-95d6-c19cd1fa3241
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_LABOR_5_HOURS
+		dataType: double
+		lineageTag: 594eac8d-f61a-4588-b93c-2411ce3ab451
+		summarizeBy: sum
+		sourceColumn: FORECAST_LABOR_5_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_TOTAL_LABOR
+		dataType: double
+		lineageTag: 62bad0a7-9c06-4770-840b-41a29f867bbe
+		summarizeBy: sum
+		sourceColumn: FORECAST_TOTAL_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_TOTAL_LABOR_HRS
+		dataType: double
+		lineageTag: 8ef45903-537f-4797-bfa4-eb8fe3583703
+		summarizeBy: sum
+		sourceColumn: FORECAST_TOTAL_LABOR_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR
+		dataType: double
+		lineageTag: 59ca9788-2f68-4d15-82b2-f12df2df91ed
+		summarizeBy: sum
+		sourceColumn: PY_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_MATERIAL
+		dataType: double
+		lineageTag: fd97b760-5e99-4471-8c6c-ab2312602f2f
+		summarizeBy: sum
+		sourceColumn: PY_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_EQUIPMENT
+		dataType: double
+		lineageTag: a7b99445-4256-464c-aaa0-57c6e011a2db
+		summarizeBy: sum
+		sourceColumn: PY_EQUIPMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_SUBCONTRACTOR
+		dataType: double
+		lineageTag: 3f588838-97a2-47da-a210-46c16332f507
+		summarizeBy: sum
+		sourceColumn: PY_SUBCONTRACTOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_OTHER
+		dataType: double
+		lineageTag: f06e57ae-e1a5-4dd1-a290-81bac223033a
+		summarizeBy: sum
+		sourceColumn: PY_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_TOTAL_COST
+		dataType: double
+		lineageTag: 6bbe979e-2613-4da9-b585-4d976c0fd838
+		summarizeBy: sum
+		sourceColumn: PY_TOTAL_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_BILLED
+		dataType: double
+		lineageTag: 66330b9a-f509-438c-bb18-10b1ccfbbbf1
+		summarizeBy: sum
+		sourceColumn: PY_BILLED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_CONTRACT_EARNED
+		dataType: double
+		lineageTag: 94b9c875-79b1-4a17-b64c-8c6297a5ede0
+		summarizeBy: sum
+		sourceColumn: PY_CONTRACT_EARNED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_GROSS_PROFIT
+		dataType: double
+		lineageTag: bf5038be-2253-4fcd-82cf-0127ef638a88
+		summarizeBy: sum
+		sourceColumn: PY_GROSS_PROFIT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_REVENUE_RECOGNIZED
+		dataType: double
+		lineageTag: 18626067-56b1-4d28-8b50-5328f277b495
+		summarizeBy: sum
+		sourceColumn: PY_REVENUE_RECOGNIZED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_HOURS
+		dataType: double
+		lineageTag: 150356bd-781f-481c-a497-b0b67519c070
+		summarizeBy: sum
+		sourceColumn: PY_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_1
+		dataType: double
+		lineageTag: d84909d6-4ea5-4086-8bee-6891c99512c5
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_1_HOURS_REPAIR
+		dataType: double
+		lineageTag: 991f5aef-2ff5-4249-a70e-10b657117345
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_1_HOURS_REPAIR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_2
+		dataType: double
+		lineageTag: 48124151-1986-4521-bbb1-386ce7ba2390
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_2_HOURS_PM
+		dataType: double
+		lineageTag: a24c2a4f-17ad-49d1-b687-3ab22d0cb9ba
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_2_HOURS_PM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_3
+		dataType: double
+		lineageTag: 92413371-ebff-425e-8580-f6ca7f2c5af4
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_3_HOURS_TRAVEL
+		dataType: double
+		lineageTag: 9f0fbb6e-bcb1-41e3-bb87-fa66f7284266
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_3_HOURS_TRAVEL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_4
+		dataType: double
+		lineageTag: bc25f55a-1eb1-45b5-a5fc-5c1fceea702c
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_4_HOURS
+		dataType: double
+		lineageTag: 22e02119-cbac-4ac1-a13b-e155dc0c0559
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_4_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_5
+		dataType: double
+		lineageTag: 1e50912b-4f92-4ae4-a447-d1f90bf69d65
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_LABOR_5_HOURS
+		dataType: double
+		lineageTag: 0efed2c2-fb97-41a7-8a66-2a5bf7c750f4
+		summarizeBy: sum
+		sourceColumn: PY_LABOR_5_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_TOTAL_LABOR
+		dataType: double
+		lineageTag: e3a4b014-1258-475e-9a1c-12759b58de92
+		summarizeBy: sum
+		sourceColumn: PY_TOTAL_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PY_TOTAL_LABOR_HRS
+		dataType: double
+		lineageTag: c5b36391-4b5a-4e3a-994d-24fcdd83e838
+		summarizeBy: sum
+		sourceColumn: PY_TOTAL_LABOR_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR
+		dataType: double
+		lineageTag: bc9bb0f3-042b-4f6d-82ab-77d7bba64ba9
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_MATERIAL
+		dataType: double
+		lineageTag: e9bf3bcf-25a0-443f-966b-15f1af9f891d
+		summarizeBy: sum
+		sourceColumn: YTD_MATERIAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_EQUIPMENT
+		dataType: double
+		lineageTag: 98755944-265a-48e5-ba16-f273ddf2ed21
+		summarizeBy: sum
+		sourceColumn: YTD_EQUIPMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_SUBCONTRACTOR
+		dataType: double
+		lineageTag: 030fb9d3-ab65-4f1c-95fa-44cc8b1349c8
+		summarizeBy: sum
+		sourceColumn: YTD_SUBCONTRACTOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_OTHER
+		dataType: double
+		lineageTag: e6b6e425-cd06-45b9-97a3-1bd0f1ad46eb
+		summarizeBy: sum
+		sourceColumn: YTD_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_TOTAL_COST
+		dataType: double
+		lineageTag: 84d28bd9-4bfa-4d48-ae44-a87b7af19ad5
+		summarizeBy: sum
+		sourceColumn: YTD_TOTAL_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_BILLED
+		dataType: double
+		lineageTag: 3dd97d5d-8afa-46d4-abf7-58de43b77522
+		summarizeBy: sum
+		sourceColumn: YTD_BILLED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_CONTRACT_EARNED
+		dataType: double
+		lineageTag: 4c3ae0b6-12c7-4dbb-9eb5-971dddb2edf6
+		summarizeBy: sum
+		sourceColumn: YTD_CONTRACT_EARNED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_GROSS_PROFIT
+		dataType: double
+		lineageTag: 9d0f3c4c-612f-4558-b7bd-a6ecff1aa45d
+		summarizeBy: sum
+		sourceColumn: YTD_GROSS_PROFIT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_REVENUE_RECOGNIZED
+		dataType: double
+		lineageTag: e52a4ddd-12bd-480c-8004-b5baf2be01b0
+		summarizeBy: sum
+		sourceColumn: YTD_REVENUE_RECOGNIZED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTDHOURS
+		dataType: double
+		lineageTag: c137392c-dc29-4b5a-9762-f2bf1ff61c57
+		summarizeBy: sum
+		sourceColumn: YTDHOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_1
+		dataType: double
+		lineageTag: b294a6e2-c512-4931-9bbc-399a65130d74
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_1_HOURS_REPAIR
+		dataType: double
+		lineageTag: 105c0b36-faae-4eef-9262-3d7cdd590253
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_1_HOURS_REPAIR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_2
+		dataType: double
+		lineageTag: 7afa31b0-b00a-4bf6-b1be-19aef5cd8160
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_2_HOURS_PM
+		dataType: double
+		lineageTag: 4634ce1c-7191-49d2-9012-31a93ebd11cb
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_2_HOURS_PM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_3
+		dataType: double
+		lineageTag: 31ca1004-daa5-4127-ae23-0370814a5b0e
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_3_HOURS_TRAVEL
+		dataType: double
+		lineageTag: bf915247-900c-4e01-ad10-4b50ec318be4
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_3_HOURS_TRAVEL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_4
+		dataType: double
+		lineageTag: 4e0c5f54-4223-45be-bfd7-861af1b0807a
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_4_HOURS
+		dataType: double
+		lineageTag: 1eaa4620-d13d-480f-9b43-bd1f0aadc456
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_4_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_5
+		dataType: double
+		lineageTag: 992a1305-9735-4b01-a7e8-2b0aec16ff44
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_LABOR_5_HOURS
+		dataType: double
+		lineageTag: 05e2b4cf-e21a-4173-b2b7-b7c004dc2e01
+		summarizeBy: sum
+		sourceColumn: YTD_LABOR_5_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_TOTAL_LABOR
+		dataType: double
+		lineageTag: d5a815a0-b393-44c3-a361-2987e72e8925
+		summarizeBy: sum
+		sourceColumn: YTD_TOTAL_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YTD_TOTAL_LABOR_HRS
+		dataType: double
+		lineageTag: baa05218-cb57-4517-8700-a252fa774b0f
+		summarizeBy: sum
+		sourceColumn: YTD_TOTAL_LABOR_HRS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column USER_DEFINE_1A_PERSON
+		dataType: string
+		lineageTag: bd43e42b-8b4e-472c-b7df-3a3d1166119b
+		summarizeBy: none
+		sourceColumn: USER_DEFINE_1A_PERSON
+
+		annotation SummarizationSetBy = Automatic
+
+	column USER_DEFINE_2A_COMPLETED
+		dataType: string
+		lineageTag: 21fad0b8-796d-407b-93f1-da0a529c5604
+		summarizeBy: none
+		sourceColumn: USER_DEFINE_2A_COMPLETED
+
+		annotation SummarizationSetBy = Automatic
+
+	column USER_DEFINE_3A_STATUS
+		dataType: string
+		lineageTag: 75c55ad2-fe1f-436e-ba49-b0c0db074dcf
+		summarizeBy: none
+		sourceColumn: USER_DEFINE_3A_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 9f7225d3-8f73-4fac-8da6-3805410f44e5
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER_KEY
+		dataType: string
+		lineageTag: fccd0376-0c0c-4de7-a742-7c4db4441e93
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTNMBR_KEY
+		dataType: string
+		lineageTag: 4a44560a-a065-4743-99f1-e94c5843d9b8
+		summarizeBy: none
+		sourceColumn: CUSTNMBR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column WSCONTSQ
+		dataType: double
+		lineageTag: dea21969-060d-4add-ae7d-56aca31c8b74
+		summarizeBy: sum
+		sourceColumn: WSCONTSQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition CONTRACTS_D = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CONTRACTS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data],
+				    #"Trimmed Text" = Table.TransformColumns(CONTRACTS_D_Table,{{"CUSTNMBR", Text.Trim, type text}, {"CONTRACT_NUMBER", Text.Trim, type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Trimmed Text", "CUSTNMBR", "CUSTNMBR - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "CONTRACT_NUMBER", "CONTRACT_NUMBER - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"CUSTNMBR - Copy", "CONTRACT_NUMBER - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer-Contract")
+				in
+				    #"Merged Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSection7c756819b1ca24bbe33a",
+  "displayName": "Revenue",
+  "displayOption": "FitToWidth",
+  "height": 1400,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filterff760707955dac87ad9e",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Future Flag"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Calendar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "Future Flag"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "1L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "Pod",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E1E0E0'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "77292f156f1480f8bb09",
+      "target": "39e9c1c18c78a01417b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "0bd8add574aa3fe7a314",
+      "target": "77292f156f1480f8bb09",
+      "type": "DataFilter"
+    },
+    {
+      "source": "0bd8add574aa3fe7a314",
+      "target": "39e9c1c18c78a01417b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "39e9c1c18c78a01417b0",
+      "target": "77292f156f1480f8bb09",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a57b468256396e22299c",
+      "target": "39e9c1c18c78a01417b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a57b468256396e22299c",
+      "target": "02a0e8751a52612b4e1b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "39e9c1c18c78a01417b0",
+      "target": "02a0e8751a52612b4e1b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "02a0e8751a52612b4e1b",
+      "target": "39e9c1c18c78a01417b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b57407f7ac8b06a92543",
+      "target": "39e9c1c18c78a01417b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8f364c6de924728a0837",
+      "target": "39e9c1c18c78a01417b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b35df51f9ff86206f8e9",
+      "target": "39e9c1c18c78a01417b0",
+      "type": "DataFilter"
+    }
+  ]
+}

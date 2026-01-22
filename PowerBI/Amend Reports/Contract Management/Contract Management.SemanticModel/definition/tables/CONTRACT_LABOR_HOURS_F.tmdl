@@ -1,0 +1,162 @@
+table CONTRACT_LABOR_HOURS_F
+	lineageTag: 9bb62995-9cb7-45c5-a250-9df47def23e3
+
+	column SERVICE_CALL_ID
+		dataType: string
+		lineageTag: e811c3b0-cc0e-4824-b0e9-7102b412f642
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column APPOINTMENT
+		dataType: string
+		lineageTag: f1c6cfae-31e6-4e30-9e80-6ba296dc1639
+		summarizeBy: none
+		sourceColumn: APPOINTMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENTRYDATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ee7c393e-42c7-4a2c-9636-76ea4d109162
+		summarizeBy: none
+		sourceColumn: ENTRYDATE
+
+		variation Variation
+			isDefault
+			relationship: e3fec627-1373-4fd6-8ed8-6161588b3a73
+			defaultHierarchy: LocalDateTable_38f12a90-c3e3-476c-8af6-3b87ccdcdb64.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EMPLOYID
+		dataType: string
+		lineageTag: d66d551d-cb99-4cbf-8922-c63d7359abef
+		summarizeBy: none
+		sourceColumn: EMPLOYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BILLING_TYPE
+		dataType: string
+		lineageTag: 8e3c834a-702a-4cef-bb2e-dc7e9e3e5fdb
+		summarizeBy: none
+		sourceColumn: BILLING_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 1193d1ea-62a5-4bee-a543-cb13a625bd16
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column HOURS
+		dataType: double
+		lineageTag: 467ec612-a0ce-4bfa-8ed1-bc0e6d049e15
+		summarizeBy: sum
+		sourceColumn: HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONDAY
+		dataType: double
+		lineageTag: 7b0c0cd6-4e52-4a82-a667-c5ff5b81cea2
+		summarizeBy: sum
+		sourceColumn: MONDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TUESDAY
+		dataType: double
+		lineageTag: f63d20e9-0335-494e-8192-1ae2029ebf8a
+		summarizeBy: sum
+		sourceColumn: TUESDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WEDNESDAY
+		dataType: double
+		lineageTag: 7e0021dd-2b56-417d-9593-c6aea082022d
+		summarizeBy: sum
+		sourceColumn: WEDNESDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column THURSDAY
+		dataType: double
+		lineageTag: 6225c3f0-bb70-47c7-888e-e41b7fc6d168
+		summarizeBy: sum
+		sourceColumn: THURSDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FRIDAY
+		dataType: double
+		lineageTag: ea5729ef-23b7-4767-991a-1c7506df480f
+		summarizeBy: sum
+		sourceColumn: FRIDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SATURDAY
+		dataType: double
+		lineageTag: dfa89bf9-3404-466e-b45a-99ede15653f1
+		summarizeBy: sum
+		sourceColumn: SATURDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUNDAY
+		dataType: double
+		lineageTag: a971d22d-d3c9-4112-911c-4f66b239afe9
+		summarizeBy: sum
+		sourceColumn: SUNDAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SERVICE_CALL_KEY
+		dataType: string
+		lineageTag: 68b5ab05-a46d-411c-817f-51f750d8145c
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CONTRACT_LABOR_HOURS_F = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CALLS_F_Table = DW_FINAL_Schema{[Name="CONTRACT_LABOR_HOURS_F",Kind="Table"]}[Data]
+				in
+				    CALLS_F_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

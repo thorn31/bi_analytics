@@ -1,0 +1,175 @@
+table 'JOB FORECAST'
+	lineageTag: 9446aaf6-bf9d-4a21-aae0-bbc6ab5c05d4
+
+	column COST_CODE
+		dataType: string
+		lineageTag: 37640a87-e690-42be-960c-5322c0e5d824
+		summarizeBy: none
+		sourceColumn: COST_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date =
+			
+			var mon = Date('JOB FORECAST'[YEAR], 'JOB FORECAST'[FISCAL_MONTH], 1)
+			return
+			EDATE(mon, -3)
+		formatString: Long Date
+		lineageTag: 931fd85f-b11c-48fa-a502-7fd5b51518bd
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Job_Cost Code'
+		dataType: string
+		lineageTag: d32fdee0-f2c9-40c5-9632-568d68bcf4c0
+		summarizeBy: none
+		sourceColumn: Job_Cost Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: 4d3b7549-c683-4342-acb6-b766e284bb1b
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE_1
+		dataType: string
+		lineageTag: b563f702-d0ef-4d14-b098-e6d948707211
+		summarizeBy: none
+		sourceColumn: COST_CODE_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE_2
+		dataType: string
+		lineageTag: 24255b8c-d7d8-40c6-9cd3-9d02eb481127
+		summarizeBy: none
+		sourceColumn: COST_CODE_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_CODE_3
+		dataType: string
+		lineageTag: e1c99f6a-e458-49ca-891b-45afa43338a6
+		summarizeBy: none
+		sourceColumn: COST_CODE_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column MODIFIED_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 49cdca5a-647d-47c7-ab66-8c52710040cb
+		summarizeBy: none
+		sourceColumn: MODIFIED_DATE
+
+		variation Variation
+			isDefault
+			relationship: 0894001b-ec5f-4eea-847b-a71d1fc42e13
+			defaultHierarchy: LocalDateTable_26e0a611-4938-40bf-8444-deab64adf683.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CURRENT_COST_AMT
+		dataType: double
+		lineageTag: 0e37397e-07d7-422e-9d6b-c2d71aebd041
+		summarizeBy: sum
+		sourceColumn: CURRENT_COST_AMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_COSTS
+		dataType: double
+		lineageTag: 0b09f92a-4693-4585-91ea-86879157aeb1
+		summarizeBy: sum
+		sourceColumn: FORECAST_COSTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FORECAST_UNTIS
+		dataType: double
+		lineageTag: 9336665e-d8e2-4afe-b9e1-69c8b6189c81
+		summarizeBy: sum
+		sourceColumn: FORECAST_UNTIS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: 4e51805e-60ad-4ecd-a2dd-25e7dc29312f
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column YEAR
+		dataType: double
+		lineageTag: 8993aab7-ed88-48cf-84ee-27aea9f4d099
+		summarizeBy: sum
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_MONTH
+		dataType: double
+		lineageTag: 4efd7704-39c8-417c-8903-c0c20bd6c22f
+		summarizeBy: sum
+		sourceColumn: FISCAL_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: bc8873ad-cbfa-42d9-989b-99ea13e7cc77
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_COST_KEY
+		dataType: string
+		lineageTag: d2659db4-45be-4beb-9635-818630ee73f3
+		summarizeBy: none
+		sourceColumn: JOB_COST_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'JOB FORECAST' = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOB_COST_FORECASTS_F_Table = DW_FINAL_Schema{[Name="JOB_COST_FORECASTS_F",Kind="Table"]}[Data],
+				    #"Trimmed Text" = Table.TransformColumns(JOB_COST_FORECASTS_F_Table,{{"COST_CODE_1", Text.Trim, type text}, {"COST_CODE_2", Text.Trim, type text}, {"COST_CODE_3", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"COST_CODE_1", Text.Clean, type text}, {"COST_CODE_2", Text.Clean, type text}, {"COST_CODE_3", Text.Clean, type text}, {"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Cleaned Text", "JOB_NUMBER", "WS_JOB_NUMBER - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "COST_CODE", "COST_CODE - Copy"),
+				    #"Merged Columns1" = Table.CombineColumns(#"Duplicated Column1",{"WS_JOB_NUMBER - Copy", "COST_CODE - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Job_Cost Code"),
+				    #"Filtered Rows" = Table.SelectRows(#"Merged Columns1", each ([SOURCE] = "MECH_GP"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

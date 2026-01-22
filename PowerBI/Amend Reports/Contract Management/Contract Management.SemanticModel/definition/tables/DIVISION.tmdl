@@ -1,0 +1,44 @@
+table DIVISION
+	lineageTag: b9c64ae5-a479-47f6-ae70-782e293d98c1
+
+	column 'DIVISION KEY'
+		dataType: string
+		lineageTag: 1bab6caa-4799-49e8-82dc-3942962f2bd8
+		summarizeBy: none
+		sourceColumn: DIVISION KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: f555f14e-64be-45f8-9bef-4ec120ac7d7c
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division_Final = if(DIVISION[Division] = "Lexington", "Lex-Lou", if(DIVISION[Division] = "Louisville", "Lex-Lou", if(DIVISION[Division] = "Dayton", "Day-Col", if(DIVISION[Division] = "Columbus", "Day-Col", DIVISION[Division]))))
+		lineageTag: 1d2c00ab-1fa6-467f-9ae0-e494bcd6dddd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIVISION = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOBS_D_Table = DW_FINAL_Schema{[Name="JOBS_D",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(JOBS_D_Table, each ([SOURCE] = "SERV_GP")),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"DIVISIONS", "CLEANED_DIVISIONS"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"DIVISIONS", "DIVISION KEY"}, {"CLEANED_DIVISIONS", "Division"}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Renamed Columns",{{"Division", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"Division", Text.Clean, type text}})
+				in
+				    #"Cleaned Text"
+
+	annotation PBI_ResultType = Table
+

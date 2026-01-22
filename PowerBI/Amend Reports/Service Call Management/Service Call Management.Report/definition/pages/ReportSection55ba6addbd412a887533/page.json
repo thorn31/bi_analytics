@@ -1,0 +1,144 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSection55ba6addbd412a887533",
+  "displayName": "Profitability & Revenue",
+  "displayOption": "FitToWidth",
+  "height": 1500,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filterae7cb2c2d9b601325bac",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*Calendar"
+              }
+            },
+            "Property": "Future Flag"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "*Calendar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "Future Flag"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "1L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "c1b759ceb42584a4a991",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "*Calendar"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "Pod2",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E1E0E0'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "d50263146120b8c71250",
+      "target": "e6de4d8322cf5dd5e13b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e6de4d8322cf5dd5e13b",
+      "target": "d50263146120b8c71250",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2f2da45c21c520d83799",
+      "target": "e6de4d8322cf5dd5e13b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2f2da45c21c520d83799",
+      "target": "d50263146120b8c71250",
+      "type": "DataFilter"
+    },
+    {
+      "source": "723784178ccb6b503047",
+      "target": "fc8fc0706e40ab13a306",
+      "type": "NoFilter"
+    }
+  ]
+}

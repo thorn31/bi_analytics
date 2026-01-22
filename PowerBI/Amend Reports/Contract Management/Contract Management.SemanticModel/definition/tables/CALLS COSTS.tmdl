@@ -1,0 +1,112 @@
+table 'CALLS COSTS'
+	lineageTag: 5010b1b1-1e0a-4182-bf81-aa363cf2175c
+
+	column SERVICE_CALL_ID
+		dataType: string
+		lineageTag: a3f49dd5-e418-47b1-9300-a8daf4725d89
+		summarizeBy: none
+		sourceColumn: SERVICE_CALL_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		lineageTag: a12bd501-22a2-4b97-ba69-83c54e609727
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE_OF_SERVICE_CALL
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 92cfe0d0-78de-457c-a83c-0689658e5a7f
+		summarizeBy: none
+		sourceColumn: DATE_OF_SERVICE_CALL
+
+		variation Variation
+			isDefault
+			relationship: 43e764c9-1f73-4e86-b44f-00156e4bdd94
+			defaultHierarchy: LocalDateTable_2a249574-7315-48a3-bf2c-4c9bbab9a923.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Customer - Contract'
+		dataType: string
+		lineageTag: 6e1274c5-b974-4f94-8cae-3f124a139368
+		summarizeBy: none
+		sourceColumn: Customer - Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Type'
+		dataType: string
+		lineageTag: 2e20e056-0cd5-4370-803a-1f4232667784
+		summarizeBy: none
+		sourceColumn: Cost Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 476f7571-18ba-4333-8a3c-5cde91c0fd6e
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Current Contract' =
+			
+			var start_ = calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CALLS COSTS'[Customer - Contract]))
+			var end_ = calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CALLS COSTS'[Customer - Contract]))
+			var contsq = calculate(max(CONTRACTS_D[WSCONTSQ]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = 'CALLS COSTS'[Customer - Contract] && CONTRACTS_D[Current Contract Flag] = 1))
+			return
+			if('CALLS COSTS'[WSCONTSQ] = contsq, 1, 0)
+		formatString: 0
+		lineageTag: d3737033-03ab-4316-a13c-b5585fc3d112
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column WSCONTSQ
+		dataType: double
+		lineageTag: 66f89392-a975-44f7-9a85-df4b4670f0c0
+		summarizeBy: sum
+		sourceColumn: WSCONTSQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'CALLS COSTS' = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CALLS_F_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(CALLS_F_Table,{{"DATE_OF_SERVICE_CALL", type date}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"SERVICE_CALL_ID", Text.Trim, type text}, {"CUSTNMBR", Text.Trim, type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Trimmed Text", "CUSTNMBR", "CUSTNMBR - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "CONTRACT_NUMBER", "CONTRACT_NUMBER - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"CUSTNMBR - Copy", "CONTRACT_NUMBER - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer - Contract"),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Merged Columns",{"SERVICE_CALL_ID", "CONTRACT_NUMBER", "WSCONTSQ",
+				"COST_EQUIPMENT", "COST_LABOR", "COST_MATERIAL", "COST_OTHER", "COST_SUBS", "COST_TAX", "DATE_OF_SERVICE_CALL", "Customer - Contract"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Removed Other Columns", {"SERVICE_CALL_ID", "CONTRACT_NUMBER", "WSCONTSQ", "DATE_OF_SERVICE_CALL", "Customer - Contract"}, "Attribute", "Value"),
+				    #"Replaced Value" = Table.ReplaceValue(#"Unpivoted Columns","COST_EQUIPMENT","EQUIPMENT",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","COST_LABOR","LABOR",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","COST_MATERIAL","MATERIAL",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","COST_OTHER","OTHER",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","COST_SUBS","SUBS",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","COST_TAX","TAX",Replacer.ReplaceText,{"Attribute"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value5",{{"Attribute", "Cost Type"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([Value] <> 0))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

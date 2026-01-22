@@ -1,0 +1,293 @@
+table 'Revenue Measures'
+	lineageTag: c97e9a19-6722-4c38-907c-9806efe96118
+
+	measure 'Original Contract' = sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], JOBS_D[ORIG_CONTRACT_AMOUNT]), JOBS_D[ORIG_CONTRACT_AMOUNT])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 53056f5b-28bd-4801-9e94-7091b16f51bc
+
+	measure 'Cumulative Revenue' = if([Current Contract Amount] * 'Cost Measures'[% Complete] > [Current Contract Amount], [Current Contract Amount], [Current Contract Amount] * 'Cost Measures'[% Complete])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 8133f170-e66e-4bbd-bc89-bd8bdec06b39
+
+	measure 'Current Contract Amount' = [Original Contract] + [Cumulative CO$]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 910b510d-7d21-4cb2-8cdb-504525da3149
+
+	measure 'Forecasted GP $' = if([Cumulative Forecast] = blank(), blank(), [Current Contract Amount] - [Cumulative Forecast])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7982ca9f-dca6-4f35-baf4-5be8bad4acbc
+
+	measure 'Forecasted GP%' = divide([Forecasted GP $], [Current Contract Amount], blank())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b827a145-9c61-49c3-b9c2-de2bda494164
+
+	measure 'Change Order $' = sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "CO", sum(CHANGE_ORDERS_BY_MONTH[CHANGE_ORDER_EST_COST])), [CO])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 09fd2784-57a3-4fd8-b226-822d37f96ab8
+
+	measure 'Estimated GP $' = [Current Contract Amount] - [Original Cost Estimate]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 20760ffa-6ff3-4fc3-9bbd-f9f4832a26c0
+
+	measure 'Estimated GP%' = if([Estimated GP $] = blank(), blank(), divide([Estimated GP $], [Current Contract Amount], blank()))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1a09c6ea-90c4-4e7f-8687-b4895e6187c8
+
+	measure 'Cumulative Revenue YTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Cumulative Revenue], '*Calendar'[Fiscal Year] = maxyear)
+		lineageTag: d74eafa6-2a66-4e26-ac42-4eb1798702c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cumulative Rev Amount Across Jobs YTD' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Cumulative Revenue YTD]), [contract])
+		lineageTag: ec680386-d266-46a5-80af-cb59a7f80814
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Change Order $2' = sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], JOBS_D[CONFIRMED_CHG_ORDER_AMT]), sum(JOBS_D[CONFIRMED_CHG_ORDER_AMT]))
+		lineageTag: 12d745f0-45ac-4643-b148-f8123abc646c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cumulative CO$' =
+			var maxdat = [Max Date]
+			return
+			calculate([Change Order $], filter(all('*Calendar'), '*Calendar'[Date] <= maxdat))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f248ca79-b256-4d29-8740-8ee507a4c2a3
+
+	measure 'Forecasted GP$ Across Jobs' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", if([Forecasted GP $] <> BLank(), [Forecasted GP $], [Estimated GP $])), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 6659043d-34ef-497d-8290-538927fa03bf
+
+	measure 'Cumulative Current Contract' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Current Contract Amount]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 5e27e2fa-042b-42f8-8c53-7966b1661ca0
+
+	measure 'Forecasted GP% Across Jobs' = divide([Forecasted GP$ Across Jobs], [Cumulative Current Contract], blank())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 11f563c7-be1f-4df7-aedc-ca8d787c74b9
+
+	measure 'Estimated GP$ Across Jobs' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Estimated GP $]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b77101b6-0d2d-4ab3-af87-5fede4278371
+
+	measure 'Cumulative Original Contract' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Original Contract]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 70ffcc96-86ec-48f9-9dc8-142adf41117b
+
+	measure 'Estimated GP% Across Jobs' = divide([Estimated GP$ Across Jobs], [Cumulative Current Contract], blank())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 99eba9c9-bc97-47a1-8fdb-2e2535004c0c
+
+	measure 'Cumulative Rev Amount Across Jobs' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Cumulative Revenue]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7f269247-94ed-4469-bdec-da3032ff920f
+
+	measure 'Revenue YTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Net Earned Rev Amount Across Jobs], '*Calendar'[Fiscal Year] = maxyear)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: fe40155e-ec2a-4d28-9b1b-74986b2d5a11
+
+	measure 'Net Earned Revenue' =
+			
+			var compl = ROUND(divide('Cost Measures'[Job_Actual Cost] , [Cumulative Forecast], blank()),4)
+			return
+			[Current Contract Amount] * compl
+		lineageTag: b5849e6e-100a-4662-886a-5196bf0a821d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Earned Rev Amount Across Jobs' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Net Earned Revenue]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 66b60d93-1b80-496a-b0a9-1b3b132f714d
+
+	measure 'Revenue LY YTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			//calculate([Revenue YTD], SAMEPERIODLASTYEAR('Calendar'[Date]))
+			calculate([Net Earned Rev Amount Across Jobs], '*Calendar'[Fiscal Year] = maxyear - 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3755f7a0-65dc-4c14-917c-5e93ca2d3054
+
+	measure 'Net Earned Rev Amount TM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			
+			return
+			if(calculate('Revenue Measures'[Net Earned Rev Amount Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] = runtot)) = blank(), 0, calculate('Revenue Measures'[Net Earned Rev Amount Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] = runtot)))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 334f6e8b-3e9d-40d8-9414-9380ea4f4ecb
+
+	measure 'Net Earned Rev Amount LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			var lm = runtot - 1
+			return
+			calculate('Revenue Measures'[Net Earned Rev Amount Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] = lm))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 653dee1c-aa11-4c0e-9267-3ba1313353e1
+
+	measure 'Revenue Change' = sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", 'Revenue Measures'[Net Earned Rev Amount TM], "lm", 'Revenue Measures'[Net Earned Rev Amount LM]), [contract] - [lm])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3be0a58b-9ff6-434d-910b-9301e6479b67
+
+	measure 'Forecasted to Est GP Variance $' = [Forecasted GP $] - [Estimated GP $]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 66a356cb-c4ef-4fe8-98a2-9141fb8a1ddd
+
+	measure 'Forecasted GP $ TM to LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			var runtotlm = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat) - 1
+			var contracttm =  calculate([Current Contract Amount],'*Calendar'[Running Total Month] = runtot)
+			var contractlm =  calculate([Current Contract Amount],'*Calendar'[Running Total Month] = runtotlm)
+			var costtm = calculate('Cost Measures'[Cumulative Forecast], filter(all('*Calendar'), '*Calendar'[Running Total Month] <= runtot))
+			var costlm = calculate([Cumulative Forecast], filter(all('*Calendar'), '*Calendar'[Running Total Month] < runtot))
+			return
+			if(costlm <> blank(), (contracttm - costtm) - (contractlm - costlm))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a1e28e0a-afba-4cca-bb76-23f579eef3c1
+
+	measure 'Forecast to Est GP Variance %' = Divide([Forecasted GP $] - [Estimated GP $], [Estimated GP $], blank())
+		formatString: 0%;-0%;0%
+		lineageTag: 80325539-fd58-4d2c-8656-852542bb5d32
+
+	measure 'GP% Difference' =
+			[Forecasted GP% Across Jobs] - [Estimated GP% Across Jobs]
+			//if([Forecasted GP%] = blank(), blank(), [Forecasted GP%] - [Estimated GP%])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 77f5c19a-9f52-4735-8400-5cf09d74c773
+
+	measure 'Cumulative Billed Amount' =
+			
+			var maxdat = [Max Date]
+			return
+			calculate(sum(INVOICES_F[ACCOUNT_AMOUNT]), filter(all('*Calendar'), '*Calendar'[Date] <= maxdat))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2cd1c6ac-c06d-478e-987a-c3e86b85bd52
+
+	measure 'Over - Under Billed' = [Cumulative Billed Amount] - [Cumulative Revenue]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: efd71ec9-6d46-42cc-8d94-a1c5786a6987
+
+	measure 'Over Under Billed Across Jobs' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Over - Under Billed]), [contract])
+		lineageTag: 8812855a-3c42-4c57-bdc6-a1e44a39bd69
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Over / (Under) Billed Cumulative Across Jobs' =
+			
+			var maxdat = [Max Date]
+			return
+			calculate([Over Under Billed Across Jobs], filter(all('*Calendar'), '*Calendar'[Date] <= maxdat))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3c1843fa-18e2-4a49-bb4f-7678e62b9db1
+
+	measure 'Cumulative Over Under Billed Amount Across Jobs LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('*Calendar'[Running Total Month],'*Calendar'[Date] , maxdat)
+			var runtot = calculate(max('*Calendar'[Running Total Month]),'*Calendar'[Date] = maxdat)
+			
+			return
+			calculate([Over Under Billed Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] < runtot))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: d3c17611-a03b-45d4-8a2e-6d329bb42ffd
+
+	measure 'Count Under Billed Jobs' = COUNTROWS(filter(summarize('JOBS_D', JOBS_D[JOB_NUMBER], "Under Billed", [Over - Under Billed]), [Under Billed] < 0))
+		formatString: 0
+		lineageTag: 08efcdb1-580f-4eb0-b979-d58ab57bfa7a
+
+	measure test = [Net Earned Rev Amount Across Jobs] - 'Revenue Measures'[Revenue Rolling 12]
+		lineageTag: 8f48491e-5c25-494c-bc23-da8f0eca55ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Rolling 12' = ```
+			
+			var maxdat = [Max Date]
+			var nextdate = maxdat + 1
+			//calculate('Revenue Measures'[Net Earned Rev Amount Across Jobs], filter('Calendar', 'Calendar'[Date] > date(year(nextdate) - 1, month(nextdate), day(nextdate))))
+			var maxrunningtotal = calculate(max('*Calendar'[Running Total Month]), filter('*Calendar', '*Calendar'[Date] = [Max Date])) 
+			var monmin = maxrunningtotal 
+			var monminly = monmin - 12
+			return if(year(today()) = year([Max Date]) && MONTH(today()) = month([Max Date]), 
+			calculate([Net Earned Rev Amount Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] >= monminly && '*Calendar'[Running Total Month] < monmin)),
+			calculate([Net Earned Rev Amount Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] > monminly && '*Calendar'[Running Total Month] <= monmin)))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 004072c3-de94-49db-8123-27a639f855e7
+
+	measure 'Revenue Rolling 12 PY' = ```
+			
+			var maxrunningtotal = calculate(max('*Calendar'[Running Total Month]), filter('*Calendar', '*Calendar'[Date] = [Max Date])) 
+			var monmin = maxrunningtotal - 12
+			var monminly = monmin - 12
+			return if(year(today()) = year([Max Date]) && MONTH(today()) = month([Max Date]), 
+			calculate([Net Earned Rev Amount Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] >= monminly && '*Calendar'[Running Total Month] < monmin)),
+			calculate([Net Earned Rev Amount Across Jobs], filter(all('*Calendar'), '*Calendar'[Running Total Month] > monminly && '*Calendar'[Running Total Month] <= monmin)))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: cd25e03f-4c97-4ca0-9dc3-e6f538b9c6f0
+
+	measure 'Actual GP$' = ([Current Contract Amount] * [% Complete]) - [Job_Actual Cost]
+		lineageTag: 6cc18697-67c5-4413-a408-a148db8c0ef5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual GP$ Across Jobs' =
+			
+			sumx(SUMMARIZE(JOBS_D, JOBS_D[JOB_NUMBER], "contract", [Actual GP$]), [contract])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a73b3592-b0d2-4a85-b007-d1916eb8b9d3
+
+	measure 'Display TM to LM Forecasted Change' = ```
+			"Total Change = " & Format([Forecasted GP $ TM to LM], "$#,##") 
+			```
+		lineageTag: ec2d2ba2-336f-4475-a3c8-156f8d0948ca
+
+	partition 'Revenue Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

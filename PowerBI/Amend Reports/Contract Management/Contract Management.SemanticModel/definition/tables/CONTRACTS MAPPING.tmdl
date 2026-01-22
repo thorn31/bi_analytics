@@ -1,0 +1,135 @@
+table 'CONTRACTS MAPPING'
+	lineageTag: bcc419b8-c523-42b3-a64b-35f6954f6e32
+
+	measure 'Selected Division' = ```
+			"Division : " & selectedvalue('CONTRACTS MAPPING'[Divisions], "Multiple") 
+			```
+		lineageTag: ca5b0a6e-1827-409d-88fd-5e57f999c159
+
+	measure 'Selected Sales Rep' = ```
+			"Sales Rep : " & selectedvalue('CONTRACTS MAPPING'[Sales Rep], "Multiple") 
+			```
+		lineageTag: 10f6f592-267b-4078-940b-669a2a60f1f0
+
+	measure 'Selected Contract Name' = ```
+			"Contract : " & selectedvalue('CONTRACTS MAPPING'[CONTRACT_NUMBER], "Multiple Contracts") 
+			```
+		lineageTag: ffb13e66-80e8-4d97-a164-3ee813f2b162
+
+	measure 'Selected Customer Name' = ```
+			"Customer : " & selectedvalue(CUSTOMERS_D[CUSTOMER_NAME], "Multiple Customers") 
+			```
+		lineageTag: a479fe63-adb7-4408-a839-fa1f1b71ab91
+
+	measure 'Contract Start Date' = "Start Date : " & max('CONTRACTS MAPPING'[Current Contract Start])
+		lineageTag: 2999919a-6dde-4e26-8ee9-ede47df2214c
+
+	measure 'Contract Exp Date' = "Exp Date : " & min('CONTRACTS MAPPING'[Current Contract Expiration])
+		lineageTag: d38e31c6-a124-44c5-842e-543b41aa56f4
+
+	column CUSTNMBR
+		dataType: string
+		lineageTag: b9a91d3e-a3f4-458a-bfed-6f70a83797a5
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		lineageTag: 6ba641f8-74df-44f4-a50a-83b9ae96cc97
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer-Contract
+		dataType: string
+		lineageTag: c0f0e714-0f9e-4818-bb5b-1174d47d9276
+		summarizeBy: none
+		sourceColumn: Customer-Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Status' = calculate(FIRSTNONBLANK(CONTRACTS_D[Contract Status Date], 1), filter(CONTRACTS_D, 'CONTRACTS MAPPING'[Customer-Contract] = CONTRACTS_D[Customer-Contract] && CONTRACTS_D[Current Contract Flag] = 1))
+		lineageTag: 6cbefe6e-08f5-4e23-9b63-2c2a31b8864c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Type' =
+			
+			var name_ = calculate(FIRSTNONBLANK(CONTRACTS_D[CONTRACT_INTERNAL_NAME], 1), filter(CONTRACTS_D, CONTRACTS_D[Current Contract Flag] = 1 && 'CONTRACTS MAPPING'[Customer-Contract] = CONTRACTS_D[Customer-Contract]))
+			return
+			 SWITCH(name_, "ASSURED", "A", "Assured +", "A", "CERTIFIED", "C", "ONSITE", "O&M", "INSPECTION", "I", "PROJECT", "Project", "REPAIR", "SPOT")
+		lineageTag: f84803cd-47e6-4e58-8eac-5bdebd2cfc67
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divisions =
+			
+			var div = calculate(FIRSTNONBLANK(CONTRACTS_D[CLEANED_DIVISIONS], 1), filter(CONTRACTS_D, CONTRACTS_D[Current Contract Flag] = 1 && 'CONTRACTS MAPPING'[Customer-Contract] = CONTRACTS_D[Customer-Contract]))
+			return
+			if(div = "Other", "Knoxville", div)
+		lineageTag: fd328490-3e82-4905-9d09-1666777a3e5f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep' = calculate(FIRSTNONBLANK(CONTRACTS_D[SLPRSNID], 1), filter(CONTRACTS_D, CONTRACTS_D[Current Contract Flag] = 1 && 'CONTRACTS MAPPING'[Customer-Contract] = CONTRACTS_D[Customer-Contract]))
+		lineageTag: ceb72b10-7a01-4569-a280-f89ddddd07d0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Contract Start' = calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, 'CONTRACTS MAPPING'[Customer-Contract] = CONTRACTS_D[Customer-Contract] && CONTRACTS_D[Current Contract Flag] = 1))
+		formatString: General Date
+		lineageTag: 952c1b61-546f-412c-a1de-e0b5b0750ffc
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 05b1ae3d-2960-477b-a77b-849218816f9c
+			defaultHierarchy: LocalDateTable_dea31c23-1eaa-490c-ab59-1e5b655fb2ca.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Contract Expiration' = calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, 'CONTRACTS MAPPING'[Customer-Contract] = CONTRACTS_D[Customer-Contract] && CONTRACTS_D[Current Contract Flag] = 1))
+		formatString: General Date
+		lineageTag: e195bc2a-dc95-449d-b7a9-c092c352102a
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: eb78809d-9300-48cd-bc93-61042ad5dcef
+			defaultHierarchy: LocalDateTable_2e841b8c-c7b1-4df6-aaad-a1a446fc7c01.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Cancelled' = calculate(FIRSTNONBLANK(CONTRACTS_D[CANCEL_BOX], 1), filter(CONTRACTS_D, 'CONTRACTS MAPPING'[Customer-Contract] = CONTRACTS_D[Customer-Contract] && CONTRACTS_D[Current Contract Flag] = 1))
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4ebe8956-285f-4725-87af-771a6549c4e8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CONTRACTS MAPPING' = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CONTRACTS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data],
+				    #"Trimmed Text" = Table.TransformColumns(CONTRACTS_D_Table,{{"CUSTNMBR", Text.Trim, type text}, {"CONTRACT_NUMBER", Text.Trim, type text}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Trimmed Text",{"CUSTNMBR", "CONTRACT_NUMBER"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Removed Other Columns", "CUSTNMBR", "CUSTNMBR - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "CONTRACT_NUMBER", "CONTRACT_NUMBER - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"CUSTNMBR - Copy", "CONTRACT_NUMBER - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer-Contract"),
+				    #"Removed Duplicates" = Table.Distinct(#"Merged Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+

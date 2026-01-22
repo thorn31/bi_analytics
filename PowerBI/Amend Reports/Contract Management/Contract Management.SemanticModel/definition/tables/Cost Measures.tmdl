@@ -1,0 +1,130 @@
+table 'Cost Measures'
+	lineageTag: 505c88ed-82cd-47ce-8306-6c7cb79301ba
+
+	measure 'Job_Actual Cost' = sum(JOB_COST_DETAILS_F[COST_AMT])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 8f62715f-b5b2-4443-8cde-64e4ffb505b2
+
+	measure 'Cost Budget' = sum('JOB_COST_FORECASTS_F'[FORECAST_COSTS])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 66e1e8cc-0f1b-4f5e-a06e-bf6cc8cbe358
+
+	measure 'Original Cost Estimate' = sum(JOB_COST_SUMMARY_F[REVISED_ESTIMATED_COST])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7a154e85-1243-4d03-b8ea-d764db0ddc2b
+
+	measure 'Cumulative Forecast' =
+			
+			var maxdat = [Max Date]
+			return
+			calculate([Cost Budget], filter(all('Calendar'), 'Calendar'[Date] <= maxdat))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3a31ef27-fba5-448e-9aa4-ba922fd35d5c
+
+	measure 'Cumulative Actual Cost' =
+			
+			var maxdat = [Max Date]
+			return
+			calculate([Job_Actual Cost], filter(all('Calendar'), 'Calendar'[Date] <= maxdat))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 6a9f7abf-fbb8-4dd6-a942-8fb355135e2f
+
+	measure '% Complete' = if(Divide([Cumulative Actual Cost], [Cumulative Forecast], blank()) > 1, 1, Divide([Cumulative Actual Cost], [Cumulative Forecast], blank()))
+		formatString: 0%;-0%;0%
+		lineageTag: f561cdc1-48c3-4788-94f5-65ea1eb3fab1
+
+	measure 'Available Budget' = ```
+			[Cumulative Forecast] - [Cumulative Actual Cost] 
+			//- [Committed Cost]
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b1353b27-2450-430b-8387-6b622dd08fe4
+
+	measure 'Estimated to Forecasted Variance' = [Cumulative Forecast] - [Original Cost Estimate]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1982aa83-9406-4e28-ae9c-4d11406a8491
+
+	measure 'Cost Change LM to TM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('Calendar'[Running Total Month],'Calendar'[Date] , maxdat)
+			var runtot = calculate(max('Calendar'[Running Total Month]),'Calendar'[Date] = maxdat)
+			var tm = calculate([Cumulative Forecast], filter(all('Calendar'), 'Calendar'[Date] <= maxdat))
+			var costlm = calculate([Cumulative Forecast], filter(all('Calendar'), 'Calendar'[Running Total Month] < runtot))
+			return
+			tm - costlm
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: cb21d166-79e4-43fc-92c8-780dfe590b45
+
+	measure Contingency = calculate([Cumulative Forecast], JOB_COST_DESCRIPTION_D[Contingency Flag] = "CONTINGENCY")
+		lineageTag: c6ee41fa-455f-47dc-8de1-bed31965bcd1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Contingency TM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('Calendar'[Running Total Month],'Calendar'[Date] , maxdat)
+			var runtot = calculate(max('Calendar'[Running Total Month]),'Calendar'[Date] = maxdat)
+			var tm = calculate('Cost Measures'[Contingency], filter(all('Calendar'), 'Calendar'[Date] <= maxdat))
+			var costlm = calculate('Cost Measures'[Contingency], filter(all('Calendar'), 'Calendar'[Running Total Month] < runtot))
+			return
+			tm
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: e2072618-410b-4424-a072-f188ae50fefc
+
+	measure 'Contingency LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('Calendar'[Running Total Month],'Calendar'[Date] , maxdat)
+			var runtot = calculate(max('Calendar'[Running Total Month]),'Calendar'[Date] = maxdat)
+			var tm = calculate('Cost Measures'[Contingency], filter(all('Calendar'), 'Calendar'[Date] <= maxdat))
+			var costlm = calculate('Cost Measures'[Contingency], filter(all('Calendar'), 'Calendar'[Running Total Month] < runtot))
+			return
+			costlm
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 12f1abf7-43d0-416c-9bfc-839c95ba1840
+
+	measure 'GL Cost of Revenue' = calculate(sum('POSTING_DATA_F'[DEBITAMT]), filter('POSTING_DATA_F', 'POSTING_DATA_F'[ACTNUMBR_1] = "340"))
+		lineageTag: 600e3c1c-d3f3-493e-9aaa-84ac8afa0b74
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Estimated Hours' = calculate(sum(JOB_COST_SUMMARY_F[COST_CODE_EST_UNIT]), JOB_COST_SUMMARY_F[COST_ELEMENT] = 1)
+		formatString: #,0.0
+		lineageTag: 3b00f599-6c2b-4ab2-9995-9da64c6a661f
+
+	measure 'Total Hours' =
+			//sum(JOB_LABOR_HOURS[MONDAY]) + sum(JOB_LABOR_HOURS[TUESDAY]) + sum(JOB_LABOR_HOURS[WEDNESDAY]) + sum(JOB_LABOR_HOURS[THURSDAY]) + sum(JOB_LABOR_HOURS[FRIDAY])
+			calculate(sum(JOB_LABOR_HOURS_F[TOTAL_HOURS]), JOB_LABOR_HOURS_F[Cost Element] = "Labor")
+		formatString: #,0.0
+		lineageTag: 866af3e4-03e2-46df-97e2-8c9381d3a8a8
+
+	measure 'Hours Remaining' = [Estimated Hours] - [Total Hours]
+		formatString: #,0.0
+		lineageTag: e79a2182-097a-48ed-b61d-6e02c85d9191
+
+	measure 'Committed Cost' = sum(JOB_COST_SUMMARY_F[COMMITTED_COST])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 38e2682a-b0f5-4730-b6a0-a0dad626ae59
+
+	measure 'Cumulative Hours' =
+			
+			var maxdat = [Max Date]
+			return
+			calculate([Total Hours], filter(all('Calendar'), 'Calendar'[Date] <= maxdat))
+		formatString: 0.0
+		lineageTag: 963c0a7e-9a0b-4400-bfc3-98c3a2031951
+
+	partition 'Cost Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

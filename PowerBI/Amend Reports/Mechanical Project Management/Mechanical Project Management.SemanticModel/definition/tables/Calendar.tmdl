@@ -1,0 +1,304 @@
+table Calendar
+	lineageTag: 04fdffbc-5665-4e3f-ab7c-6b1fa26e3a38
+
+	measure 'Max Date' = max('Calendar'[Date])
+		formatString: General Date
+		lineageTag: 80daf412-a56a-4ee5-8824-6f025741d360
+
+	column Date
+		formatString: Long Date
+		lineageTag: 6fa36ac6-f2a7-4b0e-9be4-8f29d6541617
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 2999c0ed-f035-4683-8218-7bf8538b2325
+			defaultHierarchy: LocalDateTable_e8656d71-0ea4-4096-9b0f-9ce7240092ae.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		formatString: 0
+		lineageTag: 14cad74d-96d8-453f-ae77-605389ba24d8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 48642037-a00d-4ce7-a8cb-38ceaba2c7d8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 7a52e103-a8ab-48f1-b9c8-039807343474
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthSort
+		lineageTag: 66fb2290-1c58-49f6-8cb2-4b6f9148e89a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthnumber
+		lineageTag: 39a9f6c9-1a07-4686-97da-0bc83bc27e78
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonthnumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthShort
+		lineageTag: c0a088e7-895b-443c-90ca-890431b68933
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonthShort]
+		sortByColumn: YearMonthnumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		formatString: 0
+		lineageTag: 16684f79-6884-46f1-8324-7c802a3359bc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MonthNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNameShort
+		lineageTag: 9c1426af-96c0-4946-8e8d-aadcf4259667
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthNameShort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNameLong
+		lineageTag: b69c67e5-60f2-4e18-8753-c7ecf7902be6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthNameLong]
+		sortByColumn: 'Fiscal Calendar'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekNumber
+		formatString: 0
+		lineageTag: a8f4436c-c98c-4417-9cb4-7426d5a4c9c9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [DayOfWeekNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek
+		lineageTag: 17b0f556-5439-4fd1-8228-08e28d158fa6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DayOfWeek]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekShort
+		lineageTag: 43badffe-f09d-4465-bb78-e9f184c1fb4a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DayOfWeekShort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		lineageTag: d6ba6e05-f298-48d8-b9a8-a6172589126a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearQuarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekNumber
+		formatString: 0
+		lineageTag: 020a7a4f-6e09-4f93-b003-b94e70070484
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [WeekNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisplayMonth
+		lineageTag: f84915d0-bfea-47c9-bc59-739839d683ca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DisplayMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekBeginDate
+		formatString: General Date
+		lineageTag: 1b3fccf0-647d-49f8-9d07-b626341ab8ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [WeekBeginDate]
+
+		variation Variation
+			isDefault
+			relationship: f8b1b10b-7f35-42ee-ad74-e6b536f48dd5
+			defaultHierarchy: LocalDateTable_ca9e521e-a39c-4bbf-a6fd-098d037b5a98.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekEndDate
+		formatString: Short Date
+		lineageTag: 4ac15950-4d88-43b0-8859-f6db03195981
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [WeekEndDate]
+
+		variation Variation
+			isDefault
+			relationship: 6497e9a2-4089-4a72-bf41-74f608ee98bb
+			defaultHierarchy: LocalDateTable_45849c3c-e06d-451f-8616-e45b735dd37f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekday
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e47fbea7-e255-472d-8f85-86248fd673eb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [IsWeekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 1 = 1
+		formatString: 0
+		lineageTag: 164c9866-e488-4e81-9fc1-8611df57db6d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Future Flag' = if('Calendar'[Date] > today(), 0, 1)
+		formatString: 0
+		lineageTag: e5757077-dd35-4631-99b2-ce718361abd7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Month Flag' = IF(DAY(Calendar[Date]) = 1, 1, 0)
+		formatString: 0
+		lineageTag: 13d81c98-404c-4a10-aa15-fa68298d92a9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Running Total Month' = var datee = Calendar[Date] return CALCULATE(SUM(Calendar[New Month Flag]), FILTER(ALL('Calendar'), Calendar[Date] <= datee))
+		formatString: 0
+		lineageTag: e74faf96-8cf5-4847-926f-8c7b2a294d41
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Month Filter' = if(MONTH(Today()) = Month('Calendar'[Date]) && year(today()) = 'Calendar'[Year], "Live Data", "Last Month")
+		lineageTag: e80aefb0-6cbc-453f-83d2-494f65dcf216
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year'
+		formatString: 0
+		lineageTag: 9f0a727a-f1f1-4c09-a184-95ac71b1005c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Fiscal Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Calendar' = if('Calendar'[MonthNumber] = 10, 1, if('Calendar'[MonthNumber] = 11, 2, if('Calendar'[MonthNumber] = 12, 3, 'Calendar'[MonthNumber] + 3)))
+		formatString: 0
+		lineageTag: b3ae39c8-e023-4e41-b106-e4d2dd4c8c30
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Filter' =
+			
+			var mx = calculate(max('Calendar'[Fiscal Year]), all('Calendar'))
+			return
+			if('Calendar'[Fiscal Year] > mx - 4, 1, 0)
+		formatString: 0
+		lineageTag: 141d8dcf-1a28-4eb4-b43d-661daf28b6be
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column TT = "H  H"
+		lineageTag: 00c313fd-3a8f-4073-b387-290f1df4503e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar-d7293210-4553-47c2-8825-e570d51daaae = calculated
+		mode: import
+		source = ```
+				
+				Var CalenderStart = Date(Year(Today()) - 5 , 1, 1)  
+				Var CalendarEnd = today() + 365
+				Return ADDCOLUMNS(
+				    CALENDAR(CalenderStart, CalendarEnd),
+				    "Year", Year([Date]),
+				    "Quarter", "Q" & FORMAT([Date], "q"),
+				    "Month", FORMAT([date], "MMM yyyy"),
+				    "MonthSort", Format([Date], "yyyy-MM"),
+				"YearMonthnumber", FORMAT ( [Date], "YYYYMM" ),
+				 "Fiscal Year", 
+				        IF( MONTH ( [Date] ) >= 10, YEAR ( [Date] ) + 1, YEAR ( [Date] ) ),
+				
+				"YearMonthShort", FORMAT ( [Date], "mmm YY" ),
+				"MonthNumber", Month([Date]),
+				
+				"MonthNameShort", FORMAT ( [Date], "mmm" ),
+				
+				"MonthNameLong", FORMAT ( [Date], "mmmm" ),
+				
+				"DayOfWeekNumber", WEEKDAY ( [Date],2),
+				
+				"DayOfWeek", FORMAT ( [Date], "dddd" ),
+				
+				"DayOfWeekShort", FORMAT ( [Date], "ddd" ),
+				
+				
+				"YearQuarter", FORMAT ( [Date], "YYYY" ) & "/Q" & FORMAT ( [Date], "Q" ),
+				
+				"WeekNumber", WEEKNUM([Date],1),
+				
+				"DisplayMonth", FORMAT([Date], "MMM, YYYY"),
+				
+				"WeekBeginDate", [Date]-WEEKDAY([Date],1) +1,
+				
+				"WeekEndDate", [Date]-WEEKDAY([Date],1) +8,
+				
+				"IsWeekday", WEEKDAY([Date],2) <= 5)
+				```
+
+	annotation PBI_Id = a0fa8e14a9a645509d852aabb851782d
+

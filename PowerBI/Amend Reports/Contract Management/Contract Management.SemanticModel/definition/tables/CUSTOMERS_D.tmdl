@@ -1,0 +1,152 @@
+table CUSTOMERS_D
+	lineageTag: a080597a-0168-4a9e-bc47-f42497153e8f
+
+	column CUSTOMER_NUMBER
+		dataType: string
+		lineageTag: b61e7f00-0b37-47fb-a81e-5b7a10c0910f
+		summarizeBy: none
+		sourceColumn: CUSTOMER_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_NAME
+		dataType: string
+		lineageTag: 1abc385d-710e-497d-8273-cf6b998a74a8
+		summarizeBy: none
+		sourceColumn: CUSTOMER_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_CLASS
+		dataType: string
+		lineageTag: 68193423-648e-41bd-a01e-d1d63e6f8705
+		summarizeBy: none
+		sourceColumn: CUSTOMER_CLASS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESS1
+		dataType: string
+		lineageTag: 1e19ac18-286e-4694-9faf-4f13ef2e3d7f
+		summarizeBy: none
+		sourceColumn: ADDRESS1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESS2
+		dataType: string
+		lineageTag: 77d31a95-e77f-4007-ab72-17988ab43574
+		summarizeBy: none
+		sourceColumn: ADDRESS2
+
+		annotation SummarizationSetBy = Automatic
+
+	column COUNTRY
+		dataType: string
+		lineageTag: 3e4ea92e-b603-4457-9ed8-ffc52785bbbc
+		summarizeBy: none
+		sourceColumn: COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CITY
+		dataType: string
+		lineageTag: abadf023-e13d-4183-a81e-b0ea84063e88
+		summarizeBy: none
+		sourceColumn: CITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: 62d78367-24fd-48fb-b930-933bfd03057f
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZIP
+		dataType: string
+		lineageTag: 89ab1aff-b3fa-4802-a41e-709b0de11b5d
+		summarizeBy: none
+		sourceColumn: ZIP
+
+		annotation SummarizationSetBy = Automatic
+
+	column PHONE1
+		dataType: string
+		lineageTag: 5949ff42-2988-4e98-bde9-5eb2618157c1
+		summarizeBy: none
+		sourceColumn: PHONE1
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAYMENT_TERM
+		dataType: string
+		lineageTag: b3aede85-a0c7-471c-b432-6da11d3cd19e
+		summarizeBy: none
+		sourceColumn: PAYMENT_TERM
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9d21c8ec-8bf2-492f-aee1-ec749d158a3f
+		summarizeBy: none
+		sourceColumn: CREATED
+
+		variation Variation
+			isDefault
+			relationship: 40f2c70a-83bc-418b-a565-b017b77c2067
+			defaultHierarchy: LocalDateTable_2f4d25e8-226e-4bdb-90b8-80d5e36a201f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPDATED
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2eac175d-4f6f-4a31-9b4c-9db58303d530
+		summarizeBy: none
+		sourceColumn: UPDATED
+
+		variation Variation
+			isDefault
+			relationship: 5eb38506-ea61-497a-a6e6-3849fe276d68
+			defaultHierarchy: LocalDateTable_5b54adca-a1fe-49cb-afdc-803881595356.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 6338865e-880b-4754-8a24-08622e9cde60
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_KEY
+		dataType: string
+		lineageTag: 712ca9de-1cf7-4ad8-aa79-80b6271a9d65
+		summarizeBy: none
+		sourceColumn: CUSTOMER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CUSTOMERS_D = m
+		mode: import
+		source =
+				let
+				        Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CUSTOMERS_D",Kind="Table"]}[Data],
+				    #"Capitalized Each Word" = Table.TransformColumns(CUSTOMERS_D_Table,{{"CUSTOMER_NAME", Text.Proper, type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Capitalized Each Word", each ([SOURCE] = "SERV_GP")),
+				    #"Trimmed Text" = Table.TransformColumns(#"Filtered Rows",{{"CUSTOMER_NUMBER", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"CUSTOMER_NUMBER", Text.Clean, type text}})
+				in
+				    #"Cleaned Text"
+
+	annotation PBI_ResultType = Table
+

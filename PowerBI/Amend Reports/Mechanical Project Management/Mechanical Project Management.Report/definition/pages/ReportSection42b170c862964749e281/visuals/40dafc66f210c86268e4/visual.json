@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "40dafc66f210c86268e4",
+  "position": {
+    "x": 774.51559934318561,
+    "y": 139.77011494252875,
+    "z": 4000,
+    "height": 560.13136288998362,
+    "width": 470.80459770114942,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "COST_CODE_MAPPING"
+                    }
+                  },
+                  "Property": "COST_CODE"
+                }
+              },
+              "queryRef": "COST_CODE_MAPPING.COST_CODE",
+              "nativeQueryRef": "COST_CODE"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cost Measures"
+                    }
+                  },
+                  "Property": "Actual Cost"
+                }
+              },
+              "queryRef": "Cost Measures.Actual Cost",
+              "nativeQueryRef": "Actual Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cost Measures"
+                    }
+                  },
+                  "Property": "Cost Budget"
+                }
+              },
+              "queryRef": "Cost Measures.Cost Estimates",
+              "nativeQueryRef": "Cost Budget"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "COST_CODE_MAPPING"
+                  }
+                },
+                "Property": "COST_CODE"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -964,6 +964,20 @@ table '_Key Measures'
 		displayFolder: Visual Measures
 		lineageTag: b596947a-e344-4837-a884-debc448d855b
 
+	measure 'CO Icon SVG (Dynamic)' =
+			
+			VAR SourceSel = SELECTEDVALUE ( 'fp_SourceSelector'[Source] )
+			RETURN
+			    IF (
+			        SourceSel = "Jobs"
+			            && ISINSCOPE ( 'QUADRA_JOBS'[Job Number] ),
+			        MAX ( 'QUADRA_JOBS'[CO Icon SVG] ),
+			        BLANK ()
+			    )
+		displayFolder: Utility
+		lineageTag: b5d90ddc-5cd0-48d8-81dc-1e708fbce0f1
+		dataCategory: ImageUrl
+
 	column Column
 		isHidden
 		formatString: 0

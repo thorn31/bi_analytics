@@ -1,0 +1,102 @@
+table CONTRACT_Hour_Breakout
+	lineageTag: fe9771f3-8be6-41c7-848b-aaf591913bcf
+
+	measure 'Hour Breakout Sum' = calculate(sum(CONTRACT_Hour_Breakout[Hours]), filter(CONTRACT_Hour_Breakout,  CONTRACT_Hour_Breakout[In Current Contract] = 1))
+		lineageTag: a42b7fa0-283c-45ca-bdcc-7e1b8ef82485
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Customer-Contract
+		dataType: string
+		lineageTag: f0a93517-ccfe-4b9c-bbed-1960d4e8d5d9
+		summarizeBy: none
+		sourceColumn: Customer-Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_START_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7db44cad-2421-4cdc-a375-2b02ec22193a
+		summarizeBy: none
+		sourceColumn: CONTRACT_START_DATE
+
+		variation Variation
+			isDefault
+			relationship: 238de80e-62b9-4b55-8968-fa831c69df12
+			defaultHierarchy: LocalDateTable_36fb0cc6-3a6a-46f4-99fe-6340fb69c6b3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CONTRACT_EXPIRATION_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a525a0d4-c6e7-43c1-a2d0-b3baf30dfda5
+		summarizeBy: none
+		sourceColumn: CONTRACT_EXPIRATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: fd5b62c7-36c4-4470-b206-0a49b1fa3735
+			defaultHierarchy: LocalDateTable_4ed2ebea-2956-4a45-b593-72e2e76dd90c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Type
+		dataType: string
+		lineageTag: bfd7f6a1-79f2-413d-981d-080ce000d7a2
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hours
+		dataType: double
+		lineageTag: cbab02b6-b5f2-4742-8fb1-8cab5dbc4326
+		summarizeBy: sum
+		sourceColumn: Hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'In Current Contract' =
+			
+			var start_ = calculate(max(CONTRACTS_D[CONTRACT_START_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CONTRACT_Hour_Breakout[Customer-Contract]))
+			var end_ = calculate(max(CONTRACTS_D[CONTRACT_EXPIRATION_DATE]), filter(CONTRACTS_D, CONTRACTS_D[Customer-Contract] = CONTRACT_Hour_Breakout[Customer-Contract]))
+			return
+			if(CONTRACT_Hour_Breakout[CONTRACT_START_DATE] = start_ && CONTRACT_Hour_Breakout[CONTRACT_EXPIRATION_DATE] <= end_, 1, 0)
+		formatString: 0
+		lineageTag: 715fc275-8ba1-4463-8dae-9f0a194b450a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CONTRACT_Hour_Breakout = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CONTRACTS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data],
+				    #"Trimmed Text" = Table.TransformColumns(CONTRACTS_D_Table,{{"CUSTNMBR", Text.Trim, type text}, {"CONTRACT_NUMBER", Text.Trim, type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Trimmed Text", "CUSTNMBR", "CUSTNMBR - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "CONTRACT_NUMBER", "CONTRACT_NUMBER - Copy"),
+				    #"Merged Columns" = Table.CombineColumns(#"Duplicated Column1",{"CUSTNMBR - Copy", "CONTRACT_NUMBER - Copy"},Combiner.CombineTextByDelimiter(":", QuoteStyle.None),"Customer-Contract"),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Merged Columns",{ "ACTUAL_LABOR_1_HOURS_REPAIR", "ACTUAL_LABOR_2_HOURS_PM", "ACTUAL_LABOR_3_HOURS_TRAVEL", "Customer-Contract", "CONTRACT_START_DATE", "CONTRACT_EXPIRATION_DATE"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"CONTRACT_START_DATE", type date}, {"CONTRACT_EXPIRATION_DATE", type date}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Customer-Contract", "CONTRACT_START_DATE", "CONTRACT_EXPIRATION_DATE"}, "Attribute", "Value"),
+				    #"Replaced Value" = Table.ReplaceValue(#"Unpivoted Columns","ACTUAL_LABOR_1_HOURS_REPAIR","REPAIR",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","ACTUAL_LABOR_2_HOURS_PM","PM",Replacer.ReplaceText,{"Attribute"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","ACTUAL_LABOR_3_HOURS_TRAVEL","TRAVEL",Replacer.ReplaceText,{"Attribute"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value2",{{"Attribute", "Type"}, {"Value", "Hours"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

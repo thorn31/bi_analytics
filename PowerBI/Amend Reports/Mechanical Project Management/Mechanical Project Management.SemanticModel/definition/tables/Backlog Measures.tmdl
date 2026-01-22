@@ -1,0 +1,218 @@
+table 'Backlog Measures'
+	lineageTag: 5ebdd953-faf6-44b3-bde6-c456a858eb16
+
+	measure 'Cost to Complete - Backlog' =
+			//sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], "Proj", [Cumulative Forecast], "Actual", 'Cost Measures'[Cumulative Actual Cost]), [Proj] - [Actual] )
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], "Proj", [Available Budget]), [Proj]  )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: bc2c585c-233b-4011-8b54-cc5d848e18f6
+
+	measure 'Actual Monthly Cost (GL)' = ```
+			//[Actual Cost] 
+			calculate(sum('GL POSTING'[PERDBLNC]), filter('GL POSTING', 'GL POSTING'[ACTNUMBR_1] = "340"))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c565a4d9-89bd-4164-81b4-a5838bb8efc2
+
+	measure 'Average Cost (Prior 6 Mo)' = DIVIDE(CALCULATE([Actual Monthly Cost (GL)], FILTER(ALL('Calendar'), 'Calendar'[Running Total Month] <= MAX('Calendar'[Running Total Month]) - 1 && 'Calendar'[Running Total Month] >= MAX('Calendar'[Running Total Month]) - 6)), 6, BLANK())
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 648f57a8-d662-4671-a3ec-7f0a965c4bd3
+
+	measure 'Backlog Months' = DIVIDE([Available Budget], [Average Cost (Prior 6 Mo)] , BLANK())
+		lineageTag: 4ee796c3-341f-40f6-9326-e0f19573aa2e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Backlog TM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('Calendar'[Running Total Month],'Calendar'[Date] , maxdat)
+			var runtot = calculate(max('Calendar'[Running Total Month]),'Calendar'[Date] = maxdat)
+			
+			return
+			calculate([Backlog Months], filter(all('Calendar'), 'Calendar'[Running Total Month] = runtot))
+		formatString: 0.0
+		lineageTag: 469fe78b-c5dd-4515-a29e-bd6a1b6d34b0
+
+	measure 'Backlog LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('Calendar'[Running Total Month],'Calendar'[Date] , maxdat)
+			var runtot = calculate(max('Calendar'[Running Total Month]),'Calendar'[Date] = maxdat)
+			var lm = runtot - 1
+			return
+			calculate([Backlog Months], filter(all('Calendar'), 'Calendar'[Running Total Month] = lm))
+		formatString: 0.0
+		lineageTag: 7fbb561e-37e2-4602-8335-189d872cbe9d
+
+	measure 'Cost of Contract Rev TM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('Calendar'[Running Total Month],'Calendar'[Date] , maxdat)
+			var runtot = calculate(max('Calendar'[Running Total Month]),'Calendar'[Date] = maxdat)
+			
+			return
+			calculate([Actual Monthly Cost (GL)], filter(all('Calendar'), 'Calendar'[Running Total Month] = runtot))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 9a2e7803-6184-49b4-9915-61b135305e1d
+
+	measure 'Cost to Complete LM' =
+			
+			var maxdat = [Max Date]
+			var runningtotal = lookupvalue('Calendar'[Running Total Month],'Calendar'[Date] , maxdat)
+			var runtot = calculate(max('Calendar'[Running Total Month]),'Calendar'[Date] = maxdat)
+			var lm = runtot - 1
+			return
+			calculate([Available Budget], filter(all('Calendar'), 'Calendar'[Running Total Month] = lm))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3d56fd28-2350-4d32-8c6d-498f264bb6c5
+
+	measure 'GL Revenue' = calculate([Amount], filter('GL POSTING', 'GL POSTING'[ACCOUNT_TYPE] = "REVENUE"))* -1
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 5e97a683-55d7-4063-8546-c14da95dea53
+
+	measure Amount = sum('GL POSTING'[PERDBLNC])
+		lineageTag: 8753e534-386a-4b37-8f2c-36855fdc82dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Equipment and Material' = calculate([Amount], filter('GL POSTING', 'GL POSTING'[ACCOUNT_TYPE] = "EQUIP & MATERIAL"))
+		lineageTag: 1bd6489e-0864-4e5b-a410-77865f8b4c15
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Labor' = calculate([Amount], filter('GL POSTING', 'GL POSTING'[ACCOUNT_TYPE] = "LABOR & BURDEN"))
+		lineageTag: 156a8fdf-99d8-421e-b874-1a4a29f8945d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Subcontract' = calculate([Amount], filter('GL POSTING', 'GL POSTING'[ACCOUNT_TYPE] = "SUBCONTRACT"))
+		lineageTag: d90e9127-777c-41a9-ab4c-dad15539b9e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Operations Expense' = calculate([Amount], filter('GL POSTING', 'GL POSTING'[ACCOUNT_TYPE] = "OPERATIONS EXPENSE"))
+		lineageTag: 8a12dc3c-73ca-413c-b661-54bc18e653ce
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Vehicle' = calculate([Amount], filter('GL POSTING', 'GL POSTING'[ACCOUNT_TYPE] = "Vehicle"))
+		lineageTag: 8991b95c-a4a0-464e-bf09-78785a8503a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Discounts' = calculate([Amount], filter('GL POSTING', 'GL POSTING'[ACCOUNT_TYPE] = "Discounts"))
+		lineageTag: 0733c4cd-c48d-4a1d-b6db-d753e818354e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual GP' = [GL Revenue] - [GL Equipment and Material] -[GL Labor] -  [GL Subcontract] - [GL Operations Expense] - [GL Vehicle] - [GL Discounts]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 8a2d500e-3e40-47f6-83d8-db5ac8d4379e
+
+	measure 'Backlog $ Deferred_Table' =
+			
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE], "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Rev", [Cumulative Rev Amount Across Jobs], "Contract", [Backlog_Cumulative Current Contract]), if( JOB[TARGET_COMPLETION_DATE] >= today() && [Start Date] > today() , [Contract] - [Rev] , blank()))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 457aa1f6-2f0a-4492-bb9d-358f52ce7387
+
+	measure 'Backlog $_Table' =
+			
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE], "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Rev", [Cumulative Rev Amount Across Jobs], "Contract", [Backlog_Cumulative Current Contract]), if( JOB[TARGET_COMPLETION_DATE] >= today() , [Contract] - [Rev] , blank()))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c4155aa3-a129-4bfc-a8cb-178f29d44be1
+
+	measure 'Backlog Months_Contract' =
+			
+			//minx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE], "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date])), if([Start Date] <= Today() && [Start Date] <= min('Calendar'[Date]) && JOB[TARGET_COMPLETION_DATE] >= today() , divide(DATEDIFF( today(), JOB[TARGET_COMPLETION_DATE],  Day), 30), blank()))
+			minx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE], "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date])), if([Start Date] <= Today() && [Start Date] <= min('Calendar'[Date]) && JOB[TARGET_COMPLETION_DATE] >= today() , divide(DATEDIFF( today(), JOB[TARGET_COMPLETION_DATE],  Day), 30), if([Start Date] > today() && [TARGET_COMPLETION_DATE] >= today(), divide(DATEDIFF([Start Date], JOB[TARGET_COMPLETION_DATE], DAY), 30), blank())))
+		formatString: #,0.00
+		lineageTag: 3ad023e9-4b05-4ea9-8411-44826b175a05
+
+	measure 'Backlog_Cumulative Current Contract' = ```
+			
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE], "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "contract", [Current Contract Amount]), 
+			//if(min('Calendar'[Date]) >= [Start Date], [contract], 0))
+			[contract])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: bcac528e-05af-4ba8-9c02-af39722b8092
+
+	measure 'Backlog_Remaining Monthly Costs_Table' = ```
+			
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE],  "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Months", [Backlog Months_Contract], "forecast", [Cumulative Forecast], "actual", [Cumulative Actual Cost]), 
+			if(min('Calendar'[Date]) > JOB[TARGET_COMPLETION_DATE], blank(), if([Months] < 1.25 , [forecast] - [actual],
+			 Divide([forecast] - [actual], [Months]))))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1669ef43-eada-4e7a-95e5-440607991e26
+
+	measure 'Backlog_Remaining Monthly Revenue_Table' = ```
+			
+			//sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE],  "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Months", [Backlog Months_Contract]), if(min('Calendar'[Date]) > JOB[TARGET_COMPLETION_DATE], blank(), if([Start Date] <= Today() && [Start Date] <= min('Calendar'[Date]) && [Months] < 1 , [Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs], if([Start Date] <= Today() && [Start Date] <= min('Calendar'[Date]) , Divide([Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs], [Months], blank())))))
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE],  "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Months", [Backlog Months_Contract]), if(min('Calendar'[Date]) > JOB[TARGET_COMPLETION_DATE], blank(), if([Months] < 1.25 , [Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs],  
+			Divide([Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs], [Months]))))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 195d97eb-e5ac-4e92-8407-57604318bc36
+
+	measure 'Monthly GP Backlog _ Table' = [Backlog_Remaining Monthly Revenue_Table] - [Backlog_Remaining Monthly Costs_Table]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: d292cd87-5037-4da5-8eca-2cc074faa7b8
+
+	measure 'Target Completion Date Flag' = if(or(min(JOB[TARGET_COMPLETION_DATE]) = blank(),min(JOB[TARGET_COMPLETION_DATE]) < today()) && ([Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs]) > 5, 1, 0)
+		formatString: 0
+		lineageTag: 956526dc-454b-4fcb-9b82-051200fb070a
+
+	measure 'Total Backlog $' = sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER],  "Rev", [Cumulative Rev Amount Across Jobs], "Contract", [Backlog_Cumulative Current Contract]),  [Contract] - [Rev])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 55921e3c-3a94-4c22-bde0-26bdaa9b6a2a
+
+	measure 'Backlog_Remaining Monthly Revenue' = ```
+			//sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE], "Completion", if(JOB[TARGET_COMPLETION_DATE] = blank(), date(2024, 11, 30), JOB[TARGET_COMPLETION_DATE]), "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date])), if([Start Date] <= Today() && [Start Date] <= min('Calendar'[Date]) , Divide([Cumulative Current Contract _ Backlog] - [Cumulative Rev Amount Across Jobs], DATEDIFF( min('Calendar'[Date]), [Completion],  MONTH)), blank()))
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE],  "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Months", [Backlog Months_Contract]), 
+			if(min('Calendar'[Date]) > JOB[TARGET_COMPLETION_DATE], blank(), if( [Start Date] <= max('Calendar'[Date]) && [Months] <= 2  && month([Start Date]) <> Month([TARGET_COMPLETION_DATE]), divide([Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs], 2, blank()),
+			if( [Start Date] <= max('Calendar'[Date]) && [Months] < 1.25 , [Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs],
+			if( [Start Date] <= max('Calendar'[Date]) , Divide([Backlog_Cumulative Current Contract] - [Cumulative Rev Amount Across Jobs], [Months], blank()))))))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 189344a8-1716-4b5f-afc9-db90fb80a68b
+
+	measure 'Monthly GP Backlog' = [Backlog_Remaining Monthly Revenue] - [Backlog_Remaining Monthly Costs]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3800ee54-0548-400f-ad40-7d5e2df6dc5f
+
+	measure 'Backlog_Remaining Monthly Costs' = ```
+			
+			//sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE],  "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Months", [Backlog Months_Contract], "forecast", [Cumulative Forecast], "actual", [Cumulative Actual Cost]), if(min('Calendar'[Date]) > JOB[TARGET_COMPLETION_DATE], blank(), if([Start Date] <= Today() && [Start Date] <= min('Calendar'[Date]) && [Months] < 1 , [forecast] - [actual],if([Start Date] <= Today() && [Start Date] <= min('Calendar'[Date]) , Divide([forecast] - [actual], [Months], blank())))))
+			sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER], JOB[START_DATE], JOB[Min Transaction Date], JOB[TARGET_COMPLETION_DATE],  "Start Date", if(JOB[START_DATE] > Date(2000, 1, 1), JOB[START_DATE], JOB[Min Transaction Date]), "Months", [Backlog Months_Contract], "forecast", [Cumulative Forecast], "actual", [Cumulative Actual Cost]), 
+			if(min('Calendar'[Date]) > JOB[TARGET_COMPLETION_DATE], blank(), 
+			if( [Start Date] <= max('Calendar'[Date]) && [Months] <= 2  && month([Start Date]) <> Month([TARGET_COMPLETION_DATE]), divide([forecast] - [actual], 2, blank()),
+			if([Start Date] <= max('Calendar'[Date]) && [Months] < 1.25 , [forecast] - [actual],
+			if( [Start Date] <= max('Calendar'[Date]) , Divide([forecast] - [actual], [Months], blank()))))))
+			```
+		lineageTag: 0fcecaf2-2094-4be1-8a97-0ebfa31dd2c2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Costs' = sumx(SUMMARIZE(JOB, JOB[JOB_NUMBER],  "Forecast", [Cumulative Forecast], "Actual", [Cumulative Actual Cost]),  [Forecast] - [Actual])
+		lineageTag: b9fbf681-4612-4ed3-8a7c-427656378658
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Backlog GP $' = [Total Backlog $] - [Remaining Costs]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2a607179-3f16-43fc-8fdc-0ab54aab38b5
+
+	partition 'Backlog Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

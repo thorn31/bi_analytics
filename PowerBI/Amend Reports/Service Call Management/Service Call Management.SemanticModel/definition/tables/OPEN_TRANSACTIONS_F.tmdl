@@ -1,0 +1,775 @@
+table OPEN_TRANSACTIONS_F
+	lineageTag: f9637c97-4b14-425a-894f-4a710baffe4c
+
+	column CUSTNMBR
+		dataType: string
+		lineageTag: 30c70105-f160-47a1-ae99-33f36deb3a0f
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPRCSTNM
+		dataType: string
+		lineageTag: 6e35d1cb-09c1-41bd-bf09-f92b0b9a7ff5
+		summarizeBy: none
+		sourceColumn: CPRCSTNM
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOCNUMBR
+		dataType: string
+		lineageTag: 4b4b2779-3d86-4d30-b53e-763139937407
+		summarizeBy: none
+		sourceColumn: DOCNUMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHEKNMBR
+		dataType: string
+		lineageTag: 5765266e-e953-4d7f-8882-3c19a8b2aab9
+		summarizeBy: none
+		sourceColumn: CHEKNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column BACHNUMB
+		dataType: string
+		lineageTag: fe6b8cc1-19e8-4021-afe8-169cf0646433
+		summarizeBy: none
+		sourceColumn: BACHNUMB
+
+		annotation SummarizationSetBy = Automatic
+
+	column BCHSOURC
+		dataType: string
+		lineageTag: 5cc98ae7-a7af-437f-a232-1fa0ba87322e
+		summarizeBy: none
+		sourceColumn: BCHSOURC
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRXSORCE
+		dataType: string
+		lineageTag: a341925f-f746-40eb-a879-2c7964209bba
+		summarizeBy: none
+		sourceColumn: TRXSORCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RMDTYPAL
+		dataType: double
+		lineageTag: 180be33a-0cad-4b26-b0ab-edadfdbce2f8
+		summarizeBy: sum
+		sourceColumn: RMDTYPAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CSHRCTYP
+		dataType: double
+		lineageTag: 89183dca-ca80-48ba-b8a1-8ef5056b7fd3
+		summarizeBy: sum
+		sourceColumn: CSHRCTYP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CBKIDCRD
+		dataType: string
+		lineageTag: f651cfee-ee26-44e8-baa5-3f9ae571dc05
+		summarizeBy: none
+		sourceColumn: CBKIDCRD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CBKIDCSH
+		dataType: string
+		lineageTag: e6702cc2-832e-4720-b869-d35e02e3c4ca
+		summarizeBy: none
+		sourceColumn: CBKIDCSH
+
+		annotation SummarizationSetBy = Automatic
+
+	column CBKIDCHK
+		dataType: string
+		lineageTag: 404cf05b-ece2-40db-92c6-ee212fb5b482
+		summarizeBy: none
+		sourceColumn: CBKIDCHK
+
+		annotation SummarizationSetBy = Automatic
+
+	column DUEDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f231946e-b5de-45d2-aa56-06a50bf333f9
+		summarizeBy: none
+		sourceColumn: DUEDATE
+
+		variation Variation
+			isDefault
+			relationship: 54bfbdd7-6e11-4c73-bbb0-fc65bafe2ffc
+			defaultHierarchy: LocalDateTable_bb15f284-7b12-463e-a9c4-99deba2bdfad.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOCDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 62f11df0-136b-4552-bdaa-7760e6e42179
+		summarizeBy: none
+		sourceColumn: DOCDATE
+
+		variation Variation
+			isDefault
+			relationship: a00bfa50-420e-41ec-a573-290d8393fbe5
+			defaultHierarchy: LocalDateTable_5d34ecff-b08a-4195-96aa-bbe1838c84a1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column POSTDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 28fec08a-946b-45c8-b7f8-67d249617e81
+		summarizeBy: none
+		sourceColumn: POSTDATE
+
+		variation Variation
+			isDefault
+			relationship: 76fa9d51-841a-48c5-bca6-c16ef611c500
+			defaultHierarchy: LocalDateTable_94301b25-21a8-4b87-85fd-d52dcf5a2675.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column PSTUSRID
+		dataType: string
+		lineageTag: 22bf124d-c0ae-45d3-a725-9851e8405c0f
+		summarizeBy: none
+		sourceColumn: PSTUSRID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GLPOSTDT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 40a4bc6e-79c0-4e95-98bc-5eef964416f6
+		summarizeBy: none
+		sourceColumn: GLPOSTDT
+
+		variation Variation
+			isDefault
+			relationship: 34e66dce-f403-47cd-a78d-1f1f634fc7fb
+			defaultHierarchy: LocalDateTable_642e469c-fa06-4889-a5c5-da80969ee27d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSTEDTDT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 52b6ac5f-69ba-4fb9-acbc-505c00809010
+		summarizeBy: none
+		sourceColumn: LSTEDTDT
+
+		variation Variation
+			isDefault
+			relationship: 63d50a12-a620-4979-ae03-a13383ae10c6
+			defaultHierarchy: LocalDateTable_ef2c59c0-67cf-4d48-a6f0-98880a30fca3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSTUSRED
+		dataType: string
+		lineageTag: fa7dc5c1-169d-4cc8-a69b-5212e7d73af9
+		summarizeBy: none
+		sourceColumn: LSTUSRED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORTRXAMT
+		dataType: double
+		lineageTag: ef7f8d33-8243-45b1-b20c-605906785be0
+		summarizeBy: sum
+		sourceColumn: ORTRXAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CURTRXAM
+		dataType: double
+		lineageTag: 39d69752-6963-45ef-a746-91a5b7a9a458
+		summarizeBy: sum
+		sourceColumn: CURTRXAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SLSAMNT
+		dataType: double
+		lineageTag: afd9203d-e266-48be-ae60-ddf98a123e33
+		summarizeBy: sum
+		sourceColumn: SLSAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COSTAMNT
+		dataType: double
+		lineageTag: abdda2e2-3ffd-4e41-aaa4-780c9397bace
+		summarizeBy: sum
+		sourceColumn: COSTAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FRTAMNT
+		dataType: double
+		lineageTag: 343eb492-fa28-46a3-b114-93686863bc55
+		summarizeBy: sum
+		sourceColumn: FRTAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MISCAMNT
+		dataType: double
+		lineageTag: 1dcce2f4-ed3a-4126-adab-e6729cd4e5c7
+		summarizeBy: sum
+		sourceColumn: MISCAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAXAMNT
+		dataType: double
+		lineageTag: d7a0508b-d671-48f7-8b39-38bda72acce0
+		summarizeBy: sum
+		sourceColumn: TAXAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COMDLRAM
+		dataType: double
+		lineageTag: 6f378067-45a1-4aa0-9795-f8aee3f11a85
+		summarizeBy: sum
+		sourceColumn: COMDLRAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CASHAMNT
+		dataType: double
+		lineageTag: b17455c7-4824-4d7d-829a-a952fea8fe16
+		summarizeBy: sum
+		sourceColumn: CASHAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISTKNAM
+		dataType: double
+		lineageTag: 42cb77de-3455-463f-98f8-7b64c23442e8
+		summarizeBy: sum
+		sourceColumn: DISTKNAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISAVAMT
+		dataType: double
+		lineageTag: 85b83661-f0c4-402a-8e19-63fb297b6959
+		summarizeBy: sum
+		sourceColumn: DISAVAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISAVTKN
+		dataType: double
+		lineageTag: abf6e092-4f23-43ef-9b30-bc7865b7a73a
+		summarizeBy: sum
+		sourceColumn: DISAVTKN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISCRTND
+		dataType: double
+		lineageTag: 310258f2-0adf-4e5c-9e93-17c2e88058f8
+		summarizeBy: sum
+		sourceColumn: DISCRTND
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISCDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 22668a43-e4f9-4994-9f55-1900ac899635
+		summarizeBy: none
+		sourceColumn: DISCDATE
+
+		variation Variation
+			isDefault
+			relationship: 6a5cd58f-4be3-4436-b01f-5d5fc580a1d4
+			defaultHierarchy: LocalDateTable_47a0a9ed-d6a7-45b3-8712-f282871bb09b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSCDLRAM
+		dataType: double
+		lineageTag: 033d6526-9f2a-4d1a-aa04-3305c0da8420
+		summarizeBy: sum
+		sourceColumn: DSCDLRAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DSCPCTAM
+		dataType: double
+		lineageTag: 0f46d3e4-9f72-4525-9105-1cce609c22ed
+		summarizeBy: sum
+		sourceColumn: DSCPCTAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WROFAMNT
+		dataType: double
+		lineageTag: fc2a1365-ef5b-4386-8356-f7f6b934afb2
+		summarizeBy: sum
+		sourceColumn: WROFAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TRXDSCRN
+		dataType: string
+		lineageTag: 74cd7e83-b0d6-43dd-93bd-27ff57275763
+		summarizeBy: none
+		sourceColumn: TRXDSCRN
+
+		annotation SummarizationSetBy = Automatic
+
+	column CSPORNBR
+		dataType: string
+		lineageTag: 48d0e16d-4bbb-4b8a-9eed-c8c5f4246c70
+		summarizeBy: none
+		sourceColumn: CSPORNBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column SLPRSNID
+		dataType: string
+		lineageTag: 209e558e-e7d8-4d6a-ba31-76e6f341a676
+		summarizeBy: none
+		sourceColumn: SLPRSNID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SLSTERCD
+		dataType: string
+		lineageTag: d05f38f0-7284-4211-a1a1-93049115a994
+		summarizeBy: none
+		sourceColumn: SLSTERCD
+
+		annotation SummarizationSetBy = Automatic
+
+	column DINVPDOF
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4aea60e4-934f-40a8-9763-be6a3e0f1897
+		summarizeBy: none
+		sourceColumn: DINVPDOF
+
+		variation Variation
+			isDefault
+			relationship: e38bb7e2-0b94-4892-b581-f674fcccdab9
+			defaultHierarchy: LocalDateTable_50ba8d0a-c214-4c60-9636-91d2b083e293.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column PPSAMDED
+		dataType: double
+		lineageTag: eb6101a1-dc58-448a-8c52-e81a872f826f
+		summarizeBy: sum
+		sourceColumn: PPSAMDED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GSTDSAMT
+		dataType: double
+		lineageTag: 91646b15-94e6-4760-a6c6-da8c3f64170c
+		summarizeBy: sum
+		sourceColumn: GSTDSAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DELETE1
+		dataType: double
+		lineageTag: 3fceb365-a910-4cab-9c1d-33061a0130d9
+		summarizeBy: sum
+		sourceColumn: DELETE1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AGNGBUKT
+		dataType: double
+		lineageTag: d9cb10e3-7add-49ae-be4b-c78077508925
+		summarizeBy: sum
+		sourceColumn: AGNGBUKT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VOIDSTTS
+		dataType: double
+		lineageTag: 385ab54f-616f-4369-8eec-63779ed85bc2
+		summarizeBy: sum
+		sourceColumn: VOIDSTTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VOIDDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2aa49f89-6fd1-4683-8e72-0538bc64231a
+		summarizeBy: none
+		sourceColumn: VOIDDATE
+
+		variation Variation
+			isDefault
+			relationship: 489021f4-9866-461e-9e70-3ceaa87068e2
+			defaultHierarchy: LocalDateTable_baee53e5-31d8-4e45-9586-0421c65b3c1b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAXSCHID
+		dataType: string
+		lineageTag: 8f04d51d-7477-4d30-bb4b-ee93dd028ef6
+		summarizeBy: none
+		sourceColumn: TAXSCHID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURNCYID
+		dataType: string
+		lineageTag: e8164f00-78d5-44fc-b29d-9873e9ed8dd6
+		summarizeBy: none
+		sourceColumn: CURNCYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PYMTRMID
+		dataType: string
+		lineageTag: d7e930dd-acc0-4448-9fa6-9f0eb2489a9e
+		summarizeBy: none
+		sourceColumn: PYMTRMID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPMTHD
+		dataType: string
+		lineageTag: cb302d8e-41fd-4af4-b4e2-cb05c63915a4
+		summarizeBy: none
+		sourceColumn: SHIPMTHD
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRDISAMT
+		dataType: double
+		lineageTag: b0227a17-2a72-406f-ba88-150d4114d08c
+		summarizeBy: sum
+		sourceColumn: TRDISAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SLSCHDID
+		dataType: string
+		lineageTag: e095fa58-a849-47a1-b383-51e631d5664d
+		summarizeBy: none
+		sourceColumn: SLSCHDID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FRTSCHID
+		dataType: string
+		lineageTag: 834a036a-d80b-434a-bed7-1d001a179c5d
+		summarizeBy: none
+		sourceColumn: FRTSCHID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSCSCHID
+		dataType: string
+		lineageTag: d588ac7e-fdcd-4433-9552-323830cd28f7
+		summarizeBy: none
+		sourceColumn: MSCSCHID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOTEINDX
+		dataType: double
+		lineageTag: e0b751c5-9b03-4605-b1fe-1be095d97aa3
+		summarizeBy: sum
+		sourceColumn: NOTEINDX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TAX_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eded9f68-53ae-4160-9df3-75625530b274
+		summarizeBy: none
+		sourceColumn: TAX_DATE
+
+		variation Variation
+			isDefault
+			relationship: d49ea8b3-cc5d-4070-b1a5-13ba1357c62e
+			defaultHierarchy: LocalDateTable_f01fab4d-aa91-41ef-a8c9-deae6fe393db.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column APLYWITH
+		dataType: double
+		lineageTag: 6258ed06-8cb4-44ba-acda-4d929397acce
+		summarizeBy: sum
+		sourceColumn: APLYWITH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SALEDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 503c5f30-894c-4c60-937b-4c55904c7d4e
+		summarizeBy: none
+		sourceColumn: SALEDATE
+
+		variation Variation
+			isDefault
+			relationship: e5fb624b-1d3d-4275-9e78-20b95f530874
+			defaultHierarchy: LocalDateTable_d0b0fafd-2a43-42cf-b4c1-2da93e58802e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CORRCTN
+		dataType: double
+		lineageTag: 3f9269b4-cac1-4419-a2ee-68f46cf52d70
+		summarizeBy: sum
+		sourceColumn: CORRCTN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SIMPLIFD
+		dataType: double
+		lineageTag: 2c912652-abd6-42b2-8860-0daf908aa647
+		summarizeBy: sum
+		sourceColumn: SIMPLIFD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ELECTRONIC
+		dataType: double
+		lineageTag: a4a0eff9-717f-47de-9c76-7f4957e24d61
+		summarizeBy: sum
+		sourceColumn: ELECTRONIC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ECTRX
+		dataType: double
+		lineageTag: 61723e40-0db7-4aa8-9ab0-5d9623052392
+		summarizeBy: sum
+		sourceColumn: ECTRX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BKTSLSAM
+		dataType: double
+		lineageTag: 321fe37f-7992-4940-a9b0-89f4dbc5cd9b
+		summarizeBy: sum
+		sourceColumn: BKTSLSAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BKTFRTAM
+		dataType: double
+		lineageTag: 4a3a0b0a-0b3e-4ba0-ac56-fffc51b8b9a3
+		summarizeBy: sum
+		sourceColumn: BKTFRTAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BKTMSCAM
+		dataType: double
+		lineageTag: 884c8908-f046-41a5-97f8-7752e2bab263
+		summarizeBy: sum
+		sourceColumn: BKTMSCAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BACKOUTTRADEDISC
+		dataType: double
+		lineageTag: b61d3c31-edca-4f43-b645-5325e9674044
+		summarizeBy: sum
+		sourceColumn: BACKOUTTRADEDISC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FACTORING
+		dataType: double
+		lineageTag: e58cbb63-e783-4d3d-ab20-418d61c38ef7
+		summarizeBy: sum
+		sourceColumn: FACTORING
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIRECTDEBIT
+		dataType: double
+		lineageTag: ef1c1ca1-5378-4ea1-9540-6b3792aff0bb
+		summarizeBy: sum
+		sourceColumn: DIRECTDEBIT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ADRSCODE
+		dataType: string
+		lineageTag: b865c8a6-2a4d-451b-8ab8-9a90ceee5fdd
+		summarizeBy: none
+		sourceColumn: ADRSCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column EFTFLAG
+		dataType: double
+		lineageTag: c40621a1-b3f3-488c-8d78-19a84abbd36f
+		summarizeBy: sum
+		sourceColumn: EFTFLAG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DEX_ROW_TS
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 33df39bf-86de-42d8-a2fc-cf96d0746e4b
+		summarizeBy: none
+		sourceColumn: DEX_ROW_TS
+
+		variation Variation
+			isDefault
+			relationship: ca293caf-c935-4e27-ab19-401e21207337
+			defaultHierarchy: LocalDateTable_64fe1dd5-f9b1-4852-a834-01f2f06edc86.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEX_ROW_ID
+		dataType: double
+		lineageTag: dffcf4e4-a1cd-4d9f-bade-8fb94ae658e8
+		summarizeBy: count
+		sourceColumn: DEX_ROW_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: eb8d0f42-1d69-447a-a8dd-6c33311cda89
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: 7d022ba2-3a9c-4bf4-9c29-9673d89d3256
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_KEY
+		dataType: string
+		lineageTag: 1c7f84b2-3789-4f91-ae9c-045660a22428
+		summarizeBy: none
+		sourceColumn: CUSTOMER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_NAME
+		dataType: string
+		lineageTag: 98fdcf1a-6be6-4e74-80d2-767a783d8a1c
+		summarizeBy: none
+		sourceColumn: CUSTOMER_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OPEN_TRANSACTIONS_F = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    OPEN_TRANSACTIONS_F_Table = DW_FINAL_Schema{[Name="OPEN_TRANSACTIONS_F",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(OPEN_TRANSACTIONS_F_Table, each ([SOURCE] = "SERV_GP"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

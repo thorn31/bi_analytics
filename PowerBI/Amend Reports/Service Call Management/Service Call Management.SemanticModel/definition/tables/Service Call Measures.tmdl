@@ -1,0 +1,286 @@
+table 'Service Call Measures'
+	lineageTag: a93fddc8-bc78-47ed-840c-c78b46b62b50
+
+	measure 'Amount Billed' = sum('*CALL DETAILS'[BILLING_AMOUNT])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b0842794-1981-4ada-b923-8a0f6da91d08
+
+	measure 'Cumulative Actual Costs' =
+			
+			var maxdat = [Max Date]
+			return
+			 if(max('*Calendar'[Date]) > today(), blank(), calculate([Actual Costs], filter(all('*Calendar'), '*Calendar'[Date] <= max('*Calendar'[Date]))))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 27dbbf0e-58e5-4a83-b329-f15a57e0bd6a
+
+	measure 'Actual Costs' =
+			//calculate(sum(CALLS_F[COST_ALL]), CALLS_F[In Current Contract] = 1)
+			 //calculate(sum('*CALLS COSTS'[Value]), '*CALLS COSTS'[In Current Contract]= 1)
+			sum('*CALLS COSTS'[Value])
+		lineageTag: 831592ec-938a-4a3c-b946-125d81ceefb5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual GP$ _' =
+			
+			//sumx(SUMMARIZE('CONTRACTS MAPPING', 'CONTRACTS MAPPING'[Customer-Contract], "contract", [Amount Billed] , "cost", [Cumulative Actual Costs]),  [contract]-[cost])
+			calculate([Amount Billed] - [Actual Costs], filter('*CALLS_F', '*CALLS_F'[STATUS_OF_CALL] = "CLOSED"))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2552c086-8f34-4498-a04c-bd751d423c00
+
+	measure 'Actual GP%' = divide([Actual GP$ _], calculate([Amount Billed], filter('*CALLS_F',  '*CALLS_F'[STATUS_OF_CALL] = "CLOSED")), blank())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7a7d86bd-9fcd-4473-bbd6-9f54f6b8f2f5
+
+	measure 'Number of Calls' = COUNT('*CALLS_F'[SERVICE_CALL_ID])
+		formatString: #,0
+		lineageTag: 3c6d937e-9fd1-4b12-abcf-8747c929fb6a
+
+	measure 'NBR Total' = calculate(sum('*CALLS_F'[COST_ALL]), filter('*CALLS_F', OR('*CALLS_F'[INVOICE_TYPE_UDF1A] = "NON BILLABLE", '*CALLS_F'[INVOICE_TYPE_UDF1A] = "NBS") && or('*CALLS_F'[STATUS_OF_CALL] = "CLOSED", '*CALLS_F'[STATUS_OF_CALL] = "COMPLETE")))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1a5f5121-4c7d-44e4-a96c-26fbaf80a712
+
+	measure 'Average Days Open' = averagex('*CALLS_F', if('*CALLS_F'[Days Open] >= 0, '*CALLS_F'[Days Open], blank()))
+		formatString: 0
+		lineageTag: 2957a3ca-e4d2-4f4a-b56b-684cec7b382f
+
+	measure 'Number of Calls FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Number of Calls], '*Calendar'[Fiscal Year] = maxyear)
+		formatString: #,0
+		lineageTag: bf9acfd7-929d-4c79-a4d2-ccdaa538f317
+
+	measure 'NBR FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([NBR Total], filter('*Calendar', '*Calendar'[Fiscal Year] = maxyear))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: d99afac8-5efa-4a76-8de4-3ff8cd0591a1
+
+	measure 'Late Open Calls' = ```
+			
+			CALCULATE( 
+			    COUNT('*CALLS_F'[SERVICE_CALL_ID]), filter('*CALLS_F',
+			    '*CALLS_F'[STATUS_OF_CALL]="Open" &&
+			  Datediff('*CALLS_F'[CREATED_DATE], today(), DAY) > 7))
+			```
+		formatString: 0
+		lineageTag: 6e207cf4-7b5f-451b-8fc3-3e57934f9d86
+
+	measure 'Late Open Calls_Created Date' = calculate([Late Open Calls], USERELATIONSHIP('*Calendar'[Date], '*CALLS_F'[CREATED_DATE]))
+		formatString: 0
+		lineageTag: 51cd290b-1e93-443a-abe3-8589f0cd3d9c
+
+	measure 'Actual Costs % of Total_Type of Service' = divide([Actual Costs_Repair], calculate([Actual Costs], ALLSELECTED('*CALLS_F'[TYPE_OF_CALL])))
+		formatString: #,0%;-#,0%;#,0%
+		lineageTag: 5c366448-2faf-43c7-9d8c-eef321aeb14c
+
+	measure 'Actual Costs_Repair' = ```
+			
+			 calculate(sum('*CALLS COSTS'[Value]), '*CALLS_F'[TYPE_OF_CALL] = "REPAIR")
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 957963ec-1930-47b4-8949-32aeb6397fc5
+
+	measure 'Actual Costs_Quoted Service' = ```
+			
+			 calculate(sum('*CALLS COSTS'[Value]), '*CALLS_F'[TYPE_OF_CALL] = "QUOTED SERVICE")
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 56a4dccd-5f3c-44cb-bf6d-5e30a7d10384
+
+	measure 'Average Amount Billed FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Average Amount Billed],'*Calendar'[Fiscal Year] = maxyear)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3a71e7b6-1ba3-4da5-9ae8-36d9b745cf2c
+
+	measure 'Billings Forward Total' = calculate([Amount Billed], filter('*CALLS_F', '*CALLS_F'[BILLING_TYPE_UDF2A] = "BILLINGS FORWARD" && '*CALLS_F'[STATUS_OF_CALL] = "Open" && '*CALLS_F'[TYPE_OF_CALL] = "REPAIR"))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7b57db5c-8066-4635-9fa1-d8f349936c9d
+
+	measure 'GP$ FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Actual GP$ _], '*Calendar'[Fiscal Year] = maxyear)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 6676f761-321c-4647-b383-9c8ff0e4c4f9
+
+	measure 'GP% FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Actual GP%], '*Calendar'[Fiscal Year] = maxyear)
+		formatString: 0%;-0%;0%
+		lineageTag: 2e8cb84d-4013-4d19-9bbc-04f86c071f1a
+
+	measure 'Billings Forward_Created Date' = calculate([Billings Forward Total], USERELATIONSHIP('*Calendar'[Date], '*CALLS_F'[CREATED_DATE]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 5314adfc-4ef1-4bb1-8568-d3588bea5e07
+
+	measure 'Revenue FYTD_' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Amount Billed], '*Calendar'[Fiscal Year] = maxyear)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a4a8dba6-a3d0-46fe-aad5-1537b4fb6ae5
+
+	measure 'Average Amount Billed' =
+			
+			
+			calculate(average('*CALL DETAILS'[BILLING_AMOUNT]), '*CALLS_F'[STATUS_OF_CALL] = "CLOSED")
+		lineageTag: 1efb4452-14f8-42c2-8da5-740cbd20fcc9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Amount Billed FYTD LY' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar')) - 1
+			var dat = date(maxyear, month(maxdat), day(maxdat))
+			var dat2 = if(year([Max Date]) = maxyear,  date(maxyear - 1, month(maxdat), day(maxdat)), dat)
+			return
+			calculate([Average Amount Billed], filter('*Calendar', '*Calendar'[Fiscal Year] = maxyear && '*Calendar'[Date] < dat2))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 6321e322-86f9-4515-beb3-35abb2a3e4d8
+
+	measure 'Number of Calls FYTD LY' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar')) - 1
+			var dat = date(maxyear, month(maxdat), day(maxdat))
+			var dat2 = if(year([Max Date]) = maxyear,  date(maxyear - 1, month(maxdat), day(maxdat)), dat)
+			return
+			calculate([Number of Calls], filter('*Calendar', '*Calendar'[Fiscal Year] = maxyear && '*Calendar'[Date] < dat2))
+		formatString: #,0
+		lineageTag: 2b2eb282-ad34-4b08-b454-1bcb562b336a
+
+	measure test_ =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar')) - 1
+			var dat = date(maxyear, month(maxdat), day(maxdat))
+			var dat2 = if(year([Max Date]) = maxyear,  date(maxyear - 1, month(maxdat), day(maxdat)), dat)
+			return
+			dat2
+		formatString: General Date
+		lineageTag: 17df81a5-a479-46be-93be-8cfa79c8676a
+
+	measure 'GP$ FYTD LY' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar')) - 1
+			var dat = date(maxyear, month(maxdat), day(maxdat))
+			var dat2 = if(year([Max Date]) = maxyear,  date(maxyear - 1, month(maxdat), day(maxdat)), dat)
+			return
+			calculate([Actual GP$ _], filter('*Calendar', '*Calendar'[Fiscal Year] = maxyear && '*Calendar'[Date] < dat2))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1c2528ab-f672-4691-9052-91db757a60c9
+
+	measure 'GP% FYTD LY' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar')) - 1
+			var dat = date(maxyear, month(maxdat), day(maxdat))
+			var dat2 = if(year([Max Date]) = maxyear,  date(maxyear - 1, month(maxdat), day(maxdat)), dat)
+			return
+			calculate([Actual GP%], filter('*Calendar', '*Calendar'[Fiscal Year] = maxyear && '*Calendar'[Date] < dat2))
+		formatString: 0%;-0%;0%
+		lineageTag: 434b8b61-0b07-405b-b36d-6a3d5e0690eb
+
+	measure 'GP$ LFY (Full Year)' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar')) - 1
+			var dat = date(maxyear, month(maxdat), day(maxdat))
+			var dat2 = if(year([Max Date]) = maxyear,  date(maxyear - 1, month(maxdat), day(maxdat)), dat)
+			return
+			calculate([Actual GP$ _], filter('*Calendar', '*Calendar'[Fiscal Year] = maxyear))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4bf8ea0c-084e-496b-a1c1-feb40a86a687
+
+	measure 'GP$ graph max' =
+			
+			var TY = maxx(SUMMARIZE('*Calendar', '*Calendar'[YearMonthShort], "TY", [GP$ FYTD], "LY", [GP$ LFY (Full Year)]), [TY])
+			var LY = maxx(SUMMARIZE('*Calendar', '*Calendar'[YearMonthShort], "TY", [GP$ FYTD], "LY", [GP$ LFY (Full Year)]), [LY])
+			return
+			if( TY > LY, TY, LY) * 1.05
+		lineageTag: 17a9486d-7583-4f2d-a07c-12bfe93361a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual Costs FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Actual Costs], '*Calendar'[Fiscal Year] = maxyear)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: fd7cc4d0-178b-46f1-a4f7-4857ca1a7628
+
+	measure TT = "O"
+		lineageTag: c67ffb78-c62a-4ae3-bf62-3575d333024f
+
+	measure 'Average Days Open FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Average Days Open_Created Date],'*Calendar'[Fiscal Year] = maxyear)
+		formatString: 0.0
+		lineageTag: 580cb6a6-b8dd-4ee0-b7cf-ec3f8f0205b9
+
+	measure 'Average Days Open_Created Date' = calculate([Average Days Open], USERELATIONSHIP('*Calendar'[Date], '*CALLS_F'[CREATED_DATE]))
+		lineageTag: d487f61d-2b84-475b-893f-00acaf99ddcf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Days Open FYTD LY' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar')) - 1
+			var dat = date(maxyear, month(maxdat), day(maxdat))
+			var dat2 = if(year([Max Date]) = maxyear,  date(maxyear - 1, month(maxdat), day(maxdat)), dat)
+			return
+			calculate([Average Days Open_Created Date], filter('*Calendar', '*Calendar'[Fiscal Year] = maxyear && '*Calendar'[Date] < dat2))
+		formatString: 0.0
+		lineageTag: 2cf419f9-6b83-495d-b724-6742ca581120
+
+	measure 'Number of Calls_Created Date' = calculate([Number of Calls], USERELATIONSHIP('*CALLS_F'[CREATED_DATE], '*Calendar'[Date]))
+		formatString: #,0
+		lineageTag: 177f9ba6-5aaf-4dcd-b8b3-6d8003cdff3a
+
+	measure 'Amount Billed FYTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('*Calendar'[Fiscal Year]), ALLSELECTED('*Calendar'))
+			return
+			calculate([Amount Billed],'*Calendar'[Fiscal Year] = maxyear)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c522bf41-db99-4fac-b7ed-32813b5b86fd
+
+	partition 'Service Call Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

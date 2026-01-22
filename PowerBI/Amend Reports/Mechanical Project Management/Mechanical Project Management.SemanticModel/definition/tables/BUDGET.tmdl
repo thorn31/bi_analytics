@@ -1,0 +1,182 @@
+table BUDGET
+	lineageTag: fce81442-b9fd-46c9-b848-66dfe9328198
+
+	measure 'Revenue Budget YTD' =
+			
+			var maxdat = [Max Date]
+			var maxyear = calculate(max('Calendar'[Fiscal Year]), ALLSELECTED('Calendar'))
+			return
+			calculate([Revenue Budget], 'Calendar'[Fiscal Year] = maxyear) * -1
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b99603f0-e359-460a-96fc-44e35770f234
+
+	measure Buffer = if(BUDGET[Revenue Budget YTD] > [Revenue YTD], BUDGET[Revenue Budget YTD] * 1.1, [Revenue YTD] * 1.1)
+		lineageTag: b0661f93-aae2-4a70-b866-9d3967cd9091
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Budget' = calculate(sum(BUDGET[BUDGETAMT]), filter(BUDGET, BUDGET[ACCOUNT_TYPE] = "REVENUE"))
+		lineageTag: b2484487-2467-4f78-ad78-676d00c70be8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BUDGETID
+		dataType: string
+		lineageTag: f99e9761-3de7-43a7-a591-6b5a1899dc21
+		summarizeBy: none
+		sourceColumn: BUDGETID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERIODDT
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a8980357-4522-4bdb-93ef-4efbdc349805
+		summarizeBy: none
+		sourceColumn: PERIODDT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BUDGETAMT
+		dataType: double
+		lineageTag: b7d6b72e-ec3c-4e62-94ae-021fd2647fe3
+		summarizeBy: sum
+		sourceColumn: BUDGETAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YEAR
+		dataType: double
+		lineageTag: 5ca3f1e6-6e34-41d1-b565-a4d9bb457c7c
+		summarizeBy: sum
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_MONTH
+		dataType: double
+		lineageTag: d500ae81-b0c7-453b-91a7-50b5988c64a0
+		summarizeBy: sum
+		sourceColumn: FISCAL_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: 5ec9749c-610e-4b8e-932f-2bd6c34c2af1
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCATNUM
+		dataType: string
+		lineageTag: 28d9d244-2a12-4275-b5ee-860f00418963
+		summarizeBy: none
+		sourceColumn: ACCATNUM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTINDX
+		dataType: string
+		lineageTag: a57a068c-e04b-4def-8821-d71ccd68f150
+		summarizeBy: none
+		sourceColumn: ACTINDX
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTNUM_KEY
+		dataType: string
+		lineageTag: c4d7dc38-7ae2-4ee9-92de-c527c630fc6f
+		summarizeBy: none
+		sourceColumn: ACCTNUM_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTIDX_KEY
+		dataType: string
+		lineageTag: 51a40e94-b50b-4908-b14d-7e071489bf6c
+		summarizeBy: none
+		sourceColumn: ACCTIDX_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_TYPE
+		dataType: string
+		lineageTag: 4d52b03c-0f5a-4266-93c2-dd7baf0dbe24
+		summarizeBy: none
+		sourceColumn: ACCOUNT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVISION
+		dataType: string
+		lineageTag: 3842be0a-19b0-4438-a9fe-f6f696f07efb
+		summarizeBy: none
+		sourceColumn: DIVISION
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_1
+		dataType: string
+		lineageTag: aec651ec-418b-499a-a312-19bdb72d0256
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_2
+		dataType: string
+		lineageTag: d0516da1-ca43-4537-8042-605bed16fc29
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_3
+		dataType: string
+		lineageTag: 317492ec-2e5e-44ce-8f0e-fff4099744ee
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMST
+		dataType: string
+		lineageTag: 899ff8ae-0f79-4970-a83c-8d15a084747c
+		summarizeBy: none
+		sourceColumn: ACTNUMST
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		lineageTag: d4d9c318-5894-4b05-b555-b37a46f695a3
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BUDGET = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    BUDGET_F_Table = DW_FINAL_Schema{[Name="BUDGET_F",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(BUDGET_F_Table,{{"PERIODDT", type date}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([SOURCE] = "MECH_GP"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

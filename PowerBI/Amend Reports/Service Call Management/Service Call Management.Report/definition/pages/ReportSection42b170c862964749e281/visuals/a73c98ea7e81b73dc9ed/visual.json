@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "a73c98ea7e81b73dc9ed",
+  "position": {
+    "x": 1054.0501792114696,
+    "y": 0,
+    "z": 8000,
+    "height": 100.93189964157706,
+    "width": 183.51254480286738,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "JOBS_D"
+                        }
+                      },
+                      "Property": "TARGET_COMPLETION_DATE"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(JOB.TARGET_COMPLETION_DATE)",
+              "nativeQueryRef": "Target Completion",
+              "displayName": "Target Completion"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "JOBS_D"
+                      }
+                    },
+                    "Property": "TARGET_COMPLETION_DATE"
+                  }
+                },
+                "Function": 3
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "30D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

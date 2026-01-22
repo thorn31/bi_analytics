@@ -1,0 +1,211 @@
+relationship 40f2c70a-83bc-418b-a565-b017b77c2067
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CUSTOMERS_D.CREATED
+	toColumn: LocalDateTable_2f4d25e8-226e-4bdb-90b8-80d5e36a201f.Date
+
+relationship 5eb38506-ea61-497a-a6e6-3849fe276d68
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CUSTOMERS_D.UPDATED
+	toColumn: LocalDateTable_5b54adca-a1fe-49cb-afdc-803881595356.Date
+
+relationship 809a0e4a-129d-4968-88cd-7b55a4afdfcc
+	fromColumn: BUDGET_F.DIVISION
+	toColumn: DIVISION.'DIVISION KEY'
+
+relationship 4c0eb262-63e3-4e90-b16b-27c7c1e23ab2
+	fromColumn: POSTING_DATA_F.DIVISION
+	toColumn: DIVISION.'DIVISION KEY'
+
+relationship 749868ce-94d8-4e75-931c-d658d90ff837
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Refresh Date'.Date
+	toColumn: LocalDateTable_8931b809-08ab-4252-8179-ca3c21383cd6.Date
+
+relationship 64cbf937-0c7a-f984-0928-b315df20c168
+	fromColumn: APPOINTMENTS_F.SERVICE_CALL_KEY
+	toColumn: CALLS_F.SERVICE_CALL_KEY
+
+relationship 0d9f91b7-17c2-60e6-9e64-5b8e537c033c
+	fromColumn: SERV_TASKS_F.CUSTNMBR_KEY
+	toColumn: CUSTOMERS_D.CUSTOMER_KEY
+
+relationship 674a568a-c54c-47e3-83fe-1018f298427e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CALLS_F.COMPLETION_DATE
+	toColumn: LocalDateTable_8d221eb4-201c-477f-89c5-03c6e03aa65e.Date
+
+relationship ae076570-7435-4a24-98ed-7514a26cbb8f
+	fromColumn: CONTRACTS_D.Customer-Contract
+	toColumn: 'CONTRACTS MAPPING'.Customer-Contract
+
+relationship 6163c94f-41f5-4dc5-b940-846502bb7244
+	fromColumn: CALLS_F.'Customer - Contract'
+	toColumn: 'CONTRACTS MAPPING'.Customer-Contract
+
+relationship 4199193c-91e7-4f55-b1de-e3e4a35b7527
+	fromColumn: 'CONTRACTS MAPPING'.CUSTNMBR
+	toColumn: CUSTOMERS_D.CUSTOMER_NUMBER
+
+relationship 43e764c9-1f73-4e86-b44f-00156e4bdd94
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'CALLS COSTS'.DATE_OF_SERVICE_CALL
+	toColumn: LocalDateTable_2a249574-7315-48a3-bf2c-4c9bbab9a923.Date
+
+relationship bb950ba2-ffba-4038-b71c-01a6ebd7821e
+	fromColumn: 'CALLS COSTS'.SERVICE_CALL_ID
+	toColumn: CALLS_F.SERVICE_CALL_ID
+
+relationship 6e80a280-a859-4bff-ae9c-a14f0f9dce20
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACTS_BILLING_F.DATE1
+	toColumn: LocalDateTable_c357c417-93f4-4ea3-badf-ef0dec761ede.Date
+
+relationship 741e346d-0da7-415f-8b50-c21b0908dfe0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACTS_BILLING_F.WS_GL_POSTING_DATE
+	toColumn: LocalDateTable_e59f379f-de3d-42a7-bd84-6e80ef7a5ed8.Date
+
+relationship 4967598c-6424-4c4e-9315-91f5d922f36e
+	fromColumn: CONTRACTS_BILLING_F.Customer-Contract
+	toColumn: 'CONTRACTS MAPPING'.Customer-Contract
+
+relationship 7579e5f9-d610-4636-8f99-46faf367a507
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_e8656d71-0ea4-4096-9b0f-9ce7240092ae.Date
+
+relationship e783ace7-c8a2-4304-a5cd-2fd70edc108f
+	fromColumn: CHANGE_ORDERS_BY_MONTH.Date
+	toColumn: Calendar.Date
+
+relationship 83b07b9f-097b-4be0-a5cb-b95d7a9568c9
+	fromColumn: BUDGET_F.PERIODDT
+	toColumn: Calendar.Date
+
+relationship 71b70b38-5d44-4719-95d3-dcdb603ca0c9
+	fromColumn: POSTING_DATA_F.Date
+	toColumn: Calendar.Date
+
+relationship 82d5ff81-2f90-4352-a6a2-d50049fd3102
+	fromColumn: CONTRACTS_BILLING_F.WENNSOFT_BILLING_DATE
+	toColumn: Calendar.Date
+
+relationship 343bdc67-43a9-41ea-90dd-74e349551a52
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.WeekBeginDate
+	toColumn: LocalDateTable_ca9e521e-a39c-4bbf-a6fd-098d037b5a98.Date
+
+relationship bab646da-494f-4077-b76b-467b544ea4bc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.WeekEndDate
+	toColumn: LocalDateTable_45849c3c-e06d-451f-8616-e45b735dd37f.Date
+
+relationship 0badcda2-4a4e-4d4e-8a54-12f82d2bb4eb
+	fromColumn: 'FORECASTED CALLS COST'.'Customer - Contract'
+	toColumn: 'CONTRACTS MAPPING'.Customer-Contract
+
+relationship 2d0649de-7558-48cc-8236-98041010f493
+	fromColumn: 'CALLS COSTS'.'Cost Type'
+	toColumn: 'Cost Types'.'Cost Type'
+
+relationship 63065de5-9d09-4a6b-ac73-80620c69c5aa
+	fromColumn: 'FORECASTED CALLS COST'.'Cost Type'
+	toColumn: 'Cost Types'.'Cost Type'
+
+relationship 0fbf489f-f9ef-47ab-b7e0-aa7c0cf2fbad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FORECASTED CALLS COST'.CONTRACT_START_DATE
+	toColumn: LocalDateTable_287ff984-7355-4b13-9018-95e3a16e18e9.Date
+
+relationship 7df09b4f-e63a-4871-ac80-6db5439dbe14
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FORECASTED CALLS COST'.CONTRACT_EXPIRATION_DATE
+	toColumn: LocalDateTable_68db00b3-6e04-4ee2-a4a3-b33365193de7.Date
+
+relationship aa04a049-6211-4ef0-8c86-0a4c9375540a
+	isActive: false
+	fromColumn: APPOINTMENTS_F.TASK_DATE
+	toColumn: Calendar.Date
+
+relationship dba1229d-cb3a-495e-92aa-88c24119b6e8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CALLS_F.DATE_OF_SERVICE_CALL
+	toColumn: LocalDateTable_de817910-54ca-42f0-b798-d1ae454cca2b.Date
+
+relationship 238de80e-62b9-4b55-8968-fa831c69df12
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACT_Hour_Breakout.CONTRACT_START_DATE
+	toColumn: LocalDateTable_36fb0cc6-3a6a-46f4-99fe-6340fb69c6b3.Date
+
+relationship fd5b62c7-36c4-4470-b206-0a49b1fa3735
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACT_Hour_Breakout.CONTRACT_EXPIRATION_DATE
+	toColumn: LocalDateTable_4ed2ebea-2956-4a45-b593-72e2e76dd90c.Date
+
+relationship 72d8073e-ae6a-4ec4-823a-696f8eba24d4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACTS_D.WENNSOFT_CLOSE_DATE
+	toColumn: LocalDateTable_1997b5af-fbda-41ee-846d-31f24c5d8bd7.Date
+
+relationship 250a7415-6b51-4399-b1d7-ef97aeacbd84
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACTS_D.CONTRACT_START_DATE
+	toColumn: LocalDateTable_7568775e-9707-49cb-bf23-8bca38b29542.Date
+
+relationship b8dd41f8-03f0-42e1-8046-5bfdf87669a0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACTS_D.CONTRACT_EXPIRATION_DATE
+	toColumn: LocalDateTable_a823d9da-2d68-472e-bea7-b1c1f0ea5afc.Date
+
+relationship 67752545-b401-47b8-b226-286dae8c5510
+	fromColumn: CONTRACT_Hour_Breakout.Customer-Contract
+	toColumn: 'CONTRACTS MAPPING'.Customer-Contract
+
+relationship 05b1ae3d-2960-477b-a77b-849218816f9c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'CONTRACTS MAPPING'.'Current Contract Start'
+	toColumn: LocalDateTable_dea31c23-1eaa-490c-ab59-1e5b655fb2ca.Date
+
+relationship eb78809d-9300-48cd-bc93-61042ad5dcef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'CONTRACTS MAPPING'.'Current Contract Expiration'
+	toColumn: LocalDateTable_2e841b8c-c7b1-4df6-aaad-a1a446fc7c01.Date
+
+relationship a03faffe-7b64-4bdd-b45d-2cc70e55e4d3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACTS_TASK_SCHEDULE.ORIGINAL_SCHEDULE_DATE
+	toColumn: LocalDateTable_7b8a7d6f-03de-4370-ab61-70ffffb79124.Date
+
+relationship 11ea240d-7094-d43c-3b2a-894a08510302
+	isActive: false
+	fromColumn: CONTRACTS_TASK_SCHEDULE.SCHEDULE_DATE
+	toColumn: Calendar.Date
+
+relationship 54fc7424-4bc7-64c6-fe51-2c7915251c8d
+	isActive: false
+	fromColumn: CONTRACTS_TASK_SCHEDULE.SERVICE_CALL_ID
+	toColumn: CALLS_F.SERVICE_CALL_ID
+
+relationship 4a076365-7e6d-60af-0efd-d836ae3037b4
+	isActive: false
+	fromColumn: CONTRACTS_TASK_SCHEDULE.Customer-Contract
+	toColumn: 'CONTRACTS MAPPING'.Customer-Contract
+
+relationship cc27e8d9-7c37-4cac-9e58-302521f2ea85
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CALLS_F.CREATED_DATE
+	toColumn: LocalDateTable_00e51d8d-231f-4d65-881b-7cd775844859.Date
+
+relationship b45c533b-e627-2859-ccdf-6f443944fab2
+	fromColumn: CALLS_F.Completion_Date_Cleaned
+	toColumn: Calendar.Date
+
+relationship e3fec627-1373-4fd6-8ed8-6161588b3a73
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CONTRACT_LABOR_HOURS_F.ENTRYDATE
+	toColumn: LocalDateTable_38f12a90-c3e3-476c-8af6-3b87ccdcdb64.Date
+
+relationship 6665a5aa-8c2b-d22f-f78a-2367757d10b6
+	fromColumn: CONTRACT_LABOR_HOURS_F.SERVICE_CALL_ID
+	toColumn: CALLS_F.SERVICE_CALL_ID
+

@@ -1,0 +1,66 @@
+expression EMPLOYEES_D =
+		let
+		    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    EMPLOYEES_D_Table = DW_FINAL_Schema{[Name="EMPLOYEES_D",Kind="Table"]}[Data],
+		    #"Capitalized Each Word" = Table.TransformColumns(EMPLOYEES_D_Table,{{"FULL_NAME", Text.Proper, type text}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Capitalized Each Word", each ([SOURCE] = "SERV_GP")),
+		    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Active Employees", each if [INACTIVE] = true then null else [FULL_NAME])
+		in
+		    #"Added Custom"
+	lineageTag: 0aa80070-b5a3-4884-802b-f7332f9ba771
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'PO_JOB _DETAILS_F' =
+		let
+		    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    PO_JOB_DETAILS_F_Table = DW_FINAL_Schema{[Name="PO_JOB_DETAILS_F",Kind="Table"]}[Data],
+		    #"Filtered Rows2" = Table.SelectRows(PO_JOB_DETAILS_F_Table, each ([SOURCE] = "SERV_GP")),
+		    #"Sorted Rows" = Table.Sort(#"Filtered Rows2",{{"COMMITTED_COST", Order.Descending}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Sorted Rows", each ([COST_CODE] <> ""))
+		in
+		    #"Filtered Rows"
+	lineageTag: 26549356-ffdb-4dd8-a571-1aea3f4e3d41
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'JOB PROFILE _ PROJECTION TRENDS' =
+		let
+		    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_DEV_Database = Source{[Name="DATA_WAREHOUSE_DEV",Kind="Database"]}[Data],
+		    PUBLIC_Schema = DATA_WAREHOUSE_DEV_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+		    JOB_PROFILE_View = PUBLIC_Schema{[Name="JOB_PROFILE",Kind="View"]}[Data]
+		in
+		    JOB_PROFILE_View
+	lineageTag: 2fa16efc-008c-44f5-8a56-e97f06392894
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Call Mapping Append' =
+		let
+		       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+		    CALLS_F_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data],
+		    #"Removed Other Columns" = Table.SelectColumns(CALLS_F_Table,{"CUSTNMBR", "CONTRACT_NUMBER"}),
+		    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+		    #"Trimmed Text" = Table.TransformColumns(#"Removed Duplicates",{{"CUSTNMBR", Text.Trim, type text}, {"CONTRACT_NUMBER", Text.Trim, type text}}),
+		    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"CUSTNMBR", Text.Clean, type text}, {"CONTRACT_NUMBER", Text.Clean, type text}})
+		in
+		    #"Cleaned Text"
+	lineageTag: 62b1e539-b7aa-4311-ab87-9d3e8bd18c61
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,54 @@
+table 'Refresh Date'
+	lineageTag: 087aebfd-10ce-4c44-8d04-f676505cdaf2
+
+	measure 'Refresh Date' = ```
+			
+			var tim2 = max('Refresh Date'[Time]) - TIME(4, 0, 0)
+			 var tim = max('Refresh Date'[Time]) 
+			return
+			"Last Refresh: " & max('Refresh Date'[Date]) & " " & tim2
+			```
+		lineageTag: 99079cf9-e93f-4ac0-a406-82adae363219
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6202cd84-c7d6-4b50-8a05-a867afbd020f
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 6de17f9d-2fe6-4aa4-ba0a-9f242e00e76b
+			defaultHierarchy: LocalDateTable_d9746aa8-c787-46e8-a0b0-2e5477439e51.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: beccad2a-edec-4ad3-b58e-20d193c7e605
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	partition 'Refresh Date' = m
+		mode: import
+		source =
+				let
+				    Source = DateTimeZone.SwitchZone(DateTimeZone.UtcNow(), -5, 0),
+				    #"Converted to Table1" = #table(1, {{Source}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table1",{{"Column1", type datetime}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "Column1", "Column1 - Copy"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Duplicated Column",{{"Column1", type date}, {"Column1 - Copy", type time}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"Column1", "Date"}, {"Column1 - Copy", "Time"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

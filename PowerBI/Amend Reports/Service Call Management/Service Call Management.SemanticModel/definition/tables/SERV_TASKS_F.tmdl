@@ -1,0 +1,213 @@
+table SERV_TASKS_F
+	lineageTag: 6c974500-fe27-47b4-91a7-f547491cc71b
+
+	column CUSTNMBR
+		dataType: string
+		lineageTag: 3746f862-c7bb-4ce5-b0b7-cca0cb9f652a
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		lineageTag: 2370303d-3db7-4310-8060-f4536bc7d738
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TECHNICIAN_ID
+		dataType: string
+		lineageTag: 7fdb384f-eceb-4d52-8d92-b585f6744237
+		summarizeBy: none
+		sourceColumn: TECHNICIAN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column WSCONTSQ
+		dataType: double
+		lineageTag: 8f79d893-6a7f-4821-937e-5a85955e9576
+		summarizeBy: sum
+		sourceColumn: WSCONTSQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EQUIPMENT_ID
+		dataType: string
+		lineageTag: 8fcd32eb-ade3-41b2-8be2-d9c029b3438f
+		summarizeBy: none
+		sourceColumn: EQUIPMENT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EQUIPMENT_TYPE
+		dataType: string
+		lineageTag: 9db4e24b-fef7-4482-93dd-902baf3e3695
+		summarizeBy: none
+		sourceColumn: EQUIPMENT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TASK_CODE
+		dataType: string
+		lineageTag: f761958c-5140-430b-9e46-b369cacb177b
+		summarizeBy: none
+		sourceColumn: TASK_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TASK_HIERARCHY
+		dataType: string
+		lineageTag: 10383a35-6245-418f-b2ec-c07657cae523
+		summarizeBy: none
+		sourceColumn: TASK_HIERARCHY
+
+		annotation SummarizationSetBy = Automatic
+
+	column TASK_DESCRIPTION
+		dataType: string
+		lineageTag: 87150204-9742-4e04-9ddf-9947a224bd3a
+		summarizeBy: none
+		sourceColumn: TASK_DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column INACTIVE
+		dataType: double
+		lineageTag: b1cb5a3d-e47c-42eb-9f72-aa6afb5bafee
+		summarizeBy: sum
+		sourceColumn: INACTIVE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_HOURS
+		dataType: double
+		lineageTag: 2a0bedfc-3a12-43a4-9497-e43bd10267d8
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR
+		dataType: double
+		lineageTag: 628a66d8-630e-41e0-a900-0c86ac6f5d4f
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_1
+		dataType: double
+		lineageTag: 4702f5c3-e472-496b-9c2d-2a438b63c9d0
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_1_HOURS
+		dataType: double
+		lineageTag: 561df213-dadf-404c-b94a-e31cfb06c462
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_1_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_2
+		dataType: double
+		lineageTag: d6002d18-7043-440c-87c7-febf77ab1253
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ESTIMATE_LABOR_2_HOURS
+		dataType: double
+		lineageTag: ef1c9418-9fe7-4eb7-9162-1ae9b523a88d
+		summarizeBy: sum
+		sourceColumn: ESTIMATE_LABOR_2_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_LABOR_1
+		dataType: double
+		lineageTag: 3d2c4230-1044-4d03-9e82-297ef9e27508
+		summarizeBy: sum
+		sourceColumn: BILLABLE_LABOR_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BILLABLE_LABOR_2
+		dataType: double
+		lineageTag: 4d105cf3-4714-482a-8555-3258702adc7c
+		summarizeBy: sum
+		sourceColumn: BILLABLE_LABOR_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FREQUENCY
+		dataType: string
+		lineageTag: 5a62315f-5da5-4d1c-b6a6-8bdf6bf8d56d
+		summarizeBy: none
+		sourceColumn: FREQUENCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 735aff5e-4dca-40d2-a974-85cae701d6e5
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTNMBR_KEY
+		dataType: string
+		lineageTag: 8d9f8df0-c908-48c5-900e-68995f173ddd
+		summarizeBy: none
+		sourceColumn: CUSTNMBR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER_KEY
+		dataType: string
+		lineageTag: e4685645-c939-408f-b3a0-835b116645ce
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SERV_TASKS_F = m
+		mode: import
+		source =
+				let
+				       Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    TASKS_F_Table = DW_FINAL_Schema{[Name="TASKS_F",Kind="Table"]}[Data],
+				    #"Trimmed Text" = Table.TransformColumns(TASKS_F_Table,{{"CUSTNMBR", Text.Trim, type text}, {"CONTRACT_NUMBER", Text.Trim, type text}})
+				in
+				    #"Trimmed Text"
+
+	annotation PBI_ResultType = Table
+

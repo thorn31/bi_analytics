@@ -1,0 +1,73 @@
+table 'Hour Measures'
+	lineageTag: c5518774-e78e-4532-8660-64119062c5c2
+
+	measure 'Actual Hours' = sum(CONTRACTS_D[ACTUAL_HOURS])
+		lineageTag: fcab9a46-7789-4df8-967e-9137fbebfc5a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Forecast Hours' = sum(CONTRACTS_D[FORECAST_HOURS])
+		formatString: #,0
+		lineageTag: 011fcf0d-095c-40e8-af49-c069fd3a22e9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Estimate Hours' = sum(CONTRACTS_D[ESTIMATE_HOURS])
+		formatString: #,0.00
+		lineageTag: 71eee3a0-3782-492e-9b5d-c754538d9ed0
+
+	measure 'Hour Difference' = [Service Call Estimated] - [Service Call Actual]
+		lineageTag: 1f6a5aaf-90bd-4098-9243-07ed15a39aea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Hour Variance' = divide([Service Call Estimated] - [Service Call Actual], [Service Call Actual], blank())
+		formatString: 0%;-0%;0%
+		lineageTag: 6eff5a49-9712-40cd-ba55-87aa659f0d0b
+
+	measure 'Service Call Actual' = sum(APPOINTMENTS_F[ACTUAL_HOURS])
+		formatString: #,0.00
+		lineageTag: eccb3306-9860-4da6-9529-acf63b4d4130
+
+	measure 'Service Call Estimated' = sum(APPOINTMENTS_F[ESTIMATE_HOURS])
+		formatString: #,0.00
+		lineageTag: 8c9b2a36-942f-44a8-bd63-54c5385a344b
+
+	measure 'Available Hours' = calculate([Estimate Hours] - [Service Call Actual], all('*CALLS_F'[STATUS_OF_CALL]))
+		formatString: #,0.00
+		lineageTag: 71a7c99f-13a5-4c15-835a-d25717b0e0d0
+
+	measure 'Cumulative Actual Hours' =
+			
+			var maxdat = [Max Date]
+			return
+			  calculate([Service Call Actual], filter(all('*Calendar'), '*Calendar'[Date] <= max('*Calendar'[Date])))
+		lineageTag: ad8d2c65-de90-4047-a3b4-c063e2f17872
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cumulative Estimated Hours' =
+			
+			var maxdat = [Max Date]
+			return
+			  calculate([Service Call Estimated], filter(all('*Calendar'), '*Calendar'[Date] <= max('*Calendar'[Date])))
+		lineageTag: 13fdcafc-59cb-4e4b-bfa6-5162ada68ad8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual - Estimate Variance' = divide([Estimate Hours] - [Service Call Actual], [Service Call Actual], blank())
+		formatString: 0%;-0%;0%
+		lineageTag: 0b9a47d0-033e-458b-9b66-d4443991fbb2
+
+	partition 'Hour Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

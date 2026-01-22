@@ -1,0 +1,195 @@
+relationship dbc7e650-d4f1-44e3-9661-1630c80e3aca
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.START_DATE
+	toColumn: LocalDateTable_820e8c9a-6a47-49de-b350-058a53302479.Date
+
+relationship b25b6616-28bd-4915-8055-7312b52fedf2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.TARGET_COMPLETION_DATE
+	toColumn: LocalDateTable_8f32177c-7b7f-4b5c-afda-6d8a43f3b74a.Date
+
+relationship 0703711c-f090-4e35-ab12-7fbde3a5c963
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.ACT_COMPLETION_DATE
+	toColumn: LocalDateTable_dbc8e48e-68af-4633-963c-bd15e3755808.Date
+
+relationship f347d10c-4455-45d9-b71b-63869f7c4604
+	fromColumn: JOB_COST_DETAILS.JOB_NUMBER
+	toColumn: JOB.JOB_NUMBER
+
+relationship 96c0e890-02d1-4c44-aff1-4f4722c11c01
+	joinOnDateBehavior: datePartOnly
+	fromColumn: INVOICES.GL_POSTING_DATE
+	toColumn: LocalDateTable_a1304e08-f471-47dc-bbfc-f6653e634bfb.Date
+
+relationship 62bc2e2b-21b3-4f74-97c9-ca41522892c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: INVOICES.DISCOUNT_DATE
+	toColumn: LocalDateTable_7c0dba22-51a6-475f-9385-01ea578d2301.Date
+
+relationship d5a87f0e-b202-4c7c-bca7-bc7da6ea0cb6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: INVOICES.DUE_DATE
+	toColumn: LocalDateTable_df4ab1e5-1799-472a-b536-48d903e2a6f1.Date
+
+relationship 1659b72d-7b23-4563-9bf9-d0a840b8f0c1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: INVOICES.DATE_PAID
+	toColumn: LocalDateTable_4d5c68a9-1016-4c7f-8bd6-94b091483340.Date
+
+relationship 40f2c70a-83bc-418b-a565-b017b77c2067
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CUSTOMERS.CREATED
+	toColumn: LocalDateTable_2f4d25e8-226e-4bdb-90b8-80d5e36a201f.Date
+
+relationship 5eb38506-ea61-497a-a6e6-3849fe276d68
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CUSTOMERS.UPDATED
+	toColumn: LocalDateTable_5b54adca-a1fe-49cb-afdc-803881595356.Date
+
+relationship 2d1ba918-feff-4a0e-b116-ad55f20501c0
+	fromColumn: INVOICES.JOB_NUMBER
+	toColumn: JOB.JOB_NUMBER
+
+relationship 78103b07-06dd-48fc-a0d7-36df1379e805
+	fromColumn: JOB.CUSTOMER_NUMBER
+	toColumn: CUSTOMERS.CUSTOMER_NUMBER
+
+relationship 7e7b72dc-0ad5-4f54-a262-63adefefe6ea
+	isActive: false
+	fromColumn: INVOICES.CUSTOMER_NUMBER
+	toColumn: CUSTOMERS.CUSTOMER_NUMBER
+
+relationship f4a4709f-fe5d-47b0-bc4c-af4c54aa832d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB_LABOR_HOURS.FIRST_DAY
+	toColumn: LocalDateTable_69547476-3a6b-4a5f-8fcf-f5f0ffbaa28e.Date
+
+relationship 81b1b6d4-c204-4616-9413-8d317adc6500
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.WARRANTY_START
+	toColumn: LocalDateTable_3068354c-1934-4176-9b53-101d178cc7da.Date
+
+relationship ab7d6c79-4762-4d91-a2b5-223d23976236
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.WARRANTY_END
+	toColumn: LocalDateTable_dc9a7e8b-973c-4d72-ad27-3eff05a132d9.Date
+
+relationship 1d025432-d5e9-4104-ae8e-d6d9c5de6c09
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.'Max Transaction Date'
+	toColumn: LocalDateTable_103d4237-3f13-4fb8-908e-8f990ad5f6f8.Date
+
+relationship 0894001b-ec5f-4eea-847b-a71d1fc42e13
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'JOB FORECAST'.MODIFIED_DATE
+	toColumn: LocalDateTable_26e0a611-4938-40bf-8444-deab64adf683.Date
+
+relationship 0ef06e06-e548-4e9f-bfd8-754fcd8ddadf
+	fromColumn: 'JOB FORECAST'.JOB_NUMBER
+	toColumn: JOB.JOB_NUMBER
+
+relationship 156dc04d-a24c-41ee-a357-5c753ab86fd8
+	fromColumn: JOB.DIVISIONS
+	toColumn: DIVISION.DIVISIONS
+
+relationship 062eccdf-b20a-4dc7-8f19-522dbc5bd089
+	fromColumn: JOB_LABOR_HOURS.JOB_KEY
+	toColumn: JOB.JOB_KEY
+
+relationship 6daf034c-7033-4eb1-ac29-c0b08e431c37
+	fromColumn: CHANGE_ORDERS_BY_MONTH.JOB_NUMBER
+	toColumn: JOB.JOB_NUMBER
+
+relationship 809a0e4a-129d-4968-88cd-7b55a4afdfcc
+	fromColumn: BUDGET.DIVISION
+	toColumn: DIVISION.DIVISIONS
+
+relationship 6c74f6d2-273e-4f9e-bf7d-57fdde4dcf0b
+	fromColumn: JOB_COST_SUMMARY.JOB_NUMBER
+	toColumn: JOB.JOB_NUMBER
+
+relationship 82e8cc7f-e0d6-4690-9190-08e40124157b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB_LABOR_HOURS.LAST_DAY
+	toColumn: LocalDateTable_39148a68-5226-4488-8b67-dc23f90c2fda.Date
+
+relationship ac2fc89d-f4d2-46b5-8aff-3fcbce1c5dcb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: INVOICES.POST_DATE
+	toColumn: LocalDateTable_e2d949a2-51a9-4559-aff7-c4bc089c82a9.Date
+
+relationship ba3b7098-135b-46be-9d32-04354870a1f4
+	fromColumn: 'JOB FORECAST'.'Job_Cost Code'
+	toColumn: COST_CODE_MAPPING.'Job_Cost Code'
+
+relationship 11d62aff-d34c-4b12-8093-86d2ddcc6462
+	fromColumn: JOB_COST_DETAILS.'Job_Cost Code'
+	toColumn: COST_CODE_MAPPING.'Job_Cost Code'
+
+relationship fff01b30-bfdd-4b4c-bf1d-12de72074237
+	fromColumn: JOB_LABOR_HOURS.'Job_Cost Code'
+	toColumn: COST_CODE_MAPPING.'Job_Cost Code'
+
+relationship 380bbf4d-78db-4731-a53b-f9d974dc6a35
+	fromColumn: JOB_COST_SUMMARY.'Job Cost Code'
+	toColumn: COST_CODE_MAPPING.'Job_Cost Code'
+
+relationship 6de17f9d-2fe6-4aa4-ba0a-9f242e00e76b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Refresh Date'.Date
+	toColumn: LocalDateTable_d9746aa8-c787-46e8-a0b0-2e5477439e51.Date
+
+relationship 7c5ddff2-a549-4e9b-a9dd-4c293bb3e41a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.'Min Transaction Date'
+	toColumn: LocalDateTable_82986f2d-45c5-4243-bb17-c0844f70692b.Date
+
+relationship 716cde7b-30a6-4f6f-adc3-d86b0d9cdf34
+	joinOnDateBehavior: datePartOnly
+	fromColumn: JOB.'Start Date_Revised'
+	toColumn: LocalDateTable_288a7e21-8bfa-49ce-90b0-3f281030da3e.Date
+
+relationship 2999c0ed-f035-4683-8218-7bf8538b2325
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_e8656d71-0ea4-4096-9b0f-9ce7240092ae.Date
+
+relationship f628b0c2-0ee0-4f6b-84f9-4110b4c3c2ce
+	fromColumn: JOB_COST_DETAILS.TRAN_DATE
+	toColumn: Calendar.Date
+
+relationship a6148d00-e3c8-4e88-bbe1-08469ab07520
+	fromColumn: 'JOB FORECAST'.Date
+	toColumn: Calendar.Date
+
+relationship e783ace7-c8a2-4304-a5cd-2fd70edc108f
+	fromColumn: CHANGE_ORDERS_BY_MONTH.Date
+	toColumn: Calendar.Date
+
+relationship 83b07b9f-097b-4be0-a5cb-b95d7a9568c9
+	fromColumn: BUDGET.PERIODDT
+	toColumn: Calendar.Date
+
+relationship de33f223-7f36-4f1d-a110-833bdb819ec6
+	fromColumn: JOB_LABOR_HOURS.ENTRYDATE
+	toColumn: Calendar.Date
+
+relationship 71b70b38-5d44-4719-95d3-dcdb603ca0c9
+	fromColumn: 'GL POSTING'.Date
+	toColumn: Calendar.Date
+
+relationship 03858cdc-952e-4730-928c-eae8a8f5d7d6
+	fromColumn: INVOICES.DOCUMENT_DATE
+	toColumn: Calendar.Date
+
+relationship f8b1b10b-7f35-42ee-ad74-e6b536f48dd5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.WeekBeginDate
+	toColumn: LocalDateTable_ca9e521e-a39c-4bbf-a6fd-098d037b5a98.Date
+
+relationship 6497e9a2-4089-4a72-bf41-74f608ee98bb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.WeekEndDate
+	toColumn: LocalDateTable_45849c3c-e06d-451f-8616-e45b735dd37f.Date
+
