@@ -154,6 +154,14 @@ table NPS_F
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Customernbr Key'
+		dataType: string
+		lineageTag: 5d12c5a0-12c0-43b0-add1-0b37298524fe
+		summarizeBy: none
+		sourceColumn: Customernbr Key
+
+		annotation SummarizationSetBy = Automatic
+
 	partition NPS_F = m
 		mode: import
 		queryGroup: Facts
@@ -183,9 +191,11 @@ table NPS_F
 				    #"Filtered Rows" = Table.SelectRows(Historical_and_CYData_Table, each ([Market] <> "GOODWILL")),
 				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"QUESTION:  Hi this is <INTRODUCE YOURSELF> from Perfection Group, just checking ", "Comment"}, {"Were we prompt an on time?", "Prompt and On Time"}, {"Did we fix the issue the first time? #(lf)#(lf)If the customer says “NO”:#(lf)#(lf)Please ask, “", "First Time Fix"}}),
 				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"SERVICE CALL NUMBER", "CUSTOMER", "LOCATION", "FIRST, LAST NAME OF CALLER", "PHONE NUMBER", "SERVICE CALL COMPLETED DATE", "Service Description", "Type of Call", "Comment", "Prompt and On Time", "First Time Fix", "Notes", "Month of Service", "Market", "1-10 Score", "Fiscal Year", "Region"}),
-				    #"Inserted Capitalize Each Word" = Table.AddColumn(#"Removed Other Columns", "Capitalize Each Word", each Text.Proper([CUSTOMER]), type text)
+				    #"Inserted Capitalize Each Word" = Table.AddColumn(#"Removed Other Columns", "Capitalize Each Word", each Text.Proper([CUSTOMER]), type text),
+				    #"Merged Queries" = Table.NestedJoin(#"Inserted Capitalize Each Word", {"SERVICE CALL NUMBER"}, CALLS_F, {"Service Call Id"}, "CALLS_F", JoinKind.LeftOuter),
+				    #"Expanded CALLS_F" = Table.ExpandTableColumn(#"Merged Queries", "CALLS_F", {"Customernbr Key"}, {"Customernbr Key"})
 				in
-				    #"Inserted Capitalize Each Word"
+				    #"Expanded CALLS_F"
 
 	annotation PBI_NavigationStepName = Navigation
 

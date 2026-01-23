@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "3945b337182934be39cc",
+  "position": {
+    "x": 66,
+    "y": 0,
+    "z": 0,
+    "height": 575,
+    "width": 1103
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NPS_F"
+                    }
+                  },
+                  "Property": "Customernbr Key"
+                }
+              },
+              "queryRef": "NPS_F.Customernbr Key",
+              "nativeQueryRef": "Customernbr Key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Master Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Master Customer Name",
+              "nativeQueryRef": "Master Customer Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NPS_F"
+                    }
+                  },
+                  "Property": "1-10 Score"
+                }
+              },
+              "queryRef": "NPS_F.1-10 Score",
+              "nativeQueryRef": "1-10 Score"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

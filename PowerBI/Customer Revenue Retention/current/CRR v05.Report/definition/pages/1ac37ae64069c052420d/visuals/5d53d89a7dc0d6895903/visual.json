@@ -180,20 +180,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "ed4475c3ddbe730e3535",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

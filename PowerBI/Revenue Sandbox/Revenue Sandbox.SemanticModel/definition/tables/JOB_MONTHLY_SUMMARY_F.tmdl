@@ -1,0 +1,664 @@
+table JOB_MONTHLY_SUMMARY_F
+	lineageTag: ecce44fd-3c02-4562-b358-d45f601fa4c1
+
+	column 'Job Number'
+		dataType: string
+		lineageTag: df4f5e02-21ee-496f-b877-a3ccad8d2014
+		summarizeBy: none
+		sourceColumn: Job Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Month'
+		dataType: double
+		lineageTag: e1e7a7b3-8184-4856-b0d7-4a8a7b395904
+		summarizeBy: sum
+		sourceColumn: Period Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Period Year'
+		dataType: double
+		lineageTag: 4007bcd1-9061-442f-83c5-1336ff86b6ee
+		summarizeBy: sum
+		sourceColumn: Period Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Period Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0f614d52-ff01-48c5-a3ed-c76c71743df9
+		summarizeBy: none
+		sourceColumn: Period Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Project Number'
+		dataType: string
+		lineageTag: 0ed403ed-f720-4483-8d52-794070c10db6
+		summarizeBy: none
+		sourceColumn: Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Name'
+		dataType: string
+		lineageTag: 6f040fcd-5333-4bb3-9cc0-b25f87e6239e
+		summarizeBy: none
+		sourceColumn: Job Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divisions
+		dataType: string
+		lineageTag: c67458fc-ffd0-474b-9b2d-f8e8d75a0c3c
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Number'
+		dataType: string
+		lineageTag: 270b3aac-20d9-4a84-b738-68eeaeb2b11a
+		summarizeBy: none
+		sourceColumn: Customer Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Jc Contract Number'
+		dataType: string
+		lineageTag: c62d860f-59d6-43f9-ad7a-da949fdfb766
+		summarizeBy: none
+		sourceColumn: Jc Contract Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Type'
+		dataType: string
+		lineageTag: 0946889e-e314-4ddb-97db-cea5d220eae6
+		summarizeBy: none
+		sourceColumn: Contract Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ws Billing Type'
+		dataType: string
+		lineageTag: 3d0b6375-6842-4bc2-8ac2-ddc5d184d272
+		summarizeBy: none
+		sourceColumn: Ws Billing Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Technician Id'
+		dataType: string
+		lineageTag: f5fef623-7641-4ca8-9b86-4745c3306973
+		summarizeBy: none
+		sourceColumn: Technician Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract To Date'
+		dataType: double
+		lineageTag: 301a72a1-57fb-41cf-b0cb-28b444341b5d
+		summarizeBy: sum
+		sourceColumn: Contract To Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Retention Pct'
+		dataType: double
+		lineageTag: 5901ae42-e7d2-4265-99d4-3442337273f1
+		summarizeBy: sum
+		sourceColumn: Retention Pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Actual Units Ttd'
+		dataType: double
+		lineageTag: e49a4c98-29a5-413c-a048-ea8acaeee660
+		summarizeBy: sum
+		sourceColumn: Actual Units Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Act Labor Cost Ttd'
+		dataType: double
+		lineageTag: b0dadd51-dd6a-4dd1-a304-c9a6cbed30b3
+		summarizeBy: sum
+		sourceColumn: Act Labor Cost Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Act Materials Cost Ttd'
+		dataType: double
+		lineageTag: 41b079c2-b72a-4f8c-ba38-f0258367eb7f
+		summarizeBy: sum
+		sourceColumn: Act Materials Cost Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Act Equipment Cost Ttd'
+		dataType: double
+		lineageTag: d86182c0-ffef-40d8-9be9-c69fb64212e7
+		summarizeBy: sum
+		sourceColumn: Act Equipment Cost Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Act Subs Cost Ttd'
+		dataType: double
+		lineageTag: fa654c85-e0a9-4a13-8730-03d795acb280
+		summarizeBy: sum
+		sourceColumn: Act Subs Cost Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Act Misc Other Cost Ttd'
+		dataType: double
+		lineageTag: 9ab5fc36-d36a-4e10-8ea9-4668958e12ef
+		summarizeBy: sum
+		sourceColumn: Act Misc Other Cost Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Actual Cost'
+		dataType: double
+		lineageTag: 872ecec5-e3e6-48b1-b20e-badfa7bd37ad
+		summarizeBy: sum
+		sourceColumn: Total Actual Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Orig Contract Amount'
+		dataType: double
+		lineageTag: c8d6ea9f-5874-47c7-9d0f-fbd2a5985d8c
+		summarizeBy: sum
+		sourceColumn: Orig Contract Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Contract Earned'
+		dataType: double
+		lineageTag: dfd496df-e385-48ad-a622-ecd7b6297e60
+		summarizeBy: sum
+		sourceColumn: Contract Earned
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Contract Earned Curr Mo'
+		dataType: double
+		lineageTag: 94848aea-5440-4e8d-827a-5bee7b0d6350
+		summarizeBy: sum
+		sourceColumn: Contract Earned Curr Mo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billed Labor Ttd Mkup'
+		dataType: double
+		lineageTag: 4e07eb38-a798-46ea-ad4b-9b4ca11a30a6
+		summarizeBy: sum
+		sourceColumn: Billed Labor Ttd Mkup
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billed Mat Cst Ttd Mkup'
+		dataType: double
+		lineageTag: 04ce5185-6fd1-461a-abfa-ce96ab4a6791
+		summarizeBy: sum
+		sourceColumn: Billed Mat Cst Ttd Mkup
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billed Equipttd Mkup'
+		dataType: double
+		lineageTag: 305d0dc6-74df-4dc7-9043-945db9c64322
+		summarizeBy: sum
+		sourceColumn: Billed Equipttd Mkup
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billed Subs Ttd Mkup'
+		dataType: double
+		lineageTag: bcefca02-7ecf-4eed-a4d9-16d6da057178
+		summarizeBy: sum
+		sourceColumn: Billed Subs Ttd Mkup
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billed Other Ttd Mkup'
+		dataType: double
+		lineageTag: f1ca506f-e3e1-4fca-b62c-b82d75527624
+		summarizeBy: sum
+		sourceColumn: Billed Other Ttd Mkup
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billed Amount Ttd'
+		dataType: double
+		lineageTag: 591441c9-5107-40f9-b35b-d00933c20285
+		summarizeBy: sum
+		sourceColumn: Billed Amount Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Retention Amount Ttd'
+		dataType: double
+		lineageTag: 4b666959-f8e6-4d8d-a357-18ac13f5bac8
+		summarizeBy: sum
+		sourceColumn: Retention Amount Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Retention Billed Ttd'
+		dataType: double
+		lineageTag: de0ede94-a361-4625-b253-02a8bbabdb23
+		summarizeBy: sum
+		sourceColumn: Retention Billed Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Billed Ttd'
+		dataType: double
+		lineageTag: a3f5fd72-f344-452e-a6c5-f7d616b0f659
+		summarizeBy: sum
+		sourceColumn: Net Billed Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cash Received Ttd'
+		dataType: double
+		lineageTag: 66bb199f-f076-47ba-add8-6c981c3698ae
+		summarizeBy: sum
+		sourceColumn: Cash Received Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Msctxamt
+		dataType: double
+		lineageTag: f6e14539-b31b-4c4b-ac51-514d434e7d28
+		summarizeBy: sum
+		sourceColumn: Msctxamt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Taxamnt
+		dataType: double
+		lineageTag: 40814dcc-1961-4839-8b23-7a1b0a06202c
+		summarizeBy: sum
+		sourceColumn: Taxamnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discamnt
+		dataType: double
+		lineageTag: fdd09945-6954-4d50-9609-8ef0eb62c096
+		summarizeBy: sum
+		sourceColumn: Discamnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Wrofamnt
+		dataType: double
+		lineageTag: 1bba862a-c001-4916-88e9-549ca49c9ea8
+		summarizeBy: sum
+		sourceColumn: Wrofamnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Last Billing Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3ed3d2db-fa3a-4b74-be03-d7fd04f98474
+		summarizeBy: none
+		sourceColumn: Last Billing Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expected Contract'
+		dataType: double
+		lineageTag: 5920a71d-5d6e-4121-9552-47d17580ccaf
+		summarizeBy: sum
+		sourceColumn: Expected Contract
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Committed Equipment Ttd'
+		dataType: double
+		lineageTag: 536e226b-27df-4c10-a259-6d43c589dc54
+		summarizeBy: sum
+		sourceColumn: Committed Equipment Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Committed Materials Ttd'
+		dataType: double
+		lineageTag: 4177c492-9f78-4443-9c91-cedc8bce699d
+		summarizeBy: sum
+		sourceColumn: Committed Materials Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Committed Labor Ttd'
+		dataType: double
+		lineageTag: b1154b43-19af-4514-ab93-7a3cb5ca5652
+		summarizeBy: sum
+		sourceColumn: Committed Labor Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Committed Subs Ttd'
+		dataType: double
+		lineageTag: 67f6d896-a4a3-48b3-883a-ffe01bffe077
+		summarizeBy: sum
+		sourceColumn: Committed Subs Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Committed Other Ttd'
+		dataType: double
+		lineageTag: 8f17a534-eac4-4e02-abb5-d2552ea4086a
+		summarizeBy: sum
+		sourceColumn: Committed Other Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Committed Cost'
+		dataType: double
+		lineageTag: e5de5c3c-4ae1-4f30-818d-9844d736c625
+		summarizeBy: sum
+		sourceColumn: Committed Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Equip Forecasted'
+		dataType: double
+		lineageTag: 90374bdd-f326-4340-805f-453aa5164718
+		summarizeBy: sum
+		sourceColumn: Revsd Equip Forecasted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Labor Forecasted'
+		dataType: double
+		lineageTag: ddb89bcb-3b49-45d3-aebd-1204c327c10a
+		summarizeBy: sum
+		sourceColumn: Revsd Labor Forecasted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Materials Forecst'
+		dataType: double
+		lineageTag: a15c29fe-fb04-436e-849b-e4e122e034fc
+		summarizeBy: sum
+		sourceColumn: Revsd Materials Forecst
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Subs Forecast Cst'
+		dataType: double
+		lineageTag: cbeb71d1-ffa5-4e2d-a8ea-656890cf43d3
+		summarizeBy: sum
+		sourceColumn: Revsd Subs Forecast Cst
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Other Forecst Cst'
+		dataType: double
+		lineageTag: b3068363-e4ba-4245-8e86-eb5a322da81a
+		summarizeBy: sum
+		sourceColumn: Revsd Other Forecst Cst
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tot Revsd Forecast Cost'
+		dataType: double
+		lineageTag: 0ac64e1d-4e3d-4396-bdd2-3db337926355
+		summarizeBy: sum
+		sourceColumn: Tot Revsd Forecast Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Confirmed Chg Order Amt'
+		dataType: double
+		lineageTag: b275223a-9422-4f0b-a527-eed04a71bff8
+		summarizeBy: sum
+		sourceColumn: Confirmed Chg Order Amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'In Process Chg Ord Amt'
+		dataType: double
+		lineageTag: 2d661c16-ccc8-4b53-87cd-26b5590d5823
+		summarizeBy: sum
+		sourceColumn: In Process Chg Ord Amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Est Labor Units Ttd'
+		dataType: double
+		lineageTag: 193231e2-3dff-480d-b652-8558d1b990e7
+		summarizeBy: sum
+		sourceColumn: Est Labor Units Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Act Labor Units Ttd'
+		dataType: double
+		lineageTag: 1e18184a-fa80-4d0e-bb1f-dd943a3c442c
+		summarizeBy: sum
+		sourceColumn: Act Labor Units Ttd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Act Plus Markup'
+		dataType: double
+		lineageTag: 9ec6ebad-3100-4c78-aaf7-311b5bdc56e7
+		summarizeBy: sum
+		sourceColumn: Total Act Plus Markup
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revsd Forecast Lab Units'
+		dataType: double
+		lineageTag: 680294e2-1f67-44c3-8e6b-8fff62c9ee8b
+		summarizeBy: sum
+		sourceColumn: Revsd Forecast Lab Units
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Modifdt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6bf6e322-abb8-4c5c-b76a-2fd6738c22c0
+		summarizeBy: none
+		sourceColumn: Modifdt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified Time'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6352eef9-3eba-4242-91f4-f56a6f71c499
+		summarizeBy: none
+		sourceColumn: Modified Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified User Id'
+		dataType: string
+		lineageTag: d69c7765-f8b3-4569-89ff-e00b1a0fc9f4
+		summarizeBy: none
+		sourceColumn: Modified User Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dex Row Id'
+		dataType: string
+		lineageTag: 1f63a378-5b82-4959-b7d8-e5654bae99ba
+		summarizeBy: none
+		sourceColumn: Dex Row Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: 9723d106-1f45-424d-8a28-440d7a8a7583
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: 46544fbc-76ed-409d-a308-535e7e978aea
+		summarizeBy: none
+		sourceColumn: Job Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: c7b4dfb4-7ae7-4802-9dc6-453a38d40669
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Key'
+		dataType: string
+		lineageTag: fe13a20b-a9a0-4e8b-a05b-5eccc2eb6f73
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Jc Contract Key'
+		dataType: string
+		lineageTag: 0238770e-fc94-47d8-a581-dfbcb296f00a
+		summarizeBy: none
+		sourceColumn: Jc Contract Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cleaned Divisions'
+		dataType: string
+		lineageTag: 0b8b9f84-1781-4bfa-99af-a932b01a9e9f
+		summarizeBy: none
+		sourceColumn: Cleaned Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	partition JOB_MONTHLY_SUMMARY_F = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOB_MONTHLY_SUMMARY_F_Table = DW_FINAL_Schema{[Name="JOB_MONTHLY_SUMMARY_F",Kind="Table"]}[Data],
+				    ProperCase = Table.RenameColumns(JOB_MONTHLY_SUMMARY_F_Table, List.Transform(Table.ColumnNames(JOB_MONTHLY_SUMMARY_F_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Filtered Rows" = Table.SelectRows(ProperCase, each [Period Date] < Date.From(DateTime.LocalNow()))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

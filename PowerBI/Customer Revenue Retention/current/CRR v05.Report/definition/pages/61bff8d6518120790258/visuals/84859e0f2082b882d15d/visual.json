@@ -97,23 +97,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "54a77338d6a4cbb3be61",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "PROJECTS_D"
-              }
-            },
-            "Property": "Inactive"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

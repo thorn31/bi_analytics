@@ -1,0 +1,60 @@
+table CustomerMonth_Stream_Method_F
+	lineageTag: 7fe35449-0932-482f-94cf-2a0d9ced5fca
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 23e5d934-22a2-484f-8907-6bda3059c14f
+		sourceColumn: Customer Key
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1359f19b-d2df-4d68-be92-00507282b61a
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Stream
+		dataType: string
+		lineageTag: 824b9990-a4dc-4fb2-8a4c-bf982a2a1cbe
+		sourceColumn: Stream
+
+	column Methodology
+		dataType: string
+		lineageTag: 382ea05a-f578-4b1c-ab65-ce6d4c62f28f
+		sourceColumn: Methodology
+
+	column 'Project Subsegment'
+		dataType: string
+		lineageTag: bc54fe19-db8d-4cf0-9e51-9d0495956085
+		sourceColumn: Project Subsegment
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: 41c64ca8-4b8a-44ed-b1aa-41f734d562a7
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: 63028091-175c-402f-bf13-c45e35a72654
+		sourceColumn: Cost Amount
+
+	partition CustomerMonth_Stream_Method_F = m
+		mode: import
+		source =
+				let
+				    Source = Table.Combine({Projects_ProjectMonth_CRR_F, Projects_ProjectMonth_Amend_F}),
+				    Grouped = Table.Group(
+				        Source,
+				        {"Customer Key","Month End","Stream","Methodology","Project Subsegment"},
+				        {
+				            {"Revenue Amount", each List.Sum([Revenue Amount]), type number},
+				            {"Cost Amount", each List.Sum(List.RemoveNulls([Cost Amount])), type number}
+				        }
+				    )
+				in
+				    Grouped
+

@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 1873.4038143674795,
-            "y": 712.1698200106232
+            "x": 2588.5136903344364,
+            "y": 1310.4903946261927
           },
           "nodeIndex": "_Key Measures",
           "nodeLineageTag": "73c099da-2cd7-46c3-b43b-fb93a5325ea2",
@@ -383,6 +383,32 @@
           },
           "nodeIndex": "JOBCOSTED_F",
           "nodeLineageTag": "32824b09-0862-4159-aff8-39d75c12a3fa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5415.40381436748,
+            "y": 871.355568529345
+          },
+          "nodeIndex": "UI_BarFillParts",
+          "nodeLineageTag": "5195b382-ea25-4c5b-8c7c-b5f778e7304a",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5649.40381436748,
+            "y": 785.355568529345
+          },
+          "nodeIndex": "CUSTOMER_SEGMENTATION",
+          "nodeLineageTag": "e6972429-e511-4614-a646-8810357ec12d",
           "size": {
             "height": 300,
             "width": 234

@@ -133,3 +133,13 @@ relationship e04ec842-a857-5992-5843-38a000d9c9d4
 	fromColumn: PROJECTS_D.'Project Key'
 	toColumn: JOBCOSTED_F.'Job Key'
 
+relationship AutoDetected_9218834f-e2c0-4f2e-a626-f2a6497b8469
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: CUSTOMER_SEGMENTATION.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship f8a03e04-e5d1-01ed-1275-145521fafc6e
+	fromColumn: NPS_F.'Customernbr Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+

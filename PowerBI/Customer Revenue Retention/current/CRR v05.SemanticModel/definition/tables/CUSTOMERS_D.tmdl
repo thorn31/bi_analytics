@@ -139,6 +139,140 @@ table CUSTOMERS_D
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Master Customer Name'
+		dataType: string
+		lineageTag: d8e56073-5e6f-4215-8c1c-9952eaf2a9c6
+		summarizeBy: none
+		sourceColumn: Master Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Customer Name Canonical'
+		dataType: string
+		lineageTag: d9195b03-78fb-4ef6-b4ae-64a5f6f889e2
+		summarizeBy: none
+		sourceColumn: Master Customer Name Canonical
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Industrial Group'
+		dataType: string
+		lineageTag: 63f020c1-9bac-4975-9b05-d6a2afad96c6
+		summarizeBy: none
+		sourceColumn: Industrial Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column NAICS
+		dataType: int64
+		formatString: 0
+		lineageTag: 9054762d-a65b-4471-a773-80c1493d3397
+		summarizeBy: sum
+		sourceColumn: NAICS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Raw'
+		dataType: string
+		lineageTag: 2bb2a357-0ab8-4300-aa17-555e077d26ac
+		summarizeBy: none
+		sourceColumn: NAICS Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Sector Code'
+		dataType: string
+		lineageTag: dec4ab5f-5c2e-4ee7-8c42-333fcdca3705
+		summarizeBy: none
+		sourceColumn: NAICS Sector Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Sector Title'
+		dataType: string
+		lineageTag: 1f6fffa2-5c27-4499-8750-106d0919427d
+		summarizeBy: none
+		sourceColumn: NAICS Sector Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Subsector Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b3c7fbf-2b95-4062-a7f4-10b50906dc97
+		summarizeBy: count
+		sourceColumn: NAICS Subsector Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Subsector Title'
+		dataType: string
+		lineageTag: 564a42e3-02e5-4c23-b979-d9a1ec2e2b40
+		summarizeBy: none
+		sourceColumn: NAICS Subsector Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Group Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 069619db-2f45-4704-aff5-b2e3c691faeb
+		summarizeBy: count
+		sourceColumn: NAICS Industry Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Group Title'
+		dataType: string
+		lineageTag: d2df0f85-fc14-4c55-8292-8c5476213fca
+		summarizeBy: none
+		sourceColumn: NAICS Industry Group Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: f314b08c-c061-4c47-9226-94201175fb87
+		summarizeBy: count
+		sourceColumn: NAICS Industry Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Title'
+		dataType: string
+		lineageTag: 6bd06628-e20c-4e6b-926e-493d9b4c6933
+		summarizeBy: none
+		sourceColumn: NAICS Industry Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS National Industry Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d7f4f22-968e-4645-9ba7-d2c9e754ae40
+		summarizeBy: count
+		sourceColumn: NAICS National Industry Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS National Industry Title'
+		dataType: string
+		lineageTag: 2eb32e5b-cefb-4637-8183-842971ba8bc8
+		summarizeBy: none
+		sourceColumn: NAICS National Industry Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Logo URL (Final)'
+		dataType: string
+		lineageTag: 93119a46-f674-4c68-81ba-3a3ed0bd4998
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Logo URL (Final)
+
+		annotation SummarizationSetBy = Automatic
+
 	partition CUSTOMERS_D = m
 		mode: import
 		queryGroup: Dim
@@ -149,9 +283,11 @@ table CUSTOMERS_D
 				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
 				    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CUSTOMERS_D",Kind="Table"]}[Data], 
 				    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
-				    #"Capitalized Each Word" = Table.TransformColumns(ProperCase,{{"Customer Name", Text.Proper, type text}})
+				    #"Capitalized Each Word" = Table.TransformColumns(ProperCase,{{"Customer Name", Text.Proper, type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Capitalized Each Word", {"Customer Key"}, CUSTOMER_SEGMENTATION, {"Customer Key"}, "CUSTOMER_SEGMENTATION", JoinKind.LeftOuter),
+				    #"Expanded CUSTOMER_SEGMENTATION" = Table.ExpandTableColumn(#"Merged Queries", "CUSTOMER_SEGMENTATION", {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"}, {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"})
 				in
-				    #"Capitalized Each Word"
+				    #"Expanded CUSTOMER_SEGMENTATION"
 				```
 
 	annotation PBI_NavigationStepName = Navigation

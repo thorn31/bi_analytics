@@ -1,0 +1,335 @@
+table CUSTOMER_SEGMENTATION
+	lineageTag: e6972429-e511-4614-a646-8810357ec12d
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 4e4df467-9dd7-4f43-a54f-2ce5e6cf42a4
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Name'
+		dataType: string
+		lineageTag: 4f3c56df-9789-4f66-a2f8-95325b76725a
+		summarizeBy: none
+		sourceColumn: Original Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Customer Name'
+		dataType: string
+		lineageTag: cbba7bc6-f074-4e8b-90ba-81ed173799d6
+		summarizeBy: none
+		sourceColumn: Master Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Customer Name Canonical'
+		dataType: string
+		lineageTag: 9a670e18-aa18-45ec-a50c-b798f0cde562
+		summarizeBy: none
+		sourceColumn: Master Customer Name Canonical
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Industrial Group'
+		dataType: string
+		lineageTag: 5880fb44-f436-43d2-ae21-a1005cbbf231
+		summarizeBy: none
+		sourceColumn: Industrial Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Industry Detail'
+		dataType: string
+		lineageTag: d9e10dbb-6f54-4fc5-bbd5-0777e6293682
+		summarizeBy: none
+		sourceColumn: Industry Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column NAICS
+		dataType: int64
+		formatString: 0
+		lineageTag: e94d1b0f-8af6-4f58-9db1-53d6a33c661c
+		summarizeBy: sum
+		sourceColumn: NAICS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Raw'
+		dataType: string
+		lineageTag: 0fff1c7f-f573-40b0-b584-8f9b302e3716
+		summarizeBy: none
+		sourceColumn: NAICS Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Source'
+		dataType: string
+		lineageTag: 294f5d86-2549-46df-880e-2f7b44280bad
+		summarizeBy: none
+		sourceColumn: NAICS Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Sector Code'
+		dataType: string
+		lineageTag: 7212e929-f27d-4155-b544-663e09f475a2
+		summarizeBy: none
+		sourceColumn: NAICS Sector Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Sector Title'
+		dataType: string
+		lineageTag: 9590c423-29bf-48ff-8b50-f40bd2ca1e5e
+		summarizeBy: none
+		sourceColumn: NAICS Sector Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Subsector Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9970bc3e-90be-4396-b8cf-60e592619cf3
+		summarizeBy: count
+		sourceColumn: NAICS Subsector Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Subsector Title'
+		dataType: string
+		lineageTag: 3880082d-2244-4f87-b0bb-980af2413339
+		summarizeBy: none
+		sourceColumn: NAICS Subsector Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Group Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 40bf2152-3066-4bf6-8dd8-e902adbaa907
+		summarizeBy: count
+		sourceColumn: NAICS Industry Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Group Title'
+		dataType: string
+		lineageTag: 88ba49c3-2fc3-43fb-9e7b-82273b361010
+		summarizeBy: none
+		sourceColumn: NAICS Industry Group Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 14d2ac45-4c0a-444f-aee4-ba2675a51394
+		summarizeBy: count
+		sourceColumn: NAICS Industry Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Title'
+		dataType: string
+		lineageTag: 0d1b01d4-d0aa-48db-8ef0-64cf7f21e96b
+		summarizeBy: none
+		sourceColumn: NAICS Industry Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS National Industry Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 673e3ae7-2a57-4c2d-9159-24b198cb1e54
+		summarizeBy: count
+		sourceColumn: NAICS National Industry Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS National Industry Title'
+		dataType: string
+		lineageTag: 3be540c3-fc98-4efd-a6e3-9a3d12f166bc
+		summarizeBy: none
+		sourceColumn: NAICS National Industry Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Method
+		dataType: string
+		lineageTag: ca6fd072-0520-4533-acc0-33c80d70bf02
+		summarizeBy: none
+		sourceColumn: Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: b12f5f02-684b-474b-9767-db4144c06b80
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Confidence
+		dataType: string
+		lineageTag: bf826485-5292-4180-85da-813bca0901d3
+		summarizeBy: none
+		sourceColumn: Confidence
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rationale
+		dataType: string
+		lineageTag: d9188f41-fe7c-4f65-8ba7-d98be591b9d9
+		summarizeBy: none
+		sourceColumn: Rationale
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Support Category'
+		dataType: string
+		lineageTag: 2fe4ee31-485b-46ca-8d25-31631b5075f8
+		summarizeBy: none
+		sourceColumn: Support Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Website'
+		dataType: string
+		lineageTag: c640b615-d472-4179-827e-8172bef4ca58
+		summarizeBy: none
+		sourceColumn: Company Website
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Logo URL'
+		dataType: string
+		lineageTag: 5bb1d494-de7f-439e-8343-501a1f1e05ac
+		summarizeBy: none
+		sourceColumn: Company Logo URL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Logo URL (Apistemic)'
+		dataType: string
+		lineageTag: e60191d8-79c4-451a-8cd1-6b5e81a45037
+		summarizeBy: none
+		sourceColumn: Company Logo URL (Apistemic)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Logo URL (LogoDev)'
+		dataType: string
+		lineageTag: 5e539935-46aa-499d-8d9f-a5156c9b3819
+		summarizeBy: none
+		sourceColumn: Company Logo URL (LogoDev)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: 0e00f1b7-0d27-42c6-9f48-fa3ae6cd8bcb
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Logo URL (Final)'
+		dataType: string
+		lineageTag: 17b7c163-d97b-4594-a338-424a992c0aee
+		summarizeBy: none
+		sourceColumn: Logo URL (Final)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CUSTOMER_SEGMENTATION = m
+		mode: import
+		queryGroup: Staging
+		source =
+				let
+				    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+				    #"Navigation 1" = Source{[Name = "datasets"]}[Data],
+				    Navigation =
+				        #"Navigation 1"{
+				            [
+				                #"Folder Path" = "https://stgreen.blob.core.windows.net/datasets/",
+				                Name = "customer_segmentation/CustomerSegmentation.csv"
+				            ]
+				        }[Content],
+				
+				    #"Imported CSV" =
+				        Csv.Document(
+				            Navigation,
+				            [Delimiter = ",", Columns = 29, Encoding = 65001, QuoteStyle = QuoteStyle.None]
+				        ),
+				
+				    #"Promoted headers" =
+				        Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars = true]),
+				
+				    // Fix dot edge-case by renaming once
+				    #"Renamed LogoDev Column" =
+				        Table.RenameColumns(
+				            #"Promoted headers",
+				            {{"Company Logo URL (Logo.dev)", "Company Logo URL (LogoDev)"}},
+				            MissingField.Ignore
+				        ),
+				
+				    #"Changed column type" =
+				        Table.TransformColumnTypes(
+				            #"Renamed LogoDev Column",
+				            {
+				                {"Customer Key", type text},
+				                {"Original Name", type text},
+				                {"Master Customer Name", type text},
+				                {"Master Customer Name Canonical", type text},
+				                {"Industrial Group", type text},
+				                {"Industry Detail", type text},
+				                {"NAICS", Int64.Type},
+				                {"NAICS Source", type text},
+				                {"NAICS Sector Code", type text},
+				                {"NAICS Sector Title", type text},
+				                {"NAICS Subsector Code", Int64.Type},
+				                {"NAICS Subsector Title", type text},
+				                {"NAICS Industry Group Code", Int64.Type},
+				                {"NAICS Industry Group Title", type text},
+				                {"NAICS Industry Code", Int64.Type},
+				                {"NAICS Industry Title", type text},
+				                {"NAICS National Industry Code", Int64.Type},
+				                {"NAICS National Industry Title", type text},
+				                {"Method", type text},
+				                {"Status", type text},
+				                {"Confidence", type text},
+				                {"Rationale", type text},
+				                {"Support Category", type text},
+				                {"Company Website", type text},
+				                {"Company Logo URL", type text},
+				                {"Company Logo URL (Apistemic)", type text},
+				                {"Company Logo URL (LogoDev)", type text},
+				                {"Source", type text}
+				            }
+				        ),
+				
+				    PickLogo =
+				        Table.AddColumn(
+				            #"Changed column type",
+				            "Logo URL (Final)",
+				            each
+				                if [#"Company Logo URL"] <> null and [#"Company Logo URL"] <> "" then
+				                    [#"Company Logo URL"]
+				                else if [#"Company Logo URL (LogoDev)"] <> null and [#"Company Logo URL (LogoDev)"] <> "" then
+				                    [#"Company Logo URL (LogoDev)"]
+				                else
+				                    [#"Company Logo URL (Apistemic)"],
+				            type text
+				        )
+				in
+				    PickLogo
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

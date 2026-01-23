@@ -1,0 +1,110 @@
+table CONTRACT_BILLABLE_F
+	lineageTag: 982c3a9a-e340-49fb-922e-5653b03952b4
+
+	column CUSTNMBR
+		dataType: string
+		lineageTag: f51b9edd-0855-42ab-a88d-821f5b78f6fc
+		summarizeBy: none
+		sourceColumn: CUSTNMBR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADRSCODE
+		dataType: string
+		lineageTag: d35ef548-af65-4cb5-be6b-91b9e0a85842
+		summarizeBy: none
+		sourceColumn: ADRSCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_NUMBER
+		dataType: string
+		lineageTag: 99a3efeb-1df4-485f-8798-94ec1d01a54d
+		summarizeBy: none
+		sourceColumn: CONTRACT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column WSCONTSQ
+		dataType: double
+		lineageTag: 6b751d5a-2941-47ca-886c-a7be43143edd
+		summarizeBy: sum
+		sourceColumn: WSCONTSQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WENNSOFT_BILLING_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 436de59a-5fe2-45cf-9593-6432954dcb0b
+		summarizeBy: none
+		sourceColumn: WENNSOFT_BILLING_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BILLABLE_ALL
+		dataType: double
+		lineageTag: ec0aa730-29f7-4d1a-aa3b-8fed9e5635f7
+		summarizeBy: sum
+		sourceColumn: BILLABLE_ALL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONTRACT_BILLING_DESC
+		dataType: string
+		lineageTag: f942c287-24ab-49fd-9e72-cef129016fbe
+		summarizeBy: none
+		sourceColumn: CONTRACT_BILLING_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 38ca69e7-c4ce-475c-b74a-2d05d5f6e6c4
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_FULL_YEAR_ID
+		dataType: string
+		lineageTag: 93a44955-bff8-491d-95c6-7ba4038a2527
+		summarizeBy: none
+		sourceColumn: CONTRACT_FULL_YEAR_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer_Contract_Year Key'
+		dataType: string
+		lineageTag: 57e530d5-02c3-4233-9ae2-c22e69c06341
+		summarizeBy: none
+		sourceColumn: Customer_Contract_Year Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CONTRACT_BILLABLE_F = m
+		mode: import
+		source =
+				let
+				    Source = SV00564,
+				    #"Trimmed Text" = Table.TransformColumns(Source,{{"CUSTNMBR", Text.Trim, type text}}),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Trimmed Text",{{"CONTRACT_NUMBER", Text.Trim, type text}, {"CUSTNMBR", Text.Trim, type text}, {"ADRSCODE", Text.Trim, type text}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Trimmed Text1",{"CUSTNMBR", "ADRSCODE", "CONTRACT_NUMBER", "WSCONTSQ", "WENNSOFT_BILLING_DATE", "BILLABLE_ALL", "CONTRACT_BILLING_DESC"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"WENNSOFT_BILLING_DATE", type date}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"CUSTNMBR", Order.Ascending}, {"CONTRACT_NUMBER", Order.Ascending}, {"WSCONTSQ", Order.Ascending}, {"WENNSOFT_BILLING_DATE", Order.Ascending}}),
+				    #"Added Custom" = Table.AddColumn(#"Sorted Rows", "Customer Key", each [CUSTNMBR] & "SERV_GP"),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "CONTRACT_FULL_YEAR_ID", each [Customer Key] & "_" & [CONTRACT_NUMBER] & "_" & [ADRSCODE] & "_" & Number.ToText([WSCONTSQ])),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Customer_Contract_Year Key", each [Customer Key] & "_" & [CONTRACT_NUMBER] & "_" & Number.ToText([WSCONTSQ]))
+				in
+				    #"Added Custom2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

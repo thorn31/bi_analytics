@@ -23,11 +23,11 @@
                       "Entity": "CUSTOMERS_D"
                     }
                   },
-                  "Property": "Customer Name"
+                  "Property": "Master Customer Name"
                 }
               },
-              "queryRef": "CUSTOMERS_D.Customer Name",
-              "nativeQueryRef": "Customer Name",
+              "queryRef": "CUSTOMERS_D.Master Customer Name",
+              "nativeQueryRef": "Master Customer Name",
               "active": true
             }
           ]
@@ -100,7 +100,7 @@
                                   "Source": "c"
                                 }
                               },
-                              "Property": "Customer Name"
+                              "Property": "Master Customer Name"
                             }
                           }
                         ],
@@ -108,7 +108,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Greater Faith Church'"
+                                "Value": "'First Baptist Church Kingsport'"
                               }
                             }
                           ]
@@ -140,12 +140,12 @@
                                 "Source": "c"
                               }
                             },
-                            "Property": "Customer Name"
+                            "Property": "Master Customer Name"
                           }
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'Greater'"
+                            "Value": "'First Baptist'"
                           }
                         }
                       }

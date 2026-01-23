@@ -1,0 +1,78 @@
+table JOB_COST_FORECASTS_F
+	lineageTag: 6cce4d75-30ac-4637-a3d5-641369ad0ae1
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: 59ae8279-1f18-4df0-86ff-44b9bc8f9527
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: dae2086d-1a55-4d82-baf2-873afa11a314
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+	column COST_CODE
+		dataType: string
+		lineageTag: 836d66a1-fd12-48a3-b5ea-86f4d4098b05
+		summarizeBy: none
+		sourceColumn: COST_CODE
+
+	column YEAR
+		dataType: int64
+		lineageTag: 18d9b6bc-67f2-401b-b541-96aca9367c84
+		summarizeBy: sum
+		sourceColumn: YEAR
+
+	column FISCAL_MONTH
+		dataType: int64
+		lineageTag: 731992fb-4c5e-4141-824a-a1b0eba41807
+		summarizeBy: sum
+		sourceColumn: FISCAL_MONTH
+
+	column FORECAST_COSTS
+		dataType: double
+		lineageTag: bf7eb01c-7496-4d02-88d6-d6cdc99cfd8d
+		summarizeBy: sum
+		sourceColumn: FORECAST_COSTS
+
+	column SOURCE
+		dataType: string
+		lineageTag: f53b9f42-5c21-4bec-a6ff-0ad469df4cb3
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+	column 'Job_Cost Code'
+		dataType: string
+		lineageTag: 8bd6baf0-0a01-47e8-acda-6623e4979af1
+		summarizeBy: none
+		sourceColumn: Job_Cost Code
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 19127813-68ee-428d-9491-fd0af94d74f0
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition JOB_COST_FORECASTS_F = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOB_COST_FORECASTS_F_Table = DW_FINAL_Schema{[Name="JOB_COST_FORECASTS_F",Kind="Table"]}[Data],
+				    Filtered = Table.SelectRows(JOB_COST_FORECASTS_F_Table, each [SOURCE] = "MECH_GP"),
+				    Trimmed = Table.TransformColumns(Filtered,{{"JOB_NUMBER", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
+				    Cleaned = Table.TransformColumns(Trimmed,{{"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
+				    AddedJobCostCode = Table.AddColumn(Cleaned, "Job_Cost Code", each [JOB_NUMBER] & ":" & [COST_CODE], type text),
+				    AddedDate = Table.AddColumn(AddedJobCostCode, "Date", each Date.AddMonths(#date(Number.From([YEAR]), Number.From([FISCAL_MONTH]), 1), -3), type date),
+				    Selected = Table.SelectColumns(AddedDate,{"JOB_NUMBER","JOB_KEY","COST_CODE","YEAR","FISCAL_MONTH","FORECAST_COSTS","SOURCE","Job_Cost Code","Date"}),
+				    Typed = Table.TransformColumnTypes(Selected,{{"JOB_NUMBER", type text},{"JOB_KEY", type text},{"COST_CODE", type text},{"YEAR", Int64.Type},{"FISCAL_MONTH", Int64.Type},{"FORECAST_COSTS", type number},{"SOURCE", type text},{"Job_Cost Code", type text},{"Date", type date}})
+				in
+				    Typed
+

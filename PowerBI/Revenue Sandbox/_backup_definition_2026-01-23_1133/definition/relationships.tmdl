@@ -1,0 +1,20 @@
+relationship AutoDetected_a1b5326b-e868-4190-9c30-e3ec7792fb55
+	fromColumn: PROJECTS_D.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship AutoDetected_614aadaa-60d7-4ea2-b295-658c7789d065
+	fromColumn: SERVCONTRACTS_REVENUE_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship AutoDetected_cb0b4144-088b-42a2-8420-ff032288edc8
+	fromColumn: SERVCONTRACTS_COSTS_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship e283a684-e1b7-32d7-8ae2-068b157f0401
+	fromColumn: PROJECTS_D.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 62df3a2b-80c4-ab50-f80c-17a2188168a3
+	fromColumn: SERVCONTRACTS_D.'Custnmbr Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+

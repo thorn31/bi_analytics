@@ -724,17 +724,26 @@ table '_Key Measures'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Selected Customer Name' =
+	measure 'Selected Customer Name' = ```
 			
-			IF (
-			    ISFILTERED ( 'CUSTOMERS_D'[Customer Name] ),
-			    IF (
-			        HASONEVALUE ( 'CUSTOMERS_D'[Customer Name] ),
-			        VALUES ( 'CUSTOMERS_D'[Customer Name] ),
-			        "Multiple Customers Selected"
-			    ),
-			    "All Customers (Company Total)"
-			)
+			  IF (
+			      ISFILTERED ( CUSTOMERS_D[Master Customer Name] ),
+			      IF (
+			          HASONEVALUE ( CUSTOMERS_D[Master Customer Name] ),
+			          SELECTEDVALUE ( CUSTOMERS_D[Master Customer Name] ),
+			          "Multiple Customers Selected"
+			      ),
+			      IF (
+			          ISFILTERED ( CUSTOMERS_D[Customer Name] ),
+			          IF (
+			              HASONEVALUE ( CUSTOMERS_D[Customer Name] ),
+			              SELECTEDVALUE ( CUSTOMERS_D[Customer Name] ),
+			              "Multiple Customers Selected"
+			          ),
+			          "All Customers (Company Total)"
+			      )
+			  )
+			```
 		displayFolder: 90 Debug\UI
 		lineageTag: 49325a64-8ed9-40f3-bbb5-437363f783fe
 
@@ -1283,14 +1292,14 @@ table '_Key Measures'
 
 	measure 'Client Revenue Rank' = ```
 			
-			RANKX(
-			    ALLSELECTED( CUSTOMERS_D[Customer Name] ),
-			    [Total Revenue],
-			    ,
-			    DESC,
-			    Dense
-			)
-			
+			  VAR MasterNames =
+			      FILTER(
+			          ALLSELECTED( CUSTOMERS_D[Master Customer Name] ),
+			          NOT ISBLANK( CUSTOMERS_D[Master Customer Name] )
+			              && CUSTOMERS_D[Master Customer Name] <> ""
+			      )
+			  RETURN
+			      RANKX( MasterNames, [Total Revenue], , DESC, Dense )
 			```
 		lineageTag: c1a146cf-4865-41b0-aa71-d9431406045c
 
@@ -3022,6 +3031,23 @@ table '_Key Measures'
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: UI\Customer\Risk & Opportunity (R12M)
 		lineageTag: 326c6a1b-6fc4-411f-a154-7ba65134f495
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Logo URL' = ```
+			
+			  VAR logoUrl = SELECTEDVALUE ( CUSTOMERS_D[Logo URL (Final)] )
+			  RETURN
+			      IF ( logoUrl = "" || ISBLANK ( logoUrl ), BLANK (), logoUrl )
+			```
+		displayFolder: 90 Debug\UI
+		lineageTag: d91ffaf0-0ba2-440b-a2a3-fbf5803e6647
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg NPS Rating' = AVERAGE (NPS_F[1-10 Score])
+		displayFolder: 10 Customer Experience
+		lineageTag: 94561e9f-69a7-45de-b03e-f984c2fe04a2
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

@@ -726,6 +726,62 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "e5b279cb13b06b705e95",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a34d4ea832072333dc22",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Quarter"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f4a078b7064ca9403ec5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Revenue_Stream_D"
+              }
+            },
+            "Property": "Revenue Stream"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bd59c139db72d350084e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Revenue (By Stream)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
