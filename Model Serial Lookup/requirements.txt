@@ -1,0 +1,3 @@
+# This repo is intentionally stdlib-only so it can run in minimal Python environments.
+# If you later enable `--provider openai` in `msl normalize`, install:
+# - requests (for the OpenAI HTTP call)
