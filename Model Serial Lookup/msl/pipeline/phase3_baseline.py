@@ -189,15 +189,21 @@ def cmd_phase3_baseline(args) -> int:
             by_equipment = Counter()
 
             for row in reader:
+                make_raw = (row.get(cmap.make) if cmap.make else "") or ""
+                model_raw = (row.get(cmap.model) if cmap.model else "") or ""
+                serial_raw = (row.get(cmap.serial) if cmap.serial else "") or ""
+                
+                # Skip records where both model and serial are missing. 
+                # These cannot be decoded and shouldn't count against coverage stats.
+                if not model_raw.strip() and not serial_raw.strip():
+                    continue
+
                 total += 1
 
                 asset_id_raw = (row.get(cmap.asset_id) if cmap.asset_id else "") or ""
                 if not asset_id_raw:
                     # Stable fallback key: row number (1-based, excluding header)
                     asset_id_raw = f"ROW-{total}"
-
-                make_raw = (row.get(cmap.make) if cmap.make else "") or ""
-                model_raw = (row.get(cmap.model) if cmap.model else "") or ""
                 serial_raw = (row.get(cmap.serial) if cmap.serial else "") or ""
                 et_raw = (row.get(cmap.equipment_type) if cmap.equipment_type else "") or ""
                 known_year_raw = (row.get(cmap.known_year) if cmap.known_year else "") or ""
