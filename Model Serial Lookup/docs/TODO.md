@@ -7,15 +7,16 @@ Update rules:
 - When a checklist item is completed, mark it done and add a short note (run-id, ruleset folder, output path).
 - Keep `docs/STATUS.md` aligned with the current “last known good” ruleset.
 
-Last updated: 2026-01-26
+Last updated: 2026-01-27
 
 ---
 
 ## Current baselines
 - Phase 1 ruleset: `data/rules_normalized/CURRENT_PHASE1.txt`
 - Phase 2 sample output: `out/user_assets_sample_decoded_full_28b_latest.csv`
-- Phase 2 recommended ruleset (Phase 3 promoted additions): `data/rules_normalized/CURRENT.txt`
-- Phase 3 baseline “next targets”: `$(cat data/reports/CURRENT_BASELINE.txt)/next_targets.md`
+- Phase 2 recommended ruleset (Phase 3 promoted additions): `data/rules_normalized/2026-01-27-trane-fix-v3/` (see CURRENT.txt)
+- Phase 3 baseline "next targets": `data/reports/trane-fix-v3/next_targets.md`
+- **Current Trane accuracy: 94.0%** (up from 73.0%)
 
 ---
 
@@ -77,13 +78,17 @@ Plan reference: `docs/PLAN_PHASE3.md`
 - [x] Add AAON serial date decoding from SDI evidence (YYYYMM prefix). (ruleset: `data/rules_normalized/2026-01-26-sdi-promoted19-2026-01-26-heuristic36a-aaonserial`, baseline: `data/reports/2026-01-26-sdi-baseline13-aaonserial`)
 - [x] Add Mitsubishi serial year decoding from SDI evidence (W/YW/ZW formats). (ruleset: `data/rules_normalized/2026-01-26-sdi-promoted20-2026-01-26-heuristic36a-mitsu`, baseline: `data/reports/2026-01-26-sdi-baseline14-mitsu`)
 
-## Phase 3 Tasks (2026-01-26)
+## Phase 3 Tasks (2026-01-26 through 2026-01-27)
 - [x] Fix Column Mapping for 'Manuf.\nYear'
 - [x] Enable Brand Normalization (Lowered thresholds)
 - [x] Fix Carrier Style 1 Regex
 - [x] Promote Manual Rules (ACE, Lochinvar)
-- [ ] **Trane:** Investigate 10-digit serials (Priority 1)
-- [ ] **AAON:** Discover Serial Year rules (Priority 2)
+- [x] **Trane:** Investigate 10-digit serials (Priority 1) - COMPLETED 2026-01-27
+- [x] **AAON:** Discover Serial Year rules (Priority 2)
 - [ ] **Goodman:** Analyze Attribute gaps (Priority 3)
 - [x] Create detailed match reporting tool (msl/pipeline/report_matches.py)
-- [ ] **Trane Accuracy Fix:** Audit the 102 "Wrong" matches in Style 1 (2002-2009) to see if it's a 1-digit vs 2-digit year interpretation issue.
+- [x] **Trane Accuracy Fix:** Fixed length-based discrimination for Style 1 patterns (ruleset: `2026-01-27-trane-fix-v3`, accuracy: 73.0% → 94.0%)
+
+## Phase 3 Maintenance Tasks
+- [ ] **Apply manual fixes after every promotion:** Run `scripts/apply_manual_serial_fixes.py` after `phase3-promote` to ensure critical fixes persist (see `docs/WORKFLOW_RULESET_PROMOTION.md`)
+- [ ] Consider integrating manual fixes into phase3-promote command for automation
