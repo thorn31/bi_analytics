@@ -12,10 +12,12 @@ Last updated: 2026-01-26
 ---
 
 ## Current baselines
-- Phase 1 ruleset: `data/rules_normalized/CURRENT_PHASE1.txt`
+- Phase 1 ruleset: **DEPRECATED** (legacy `CURRENT_PHASE1.txt` removed; use `CURRENT.txt`)
 - Phase 2 sample output: `out/user_assets_sample_decoded_full_28b_latest.csv`
-- Phase 2 recommended ruleset (Phase 3 promoted additions): `data/rules_normalized/CURRENT.txt`
-- Phase 3 baseline “next targets”: `$(cat data/reports/CURRENT_BASELINE.txt)/next_targets.md`
+- Phase 2 recommended ruleset (Phase 3 promoted additions): `$(cat data/rules_normalized/CURRENT.txt)`
+- Phase 3 baseline "next targets": `$(cat data/reports/CURRENT_BASELINE.txt)/next_targets.md`
+
+**Note:** Producer commands (`msl validate`, `msl phase3-promote`) now automatically update `CURRENT.txt` and clean up old rulesets (keeping 5 most recent + CURRENT.txt target). Use `--no-cleanup` to skip cleanup.
 
 ---
 
@@ -38,8 +40,9 @@ Last updated: 2026-01-26
 - [x] Mine OCR text into deterministic attribute overrides (Voltage + limited capacity/stage/refrigerant). (ruleset: `data/rules_normalized/2026-01-25-heuristic29a-ocrattrs2/`, overrides: `data/manual_overrides/attribute_overrides.jsonl`)
 - [x] OCR serial charts into deterministic serial overrides (reduces `requires_chart`). (ruleset: `data/rules_normalized/2026-01-26-heuristic29a-ocrserial1-ocrattrs2/`, overrides: `data/manual_overrides/serial_overrides.jsonl`, run-id: `2026-01-26-ocrserial1`)
 - [x] OCR additional serial charts + merge into overrides (ruleset: `data/rules_normalized/2026-01-26-heuristic35a-ocrserial2-ocrattrs2/`, overrides: `data/manual_overrides/serial_overrides.jsonl`, run-id: `2026-01-26-ocrserial2`)
-- [x] Increase `evidence_excerpt` length so key instructions aren’t cut off mid-sentence. (ruleset regenerated: `data/rules_normalized/2026-01-26-heuristic36a-ocrserial2-ocrattrs2-prune1/`)
-- [ ] Produce a “release” ruleset folder for Phase 2 consumption (new run-id once stabilized).
+- [x] Increase `evidence_excerpt` length so key instructions aren't cut off mid-sentence. (ruleset regenerated: `data/rules_normalized/2026-01-26-heuristic36a-ocrserial2-ocrattrs2-prune1/`)
+- [x] Automated ruleset management: auto-update CURRENT.txt pointer, auto-cleanup old rulesets, default consumer commands to CURRENT.txt. (2026-01-26, module: `msl/pipeline/ruleset_manager.py`, command: `msl cleanup-rulesets`)
+- [ ] Produce a "release" ruleset folder for Phase 2 consumption (new run-id once stabilized).
 
 ---
 
@@ -55,7 +58,7 @@ Last updated: 2026-01-26
 - [x] Add stable output schema for attributes (row-per-attribute export in addition to `AttributesJSON`). (via `msl decode --attributes-output`, 2026-01-25)
 - [x] Best-rule selection/tie-breaking when multiple rules match. (attributes: pick best per `AttributeName`; serial: century-expand `YY`, continue past matches that can’t decode year, `--min-manufacture-year` guard, 2026-01-25)
 - [x] Add decode-time support for `BrandNormalizeRule.csv` (Phase 3 output) without hardcoding aliases in code. (ruleset-local file, 2026-01-25-sdi-promoted5)
-- [ ] Add decode-time support for equipment-type context (if/when Phase 3 produces `EquipmentTypeRule.csv`).
+- [ ] Add decode-time support for equipment-type context (if/when Phase 3 produces `EquipmentTypeRule.csv`) (HIGH PRIORITY - Fixes cross-type collisions).
 
 ---
 

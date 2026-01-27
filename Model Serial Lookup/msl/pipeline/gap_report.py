@@ -8,6 +8,7 @@ from pathlib import Path
 from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv
 from msl.decoder.normalize import normalize_brand
 from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
+from msl.pipeline.ruleset_manager import resolve_ruleset_dir
 
 
 def _load_csv(path: Path) -> list[dict]:
@@ -16,7 +17,9 @@ def _load_csv(path: Path) -> list[dict]:
 
 
 def cmd_gap_report(args) -> int:
-    ruleset_dir = Path(args.ruleset_dir)
+    ruleset_dir = resolve_ruleset_dir(getattr(args, "ruleset_dir", None) or None)
+    if not ruleset_dir:
+        raise SystemExit("--ruleset-dir is required and must exist, or CURRENT.txt must point to a valid ruleset")
     serial_csv = Path(args.serial_rules_csv) if args.serial_rules_csv else (ruleset_dir / "SerialDecodeRule.csv")
     attr_csv = Path(args.attribute_rules_csv) if args.attribute_rules_csv else (ruleset_dir / "AttributeDecodeRule.csv")
 

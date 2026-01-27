@@ -13,6 +13,7 @@ from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_
 from msl.decoder.normalize import normalize_brand, normalize_model, normalize_serial, normalize_text
 from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
 from msl.pipeline.common import ensure_dir
+from msl.pipeline.ruleset_manager import resolve_ruleset_dir
 
 
 def _utc_run_id(prefix: str) -> str:
@@ -69,9 +70,9 @@ def cmd_phase3_baseline(args) -> int:
     if not input_path.exists():
         raise SystemExit(f"Missing input file: {input_path}")
 
-    ruleset_dir = Path(args.ruleset_dir) if args.ruleset_dir else None
+    ruleset_dir = resolve_ruleset_dir(getattr(args, "ruleset_dir", None))
     if not ruleset_dir or not ruleset_dir.exists():
-        raise SystemExit("--ruleset-dir is required and must exist")
+        raise SystemExit("--ruleset-dir is required and must exist, or CURRENT.txt must point to a valid ruleset")
 
     serial_rules_csv = ruleset_dir / "SerialDecodeRule.csv"
     attr_rules_csv = ruleset_dir / "AttributeDecodeRule.csv"
@@ -96,7 +97,7 @@ def cmd_phase3_baseline(args) -> int:
         brand_alias_map = load_brand_normalize_rules_csv(brand_rules_csv)
 
     # Read input + infer mapping.
-    with input_path.open("r", newline="", encoding="utf-8-sig") as f:
+    with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f:
         reader = csv.DictReader(f)
         if not reader.fieldnames:
             raise SystemExit("Input CSV missing header row")
@@ -179,6 +180,8 @@ def cmd_phase3_baseline(args) -> int:
             total = 0
             missing = Counter()
             by_brand_total = Counter()
+            by_brand_total_with_serial = Counter()  # Records with non-empty SerialNumber
+            by_brand_total_with_model = Counter()   # Records with non-empty ModelNumber
             by_brand_year_decoded = Counter()
             by_brand_year_correct = Counter()
             by_brand_year_decoded_and_known = Counter()
@@ -225,6 +228,10 @@ def cmd_phase3_baseline(args) -> int:
                     missing["KnownManufactureYear_non_numeric"] += 1
 
                 by_brand_total[make] += 1
+                if serial_raw.strip():
+                    by_brand_total_with_serial[make] += 1
+                if model_raw.strip():
+                    by_brand_total_with_model[make] += 1
                 if equipment_type:
                     by_equipment[equipment_type] += 1
 
@@ -330,6 +337,8 @@ def cmd_phase3_baseline(args) -> int:
         fields = [
             "Brand",
             "N",
+            "N_WithSerial",
+            "N_WithModel",
             "YearDecodedN",
             "YearCoveragePct",
             "KnownYearN",
@@ -342,6 +351,8 @@ def cmd_phase3_baseline(args) -> int:
         w = csv.DictWriter(f_score, fieldnames=fields)
         w.writeheader()
         for brand, n in sorted(by_brand_total.items(), key=lambda kv: (-kv[1], kv[0])):
+            n_serial = by_brand_total_with_serial[brand]
+            n_model = by_brand_total_with_model[brand]
             yd = by_brand_year_decoded[brand]
             ky = by_brand_has_known_year[brand]
             yc = by_brand_year_correct[brand]
@@ -352,14 +363,16 @@ def cmd_phase3_baseline(args) -> int:
                 {
                     "Brand": brand,
                     "N": n,
+                    "N_WithSerial": n_serial,
+                    "N_WithModel": n_model,
                     "YearDecodedN": yd,
-                    "YearCoveragePct": f"{(yd / n * 100.0):.1f}" if n else "",
+                    "YearCoveragePct": f"{(yd / n_serial * 100.0):.1f}" if n_serial else "",
                     "KnownYearN": ky,
                     "YearAccuracyPct": f"{(yc / ydk * 100.0):.1f}" if ydk else "",
                     "AnyAttributesN": any_a,
-                    "AnyAttributesCoveragePct": f"{(any_a / n * 100.0):.1f}" if n else "",
+                    "AnyAttributesCoveragePct": f"{(any_a / n_model * 100.0):.1f}" if n_model else "",
                     "NominalCapacityTonsN": tons_a,
-                    "NominalCapacityTonsCoveragePct": f"{(tons_a / n * 100.0):.1f}" if n else "",
+                    "NominalCapacityTonsCoveragePct": f"{(tons_a / n_model * 100.0):.1f}" if n_model else "",
                 }
             )
 
@@ -375,34 +388,40 @@ def cmd_phase3_baseline(args) -> int:
 
     by_brand_rows: list[dict] = []
     for brand, n in by_brand_total.items():
+        n_serial = by_brand_total_with_serial[brand]
+        n_model = by_brand_total_with_model[brand]
         yd = by_brand_year_decoded[brand]
         ky = by_brand_has_known_year[brand]
         ydk = by_brand_year_decoded_and_known[brand]
         yc = by_brand_year_correct[brand]
         wrong_year_n = max(ydk - yc, 0)
-        missing_year_n = max(ky - yd, 0)
+        # Missing year = records with serial that weren't decoded
+        missing_year_n = max(n_serial - yd, 0)
 
         any_a = by_brand_attr_any[brand]
-        missing_attr_n = max(n - any_a, 0)
+        # Missing attr = records with model that weren't decoded
+        missing_attr_n = max(n_model - any_a, 0)
         tons_a = by_brand_attr_tons[brand]
 
         by_brand_rows.append(
             {
                 "Brand": brand,
                 "N": n,
+                "N_WithSerial": n_serial,
+                "N_WithModel": n_model,
                 "KnownYearN": ky,
                 "YearDecodedN": yd,
                 "MissingYearN": missing_year_n,
                 "YearDecodedAndKnownN": ydk,
                 "YearCorrectN": yc,
                 "WrongYearN": wrong_year_n,
-                "YearCoveragePct": f"{_pct(yd, n):.1f}" if _pct(yd, n) is not None else "",
+                "YearCoveragePct": f"{_pct(yd, n_serial):.1f}" if _pct(yd, n_serial) is not None else "",
                 "YearAccuracyOnMatchesPct": f"{_pct(yc, ydk):.1f}" if _pct(yc, ydk) is not None else "",
                 "AnyAttributesN": any_a,
                 "MissingAttrN": missing_attr_n,
-                "AnyAttributesCoveragePct": f"{_pct(any_a, n):.1f}" if _pct(any_a, n) is not None else "",
+                "AnyAttributesCoveragePct": f"{_pct(any_a, n_model):.1f}" if _pct(any_a, n_model) is not None else "",
                 "NominalCapacityTonsN": tons_a,
-                "NominalCapacityTonsCoveragePct": f"{_pct(tons_a, n):.1f}" if _pct(tons_a, n) is not None else "",
+                "NominalCapacityTonsCoveragePct": f"{_pct(tons_a, n_model):.1f}" if _pct(tons_a, n_model) is not None else "",
             }
         )
 
@@ -411,6 +430,8 @@ def cmd_phase3_baseline(args) -> int:
         fields = [
             "Brand",
             "N",
+            "N_WithSerial",
+            "N_WithModel",
             "KnownYearN",
             "YearDecodedN",
             "MissingYearN",
@@ -453,7 +474,7 @@ def cmd_phase3_baseline(args) -> int:
     lines.append("## Top Year Coverage Gaps (MissingYearN)\n")
     for r in top_year_gaps:
         lines.append(
-            f"- {r['Brand']}: MissingYear={r['MissingYearN']} (Decoded={r['YearDecodedN']}/{r['KnownYearN']} known; Coverage={r['YearCoveragePct']}%)\n"
+            f"- {r['Brand']}: MissingYear={r['MissingYearN']} (Decoded={r['YearDecodedN']}/{r['N_WithSerial']} with serial; Coverage={r['YearCoveragePct']}%)\n"
         )
 
     lines.append("\n## Top Wrong-Year Volume (WrongYearN)\n")
@@ -467,7 +488,7 @@ def cmd_phase3_baseline(args) -> int:
     for r in top_attr_gaps:
         lines.append(
             f"- {r['Brand']}: MissingAttr={r['MissingAttrN']} "
-            f"(AnyAttr={r['AnyAttributesN']}/{r['N']}; Coverage={r['AnyAttributesCoveragePct']}%)\n"
+            f"(AnyAttr={r['AnyAttributesN']}/{r['N_WithModel']} with model; Coverage={r['AnyAttributesCoveragePct']}%)\n"
         )
 
     next_targets_md.write_text("".join(lines), encoding="utf-8")
