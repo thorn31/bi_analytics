@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from msl.pipeline.common import ensure_dir
+from msl.pipeline.ruleset_manager import cleanup_old_rulesets, update_current_pointer
 
 
 def _load_jsonl(path: Path) -> list[dict]:
@@ -247,6 +248,14 @@ def cmd_phase3_promote(args) -> int:
 
     if brand_rows:
         _write_csv(out_ruleset / "BrandNormalizeRule.csv", brand_fields, brand_rows)
+
+    # Update CURRENT.txt pointer to this new ruleset
+    update_current_pointer(out_ruleset)
+    print(f"Updated CURRENT.txt -> {out_ruleset}")
+
+    # Auto-cleanup old rulesets unless --no-cleanup specified
+    if not getattr(args, "no_cleanup", False):
+        cleanup_old_rulesets()
 
     print(str(out_ruleset))
     return 0

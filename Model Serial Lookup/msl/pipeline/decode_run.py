@@ -10,22 +10,26 @@ from msl.decoder.decode import decode_serial
 from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv
 from msl.decoder.normalize import normalize_brand
 from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
+from msl.pipeline.ruleset_manager import resolve_ruleset_dir
 
 
 def cmd_decode(args) -> int:
+    # Resolve ruleset_dir: explicit arg > CURRENT.txt > None
+    ruleset_dir = resolve_ruleset_dir(getattr(args, "ruleset_dir", "") or None)
+
     serial_rules_csv = args.serial_rules_csv
-    if args.ruleset_dir:
-        serial_rules_csv = str(Path(args.ruleset_dir) / "SerialDecodeRule.csv")
+    if ruleset_dir:
+        serial_rules_csv = str(ruleset_dir / "SerialDecodeRule.csv")
 
     attribute_rules_csv = ""
-    if args.ruleset_dir:
-        attribute_rules_csv = str(Path(args.ruleset_dir) / "AttributeDecodeRule.csv")
+    if ruleset_dir:
+        attribute_rules_csv = str(ruleset_dir / "AttributeDecodeRule.csv")
     if getattr(args, "attribute_rules_csv", ""):
         attribute_rules_csv = args.attribute_rules_csv
 
     brand_alias_map: dict[str, str] = {}
-    if args.ruleset_dir:
-        brand_rules_csv = Path(args.ruleset_dir) / "BrandNormalizeRule.csv"
+    if ruleset_dir:
+        brand_rules_csv = ruleset_dir / "BrandNormalizeRule.csv"
         if brand_rules_csv.exists():
             brand_alias_map = load_brand_normalize_rules_csv(brand_rules_csv)
 

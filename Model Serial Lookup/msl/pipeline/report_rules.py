@@ -5,19 +5,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
-
-def _find_latest_ruleset_dir(base_dir: Path) -> Path | None:
-    if not base_dir.exists():
-        return None
-    candidates: list[Path] = []
-    for p in base_dir.iterdir():
-        if not p.is_dir():
-            continue
-        if (p / "SerialDecodeRule.csv").exists() or (p / "AttributeDecodeRule.csv").exists():
-            candidates.append(p)
-    if not candidates:
-        return None
-    return max(candidates, key=lambda p: p.stat().st_mtime)
+from msl.pipeline.ruleset_manager import resolve_ruleset_dir
 
 
 def _load_csv_rows(path: Path) -> list[dict]:
@@ -98,14 +86,12 @@ def _report_attribute(rows: list[dict]) -> str:
 
 def cmd_report(args) -> int:
     base_dir = Path(args.rules_base_dir)
-    ruleset_dir = Path(args.ruleset_dir) if args.ruleset_dir else None
+    ruleset_dir = resolve_ruleset_dir(getattr(args, "ruleset_dir", None) or None, base_dir=base_dir)
 
     if ruleset_dir is None:
-        ruleset_dir = _find_latest_ruleset_dir(base_dir)
-        if ruleset_dir is None:
-            raise SystemExit(
-                f"No ruleset dir found under {base_dir}. Pass --ruleset-dir or set --rules-base-dir."
-            )
+        raise SystemExit(
+            f"No ruleset dir found. Pass --ruleset-dir or ensure CURRENT.txt exists in {base_dir}."
+        )
 
     serial_path = Path(args.serial_rules_csv) if args.serial_rules_csv else (ruleset_dir / "SerialDecodeRule.csv")
     attr_path = (

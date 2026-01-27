@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from msl.pipeline.common import ensure_dir, resolve_run_date, write_csv
+from msl.pipeline.ruleset_manager import cleanup_old_rulesets, update_current_pointer
 
 
 def _load_jsonl(path: Path) -> list[dict]:
@@ -456,6 +457,14 @@ def cmd_validate(args) -> int:
             for s in skips
         ],
     )
+
+    # Update CURRENT.txt pointer to this new ruleset
+    update_current_pointer(out_norm_dir)
+    print(f"Updated CURRENT.txt -> {out_norm_dir}")
+
+    # Auto-cleanup old rulesets unless --no-cleanup specified
+    if not getattr(args, "no_cleanup", False):
+        cleanup_old_rulesets()
 
     print(str(out_norm_dir))
     print(str(out_reports_dir))

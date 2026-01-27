@@ -3,6 +3,7 @@
 Use the documentation in `docs/` as the source of truth for intent and workflow.
 
 Start here:
+- `docs/CONCEPTS.md`: high-level architecture (Librarian vs Detective).
 - `docs/STATUS.md` for current baseline ruleset + how to run/reproduce the pipeline.
 - `docs/TODO.md` for the current checklist (Phase 1/2/3); keep it updated as you make progress.
 - `docs/README.md` for a short index of the docs set.
