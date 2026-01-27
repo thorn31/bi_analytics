@@ -18,8 +18,13 @@ def generate_match_report(input_csv, output_md):
         
         for row in reader:
             brand = row.get('DetectedBrand', 'UNKNOWN')
+            sn = row.get('SerialNumber', '').strip()
+            
+            # Skip rows with no serial number in the match analysis.
+            if not sn:
+                continue
+                
             style = row.get('MatchedSerialStyle', '')
-            status = row.get('DecodeStatus', '')
             
             # Ground truth vs Decoded
             decoded_year = row.get('ManufactureYear', '').strip()

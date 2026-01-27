@@ -81,7 +81,7 @@ def cmd_phase3_audit(args) -> int:
             if line.strip():
                 serial_cands.append(json.loads(line))
 
-    with input_path.open("r", newline="", encoding="utf-8-sig") as f:
+    with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f:
         reader = csv.DictReader(f)
         fns = reader.fieldnames or []
         cmap = infer_column_map(fns)

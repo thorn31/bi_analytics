@@ -3,6 +3,7 @@
 This folder is the source of truth for **intent** and **workflow**.
 
 Start here:
+- `docs/CONCEPTS.md`: **Read this first** to understand the "Three Phases" (Librarian vs Detective) architecture.
 - `docs/STATUS.md`: current recommended ruleset + how to reproduce runs
 - `docs/TODO.md`: single checklist for Phase 1/2/3 work
 

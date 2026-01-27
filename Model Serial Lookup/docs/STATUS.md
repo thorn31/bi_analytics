@@ -19,6 +19,13 @@ Recommended "current" pointers (as of 2026-01-27):
 - **Ruleset (Master):** `data/rules_normalized/2026-01-27-trane-fix-v3/` (see CURRENT.txt)
 - **Baseline report:** `data/reports/trane-fix-v3/`
 - **Trane accuracy:** 94.0% (up from 73.0%)
+**Automated Ruleset Management (as of 2026-01-26):**
+- Producer commands (`msl validate`, `msl phase3-promote`) now automatically:
+  - Update `CURRENT.txt` to point to the newly created ruleset
+  - Clean up old rulesets (keeps 5 most recent + CURRENT.txt target)
+  - Use `--no-cleanup` flag to skip cleanup
+- Consumer commands (`msl decode`, `msl report`, `msl phase3-baseline`, `msl phase3-mine`, `msl gap-report`) now default to `CURRENT.txt` if `--ruleset-dir` is not specified
+- Manual cleanup: `msl cleanup-rulesets [--retention N] [--dry-run]`
 
 Previous pointers (2026-01-26):
 - Phase 1 baseline ruleset: `data/rules_normalized/2026-01-26-heuristic36a-ocrserial2-ocrattrs2-prune1`
@@ -82,9 +89,15 @@ Cached source corpus (Phase 1 raw archive):
   - Tonnage decoder pages
   - Water-heater age pages (expanded coverage)
 
-Quick coverage report:
+Quick coverage report (defaults to CURRENT.txt):
 ```bash
-python3 -m msl report --ruleset-dir $(cat data/rules_normalized/CURRENT.txt)
+python3 -m msl report
+```
+
+Manually clean up old rulesets (preview first):
+```bash
+python3 -m msl cleanup-rulesets --dry-run
+python3 -m msl cleanup-rulesets --retention 5
 ```
 
 Sample input + output used for checking against your asset list:
@@ -175,9 +188,14 @@ Latest extraction run:
 python3 -m msl normalize --provider heuristic --extracted-dir data/extracted_sections/YYYY-MM-DD --run-date YYYY-MM-DD-<tag>
 ```
 
-5) Validate + export CSV rules
+5) Validate + export CSV rules (auto-updates CURRENT.txt and cleans up old rulesets)
 ```bash
 python3 -m msl validate --staged-dir data/rules_staged/YYYY-MM-DD-<tag> --run-date YYYY-MM-DD-<tag>
+```
+
+Skip cleanup if needed:
+```bash
+python3 -m msl validate --staged-dir data/rules_staged/YYYY-MM-DD-<tag> --run-date YYYY-MM-DD-<tag> --no-cleanup
 ```
 
 ## OCR helpers
@@ -220,7 +238,14 @@ Attribute decoding policy (current):
 - Deduplicates by `(AttributeName, Units, Value)` per asset (keeps the preferred source URL when multiple equivalent rules exist).
 
 ## Gap analysis helper
-To see why assets are still `NotDecoded` / `Partial` for a given input CSV:
+To see why assets are still `NotDecoded` / `Partial` for a given input CSV (defaults to CURRENT.txt):
+```bash
+python3 -m msl gap-report \
+  --input <your_assets.csv> \
+  --output out/asset_gaps.csv
+```
+
+Or specify an explicit ruleset:
 ```bash
 python3 -m msl gap-report \
   --ruleset-dir data/rules_normalized/2026-01-25-heuristic20b \
@@ -228,9 +253,9 @@ python3 -m msl gap-report \
   --output out/asset_gaps.csv
 ```
 
+Decode using the current ruleset (CURRENT.txt):
 ```bash
 python3 -m msl decode \
-  --ruleset-dir $(cat data/rules_normalized/CURRENT.txt) \
   --input out/user_assets_sample.csv \
   --output out/user_assets_sample_decoded_full.csv
 ```
@@ -238,20 +263,26 @@ python3 -m msl decode \
 Optional: emit a row-per-attribute output CSV (better for Excel/Power Query):
 ```bash
 python3 -m msl decode \
-  --ruleset-dir $(cat data/rules_normalized/CURRENT.txt) \
   --input out/user_assets_sample.csv \
   --output out/user_assets_sample_decoded_full.csv \
   --attributes-output out/user_assets_sample_attributes.csv
 ```
 
-Safety: by default, the decoder skips decoded years earlier than 1980 to avoid false decodes from “obsolete-era” styles.
+Safety: by default, the decoder skips decoded years earlier than 1980 to avoid false decodes from "obsolete-era" styles.
 You can disable this if you need older equipment:
 ```bash
 python3 -m msl decode \
-  --ruleset-dir $(cat data/rules_normalized/CURRENT.txt) \
   --input out/user_assets_sample.csv \
   --output out/user_assets_sample_decoded_full.csv \
   --min-manufacture-year 0
+```
+
+To use a specific ruleset instead of CURRENT.txt:
+```bash
+python3 -m msl decode \
+  --ruleset-dir data/rules_normalized/2026-01-26-sdi-master-v1 \
+  --input out/user_assets_sample.csv \
+  --output out/user_assets_sample_decoded_full.csv
 ```
 
 Decade handling: if a rule encodes `YY` for year, Phase 2 expands it to `YYYY` using a pivot around the current year.

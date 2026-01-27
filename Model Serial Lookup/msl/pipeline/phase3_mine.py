@@ -14,6 +14,7 @@ from msl.decoder.io import load_brand_normalize_rules_csv, load_serial_rules_csv
 from msl.decoder.normalize import normalize_brand, normalize_serial, normalize_text
 from msl.pipeline.common import ensure_dir
 from msl.pipeline.phase3_baseline import infer_column_map, _as_int
+from msl.pipeline.ruleset_manager import resolve_ruleset_dir
 
 
 def _utc_run_id(prefix: str) -> str:
@@ -159,9 +160,9 @@ def cmd_phase3_mine(args) -> int:
     if not input_path.exists():
         raise SystemExit(f"Missing input file: {input_path}")
 
-    ruleset_dir = Path(args.ruleset_dir)
-    if not ruleset_dir.exists():
-        raise SystemExit(f"Missing ruleset dir: {ruleset_dir}")
+    ruleset_dir = resolve_ruleset_dir(getattr(args, "ruleset_dir", None) or None)
+    if not ruleset_dir or not ruleset_dir.exists():
+        raise SystemExit("--ruleset-dir is required and must exist, or CURRENT.txt must point to a valid ruleset")
 
     run_id = args.run_id or _utc_run_id("phase3-mine")
     out_candidates_dir = ensure_dir(Path(args.out_candidates_dir) / run_id / "candidates")
@@ -176,7 +177,7 @@ def cmd_phase3_mine(args) -> int:
     if brand_rules_csv.exists():
         brand_alias_map = load_brand_normalize_rules_csv(brand_rules_csv)
 
-    with input_path.open("r", newline="", encoding="utf-8-sig") as f:
+    with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f:
         reader = csv.DictReader(f)
         if not reader.fieldnames:
             raise SystemExit("Input CSV missing header row")
@@ -242,7 +243,7 @@ def cmd_phase3_mine(args) -> int:
     # Serial-year candidate mining (limited MVP: year positions only).
     # Re-read CSV (DictReader is one-pass).
     rows_by_brand_group: dict[tuple[str, int, str], list[tuple[str, int]]] = defaultdict(list)
-    with input_path.open("r", newline="", encoding="utf-8-sig") as f:
+    with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f:
         reader = csv.DictReader(f)
         cmap = infer_column_map(reader.fieldnames or [])
         if not cmap.make or not cmap.serial or not cmap.known_year:
@@ -385,7 +386,7 @@ def cmd_phase3_mine(args) -> int:
     # -------------------------
     def find_col(name_candidates: list[str]) -> str | None:
         # Use the same normalization strategy as phase3-baseline.
-        with input_path.open("r", newline="", encoding="utf-8-sig") as f2:
+        with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f2:
             r2 = csv.DictReader(f2)
             fns = r2.fieldnames or []
         norm = {normalize_text(c): c for c in fns}
@@ -615,7 +616,7 @@ def cmd_phase3_mine(args) -> int:
 
     capacity_groups: dict[tuple[str, str], list[tuple[str, str, float]]] = defaultdict(list)
     if col_model and col_cap_val and col_cap_unit:
-        with input_path.open("r", newline="", encoding="utf-8-sig") as f3:
+        with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f3:
             reader = csv.DictReader(f3)
             row_i = 0
             for row in reader:
@@ -805,7 +806,7 @@ def cmd_phase3_mine(args) -> int:
 
     numeric_groups: dict[tuple[str, str, str], list[tuple[str, str, float]]] = defaultdict(list)
     if col_model and numeric_specs:
-        with input_path.open("r", newline="", encoding="utf-8-sig") as f4:
+        with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f4:
             reader = csv.DictReader(f4)
             row_i = 0
             for row in reader:
