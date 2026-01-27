@@ -15,6 +15,10 @@ Project checklist / TODOs live in `docs/TODO.md` (keep it updated).
 ---
 
 ## Current state (last known good run)
+Recommended "current" pointers (as of 2026-01-27):
+- **Ruleset (Master):** `data/rules_normalized/2026-01-27-trane-fix-v3/` (see CURRENT.txt)
+- **Baseline report:** `data/reports/trane-fix-v3/`
+- **Trane accuracy:** 94.0% (up from 73.0%)
 **Automated Ruleset Management (as of 2026-01-26):**
 - Producer commands (`msl validate`, `msl phase3-promote`) now automatically:
   - Update `CURRENT.txt` to point to the newly created ruleset
@@ -23,12 +27,7 @@ Project checklist / TODOs live in `docs/TODO.md` (keep it updated).
 - Consumer commands (`msl decode`, `msl report`, `msl phase3-baseline`, `msl phase3-mine`, `msl gap-report`) now default to `CURRENT.txt` if `--ruleset-dir` is not specified
 - Manual cleanup: `msl cleanup-rulesets [--retention N] [--dry-run]`
 
-Recommended "current" pointers:
-- **Ruleset (current):** `$(cat data/rules_normalized/CURRENT.txt)` → `data/rules_normalized/2026-01-26-sdi-promoted20-2026-01-26-heuristic36a-mitsu`
-- Ruleset (Master): `data/rules_normalized/2026-01-26-sdi-master-v1`
-- Baseline report: `data/reports/phase3-baseline-2026-01-26T053104+0000`
-
-Latest pointers (as of 2026-01-26):
+Previous pointers (2026-01-26):
 - Phase 1 baseline ruleset: `data/rules_normalized/2026-01-26-heuristic36a-ocrserial2-ocrattrs2-prune1`
 - Phase 2 recommended ruleset: `data/rules_normalized/2026-01-26-sdi-promoted20-2026-01-26-heuristic36a-mitsu`
 - Phase 3 baseline report: `data/reports/2026-01-26-sdi-baseline14-mitsu`
@@ -69,8 +68,20 @@ Ruleset (Phase 3 promoted additions; recommended for Phase 2 decoding against re
   - Brand normalization additions: `LOCHENVAR` and `LOCHINVAR POWER-FIN` map to `LOCHINVAR`.
   - AAON: adds a deterministic serial date rule for common `YYYYMM...` prefixes (mined from SDI export).
   - Mitsubishi: adds deterministic serial year rules for common `W`/`YW`/`ZW` formats (mined from SDI export).
-  - Serial guidance cleanup: prunes “style list” `no_data` artifacts so `SerialDecodeRule.csv` better reflects real decode vs actionable guidance.
+  - Serial guidance cleanup: prunes "style list" `no_data` artifacts so `SerialDecodeRule.csv` better reflects real decode vs actionable guidance.
   - Restores Phase 3 mined capacity rules for top brands (TRANE, AAON, MITSUBISHI, LENNOX/LENOX) with holdout validation.
+
+Ruleset (Trane serial fix applied; current master):
+- `data/rules_normalized/2026-01-27-trane-fix-v3/`
+  - **Major Fix:** Trane Style 1 serial patterns now use length-based discrimination to prevent 10-digit modern serials from incorrectly matching legacy 2002-2009 rule
+  - Style 1 (2002-2009): Added `(?=.{7,9}$)` length constraint (7-9 characters only)
+  - Style 1 (2010+): Added `(?=.{10,}$)` length constraint (10+ characters only)
+  - **Impact:** Trane overall accuracy: 73.0% → 94.0% (+21.1 percentage points)
+  - 10-digit serial accuracy: 60.9% → 93.6% (+32.7 percentage points)
+  - Style 1 (2002-2009) accuracy: 61.8% → 95.3% (+33.5 percentage points)
+  - Fixed serials like `22226NUP4F`, `214410805D`, `23033078JA` now decode correctly as 2022, 2021, 2023
+  - See `docs/trane_fix_summary.md` for technical details
+  - **IMPORTANT:** Manual fixes must be reapplied after every promotion - see `docs/WORKFLOW_RULESET_PROMOTION.md`
 
 Cached source corpus (Phase 1 raw archive):
 - `data/raw_html/2026-01-25/` contains 578 fetched pages:
@@ -102,6 +113,40 @@ Phase 3 baseline reports (SDI export):
 - Baseline (current): `data/reports/2026-01-26-sdi-baseline14-mitsu/`
   - Includes `baseline_attributes_long.csv` for Excel-friendly validation.
   - Includes `next_targets.md` + `next_targets_by_brand.csv` for “what to fix next” prioritization.
+
+---
+
+## Ruleset Promotion Workflow (Phase 3)
+
+**CRITICAL:** After every `phase3-promote`, manual fixes must be applied to ensure critical patterns persist.
+
+### Standard Promotion Workflow
+
+```bash
+# 1. Promote new candidates
+python3 -m msl phase3-promote \
+  --base-ruleset-dir $(cat data/rules_normalized/CURRENT.txt) \
+  --candidates-dir data/rules_discovered/YYYY-MM-DD-source/candidates \
+  --run-id YYYY-MM-DD-descriptive-name \
+  --out-dir data/rules_normalized
+
+# 2. Apply manual fixes (CRITICAL - don't skip!)
+python3 scripts/apply_manual_serial_fixes.py \
+  --ruleset-dir data/rules_normalized/YYYY-MM-DD-descriptive-name
+
+# 3. Validate with baseline
+python3 -m msl phase3-baseline \
+  --input data/equipment_exports/latest/equipment.csv \
+  --ruleset-dir data/rules_normalized/YYYY-MM-DD-descriptive-name \
+  --run-id YYYY-MM-DD-validation
+
+# 4. Update CURRENT pointer if validated
+echo "data/rules_normalized/YYYY-MM-DD-descriptive-name" > data/rules_normalized/CURRENT.txt
+```
+
+**Why this is required:** The `phase3-promote` deduplication uses exact pattern matching, so manually fixed regexes have different keys than their broken originals. Future mining could rediscover broken patterns from external sources, creating duplicates. The fix script detects and repairs these automatically.
+
+**See:** `docs/WORKFLOW_RULESET_PROMOTION.md` for complete documentation.
 
 ---
 
@@ -250,18 +295,18 @@ Output columns include:
 ---
 
 ## Known issues / gaps
-### 1) Trane “Style 1” has era-dependent logic
+### 1) Trane "Style 1" has era-dependent logic
 The Building-Center Trane page describes:
 - **2002–2009**: year = position 1; week = positions 2–3
 - **2010+**: year = positions 1–2; week = positions 3–4
 
-Status: fixed in `data/rules_normalized/2026-01-25-heuristic28b/` by splitting into two deterministic variants:
-- `Style 1 (2002-2009)`
-- `Style 1 (2010+)`
+Status: **FIXED** in `data/rules_normalized/2026-01-27-trane-fix-v3/` using length-based discrimination:
+- `Style 1 (2002-2009)`: Matches 7-9 character serials only via `(?=.{7,9}$)` lookahead
+- `Style 1 (2010+)`: Matches 10+ character serials only via `(?=.{10,}$)` lookahead
 
-The decoder applies an explicit year base transform (`base=2000`) with constraints:
-- 2002–2009 rule enforces `min_year=2002, max_year=2009`
-- 2010+ rule enforces `min_year=2010`
+This prevents overlap between the two formats. Modern 10-digit serials (like `22226NUP4F`) now correctly decode as 2022 instead of 2002.
+
+**Persistence:** This fix must be reapplied after every `phase3-promote` using `scripts/apply_manual_serial_fixes.py`. See `docs/WORKFLOW_RULESET_PROMOTION.md` and `docs/PERSISTENCE_SOLUTION.md` for details.
 
 ### 1b) Avoid cross-brand aliasing at decode time
 Some brands are related (e.g., American Standard / Trane), but merging them at the `brand` key can cause false matches
@@ -319,19 +364,28 @@ Status: attribute extraction is integrated into `msl decode` as `AttributesJSON`
 
 2) (Optional) Integrate AttributeDecodeRule into `msl decode` output once Phase 1 attribute rules are expanded and tightened (avoid false matches via `model_regex` constraints).
 
-### Phase 3 Progress (2026-01-26)
-- **Ruleset:** data/rules_normalized/2026-01-26-sdi-final-promoted-v7
+### Phase 3 Progress (2026-01-26 through 2026-01-27)
+- **Current Ruleset:** `data/rules_normalized/2026-01-27-trane-fix-v3/`
 - **Major Wins:**
-  - **Lochinvar:** Coverage 0% -> 59.5% (Manual rules + Typo fix 'LOCHENVAR')
-  - **Lennox:** Coverage 0.9% -> 89% (Typo fix 'LENOX')
+  - **Trane:** Overall accuracy 73.0% → 94.0% (Length-based pattern discrimination fix)
+  - **Lochinvar:** Coverage 0% → 59.5% (Manual rules + Typo fix 'LOCHENVAR')
+  - **Lennox:** Coverage 0.9% → 89% (Typo fix 'LENOX')
   - **Mitsubishi/AAON:** Attribute coverage ~55-58% (Mined from data)
   - **Carrier:** Accuracy boosted to 93% (Regex fix)
 - **Known Gaps:**
-  - **Trane:** Legacy serials don't encode the year. Modern serials (10-digit) need targeted mining.
-  - **Greenheck:** No universal nomenclature found.
+  - **Greenheck:** No universal nomenclature found
+  - **Goodman:** Attribute gaps need analysis
 
+### New Features
 
-### New Feature: Detailed Match Analysis (2026-01-26)
-- **Tool:** python -m msl.pipeline.report_matches
-- **Purpose:** Generates a human-readable Markdown report (detailed_match_analysis.md) from decoder output.
-- **Insight:** Pinpointed Trane Style 1 (2002-2009) as the primary accuracy bottleneck (61.8% matching known labels).
+**Detailed Match Analysis (2026-01-26)**
+- **Tool:** `python3 -m msl.pipeline.report_matches`
+- **Purpose:** Generates a human-readable Markdown report (detailed_match_analysis.md) from decoder output
+- **Insight:** Pinpointed Trane Style 1 (2002-2009) as the primary accuracy bottleneck (61.8% matching known labels)
+
+**Manual Fix Persistence (2026-01-27)**
+- **Tool:** `scripts/apply_manual_serial_fixes.py`
+- **Purpose:** Maintains a registry of critical regex fixes and automatically applies them after ruleset promotion
+- **Why needed:** `phase3-promote` uses exact pattern matching, so fixed patterns have different keys than broken originals
+- **Usage:** Must be run after every `phase3-promote` to prevent regressions
+- **Docs:** See `docs/WORKFLOW_RULESET_PROMOTION.md` and `docs/PERSISTENCE_SOLUTION.md`
