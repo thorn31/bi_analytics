@@ -49,6 +49,7 @@ def normalize_brand(value: str | None, alias_map: dict[str, str] | None = None) 
         "LUXAIRE": "YORK/JCI",
         "TRANE": "TRANE",
         "AMERICAN STANDARD": "AMERICAN STANDARD",
+        "LENOX": "LENNOX",
         "LENNOX": "LENNOX",
         "CARRIER": "CARRIER/ICP",
         "BRYANT": "CARRIER/ICP",

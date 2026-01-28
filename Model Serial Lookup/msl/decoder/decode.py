@@ -121,6 +121,11 @@ def _regex_specificity_score(pattern: str) -> float:
     return float(literal_alnum) - 2.0 * float(wildcard) - 0.5 * float(char_classes) + 1.0 * float(anchors)
 
 
+def _is_manual_source(source_url: str | None) -> bool:
+    s = (source_url or "").strip().lower()
+    return s in {"manual_additions", "manual_override", "manual"} or s.startswith("manual:")
+
+
 def _style_year_bounds(style_name: str | None) -> tuple[int | None, int | None]:
     """
     Attempt to infer intended min/max year constraints from a human style label.
@@ -299,6 +304,7 @@ def decode_serial(
             _regex_specificity_score(r.serial_regex),
             len(r.serial_regex or ""),
             len(r.style_name or ""),
+            1 if _is_manual_source(r.source_url) else 0,
             -idx,  # Prefer earlier rules when otherwise comparable
         )
         if best is None or score_tuple > best[0]:

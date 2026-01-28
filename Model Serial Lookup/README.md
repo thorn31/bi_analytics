@@ -14,10 +14,13 @@ Prereqs: Python 3.10+
 Most commands are stdlib-only. OCR helpers require `tesseract` + ImageMagick (`convert`).
 
 Current recommended ruleset:
-- Path is stored in `data/rules_normalized/CURRENT.txt`
+- Folder name is stored in `data/rules_normalized/CURRENT.txt` (see `docs/RULESETS.md`)
+
+Recommended entry point:
+- `python3 scripts/actions.py workflow.improve --input <labeled.csv> --tag <tag>`
 
 Decode an equipment export:
-- `python3 -m msl decode --ruleset-dir $(cat data/rules_normalized/CURRENT.txt) --input <input.csv> --output out/decoded.csv --attributes-output out/attributes_long.csv`
+- `python3 -m msl decode --input <input.csv> --output out/decoded.csv --attributes-output out/attributes_long.csv`
 
 Continue the enrichment pipeline (high level):
 - Phase 1 (Building-Center → rules): discover → fetch → extract → normalize → validate

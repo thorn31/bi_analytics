@@ -3,14 +3,17 @@
 This folder is the source of truth for **intent** and **workflow**.
 
 Start here:
-- `docs/CONCEPTS.md`: **Read this first** to understand the "Three Phases" (Librarian vs Detective) architecture.
-- `docs/STATUS.md`: current recommended ruleset + how to reproduce runs
-- `docs/TODO.md`: single checklist for Phase 1/2/3 work
+- `docs/WORKFLOW.md`: **Read this first** (canonical end-to-end workflow)
+- `docs/ACTIONS.md`: action contracts + example commands
+- `docs/RULESETS.md`: ruleset folder contract + CURRENT pointer contract
+- `docs/OVERRIDES.md`: override precedence + schemas
+- `docs/ARTIFACTS.md`: where outputs live + “latest” pointer files
+- `docs/REPORTS.md`: what the reports measure + how to act on them
+- `docs/STATUS.md`: current snapshot (current ruleset + known issues)
+- `docs/TODO.md`: single checklist
 
 Plans:
-- `docs/PLAN.md`: Phase 1 (Building-Center ingestion → versioned rules)
-- `docs/PLAN_PHASE2.md`: Phase 2 (deterministic decoder engine)
-- `docs/PLAN_PHASE3.md`: Phase 3 (rule discovery from labeled asset reports)
+- Historical plan docs live under `docs/_archive/` (kept for reference).
 
 Other:
-- `docs/MANUAL_OVERRIDES.md`: how to add one-time overrides so guidance becomes deterministic
+- Older/stale docs are moved to `docs/_archive/` rather than deleted.

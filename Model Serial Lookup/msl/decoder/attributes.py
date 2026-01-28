@@ -85,6 +85,11 @@ def _apply_transform(value: str, transform: dict) -> str | float | int:
     return value
 
 
+def _is_manual_source(source_url: str | None) -> bool:
+    s = (source_url or "").strip().lower()
+    return s in {"manual_additions", "manual_override", "manual"} or s.startswith("manual:")
+
+
 def decode_attributes(brand: str, model_raw: str | None, rules: list[AttributeRule]) -> list[DecodedAttribute]:
     model = normalize_model(model_raw)
     if not model:
@@ -187,14 +192,15 @@ def decode_attributes(brand: str, model_raw: str | None, rules: list[AttributeRu
     for score, a in candidates:
         key = a.attribute_name
         cur = best_by_attr.get(key)
-        cand_tuple = (conf_rank(a.confidence), float(score), str(a.value), a)
+        # Manual sources should trump auto-mined rules when otherwise comparable.
+        cand_tuple = (conf_rank(a.confidence), 1 if _is_manual_source(a.source_url) else 0, float(score), str(a.value), a)
         if cur is None:
             best_by_attr[key] = cand_tuple
             continue
-        # Prefer higher confidence, then higher specificity score, then stable value tie-break.
-        if cand_tuple[:3] > cur[:3]:
+        # Prefer higher confidence, then manual-source, then higher specificity score, then stable value tie-break.
+        if cand_tuple[:4] > cur[:4]:
             best_by_attr[key] = cand_tuple
 
     # Preserve deterministic ordering: by confidence desc, then score desc, then attribute name.
-    picked = sorted(best_by_attr.values(), key=lambda t: (-t[0], -t[1], t[3].attribute_name))
-    return [t[3] for t in picked]
+    picked = sorted(best_by_attr.values(), key=lambda t: (-t[0], -t[1], -t[2], t[4].attribute_name))
+    return [t[4] for t in picked]

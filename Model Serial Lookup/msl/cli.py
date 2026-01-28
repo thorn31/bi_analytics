@@ -97,7 +97,7 @@ def build_parser() -> argparse.ArgumentParser:
     validate.set_defaults(func=cmd_validate)
 
     decode = sub.add_parser("decode", help="Decode a sample asset file using SerialDecodeRule.csv")
-    decode.add_argument("--ruleset-dir", default="", help="Directory containing SerialDecodeRule.csv/ModelDecodeRule.csv (defaults to CURRENT.txt)")
+    decode.add_argument("--ruleset-dir", default="", help="Directory containing SerialDecodeRule.csv/AttributeDecodeRule.csv (defaults to CURRENT.txt)")
     decode.add_argument("--serial-rules-csv", default="", help="Path to SerialDecodeRule.csv (overrides --ruleset-dir)")
     decode.add_argument(
         "--attribute-rules-csv", default="", help="Path to AttributeDecodeRule.csv (overrides --ruleset-dir)"
