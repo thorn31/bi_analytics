@@ -1,4 +1,7 @@
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
 **/*.pbix
-
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
