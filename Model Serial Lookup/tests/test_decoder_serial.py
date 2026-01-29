@@ -121,6 +121,7 @@ class TestDecoderSerial(unittest.TestCase):
             SerialRule(
                 rule_type="decode",
                 brand="TEST",
+                priority=None,
                 style_name="Style old",
                 serial_regex=r"^(?=.*[A-Z])\d{4}[A-Z0-9]{3,30}$",
                 equipment_types=[],
@@ -137,6 +138,7 @@ class TestDecoderSerial(unittest.TestCase):
             SerialRule(
                 rule_type="decode",
                 brand="TEST",
+                priority=None,
                 style_name="Style new",
                 serial_regex=r"^(?=.*[A-Z])\d{4}[A-Z0-9]{3,30}$",
                 equipment_types=[],
@@ -165,6 +167,7 @@ class TestDecoderSerial(unittest.TestCase):
             SerialRule(
                 rule_type="decode",
                 brand="TEST",
+                priority=None,
                 style_name="Typed style",
                 serial_regex=r"^\d{4}[A-Z]{2}$",
                 equipment_types=["Cooling Condensing Unit"],

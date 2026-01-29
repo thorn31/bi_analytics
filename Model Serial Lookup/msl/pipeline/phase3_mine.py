@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from difflib import SequenceMatcher
 from pathlib import Path
 
-from msl.decoder.io import load_brand_normalize_rules_csv, load_serial_rules_csv
+from msl.decoder.io import load_brand_normalize_rules_csv, load_serial_rules_csv, sort_rules_by_priority
 from msl.decoder.normalize import normalize_brand, normalize_serial, normalize_text
 from msl.pipeline.common import ensure_dir
 from msl.pipeline.phase3_baseline import infer_column_map, _as_int
@@ -172,6 +172,7 @@ def cmd_phase3_mine(args) -> int:
 
     # Known brands from the existing ruleset (used for brand-normalization candidate suggestions).
     existing_rules = load_serial_rules_csv(ruleset_dir / "SerialDecodeRule.csv")
+    existing_rules = sort_rules_by_priority(existing_rules)  # Sort by priority
     known_brands = sorted({r.brand for r in existing_rules if r.brand})
 
     brand_alias_map: dict[str, str] = {}

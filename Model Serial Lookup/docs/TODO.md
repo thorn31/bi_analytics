@@ -65,7 +65,7 @@ Last updated: 2026-01-29
   - [x] Add attribute conflict auditing (row-level counters + long-form conflict export). (code: `msl/decoder/attributes.py`, `msl/pipeline/decode_run.py`, 2026-01-29)
   - [x] Document “where to add new knowledge” in `docs/WORKFLOW.md` and update `docs/RULESETS.md`. (2026-01-29)
   - [x] Add/extend unit tests for typed gating and conflict reporting. (tests: `tests/test_decoder_serial.py`, `tests/test_decoder_attributes.py`, 2026-01-29)
-  - [ ] Run a baseline + promote a new ruleset folder once validated (record run-id + ruleset id here).
+  - [x] Run a baseline + promote a new ruleset folder once validated (runs: `data/reports/2026-01-29__workflow.improve__aaon-mau-trane-ccu-capacity__20260129T212100Z/`, `data/reports/2026-01-29__workflow.improve__trane-ccu-manual-narrowed__20260129T213453Z/`, ruleset: `data/rules_normalized/2026-01-29-promoted3/`).
 
 ---
 

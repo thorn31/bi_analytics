@@ -5,7 +5,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv
+from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv, sort_rules_by_priority
 from msl.decoder.normalize import normalize_brand
 from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
 from msl.pipeline.ruleset_manager import resolve_ruleset_dir
@@ -31,6 +31,7 @@ def cmd_gap_report(args) -> int:
     assets = _load_csv(Path(args.input))
 
     serial_rules = load_serial_rules_csv(serial_csv)
+    serial_rules = sort_rules_by_priority(serial_rules)  # Sort by priority
     serial_accepted, serial_issues = validate_serial_rules(serial_rules)
 
     attr_accepted = []

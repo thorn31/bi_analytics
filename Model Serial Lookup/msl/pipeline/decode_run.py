@@ -7,7 +7,7 @@ from pathlib import Path
 
 from msl.decoder.attributes import decode_attributes_with_audit
 from msl.decoder.decode import decode_serial
-from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv
+from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv, sort_rules_by_priority
 from msl.decoder.equipment_type import canonicalize_equipment_type, load_equipment_type_vocab
 from msl.decoder.normalize import normalize_brand
 from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
@@ -35,6 +35,7 @@ def cmd_decode(args) -> int:
             brand_alias_map = load_brand_normalize_rules_csv(brand_rules_csv)
 
     rules = load_serial_rules_csv(serial_rules_csv)
+    rules = sort_rules_by_priority(rules)  # Sort by priority before validation
     accepted, issues = validate_serial_rules(rules)
 
     attr_rules = []
