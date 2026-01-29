@@ -1,0 +1,4036 @@
+{
+	"metaData": {
+		"version": 3.84,
+		"dateModified": "01/24/2026",
+		"time": "07:30 AM",
+		"user": "Charles"
+	},
+	"compressType": [
+		"AFUE",
+		"Bryant Family",
+		"Bosch Electrical Options",
+		"BTU/H x 1,000",
+		"Cabinet Depth",
+		"Cabinet Height",
+		"Cabinet Length Inches",
+		"Cabinet Width",
+		"Capacity KW X 0.1",
+		"Capacity MW X 1,000",
+		"Carrier Capacity",
+		"Carrier Voltage",
+		"CFM Tons",
+		"CFM x 1,000",
+		"Circuits",
+		"Circuit Breaker",
+		"Class",
+		"Compressors",
+		"Compressor h.p",
+		"Configure",
+		"Connection",
+		"Cooling",
+		"Cooling Hundreds",
+		"Cooling Max",
+		"Cooling Min",
+		"Cooling Rows",
+		"Cooling Ton",
+		"Cylinders Unloading",
+		"Daikin Application",
+		"Daikin Brands",
+		"Daikin Voltage",
+		"Displacement",
+		"Displacement Per Revolution",
+		"Energy Rating",
+		"Fan",
+		"Fan Size",
+		"Fill Height",
+		"Fin Height",
+		"Fin Length",
+		"Fin Spacing",
+		"Ft2Coil",
+		"Gas Heat",
+		"Gas Heat 1000",
+		"Heat Kit",
+		"Heat Kit 100",
+		"High CFM",
+		"High Tons CFM",
+		"HorsePower",
+		"HorsePower100",
+		"HX Size",
+		"ICP Brands",
+		"ICP Voltage",
+		"Ingersoll Rand Brands",
+		"Input GPH",
+		"IntelliPak Options",
+		"Krack Heater Voltage",
+		"Krack Motor Voltage",
+		"KW Cooling Tons",
+		"Length in Feet X 1",
+		"Length in Feet X 10",
+		"Lennox Voltage",
+		"Low CFM",
+		"Low Tons CFM",
+		"Max Zones",
+		"Metering Device",
+		"Motor",
+		"Nominal Height",
+		"Nominal Width",
+		"Number",
+		"Oil Heat",
+		"Pieces",
+		"Refrigerant",
+		"Revision",
+		"Rheem Brands",
+		"Rheem Voltage",
+		"Rows",
+		"Sales Region",
+		"Slab",
+		"Spacer",
+		"Stage",
+		"Sections",
+		"Tecumseh Application",
+		"Tecumseh Capacity",
+		"Tecumseh Voltage",
+		"Tons CFM",
+		"Tower Length",
+		"Tower Width",
+		"Trane Voltage",
+		"Valve Size",
+		"Vertiv Voltage",
+		"Voyager Options",
+		"Wheel Inches",
+		"York Additional Options",
+		"York Brands",
+		"York Options",
+		"York Voltage"
+	],
+	"Bryant Family": [
+		{
+			"key": "AIR",
+			"value": "Air Cleaner- ELECT"
+		},
+		{
+			"key": "BA",
+			"value": "Split AC"
+		},
+		{
+			"key": "BH",
+			"value": "Split HP"
+		},
+		{
+			"key": "CH",
+			"value": "Split HP"
+		},
+		{
+			"key": "BS1",
+			"value": "SPT NDT STM BLR"
+		},
+		{
+			"key": "BS2",
+			"value": "IID NDT STM BLR"
+		},
+		{
+			"key": "BW1",
+			"value": "SPT NDT H2O BLR"
+		},
+		{
+			"key": "BW2",
+			"value": "IID NDT H2O BLR"
+		},
+		{
+			"key": "BW3",
+			"value": "IC - COMB Draft H2O BLR"
+		},
+		{
+			"key": "BW4",
+			"value": "Oil BLR WO TKL CL"
+		},
+		{
+			"key": "BW5",
+			"value": "Oil BLR W TKL CL"
+		},
+		{
+			"key": "BW9",
+			"value": "GF DV COND H2O BLR"
+		},
+		{
+			"key": "CA",
+			"value": "Split AC"
+		},
+		{
+			"key": "CC5",
+			"value": " A- CL- UF Or DF - UCAS - ORF"
+		},
+		{
+			"key": "CD5",
+			"value": "A- CL- UF Or DF - CAS - ORF"
+		},
+		{
+			"key": "CE3",
+			"value": "Slab CL - HORZ - CAS - ORF"
+		},
+		{
+			"key": "CF5",
+			"value": "A- CL - MH - UCAS - ORF"
+		},
+		{
+			"key": "CK3",
+			"value": "N- CL - HORZ - CAS - Embossed - ORF"
+		},
+		{
+			"key": "CK5",
+			"value": "N- CL - UF Or DF - CAS - ORF"
+		},
+		{
+			"key": "ERV",
+			"value": "ERV"
+		},
+		{
+			"key": "FA4",
+			"value": "FCU - MP - STD W  or WO ELEC HT"
+		},
+		{
+			"key": "FB4",
+			"value": "FCU - MP - W or WO ELEC HT"
+		},
+		{
+			"key": "FC4",
+			"value": "FCU - MP"
+		},
+		{
+			"key": "FE4",
+			"value": "FCU"
+		},
+		{
+			"key": "FF1",
+			"value": "FCU - UF W or WO ELEC HT"
+		},
+		{
+			"key": "FG3",
+			"value": "FCU - HORZ - HH2O CL"
+		},
+		{
+			"key": "FH4",
+			"value": "FCU - MP -WO CL"
+		},
+		{
+			"key": "FK4",
+			"value": "FCU - HI EFF - MP"
+		},
+		{
+			"key": "FV4",
+			"value": "FCU - R2 - HI EFF - MP"
+		},
+		{
+			"key": "FX4",
+			"value": "FCU - R2 - DEL - MP"
+		},
+		{
+			"key": "HRV",
+			"value": "HT RCVY VENTR"
+		},
+		{
+			"key": "HUM",
+			"value": "HUMF"
+		},
+		{
+			"key": "MAC",
+			"value": "Air Cleaner - MECH"
+		},
+		{
+			"key": "MPK",
+			"value": "Air Cleaner - MECH - HI EFF"
+		},
+		{
+			"key": "PA",
+			"value": "Split AC"
+		},
+		{
+			"key": "PA3",
+			"value": "Split AC"
+		},
+		{
+			"key": "PA4",
+			"value": "Split AC"
+		},
+		{
+			"key": "PH",
+			"value": "PKG HP"
+		},
+		{
+			"key": "PH3",
+			"value": "PKG HP"
+		},
+		{
+			"key": "PH4",
+			"value": "PKG HP"
+		},
+		{
+			"key": "1",
+			"value": "Split AC"
+		},
+		{
+			"key": "2",
+			"value": "Split HP"
+		},
+		{
+			"key": "310",
+			"value": "FURN  Gas - 4-way MP - 80% Fixed CPTY"
+		},
+		{
+			"key": "311",
+			"value": "FURN  Gas - 4-way MP - 80% Fixed CPTY"
+		},
+		{
+			"key": "312",
+			"value": "FURN  Gas - 4-way MP - 80% Fixed CPTY 2 STG"
+		},
+		{
+			"key": "313",
+			"value": "FURN  Gas - 4-way MP"
+		},
+		{
+			"key": "314",
+			"value": "FURN  Gas - 4-way MP"
+		},
+		{
+			"key": "315",
+			"value": "FURN  Gas - 4-way MP - 80% Fixed CPTY 2 STG"
+		},
+		{
+			"key": "340",
+			"value": "FURN  Gas - 4-way MP - Fixed CPTY"
+		},
+		{
+			"key": "345",
+			"value": "FURN  Gas - 4-way MP - Fixed CPTY"
+		},
+		{
+			"key": "349",
+			"value": "FURN - Gas - HORZ"
+		},
+		{
+			"key": "350",
+			"value": "FURN  Gas - 4-way MP - Fixed CPTY"
+		},
+		{
+			"key": "352",
+			"value": "FURN - Gas 2 STG - 4-way MP"
+		},
+		{
+			"key": "355",
+			"value": "FURN - Gas VAR SPD - 4-way MP"
+		},
+		{
+			"key": "359",
+			"value": "FURN - Gas UF - HORZ - DF - HI EFF"
+		},
+		{
+			"key": "367",
+			"value": "FURN - Oil - LB"
+		},
+		{
+			"key": "369",
+			"value": "FURN - Oil - MP"
+		},
+		{
+			"key": "373",
+			"value": "FURN - Gas - DF Or HORZ"
+		},
+		{
+			"key": "376",
+			"value": "FURN - Gas - DF Or HORZ"
+		},
+		{
+			"key": "383",
+			"value": "FURN - Gas - UF"
+		},
+		{
+			"key": "385",
+			"value": "FURN - Gas - UF"
+		},
+		{
+			"key": "393",
+			"value": "FURN - Gas - UF"
+		},
+		{
+			"key": "394",
+			"value": "FURN - Gas - UF"
+		},
+		{
+			"key": "395",
+			"value": "FURN - Gas - UF"
+		},
+		{
+			"key": "396",
+			"value": "FURN - Gas - NDT"
+		},
+		{
+			"key": "397",
+			"value": "FURN - Gas - UF"
+		},
+		{
+			"key": "398",
+			"value": "FURN - Gas - UF"
+		},
+		{
+			"key": "502",
+			"value": "COM - INDR PKG AC"
+		},
+		{
+			"key": "513",
+			"value": "COM - PKG AH"
+		},
+		{
+			"key": "524",
+			"value": "COM - PKG AH"
+		},
+		{
+			"key": "533",
+			"value": "AC - R2 - STD - 12 SEER"
+		},
+		{
+			"key": "537",
+			"value": "AC - R2 - STD - 14 SEER"
+		},
+		{
+			"key": "538",
+			"value": "Duct Free Split"
+		},
+		{
+			"key": "539",
+			"value": "AC - R2 - STD 13 SEER"
+		},
+		{
+			"key": "542",
+			"value": "COM - PKG HP"
+		},
+		{
+			"key": "548",
+			"value": "COM - PKG HP"
+		},
+		{
+			"key": "549",
+			"value": "COM - PKG HP"
+		},
+		{
+			"key": "550",
+			"value": "AC - R2 - DEL - 13 SEER"
+		},
+		{
+			"key": "551",
+			"value": "COM PKG AC"
+		},
+		{
+			"key": "552",
+			"value": "AC - R2 - DEL - 12 SEER"
+		},
+		{
+			"key": "556",
+			"value": "AC - R2 - DEL - 14 SEER"
+		},
+		{
+			"key": "557",
+			"value": "SML PKG AC"
+		},
+		{
+			"key": "558",
+			"value": "COM - PKG AC"
+		},
+		{
+			"key": "559",
+			"value": "COM - PKG AC"
+		},
+		{
+			"key": "561",
+			"value": "AC - STD 10 SEER"
+		},
+		{
+			"key": "562",
+			"value": "AC - STD 11 SEER"
+		},
+		{
+			"key": "563",
+			"value": "AC - STD 12 SEER - DuraGuard"
+		},
+		{
+			"key": "564",
+			"value": "SML PKG - PKG AC"
+		},
+		{
+			"key": "566",
+			"value": "COM - ARCD COND Unit"
+		},
+		{
+			"key": "569",
+			"value": "COM - ARCD COND Unit"
+		},
+		{
+			"key": "574",
+			"value": "SML PKG  HI EFF Gas HT / ELEC Cool "
+		},
+		{
+			"key": "575",
+			"value": "COM - ARCD HP"
+		},
+		{
+			"key": "576",
+			"value": "COM - ARCD COND Unit"
+		},
+		{
+			"key": "577",
+			"value": "PKG GH"
+		},
+		{
+			"key": "579",
+			"value": "COM - Gas HT / ELEC Cool"
+		},
+		{
+			"key": "580",
+			"value": "COM - Gas HT / ELEC Cool"
+		},
+		{
+			"key": "581",
+			"value": "COM - Gas HT / ELEC Cool"
+		},
+		{
+			"key": "582",
+			"value": "SML PKG - Gas HT / ELEC Cool"
+		},
+		{
+			"key": "583",
+			"value": "SML PKG - Gas HT / ELEC Cool"
+		},
+		{
+			"key": "584",
+			"value": "SGL PKG GH / ELEC Cool"
+		},
+		{
+			"key": "585",
+			"value": "PKG GH"
+		},
+		{
+			"key": "588",
+			"value": "PKG GH"
+		},
+		{
+			"key": "589",
+			"value": "PKG GH"
+		},
+		{
+			"key": "590",
+			"value": "Split AC"
+		},
+		{
+			"key": "591",
+			"value": "AC - R2 - DEL - 11 SEER"
+		},
+		{
+			"key": "593",
+			"value": "AC - Reliant - 10 SEER"
+		},
+		{
+			"key": "594",
+			"value": "AC - Reliant - 11 SEER"
+		},
+		{
+			"key": "597",
+			"value": "AC - DEL - 12 SEER"
+		},
+		{
+			"key": "598",
+			"value": "AC - R2 - DEL - 2- SPD"
+		},
+		{
+			"key": "601",
+			"value": "SML PKG HP"
+		},
+		{
+			"key": "602",
+			"value": "SML PKG HP"
+		},
+		{
+			"key": "604",
+			"value": "SML PKG - HI EFF HP W R2"
+		},
+		{
+			"key": "607",
+			"value": "SML PKG HP"
+		},
+		{
+			"key": "619",
+			"value": "Duct Free Split"
+		},
+		{
+			"key": "633",
+			"value": "HP - R2 - DEL - 12 SEER"
+		},
+		{
+			"key": "637",
+			"value": "HP - R2 - STD - 14 SEER"
+		},
+		{
+			"key": "650",
+			"value": "HP - R2 - DEL - 13 SEER "
+		},
+		{
+			"key": "652",
+			"value": "HP - R2 - DEL - 12 SEER "
+		},
+		{
+			"key": "657",
+			"value": "SML PKG HP"
+		},
+		{
+			"key": "661",
+			"value": "HP - STD 10 SEER"
+		},
+		{
+			"key": "662",
+			"value": "HP - STD up to 11 SEER 8.0 HSPF"
+		},
+		{
+			"key": "663",
+			"value": "HP - STD up to 12 SEER 8.3 HSPF"
+		},
+		{
+			"key": "664",
+			"value": "SML PKG - PKG HP"
+		},
+		{
+			"key": "674",
+			"value": "SML PKG - HI EFF DUF HP "
+		},
+		{
+			"key": "677",
+			"value": "SML PKG - HI EFF DUF HP "
+		},
+		{
+			"key": "683",
+			"value": "SML PKG -DUF W R2"
+		},
+		{
+			"key": "693",
+			"value": "HP - Reliant 10 SEER 6.8 HSPF"
+		},
+		{
+			"key": "697",
+			"value": "HP - DEL - up to 12 SEER 8.3 HSPF"
+		},
+		{
+			"key": "698",
+			"value": "HP - R2 - DEL - 2- SPD"
+		},
+		{
+			"key": "701",
+			"value": "SML PKG AC"
+		},
+		{
+			"key": "702",
+			"value": "SML PKG AC"
+		},
+		{
+			"key": "704",
+			"value": "SML PKG - HI EFF AC W R2"
+		},
+		{
+			"key": "707",
+			"value": "SML PKG AC"
+		},
+		{
+			"key": "840",
+			"value": "PTAC"
+		},
+		{
+			"key": "841",
+			"value": "PTHP"
+		},
+		{
+			"key": "902",
+			"value": "Air Cleaner - MECH"
+		}
+	],
+	"Bosch Electrical Options": [
+		{
+			"key": "A",
+			"value": "EMS RLY"
+		},
+		{
+			"key": "B",
+			"value": "BLO MONT RLY"
+		},
+		{
+			"key": "C",
+			"value": "COMP MONT RLY"
+		},
+		{
+			"key": "D",
+			"value": "PHM"
+		},
+		{
+			"key": "E",
+			"value": "PP / VAL RLY"
+		},
+		{
+			"key": "G",
+			"value": "BLRL CTRL"
+		},
+		{
+			"key": "H",
+			"value": "FPS"
+		},
+		{
+			"key": "J",
+			"value": "DCN SW"
+		},
+		{
+			"key": "K",
+			"value": "Fire ALM RLY / Dual PWR"
+		},
+		{
+			"key": "M",
+			"value": "Wire XFMR to 208 V"
+		},
+		{
+			"key": "N",
+			"value": "Comfort Alert MOD"
+		},
+		{
+			"key": "S",
+			"value": "Smart SRT Assist"
+		},
+		{
+			"key": "X",
+			"value": "NA"
+		},
+		{
+			"key": "Z",
+			"value": "EMS RLY + PP / VAL RLY"
+		}
+	],
+	"Cabinet": [
+		{
+			"key": "A",
+			"value": "14"
+		},
+		{
+			"key": "B",
+			"value": "15.5 Or 17.5*19 3/4"
+		},
+		{
+			"key": "C",
+			"value": "21*22 1/2"
+		},
+		{
+			"key": "D",
+			"value": "24.5"
+		},
+		{
+			"key": "E",
+			"value": "19.5"
+		},
+		{
+			"key": "F",
+			"value": "19.1 Or 22.5"
+		},
+		{
+			"key": "H",
+			"value": "10.5"
+		},
+		{
+			"key": "J",
+			"value": "22.8"
+		},
+		{
+			"key": "L",
+			"value": "24.5 Or 39.5"
+		},
+		{
+			"key": "M",
+			"value": "MH Or 33.5"
+		},
+		{
+			"key": "N",
+			"value": "NA"
+		},
+		{
+			"key": "S",
+			"value": "20.2 Or 25.5"
+		},
+		{
+			"key": "X",
+			"value": "Not STD"
+		},
+		{
+			"key": "Z",
+			"value": "16"
+		}
+	],
+	"Carrier Capacity": [
+		{
+			"key": "3",
+			"value": "2"
+		},
+		{
+			"key": "4",
+			"value": "3"
+		},
+		{
+			"key": "5",
+			"value": "4"
+		},
+		{
+			"key": "6",
+			"value": "5"
+		},
+		{
+			"key": "7",
+			"value": "6"
+		},
+		{
+			"key": "8",
+			"value": "7.5"
+		},
+		{
+			"key": "9",
+			"value": "8.5"
+		},
+		{
+			"key": "10",
+			"value": "9.6"
+		},
+		{
+			"key": "11",
+			"value": "10"
+		},
+		{
+			"key": "12",
+			"value": "10"
+		},
+		{
+			"key": "14",
+			"value": "12.5"
+		},
+		{
+			"key": "16",
+			"value": "15"
+		},
+		{
+			"key": "17",
+			"value": "15"
+		},
+		{
+			"key": "18",
+			"value": "15"
+		},
+		{
+			"key": "20",
+			"value": "17.5 older units or newer units 20"
+		},
+		{
+			"key": "21",
+			"value": "17.5"
+		},
+		{
+			"key": "24",
+			"value": "20"
+		},
+		{
+			"key": "25",
+			"value": "20 older units or newer units 25 "
+		},
+		{
+			"key": "27",
+			"value": "27"
+		},
+		{
+			"key": "28",
+			"value": "25"
+		},
+		{
+			"key": "29",
+			"value": "25"
+		},
+		{
+			"key": "30",
+			"value": "27.5 older units or newer units 30"
+		},
+		{
+			"key": "34",
+			"value": "30"
+		},
+		{
+			"key": "35",
+			"value": "35"
+		},
+		{
+			"key": "38",
+			"value": "35"
+		},
+		{
+			"key": "40",
+			"value": "40"
+		},
+		{
+			"key": "44",
+			"value": "40"
+		},
+		{
+			"key": "45",
+			"value": "43"
+		},
+		{
+			"key": "48",
+			"value": "45"
+		},
+		{
+			"key": "50",
+			"value": "50"
+		},
+		{
+			"key": "54",
+			"value": "50"
+		},
+		{
+			"key": "60",
+			"value": "60"
+		},
+		{
+			"key": "64",
+			"value": "60"
+		},
+		{
+			"key": "84",
+			"value": "80"
+		},
+		{
+			"key": "94",
+			"value": "90"
+		},
+		{
+			"key": "91",
+			"value": "120"
+		},
+		{
+			"key": "101",
+			"value": "140"
+		},
+		{
+			"key": "102",
+			"value": "140"
+		},
+		{
+			"key": "104",
+			"value": "100"
+		},
+		{
+			"key": "112",
+			"value": "139"
+		},
+		{
+			"key": "122",
+			"value": "162"
+		},
+		{
+			"key": "132",
+			"value": "160"
+		},
+		{
+			"key": "142",
+			"value": "174"
+		},
+		{
+			"key": "151",
+			"value": "190"
+		},
+		{
+			"key": "162",
+			"value": "192"
+		},
+		{
+			"key": "171",
+			"value": "206"
+		},
+		{
+			"key": "172",
+			"value": "209"
+		},
+		{
+			"key": "181",
+			"value": "216"
+		},
+		{
+			"key": "182",
+			"value": "223"
+		}
+	],
+	"Carrier Voltage": [
+		{
+			"key": "-",
+			"value": "V1"
+		},
+		{
+			"key": "A",
+			"value": "V1"
+		},
+		{
+			"key": "B",
+			"value": "V8"
+		},
+		{
+			"key": "C",
+			"value": "V9"
+		},
+		{
+			"key": "D",
+			"value": "V10"
+		},
+		{
+			"key": "E",
+			"value": "V4"
+		},
+		{
+			"key": "F",
+			"value": "V6"
+		},
+		{
+			"key": "G",
+			"value": "V7"
+		},
+		{
+			"key": "K",
+			"value": "V7"
+		},
+		{
+			"key": "H",
+			"value": "115 / V8"
+		},
+		{
+			"key": "M",
+			"value": "230 / V4"
+		},
+		{
+			"key": "J",
+			"value": "V2"
+		},
+		{
+			"key": "N",
+			"value": "V2"
+		},
+		{
+			"key": "P",
+			"value": "V3"
+		},
+		{
+			"key": "R",
+			"value": "115-3-50"
+		},
+		{
+			"key": "S",
+			"value": "230-1-50"
+		},
+		{
+			"key": "U",
+			"value": "V13"
+		},
+		{
+			"key": "T",
+			"value": "V5"
+		},
+		{
+			"key": "1",
+			"value": "V5"
+		},
+		{
+			"key": "2",
+			"value": "V12"
+		},
+		{
+			"key": "3",
+			"value": "V3"
+		},
+		{
+			"key": "4",
+			"value": "V15 Or V7 Or V9"
+		},
+		{
+			"key": "5",
+			"value": "V9 or V3"
+		},
+		{
+			"key": "6",
+			"value": "V4"
+		},
+		{
+			"key": "7",
+			"value": "230-3-50"
+		},
+		{
+			"key": "8",
+			"value": "230-3-50"
+		},
+		{
+			"key": "9",
+			"value": "400-3-50 or 380/415-3-50"
+		},
+		{
+			"key": "Z",
+			"value": "400-3-50"
+		},
+		{
+			"key": "X",
+			"value": "No PWR SUP Required"
+		},
+		{
+			"key": "",
+			"value": "208/230/ V4"
+		}
+	],
+	"Class": [
+		{
+			"key": "0",
+			"value": "OFN"
+		},
+		{
+			"key": "00",
+			"value": "AC"
+		},
+		{
+			"key": "24",
+			"value": "AC"
+		},
+		{
+			"key": "25",
+			"value": "HP"
+		},
+	    {
+			"key": "26",
+			"value": "AC R6"
+		},
+		{
+			"key": "27",
+			"value": "HP R6"
+		},
+		{
+			"key": "38",
+			"value": "AC Or HP"
+		},
+		{
+			"key": "A",
+			"value": "AC"
+		},
+		{
+			"key": "AC",
+			"value": "AC"
+		},
+		{
+			"key": "AH",
+			"value": "AH"
+		},
+		{
+			"key": "AM",
+			"value": "Air MOD"
+		},
+		{
+			"key": "AW",
+			"value": "AC Southwest Region"
+		},
+		{
+			"key": "B",
+			"value": "BLR"
+		},
+		{
+			"key": "BC",
+			"value": "BLC"
+		},
+		{
+			"key": "C",
+			"value": "AC"
+		},
+		{
+			"key": "CA",
+			"value": "COND AC"
+		},
+		{
+			"key": "CB",
+			"value": "AH"
+		},
+		{
+			"key": "CE",
+			"value": "AC ELEC HT"
+		},
+		{
+			"key": "CH",
+			"value": "COND HP"
+		},
+		{
+			"key": "CS",
+			"value": "COND Split"
+		},
+		{
+			"key": "CU",
+			"value": "CONG Unit"
+		},
+		{
+			"key": "D",
+			"value": "DUF"
+		},
+		{
+			"key": "DF",
+			"value": "DUF"
+		},
+		{
+			"key": "DS",
+			"value": "AC"
+		},
+		{
+			"key": "DT",
+			"value": "HP"
+		},
+		{
+			"key": "E",
+			"value": "COM AC"
+		},
+		{
+			"key": "ERM",
+			"value": "ERV modular"
+		},
+		{
+			"key": "ERV",
+			"value": "ERV"
+		},
+		{
+			"key": "ERVE",
+			"value": "ERV"
+		},
+		{
+			"key": "ES",
+			"value": "AC"
+		},
+		{
+			"key": "ET",
+			"value": "HP"
+		},
+		{
+			"key": "F",
+			"value": "AC"
+		},
+		{
+			"key": "FC",
+			"value": "FCU"
+		},
+		{
+			"key": "FR",
+			"value": "FURN"
+		},
+		{
+			"key": "FS",
+			"value": "AC"
+		},
+		{
+			"key": "FT",
+			"value": "HP"
+		},
+		{
+			"key": "G",
+			"value": "GH"
+		},
+		{
+			"key": "GE",
+			"value": "GH / AC"
+		},
+		{
+			"key": "GF",
+			"value": "Gas FURN"
+		},
+		{
+			"key": "GS",
+			"value": "AC"
+		},
+		{
+			"key": "GN",
+			"value": "GH ULNX"
+		},
+		{
+			"key": "GX",
+			"value": "GH LNOX / AC"
+		},
+		{
+			"key": "H",
+			"value": "HP"
+		},
+		{
+			"key": "HC",
+			"value": "GH / AC or HT Cool"
+		},
+		{
+			"key": "HH",
+			"value": "PKG HP"
+		},
+		{
+			"key": "HP",
+			"value": "HP"
+		},
+		{
+			"key": "HS",
+			"value": "AC"
+		},
+		{
+			"key": "HV",
+			"value": "HP"
+		},
+		{
+			"key": "JA",
+			"value": "AC"
+		},
+		{
+			"key": "JH",
+			"value": "HP"
+		},
+		{
+			"key": "JS",
+			"value": "AC"
+		},
+		{
+			"key": "JT",
+			"value": "HP"
+		},
+		{
+			"key": "K",
+			"value": "AC"
+		},
+		{
+			"key": "L",
+			"value": "OFN"
+		},
+		{
+			"key": "M",
+			"value": "Mini-Split"
+		},
+		{
+			"key": "MB",
+			"value": "MB"
+		},
+		{
+			"key": "MS",
+			"value": "AC"
+		},
+		{
+			"key": "MT",
+			"value": "HP"
+		},
+		{
+			"key": "O",
+			"value": "OFN"
+		},
+		{
+			"key": "P",
+			"value": "PKG AC*HP"
+		},
+		{
+			"key": "PCE",
+			"value": "PKG ELEC - ELEC"
+		},
+		{
+			"key": "PG",
+			"value": "PKG Gas"
+		},
+		{
+			"key": "PGE",
+			"value": "PKG Gas / ELEC"
+		},
+		{
+			"key": "PHP",
+			"value": "PKG HP"
+		},
+		{
+			"key": "Q",
+			"value": "HP"
+		},
+		{
+			"key": "R",
+			"value": "HP"
+		},
+		{
+			"key": "RBC",
+			"value": "RES BLC"
+		},
+		{
+			"key": "S",
+			"value": "AC"
+		},
+		{
+			"key": "T",
+			"value": "HP"
+		},
+		{
+			"key": "U",
+			"value": "ULNX"
+		},
+		{
+			"key": "V",
+			"value": "Spirit"
+		},
+		{
+			"key": "W",
+			"value": "PKG"
+		},
+		{
+			"key": "WA",
+			"value": "AH"
+		},
+		{
+			"key": "WP",
+			"value": "PKG"
+		},
+		{
+			"key": "X",
+			"value": "PRM AC"
+		},
+		{
+			"key": "Y",
+			"value": "PKG"
+		},
+		{
+			"key": "Z",
+			"value": "PRM HP"
+		}
+	],
+	"Configure": [
+		{
+			"key": "3",
+			"value": "HORZ"
+		},
+		{
+			"key": "5",
+			"value": " UF or UCAS Or DF"
+		},
+		{
+			"key": "A",
+			"value": "A CL Or Apartment"
+		},
+		{
+			"key": "AD",
+			"value": "DF Or HORZ"
+		},
+		{
+			"key": "AU",
+			"value": "HORZ Or VERT"
+		},
+		{
+			"key": "BF",
+			"value": "Basement Front"
+		},
+		{
+			"key": "BR",
+			"value": "Basement Rear"
+		},
+		{
+			"key": "C",
+			"value": "CONVT Or CAS"
+		},
+		{
+			"key": "CM",
+			"value": "CAB MP"
+		},
+		{
+			"key": "CS",
+			"value": "RMT CTRL"
+		},
+		{
+			"key": "D",
+			"value": "DF"
+		},
+		{
+			"key": "DA",
+			"value": "DF"
+		},
+		{
+			"key": "DD",
+			"value": "DF"
+		},
+		{
+			"key": "DF",
+			"value": "DF"
+		},
+		{
+			"key": "DH",
+			"value": "DF Or HORZ"
+		},
+		{
+			"key": "DN",
+			"value": "DF"
+		},
+		{
+			"key": "DP",
+			"value": "DF"
+		},
+		{
+			"key": "E",
+			"value": "CONVT"
+		},
+		{
+			"key": "F",
+			"value": "Front"
+		},
+		{
+			"key": "FC",
+			"value": "Full CAS"
+		},
+		{
+			"key": "FR",
+			"value": "Front RT"
+		},
+		{
+			"key": "G",
+			"value": "Limited CONVT"
+		},
+		{
+			"key": "H",
+			"value": "HORZ"
+		},
+		{
+			"key": "HC",
+			"value": "HORZ CAS"
+		},
+		{
+			"key": "HD",
+			"value": "HORZ Duct"
+		},
+		{
+			"key": "HF",
+			"value": "HORZ Front"
+		},
+		{
+			"key": "HR",
+			"value": "HORZ Rear"
+		},
+		{
+			"key": "HZ",
+			"value": "HORZ"
+		},
+		{
+			"key": "I",
+			"value": "INDR"
+		},
+		{
+			"key": "K",
+			"value": "DF Or HORZ"
+		},
+		{
+			"key": "KD",
+			"value": "DF"
+		},
+		{
+			"key": "KM",
+			"value": "UF Or HORZ"
+		},
+		{
+			"key": "L",
+			"value": "LH Or DF"
+		},
+		{
+			"key": "M",
+			"value": "MP"
+		},
+		{
+			"key": "M4",
+			"value": "MP 4-Way"
+		},
+		{
+			"key": "MC",
+			"value": "MP Case"
+		},
+		{
+			"key": "MD",
+			"value": "MP CONVT DF"
+		},
+		{
+			"key": "MP",
+			"value": "MP"
+		},
+		{
+			"key": "MU",
+			"value": "MP CONVT UF"
+		},
+		{
+			"key": "MV",
+			"value": "MP VAR"
+		},
+		{
+			"key": "N",
+			"value": "N CL"
+		},
+		{
+			"key": "O",
+			"value": "ODR"
+		},
+		{
+			"key": "P",
+			"value": "UF Or HORZ Or UCAS"
+		},
+		{
+			"key": "PC",
+			"value": "Partial CAS"
+		},
+		{
+			"key": "R",
+			"value": "RH"
+		},
+		{
+			"key": "S",
+			"value": "Side* Slab CL"
+		},
+		{
+			"key": "T",
+			"value": "Top* TRSN"
+		},
+		{
+			"key": "TD",
+			"value": "DF Or HORZ"
+		},
+		{
+			"key": "TU",
+			"value": "VERT Or HORZ"
+		},
+		{
+			"key": "U",
+			"value": "UF Or UF 3 Way Or UCAS"
+		},
+		{
+			"key": "UA",
+			"value": "UF"
+		},
+		{
+			"key": "UC",
+			"value": "UCAS"
+		},
+		{
+			"key": "UD",
+			"value": "UF Or DF"
+		},
+		{
+			"key": "UF",
+			"value": "VERT Front Or UF"
+		},
+		{
+			"key": "UH",
+			"value": "UF Or HORZ"
+		},
+			{
+			"key": "UL",
+			"value": "UCAS Low Profile"
+		},
+		{
+			"key": "UP",
+			"value": "UF Or UCAS"
+		},
+		{
+			"key": "UR",
+			"value": "VERT Rear"
+		},
+		{
+			"key": "US",
+			"value": "Unit MTD CTRL"
+		},
+		{
+			"key": "V",
+			"value": "VERT"
+		},
+		{
+			"key": "VT",
+			"value": "VERT"
+		},
+		{
+			"key": "W",
+			"value": "H2O Or WALM"
+		},
+		{
+			"key": "WM",
+			"value": "WALM"
+		},
+		{
+			"key": "X",
+			"value": "STD"
+		},
+		{
+			"key": "Z",
+			"value": "Zero Clearance DF"
+		}
+	],
+	"Connection": [
+		{
+			"key": "-",
+			"value": "None Or Top Flue"
+		},
+		{
+			"key": "0",
+			"value": "Default Or None Or BRZ"
+		},
+		{
+			"key": "5",
+			"value": "Flare"
+		},
+		{
+			"key": "A",
+			"value": "STD"
+		},
+		{
+			"key": "B",
+			"value": "BRZ"
+		},
+		{
+			"key": "D",
+			"value": "DF"
+		},
+		{
+			"key": "F",
+			"value": "Front Or FLD Or Flue"
+		},
+		{
+			"key": "G",
+			"value": "Front Or FLD Or Flue"
+		},
+		{
+			"key": "M",
+			"value": "BRZ"
+		},
+		{
+			"key": "Q",
+			"value": "QC"
+		},
+		{
+			"key": "R",
+			"value": "Rear Or Round Duct Or RH Or Rear Flue"
+		},
+		{
+			"key": "S",
+			"value": "Square Duct Or SWT"
+		},
+		{
+			"key": "U",
+			"value": "UF"
+		},
+		{
+			"key": "V",
+			"value": "VAL Or SWT"
+		},
+		{
+			"key": "X",
+			"value": "SWT Or Push"
+		}
+	],
+	"Daikin Application": [
+		{
+			"key": "C",
+			"value": "CLG MTD PSC MTR"
+		},
+		{
+			"key": "D",
+			"value": "DF PSC MTR"
+		},
+		{
+			"key": "E",
+			"value": "MP VAR - SPD MTR"
+		},
+		{
+			"key": "R",
+			"value": "MP PSC MTR"
+		},
+		{
+			"key": "S",
+			"value": "MP EEM MTR"
+		},
+		{
+			"key": "V",
+			"value": "MP VAR SPD MTR"
+		},
+		{
+			"key": "W",
+			"value": "WALM PSC MTR"
+		}
+	],
+	"Daikin Brands": [
+		{
+			"key": "A",
+			"value": "Amana"
+		},
+		{
+			"key": "C",
+			"value": "COM"
+		},
+		{
+			"key": "G",
+			"value": "Goodman"
+		},
+		{
+			"key": "D",
+			"value": "Daikin"
+		},
+		{
+			"key": "S",
+			"value": "Goodman HI Feature"
+		},
+		{
+			"key": "V",
+			"value": "Value"
+		},
+		{
+			"key": "X",
+			"value": "Xenon"
+		}
+	],
+	"Daikin Voltage": [
+		{
+			"key": "A",
+			"value": "V6 or V1"
+		},
+		{
+			"key": "B",
+			"value": "240-1-60"
+		},
+		{
+			"key": "C",
+			"value": "208/240-1-60"
+		},
+		{
+			"key": "D",
+			"value": "V7"
+		},
+		{
+			"key": "E",
+			"value": "240-3-60"
+		},
+		{
+			"key": "F",
+			"value": "208/240-3-60"
+		},
+		{
+			"key": "G",
+			"value": "V4"
+		},
+		{
+			"key": "K",
+			"value": "V4"
+		},
+		{
+			"key": "J",
+			"value": "V15"
+		},
+		{
+			"key": "L",
+			"value": "V5"
+		},
+		{
+			"key": "01",
+			"value": "V8"
+		},
+		{
+			"key": "03",
+			"value": "V9"
+		},
+		{
+			"key": "0",
+			"value": "V1"
+		},
+		{
+			"key": "1",
+			"value": "V2"
+		},
+		{
+			"key": "2",
+			"value": "220/240-1-60"
+		},
+		{
+			"key": "3",
+			"value": "V3"
+		},
+		{
+			"key": "4",
+			"value": "V4"
+		},
+		{
+			"key": "5",
+			"value": "380/415-3-60"
+		},
+		{
+			"key": "7",
+			"value": "V5"
+		},
+		{
+			"key": "W1",
+			"value": "400-3N-50"
+		},
+		{
+			"key": "Y1",
+			"value": "380/415-3-50"
+		},
+		{
+			"key": "YD",
+			"value": "V4"
+		},
+		{
+			"key": "YN",
+			"value": "400-3-50"
+		},
+		{
+			"key": "T1",
+			"value": "230-3-50"
+		},
+		{
+			"key": "TJ",
+			"value": "V3"
+		},
+		{
+			"key": "V1",
+			"value": "220/240-1-50"
+		},
+		{
+			"key": "V3",
+			"value": "230-1-50"
+		},
+		{
+			"key": "VJ",
+			"value": "V2"
+		},
+		{
+			"key": "VAL",
+			"value": "220-1-60"
+		},
+		{
+			"key": "YAL",
+			"value": "V12"
+		}
+	],
+	"Energy Rating": [
+		{
+			"key": "0",
+			"value": "20 or 10 older Units"
+		},
+		{
+			"key": "1",
+			"value": "21 or 11 older Units"
+		},
+		{
+			"key": "2",
+			"value": "12"
+		},
+		{
+			"key": "3",
+			"value": "13"
+		},
+		{
+			"key": "4",
+			"value": "14"
+		},
+		{
+			"key": "5",
+			"value": "15"
+		},
+		{
+			"key": "6",
+			"value": "16"
+		},
+		{
+			"key": "7",
+			"value": "17"
+		},
+		{
+			"key": "8",
+			"value": "18"
+		},
+		{
+			"key": "9",
+			"value": "19"
+		},
+		{
+			"key": "A",
+			"value": "10"
+		},
+		{
+			"key": "B",
+			"value": "11"
+		},
+		{
+			"key": "C",
+			"value": "12"
+		},
+		{
+			"key": "D",
+			"value": "13"
+		},
+		{
+			"key": "U",
+			"value": "13"
+		},
+		{
+			"key": "E",
+			"value": "14"
+		},
+		{
+			"key": "F",
+			"value": "15"
+		},
+		{
+			"key": "G",
+			"value": "16"
+		},
+		{
+			"key": "H",
+			"value": "17"
+		},
+		{
+			"key": "I",
+			"value": "20"
+		},
+		{
+			"key": "M",
+			"value": "09"
+		},
+		{
+			"key": "P",
+			"value": "11"
+		},
+		{
+			"key": "S",
+			"value": "STD"
+		},
+		{
+			"key": "T",
+			"value": "19"
+		},
+		{
+			"key": "V",
+			"value": "20"
+		},
+		{
+			"key": "X",
+			"value": "EXP"
+		}
+	],
+	"ICP Brands": [
+		{
+			"key": "F",
+			"value": "Main Line Look 2"
+		},
+		{
+			"key": "G",
+			"value": "GrandAire Or Main Line Look 1"
+		},
+		{
+			"key": "K",
+			"value": "Kenmore Or KeepRite"
+		},
+		{
+			"key": "C",
+			"value": "Comfortmaker"
+		},
+		{
+			"key": "H",
+			"value": "Heil"
+		},
+		{
+			"key": "T",
+			"value": "Tempstar"
+		},
+		{
+			"key": "TZ",
+			"value": "Thermal Zone"
+		},
+		{
+			"key": "M",
+			"value": "Main Line"
+		},
+		{
+			"key": "N",
+			"value": "Day and Night, ACiQ, Entry"
+		},
+		{
+			"key": "R",
+			"value": "AirQuest Or Entry"
+		},
+		{
+			"key": "W",
+			"value": "GrandAire Or Entry"
+		}
+	],
+	"ICP Voltage": [
+		{
+			"key": "1",
+			"value": "V1"
+		},
+		{
+			"key": "A",
+			"value": "V1"
+		},
+		{
+			"key": "Y",
+			"value": "V1"
+		},
+		{
+			"key": "C",
+			"value": "V3"
+		},
+		{
+			"key": "D",
+			"value": "V4"
+		},
+		{
+			"key": "E",
+			"value": "EXP 220/240-1-50"
+		},
+		{
+			"key": "J",
+			"value": "V1"
+		},
+		{
+			"key": "K",
+			"value": "V2"
+		},
+		{
+			"key": "G",
+			"value": "V2 Or EXP 380/420-3-50"
+		},
+		{
+			"key": "2",
+			"value": "208/ V8"
+		},
+		{
+			"key": "3",
+			"value": "208/ V8"
+		},
+		{
+			"key": "H",
+			"value": "V3"
+		},
+		{
+			"key": "4",
+			"value": "V3"
+		},
+		{
+			"key": "F",
+			"value": "V4"
+		},
+		{
+			"key": "L",
+			"value": "V4"
+		},
+		{
+			"key": "S",
+			"value": "V5"
+		},
+		{
+			"key": "N",
+			"value": "V5"
+		},
+		{
+			"key": "M",
+			"value": "208/230/ V4"
+		},
+		{
+			"key": "Z",
+			"value": "V8 Or EXP 400-3-50"
+		}
+	],
+	"Ingersoll Rand Brands": [
+		{
+			"key": "A",
+			"value": "American STD"
+		},
+		{
+			"key": "B",
+			"value": "Business Unit"
+		},
+		{
+			"key": "E",
+			"value": "RunTru"
+		},
+		{
+			"key": "G",
+			"value": "Good"
+		},
+		{
+			"key": "J",
+			"value": "Oxbox"
+		},
+		{
+			"key": "M",
+			"value": "Ameristar"
+		},
+		{
+			"key": "T",
+			"value": "Trane"
+		},
+		{
+			"key": "TR",
+			"value": "Trane"
+		},
+		{
+			"key": "Z",
+			"value": "Unbranded"
+		}
+	],
+	"IntelliPak Options": [
+		{
+			"key": "A",
+			"value": "Unit DCN SW Or EVAP COND Or MTR W INT Shaft Grounding Or SAF Piezometer"
+		},
+		{
+			"key": "B",
+			"value": "HGBP Or EVAP COND W Sump HTR Or GBAS 0-10V"
+		},
+		{
+			"key": "C",
+			"value": "ECON CTRL W COMT EHY Or HG RHT WO HGBP Or ECON CTRL W COMT EHY Or ECON CTRL W COMT EHY"
+		},
+		{
+			"key": "D",
+			"value": "HG RHT and HGBP Or DIGT SCL Or EVAP COND W Sump HTR and Dolphin WaterCare SYS"
+		},
+		{
+			"key": "E",
+			"value": "LL FAD Or EVAP COND W Conductivity CTRL"
+		},
+		{
+			"key": "F",
+			"value": "HI Duct TEMP TSTAT Or EVAP COND W Conductivity CTRL and Sump HTR"
+		},
+		{
+			"key": "G",
+			"value": "HI CPTY EVAP CL Or  HI CPTY Unit"
+		},
+		{
+			"key": "H",
+			"value": "CU Fins COND Only Or  HI EFF Unit"
+		},
+		{
+			"key": "J",
+			"value": "CORR PROT COND CL Or TEMP SEN"
+		},
+		{
+			"key": "K",
+			"value": "GBAS Or  GBAS 0-5V"
+		},
+		{
+			"key": "L",
+			"value": "HI - EFF MTR ( SUP and EXH )"
+		},
+		{
+			"key": "M",
+			"value": "RHI Or BCI"
+		},
+		{
+			"key": "N",
+			"value": "VOM"
+		},
+		{
+			"key": "O",
+			"value": "WO ECON Or ARCD AL COND Coil  Or None Or STD PNL"
+		},
+		{
+			"key": "R",
+			"value": "EXTD Grease Lines Or  Rapid Restart"
+		},
+		{
+			"key": "T",
+			"value": "ACS Doors"
+		},
+		{
+			"key": "U",
+			"value": "Ultra LL ECON and MTZ EXH Or IRU - W STD PNL"
+		},
+		{
+			"key": "V",
+			"value": "Inter-Processor COMM Bridge Or  eFlex VAR SPD COMP"
+		},
+		{
+			"key": "W",
+			"value": "ECON CTRL W DB Or IRU - W ACS Doors"
+		},
+		{
+			"key": "X",
+			"value": "Not Listed In Book"
+		},
+		{
+			"key": "Y",
+			"value": "TCI Or IRU W SST - W STD PNL"
+		},
+		{
+			"key": "Z",
+			"value": "ECON CTRL W REFC EHY Or  IRU WSST - W ACS Doors"
+		},
+		{
+			"key": "1",
+			"value": "DIFF PR Gauge"
+		},
+		{
+			"key": "2",
+			"value": "EXTD Grease Lines and DIFF PR Gauge"
+		},
+		{
+			"key": "5",
+			"value": "VFD Line Reactor"
+		},
+		{
+			"key": "6",
+			"value": "FI - PWR 15A GFI CONVO DCN SW"
+		},
+		{
+			"key": "7",
+			"value": " LCI"
+		},
+		{
+			"key": "8",
+			"value": "SPG ISO"
+		}
+	],
+	"Krack Voltage": [
+		{
+			"key": "A",
+			"value": "V2"
+		},
+		{
+			"key": "D",
+			"value": "V2"
+		},
+		{
+			"key": "B",
+			"value": "V1"
+		},
+		{
+			"key": "K",
+			"value": "V3"
+		},
+		{
+			"key": "H",
+			"value": "V13"
+		},
+		{
+			"key": "M",
+			"value": "V4"
+		},
+		{
+			"key": "P",
+			"value": "V5"
+		},
+		{
+			"key": "U",
+			"value": "V11"
+		}
+	],
+	"Lennox Voltage": [
+		{
+			"key": "A",
+			"value": "V2"
+		},
+		{
+			"key": "B",
+			"value": "V3"
+		},
+		{
+			"key": "C",
+			"value": "V4"
+		},
+		{
+			"key": "D",
+			"value": "V5"
+		},
+		{
+			"key": "E",
+			"value": "220/240-3-60"
+		},
+		{
+			"key": "F",
+			"value": "V4"
+		},
+		{
+			"key": "G",
+			"value": "V4"
+		},
+		{
+			"key": "H",
+			"value": "550/600-3-60"
+		},
+		{
+			"key": "J",
+			"value": "V5"
+		},
+		{
+			"key": "K",
+			"value": "V2"
+		},
+		{
+			"key": "L",
+			"value": "V1"
+		},
+		{
+			"key": "M",
+			"value": "380/420-3-50"
+		},
+		{
+			"key": "N",
+			"value": "220/240-3-60"
+		},
+		{
+			"key": "P",
+			"value": "V2"
+		},
+		{
+			"key": "Q",
+			"value": "V9"
+		},
+		{
+			"key": "R",
+			"value": "V7"
+		},
+		{
+			"key": "S",
+			"value": "550-3-60"
+		},
+		{
+			"key": "T",
+			"value": "220/240-1/3-50"
+		},
+		{
+			"key": "U",
+			"value": "208/240-1-60"
+		},
+		{
+			"key": "W",
+			"value": "200/220-1-50"
+		},
+		{
+			"key": "X",
+			"value": "V10"
+		},
+		{
+			"key": "Y",
+			"value": "V3"
+		},
+		{
+			"key": "220",
+			"value": "220/240-1-50"
+		},
+		{
+			"key": "230",
+			"value": "V2"
+		},
+		{
+			"key": "233",
+			"value": "V3"
+		},
+		{
+			"key": "380",
+			"value": "380/420-3-50"
+		},
+		{
+			"key": "460",
+			"value": "V4"
+		},
+		{
+			"key": "463",
+			"value": "V4"
+		},
+		{
+			"key": "575",
+			"value": "V5"
+		}
+	],
+	"Metering Device": [
+		{
+			"key": "-",
+			"value": "None"
+		},
+		{
+			"key": "0",
+			"value": "ORF or Blank"
+		},
+		{
+			"key": "1",
+			"value": "ORF R2"
+		},
+		{
+			"key": "2",
+			"value": "ORF"
+		},
+		{
+			"key": "3",
+			"value": "BLD AC TXV R1"
+		},
+		{
+			"key": "4",
+			"value": "Non- BLD AC TXV R1"
+		},
+		{
+			"key": "5",
+			"value": "Non- BLD HP - AC TXV R1"
+		},
+		{
+			"key": "6",
+			"value": "Non- BLD AC TXV R2"
+		},
+		{
+			"key": "7",
+			"value": "BLD HP - AC TXV R2"
+		},
+		{
+			"key": "8",
+			"value": "BLD AC TXV R2"
+		},
+		{
+			"key": "9",
+			"value": "Non- BLD HP - AC TXV R2"
+		},
+		{
+			"key": "1P",
+			"value": "ORF"
+		},
+		{
+			"key": "2T",
+			"value": "AC Or HP TXV"
+		},
+		{
+			"key": "4T",
+			"value": "TXV"
+		},
+		{
+			"key": "4X",
+			"value": "TXV"
+		},
+		{
+			"key": "B",
+			"value": "TXV"
+		},
+		{
+			"key": "C",
+			"value": "Capillary"
+		},
+		{
+			"key": "E",
+			"value": "EEV"
+		},
+		{
+			"key": "F",
+			"value": "ORF"
+		},
+		{
+			"key": "H",
+			"value": "TXV Or HI CPTY 4 Row CL"
+		},
+		{
+			"key": "I",
+			"value": "EXV"
+		},
+		{
+			"key": "N",
+			"value": "None"
+		},
+		{
+			"key": "O",
+			"value": "ORF"
+		},
+		{
+			"key": "P",
+			"value": "Piston"
+		},
+		{
+			"key": "S",
+			"value": "STD"
+		},
+		{
+			"key": "T",
+			"value": "TXV"
+		},
+		{
+			"key": "TXV",
+			"value": "TXV"
+		},
+		{
+			"key": "V",
+			"value": "Inverter EXPN VAL"
+		},
+		{
+			"key": "X",
+			"value": "TXV"
+		},
+		{
+			"key": "XX",
+			"value": "TXV"
+		},
+		{
+			"key": "Z",
+			"value": "TXV"
+		}
+	],
+	"Motor": [
+		{
+			"key": "-",
+			"value": "STD"
+		},
+		{
+			"key": "A",
+			"value": "Constant Air Flow PSC Or ECM"
+		},
+		{
+			"key": "B",
+			"value": "Base model PSC Or X13 ECM"
+		},
+		{
+			"key": "C",
+			"value": "COMM or Constant SPD"
+		},
+		{
+			"key": "D",
+			"value": "DD or Dual SPD"
+		},
+		{
+			"key": "E",
+			"value": "ECM"
+		},
+		{
+			"key": "H",
+			"value": "MULT SPD"
+		},
+		{
+			"key": "J",
+			"value": "ECM 5 SPD"
+		},
+		{
+			"key": "K",
+			"value": "DD"
+		},
+		{
+			"key": "L",
+			"value": "DD"
+		},
+		{
+			"key": "M",
+			"value": "MULT SPD"
+		},
+		{
+			"key": "N",
+			"value": "MULT SPD ECM 9 Taps"
+		},
+		{
+			"key": "P",
+			"value": "PSC"
+		},
+		{
+			"key": "Q",
+			"value": "DD"
+		},
+		{
+			"key": "R",
+			"value": "MULT SPD"
+		},
+		{
+			"key": "S",
+			"value": "STD or SGL SPD"
+		},
+		{
+			"key": "T",
+			"value": "5 Tap ECM"
+		},
+		{
+			"key": "V",
+			"value": "VAR SPD"
+		},
+		{
+			"key": "X",
+			"value": "CTM"
+		},
+		{
+			"key": "Z",
+			"value": "CP ECM"
+		},
+		{
+			"key": "9",
+			"value": "Nine SPD ECM"
+		}
+	],
+	"Refrigerant": [
+		{
+			"key": "-",
+			"value": "R1"
+		},
+		{
+			"key": "0",
+			"value": "NA"
+		},
+		{
+			"key": "2",
+			"value": "R1"
+		},
+		{
+			"key": "3",
+			"value": "R5"
+		},
+		{
+			"key": "4",
+			"value": "R2"
+		},
+		{
+			"key": "5",
+			"value": "R6"
+		},
+		{
+			"key": "6",
+			"value": "R2 or R1"
+		},
+		{
+			"key": "7",
+			"value": "R6"
+		},
+		{
+			"key": "22",
+			"value": "R1"
+		},
+		{
+			"key": "32",
+			"value": "R5"
+		},
+		{
+			"key": "R32",
+			"value": "R5"
+		},
+		{
+			"key": "410",
+			"value": "R2"
+		},
+		{
+			"key": "A",
+			"value": "R2  or Revision"
+		},
+		{
+			"key": "B",
+			"value": "R2"
+		},
+		{
+			"key": "C",
+			"value": "R1"
+		},
+		{
+			"key": "D",
+			"value": "R1"
+		},
+		{
+			"key": "E",
+			"value": "R1"
+		},
+		{
+			"key": "F",
+			"value": "R2"
+		},
+		{
+			"key": "G",
+			"value": "R2"
+		},
+		{
+			"key": "H",
+			"value": "R6"
+		},
+		{
+			"key": "I",
+			"value": "R1"
+		},
+		{
+			"key": "J",
+			"value": "R2"
+		},
+		{
+			"key": "K",
+			"value": "R6"
+		},
+		{
+			"key": "L",
+			"value": "R2"
+		},
+		{
+			"key": "M",
+			"value": "R2"
+		},
+		{
+			"key": "N",
+			"value": "N2 Charged"
+		},
+		{
+			"key": "N1",
+			"value": "R2"
+		},
+		{
+			"key": "NC",
+			"value": "N2 Charged"
+		},
+		{
+			"key": "AP",
+			"value": "R2"
+		},
+		{
+			"key": "P",
+			"value": "R2"
+		},
+		{
+			"key": "Q",
+			"value": "R2"
+		},
+		{
+			"key": "R",
+			"value": "R1"
+		},
+		{
+			"key": "S",
+			"value": "R7"
+		},
+		{
+			"key": "T",
+			"value": "R1"
+		},
+		{
+			"key": "X",
+			"value": "R2"
+		},
+			{
+			"key": "Y",
+			"value": "R6"
+		},
+		{
+			"key": "Z",
+			"value": "R2"
+		}
+	],
+	"Rheem Brands": [
+		{
+			"key": "D",
+			"value": "DuraGuard"
+		},
+		{
+			"key": "F",
+			"value": "Corsaire"
+		},
+		{
+			"key": "R",
+			"value": "Rheem"
+		},
+		{
+			"key": "U",
+			"value": "Ruud"
+		},
+		{
+			"key": "M",
+			"value": "MainLine"
+		},
+		{
+			"key": "ML",
+			"value": "MainLine"
+		},
+		{
+			"key": "MP",
+			"value": "MainLine PERF"
+		},
+		{
+			"key": "W",
+			"value": "WeatherKing"
+		},
+		{
+			"key": "01",
+			"value": "WeatherKing"
+		},
+		{
+			"key": "S",
+			"value": "Sure Comfort"
+		},
+		{
+			"key": "T",
+			"value": "Generic"
+		},
+		{
+			"key": "TZ",
+			"value": "Thermal Zone"
+		}
+	],
+	"Rheem Voltage": [
+		{
+			"key": "A",
+			"value": "V1"
+		},
+		{
+			"key": "C",
+			"value": "208/ V9"
+		},
+		{
+			"key": "D",
+			"value": "V4"
+		},
+		{
+			"key": "E",
+			"value": "V7"
+		},
+		{
+			"key": "G",
+			"value": "230/ V4"
+		},
+		{
+			"key": "J",
+			"value": "208/ V8"
+		},
+		{
+			"key": "N",
+			"value": "380/415-3-50"
+		},
+		{
+			"key": "P",
+			"value": "200-/220-1-50"
+		},
+		{
+			"key": "H",
+			"value": "V1 or V8"
+		},
+		{
+			"key": "Y",
+			"value": "V5"
+		},
+		{
+			"key": "Z",
+			"value": "208/230/460-360"
+		},
+		{
+			"key": "2",
+			"value": "208/ V8"
+		}
+	],
+	"Sales Region": [
+		{
+			"key": "-",
+			"value": "All"
+		},
+		{
+			"key": "0",
+			"value": "All"
+		},
+		{
+			"key": "A",
+			"value": "All"
+		},
+		{
+			"key": "N",
+			"value": "NTH"
+		},
+		{
+			"key": "S",
+			"value": "Southeast and NTH"
+		},
+		{
+			"key": "W",
+			"value": "Southwest"
+		}
+	],
+	"Tecumseh Application": [
+		{
+			"key": "0",
+			"value": "EVAP TEMP COM Rating PT +20F MTR STT Normal"
+		},
+		{
+			"key": "1",
+			"value": "EVAP TEMP Low Rating PT -10F MTR STT Normal"
+		},
+		{
+			"key": "2",
+			"value": "EVAP TEMP Low Rating PT -10F MTR STT HI"
+		},
+		{
+			"key": "3",
+			"value": "EVAP TEMP HI Rating PT +45F MTR STT Normal"
+		},
+		{
+			"key": "4",
+			"value": "EVAP TEMP HI Rating PT +45F MTR STT HI"
+		},
+		{
+			"key": "5",
+			"value": "EVAP TEMP AC Rating PT +45F MTR STT Normal"
+		},
+		{
+			"key": "6",
+			"value": "EVAP TEMP MED Rating PT +20F MTR STT Normal"
+		},
+		{
+			"key": "7",
+			"value": "EVAP TEMP MED Rating PT +20F MTR STT HI"
+		},
+		{
+			"key": "8",
+			"value": "EVAP TEMP AC Rating PT +49F MTR STT Normal"
+		},
+		{
+			"key": "9",
+			"value": "EVAP TEMP COM Rating PT +20F MTR STT HI"
+		},
+		{
+			"key": "F",
+			"value": "EVAP TEMP Low-Vapor Inj Rating PT +10F MTR STT HI"
+		},
+		{
+			"key": "G",
+			"value": "EVAP TEMP Low-Vapor Inj Rating PT +10F MTR STT HI"
+		}
+	],
+	"Tecumseh Voltage": [
+		{
+			"key": "AA",
+			"value": "V1"
+		},
+		{
+			"key": "AB",
+			"value": "V1"
+		},
+		{
+			"key": "XA",
+			"value": "V1"
+		},
+		{
+			"key": "XB",
+			"value": "V8"
+		},
+		{
+			"key": "XD",
+			"value": "208/ V8"
+		},
+		{
+			"key": "NA",
+			"value": "208/ V8"
+		},
+		{
+			"key": "XN",
+			"value": "208/ V8"
+		},
+		{
+			"key": "XF",
+			"value": "208/ V9"
+		},
+		{
+			"key": "XT",
+			"value": "208/ V9"
+		},
+		{
+			"key": "XG",
+			"value": "V4"
+		},
+		{
+			"key": "XH",
+			"value": "V5"
+		},
+		{
+			"key": "XP",
+			"value": "220-1-60"
+		},
+		{
+			"key": "XV",
+			"value": "V15"
+		},
+		{
+			"key": "VA",
+			"value": "V15"
+		}
+	],
+	"Trane Voltage": [
+		{
+			"key": "A",
+			"value": "V1"
+		},
+		{
+			"key": "C",
+			"value": "V1  CSC"
+		},
+		{
+			"key": "D",
+			"value": "V1  CSC and IEF"
+		},
+		{
+			"key": "E",
+			"value": "200-3-60"
+		},
+		{
+			"key": "F",
+			"value": "V1  IEF"
+		},
+		{
+			"key": "G",
+			"value": "200/ V9"
+		},
+		{
+			"key": "K",
+			"value": "V12"
+		},
+		{
+			"key": "L",
+			"value": "V1"
+		},
+		{
+			"key": "S",
+			"value": "V2"
+		},
+		{
+			"key": "U",
+			"value": "V3"
+		},
+		{
+			"key": "V" ,
+			"value": "V4"
+		},
+		{
+			"key": "W",
+			"value": "V5"
+		},
+		{
+			"key": "1",
+			"value": "V2"
+		},
+		{
+			"key": "2",
+			"value": "V8"
+		},
+		{
+			"key": "3",
+			"value": "V3"
+		},
+		{
+			"key": "4",
+			"value": "V4"
+		},
+		{
+			"key": "5",
+			"value": "V5"
+		},
+		{
+			"key": "6",
+			"value": "200-3-60"
+		},
+		{
+			"key": "7",
+			"value": "V15"
+		},
+		{
+			"key": "8",
+			"value": "V9"
+		},
+		{
+			"key": "9",
+			"value": "V1"
+		}
+	],
+	"Vertiv Voltage": [
+		{
+			"key": "A",
+			"value": "V4"
+		},
+		{
+			"key": "B",
+			"value": "V5"
+		},
+		{
+			"key": "C",
+			"value": "V7"
+		},
+		{
+			"key": "D",
+			"value": "V9"
+		},
+		{
+			"key": "F",
+			"value": "V11"
+		},
+		{
+			"key": "G",
+			"value": "415-3-50"
+		},
+		{
+			"key": "H",
+			"value": "230-3-50"
+		},
+		{
+			"key": "J",
+			"value": "200-3-50"
+		},
+		{
+			"key": "M",
+			"value": "380/415-3-50"
+		},
+		{
+			"key": "P",
+			"value": "V2"
+		},
+		{
+			"key": "S",
+			"value": "220-1-50"
+		},
+		{
+			"key": "V",
+			"value": "575-1-60"
+		},
+		{
+			"key": "W",
+			"value": "200/220-1-50"
+		},
+		{
+			"key": "Y",
+			"value": "V3"
+		},
+		{
+			"key": "Z",
+			"value": "V13"
+		},
+		{
+			"key": "2",
+			"value": "V12"
+		}
+	],
+	"Voyager Options": [
+		{
+			"key": "0",
+			"value": "None"
+		},
+		{
+			"key": "A",
+			"value": "SERV VAL"
+		},
+		{
+			"key": "B",
+			"value": "TTBC ELEC Provision"
+		},
+		{
+			"key": "C",
+			"value": "NFD SW W EXT HDL"
+		},
+		{
+			"key": "D",
+			"value": "FI - PWR 15A GFI CONVO and NDCN SW W EXT HDL"
+		},
+		{
+			"key": "E",
+			"value": "FLD - PWR 15A GFI CONVO"
+		},
+		{
+			"key": "F",
+			"value": "ICS CTRL OPT Trane COMM INFC SA SEN and CLOG FLT SW"
+		},
+		{
+			"key": "G",
+			"value": "VENT Override"
+		},
+		{
+			"key": "H",
+			"value": "HNG SERV Access"
+		},
+		{
+			"key": "J",
+			"value": "COND CG"
+		},
+		{
+			"key": "K",
+			"value": "LCI"
+		},
+		{
+			"key": "L",
+			"value": "SPL"
+		},
+		{
+			"key": "M",
+			"value": "SS DP"
+		},
+		{
+			"key": "N",
+			"value": "Black EPC COND CL"
+		}
+	],
+	"York Additional Options": [
+		{
+			"key": "AA",
+			"value": "None"
+		},
+		{
+			"key": "AB",
+			"value": "PHM"
+		},
+		{
+			"key": "AC",
+			"value": "CG"
+		},
+		{
+			"key": "AD",
+			"value": "DFS"
+		},
+		{
+			"key": "AE",
+			"value": "PHM And CG"
+		},
+		{
+			"key": "AF",
+			"value": "PHM And DFS"
+		},
+		{
+			"key": "AG",
+			"value": "CG And DFS"
+		},
+		{
+			"key": "AH",
+			"value": "PHM CG And DFS"
+		},
+		{
+			"key": "AS",
+			"value": "BDC"
+		},
+		{
+			"key": "BA",
+			"value": "HNG FLT Door And TAP"
+		},
+		{
+			"key": "BB",
+			"value": "PHM HNG FLT Door And TAP"
+		},
+		{
+			"key": "BC",
+			"value": "CG HNG FLT Door And TAP"
+		},
+		{
+			"key": "BD",
+			"value": "DFS HNG FLT Door And TAP"
+		},
+		{
+			"key": "BE",
+			"value": "PHM CG HNG FLT Door And TAP"
+		},
+		{
+			"key": "BF",
+			"value": "PHM DFS HNG FLT Door And TAP"
+		},
+		{
+			"key": "BG",
+			"value": "CG DFS HNG FLT Door And TAP"
+		},
+		{
+			"key": "BH",
+			"value": "PHM CG DFS HNG FLT Door And TAP"
+		},
+		{
+			"key": "CA",
+			"value": "CC DFS And APS"
+		},
+		{
+			"key": "CB",
+			"value": "CC DFS APS And PHM"
+		},
+		{
+			"key": "CC",
+			"value": "CC DFS APS And CG"
+		},
+		{
+			"key": "CD",
+			"value": "CC DFS APS PHM And CG"
+		},
+		{
+			"key": "CE",
+			"value": "CC DFS APS And TCC"
+		},
+		{
+			"key": "CF",
+			"value": "CC DFS APS PHM And TCC"
+		},
+		{
+			"key": "CG",
+			"value": "CC DFS APS CG And TCC"
+		},
+		{
+			"key": "CH",
+			"value": "CC DFS APS CG PHM And TCC"
+		},
+		{
+			"key": "CJ",
+			"value": "CC DFS APS And TEC"
+		},
+		{
+			"key": "CK",
+			"value": "CC DFS APS PHM And TEC"
+		},
+		{
+			"key": "CL",
+			"value": "CC DFS APS CG And TEC"
+		},
+		{
+			"key": "CM",
+			"value": "CC DFS APS CG PHM And TEC"
+		},
+		{
+			"key": "CN",
+			"value": "CC DFS APS TCC And TEC"
+		},
+		{
+			"key": "CP",
+			"value": "CC DFS APS PHM TCC And TEC"
+		},
+		{
+			"key": "CQ",
+			"value": "CC DFS APS CG TCC And TEC"
+		},
+		{
+			"key": "CR",
+			"value": "CC DFS APS CG PHM TCC And TEC"
+		},
+		{
+			"key": "CV",
+			"value": "CC DFS APS And 2 IN PLT FLT"
+		},
+		{
+			"key": "CX",
+			"value": "CC DFS APS TCC And 2 IN PLT FLT"
+		},
+		{
+			"key": "EA",
+			"value": "E-Coat COND Coil"
+		},
+		{
+			"key": "EB",
+			"value": "PHM And ElectroFin COND CL"
+		},
+		{
+			"key": "EC",
+			"value": "CG And ElectroFin COND CL"
+		},
+		{
+			"key": "EE",
+			"value": "CC CG PHM And ElectroFin COND CL"
+		},
+		{
+			"key": "EJ",
+			"value": "E-Coat EVAP Coil"
+		},
+		{
+			"key": "ES",
+			"value": "E-Coat EVAP Coil And E-Coat COND CL"
+		},
+		{
+			"key": "JA",
+			"value": "JC DFS And APS"
+		},
+		{
+			"key": "JB",
+			"value": "JC DFS PHM And APS"
+		},
+		{
+			"key": "JC",
+			"value": "JC DFS CG And APS"
+		},
+		{
+			"key": "JD",
+			"value": "JC DFS CG PHM And APS"
+		},
+		{
+			"key": "JE",
+			"value": "JC DFS TCC And APS"
+		},
+		{
+			"key": "JF",
+			"value": "JC DFS PHM TCC And APS"
+		},
+		{
+			"key": "JG",
+			"value": "JC DFS CG TCC And APS"
+		},
+		{
+			"key": "JH",
+			"value": "JC DFS CG PHM TCC And APS"
+		},
+		{
+			"key": "JJ",
+			"value": "JC DFS APS And TEC"
+		},
+		{
+			"key": "JK",
+			"value": "JC DFS PHM APS And TEC"
+		},
+		{
+			"key": "JL",
+			"value": "JC DFS CG APS And TEC"
+		},
+		{
+			"key": "JM",
+			"value": "JC DFS CG PHM APS And TEC"
+		},
+		{
+			"key": "JN",
+			"value": "JC DFS TCC APS And TEC"
+		},
+		{
+			"key": "JP",
+			"value": "JC DFS PHM TCC APS And TEC"
+		},
+		{
+			"key": "JQ",
+			"value": "JC DFS CG TCC APS And TEC"
+		},
+		{
+			"key": "JR",
+			"value": "JC DFS PHM CG TCC APS And TEC"
+		},
+		{
+			"key": "LA",
+			"value": "LAC"
+		},
+		{
+			"key": "LB",
+			"value": "LAC And PHM"
+		},
+		{
+			"key": "LC",
+			"value": "LAC And CG"
+		},
+		{
+			"key": "LD",
+			"value": "LAC  PHM And CG"
+		},
+		{
+			"key": "LE",
+			"value": "LAC And TCC"
+		},
+		{
+			"key": "LF",
+			"value": "LAC TCC And PHM"
+		},
+		{
+			"key": "LG",
+			"value": "LAC TCC And CG"
+		},
+		{
+			"key": "LH",
+			"value": "LAC TCC PHM And CG"
+		},
+		{
+			"key": "LJ",
+			"value": "LAC And ElectroFin COND CL"
+		},
+		{
+			"key": "LK",
+			"value": "LAC ElectroFin COND CL And PHM"
+		},
+		{
+			"key": "LL",
+			"value": "LAC ElectroFin COND CL And CG"
+		},
+		{
+			"key": "HA",
+			"value": "HC DFS And APS"
+		},
+		{
+			"key": "HB",
+			"value": "HC DFS PHM And APS"
+		},
+		{
+			"key": "HC",
+			"value": "HC DFS CG And APS"
+		},
+		{
+			"key": "HD",
+			"value": "HC DFS CG PHM And APS"
+		},
+		{
+			"key": "HE",
+			"value": "HC DFS TCC And APS"
+		},
+		{
+			"key": "HF",
+			"value": "HC DFS PHM TCC And APS"
+		},
+		{
+			"key": "HG",
+			"value": "HC DFS CG TCC And APS"
+		},
+		{
+			"key": "HH",
+			"value": "HC DFS PHM CG TCC And APS"
+		},
+		{
+			"key": "HJ",
+			"value": "JC DFS TEC And APS"
+		},
+		{
+			"key": "HK",
+			"value": "HC DFS PHM TEC And APS"
+		},
+		{
+			"key": "HL",
+			"value": "HC DFS CG TEC And APS"
+		},
+		{
+			"key": "HM",
+			"value": "HC DFS CG PHM TEC And APS"
+		},
+		{
+			"key": "HN",
+			"value": "HC DFS TEC And APS"
+		},
+		{
+			"key": "HP",
+			"value": "HC DFS TCC PHM TEC And APS"
+		},
+		{
+			"key": "HQ",
+			"value": "HC DFS TCC CG TEC And APS"
+		},
+		{
+			"key": "HR",
+			"value": "HC DFS TCC CG PHM TEC And APS"
+		},
+		{
+			"key": "NA",
+			"value": "NVC DFS And APS"
+		},
+		{
+			"key": "NB",
+			"value": "NVC PHM DFS And APS"
+		},
+		{
+			"key": "NC",
+			"value": "NVC CG DFS And APS"
+		},
+		{
+			"key": "ND",
+			"value": "NVC CG PHM DFS And APS"
+		},
+		{
+			"key": "NE",
+			"value": "NVC TEC DFS And APS"
+		},
+		{
+			"key": "NF",
+			"value": "NVC TCC PHM  DFS And APS"
+		},
+		{
+			"key": "NG",
+			"value": "NVC TCC CG DFS And APS"
+		},
+		{
+			"key": "NH",
+			"value": "NVC TCC CG PHM DFS And APS"
+		},
+		{
+			"key": "NJ",
+			"value": "NVC TEC DFS And APS"
+		},
+		{
+			"key": "NK",
+			"value": "NVC TEC PHM DFS And APS"
+		},
+		{
+			"key": "NL",
+			"value": "NVC TEC CG DFS And APS"
+		},
+		{
+			"key": "NM",
+			"value": "NVC TEC CG PHM DFS And APS"
+		},
+		{
+			"key": "NN",
+			"value": "NVC TEC TCC DFS And APS"
+		},
+		{
+			"key": "NP",
+			"value": "NVC TEC TCC PHM DFS And APS"
+		},
+		{
+			"key": "NQ",
+			"value": "NVC TEC TCC CG DFS And APS"
+		},
+		{
+			"key": "NR",
+			"value": "NVC TEC TCC CG PHM DFS And APS"
+		},
+		{
+			"key": "TA",
+			"value": "TCC"
+		},
+		{
+			"key": "TB",
+			"value": "TCC And PHM"
+		},
+		{
+			"key": "TC",
+			"value": "TCC And CG"
+		},
+		{
+			"key": "TD",
+			"value": "TCC And DFS"
+		},
+		{
+			"key": "TE",
+			"value": "TCC PHM And CG"
+		},
+		{
+			"key": "TF",
+			"value": "TCC PHM And DFS"
+		},
+		{
+			"key": "TG",
+			"value": "TCC CG And DFS"
+		},
+		{
+			"key": "TH",
+			"value": "TCC CG PHM And DFS"
+		},
+		{
+			"key": "TJ",
+			"value": "TEC"
+		},
+		{
+			"key": "TK",
+			"value": "TEC And PHM"
+		},
+		{
+			"key": "TL",
+			"value": "TEC And CG"
+		},
+		{
+			"key": "TM",
+			"value": "TEC And DFS"
+		},
+		{
+			"key": "TN",
+			"value": "PHM TEC And CG"
+		},
+		{
+			"key": "TP",
+			"value": "PHM TEC And DFS"
+		},
+		{
+			"key": "TQ",
+			"value": "CG TEC And DFS"
+		},
+		{
+			"key": "TR",
+			"value": "PHM CG TEC And DFS"
+		},
+		{
+			"key": "TS",
+			"value": "TEC And TCC"
+		},
+		{
+			"key": "TT",
+			"value": "PHM TEC And TCC"
+		},
+		{
+			"key": "TU",
+			"value": "CG TEC And TCC"
+		},
+		{
+			"key": "TV",
+			"value": "DFS TEC And TCC"
+		},
+		{
+			"key": "TW",
+			"value": "CG PHM TEC And TCC"
+		},
+		{
+			"key": "TX",
+			"value": "DFS PHM TEC And TCC"
+		},
+		{
+			"key": "TY",
+			"value": "DFS CG TEC And TCC"
+		},
+		{
+			"key": "TZ",
+			"value": "DFS CG PHM TEC And TCC"
+		},
+		{
+			"key": "RC",
+			"value": "CG Shipping Bag And American Flag"
+		},
+		{
+			"key": "ZZ",
+			"value": "Will be assigned later digits"
+		}
+	],
+	"York Brands": [
+		{
+			"key": "C",
+			"value": "Coleman"
+		},
+		{
+			"key": "F",
+			"value": "Westinghouse"
+		},
+		{
+			"key": "G",
+			"value": "Guardian"
+		},
+		{
+			"key": "J",
+			"value": "Johnson Controls"
+		},
+		{
+			"key": "L",
+			"value": "Luxaire"
+		},
+		{
+			"key": "M",
+			"value": "Sub Branded Revolv Or Coleman"
+		},
+		{
+			"key": "R",
+			"value": "OTC Factory Branded Or Guardian"
+		},
+		{
+			"key": "T",
+			"value": "Sub Branded"
+		},
+		{
+			"key": "Y",
+			"value": "York"
+		}
+	],
+	"York Options": [
+		{
+			"key": "A",
+			"value": "None"
+		},
+		{
+			"key": "B",
+			"value": "DCN"
+		},
+		{
+			"key": "C",
+			"value": "Non- PWR CONVO"
+		},
+		{
+			"key": "D",
+			"value": "DCN Non- PWR CONVO"
+		},
+		{
+			"key": "E",
+			"value": "SMKD SA*BACnet MS/TP on Simplicity SE"
+		},
+		{
+			"key": "F",
+			"value": "SMKD RA"
+		},
+		{
+			"key": "G",
+			"value": "DCN SMKD SA*BACnet MS/TP on Simplicity SE"
+		},
+		{
+			"key": "H",
+			"value": "DCN SMKD RA*Non- PWR CONVO BACnet MS/TP on Simplicity SE"
+		},
+		{
+			"key": "J",
+			"value": "DCN Non- PWR CONVO SMKD SA*DCN Non- PWR CONVO BACnet MS/TP on Simplicity SE"
+		},
+		{
+			"key": "K",
+			"value": "DCN Non- PWR CONVO SMKD RA"
+		},
+		{
+			"key": "L",
+			"value": "DCN SMKD SA and RA"
+		},
+		{
+			"key": "M",
+			"value": "DCN Non- PWR CONVO SMKD SA and RA"
+		},
+		{
+			"key": "N",
+			"value": "Non- PWR CONVO SMKD SA"
+		},
+		{
+			"key": "P",
+			"value": "Non- PWR CONVO SMKD RA*BACnet MS/TP on Simplicity SE PWR CONVO"
+		},
+		{
+			"key": "Q",
+			"value": "DCN SMKD SA and RA*COND DCN BACnet MS/TP on Simplicity SE PWR CONVO"
+		},
+		{
+			"key": "R",
+			"value": "SMKD SA and RA"
+		},
+		{
+			"key": "S",
+			"value": "PWR CONVO"
+		},
+		{
+			"key": "5",
+			"value": "PWR CONVO"
+		},
+		{
+			"key": "T",
+			"value": "DCN PWR CONVO"
+		},
+		{
+			"key": "U",
+			"value": "DCN SMKD SA PWR CONVO"
+		},
+		{
+			"key": "V",
+			"value": "DCN SMKD RA PWR CONVO"
+		},
+		{
+			"key": "W",
+			"value": "DCN SMKD SA and RA PWR CONVO"
+		},
+		{
+			"key": "X",
+			"value": "SMKD SA PWR CONVO"
+		},
+		{
+			"key": "Y",
+			"value": "SMKD RA PWR CONVO"
+		},
+		{
+			"key": "Z",
+			"value": "SMKD SA and RA PWR CONVO"
+		}
+	],
+	"York Voltage": [
+		{
+			"key": "F",
+			"value": "V2"
+		},
+		{
+			"key": "T",
+			"value": "V3 or Export 220-1-50"
+		},
+		{
+			"key": "W",
+			"value": "V4"
+		},
+		{
+			"key": "X",
+			"value": "V5"
+		},
+		{
+			"key": "1",
+			"value": "V2"
+		},
+		{
+			"key": "2",
+			"value": "208/240-1-60 or 208/240-3-60 COM"
+		},
+		{
+			"key": "3",
+			"value": "208/ V9 or Export 220-1-50"
+		},
+		{
+			"key": "4",
+			"value": "V4"
+		},
+		{
+			"key": "5",
+			"value": "V5"
+		},
+		{
+			"key": "6",
+			"value": "208/230/ V4"
+		},
+		{
+			"key": "7",
+			"value": "380/415-3-50"
+		},
+		{
+			"key": "01",
+			"value": "V1"
+		},
+		{
+			"key": "06",
+			"value": "V2"
+		},
+		{
+			"key": "10",
+			"value": "V8"
+		},
+		{
+			"key": "12",
+			"value": "V1"
+		},
+		{
+			"key": "17",
+			"value": "200/ V7"
+		},
+		{
+			"key": "18",
+			"value": "V6"
+		},
+		{
+			"key": "23",
+			"value": "V7"
+		},
+		{
+			"key": "25",
+			"value": "208/ V9"
+		},
+		{
+			"key": "27",
+			"value": "277-1-60"
+		},
+		{
+			"key": "28",
+			"value": "V9"
+		},
+		{
+			"key": "33",
+			"value": "208/230/ V4"
+		},
+		{
+			"key": "40",
+			"value": "V12"
+		},
+		{
+			"key": "44",
+			"value": "440-3-50"
+		},
+		{
+			"key": "45",
+			"value": "440/480-3-60"
+		},
+		{
+			"key": "46",
+			"value": "V4"
+		},
+		{
+			"key": "50",
+			"value": "380/420-3-50"
+		},
+		{
+			"key": "51",
+			"value": "V13"
+		},
+		{
+			"key": "58",
+			"value": "V5"
+		},
+		{
+			"key": "61",
+			"value": "200-3-50"
+		},
+		{
+			"key": "63",
+			"value": "230-3-50"
+		},
+		{
+			"key": "65",
+			"value": "V11"
+		},
+		{
+			"key": "67",
+			"value": "400-3-50"
+		},
+		{
+			"key": "68",
+			"value": "415-3-50"
+		},
+		{
+			"key": "73",
+			"value": "120-1-50"
+		},
+		{
+			"key": "78",
+			"value": "230-1-50"
+		}
+	]
+}

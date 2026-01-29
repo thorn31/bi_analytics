@@ -69,6 +69,12 @@ Last updated: 2026-01-29
 
 ---
 
+## external_sources — Stage richer inputs (parse-only)
+
+### HVACExport XML
+- [x] Add parse-only snapshot script + tests (script: `scripts/hvacexport_parse.py`, tests: `tests/test_hvacexport_parse.py`, 2026-01-29)
+- [x] Run parser to create first snapshot folder under `data/external_sources/hvacexport/<snapshot-id>/` and review `summary.md` for ingestion planning. (snapshot: `data/external_sources/hvacexport/2026-01-24_v3.84_enriched2/`, 2026-01-29)
+
 ## mining — Rule discovery from labeled asset reports
 
 Historical plan reference: `docs/_archive/PLAN_PHASE3.md`

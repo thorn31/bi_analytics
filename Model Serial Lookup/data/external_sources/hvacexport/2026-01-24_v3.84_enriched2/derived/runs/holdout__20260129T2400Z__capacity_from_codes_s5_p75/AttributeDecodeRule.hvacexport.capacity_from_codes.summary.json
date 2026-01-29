@@ -1,0 +1,14 @@
+{
+  "snapshot_id": "2026-01-24_v3.84_enriched2",
+  "alignment_run_id": "holdout__20260129T2400Z__train_alignment",
+  "rows_in": 291,
+  "rows_kept": 42,
+  "rows_dropped": 249,
+  "drop_reasons": {
+    "attr_not_selected": 41,
+    "low_purity": 1,
+    "low_support": 207
+  },
+  "rules_out_n": 17,
+  "out_path": "derived/runs/holdout__20260129T2400Z__capacity_from_codes_s5_p75/AttributeDecodeRule.hvacexport.capacity_from_codes.candidates.jsonl"
+}

@@ -79,6 +79,26 @@ python3 scripts/actions.py decode.run \
 - Latest run: `data/reports/CURRENT_RUN.txt` (run id)
 - Latest baseline: `data/reports/CURRENT_BASELINE.txt` (run id)
 
+## External sources (parse-only snapshots)
+Some sources are richer than Building-Center pages and should be staged as **snapshots** first (no decoder/ruleset integration yet).
+
+### HVACExport XML snapshot
+Input: `data/static/hvacexport.xml`
+
+Parse into a versioned snapshot folder (manual id):
+```bash
+python3 scripts/hvacexport_parse.py \
+  --input data/static/hvacexport.xml \
+  --snapshot-id 2026-01-24_v3.84
+```
+
+Outputs:
+- `data/external_sources/hvacexport/<snapshot-id>/records.csv`
+- `data/external_sources/hvacexport/<snapshot-id>/segments.csv`
+- `data/external_sources/hvacexport/<snapshot-id>/options.csv`
+- `data/external_sources/hvacexport/<snapshot-id>/metadata.json`
+- `data/external_sources/hvacexport/<snapshot-id>/summary.md`
+
 See:
 - `docs/RULESETS.md`
 - `docs/ARTIFACTS.md`

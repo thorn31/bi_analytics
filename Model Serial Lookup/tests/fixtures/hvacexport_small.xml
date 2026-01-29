@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Last Update 01/24/2026 07:30 AM -->
+<!-- Version 3.84 -->
+<Codes>
+  <Record>
+    <Brand>Trane</Brand>
+    <Category>Condenser</Category>
+    <SegCount>2</SegCount>
+    <length>11</length>
+    <UnknownRecordTag>foo</UnknownRecordTag>
+    <Decodes>
+      <segment>
+        <SL>3</SL>
+        <DEF>PDT Type</DEF>
+        <OP>TTA- Split AC</OP>
+        <OP>TWA- Split HP</OP>
+      </segment>
+      <segment>
+        <SL>8</SL>
+        <DEF>FAC 1</DEF>
+        <OP>0- No HGD</OP>
+      </segment>
+    </Decodes>
+  </Record>
+  <Record>
+    <Brand>Frigidaire</Brand>
+    <Category>Window Units</Category>
+    <!-- Deliberate mismatch: declared 5, but only 1 segment observed -->
+    <SegCount>5</SegCount>
+    <length>10</length>
+    <Decodes>
+      <segment>
+        <SL>10</SL>
+        <DEF>Year</DEF>
+        <UnknownSegmentTag>bar</UnknownSegmentTag>
+        <OP>Q- Year 2014</OP>
+        <OP>R- Year 2015</OP>
+      </segment>
+    </Decodes>
+  </Record>
+</Codes>

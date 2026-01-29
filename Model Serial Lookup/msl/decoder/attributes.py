@@ -181,9 +181,11 @@ def _collect_attribute_candidates(
                 value = num
 
         confidence = "High"
-        # If we only extracted a code (no mapping/transform), treat as Medium.
+        # If we only extracted a code (no mapping/transform), treat as Medium unless the rule declares a
+        # numeric data_type (in that case the substring itself is the final value).
         if not isinstance(mapping, dict) and not isinstance(transform, dict):
-            confidence = "Medium"
+            if (ve.get("data_type") or "").lower() != "number":
+                confidence = "Medium"
 
         # Specificity score (higher is better).
         score = 0.0

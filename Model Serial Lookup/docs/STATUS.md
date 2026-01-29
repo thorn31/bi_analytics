@@ -21,6 +21,7 @@ python3 scripts/actions.py workflow.improve \
 - Equipment type context is now supported at decode-time (uses input `Equipment` / `EquipmentType` when present) and is reflected in reports.
 - Rulesets may include optional `equipment_types` scoping columns in `SerialDecodeRule.csv` / `AttributeDecodeRule.csv` (missing/empty means cross-type).
 - Truth and candidate audits now emit additional by-type artifacts (see `docs/REPORTS.md`).
+- Added a parse-only snapshot tool for `data/static/hvacexport.xml` (staged under `data/external_sources/hvacexport/<snapshot-id>/`, no integration yet).
 
 ## Reference docs
 - `docs/WORKFLOW.md`

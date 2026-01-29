@@ -122,6 +122,37 @@ class TestDecoderAttributes(unittest.TestCase):
         self.assertEqual(len(attrs_missing), 1)
         self.assertTrue(attrs_missing[0].typed_rule_applied_without_type_context)
 
+    def test_number_positions_without_mapping_is_high_confidence(self) -> None:
+        from msl.decoder.io import AttributeRule
+
+        rules = [
+            AttributeRule(
+                rule_type="decode",
+                brand="AAON",
+                model_regex=r"^R[MN]-\d{3}-",
+                attribute_name="NominalCapacityTons",
+                equipment_types=["MAU"],
+                value_extraction={"data_type": "Number", "pattern": {"regex": r"^R[MN]-(\d{3})-", "group": 1}},
+                units="tons",
+                examples=["RN-010-3-0-EA09-3K9"],
+                limitations="",
+                guidance_action="",
+                guidance_text="",
+                evidence_excerpt="",
+                source_url="manual_additions",
+                retrieved_on="2026-01-29",
+                image_urls=[],
+            )
+        ]
+        accepted, issues = validate_attribute_rules(rules)
+        self.assertEqual(len(issues), 0)
+
+        attrs = decode_attributes("AAON", "RN-010-3-0-EA09-3K9", accepted, equipment_type="MAU")
+        self.assertEqual(len(attrs), 1)
+        self.assertEqual(attrs[0].value_raw, "010")
+        self.assertEqual(attrs[0].value, 10.0)
+        self.assertEqual(attrs[0].confidence, "High")
+
 
 if __name__ == "__main__":
     unittest.main()

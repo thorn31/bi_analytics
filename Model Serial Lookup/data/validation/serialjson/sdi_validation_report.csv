@@ -1,0 +1,9 @@
+brand,total_tested,correct,incorrect,no_mapping,no_rule,accuracy_pct,sample_correct_serials,sample_incorrect_serials
+BARD,21,0,0,21,0,0.0%,,
+CARRIER,0,0,0,298,0,0.0%,,
+DAIKIN,56,0,0,56,0,0.0%,,
+ICP,0,0,0,0,19,0.0%,,
+LENNOX,123,0,0,123,0,0.0%,,
+RHEEM,0,0,0,44,0,0.0%,,
+TRANE,1442,490,333,619,0,34.0%,"D02221593, D02221643, D02221719","S89C19905 (expected 1989, got 1986); S89C19969 (expected 1989, got 1986); S89C19967 (expected 1989, got 1986)"
+YORK,130,7,115,8,0,5.4%,"SCXM-880750, NACS002512, NBCM012835","NCHM034439 (expected 2002, got 1999); NKHM128508 (expected 2002, got 1999); NCHM034439 (expected 2002, got 1999)"
