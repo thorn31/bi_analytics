@@ -13,7 +13,10 @@ out/*
 data/raw_html/
 data/raw_images/
 data/ocr_text/
-data/reports/
+data/reports/*
+!data/reports/README.md
+!data/reports/CURRENT_RUN.txt
+!data/reports/CURRENT_BASELINE.txt
 data/reports_subset/
 data/logs/
 data/logs_images/

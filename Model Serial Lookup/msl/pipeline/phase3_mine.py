@@ -70,6 +70,7 @@ class YearCandidate:
     train_accuracy: float
     holdout_accuracy: float
     collisions_other_brands: int
+    example_serials: list[str]
 
 
 def _best_year_rule_for_group(rows: list[tuple[str, int]]) -> YearCandidate | None:
@@ -152,6 +153,7 @@ def _best_year_rule_for_group(rows: list[tuple[str, int]]) -> YearCandidate | No
         train_accuracy=train_acc,
         holdout_accuracy=hold_acc,
         collisions_other_brands=0,
+        example_serials=[],
     )
 
 
@@ -292,6 +294,8 @@ def cmd_phase3_mine(args) -> int:
             # Any match indicates collision risk for brand-less application; still ok if Phase 2 filters by brand.
             # Count a small sample.
             collisions += min(50, len(rows_other))
+        # Collect example serials (up to 5 examples)
+        examples = [serial for serial, _ in rows[:5]]
         candidates.append(
             YearCandidate(
                 brand=brand,
@@ -304,6 +308,7 @@ def cmd_phase3_mine(args) -> int:
                 train_accuracy=cand.train_accuracy,
                 holdout_accuracy=cand.holdout_accuracy,
                 collisions_other_brands=collisions,
+                example_serials=examples,
             )
         )
 
@@ -320,7 +325,7 @@ def cmd_phase3_mine(args) -> int:
                 "style_name": f"PHASE3 mined year @ {c.pos_start}-{c.pos_end} ({c.signature})",
                 "serial_regex": _signature_regex(c.signature),
                 "date_fields": date_fields,
-                "example_serials": [],
+                "example_serials": c.example_serials,
                 "decade_ambiguity": {"is_ambiguous": True, "notes": "Mined from asset report; validate before promotion"},
                 "evidence_excerpt": f"VERIFIED: Rule matches {c.support_n} assets with {c.holdout_accuracy:.1%} accuracy via holdout validation.",
                 "source_url": "internal_asset_reports",

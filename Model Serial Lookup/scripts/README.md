@@ -1,10 +1,10 @@
 # scripts/
 
-One-off utilities.
+Operator entry point:
+- `scripts/actions.py` (canonical action-driven workflow wrapper)
 
-Current:
-- `scripts/normalize_sdi.py`: legacy SDI export “column rename” helper.
+Required deterministic helpers:
+- `scripts/apply_manual_serial_fixes.py` (post-promotion persistence fixes)
 
-Preferred (pipeline-native) approach:
-- Use `python3 -m msl phase3-baseline` which automatically infers column mappings and writes
-  a canonicalized dataset + baseline reports under `data/reports/<run-id>/`.
+Archived one-off utilities:
+- `scripts/_archive/`

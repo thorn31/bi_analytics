@@ -35,15 +35,29 @@ def read_current_ruleset(base_dir: Path | None = None) -> Path | None:
     if not content:
         return None
 
-    # Handle both relative (to base_dir) and absolute paths
-    ruleset_path = Path(content)
-    if not ruleset_path.is_absolute():
-        # Content may include the base dir prefix or just the folder name
-        if content.startswith(str(base)):
-            ruleset_path = Path(content)
-        else:
-            ruleset_path = base / ruleset_path.name
+    # Canonical contract: CURRENT.txt contains ONLY the ruleset folder name.
+    # Backward compatibility: tolerate legacy values that are full/relative paths.
+    #
+    # Examples:
+    # - "2026-01-27-trane-fix-v3" (preferred)
+    # - "data/rules_normalized/2026-01-27-trane-fix-v3" (legacy)
+    # - "/abs/path/to/.../2026-01-27-trane-fix-v3" (legacy)
+    raw = content.replace("\\", "/").strip()
 
+    # If it looks like a path (contains a slash or is absolute), try to resolve it directly.
+    maybe_path = Path(content)
+    if ("/" in raw) or maybe_path.is_absolute():
+        if maybe_path.exists() and maybe_path.is_dir():
+            return maybe_path
+        # If it's a repo-relative path string, try interpreting it relative to cwd.
+        try_rel = Path(raw)
+        if try_rel.exists() and try_rel.is_dir():
+            return try_rel
+        # Fall through to folder-name interpretation below (e.g., "data/rules_normalized/<name>").
+
+    # Folder-name interpretation (preferred).
+    folder_name = Path(raw).name
+    ruleset_path = base / folder_name
     if ruleset_path.exists() and ruleset_path.is_dir():
         return ruleset_path
 
@@ -54,15 +68,12 @@ def update_current_pointer(ruleset_dir: Path, base_dir: Path | None = None) -> N
     """
     Update CURRENT.txt to point to the given ruleset directory.
 
-    The pointer file stores the path relative to the working directory,
-    matching the format: data/rules_normalized/<ruleset_name>
+    Canonical contract: CURRENT.txt stores ONLY the ruleset folder name (no path).
     """
     base = base_dir or RULES_NORMALIZED_DIR
     pointer_file = base / CURRENT_POINTER_FILE
 
-    # Store path relative to working directory for consistency
-    pointer_content = str(ruleset_dir)
-    pointer_file.write_text(pointer_content + "\n", encoding="utf-8")
+    pointer_file.write_text(f"{ruleset_dir.name}\n", encoding="utf-8")
 
 
 def list_ruleset_dirs(base_dir: Path | None = None) -> list[Path]:
