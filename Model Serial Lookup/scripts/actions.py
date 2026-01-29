@@ -200,7 +200,7 @@ def _merge_candidates_dirs(
     - Optionally include `data/rules_discovered/manual_additions/`.
     - If a manual candidate collides with a non-manual candidate by key, manual wins and the non-manual is dropped.
       - Serial key: (brand, style_name)
-      - Attribute key: (brand, attribute_name, model_regex)
+      - Attribute key: (brand, attribute_name, model_regex, equipment_types_key)
     - Output ordering: manual candidates first, then remaining primary candidates; both sorted stably.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -231,11 +231,26 @@ def _merge_candidates_dirs(
         for is_manual, obj in serial_items
         if is_manual
     }
+
+    def _equipment_types_key(obj: dict[str, Any]) -> str:
+        # Support legacy single-valued `equipment_type` in addition to `equipment_types`.
+        et_list = obj.get("equipment_types")
+        if et_list is None:
+            et_list = []
+        if not isinstance(et_list, list):
+            et_list = []
+        legacy = (obj.get("equipment_type") or "").strip()
+        if legacy:
+            et_list = list(et_list) + [legacy]
+        cleaned = sorted({str(x).strip() for x in et_list if str(x).strip()})
+        return ",".join(cleaned)
+
     manual_attr_keys = {
         (
             (obj.get("brand") or "").strip(),
             (obj.get("attribute_name") or "").strip(),
             (obj.get("model_regex") or "").strip(),
+            _equipment_types_key(obj),
         )
         for is_manual, obj in attr_items
         if is_manual
@@ -253,6 +268,7 @@ def _merge_candidates_dirs(
             (obj.get("brand") or "").strip(),
             (obj.get("attribute_name") or "").strip(),
             (obj.get("model_regex") or "").strip(),
+            _equipment_types_key(obj),
             (obj.get("source_url") or "").strip(),
         )
 
@@ -269,6 +285,7 @@ def _merge_candidates_dirs(
             (obj.get("brand") or "").strip(),
             (obj.get("attribute_name") or "").strip(),
             (obj.get("model_regex") or "").strip(),
+            _equipment_types_key(obj),
         )
         if (not is_manual) and k in manual_attr_keys:
             continue
@@ -451,6 +468,7 @@ def action_ruleset_validate(args: argparse.Namespace) -> int:
 
     # Structural validation issues (machine-readable).
     from msl.decoder.io import load_attribute_rules_csv, load_serial_rules_csv
+    from msl.decoder.equipment_type import load_equipment_type_vocab
     from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
 
     serial_rules = load_serial_rules_csv(ruleset_dir / "SerialDecodeRule.csv")
@@ -464,18 +482,35 @@ def action_ruleset_validate(args: argparse.Namespace) -> int:
         attr_rows_n = len(attr_rules)
         _attr_acc, attr_issues = validate_attribute_rules(attr_rules)
 
+    # Warn-only: rules may declare equipment types not present in the canonical vocab.
+    vocab = load_equipment_type_vocab(REPO_ROOT / "data" / "static" / "equipment_types.csv")
+    vocab_keys = set(vocab.keys())
+    type_warnings: list[dict[str, Any]] = []
+    for r in serial_rules:
+        for t in (r.equipment_types or []):
+            if t and t not in vocab_keys:
+                type_warnings.append({"type": "SerialDecodeRule", "brand": r.brand, "key": r.style_name, "issue": f"unknown_equipment_type:{t}"})
+    if attr_path.exists():
+        for r in attr_rules:
+            for t in (r.equipment_types or []):
+                if t and t not in vocab_keys:
+                    type_warnings.append({"type": "AttributeDecodeRule", "brand": r.brand, "key": r.attribute_name, "issue": f"unknown_equipment_type:{t}"})
+
     issues_path = run_dir / "ruleset_issues.jsonl"
     with issues_path.open("w", encoding="utf-8") as f:
         for i in serial_issues:
-            f.write(json.dumps({"type": i.rule_type, "brand": i.brand, "key": i.style_name, "issue": i.issue}, ensure_ascii=False) + "\n")
+            f.write(json.dumps({"severity": "error", "type": i.rule_type, "brand": i.brand, "key": i.style_name, "issue": i.issue}, ensure_ascii=False) + "\n")
         for i in attr_issues:
-            f.write(json.dumps({"type": i.rule_type, "brand": i.brand, "key": i.style_name, "issue": i.issue}, ensure_ascii=False) + "\n")
+            f.write(json.dumps({"severity": "error", "type": i.rule_type, "brand": i.brand, "key": i.style_name, "issue": i.issue}, ensure_ascii=False) + "\n")
+        for w in type_warnings:
+            f.write(json.dumps({"severity": "warning", **w}, ensure_ascii=False) + "\n")
 
     # Quick counts as JSON.
     counts = {
         "ruleset_id": ruleset_dir.name,
         "serial": {"issues_n": len(serial_issues), "rows_n": len(serial_rules)},
         "attribute": {"issues_n": len(attr_issues), "rows_n": attr_rows_n},
+        "warnings": {"equipment_types_unknown_n": len(type_warnings)},
     }
     _write_json(run_dir / "ruleset_counts.json", counts)
 
@@ -598,7 +633,13 @@ def action_eval_truth(args: argparse.Namespace) -> int:
         "\n## Outputs\n",
     ]
     outputs = (summary.get("outputs") or {}) if isinstance(summary, dict) else {}
-    for k in ["baseline_scorecard", "next_targets_markdown", "training_data_profile"]:
+    for k in [
+        "baseline_scorecard",
+        "baseline_scorecard_by_type",
+        "next_targets_markdown",
+        "next_targets_by_type_markdown",
+        "training_data_profile",
+    ]:
         if k in outputs:
             lines.append(f"- {k}: `{outputs[k]}`\n")
     _write_text(out_dir / "truth_summary.md", "".join(lines))
@@ -1031,6 +1072,7 @@ def action_workflow_improve(args: argparse.Namespace) -> int:
 
     score_before = run_root / "eval.truth" / "baseline_decoder_scorecard.csv"
     _copy_if_exists(run_root / "eval.truth" / "next_targets.md", run_root / "NEXT_TARGETS.md")
+    _copy_if_exists(run_root / "eval.truth" / "next_targets_by_type.md", run_root / "NEXT_TARGETS_BY_TYPE.md")
 
     # 5) mine.rules
     action_mine_rules(argparse.Namespace(**{**vars(args), "run_id": run_id, "tag": args.tag, "ruleset_dir": str(ruleset_dir_before)}))
@@ -1120,6 +1162,7 @@ def action_workflow_improve(args: argparse.Namespace) -> int:
         delta_csv = run_root / "delta_scorecard.csv"
         _write_delta_scorecard(score_before, score_after, delta_csv)
         _copy_if_exists(run_root / action2 / "next_targets.md", run_root / "NEXT_TARGETS_AFTER.md")
+        _copy_if_exists(run_root / action2 / "next_targets_by_type.md", run_root / "NEXT_TARGETS_BY_TYPE_AFTER.md")
 
         # Promotion diff summary (always write for promoted workflow runs).
         diff_json, diff_md = _ruleset_diff(ruleset_dir_before, ruleset_dir_after)

@@ -12,6 +12,7 @@ class SerialRule:
     brand: str
     style_name: str
     serial_regex: str
+    equipment_types: list[str]
     date_fields: dict
     example_serials: list[str]
     decade_ambiguity: dict
@@ -29,6 +30,7 @@ class AttributeRule:
     brand: str
     model_regex: str
     attribute_name: str
+    equipment_types: list[str]
     value_extraction: dict
     units: str
     examples: list[str]
@@ -50,12 +52,20 @@ def load_serial_rules_csv(path: str | Path) -> list[SerialRule]:
         reader = csv.DictReader(f)
         for row in reader:
             brand = normalize_brand(row.get("brand"))
+            try:
+                equipment_types = json.loads(row.get("equipment_types") or "[]")
+                if not isinstance(equipment_types, list):
+                    equipment_types = []
+                equipment_types = [str(x).strip() for x in equipment_types if str(x).strip()]
+            except Exception:
+                equipment_types = []
             rules.append(
                 SerialRule(
                     rule_type=(row.get("rule_type") or "decode").strip(),
                     brand=brand,
                     style_name=(row.get("style_name") or "").strip(),
                     serial_regex=(row.get("serial_regex") or "").strip(),
+                    equipment_types=equipment_types,
                     date_fields=json.loads(row.get("date_fields") or "{}"),
                     example_serials=json.loads(row.get("example_serials") or "[]"),
                     decade_ambiguity=json.loads(row.get("decade_ambiguity") or "{}"),
@@ -79,12 +89,20 @@ def load_attribute_rules_csv(path: str | Path) -> list[AttributeRule]:
         reader = csv.DictReader(f)
         for row in reader:
             brand = normalize_brand(row.get("brand"))
+            try:
+                equipment_types = json.loads(row.get("equipment_types") or "[]")
+                if not isinstance(equipment_types, list):
+                    equipment_types = []
+                equipment_types = [str(x).strip() for x in equipment_types if str(x).strip()]
+            except Exception:
+                equipment_types = []
             rules.append(
                 AttributeRule(
                     rule_type=(row.get("rule_type") or "decode").strip(),
                     brand=brand,
                     model_regex=(row.get("model_regex") or "").strip(),
                     attribute_name=(row.get("attribute_name") or "").strip(),
+                    equipment_types=equipment_types,
                     value_extraction=json.loads(row.get("value_extraction") or "{}"),
                     units=(row.get("units") or "").strip(),
                     examples=json.loads(row.get("examples") or "[]"),

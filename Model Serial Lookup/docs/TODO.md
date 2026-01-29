@@ -7,7 +7,7 @@ Update rules:
 - When a checklist item is completed, mark it done and add a short note (run-id, ruleset folder, output path).
 - Keep `docs/STATUS.md` aligned with the current “last known good” ruleset.
 
-Last updated: 2026-01-28
+Last updated: 2026-01-29
 
 ---
 
@@ -57,7 +57,15 @@ Last updated: 2026-01-28
 - [x] Add stable output schema for attributes (row-per-attribute export in addition to `AttributesJSON`). (via `msl decode --attributes-output`, 2026-01-25)
 - [x] Best-rule selection/tie-breaking when multiple rules match. (attributes: pick best per `AttributeName`; serial: century-expand `YY`, continue past matches that can’t decode year, `--min-manufacture-year` guard, 2026-01-25)
 - [x] Add decode-time support for `BrandNormalizeRule.csv` (Phase 3 output) without hardcoding aliases in code. (ruleset-local file, 2026-01-25-sdi-promoted5)
-- [ ] Add decode-time support for equipment-type context (if/when Phase 3 produces `EquipmentTypeRule.csv`) (HIGH PRIORITY - Fixes cross-type collisions).
+- [ ] Equipment type context (decode + ruleset + reports) (HIGH PRIORITY - reduces cross-type collisions)
+  - [x] Support `equipment_types` rule scoping (ruleset CSVs + candidates + promotion merge keys). (code: `scripts/actions.py`, `msl/pipeline/phase3_promote.py`, `msl/pipeline/validate_export.py`, 2026-01-29)
+  - [x] Thread input equipment type (`Equipment` / `EquipmentType`) into decode and outputs. (code: `msl/pipeline/decode_run.py`, 2026-01-29)
+  - [x] Add truth reports by equipment type (brand×type scorecard + next targets). (code: `msl/pipeline/phase3_baseline.py`, 2026-01-29)
+  - [x] Add candidate audit by equipment type (holdout + false positives). (code: `msl/pipeline/phase3_audit.py`, 2026-01-29)
+  - [x] Add attribute conflict auditing (row-level counters + long-form conflict export). (code: `msl/decoder/attributes.py`, `msl/pipeline/decode_run.py`, 2026-01-29)
+  - [x] Document “where to add new knowledge” in `docs/WORKFLOW.md` and update `docs/RULESETS.md`. (2026-01-29)
+  - [x] Add/extend unit tests for typed gating and conflict reporting. (tests: `tests/test_decoder_serial.py`, `tests/test_decoder_attributes.py`, 2026-01-29)
+  - [ ] Run a baseline + promote a new ruleset folder once validated (record run-id + ruleset id here).
 
 ---
 

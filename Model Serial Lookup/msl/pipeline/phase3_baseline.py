@@ -7,9 +7,10 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
-from msl.decoder.attributes import decode_attributes
+from msl.decoder.attributes import decode_attributes_with_audit
 from msl.decoder.decode import decode_serial
 from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv
+from msl.decoder.equipment_type import canonicalize_equipment_type, load_equipment_type_vocab
 from msl.decoder.normalize import normalize_brand, normalize_model, normalize_serial, normalize_text
 from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
 from msl.pipeline.common import ensure_dir
@@ -96,6 +97,8 @@ def cmd_phase3_baseline(args) -> int:
     if brand_rules_csv.exists():
         brand_alias_map = load_brand_normalize_rules_csv(brand_rules_csv)
 
+    equipment_vocab = load_equipment_type_vocab("data/static/equipment_types.csv")
+
     # Read input + infer mapping.
     with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f:
         reader = csv.DictReader(f)
@@ -144,6 +147,7 @@ def cmd_phase3_baseline(args) -> int:
             out_fields = fieldnames_canonical + [
                 "DetectedBrand",
                 "MatchedSerialStyle",
+                "MatchedSerialRuleEquipmentTypes",
                 "ManufactureYearRaw",
                 "ManufactureYear",
                 "ManufactureMonthRaw",
@@ -155,6 +159,8 @@ def cmd_phase3_baseline(args) -> int:
                 "ManufactureDateEvidence",
                 "ManufactureDateSourceURL",
                 "AttributesCount",
+                "AttributeConflictCount",
+                "TypedRuleAppliedWithoutTypeContext",
                 "AttributesJSON",
                 "DecodeStatus",
                 "DecodeNotes",
@@ -165,6 +171,7 @@ def cmd_phase3_baseline(args) -> int:
             attr_fields = [
                 "AssetID",
                 "Make",
+                "EquipmentType",
                 "ModelNumber",
                 "AttributeName",
                 "Value",
@@ -172,6 +179,8 @@ def cmd_phase3_baseline(args) -> int:
                 "Confidence",
                 "Evidence",
                 "SourceURL",
+                "RuleEquipmentTypes",
+                "TypedRuleAppliedWithoutTypeContext",
             ]
             attr_w = csv.DictWriter(f_attr, fieldnames=attr_fields)
             attr_w.writeheader()
@@ -188,8 +197,25 @@ def cmd_phase3_baseline(args) -> int:
             by_brand_has_known_year = Counter()
             by_brand_attr_any = Counter()
             by_brand_attr_tons = Counter()
+            by_brand_attr_conflict_rows = Counter()
+            by_brand_typed_wo_context_rows = Counter()
+            by_brand_missing_type = Counter()
 
             by_equipment = Counter()
+
+            # By (brand, equipment_type) breakdowns for type-auditable reports.
+            by_bt_total = Counter()
+            by_bt_total_with_serial = Counter()
+            by_bt_total_with_model = Counter()
+            by_bt_year_decoded = Counter()
+            by_bt_year_correct = Counter()
+            by_bt_year_decoded_and_known = Counter()
+            by_bt_has_known_year = Counter()
+            by_bt_attr_any = Counter()
+            by_bt_attr_tons = Counter()
+            by_bt_attr_conflict_rows = Counter()
+            by_bt_typed_wo_context_rows = Counter()
+            by_bt_missing_type = Counter()
 
             for row in reader:
                 make_raw = (row.get(cmap.make) if cmap.make else "") or ""
@@ -214,7 +240,7 @@ def cmd_phase3_baseline(args) -> int:
                 make = normalize_brand(make_raw, brand_alias_map)
                 model = normalize_model(model_raw)
                 serial = normalize_serial(serial_raw)
-                equipment_type = normalize_text(et_raw)
+                _et_raw_norm, equipment_type = canonicalize_equipment_type(et_raw, equipment_vocab)
 
                 known_year = _as_int(known_year_raw)
 
@@ -228,15 +254,23 @@ def cmd_phase3_baseline(args) -> int:
                     missing["KnownManufactureYear_non_numeric"] += 1
 
                 by_brand_total[make] += 1
+                bt_key = (make, equipment_type or "")
+                by_bt_total[bt_key] += 1
                 if serial_raw.strip():
                     by_brand_total_with_serial[make] += 1
+                    by_bt_total_with_serial[bt_key] += 1
                 if model_raw.strip():
                     by_brand_total_with_model[make] += 1
+                    by_bt_total_with_model[bt_key] += 1
                 if equipment_type:
                     by_equipment[equipment_type] += 1
+                else:
+                    by_brand_missing_type[make] += 1
+                    by_bt_missing_type[bt_key] += 1
 
                 if known_year is not None:
                     by_brand_has_known_year[make] += 1
+                    by_bt_has_known_year[bt_key] += 1
 
                 can_row = {
                     "AssetID": asset_id_raw,
@@ -257,15 +291,30 @@ def cmd_phase3_baseline(args) -> int:
                     make,
                     serial_raw,
                     serial_accepted,
+                    equipment_type=equipment_type or None,
                     min_plausible_year=1980,
                 )
-                attrs = decode_attributes(make, model_raw, attr_accepted) if attr_accepted else []
+                attrs, candidates, conflicts_n = (
+                    decode_attributes_with_audit(make, model_raw, attr_accepted, equipment_type=equipment_type or None)
+                    if attr_accepted
+                    else ([], [], 0)
+                )
+                typed_wo_context = bool(sres.typed_rule_applied_without_type_context) or any(
+                    a.typed_rule_applied_without_type_context for a in attrs
+                )
+                if conflicts_n > 0:
+                    by_brand_attr_conflict_rows[make] += 1
+                    by_bt_attr_conflict_rows[bt_key] += 1
+                if typed_wo_context:
+                    by_brand_typed_wo_context_rows[make] += 1
+                    by_bt_typed_wo_context_rows[bt_key] += 1
 
                 for a in attrs:
                     attr_w.writerow(
                         {
                             "AssetID": asset_id_raw,
                             "Make": make,
+                            "EquipmentType": equipment_type,
                             "ModelNumber": model,
                             "AttributeName": a.attribute_name,
                             "Value": a.value,
@@ -273,6 +322,8 @@ def cmd_phase3_baseline(args) -> int:
                             "Confidence": a.confidence,
                             "Evidence": a.evidence,
                             "SourceURL": a.source_url,
+                            "RuleEquipmentTypes": json.dumps(a.rule_equipment_types, ensure_ascii=False),
+                            "TypedRuleAppliedWithoutTypeContext": "true" if a.typed_rule_applied_without_type_context else "false",
                         }
                     )
 
@@ -283,24 +334,30 @@ def cmd_phase3_baseline(args) -> int:
 
                 if sres.manufacture_year is not None:
                     by_brand_year_decoded[make] += 1
+                    by_bt_year_decoded[bt_key] += 1
                     if known_year is not None:
                         by_brand_year_decoded_and_known[make] += 1
+                        by_bt_year_decoded_and_known[bt_key] += 1
                         if sres.manufacture_year == known_year:
                             by_brand_year_correct[make] += 1
+                            by_bt_year_correct[bt_key] += 1
                 if known_year is not None:
                     # Count as "in scope" for accuracy even if decode is missing.
                     pass
 
                 if attrs:
                     by_brand_attr_any[make] += 1
+                    by_bt_attr_any[bt_key] += 1
                     if any(a.attribute_name == "NominalCapacityTons" for a in attrs):
                         by_brand_attr_tons[make] += 1
+                        by_bt_attr_tons[bt_key] += 1
 
                 out_w.writerow(
                     {
                         **can_row,
                         "DetectedBrand": make,
                         "MatchedSerialStyle": sres.matched_style_name or "",
+                        "MatchedSerialRuleEquipmentTypes": json.dumps(sres.rule_equipment_types, ensure_ascii=False),
                         "ManufactureYearRaw": sres.manufacture_year_raw or "",
                         "ManufactureYear": sres.manufacture_year or "",
                         "ManufactureMonthRaw": sres.manufacture_month_raw or "",
@@ -312,6 +369,8 @@ def cmd_phase3_baseline(args) -> int:
                         "ManufactureDateEvidence": sres.evidence,
                         "ManufactureDateSourceURL": sres.source_url,
                         "AttributesCount": str(len(attrs)),
+                        "AttributeConflictCount": str(int(conflicts_n)),
+                        "TypedRuleAppliedWithoutTypeContext": "true" if typed_wo_context else "false",
                         "AttributesJSON": json.dumps(
                             [
                                 {
@@ -321,6 +380,8 @@ def cmd_phase3_baseline(args) -> int:
                                     "Confidence": a.confidence,
                                     "Evidence": a.evidence,
                                     "SourceURL": a.source_url,
+                                    "RuleEquipmentTypes": a.rule_equipment_types,
+                                    "TypedRuleAppliedWithoutTypeContext": a.typed_rule_applied_without_type_context,
                                 }
                                 for a in attrs
                             ],
@@ -347,6 +408,10 @@ def cmd_phase3_baseline(args) -> int:
             "AnyAttributesCoveragePct",
             "NominalCapacityTonsN",
             "NominalCapacityTonsCoveragePct",
+            "AttributeConflictRowsN",
+            "AttributeConflictRatePct",
+            "TypedRuleWithoutTypeContextRowsN",
+            "TypedRuleWithoutTypeContextRatePct",
         ]
         w = csv.DictWriter(f_score, fieldnames=fields)
         w.writeheader()
@@ -359,6 +424,8 @@ def cmd_phase3_baseline(args) -> int:
             ydk = by_brand_year_decoded_and_known[brand]
             any_a = by_brand_attr_any[brand]
             tons_a = by_brand_attr_tons[brand]
+            conflicts_n = by_brand_attr_conflict_rows[brand]
+            typed_wo_ctx_n = by_brand_typed_wo_context_rows[brand]
             w.writerow(
                 {
                     "Brand": brand,
@@ -373,8 +440,92 @@ def cmd_phase3_baseline(args) -> int:
                     "AnyAttributesCoveragePct": f"{(any_a / n_model * 100.0):.1f}" if n_model else "",
                     "NominalCapacityTonsN": tons_a,
                     "NominalCapacityTonsCoveragePct": f"{(tons_a / n_model * 100.0):.1f}" if n_model else "",
+                    "AttributeConflictRowsN": conflicts_n,
+                    "AttributeConflictRatePct": f"{(conflicts_n / n * 100.0):.1f}" if n else "",
+                    "TypedRuleWithoutTypeContextRowsN": typed_wo_ctx_n,
+                    "TypedRuleWithoutTypeContextRatePct": f"{(typed_wo_ctx_n / n * 100.0):.1f}" if n else "",
                 }
             )
+
+    # Scorecard by brand x equipment type (type-auditable).
+    score_by_type_path = out_dir / "baseline_decoder_scorecard_by_type.csv"
+    with score_by_type_path.open("w", newline="", encoding="utf-8") as f_bt:
+        fields = [
+            "Brand",
+            "EquipmentType",
+            "N",
+            "N_WithSerial",
+            "N_WithModel",
+            "KnownYearN",
+            "YearDecodedN",
+            "MissingYearN",
+            "YearDecodedAndKnownN",
+            "YearCorrectN",
+            "WrongYearN",
+            "YearCoveragePct",
+            "YearAccuracyOnMatchesPct",
+            "AnyAttributesN",
+            "MissingAttrN",
+            "AnyAttributesCoveragePct",
+            "NominalCapacityTonsN",
+            "NominalCapacityTonsCoveragePct",
+            "AttributeConflictRowsN",
+            "AttributeConflictRatePct",
+            "TypedRuleWithoutTypeContextRowsN",
+            "TypedRuleWithoutTypeContextRatePct",
+        ]
+        w = csv.DictWriter(f_bt, fieldnames=fields)
+        w.writeheader()
+
+        def _pct(num: int, den: int) -> float | None:
+            if not den:
+                return None
+            return (num / den) * 100.0
+
+        bt_rows: list[dict] = []
+        for (brand, et), n in by_bt_total.items():
+            n_serial = by_bt_total_with_serial[(brand, et)]
+            n_model = by_bt_total_with_model[(brand, et)]
+            yd = by_bt_year_decoded[(brand, et)]
+            ky = by_bt_has_known_year[(brand, et)]
+            ydk = by_bt_year_decoded_and_known[(brand, et)]
+            yc = by_bt_year_correct[(brand, et)]
+            wrong_year_n = max(ydk - yc, 0)
+            missing_year_n = max(n_serial - yd, 0)
+            any_a = by_bt_attr_any[(brand, et)]
+            missing_attr_n = max(n_model - any_a, 0)
+            tons_a = by_bt_attr_tons[(brand, et)]
+            conflicts_n = by_bt_attr_conflict_rows[(brand, et)]
+            typed_wo_ctx_n = by_bt_typed_wo_context_rows[(brand, et)]
+            bt_rows.append(
+                {
+                    "Brand": brand,
+                    "EquipmentType": et,
+                    "N": n,
+                    "N_WithSerial": n_serial,
+                    "N_WithModel": n_model,
+                    "KnownYearN": ky,
+                    "YearDecodedN": yd,
+                    "MissingYearN": missing_year_n,
+                    "YearDecodedAndKnownN": ydk,
+                    "YearCorrectN": yc,
+                    "WrongYearN": wrong_year_n,
+                    "YearCoveragePct": f"{_pct(yd, n_serial):.1f}" if _pct(yd, n_serial) is not None else "",
+                    "YearAccuracyOnMatchesPct": f"{_pct(yc, ydk):.1f}" if _pct(yc, ydk) is not None else "",
+                    "AnyAttributesN": any_a,
+                    "MissingAttrN": missing_attr_n,
+                    "AnyAttributesCoveragePct": f"{_pct(any_a, n_model):.1f}" if _pct(any_a, n_model) is not None else "",
+                    "NominalCapacityTonsN": tons_a,
+                    "NominalCapacityTonsCoveragePct": f"{_pct(tons_a, n_model):.1f}" if _pct(tons_a, n_model) is not None else "",
+                    "AttributeConflictRowsN": conflicts_n,
+                    "AttributeConflictRatePct": f"{_pct(conflicts_n, n):.1f}" if _pct(conflicts_n, n) is not None else "",
+                    "TypedRuleWithoutTypeContextRowsN": typed_wo_ctx_n,
+                    "TypedRuleWithoutTypeContextRatePct": f"{_pct(typed_wo_ctx_n, n):.1f}" if _pct(typed_wo_ctx_n, n) is not None else "",
+                }
+            )
+        bt_rows_sorted = sorted(bt_rows, key=lambda r: (-int(r["N"]), r["Brand"], r["EquipmentType"] or ""))
+        for row in bt_rows_sorted:
+            w.writerow({k: row.get(k, "") for k in fields})
 
     # Next targets: make it easy to see what to improve next (highest-impact brands).
     next_targets_csv = out_dir / "next_targets_by_brand.csv"
@@ -507,6 +658,95 @@ def cmd_phase3_baseline(args) -> int:
         encoding="utf-8",
     )
 
+    # Next targets by type (brand x type segments).
+    next_targets_by_type_csv = out_dir / "next_targets_by_type.csv"
+    next_targets_by_type_md = out_dir / "next_targets_by_type.md"
+
+    # Reuse bt_rows_sorted (already computed above for scorecard_by_type).
+    with next_targets_by_type_csv.open("w", newline="", encoding="utf-8") as f_btnt:
+        fields = [
+            "Brand",
+            "EquipmentType",
+            "N",
+            "N_WithSerial",
+            "N_WithModel",
+            "KnownYearN",
+            "YearDecodedN",
+            "MissingYearN",
+            "YearDecodedAndKnownN",
+            "YearCorrectN",
+            "WrongYearN",
+            "YearCoveragePct",
+            "YearAccuracyOnMatchesPct",
+            "AnyAttributesN",
+            "MissingAttrN",
+            "AnyAttributesCoveragePct",
+            "NominalCapacityTonsN",
+            "NominalCapacityTonsCoveragePct",
+            "AttributeConflictRowsN",
+            "TypedRuleWithoutTypeContextRowsN",
+        ]
+        w = csv.DictWriter(f_btnt, fieldnames=fields)
+        w.writeheader()
+        for row in bt_rows_sorted:
+            w.writerow({k: row.get(k, "") for k in fields})
+
+    # Produce a short markdown focusing on the largest problem segments.
+    def _label_et(v: str) -> str:
+        return v if v else "(MISSING)"
+
+    top_bt_year_gaps = sorted(
+        [r for r in bt_rows_sorted if int(r.get("KnownYearN") or 0) >= 20],
+        key=lambda r: (-int(r.get("MissingYearN") or 0), -int(r.get("KnownYearN") or 0), -int(r.get("N") or 0)),
+    )[:20]
+    top_bt_wrong_year = sorted(
+        [r for r in bt_rows_sorted if int(r.get("YearDecodedAndKnownN") or 0) >= 20],
+        key=lambda r: (-int(r.get("WrongYearN") or 0), -int(r.get("YearDecodedAndKnownN") or 0), -int(r.get("N") or 0)),
+    )[:20]
+    top_bt_attr_gaps = sorted(
+        [r for r in bt_rows_sorted if int(r.get("N") or 0) >= 20],
+        key=lambda r: (-int(r.get("MissingAttrN") or 0), -int(r.get("N") or 0)),
+    )[:20]
+    top_bt_conflicts = sorted(
+        [r for r in bt_rows_sorted if int(r.get("N") or 0) >= 20],
+        key=lambda r: (-int(r.get("AttributeConflictRowsN") or 0), -int(r.get("N") or 0)),
+    )[:20]
+
+    lines = []
+    lines.append(f"# Next Targets by Equipment Type — {run_id}\n\n")
+    lines.append(f"- Baseline output: `{baseline_out_path}`\n")
+    lines.append(f"- Scorecard (by type): `{score_by_type_path}`\n")
+    lines.append(f"- Full brand×type table: `{next_targets_by_type_csv}`\n\n")
+
+    lines.append("## Top Year Coverage Gaps (Brand × Type)\n")
+    for r in top_bt_year_gaps:
+        lines.append(
+            f"- {r['Brand']} / {_label_et(r.get('EquipmentType') or '')}: MissingYear={r['MissingYearN']} "
+            f"(Decoded={r['YearDecodedN']}/{r['N_WithSerial']} with serial; Coverage={r['YearCoveragePct']}%)\n"
+        )
+
+    lines.append("\n## Top Wrong-Year Volume (Brand × Type)\n")
+    for r in top_bt_wrong_year:
+        lines.append(
+            f"- {r['Brand']} / {_label_et(r.get('EquipmentType') or '')}: WrongYear={r['WrongYearN']} "
+            f"(Decoded&Known={r['YearDecodedAndKnownN']}; Accuracy={r['YearAccuracyOnMatchesPct']}%)\n"
+        )
+
+    lines.append("\n## Top Attribute Coverage Gaps (Brand × Type)\n")
+    for r in top_bt_attr_gaps:
+        lines.append(
+            f"- {r['Brand']} / {_label_et(r.get('EquipmentType') or '')}: MissingAttr={r['MissingAttrN']} "
+            f"(AnyAttr={r['AnyAttributesN']}/{r['N_WithModel']} with model; Coverage={r['AnyAttributesCoveragePct']}%)\n"
+        )
+
+    lines.append("\n## Top Attribute Conflicts (Brand × Type)\n")
+    for r in top_bt_conflicts:
+        lines.append(
+            f"- {r['Brand']} / {_label_et(r.get('EquipmentType') or '')}: Conflicts={r['AttributeConflictRowsN']} (N={r['N']})\n"
+        )
+
+    next_targets_by_type_md.write_text("".join(lines), encoding="utf-8")
+
     # Training data profile markdown
     profile_path = out_dir / "training_data_profile.md"
     top_brands = by_brand_total.most_common(25)
@@ -547,10 +787,14 @@ def cmd_phase3_baseline(args) -> int:
             "source_column_map": str(out_dir / "source_column_map.csv"),
             "canonical_assets": str(out_dir / "canonical_assets.csv"),
             "baseline_decoder_output": str(out_dir / "baseline_decoder_output.csv"),
+            "baseline_attributes_long": str(out_dir / "baseline_attributes_long.csv"),
             "baseline_scorecard": str(out_dir / "baseline_decoder_scorecard.csv"),
+            "baseline_scorecard_by_type": str(out_dir / "baseline_decoder_scorecard_by_type.csv"),
             "next_targets_markdown": str(next_targets_md),
             "next_targets_by_brand_csv": str(next_targets_csv),
             "next_targets_json": str(next_targets_json),
+            "next_targets_by_type_markdown": str(out_dir / "next_targets_by_type.md"),
+            "next_targets_by_type_csv": str(out_dir / "next_targets_by_type.csv"),
             "training_data_profile": str(out_dir / "training_data_profile.md"),
         },
     }

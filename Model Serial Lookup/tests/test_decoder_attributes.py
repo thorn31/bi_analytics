@@ -71,6 +71,57 @@ class TestDecoderAttributes(unittest.TestCase):
             self.assertEqual(attrs[0].value_raw, "024")
             self.assertEqual(attrs[0].value, 2.0)
 
+    def test_equipment_type_prefers_typed_attribute_rules(self) -> None:
+        from msl.decoder.io import AttributeRule
+
+        rules = [
+            AttributeRule(
+                rule_type="decode",
+                brand="TEST",
+                model_regex="",
+                attribute_name="NominalCapacityTons",
+                equipment_types=[],
+                value_extraction={"data_type": "Number", "pattern": {"regex": r"(024)", "group": 1}, "mapping": {"024": 2.5}},
+                units="Tons",
+                examples=["GRH024AHC30CLBS"],
+                limitations="",
+                guidance_action="",
+                guidance_text="",
+                evidence_excerpt="",
+                source_url="url",
+                retrieved_on="",
+                image_urls=[],
+            ),
+            AttributeRule(
+                rule_type="decode",
+                brand="TEST",
+                model_regex="",
+                attribute_name="NominalCapacityTons",
+                equipment_types=["Cooling Condensing Unit"],
+                value_extraction={"data_type": "Number", "pattern": {"regex": r"(024)", "group": 1}, "mapping": {"024": 2.0}},
+                units="Tons",
+                examples=["GRH024AHC30CLBS"],
+                limitations="",
+                guidance_action="",
+                guidance_text="",
+                evidence_excerpt="",
+                source_url="manual_additions",
+                retrieved_on="",
+                image_urls=[],
+            ),
+        ]
+        accepted, issues = validate_attribute_rules(rules)
+        self.assertEqual(len(issues), 0)
+
+        attrs_typed = decode_attributes("TEST", "GRH024AHC30CLBS", accepted, equipment_type="Cooling Condensing Unit")
+        self.assertEqual(len(attrs_typed), 1)
+        self.assertEqual(attrs_typed[0].value, 2.0)
+        self.assertEqual(attrs_typed[0].rule_equipment_types, ["Cooling Condensing Unit"])
+
+        attrs_missing = decode_attributes("TEST", "GRH024AHC30CLBS", accepted, equipment_type=None)
+        self.assertEqual(len(attrs_missing), 1)
+        self.assertTrue(attrs_missing[0].typed_rule_applied_without_type_context)
+
 
 if __name__ == "__main__":
     unittest.main()

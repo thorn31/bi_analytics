@@ -53,6 +53,10 @@ def cmd_phase3_promote(args) -> int:
 
     serial_fields, serial_rows = _read_csv(base_serial)
     attr_fields, attr_rows = _read_csv(base_attr)
+    if "equipment_types" not in serial_fields:
+        serial_fields.append("equipment_types")
+    if "equipment_types" not in attr_fields:
+        attr_fields.append("equipment_types")
     base_brands = {normalize_text(r.get("brand")) for r in serial_rows} | {normalize_text(r.get("brand")) for r in attr_rows}
     base_decode_brands = {
         normalize_text(r.get("brand"))
@@ -104,15 +108,44 @@ def cmd_phase3_promote(args) -> int:
     attr_cands = _load_jsonl(candidates_dir / "AttributeDecodeRule.candidates.jsonl")
     brand_cand_csv = candidates_dir / "BrandNormalizeRule.candidates.csv"
 
-    # Append candidates conservatively (no schema changes; store extra metadata in evidence/limitations).
+    # Append candidates conservatively (keep schemas stable; prefer dedicated columns where available).
+    def _equipment_types_key(obj: dict) -> str:
+        et = obj.get("equipment_types") or []
+        if not isinstance(et, list):
+            et = []
+        legacy = (obj.get("equipment_type") or "").strip()
+        if legacy:
+            et = list(et) + [legacy]
+        cleaned = sorted({normalize_text(str(x)) for x in et if str(x).strip()})
+        return ",".join(cleaned)
+
+    def _safe_load_equipment_types(value: str | None) -> list[str]:
+        s = (value or "").strip()
+        if not s:
+            return []
+        try:
+            obj = json.loads(s)
+        except Exception:
+            return []
+        if not isinstance(obj, list):
+            return []
+        return [normalize_text(str(x)) for x in obj if str(x).strip()]
+
     existing_serial_keys = {
-        (r.get("brand", ""), r.get("style_name", ""), r.get("serial_regex", ""), r.get("source_url", "")) for r in serial_rows
+        (
+            r.get("brand", ""),
+            r.get("style_name", ""),
+            r.get("serial_regex", ""),
+            r.get("source_url", ""),
+            _equipment_types_key({"equipment_types": _safe_load_equipment_types(r.get("equipment_types"))}),
+        )
+        for r in serial_rows
     }
     for c in serial_cands:
         if audited_ok_serial:
             if (c.get("brand", ""), c.get("serial_regex", "")) not in audited_ok_serial:
                 continue
-        key = (c.get("brand", ""), c.get("style_name", ""), c.get("serial_regex", ""), c.get("source_url", ""))
+        key = (c.get("brand", ""), c.get("style_name", ""), c.get("serial_regex", ""), c.get("source_url", ""), _equipment_types_key(c))
         if key in existing_serial_keys:
             continue
         existing_serial_keys.add(key)
@@ -122,6 +155,7 @@ def cmd_phase3_promote(args) -> int:
                 "brand": c.get("brand", ""),
                 "style_name": c.get("style_name", ""),
                 "serial_regex": c.get("serial_regex", ""),
+                "equipment_types": json.dumps(c.get("equipment_types", []) or ([c.get("equipment_type")] if c.get("equipment_type") else []), ensure_ascii=False),
                 "date_fields": json.dumps(c.get("date_fields", {}), ensure_ascii=False),
                 "example_serials": json.dumps(c.get("example_serials", []), ensure_ascii=False),
                 "decade_ambiguity": json.dumps(c.get("decade_ambiguity", {}), ensure_ascii=False),
@@ -135,7 +169,14 @@ def cmd_phase3_promote(args) -> int:
         )
 
     existing_attr_keys = {
-        (r.get("brand", ""), r.get("attribute_name", ""), r.get("model_regex", ""), r.get("value_extraction", ""), r.get("source_url", ""))
+        (
+            r.get("brand", ""),
+            r.get("attribute_name", ""),
+            r.get("model_regex", ""),
+            r.get("value_extraction", ""),
+            r.get("source_url", ""),
+            _equipment_types_key({"equipment_types": _safe_load_equipment_types(r.get("equipment_types"))}),
+        )
         for r in attr_rows
     }
     for c in attr_cands:
@@ -145,7 +186,7 @@ def cmd_phase3_promote(args) -> int:
             if (c.get("brand", ""), pat) not in audited_ok_attr:
                 continue
         ve = json.dumps(c.get("value_extraction", {}), ensure_ascii=False)
-        key = (c.get("brand", ""), c.get("attribute_name", ""), c.get("model_regex", ""), ve, c.get("source_url", ""))
+        key = (c.get("brand", ""), c.get("attribute_name", ""), c.get("model_regex", ""), ve, c.get("source_url", ""), _equipment_types_key(c))
         if key in existing_attr_keys:
             continue
         existing_attr_keys.add(key)
@@ -164,6 +205,7 @@ def cmd_phase3_promote(args) -> int:
                 "brand": c.get("brand", ""),
                 "model_regex": c.get("model_regex", ""),
                 "attribute_name": c.get("attribute_name", ""),
+                "equipment_types": json.dumps(c.get("equipment_types", []) or ([c.get("equipment_type")] if c.get("equipment_type") else []), ensure_ascii=False),
                 "value_extraction": ve,
                 "units": c.get("units", ""),
                 "examples": json.dumps(c.get("examples", []), ensure_ascii=False),

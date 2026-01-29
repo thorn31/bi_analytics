@@ -123,6 +123,7 @@ class TestDecoderSerial(unittest.TestCase):
                 brand="TEST",
                 style_name="Style old",
                 serial_regex=r"^(?=.*[A-Z])\d{4}[A-Z0-9]{3,30}$",
+                equipment_types=[],
                 date_fields={"year": {"positions": {"start": 1, "end": 2}, "transform": {"type": "year_add_base", "base": 2000, "max_year": 2009}}},
                 example_serials=["0901ABCD"],
                 decade_ambiguity={"is_ambiguous": True},
@@ -138,6 +139,7 @@ class TestDecoderSerial(unittest.TestCase):
                 brand="TEST",
                 style_name="Style new",
                 serial_regex=r"^(?=.*[A-Z])\d{4}[A-Z0-9]{3,30}$",
+                equipment_types=[],
                 date_fields={"year": {"positions": {"start": 1, "end": 2}, "transform": {"type": "year_add_base", "base": 2000, "min_year": 2010}}},
                 example_serials=["1201ABCD"],
                 decade_ambiguity={"is_ambiguous": True},
@@ -155,6 +157,42 @@ class TestDecoderSerial(unittest.TestCase):
         res = decode_serial("TEST", "1201ABCD", accepted)
         self.assertEqual(res.matched_style_name, "Style new")
         self.assertEqual(res.manufacture_year, 2012)
+
+    def test_equipment_type_gates_typed_serial_rule(self) -> None:
+        from msl.decoder.io import SerialRule
+
+        rules = [
+            SerialRule(
+                rule_type="decode",
+                brand="TEST",
+                style_name="Typed style",
+                serial_regex=r"^\d{4}[A-Z]{2}$",
+                equipment_types=["Cooling Condensing Unit"],
+                date_fields={"year": {"positions": {"start": 1, "end": 4}}},
+                example_serials=["2020AB"],
+                decade_ambiguity={"is_ambiguous": False},
+                guidance_action="",
+                guidance_text="",
+                evidence_excerpt="",
+                source_url="manual_additions",
+                retrieved_on="",
+                image_urls=[],
+            )
+        ]
+        accepted, issues = validate_serial_rules(rules)
+        self.assertEqual(len(issues), 0)
+
+        res_ok = decode_serial("TEST", "2020AB", accepted, equipment_type="Cooling Condensing Unit")
+        self.assertEqual(res_ok.confidence, "Low")
+        self.assertEqual(res_ok.manufacture_year, 2020)
+
+        res_mismatch = decode_serial("TEST", "2020AB", accepted, equipment_type="Boiler")
+        self.assertEqual(res_mismatch.confidence, "None")
+
+        res_missing = decode_serial("TEST", "2020AB", accepted, equipment_type=None)
+        self.assertEqual(res_missing.manufacture_year, 2020)
+        self.assertTrue(res_missing.typed_rule_applied_without_type_context)
+        self.assertIn("type_context_missing_for_typed_serial_rule", res_missing.notes)
 
 
 if __name__ == "__main__":
