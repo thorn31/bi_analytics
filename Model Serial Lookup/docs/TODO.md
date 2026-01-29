@@ -27,7 +27,7 @@ Last updated: 2026-01-29
 - [ ] Validation: `msl validate` produces **0 validation exceptions** for the chosen release ruleset.
 - [ ] Artifacts: `SerialDecodeRule.csv` + `AttributeDecodeRule.csv` present, plus `data/raw_html/<run>/` for reproducibility.
 - [ ] Charts: OCR/overrides pipeline reduces `chart_required` where images are locally available.
-- [ ] Documentation: `docs/STATUS.md` points to the correct latest ruleset and how to reproduce it.
+- [x] Documentation: `docs/STATUS.md` points to the correct latest ruleset and how to reproduce it. (2026-01-29-promoted4)
 
 ### Remaining work
 - [ ] Expand discovery seeds to cover non-HVAC brands from real asset exports (e.g., pumps/fans/towers) if Building-Center has relevant pages.
