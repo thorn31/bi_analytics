@@ -1,0 +1,7 @@
+Building,Unit ID,Make,EquipmentType,ModelNumber,ModelForRegex,TruthTons,DecodedTons,Code,Result,RuleModelRegex,RuleStartPos,RuleEndPos,RuleSource
+JCHS,RTU4,Lennox,Packaged Unit,KGA030S4DW1P,KGA030S4DW1P,2.5,2.5,030,match,"^(?=.{6,}$)(?:K|L|S|T|Z)",4,6,hvacexport_code_suggestions:2026-01-24_v3.84_enriched2:holdout__20260129T2400Z__train_alignment
+AMayZing Food & Beverage,Unit 49,Lennox,Packaged Unit,KCA030S4DN2P,KCA030S4DN2P,2.5,2.5,030,match,"^(?=.{6,}$)(?:K|L|S|T|Z)",4,6,hvacexport_code_suggestions:2026-01-24_v3.84_enriched2:holdout__20260129T2400Z__train_alignment
+AMayZing Food & Beverage,Unit 48,Lennox,Packaged Unit,KCA030S4DN2P,KCA030S4DN2P,2.5,2.5,030,match,"^(?=.{6,}$)(?:K|L|S|T|Z)",4,6,hvacexport_code_suggestions:2026-01-24_v3.84_enriched2:holdout__20260129T2400Z__train_alignment
+JCHS,RTU4,Lennox,Packaged Unit,KGA030S4DW1P,KGA030S4DW1P,2.5,2.5,030,match,"^(?=.{6,}$)(?:K|L|S|T|Z)",4,6,hvacexport_code_suggestions:2026-01-24_v3.84_enriched2:holdout__20260129T2400Z__train_alignment
+JCHS,RTU4,Lennox,Packaged Unit,KGA030S4DW1P,KGA030S4DW1P,2.5,2.5,030,match,"^(?=.{6,}$)(?:K|L|S|T|Z)",4,6,hvacexport_code_suggestions:2026-01-24_v3.84_enriched2:holdout__20260129T2400Z__train_alignment
+Crawford County Middle / High School,,Lennox,Packaged Unit,KGB048S4DS2G,KGB048S4DS2G,3.958333333,4,048,match,"^(?=.{6,}$)(?:K|L|S|T|Z)",4,6,hvacexport_code_suggestions:2026-01-24_v3.84_enriched2:holdout__20260129T2400Z__train_alignment

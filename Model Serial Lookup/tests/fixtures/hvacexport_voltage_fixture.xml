@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Last Update 01/24/2026 07:30 AM -->
+<!-- Version 3.84 -->
+<Codes>
+  <!-- Minimal record to test compressed-table voltage/refrigerant decoding -->
+  <Record>
+    <Brand>Carrier</Brand>
+    <Category>Unit Heaters</Category>
+    <SegCount>4</SegCount>
+    <length>5</length>
+    <Decodes>
+      <segment>
+        <SL>2</SL>
+        <DEF>Type</DEF>
+        <OP>AA- Base</OP>
+      </segment>
+      <segment>
+        <SL>1</SL>
+        <DEF>Carrier Capacity</DEF>
+      </segment>
+      <segment>
+        <SL>1</SL>
+        <DEF>Carrier Voltage</DEF>
+      </segment>
+      <segment>
+        <SL>1</SL>
+        <DEF>Refrigerant</DEF>
+      </segment>
+    </Decodes>
+  </Record>
+</Codes>

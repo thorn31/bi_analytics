@@ -1,0 +1,14 @@
+{
+  "snapshot_id": "2026-01-24_v3.84_enriched2",
+  "alignment_run_id": "alignment__20260129T2330Z_suggestions_per_rule",
+  "rows_in": 372,
+  "rows_kept": 32,
+  "rows_dropped": 340,
+  "drop_reasons": {
+    "attr_not_selected": 52,
+    "low_purity": 4,
+    "low_support": 284
+  },
+  "rules_out_n": 15,
+  "out_path": "derived/runs/capacity_from_codes__20260129T2335Z/AttributeDecodeRule.hvacexport.capacity_from_codes.candidates.jsonl"
+}

@@ -1,0 +1,14 @@
+{
+  "brand": "TRANE",
+  "equipment_type": "Cooling Condensing Unit",
+  "input_rows_n": 1455,
+  "truth_rows_n": 81,
+  "matched_rows_n": 71,
+  "match_n": 71,
+  "mismatch_n": 0,
+  "accuracy_on_matches": 1.0,
+  "coverage_on_truth": 0.8765432098765432,
+  "candidates_rules_n": 2,
+  "tolerance_tons": 0.25,
+  "out_rows": "data/external_sources/hvacexport/2026-01-24_v3.84_enriched2/derived/runs/quick_audit__TRANE_CCU_holdout_s5_p75/audit_rows.csv"
+}

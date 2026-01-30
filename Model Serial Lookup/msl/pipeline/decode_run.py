@@ -5,9 +5,10 @@ import json
 import os
 from pathlib import Path
 
-from msl.decoder.attributes import decode_attributes
+from msl.decoder.attributes import decode_attributes_with_audit
 from msl.decoder.decode import decode_serial
-from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv
+from msl.decoder.io import load_attribute_rules_csv, load_brand_normalize_rules_csv, load_serial_rules_csv, sort_rules_by_priority
+from msl.decoder.equipment_type import canonicalize_equipment_type, load_equipment_type_vocab
 from msl.decoder.normalize import normalize_brand
 from msl.decoder.validate import validate_attribute_rules, validate_serial_rules
 from msl.pipeline.ruleset_manager import resolve_ruleset_dir
@@ -34,6 +35,7 @@ def cmd_decode(args) -> int:
             brand_alias_map = load_brand_normalize_rules_csv(brand_rules_csv)
 
     rules = load_serial_rules_csv(serial_rules_csv)
+    rules = sort_rules_by_priority(rules)  # Sort by priority before validation
     accepted, issues = validate_serial_rules(rules)
 
     attr_rules = []
@@ -51,17 +53,26 @@ def cmd_decode(args) -> int:
         attr_out_path = Path(args.attributes_output)
         attr_out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    conflict_out_path: Path | None = None
+    if attr_out_path:
+        conflict_out_path = attr_out_path.parent / "attribute_conflicts_long.csv"
+
     in_path = Path(args.input)
+    vocab = load_equipment_type_vocab("data/static/equipment_types.csv")
     with (
         in_path.open("r", newline="", encoding="utf-8") as f_in,
         out_path.open("w", newline="", encoding="utf-8") as f_out,
         (attr_out_path.open("w", newline="", encoding="utf-8") if attr_out_path else open(os.devnull, "w")) as f_attr,
+        (conflict_out_path.open("w", newline="", encoding="utf-8") if conflict_out_path else open(os.devnull, "w")) as f_conf,
     ):
         reader = csv.DictReader(f_in)
         fieldnames = [
             "AssetID",
             "DetectedBrand",
+            "EquipmentTypeRaw",
+            "EquipmentType",
             "MatchedSerialStyle",
+            "MatchedSerialRuleEquipmentTypes",
             "ManufactureYearRaw",
             "ManufactureYear",
             "ManufactureMonthRaw",
@@ -73,6 +84,8 @@ def cmd_decode(args) -> int:
             "ManufactureDateEvidence",
             "ManufactureDateSourceURL",
             "AttributesCount",
+            "AttributeConflictCount",
+            "TypedRuleAppliedWithoutTypeContext",
             "AttributesJSON",
             "DecodeStatus",
             "DecodeNotes",
@@ -83,6 +96,7 @@ def cmd_decode(args) -> int:
         attr_fieldnames = [
             "AssetID",
             "DetectedBrand",
+            "EquipmentType",
             "ModelNumber",
             "AttributeName",
             "Value",
@@ -90,23 +104,82 @@ def cmd_decode(args) -> int:
             "Confidence",
             "Evidence",
             "SourceURL",
+            "RuleEquipmentTypes",
+            "TypedRuleAppliedWithoutTypeContext",
         ]
         attr_writer = None
         if attr_out_path:
             attr_writer = csv.DictWriter(f_attr, fieldnames=attr_fieldnames)
             attr_writer.writeheader()
 
+        conflict_fieldnames = [
+            "AssetID",
+            "DetectedBrand",
+            "EquipmentType",
+            "ModelNumber",
+            "AttributeName",
+            "CandidateValue",
+            "CandidateValueRaw",
+            "CandidateConfidence",
+            "CandidateScore",
+            "CandidateRank",
+            "IsSelected",
+            "SourceURL",
+            "RuleEquipmentTypes",
+            "TypedRuleAppliedWithoutTypeContext",
+        ]
+        conflict_writer = None
+        if conflict_out_path:
+            conflict_writer = csv.DictWriter(f_conf, fieldnames=conflict_fieldnames)
+            conflict_writer.writeheader()
+
         for row in reader:
             asset_id = row.get("AssetID") or row.get("asset_id") or ""
             brand = normalize_brand(row.get("Make") or row.get("Brand") or row.get("DetectedBrand"), brand_alias_map)
             model = row.get("ModelNumber") or row.get("Model") or ""
+            equipment_type_raw = row.get("Equipment") or row.get("EquipmentType") or row.get("Type") or ""
+            _et_raw_norm, equipment_type = canonicalize_equipment_type(equipment_type_raw, vocab)
             res = decode_serial(
                 brand,
                 row.get("SerialNumber") or row.get("Serial") or "",
                 accepted,
+                equipment_type=equipment_type or None,
                 min_plausible_year=(int(args.min_manufacture_year) if getattr(args, "min_manufacture_year", 0) > 0 else None),
             )
-            attrs = decode_attributes(brand, model, attr_accepted) if attr_accepted else []
+            attrs, candidates, conflicts_n = decode_attributes_with_audit(brand, model, attr_accepted, equipment_type=equipment_type or None) if attr_accepted else ([], [], 0)
+
+            typed_wo_context = bool(res.typed_rule_applied_without_type_context) or any(
+                a.typed_rule_applied_without_type_context for a in attrs
+            )
+
+            selected_by_attr: dict[str, str] = {a.attribute_name: str(a.value) for a in attrs}
+            if conflict_writer and conflicts_n > 0:
+                by_attr_vals: dict[str, set[str]] = {}
+                for c in candidates:
+                    by_attr_vals.setdefault(c.attribute_name, set()).add(str(c.value))
+                for c in sorted(candidates, key=lambda x: (-float(x.score), x.attribute_name, str(x.value))):
+                    vals = by_attr_vals.get(c.attribute_name) or set()
+                    if len(vals) < 2:
+                        continue
+                    is_selected = selected_by_attr.get(c.attribute_name) == str(c.value)
+                    conflict_writer.writerow(
+                        {
+                            "AssetID": asset_id,
+                            "DetectedBrand": brand,
+                            "EquipmentType": equipment_type,
+                            "ModelNumber": model,
+                            "AttributeName": c.attribute_name,
+                            "CandidateValue": c.value,
+                            "CandidateValueRaw": c.value_raw,
+                            "CandidateConfidence": c.confidence,
+                            "CandidateScore": f"{float(c.score):.3f}",
+                            "CandidateRank": "",
+                            "IsSelected": "true" if is_selected else "false",
+                            "SourceURL": c.source_url,
+                            "RuleEquipmentTypes": json.dumps(c.rule_equipment_types, ensure_ascii=False),
+                            "TypedRuleAppliedWithoutTypeContext": "true" if c.typed_rule_applied_without_type_context else "false",
+                        }
+                    )
 
             if attr_writer and attrs:
                 for a in attrs:
@@ -114,6 +187,7 @@ def cmd_decode(args) -> int:
                         {
                             "AssetID": asset_id,
                             "DetectedBrand": brand,
+                            "EquipmentType": equipment_type,
                             "ModelNumber": model,
                             "AttributeName": a.attribute_name,
                             "Value": a.value,
@@ -121,6 +195,8 @@ def cmd_decode(args) -> int:
                             "Confidence": a.confidence,
                             "Evidence": a.evidence,
                             "SourceURL": a.source_url,
+                            "RuleEquipmentTypes": json.dumps(a.rule_equipment_types, ensure_ascii=False),
+                            "TypedRuleAppliedWithoutTypeContext": "true" if a.typed_rule_applied_without_type_context else "false",
                         }
                     )
 
@@ -133,7 +209,10 @@ def cmd_decode(args) -> int:
                 {
                     "AssetID": asset_id,
                     "DetectedBrand": brand,
+                    "EquipmentTypeRaw": equipment_type_raw,
+                    "EquipmentType": equipment_type,
                     "MatchedSerialStyle": res.matched_style_name or "",
+                    "MatchedSerialRuleEquipmentTypes": json.dumps(res.rule_equipment_types, ensure_ascii=False),
                     "ManufactureYearRaw": res.manufacture_year_raw or "",
                     "ManufactureYear": res.manufacture_year or "",
                     "ManufactureMonthRaw": res.manufacture_month_raw or "",
@@ -145,6 +224,8 @@ def cmd_decode(args) -> int:
                     "ManufactureDateEvidence": res.evidence,
                     "ManufactureDateSourceURL": res.source_url,
                     "AttributesCount": str(len(attrs)),
+                    "AttributeConflictCount": str(int(conflicts_n)),
+                    "TypedRuleAppliedWithoutTypeContext": "true" if typed_wo_context else "false",
                     "AttributesJSON": json.dumps(
                         [
                             {
@@ -154,6 +235,8 @@ def cmd_decode(args) -> int:
                                 "Confidence": a.confidence,
                                 "Evidence": a.evidence,
                                 "SourceURL": a.source_url,
+                                "RuleEquipmentTypes": a.rule_equipment_types,
+                                "TypedRuleAppliedWithoutTypeContext": a.typed_rule_applied_without_type_context,
                             }
                             for a in attrs
                         ],

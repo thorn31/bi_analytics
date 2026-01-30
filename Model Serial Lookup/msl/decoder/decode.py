@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from msl.decoder.io import SerialRule
 from msl.decoder.normalize import normalize_serial
+from msl.decoder.normalize import normalize_text
 
 
 @dataclass(frozen=True)
@@ -22,6 +23,8 @@ class SerialDecodeResult:
     evidence: str
     source_url: str
     notes: str
+    rule_equipment_types: list[str]
+    typed_rule_applied_without_type_context: bool
 
 
 def _utc_year() -> int:
@@ -166,18 +169,29 @@ def decode_serial(
     serial_raw: str | None,
     rules: list[SerialRule],
     *,
+    equipment_type: str | None = None,
     min_plausible_year: int | None = 1980,
 ) -> SerialDecodeResult:
     serial = normalize_serial(serial_raw)
     if not serial:
-        return SerialDecodeResult(None, None, None, None, None, None, None, False, "None", "", "", "empty serial")
+        return SerialDecodeResult(None, None, None, None, None, None, None, False, "None", "", "", "empty serial", [], False)
 
     decode_rules = [r for r in rules if r.brand == brand and r.rule_type == "decode"]
     guidance_rules = [r for r in rules if r.brand == brand and r.rule_type == "guidance"]
 
     best: tuple[tuple, SerialDecodeResult] | None = None
 
+    equipment_type_norm = normalize_text(equipment_type or "") if equipment_type else ""
+
     for idx, r in enumerate(decode_rules):
+        typed_without_context = False
+        if r.equipment_types:
+            if equipment_type_norm:
+                if equipment_type_norm not in {normalize_text(t) for t in (r.equipment_types or [])}:
+                    continue
+            else:
+                typed_without_context = True
+
         try:
             rx = re.compile(r.serial_regex)
         except Exception:
@@ -293,7 +307,9 @@ def decode_serial(
             confidence=confidence,
             evidence=evidence,
             source_url=r.source_url,
-            notes="",
+            notes=(f"type_context_missing_for_typed_serial_rule:{r.style_name}" if typed_without_context else ""),
+            rule_equipment_types=list(r.equipment_types or []),
+            typed_rule_applied_without_type_context=typed_without_context,
         )
 
         score_tuple = (
@@ -360,4 +376,4 @@ def decode_serial(
                     applicable.append(g.guidance_text)
                 continue
         notes = " | ".join(applicable[:3])
-    return SerialDecodeResult(None, None, None, None, None, None, None, False, "None", "", "", notes)
+    return SerialDecodeResult(None, None, None, None, None, None, None, False, "None", "", "", notes, [], False)

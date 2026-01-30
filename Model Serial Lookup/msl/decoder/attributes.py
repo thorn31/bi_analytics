@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from msl.decoder.io import AttributeRule
 from msl.decoder.normalize import normalize_model
+from msl.decoder.normalize import normalize_text
 
 
 @dataclass(frozen=True)
@@ -17,6 +18,22 @@ class DecodedAttribute:
     confidence: str  # High|Medium|Low|None
     evidence: str
     source_url: str
+    rule_equipment_types: list[str]
+    typed_rule_applied_without_type_context: bool
+
+
+@dataclass(frozen=True)
+class AttributeCandidate:
+    attribute_name: str
+    value_raw: str
+    value: str | float | int
+    units: str
+    confidence: str
+    evidence: str
+    source_url: str
+    rule_equipment_types: list[str]
+    typed_rule_applied_without_type_context: bool
+    score: float
 
 
 def _regex_specificity_score(pattern: str) -> float:
@@ -90,7 +107,13 @@ def _is_manual_source(source_url: str | None) -> bool:
     return s in {"manual_additions", "manual_override", "manual"} or s.startswith("manual:")
 
 
-def decode_attributes(brand: str, model_raw: str | None, rules: list[AttributeRule]) -> list[DecodedAttribute]:
+def _collect_attribute_candidates(
+    brand: str,
+    model_raw: str | None,
+    rules: list[AttributeRule],
+    *,
+    equipment_type: str | None,
+) -> list[AttributeCandidate]:
     model = normalize_model(model_raw)
     if not model:
         return []
@@ -107,9 +130,20 @@ def decode_attributes(brand: str, model_raw: str | None, rules: list[AttributeRu
     if preferred_source_hint:
         brand_rules.sort(key=lambda r: (preferred_source_hint not in (r.source_url or "").lower(), r.source_url or ""))
     # Build candidates first, then pick the best per attribute to avoid conflicting values.
-    candidates: list[tuple[float, DecodedAttribute]] = []
+    candidates: list[AttributeCandidate] = []
+    equipment_type_norm = normalize_text(equipment_type or "") if equipment_type else ""
 
     for r in brand_rules:
+        # Equipment type gating (if provided on the rule).
+        typed_rule = bool(r.equipment_types)
+        typed_without_context = False
+        if typed_rule:
+            if equipment_type_norm:
+                if normalize_text(equipment_type_norm) not in {normalize_text(t) for t in r.equipment_types}:
+                    continue
+            else:
+                typed_without_context = True
+
         if r.model_regex:
             try:
                 mrx = re.compile(r.model_regex)
@@ -147,9 +181,11 @@ def decode_attributes(brand: str, model_raw: str | None, rules: list[AttributeRu
                 value = num
 
         confidence = "High"
-        # If we only extracted a code (no mapping/transform), treat as Medium.
+        # If we only extracted a code (no mapping/transform), treat as Medium unless the rule declares a
+        # numeric data_type (in that case the substring itself is the final value).
         if not isinstance(mapping, dict) and not isinstance(transform, dict):
-            confidence = "Medium"
+            if (ve.get("data_type") or "").lower() != "number":
+                confidence = "Medium"
 
         # Specificity score (higher is better).
         score = 0.0
@@ -169,38 +205,94 @@ def decode_attributes(brand: str, model_raw: str | None, rules: list[AttributeRu
             score += 1.0
 
         candidates.append(
-            (
-                score,
-                DecodedAttribute(
-                    attribute_name=r.attribute_name,
-                    value_raw=raw,
-                    value=value,
-                    units=r.units or "",
-                    confidence=confidence,
-                    evidence=r.evidence_excerpt or "",
-                    source_url=r.source_url or "",
-                ),
+            AttributeCandidate(
+                attribute_name=r.attribute_name,
+                value_raw=raw,
+                value=value,
+                units=r.units or "",
+                confidence=confidence,
+                evidence=r.evidence_excerpt or "",
+                source_url=r.source_url or "",
+                rule_equipment_types=list(r.equipment_types or []),
+                typed_rule_applied_without_type_context=typed_without_context,
+                score=score,
             )
         )
 
     def conf_rank(c: str) -> int:
         return {"High": 3, "Medium": 2, "Low": 1, "None": 0}.get(c, 0)
 
+    # Prefer typed rules when equipment_type is known and at least one typed rule matches.
+    if equipment_type_norm:
+        any_typed = any(bool(c.rule_equipment_types) for c in candidates)
+        if any_typed:
+            candidates = [c for c in candidates if bool(c.rule_equipment_types)]
+
+    return candidates
+
+
+def decode_attributes(
+    brand: str,
+    model_raw: str | None,
+    rules: list[AttributeRule],
+    *,
+    equipment_type: str | None = None,
+) -> list[DecodedAttribute]:
+    candidates = _collect_attribute_candidates(brand, model_raw, rules, equipment_type=equipment_type)
+
+    def conf_rank(c: str) -> int:
+        return {"High": 3, "Medium": 2, "Low": 1, "None": 0}.get(c, 0)
+
     # Pick the best candidate per attribute name. If two equal-score rules yield the same value,
     # keep one (stable) instance.
-    best_by_attr: dict[str, tuple[int, float, str, DecodedAttribute]] = {}
-    for score, a in candidates:
-        key = a.attribute_name
+    best_by_attr: dict[str, tuple[int, int, float, str, DecodedAttribute]] = {}
+    for c in candidates:
+        key = c.attribute_name
         cur = best_by_attr.get(key)
-        # Manual sources should trump auto-mined rules when otherwise comparable.
-        cand_tuple = (conf_rank(a.confidence), 1 if _is_manual_source(a.source_url) else 0, float(score), str(a.value), a)
-        if cur is None:
-            best_by_attr[key] = cand_tuple
-            continue
-        # Prefer higher confidence, then manual-source, then higher specificity score, then stable value tie-break.
-        if cand_tuple[:4] > cur[:4]:
+        decoded = DecodedAttribute(
+            attribute_name=c.attribute_name,
+            value_raw=c.value_raw,
+            value=c.value,
+            units=c.units,
+            confidence=c.confidence,
+            evidence=c.evidence,
+            source_url=c.source_url,
+            rule_equipment_types=c.rule_equipment_types,
+            typed_rule_applied_without_type_context=c.typed_rule_applied_without_type_context,
+        )
+        cand_tuple = (
+            conf_rank(decoded.confidence),
+            1 if _is_manual_source(decoded.source_url) else 0,
+            float(c.score),
+            str(decoded.value),
+            decoded,
+        )
+        if cur is None or cand_tuple[:4] > cur[:4]:
             best_by_attr[key] = cand_tuple
 
     # Preserve deterministic ordering: by confidence desc, then score desc, then attribute name.
     picked = sorted(best_by_attr.values(), key=lambda t: (-t[0], -t[1], -t[2], t[4].attribute_name))
     return [t[4] for t in picked]
+
+
+def decode_attributes_with_audit(
+    brand: str,
+    model_raw: str | None,
+    rules: list[AttributeRule],
+    *,
+    equipment_type: str | None = None,
+) -> tuple[list[DecodedAttribute], list[AttributeCandidate], int]:
+    """
+    Decode attributes and also return candidate details for auditing.
+
+    Returns: (picked_attributes, candidates, conflicts_n)
+    where conflicts_n is the count of attributes where 2+ distinct values were eligible.
+    """
+    candidates = _collect_attribute_candidates(brand, model_raw, rules, equipment_type=equipment_type)
+    picked = decode_attributes(brand, model_raw, rules, equipment_type=equipment_type)
+
+    by_attr_values: dict[str, set[str]] = {}
+    for c in candidates:
+        by_attr_values.setdefault(c.attribute_name, set()).add(str(c.value))
+    conflicts_n = sum(1 for _attr, vals in by_attr_values.items() if len(vals) >= 2)
+    return picked, candidates, conflicts_n

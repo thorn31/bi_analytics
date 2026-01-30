@@ -103,11 +103,33 @@ def cmd_phase3_audit(args) -> int:
 
     holdout_rows: list[dict] = []
     fp_rows: list[dict] = []
+    holdout_rows_by_type: list[dict] = []
+    fp_rows_by_type: list[dict] = []
+
+    def _cand_equipment_types_list(cand: dict) -> list[str]:
+        ets = cand.get("equipment_types")
+        if ets is None:
+            ets = []
+        if not isinstance(ets, list):
+            ets = []
+        legacy = normalize_text(cand.get("equipment_type") or "")
+        if legacy:
+            ets = list(ets) + [legacy]
+        out = [normalize_text(str(x)) for x in ets if str(x).strip()]
+        # De-dup, stable.
+        seen: set[str] = set()
+        final: list[str] = []
+        for t in out:
+            if t and t not in seen:
+                seen.add(t)
+                final.append(t)
+        return final
 
     # Attribute candidate audit
     for cand in attr_cands:
         brand = normalize_brand(cand.get("brand"))
-        equipment_type = normalize_text(cand.get("equipment_type") or "")
+        cand_types = _cand_equipment_types_list(cand)
+        equipment_type = cand_types[0] if cand_types else ""
         attribute_name = (cand.get("attribute_name") or "").strip()
         model_regex = (cand.get("model_regex") or "").strip()
         ve = cand.get("value_extraction") or {}
@@ -159,56 +181,59 @@ def cmd_phase3_audit(args) -> int:
         }
         tol = float(tol_map.get(attribute_name, float(args.capacity_tolerance_tons)))
 
-        n = 0
-        n_truth = 0
-        n_match = 0
-        n_correct = 0
-
-        for row in rows:
-            make_raw = (row.get(cmap.make) or "").strip() if cmap.make else ""
-            b = normalize_brand(make_raw)
-            if b != brand:
-                continue
-            if equipment_type and col_equipment:
-                et = normalize_text((row.get(col_equipment) or "").strip())
-                if et != equipment_type:
+        def eval_candidate_for_type(et_filter: str | None) -> tuple[int, int, int, int]:
+            n = 0
+            n_truth = 0
+            n_match = 0
+            n_correct = 0
+            for row in rows:
+                make_raw = (row.get(cmap.make) or "").strip() if cmap.make else ""
+                b = normalize_brand(make_raw)
+                if b != brand:
                     continue
-            n += 1
-            if not col_model:
-                continue
-            model = (row.get(col_model) or "").strip()
-            truth = truth_for_row(row)
-            if truth is None:
-                continue
-            n_truth += 1
-            model_norm = normalize_text(model)
-            if mrx is not None and not mrx.search(model_norm):
-                continue
-            m = rx.search(model_norm)
-            if not m:
-                continue
-            try:
-                code = m.group(group)
-            except Exception:
-                continue
-            n_match += 1
-            pred = None
-            if mapping is not None and code in mapping:
+                if et_filter and col_equipment:
+                    et = normalize_text((row.get(col_equipment) or "").strip())
+                    if et != et_filter:
+                        continue
+                n += 1
+                if not col_model:
+                    continue
+                model = (row.get(col_model) or "").strip()
+                truth = truth_for_row(row)
+                if truth is None:
+                    continue
+                n_truth += 1
+                model_norm = normalize_text(model)
+                if mrx is not None and not mrx.search(model_norm):
+                    continue
+                m = rx.search(model_norm)
+                if not m:
+                    continue
                 try:
-                    pred = float(mapping[code])
+                    code = m.group(group)
                 except Exception:
-                    pred = None
-            elif transform is not None and transform.get("expression") == "tons = code / 12":
-                if code.isdigit():
-                    pred = float(int(code)) / 12.0
-            else:
-                if code.isdigit():
-                    pred = float(int(code))
-            if pred is None:
-                continue
-            if abs(pred - float(truth)) <= tol:
-                n_correct += 1
+                    continue
+                n_match += 1
+                pred = None
+                if mapping is not None and code in mapping:
+                    try:
+                        pred = float(mapping[code])
+                    except Exception:
+                        pred = None
+                elif transform is not None and transform.get("expression") == "tons = code / 12":
+                    if code.isdigit():
+                        pred = float(int(code)) / 12.0
+                else:
+                    if code.isdigit():
+                        pred = float(int(code))
+                if pred is None:
+                    continue
+                if abs(pred - float(truth)) <= tol:
+                    n_correct += 1
+            return n, n_truth, n_match, n_correct
 
+        # Keep legacy holdout rows behavior (optional single equipment_type filter).
+        n, n_truth, n_match, n_correct = eval_candidate_for_type(equipment_type if equipment_type else None)
         acc = (n_correct / n_match) if n_match else 0.0
         cov = (n_match / n_truth) if n_truth else 0.0
         holdout_rows.append(
@@ -227,23 +252,54 @@ def cmd_phase3_audit(args) -> int:
             }
         )
 
+        # By-type output: for typed candidates, emit one row per type; for untyped, emit one ALL row.
+        type_list = cand_types if cand_types else ["ALL"]
+        for et in type_list:
+            et_filter = None if et == "ALL" else et
+            n, n_truth, n_match, n_correct = eval_candidate_for_type(et_filter)
+            acc = (n_correct / n_match) if n_match else 0.0
+            cov = (n_match / n_truth) if n_truth else 0.0
+            holdout_rows_by_type.append(
+                {
+                    "candidate_type": "AttributeDecodeRule",
+                    "brand": brand,
+                    "equipment_type": et,
+                    "support_rows": n,
+                    "truth_rows": n_truth,
+                    "matched_rows": n_match,
+                    "correct_rows": n_correct,
+                    "accuracy_on_matches": f"{acc:.4f}",
+                    "coverage_on_truth": f"{cov:.4f}",
+                    "pattern_regex": pat,
+                    "notes": cand.get("limitations", ""),
+                }
+            )
+
         # False-positive audit: how often does this pattern match other brands' models?
-        other_match = 0
-        other_total = 0
-        for row in rows:
-            make_raw = (row.get(cmap.make) or "").strip() if cmap.make else ""
-            b = normalize_brand(make_raw)
-            if b == brand:
-                continue
-            other_total += 1
-            if not col_model:
-                continue
-            model = (row.get(col_model) or "").strip()
-            model_norm = normalize_text(model)
-            if mrx is not None and not mrx.search(model_norm):
-                continue
-            if rx.search(model_norm):
-                other_match += 1
+        def fp_for_type(et_filter: str | None) -> tuple[int, int]:
+            other_match = 0
+            other_total = 0
+            for row in rows:
+                make_raw = (row.get(cmap.make) or "").strip() if cmap.make else ""
+                b = normalize_brand(make_raw)
+                if b == brand:
+                    continue
+                if et_filter and col_equipment:
+                    et = normalize_text((row.get(col_equipment) or "").strip())
+                    if et != et_filter:
+                        continue
+                other_total += 1
+                if not col_model:
+                    continue
+                model = (row.get(col_model) or "").strip()
+                model_norm = normalize_text(model)
+                if mrx is not None and not mrx.search(model_norm):
+                    continue
+                if rx.search(model_norm):
+                    other_match += 1
+            return other_total, other_match
+
+        other_total, other_match = fp_for_type(equipment_type if equipment_type else None)
         fp_rows.append(
             {
                 "candidate_type": "AttributeDecodeRule",
@@ -255,6 +311,21 @@ def cmd_phase3_audit(args) -> int:
                 "other_brand_match_rate": f"{(other_match / other_total):.4f}" if other_total else "",
             }
         )
+        type_list = cand_types if cand_types else ["ALL"]
+        for et in type_list:
+            et_filter = None if et == "ALL" else et
+            other_total, other_match = fp_for_type(et_filter)
+            fp_rows_by_type.append(
+                {
+                    "candidate_type": "AttributeDecodeRule",
+                    "brand": brand,
+                    "equipment_type": et,
+                    "pattern_regex": pat,
+                    "other_brand_rows": other_total,
+                    "other_brand_matches": other_match,
+                    "other_brand_match_rate": f"{(other_match / other_total):.4f}" if other_total else "",
+                }
+            )
 
     # Serial candidate audit (year only)
     for cand in serial_cands:
@@ -320,6 +391,22 @@ def cmd_phase3_audit(args) -> int:
                 "notes": cand.get("style_name", ""),
             }
         )
+        # By-type output: serial candidates are brand-scoped; emit a single ALL row (type scoping is optional).
+        holdout_rows_by_type.append(
+            {
+                "candidate_type": "SerialDecodeRule",
+                "brand": brand,
+                "equipment_type": "ALL",
+                "support_rows": n,
+                "truth_rows": n_truth,
+                "matched_rows": n_match,
+                "correct_rows": n_correct,
+                "accuracy_on_matches": f"{acc:.4f}",
+                "coverage_on_truth": f"{cov:.4f}",
+                "pattern_regex": pat,
+                "notes": cand.get("style_name", ""),
+            }
+        )
 
     holdout_path = out_dir / "holdout_validation_results.csv"
     with holdout_path.open("w", newline="", encoding="utf-8") as f_out:
@@ -343,6 +430,28 @@ def cmd_phase3_audit(args) -> int:
         for r in holdout_rows:
             w.writerow(r)
 
+    holdout_by_type_path = out_dir / "holdout_validation_results_by_type.csv"
+    with holdout_by_type_path.open("w", newline="", encoding="utf-8") as f_out:
+        w = csv.DictWriter(
+            f_out,
+            fieldnames=[
+                "candidate_type",
+                "brand",
+                "equipment_type",
+                "support_rows",
+                "truth_rows",
+                "matched_rows",
+                "correct_rows",
+                "accuracy_on_matches",
+                "coverage_on_truth",
+                "pattern_regex",
+                "notes",
+            ],
+        )
+        w.writeheader()
+        for r in holdout_rows_by_type:
+            w.writerow(r)
+
     fp_path = out_dir / "false_positive_audit.csv"
     with fp_path.open("w", newline="", encoding="utf-8") as f_out:
         w = csv.DictWriter(
@@ -359,6 +468,24 @@ def cmd_phase3_audit(args) -> int:
         )
         w.writeheader()
         for r in fp_rows:
+            w.writerow(r)
+
+    fp_by_type_path = out_dir / "false_positive_audit_by_type.csv"
+    with fp_by_type_path.open("w", newline="", encoding="utf-8") as f_out:
+        w = csv.DictWriter(
+            f_out,
+            fieldnames=[
+                "candidate_type",
+                "brand",
+                "equipment_type",
+                "pattern_regex",
+                "other_brand_rows",
+                "other_brand_matches",
+                "other_brand_match_rate",
+            ],
+        )
+        w.writeheader()
+        for r in fp_rows_by_type:
             w.writerow(r)
 
     print(str(out_dir))

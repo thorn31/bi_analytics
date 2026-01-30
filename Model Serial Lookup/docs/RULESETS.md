@@ -20,6 +20,14 @@ Optional:
 - `AttributeDecodeRule.csv`
 - `BrandNormalizeRule.csv`
 
+## Optional equipment type scoping
+Both `SerialDecodeRule.csv` and `AttributeDecodeRule.csv` may include an optional column:
+- `equipment_types`: JSON list of canonical equipment type strings (example: `["Cooling Condensing Unit"]`)
+
+Semantics:
+- Missing/empty/invalid → treat as `[]` meaning “applies to all equipment types”.
+- Non-empty list → rule is eligible only when the input row’s `Equipment`/`EquipmentType` matches one of the listed types.
+
 ## Immutability and updates
 - Do not edit an existing ruleset folder.
 - Fixes and improvements create a **new** `data/rules_normalized/<ruleset-id>/` folder.
@@ -28,4 +36,3 @@ Optional:
 ## Validation expectations
 - Serial decode rows must include example values that match the regex.
 - Candidate promotions are hard-gated: malformed candidate rows block promotion.
-

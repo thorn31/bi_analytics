@@ -1,0 +1,1981 @@
+{
+	"metaData": {
+		"version": 3.80,
+		"dateModified": "05/10/2025",
+		"time": "08:00 AM",
+		"user": "Charles"
+	},
+	"Brands": [
+		"Select Brand",
+		"AAON",
+		"ADP",
+		"AirBloc",
+		"AirEase",
+		"Aire-Flo",
+		"Airquest",
+		"Allied-Commercial",
+		"Amana",
+		"American Standard",
+		"Ameristar",
+		"Arcoaire",
+		"Armstrong",
+		"Aquazone",
+		"Bard",
+		"Benson",
+		"BDP",
+		"Bosch",
+		"Broan",
+		"Bryant",
+		"Buderus",
+		"Carrier",
+		"Century",
+		"Chromalox",
+		"Coleman",
+		"Comfort Aire",
+		"Comfortmaker",
+		"Concord",
+		"Conquest",
+		"Corsair",
+		"Daikin",
+		"Day & Night",
+		"Desert Aire",
+		"Dettson",
+		"Ducane",
+		"Evcon",
+		"Fedders",
+		"FHP Manufacturing",
+		"First Co",
+		"Frigidaire",
+		"Gibson",
+		"Goodman",
+		"Grandaire",
+		"Guardian",
+		"Heat Controller",
+		"Heil",
+		"ICP Commercial",
+		"Intertherm",
+		"Keeprite",
+		"Kelvinator",
+		"Lennox",
+		"Lincoln",
+		"Luxaire",
+		"Magic-Pak",
+		"Manmouth",
+		"Maytag",
+		"McQuay",
+		"Miller",
+		"Mitsubishi",
+		"Moncrief",
+		"Mortex",
+		"Nordyne",
+		"Nutone",
+		"Oxbox",
+		"Payne",
+		"Philco",
+		"Red T",
+		"Reznor-Nordyne",
+		"Reznor-TB Corp",
+		"Rheem",
+		"Ruud",
+		"Tappan",
+		"Tempstar",
+		"Trane",
+		"Utica",
+		"Ventrol",
+		"Weatherking",
+		"Weathermaster",
+		"Westinghouse",
+		"Worcester",
+		"York"
+	],
+	"Bard Month": [
+		{
+			"key": "A",
+			"value": "January"
+		},
+		{
+			"key": "B",
+			"value": "February"
+		},
+		{
+			"key": "C",
+			"value": "March"
+		},
+		{
+			"key": "D",
+			"value": "April"
+		},
+		{
+			"key": "F",
+			"value": "May"
+		},
+		{
+			"key": "H",
+			"value": "June"
+		},
+		{
+			"key": "J",
+			"value": "July"
+		},
+		{
+			"key": "K",
+			"value": "August"
+		},
+		{
+			"key": "L",
+			"value": "September"
+		},
+		{
+			"key": "M",
+			"value": "October"
+		},
+		{
+			"key": "N",
+			"value": "November"
+		},
+		{
+			"key": "P",
+			"value": "December"
+		}
+	],
+	"Bard Year": [
+		{
+			"key": "B",
+			"value": "1962"
+		},
+		{
+			"key": "C",
+			"value": "1963"
+		},
+		{
+			"key": "D",
+			"value": "1964"
+		},
+		{
+			"key": "E",
+			"value": "1965"
+		},
+		{
+			"key": "F",
+			"value": "1966"
+		},
+		{
+			"key": "G",
+			"value": "1967"
+		},
+		{
+			"key": "H",
+			"value": "1968"
+		},
+		{
+			"key": "J",
+			"value": "1969"
+		},
+		{
+			"key": "K",
+			"value": "1970"
+		},
+		{
+			"key": "L",
+			"value": "1971"
+		},
+		{
+			"key": "M",
+			"value": "1972"
+		},
+		{
+			"key": "N",
+			"value": "1973"
+		},
+		{
+			"key": "O",
+			"value": "1974"
+		},
+		{
+			"key": "P",
+			"value": "1975"
+		},
+		{
+			"key": "R",
+			"value": "1976"
+		},
+		{
+			"key": "S",
+			"value": "1977"
+		},
+		{
+			"key": "T",
+			"value": "1978"
+		},
+		{
+			"key": "U",
+			"value": "1979"
+		},
+		{
+			"key": "V",
+			"value": "1980"
+		}
+	],
+	"Bosch Month": [
+		{
+			"key": "01",
+			"value": "January"
+		},
+		{
+			"key": "17",
+			"value": "January"
+		},
+		{
+			"key": "37",
+			"value": "January"
+		},
+		{
+			"key": "A1",
+			"value": "January"
+		},
+		{
+			"key": "02",
+			"value": "February"
+		},
+		{
+			"key": "18",
+			"value": "February"
+		},
+		{
+			"key": "38",
+			"value": "February"
+		},
+		{
+			"key": "A2",
+			"value": "February"
+		},
+		{
+			"key": "03",
+			"value": "March"
+		},
+		{
+			"key": "19",
+			"value": "March"
+		},
+		{
+			"key": "39",
+			"value": "March"
+		},
+		{
+			"key": "A3",
+			"value": "March"
+		},
+		{
+			"key": "04",
+			"value": "April"
+		},
+		{
+			"key": "20",
+			"value": "April"
+		},
+		{
+			"key": "40",
+			"value": "April"
+		},
+		{
+			"key": "A4",
+			"value": "April"
+		},
+		{
+			"key": "05",
+			"value": "May"
+		},
+		{
+			"key": "53",
+			"value": "May"
+		},
+		{
+			"key": "73",
+			"value": "May"
+		},
+		{
+			"key": "A5",
+			"value": "May"
+		},
+		{
+			"key": "06",
+			"value": "June"
+		},
+		{
+			"key": "54",
+			"value": "June"
+		},
+		{
+			"key": "74",
+			"value": "June"
+		},
+		{
+			"key": "A6",
+			"value": "June"
+		},
+		{
+			"key": "07",
+			"value": "July"
+		},
+		{
+			"key": "55",
+			"value": "July"
+		},
+		{
+			"key": "75",
+			"value": "July"
+		},
+		{
+			"key": "A7",
+			"value": "July"
+		},
+		{
+			"key": "08",
+			"value": "August"
+		},
+		{
+			"key": "56",
+			"value": "August"
+		},
+		{
+			"key": "76",
+			"value": "August"
+		},
+		{
+			"key": "A8",
+			"value": "August"
+		},
+		{
+			"key": "09",
+			"value": "September"
+		},
+		{
+			"key": "57",
+			"value": "September"
+		},
+		{
+			"key": "77",
+			"value": "September"
+		},
+		{
+			"key": "A9",
+			"value": "September"
+		},
+		{
+			"key": "10",
+			"value": "October"
+		},
+		{
+			"key": "58",
+			"value": "October"
+		},
+		{
+			"key": "78",
+			"value": "October"
+		},
+		{
+			"key": "AA",
+			"value": "October"
+		},
+		{
+			"key": "11",
+			"value": "November"
+		},
+		{
+			"key": "59",
+			"value": "November"
+		},
+		{
+			"key": "79",
+			"value": "November"
+		},
+		{
+			"key": "AB",
+			"value": "November"
+		},
+		{
+			"key": "12",
+			"value": "December"
+		},
+		{
+			"key": "60",
+			"value": "December"
+		},
+		{
+			"key": "80",
+			"value": "December"
+		},
+		{
+			"key": "AC",
+			"value": "December"
+		}
+	],
+	"Bosch Year Code": [
+		{
+			"key": "00",
+			"value": "2010"
+		},
+		{
+			"key": "01",
+			"value": "2010"
+		},
+		{
+			"key": "10",
+			"value": "2011"
+		},
+		{
+			"key": "11",
+			"value": "2011"
+		},
+		{
+			"key": "20",
+			"value": "2012"
+		},
+		{
+			"key": "21",
+			"value": "2012"
+		},
+		{
+			"key": "30",
+			"value": "2013"
+		},
+		{
+			"key": "31",
+			"value": "2013"
+		},
+		{
+			"key": "41",
+			"value": "2014"
+		},
+		{
+			"key": "42",
+			"value": "2014"
+		},
+		{
+			"key": "45",
+			"value": "2014"
+		},
+		{
+			"key": "46",
+			"value": "2014"
+		},
+		{
+			"key": "51",
+			"value": "2015"
+		},
+		{
+			"key": "52",
+			"value": "2015"
+		},
+		{
+			"key": "55",
+			"value": "2015"
+		},
+		{
+			"key": "56",
+			"value": "2015"
+		},
+		{
+			"key": "61",
+			"value": "2016"
+		},
+		{
+			"key": "62",
+			"value": "2016"
+		},
+		{
+			"key": "65",
+			"value": "2016"
+		},
+		{
+			"key": "66",
+			"value": "2016"
+		},
+		{
+			"key": "71",
+			"value": "2017"
+		},
+		{
+			"key": "72",
+			"value": "2017"
+		},
+		{
+			"key": "75",
+			"value": "2017"
+		},
+		{
+			"key": "76",
+			"value": "2017"
+		},
+		{
+			"key": "81",
+			"value": "2018"
+		},
+		{
+			"key": "82",
+			"value": "2018"
+		},
+		{
+			"key": "85",
+			"value": "2018"
+		},
+		{
+			"key": "86",
+			"value": "2018"
+		},
+		{
+			"key": "91",
+			"value": "2019"
+		},
+		{
+			"key": "92",
+			"value": "2019"
+		},
+		{
+			"key": "95",
+			"value": "2019"
+		},
+		{
+			"key": "96",
+			"value": "2019"
+		},
+		{
+			"key": "03",
+			"value": "2020"
+		},
+		{
+			"key": "04",
+			"value": "2020"
+		},
+		{
+			"key": "07",
+			"value": "2020"
+		},
+		{
+			"key": "08",
+			"value": "2020"
+		},
+		{
+			"key": "13",
+			"value": "2021"
+		},
+		{
+			"key": "14",
+			"value": "2021"
+		},
+		{
+			"key": "17",
+			"value": "2021"
+		},
+		{
+			"key": "18",
+			"value": "2021"
+		},
+		{
+			"key": "23",
+			"value": "2022"
+		},
+		{
+			"key": "24",
+			"value": "2022"
+		},
+		{
+			"key": "27",
+			"value": "2022"
+		},
+		{
+			"key": "28",
+			"value": "2022"
+		},
+		{
+			"key": "33",
+			"value": "2023"
+		},
+		{
+			"key": "34",
+			"value": "2023"
+		},
+		{
+			"key": "37",
+			"value": "2023"
+		},
+		{
+			"key": "38",
+			"value": "2023"
+		},
+		{
+			"key": "43",
+			"value": "2024"
+		},
+		{
+			"key": "44",
+			"value": "2024"
+		},
+		{
+			"key": "47",
+			"value": "2024"
+		},
+		{
+			"key": "48",
+			"value": "2024"
+		},
+		{
+			"key": "53",
+			"value": "2025"
+		},
+		{
+			"key": "54",
+			"value": "2025"
+		},
+		{
+			"key": "57",
+			"value": "2025"
+		},
+		{
+			"key": "58",
+			"value": "2025"
+		},
+		{
+			"key": "63",
+			"value": "2026"
+		},
+		{
+			"key": "64",
+			"value": "2026"
+		},
+		{
+			"key": "67",
+			"value": "2026"
+		},
+		{
+			"key": "68",
+			"value": "2026"
+		},
+		{
+			"key": "73",
+			"value": "2027"
+		},
+		{
+			"key": "74",
+			"value": "2027"
+		},
+		{
+			"key": "77",
+			"value": "2027"
+		},
+		{
+			"key": "78",
+			"value": "2027"
+		},
+		{
+			"key": "83",
+			"value": "2028"
+		},
+		{
+			"key": "84",
+			"value": "2028"
+		},
+		{
+			"key": "87",
+			"value": "2028"
+		},
+		{
+			"key": "88",
+			"value": "2028"
+		},
+		{
+			"key": "93",
+			"value": "2029"
+		},
+		{
+			"key": "94",
+			"value": "2029"
+		},
+		{
+			"key": "97",
+			"value": "2029"
+		},
+		{
+			"key": "98",
+			"value": "2029"
+		},
+		{
+			"key": "0A",
+			"value": "2030"
+		}
+	],
+	"Carrier Month": [
+		{
+			"key": "A",
+			"value": "January"
+		},
+		{
+			"key": "M",
+			"value": "January"
+		},
+		{
+			"key": "B",
+			"value": "February"
+		},
+		{
+			"key": "N",
+			"value": "February"
+		},
+		{
+			"key": "C",
+			"value": "March"
+		},
+		{
+			"key": "P",
+			"value": "March"
+		},
+		{
+			"key": "D",
+			"value": "April"
+		},
+		{
+			"key": "Q",
+			"value": "April"
+		},
+		{
+			"key": "E",
+			"value": "May"
+		},
+		{
+			"key": "R",
+			"value": "May"
+		},
+		{
+			"key": "F",
+			"value": "June"
+		},
+		{
+			"key": "S",
+			"value": "June"
+		},
+		{
+			"key": "G",
+			"value": "July"
+		},
+		{
+			"key": "T",
+			"value": "July"
+		},
+		{
+			"key": "H",
+			"value": "August"
+		},
+		{
+			"key": "V",
+			"value": "August"
+		},
+		{
+			"key": "I",
+			"value": "September"
+		},
+		{
+			"key": "W",
+			"value": "September"
+		},
+		{
+			"key": "J",
+			"value": "October"
+		},
+		{
+			"key": "X",
+			"value": "October"
+		},
+		{
+			"key": "K",
+			"value": "November"
+		},
+		{
+			"key": "Y",
+			"value": "November"
+		},
+		{
+			"key": "L",
+			"value": "December"
+		},
+		{
+			"key": "Z",
+			"value": "December"
+		}
+	],
+	"Daikin Year Style6": [
+		{
+			"key": "A",
+			"value": "1971"
+		},
+		{
+			"key": "B",
+			"value": "1972"
+		},
+		{
+			"key": "C",
+			"value": "1973"
+		},
+		{
+			"key": "D",
+			"value": "1974"
+		},
+		{
+			"key": "E",
+			"value": "1975"
+		},
+		{
+			"key": "F",
+			"value": "1976"
+		},
+		{
+			"key": "G",
+			"value": "1977"
+		},
+		{
+			"key": "H",
+			"value": "1978"
+		},
+		{
+			"key": "J",
+			"value": "1979"
+		},
+		{
+			"key": "K",
+			"value": "1980"
+		},
+		{
+			"key": "L",
+			"value": "1981"
+		},
+		{
+			"key": "M",
+			"value": "1982"
+		},
+		{
+			"key": "N",
+			"value": "1983"
+		},
+		{
+			"key": "P",
+			"value": "1984"
+		},
+		{
+			"key": "Q",
+			"value": "1985"
+		},
+		{
+			"key": "R",
+			"value": "1986"
+		},
+		{
+			"key": "S",
+			"value": "1987"
+		},
+		{
+			"key": "T",
+			"value": "1988"
+		},
+		{
+			"key": "U",
+			"value": "1989"
+		},
+		{
+			"key": "V",
+			"value": "1990"
+		},
+		{
+			"key": "W",
+			"value": "1991"
+		},
+		{
+			"key": "X",
+			"value": "1992"
+		},
+		{
+			"key": "Y",
+			"value": "1993"
+		},
+		{
+			"key": "Z",
+			"value": "1994"
+		}
+	],
+	"Daikin Year Style8": [
+		{
+			"key": "A",
+			"value": "1974"
+		},
+		{
+			"key": "B",
+			"value": "1975"
+		},
+		{
+			"key": "C",
+			"value": "1976"
+		},
+		{
+			"key": "D",
+			"value": "1977"
+		},
+		{
+			"key": "E",
+			"value": "1978"
+		},
+		{
+			"key": "F",
+			"value": "1979"
+		},
+		{
+			"key": "G",
+			"value": "1980"
+		},
+		{
+			"key": "H",
+			"value": "1981"
+		},
+		{
+			"key": "J",
+			"value": "1982"
+		},
+		{
+			"key": "K",
+			"value": "1983"
+		},
+		{
+			"key": "L",
+			"value": "1984"
+		},
+		{
+			"key": "M",
+			"value": "1985"
+		},
+		{
+			"key": "N",
+			"value": "1986"
+		},
+		{
+			"key": "P",
+			"value": "1987"
+		},
+		{
+			"key": "R",
+			"value": "1988"
+		}
+	],
+	"Daikin Year Style9": [
+		{
+			"key": "T",
+			"value": "1964"
+		},
+		{
+			"key": "U",
+			"value": "1965"
+		},
+		{
+			"key": "V",
+			"value": "1966"
+		},
+		{
+			"key": "W",
+			"value": "1967"
+		},
+		{
+			"key": "X",
+			"value": "1968"
+		},
+		{
+			"key": "Y",
+			"value": "1969"
+		},
+		{
+			"key": "Z",
+			"value": "1970"
+		}
+	],
+	"Fedders Year": [
+		{
+			"key": "A",
+			"value": "1993"
+		},
+		{
+			"key": "B",
+			"value": "1994"
+		},
+		{
+			"key": "C",
+			"value": "1995"
+		},
+		{
+			"key": "D",
+			"value": "1996"
+		},
+		{
+			"key": "E",
+			"value": "1997"
+		},
+		{
+			"key": "F",
+			"value": "1998"
+		},
+		{
+			"key": "G",
+			"value": "1999"
+		},
+		{
+			"key": "H",
+			"value": "2000"
+		},
+		{
+			"key": "J",
+			"value": "2001"
+		},
+		{
+			"key": "K",
+			"value": "2002"
+		},
+		{
+			"key": "L",
+			"value": "2003"
+		},
+		{
+			"key": "M",
+			"value": "2004"
+		},
+		{
+			"key": "N",
+			"value": "2005"
+		},
+		{
+			"key": "P",
+			"value": "2006"
+		},
+		{
+			"key": "R",
+			"value": "2007"
+		},
+		{
+			"key": "S",
+			"value": "2008"
+		},
+		{
+			"key": "T",
+			"value": "2009"
+		},
+		{
+			"key": "V",
+			"value": "2010"
+		},
+		{
+			"key": "W",
+			"value": "2011"
+		},
+		{
+			"key": "X",
+			"value": "2012"
+		},
+		{
+			"key": "Y",
+			"value": "1992"
+		}
+	],
+	"Fedders Year Style4": [
+		{
+			"key": "A",
+			"value": "1992"
+		},
+		{
+			"key": "B",
+			"value": "1993"
+		},
+		{
+			"key": "C",
+			"value": "1994"
+		},
+		{
+			"key": "D",
+			"value": "1995"
+		},
+		{
+			"key": "E",
+			"value": "1996"
+		},
+		{
+			"key": "F",
+			"value": "1997"
+		},
+		{
+			"key": "G",
+			"value": "1998"
+		},
+		{
+			"key": "H",
+			"value": "1999"
+		},
+		{
+			"key": "J",
+			"value": "2000"
+		},
+		{
+			"key": "K",
+			"value": "2001"
+		},
+		{
+			"key": "L",
+			"value": "2002"
+		},
+		{
+			"key": "M",
+			"value": "2003"
+		},
+		{
+			"key": "N",
+			"value": "2004"
+		},
+		{
+			"key": "P",
+			"value": "1984"
+		},
+		{
+			"key": "R",
+			"value": "1985"
+		},
+		{
+			"key": "S",
+			"value": "1986"
+		},
+		{
+			"key": "T",
+			"value": "1987"
+		},
+		{
+			"key": "V",
+			"value": "1988"
+		},
+		{
+			"key": "W",
+			"value": "1989"
+		},
+		{
+			"key": "X",
+			"value": "1990"
+		},
+		{
+			"key": "Y",
+			"value": "1991"
+		}
+	],
+	"FHP Month": [
+		{
+			"key": "A",
+			"value": "January"
+		},
+		{
+			"key": "B",
+			"value": "February"
+		},
+		{
+			"key": "C",
+			"value": "March"
+		},
+		{
+			"key": "D",
+			"value": "April"
+		},
+		{
+			"key": "E",
+			"value": "May"
+		},
+		{
+			"key": "F",
+			"value": "June"
+		},
+		{
+			"key": "G",
+			"value": "July"
+		},
+		{
+			"key": "H",
+			"value": "August"
+		},
+		{
+			"key": "J",
+			"value": "September"
+		},
+		{
+			"key": "K",
+			"value": "October"
+		},
+		{
+			"key": "L",
+			"value": "November"
+		},
+		{
+			"key": "M",
+			"value": "December"
+		}
+	],
+	"FirstCo Year": [
+		{
+			"key": "A",
+			"value": "1994"
+		},
+		{
+			"key": "B",
+			"value": "1995"
+		},
+		{
+			"key": "C",
+			"value": "1996"
+		},
+		{
+			"key": "D",
+			"value": "1997"
+		},
+		{
+			"key": "E",
+			"value": "1998"
+		},
+		{
+			"key": "F",
+			"value": "1999"
+		},
+		{
+			"key": "G",
+			"value": "2000"
+		},
+		{
+			"key": "H",
+			"value": "2001"
+		},
+		{
+			"key": "J",
+			"value": "2002"
+		},
+		{
+			"key": "K",
+			"value": "2003"
+		},
+		{
+			"key": "L",
+			"value": "2004"
+		},
+		{
+			"key": "M",
+			"value": "2005"
+		},
+		{
+			"key": "N",
+			"value": "2006"
+		},
+		{
+			"key": "P",
+			"value": "2007"
+		},
+		{
+			"key": "R",
+			"value": "2008"
+		},
+		{
+			"key": "S",
+			"value": "2009"
+		},
+		{
+			"key": "T",
+			"value": "2010"
+		},
+		{
+			"key": "U",
+			"value": "2011"
+		},
+		{
+			"key": "V",
+			"value": "2012"
+		},
+		{
+			"key": "W",
+			"value": "2013"
+		},
+		{
+			"key": "X",
+			"value": "2014"
+		},
+		{
+			"key": "Y",
+			"value": "2015"
+		},
+		{
+			"key": "Z",
+			"value": "2016"
+		}
+	],
+	"ICP Year": [
+		{
+			"key": "S",
+			"value": "1970"
+		},
+		{
+			"key": "T",
+			"value": "1971"
+		},
+		{
+			"key": "U",
+			"value": "1972"
+		},
+		{
+			"key": "V",
+			"value": "1973"
+		},
+		{
+			"key": "W",
+			"value": "1974"
+		},
+		{
+			"key": "X",
+			"value": "1975"
+		},
+		{
+			"key": "Y",
+			"value": "1976"
+		},
+		{
+			"key": "Z",
+			"value": "1977"
+		},
+		{
+			"key": "A",
+			"value": "1978"
+		},
+		{
+			"key": "B",
+			"value": "1979"
+		},
+		{
+			"key": "C",
+			"value": "1980"
+		},
+		{
+			"key": "D",
+			"value": "1981"
+		},
+		{
+			"key": "E",
+			"value": "1982"
+		},
+		{
+			"key": "F",
+			"value": "1983"
+		},
+		{
+			"key": "G",
+			"value": "1984"
+		},
+		{
+			"key": "H",
+			"value": "1985"
+		},
+		{
+			"key": "J",
+			"value": "1986"
+		},
+		{
+			"key": "K",
+			"value": "1987"
+		},
+		{
+			"key": "L",
+			"value": "1988"
+		},
+		{
+			"key": "M",
+			"value": "1989"
+		},
+		{
+			"key": "N",
+			"value": "1990"
+		},
+		{
+			"key": "P",
+			"value": "1991"
+		},
+		{
+			"key": "R",
+			"value": "1992"
+		}
+	],
+	"Lennox Year": [
+		{
+			"key": "8",
+			"value": "1978"
+		},
+		{
+			"key": "9",
+			"value": "1979"
+		},
+		{
+			"key": "A",
+			"value": "1980"
+		},
+		{
+			"key": "B",
+			"value": "1981"
+		},
+		{
+			"key": "C",
+			"value": "1982"
+		},
+		{
+			"key": "D",
+			"value": "1983"
+		},
+		{
+			"key": "E",
+			"value": "1984"
+		},
+		{
+			"key": "F",
+			"value": "1985"
+		},
+		{
+			"key": "G",
+			"value": "1986"
+		},
+		{
+			"key": "H",
+			"value": "1987"
+		},
+		{
+			"key": "J",
+			"value": "1988"
+		},
+		{
+			"key": "K",
+			"value": "1989"
+		},
+		{
+			"key": "L",
+			"value": "1990"
+		},
+		{
+			"key": "M",
+			"value": "1991"
+		},
+		{
+			"key": "N",
+			"value": "1992"
+		}
+	],
+	"Renzor Month": [
+		{
+			"key": "A",
+			"value": "January"
+		},
+		{
+			"key": "B",
+			"value": "February"
+		},
+		{
+			"key": "C",
+			"value": "March"
+		},
+		{
+			"key": "D",
+			"value": "April"
+		},
+		{
+			"key": "E",
+			"value": "May"
+		},
+		{
+			"key": "F",
+			"value": "June"
+		},
+		{
+			"key": "G",
+			"value": "July"
+		},
+		{
+			"key": "H",
+			"value": "August"
+		},
+		{
+			"key": "I",
+			"value": "September"
+		},
+		{
+			"key": "J",
+			"value": "October"
+		},
+		{
+			"key": "K",
+			"value": "November"
+		},
+		{
+			"key": "L",
+			"value": "December"
+		}
+	],
+	"Rheem Factory": [
+		{
+			"key": "F",
+			"value": "Fort Smith, AR"
+		},
+		{
+			"key": "M",
+			"value": "Milledgeville, GA"
+		},
+		{
+			"key": "G",
+			"value": "Greenville, MS"
+		},
+		{
+			"key": "N",
+			"value": "Mexico"
+		}
+	],
+	"Trane Month": [
+		{
+			"key": "A",
+			"value": "January"
+		},
+		{
+			"key": "B",
+			"value": "February"
+		},
+		{
+			"key": "C",
+			"value": "March"
+		},
+		{
+			"key": "D",
+			"value": "April"
+		},
+		{
+			"key": "E",
+			"value": "May"
+		},
+		{
+			"key": "F",
+			"value": "June"
+		},
+		{
+			"key": "G",
+			"value": "July"
+		},
+		{
+			"key": "H",
+			"value": "August"
+		},
+		{
+			"key": "J",
+			"value": "September"
+		},
+		{
+			"key": "K",
+			"value": "October"
+		},
+		{
+			"key": "L",
+			"value": "November"
+		},
+		{
+			"key": "M",
+			"value": "December"
+		}
+	],
+	"Trane Year": [
+		{
+			"key": "W",
+			"value": "1983"
+		},
+		{
+			"key": "X",
+			"value": "1984"
+		},
+		{
+			"key": "Y",
+			"value": "1985"
+		},
+		{
+			"key": "S",
+			"value": "1986"
+		},
+		{
+			"key": "B",
+			"value": "1987"
+		},
+		{
+			"key": "C",
+			"value": "1988"
+		},
+		{
+			"key": "D",
+			"value": "1989"
+		},
+		{
+			"key": "E",
+			"value": "1990"
+		},
+		{
+			"key": "F",
+			"value": "1991"
+		},
+		{
+			"key": "G",
+			"value": "1992"
+		},
+		{
+			"key": "H",
+			"value": "1993"
+		},
+		{
+			"key": "J",
+			"value": "1994"
+		},
+		{
+			"key": "K",
+			"value": "1995"
+		},
+		{
+			"key": "L",
+			"value": "1996"
+		},
+		{
+			"key": "M",
+			"value": "1997"
+		},
+		{
+			"key": "N",
+			"value": "1998"
+		},
+		{
+			"key": "P",
+			"value": "1999"
+		},
+		{
+			"key": "R",
+			"value": "2000"
+		},
+		{
+			"key": "Z",
+			"value": "2001"
+		}
+	],
+	"Utica Year": [
+		{
+			"key": "I",
+			"value": "1979"
+		},
+		{
+			"key": "J",
+			"value": "1980"
+		},
+		{
+			"key": "K",
+			"value": "1981"
+		},
+		{
+			"key": "L",
+			"value": "1982"
+		},
+		{
+			"key": "M",
+			"value": "1983"
+		},
+		{
+			"key": "A",
+			"value": "1984"
+		},
+		{
+			"key": "B",
+			"value": "1985"
+		},
+		{
+			"key": "C",
+			"value": "1986"
+		},
+		{
+			"key": "D",
+			"value": "1987"
+		},
+		{
+			"key": "E",
+			"value": "1988"
+		},
+		{
+			"key": "F",
+			"value": "1989"
+		},
+		{
+			"key": "G",
+			"value": "1990"
+		},
+		{
+			"key": "H",
+			"value": "1991"
+		},
+		{
+			"key": "N",
+			"value": "1992"
+		},
+		{
+			"key": "P",
+			"value": "1993"
+		},
+		{
+			"key": "R",
+			"value": "1994"
+		},
+		{
+			"key": "S",
+			"value": "1995"
+		},
+		{
+			"key": "T",
+			"value": "1996"
+		},
+		{
+			"key": "U",
+			"value": "1997"
+		},
+		{
+			"key": "V",
+			"value": "1998"
+		},
+		{
+			"key": "W",
+			"value": "1999"
+		},
+		{
+			"key": "9",
+			"value": "2000"
+		},
+		{
+			"key": "X",
+			"value": "2000"
+		},
+		{
+			"key": "Y",
+			"value": "2001"
+		}
+	],
+	"York Factory": [
+		{
+			"key": "A",
+			"value": "Addison or Apodaca"
+		},
+		{
+			"key": "B",
+			"value": "Blackville"
+		},
+		{
+			"key": "C",
+			"value": "Canada"
+		},
+		{
+			"key": "D",
+			"value": "Medina"
+		},
+		{
+			"key": "E",
+			"value": "EL Yria"
+		},
+		{
+			"key": "M",
+			"value": "Madville"
+		},
+		{
+			"key": "N",
+			"value": "Norman"
+		},
+		{
+			"key": "S",
+			"value": "Source One"
+		},
+		{
+			"key": "W",
+			"value": "Wichita"
+		},
+		{
+			"key": "X",
+			"value": "Mexico"
+		},
+		{
+			"key": "Y",
+			"value": "York"
+		}
+	],
+	"York Month": [
+		{
+			"key": "A",
+			"value": "January"
+		},
+		{
+			"key": "B",
+			"value": "February"
+		},
+		{
+			"key": "C",
+			"value": "March"
+		},
+		{
+			"key": "D",
+			"value": "April"
+		},
+		{
+			"key": "E",
+			"value": "May"
+		},
+		{
+			"key": "F",
+			"value": "June"
+		},
+		{
+			"key": "G",
+			"value": "July"
+		},
+		{
+			"key": "H",
+			"value": "August"
+		},
+		{
+			"key": "K",
+			"value": "September"
+		},
+		{
+			"key": "L",
+			"value": "October"
+		},
+		{
+			"key": "M",
+			"value": "November"
+		},
+		{
+			"key": "N",
+			"value": "December"
+		}
+	],
+	"York Type": [
+		{
+			"key": "H",
+			"value": "Mfg. Basic Unit"
+		},
+		{
+			"key": "M",
+			"value": "Mfg. Basic Unit"
+		},
+		{
+			"key": "N",
+			"value": "Purchased Basic Unit"
+		},
+		{
+			"key": "P",
+			"value": "Purchased Basic Unit"
+		},
+		{
+			"key": "S",
+			"value": "Mfg. Low Side Item"
+		},
+		{
+			"key": "T",
+			"value": "Purchased Low Side Item"
+		},
+		{
+			"key": "Y",
+			"value": "Mfg. Accessory"
+		},
+		{
+			"key": "Z",
+			"value": "Purchased Accessory"
+		},
+		{
+			"key": "O",
+			"value": "Filter"
+		}
+	],
+	"York Year": [
+		{
+			"key": "P",
+			"value": "1984"
+		},
+		{
+			"key": "R",
+			"value": "1985"
+		},
+		{
+			"key": "S",
+			"value": "1986"
+		},
+		{
+			"key": "T",
+			"value": "1987"
+		},
+		{
+			"key": "V",
+			"value": "1988"
+		},
+		{
+			"key": "W",
+			"value": "1989"
+		},
+		{
+			"key": "X",
+			"value": "1990"
+		},
+		{
+			"key": "Y",
+			"value": "1991"
+		},
+		{
+			"key": "A",
+			"value": "1992"
+		},
+		{
+			"key": "B",
+			"value": "1993"
+		},
+		{
+			"key": "C",
+			"value": "1994"
+		},
+		{
+			"key": "D",
+			"value": "1995"
+		},
+		{
+			"key": "E",
+			"value": "1996"
+		},
+		{
+			"key": "F",
+			"value": "1997"
+		},
+		{
+			"key": "G",
+			"value": "1998"
+		},
+		{
+			"key": "H",
+			"value": "1999"
+		},
+		{
+			"key": "J",
+			"value": "2000"
+		},
+		{
+			"key": "K",
+			"value": "2001"
+		},
+		{
+			"key": "L",
+			"value": "2002"
+		},
+		{
+			"key": "M",
+			"value": "2003"
+		},
+		{
+			"key": "N",
+			"value": "2004"
+		}
+	]
+}

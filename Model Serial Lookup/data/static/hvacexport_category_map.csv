@@ -1,0 +1,19 @@
+hvacexport_category,equipment_types_json,confidence,status,reason
+Air Handler,"[""Air Handling Unit""]",medium,proposed,Close match by name; verify against pilot assets.
+Boiler,"[""Boiler""]",medium,proposed,Same name; verify against pilot assets.
+Chiller,"[""Chiller""]",medium,proposed,Same name; verify against pilot assets.
+Cooling Tower,"[""Cooling Tower""]",medium,proposed,Same name; verify against pilot assets.
+Dehumidifier,"[""Dehumidifer""]",medium,proposed,Canonical list uses 'Dehumidifer' spelling; verify.
+Furnace,"[""Furnace""]",high,accepted,User confirmed clear mapping.
+Mini-Split,"[""Ductless Split System""]",medium,proposed,Closest canonical type; verify.
+Package,"[""Packaged Unit""]",medium,proposed,Close match by name; verify.
+Package Rooftop Unit,"[""Packaged Unit""]",low,proposed,Rooftops are a subset; no dedicated canonical type.
+PTAC,"[""PTAC""]",medium,proposed,Same name; verify against pilot assets.
+Water Source HP,"[""WSHP""]",medium,proposed,Canonical type name; verify.
+Window Units,"[""Window Unit""]",medium,proposed,Plural vs singular; verify.
+Condenser,"[""Cooling Condensing Unit"",""Heat Pump Condensing Unit""]",low,proposed,Could represent either AC or HP condenser families; refine later.
+VRF,"[""VRF - Condensing Unit"",""VRF - Terminal Unit""]",low,proposed,Category likely spans both; refine later.
+VRV,"[""VRF - Condensing Unit"",""VRF - Terminal Unit""]",low,proposed,Treat as VRF for now; refine later.
+Energy Recovery Ventilators,"[""ERV""]",high,accepted,User confirmed clear mapping.
+Exhaust Fan,"[""Exhaust Fan""]",high,accepted,User confirmed clear mapping.
+Unit Heaters,"[""Unit Heater""]",high,accepted,User confirmed clear mapping.

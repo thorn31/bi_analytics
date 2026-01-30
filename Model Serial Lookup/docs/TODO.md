@@ -7,7 +7,7 @@ Update rules:
 - When a checklist item is completed, mark it done and add a short note (run-id, ruleset folder, output path).
 - Keep `docs/STATUS.md` aligned with the current “last known good” ruleset.
 
-Last updated: 2026-01-28
+Last updated: 2026-01-29
 
 ---
 
@@ -27,7 +27,7 @@ Last updated: 2026-01-28
 - [ ] Validation: `msl validate` produces **0 validation exceptions** for the chosen release ruleset.
 - [ ] Artifacts: `SerialDecodeRule.csv` + `AttributeDecodeRule.csv` present, plus `data/raw_html/<run>/` for reproducibility.
 - [ ] Charts: OCR/overrides pipeline reduces `chart_required` where images are locally available.
-- [ ] Documentation: `docs/STATUS.md` points to the correct latest ruleset and how to reproduce it.
+- [x] Documentation: `docs/STATUS.md` points to the correct latest ruleset and how to reproduce it. (2026-01-29-promoted4)
 
 ### Remaining work
 - [ ] Expand discovery seeds to cover non-HVAC brands from real asset exports (e.g., pumps/fans/towers) if Building-Center has relevant pages.
@@ -57,9 +57,23 @@ Last updated: 2026-01-28
 - [x] Add stable output schema for attributes (row-per-attribute export in addition to `AttributesJSON`). (via `msl decode --attributes-output`, 2026-01-25)
 - [x] Best-rule selection/tie-breaking when multiple rules match. (attributes: pick best per `AttributeName`; serial: century-expand `YY`, continue past matches that can’t decode year, `--min-manufacture-year` guard, 2026-01-25)
 - [x] Add decode-time support for `BrandNormalizeRule.csv` (Phase 3 output) without hardcoding aliases in code. (ruleset-local file, 2026-01-25-sdi-promoted5)
-- [ ] Add decode-time support for equipment-type context (if/when Phase 3 produces `EquipmentTypeRule.csv`) (HIGH PRIORITY - Fixes cross-type collisions).
+- [ ] Equipment type context (decode + ruleset + reports) (HIGH PRIORITY - reduces cross-type collisions)
+  - [x] Support `equipment_types` rule scoping (ruleset CSVs + candidates + promotion merge keys). (code: `scripts/actions.py`, `msl/pipeline/phase3_promote.py`, `msl/pipeline/validate_export.py`, 2026-01-29)
+  - [x] Thread input equipment type (`Equipment` / `EquipmentType`) into decode and outputs. (code: `msl/pipeline/decode_run.py`, 2026-01-29)
+  - [x] Add truth reports by equipment type (brand×type scorecard + next targets). (code: `msl/pipeline/phase3_baseline.py`, 2026-01-29)
+  - [x] Add candidate audit by equipment type (holdout + false positives). (code: `msl/pipeline/phase3_audit.py`, 2026-01-29)
+  - [x] Add attribute conflict auditing (row-level counters + long-form conflict export). (code: `msl/decoder/attributes.py`, `msl/pipeline/decode_run.py`, 2026-01-29)
+  - [x] Document “where to add new knowledge” in `docs/WORKFLOW.md` and update `docs/RULESETS.md`. (2026-01-29)
+  - [x] Add/extend unit tests for typed gating and conflict reporting. (tests: `tests/test_decoder_serial.py`, `tests/test_decoder_attributes.py`, 2026-01-29)
+  - [x] Run a baseline + promote a new ruleset folder once validated (runs: `data/reports/2026-01-29__workflow.improve__aaon-mau-trane-ccu-capacity__20260129T212100Z/`, `data/reports/2026-01-29__workflow.improve__trane-ccu-manual-narrowed__20260129T213453Z/`, ruleset: `data/rules_normalized/2026-01-29-promoted3/`).
 
 ---
+
+## external_sources — Stage richer inputs (parse-only)
+
+### HVACExport XML
+- [x] Add parse-only snapshot script + tests (script: `scripts/hvacexport_parse.py`, tests: `tests/test_hvacexport_parse.py`, 2026-01-29)
+- [x] Run parser to create first snapshot folder under `data/external_sources/hvacexport/<snapshot-id>/` and review `summary.md` for ingestion planning. (snapshot: `data/external_sources/hvacexport/2026-01-24_v3.84_enriched2/`, 2026-01-29)
 
 ## mining — Rule discovery from labeled asset reports
 

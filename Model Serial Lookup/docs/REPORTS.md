@@ -22,6 +22,12 @@ How to act:
 - Low `YearAccuracyPct`: rule collision/overmatch. Prioritize tightening regex or adding discriminators (e.g., length constraints).
 - Low attribute coverage: missing attribute rules (or intentionally conservative rules).
 
+### `eval.truth/baseline_decoder_scorecard_by_type.csv`
+Per-(brand × equipment type) scorecard. This is the primary tool for diagnosing **cross-type collisions** and for validating type-scoped rules.
+
+Related:
+- `eval.truth/next_targets_by_type.md` (also copied to run root as `NEXT_TARGETS_BY_TYPE.md` when using `workflow.improve`)
+
 ### `eval.truth/next_targets.md` (also copied to run root as `NEXT_TARGETS.md`)
 A human summary of:
 - Top year coverage gaps
@@ -78,6 +84,12 @@ How to act:
 - High accuracy but low coverage: candidate is “narrow” (still useful, but expect small gains).
 - High coverage but lower accuracy: collision risk; do not promote without tightening.
 
+### `eval.candidates/holdout_validation_results_by_type.csv`
+Per-candidate metrics broken down by equipment type. Use this to validate that a candidate is safe within its intended type segment.
+
+### `eval.candidates/false_positive_audit_by_type.csv`
+Attribute false-positive signal broken down by equipment type (when equipment type is present in the dataset).
+
 ### `eval.candidates/false_positive_audit.csv` (attributes)
 Collision signal:
 - `other_brand_match_rate`
@@ -111,4 +123,3 @@ How to act:
 3. Mine candidates + audit.
 4. Promote (audit-gated by default; use `--promote-all` only intentionally).
 5. Re-run truth and confirm deltas (`delta_scorecard.csv`).
-
