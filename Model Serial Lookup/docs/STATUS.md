@@ -22,6 +22,7 @@ python3 scripts/actions.py workflow.improve \
 - Rulesets may include optional `equipment_types` scoping columns in `SerialDecodeRule.csv` / `AttributeDecodeRule.csv` (missing/empty means cross-type).
 - Truth and candidate audits now emit additional by-type artifacts (see `docs/REPORTS.md`).
 - Added a parse-only snapshot tool for `data/static/hvacexport.xml` (staged under `data/external_sources/hvacexport/<snapshot-id>/`, no integration yet).
+- Added a spec-sheet PDF text extraction action (`specs.extract_text`) to stage model nomenclature/code breakdowns for future attribute mining (`data/external_sources/specs_snapshots/<snapshot-id>/`).
 - Promoted ruleset `data/rules_normalized/2026-01-30-promoted21-magicaire/` (adds Magic Aire serial styles: Style 2 `YYMM...` (<=1999) and Style 3 `YY-####` (1970s); retains BENCHMARK + AERCO + Trane legacy coverage improvements + EMI + Snyder General + ClimateMaster + McQuay/York/Greenheck/Friedrich fixes + cleanup + earlier promotions).
 - Decoder now rejects impossible month/week values (prevents false matches like month=48 from being emitted).
 

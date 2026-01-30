@@ -87,6 +87,7 @@ def cmd_phase3_audit(args) -> int:
         cmap = infer_column_map(fns)
         col_model = _find_col(fns, ["ModelNumber", "Model #", "Model", "modelNumber"])
         col_equipment = _find_col(fns, ["EquipmentType", "Equipment", "Type", "equipmentType", "description"])
+        col_known_tons = _find_col(fns, ["KnownCapacityTons", "Known Capacity Tons", "CapacityTons", "Known Tons"])
         col_cap_val = _find_col(fns, ["Cooling Capacity \n(Input)", "Cooling Capacity (Input)", "Cooling Capacity", "CoolingCapacity"])
         col_cap_unit = _find_col(fns, ["Cooling Capacity \n(Unit)", "Cooling Capacity (Unit)", "Cooling Capacity Unit", "CoolingCapacityUnit"])
         col_fan_hp = _find_col(fns, ["Fan \n(HP)", "Fan (HP)", "FanHP"])
@@ -153,10 +154,19 @@ def cmd_phase3_audit(args) -> int:
         # Determine truth source per attribute (audit only what we can validate).
         def truth_for_row(row: dict) -> float | None:
             if attribute_name == "NominalCapacityTons":
+                # Prefer SDI's explicit KnownCapacityTons when present, otherwise fall back to parsing
+                # Cooling Capacity (Input/Unit) into tons.
+                if col_known_tons:
+                    v = _parse_float(row.get(col_known_tons))
+                    if v is not None:
+                        return v
                 if not col_cap_val or not col_cap_unit:
                     return None
                 return _parse_tons(row.get(col_cap_val), row.get(col_cap_unit))
-            if attribute_name == "FanHP":
+            # SDI truth has a single Fan (HP) column.
+            # We can validate generic FanHP and SupplyFanHP against it, but ReturnFanHP is not
+            # directly auditable against SDI (it would require a separate return-fan column).
+            if attribute_name in {"FanHP", "SupplyFanHP"}:
                 return _parse_float(row.get(col_fan_hp)) if col_fan_hp else None
             if attribute_name == "FanFlowCFM":
                 return _parse_float(row.get(col_fan_cfm)) if col_fan_cfm else None
@@ -173,6 +183,7 @@ def cmd_phase3_audit(args) -> int:
         tol_map = {
             "NominalCapacityTons": float(args.capacity_tolerance_tons),
             "FanHP": 0.5,
+            "SupplyFanHP": 0.5,
             "PumpHP": 0.5,
             "FanFlowCFM": 50.0,
             "PumpFlowGPM": 5.0,

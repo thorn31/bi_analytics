@@ -75,6 +75,10 @@ Last updated: 2026-01-30
 - [x] Add parse-only snapshot script + tests (script: `scripts/hvacexport_parse.py`, tests: `tests/test_hvacexport_parse.py`, 2026-01-29)
 - [x] Run parser to create first snapshot folder under `data/external_sources/hvacexport/<snapshot-id>/` and review `summary.md` for ingestion planning. (snapshot: `data/external_sources/hvacexport/2026-01-24_v3.84_enriched2/`, 2026-01-29)
 
+### Spec sheets (PDF)
+- [ ] Extract embedded text from `data/external_sources/specs/*.pdf` into `data/external_sources/specs_snapshots/<snapshot-id>/` (action: `python3 scripts/actions.py specs.extract_text`). (added: 2026-01-30)
+- [ ] Mine deterministic model-code attribute mappings (Voltage/Refrigerant/Capacity/etc.) from spec sheet text into `data/rules_discovered/...` candidates, then validate via `eval.truth` before promotion.
+
 ## mining — Rule discovery from labeled asset reports
 
 Historical plan reference: `docs/_archive/PLAN_PHASE3.md`

@@ -12,6 +12,9 @@ The contents of `data/reports/` are mostly gitignored. Tracked pointers:
 ## Candidates
 - `data/rules_discovered/<run-id>/candidates/`
 
+Additional candidate sources (versioned, parse-only):
+- Spec sheet mining: `data/rules_discovered/spec_sheets/<snapshot-id>/candidates/`
+
 ## Rulesets (published, versioned)
 - `data/rules_normalized/<ruleset-id>/`
 - `data/rules_normalized/CURRENT.txt` (folder name only)
@@ -21,3 +24,6 @@ The contents of `data/reports/` are mostly gitignored. Tracked pointers:
 - `data/extracted_sections/<run>/extracted_sections.jsonl`
 - `data/rules_staged/<run>/*.jsonl`
 
+## External sources (snapshots)
+- HVACExport: `data/external_sources/hvacexport/<snapshot-id>/`
+- Spec sheets: `data/external_sources/specs_snapshots/<snapshot-id>/`
