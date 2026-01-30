@@ -771,6 +771,61 @@ class TestDecoderSerial(unittest.TestCase):
         c = decode_serial("BENCHMARK", "G-22-2696", accepted, min_plausible_year=0)
         self.assertEqual(c.manufacture_year, 2022)
 
+    def test_magic_aire_style2_and_style3(self) -> None:
+        from msl.decoder.io import SerialRule
+
+        rules = [
+            SerialRule(
+                rule_type="decode",
+                brand="MAGIC AIRE",
+                priority=None,
+                style_name="Manual: Style 2 (YYMM.. alnum, <=1999)",
+                serial_regex=r"^\d{6}[A-Z0-9]{2,}$",
+                equipment_types=[],
+                date_fields={
+                    "year": {"positions": {"start": 1, "end": 2}, "transform": {"type": "year_add_base", "base": 1900, "min_year": 1970, "max_year": 1999}},
+                    "month": {"positions": {"start": 3, "end": 4}},
+                },
+                example_serials=["950630A51"],
+                decade_ambiguity={"is_ambiguous": False},
+                guidance_action="",
+                guidance_text="",
+                evidence_excerpt="",
+                source_url="manual_additions",
+                retrieved_on="",
+                image_urls=[],
+            ),
+            SerialRule(
+                rule_type="decode",
+                brand="MAGIC AIRE",
+                priority=None,
+                style_name="Manual: Style 3 (YY-####, 1970s)",
+                serial_regex=r"^\d{2}-?\d{4}$",
+                equipment_types=[],
+                date_fields={"year": {"pattern": {"regex": r"^(\d{2})", "group": 1}, "transform": {"type": "year_add_base", "base": 1900, "min_year": 1970, "max_year": 1979}}},
+                example_serials=["74-1234", "741234"],
+                decade_ambiguity={"is_ambiguous": False},
+                guidance_action="",
+                guidance_text="",
+                evidence_excerpt="",
+                source_url="manual_additions",
+                retrieved_on="",
+                image_urls=[],
+            ),
+        ]
+        accepted, issues = validate_serial_rules(rules)
+        self.assertEqual(len(issues), 0)
+
+        s2 = decode_serial("MAGIC AIRE", "950630A51", accepted, min_plausible_year=0)
+        self.assertEqual(s2.manufacture_year, 1995)
+        self.assertEqual(s2.manufacture_month, 6)
+
+        s3a = decode_serial("MAGIC AIRE", "74-1234", accepted, min_plausible_year=0)
+        self.assertEqual(s3a.manufacture_year, 1974)
+
+        s3b = decode_serial("MAGIC AIRE", "741234", accepted, min_plausible_year=0)
+        self.assertEqual(s3b.manufacture_year, 1974)
+
 
 if __name__ == "__main__":
     unittest.main()
