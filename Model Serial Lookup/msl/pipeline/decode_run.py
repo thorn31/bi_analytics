@@ -60,7 +60,9 @@ def cmd_decode(args) -> int:
     in_path = Path(args.input)
     vocab = load_equipment_type_vocab("data/static/equipment_types.csv")
     with (
-        in_path.open("r", newline="", encoding="utf-8") as f_in,
+        # Be permissive: SDI exports may contain non-UTF8 bytes (e.g., latin-1). We prefer producing
+        # a usable decode output over hard-failing on decode errors.
+        in_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f_in,
         out_path.open("w", newline="", encoding="utf-8") as f_out,
         (attr_out_path.open("w", newline="", encoding="utf-8") if attr_out_path else open(os.devnull, "w")) as f_attr,
         (conflict_out_path.open("w", newline="", encoding="utf-8") if conflict_out_path else open(os.devnull, "w")) as f_conf,

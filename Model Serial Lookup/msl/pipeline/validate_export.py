@@ -9,6 +9,7 @@ from typing import Any
 
 from msl.pipeline.common import ensure_dir, resolve_run_date, write_csv
 from msl.pipeline.ruleset_manager import cleanup_old_rulesets, update_current_pointer
+from msl.pipeline.ruleset_cleanup import prune_superseded_attribute_guidance, prune_superseded_serial_guidance
 
 
 def _load_jsonl(path: Path) -> list[dict]:
@@ -338,9 +339,11 @@ def cmd_validate(args) -> int:
     if serial_overrides:
         serial_rules = _apply_serial_overrides(serial_rules, serial_overrides)
     serial_rules = _prune_serial_guidance_artifacts(serial_rules)
+    serial_rules = prune_superseded_serial_guidance(serial_rules)
     attribute_overrides = _load_manual_attribute_overrides(overrides_dir)
     if attribute_overrides:
         attribute_rules = _apply_attribute_overrides(attribute_rules, attribute_overrides)
+    attribute_rules = prune_superseded_attribute_guidance(attribute_rules)
 
     exceptions: list[dict] = []
     valid_serial: list[dict] = []

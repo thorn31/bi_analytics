@@ -12,7 +12,9 @@ from msl.pipeline.ruleset_manager import resolve_ruleset_dir
 
 
 def _load_csv(path: Path) -> list[dict]:
-    with path.open("r", newline="", encoding="utf-8") as f:
+    # Be permissive: SDI exports may contain non-UTF8 bytes (e.g., latin-1). We prefer producing
+    # a usable gap report over hard-failing on decode errors.
+    with path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f:
         return list(csv.DictReader(f))
 
 

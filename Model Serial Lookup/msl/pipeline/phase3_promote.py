@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 
 from msl.pipeline.common import ensure_dir
+from msl.decoder.normalize import normalize_text
+from msl.pipeline.ruleset_cleanup import prune_superseded_attribute_guidance, prune_superseded_serial_guidance
 from msl.pipeline.ruleset_manager import cleanup_old_rulesets, update_current_pointer
 
 
@@ -34,8 +36,6 @@ def _write_csv(path: Path, fieldnames: list[str], rows: list[dict]) -> None:
 
 
 def cmd_phase3_promote(args) -> int:
-    from msl.decoder.normalize import normalize_text
-
     base_ruleset = Path(args.base_ruleset_dir)
     if not base_ruleset.exists():
         raise SystemExit(f"Missing base ruleset: {base_ruleset}")
@@ -220,6 +220,10 @@ def cmd_phase3_promote(args) -> int:
         )
 
     # Write out merged ruleset
+    # Prune superseded guidance rows to keep rulesets readable (decoder behavior is unchanged: guidance rows are never used for decode).
+    serial_rows = prune_superseded_serial_guidance(serial_rows)
+    attr_rows = prune_superseded_attribute_guidance(attr_rows)
+
     _write_csv(out_ruleset / "SerialDecodeRule.csv", serial_fields, serial_rows)
     _write_csv(out_ruleset / "AttributeDecodeRule.csv", attr_fields, attr_rows)
 

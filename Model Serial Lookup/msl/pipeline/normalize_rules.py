@@ -44,6 +44,7 @@ _LEGEND_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 _IGNORE_LETTERS_RE = re.compile(r"\b(?:disregard|ignore)\b.*\bletter", re.IGNORECASE)
+_STYLE_PREFIX_RE = re.compile(r"^\s*(style\s*\d+)\s*:", re.IGNORECASE)
 
 EVIDENCE_EXCERPT_MAX_CHARS = 600
 
@@ -79,6 +80,25 @@ def _collapse_ws(value: str) -> str:
 def _evidence_excerpt(value: str) -> str:
     # Keep instructions readable in Excel without losing critical trailing clauses.
     return _collapse_ws(value)[:EVIDENCE_EXCERPT_MAX_CHARS]
+
+
+def _canonical_style_name_for_dedupe(style_name: str | None) -> str:
+    """
+    Many extracted sections duplicate the same rule as:
+      - "Style 1:" and
+      - "Style 1: <example>"
+
+    Dedupe should treat those as the same style label.
+    """
+    s = (style_name or "").strip()
+    m = _STYLE_PREFIX_RE.match(s)
+    if m:
+        head = _collapse_ws(m.group(1))
+        parts = head.split(" ")
+        if len(parts) >= 2 and parts[0].lower() == "style" and parts[1].isdigit():
+            return f"Style {parts[1]}"
+        return head
+    return s
 
 
 def _fuzzy_title_regex(title: str) -> re.Pattern:
@@ -1022,6 +1042,92 @@ def _heuristic_normalize_one(record: dict) -> dict:
         "image_urls": image_urls,
     }
 
+    # Brand-specific fixups (Heuristic provider)
+    # YORK Style 1/2: extracted examples are single-instance and cause overly-specific regex.
+    # Also, month/year are letter-coded and require a mapping (the chart is referenced, but not captured as text).
+    src = (record.get("source_url") or "").lower()
+    brand_u = (record.get("brand") or "").strip().upper()
+    title_l = (section_title or "").strip().lower()
+    if brand_u == "YORK" and "york-hvac-age" in src:
+        month_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "K": 9, "L": 10, "M": 11, "N": 12}
+        # Year-letter mapping:
+        # We default to the internal SDI truth mapping for letters observed in our labeled exports to avoid
+        # introducing incorrect deterministic years. Expand as we gather more validated examples.
+        year_map: dict[str, int] = {}
+        # Observed in SDI 2026-01-25 (York): B/C -> 1994, H -> 2002, D/E -> 2003.
+        year_map.update({"B": 1994, "C": 1994, "H": 2002, "D": 2003, "E": 2003})
+
+        if title_l.startswith("style 1"):
+            rule["serial_regex"] = r"^[A-Z]\d[A-HK-N]\d\d{6,}$"
+            rule["date_fields"] = {
+                "year": {
+                    "positions_list": [2, 4],
+                    "transform": {"type": "year_add_base", "base": 2000, "min_year": 2004, "max_year": 2035},
+                },
+                "month": {"positions": {"start": 3, "end": 3}, "mapping": month_map},
+            }
+            rule["decade_ambiguity"] = {"is_ambiguous": True, "notes": "2-digit year across positions 2 and 4 (base 2000; bounded)"}
+            missing_mappings = []
+            rule.pop("guidance_action", None)
+            rule.pop("guidance_text", None)
+
+        elif title_l.startswith("style 2"):
+            rule["serial_regex"] = r"^(?:\([A-Z]\))?[A-Z][A-HK-N][BCDEH][A-Z]\d{6,}$"
+            rule["date_fields"] = {
+                "month": {"pattern": {"regex": r"^(?:\([A-Z]\))?[A-Z]([A-HK-N])", "group": 1}, "mapping": month_map},
+                "year": {"pattern": {"regex": r"^(?:\([A-Z]\))?[A-Z][A-HK-N]([BCDEH])", "group": 1}, "mapping": year_map},
+            }
+            rule["decade_ambiguity"] = {"is_ambiguous": False, "notes": "Year letter mapped to 4-digit year (SDI-validated subset)."}
+            missing_mappings = []
+            rule.pop("guidance_action", None)
+            rule.pop("guidance_text", None)
+
+    # FRIEDRICH Style 2: YY + MonthLetter + Sequence (sequence may include a plant letter).
+    # The extracted sections often include the Style 2 example in the Style 1 block, but the
+    # chart/mapping isn't present as text. Use the known month-letter set ABCDEFGHJKLM.
+    if brand_u == "FRIEDRICH" and "friedrich-hvac-age" in src:
+        # Month letters: ABCDEFGHJKLM (no I).
+        fr_month_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "J": 9, "K": 10, "L": 11, "M": 12}
+        # If this record is Style 2 directly, or if the Style 1 block contains a Style 2 example, emit a deterministic rule.
+        has_style2_hint = ("style 2:" in (section_text or "").lower()) or bool(re.search(r"\b\d{2}[A-HJ-M]\d{4,}\b", section_text or "", flags=re.IGNORECASE))
+        if title_l.startswith("style 2") or (title_l.startswith("style 1") and has_style2_hint):
+            style2_rule = {
+                **rule,
+                "style_name": "Style 2: YY + MonthLetter + Sequence",
+                # Allow alphanumeric sequence after the month letter to accommodate plant letters observed in SDI (e.g., 85HO1432).
+                "serial_regex": r"^\d{2}[A-HJ-M][A-Z0-9]{5,}$",
+                "date_fields": {
+                    "year": {"positions": {"start": 1, "end": 2}},
+                    "month": {"positions": {"start": 3, "end": 3}, "mapping": fr_month_map},
+                },
+                "decade_ambiguity": {"is_ambiguous": True, "notes": "2-digit year; century inferred by pivot"},
+            }
+            # If the current rule isn't actually Style 2, return both.
+            if not title_l.startswith("style 2"):
+                return [rule, style2_rule]
+            rule = style2_rule
+
+    # GREENHECK: embed user-provided deterministic styles (when the page is present in extracted_sections).
+    if brand_u == "GREENHECK" and "greenheck" in src:
+        gh_month_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12}
+        if title_l.startswith("style 1"):
+            rule["serial_regex"] = r"^\d{2}[A-L]\d{5}$"
+            rule["date_fields"] = {"year": {"positions": {"start": 1, "end": 2}}, "month": {"positions": {"start": 3, "end": 3}, "mapping": gh_month_map}}
+            rule["decade_ambiguity"] = {"is_ambiguous": True, "notes": "2-digit year; century inferred by pivot"}
+            missing_mappings = []
+            rule.pop("guidance_action", None)
+            rule.pop("guidance_text", None)
+        elif title_l.startswith("style 2"):
+            rule["serial_regex"] = r"^\d{8}\d{2}\d{2}$"
+            rule["date_fields"] = {
+                "year": {"positions": {"start": 9, "end": 10}, "transform": {"type": "year_add_base", "base": 2000, "min_year": 2005, "max_year": 2035}},
+                "month": {"positions": {"start": 11, "end": 12}},
+            }
+            rule["decade_ambiguity"] = {"is_ambiguous": False, "notes": "2-digit year with base 2000 and bounds"}
+            missing_mappings = []
+            rule.pop("guidance_action", None)
+            rule.pop("guidance_text", None)
+
     # If any date fields require a chart/manual mapping, keep that as guidance text but still allow decoding year/week.
     if missing_mappings:
         rule["guidance_action"] = "chart_required"
@@ -1351,7 +1457,7 @@ def cmd_normalize(args) -> int:
                             dedupe_key = (
                                 item.get("rule_type", "decode"),
                                 item.get("brand"),
-                                item.get("style_name"),
+                                _canonical_style_name_for_dedupe(item.get("style_name")),
                                 item.get("serial_regex"),
                                 item.get("guidance_action"),
                                 item.get("guidance_text"),

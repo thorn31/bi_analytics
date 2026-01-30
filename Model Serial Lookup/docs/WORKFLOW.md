@@ -65,6 +65,18 @@ If documentation requires a chart/image mapping (month letters, etc.), use:
 
 Overrides are applied during ruleset validation/export and always win. See `docs/OVERRIDES.md`.
 
+## Guidance rows vs decode rows (why “fixed” rules may still appear)
+Rulesets can contain both:
+- `rule_type=decode` rows (used by the decoder)
+- `rule_type=guidance` rows (never used for decode; used for explainability + gap triage)
+
+Because rulesets are created by *merging* multiple sources over time, it’s normal for older guidance rows
+to remain present even after you add a deterministic decode rule for the same brand/style.
+
+To keep rulesets readable, publish steps (`msl validate` and `phase3-promote`) apply a conservative cleanup:
+- **Serial guidance suppression:** if a deterministic decode rule exists for `Style N` for a brand, guidance rows for that same `Style N` are removed.
+- **Attribute guidance suppression:** brand-wide `chart_required` guidance rows with empty `model_regex`/`value_extraction` are removed once at least one decode rule exists for that brand+attribute.
+
 ## Decode only (unlabeled)
 Decode an arbitrary asset export:
 
