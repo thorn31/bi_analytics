@@ -406,6 +406,9 @@ def cmd_phase3_mine(args) -> int:
     col_equipment = find_col(["EquipmentType", "Equipment", "Type", "equipmentType", "description"])
     col_cap_val = find_col(["Cooling Capacity \n(Input)", "Cooling Capacity (Input)", "Cooling Capacity", "CoolingCapacity"])
     col_cap_unit = find_col(["Cooling Capacity \n(Unit)", "Cooling Capacity (Unit)", "Cooling Capacity Unit", "CoolingCapacityUnit"])
+    # Prefer deterministic tons value when present (internal labeled exports). This improves mining on datasets
+    # that do not include Cooling Capacity Value/Unit but do include a pre-normalized tons column.
+    col_known_tons = find_col(["KnownCapacityTons", "Known Capacity Tons", "CapacityTons"])
 
     def parse_tons(val: str | None, unit: str | None) -> float | None:
         if val is None:
@@ -427,6 +430,22 @@ def cmd_phase3_mine(args) -> int:
         if u in {"MBH", "MBTUH"}:
             return (num * 1000.0) / 12000.0
         return None
+
+    def parse_known_tons(val: str | None) -> float | None:
+        if val is None:
+            return None
+        t = str(val).strip()
+        if not t:
+            return None
+        try:
+            num = float(t)
+        except Exception:
+            return None
+        # Plausibility guard: tons should be in a sane range for HVAC cooling capacity.
+        # Avoid contaminating mining with mislabeled BTU/HR values, etc.
+        if num <= 0 or num > 1000:
+            return None
+        return num
 
     @dataclass(frozen=True)
     class CapacityCandidate:
@@ -634,6 +653,8 @@ def cmd_phase3_mine(args) -> int:
                 if not model_raw:
                     continue
                 tons = parse_tons(row.get(col_cap_val), row.get(col_cap_unit))
+                if tons is None and col_known_tons:
+                    tons = parse_known_tons(row.get(col_known_tons))
                 if tons is None:
                     continue
                 et = normalize_text((row.get(col_equipment) or "").strip()) if col_equipment else ""

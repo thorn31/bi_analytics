@@ -96,6 +96,85 @@ MANUAL_FIXES = [
         "reason": "Original pattern required exactly 4 leading digits, missing modern 5-9 digit prefixes. Also lacked length constraint causing overlap with 2002-2009 era. Fix adds (?=.{10,}$) lookahead to restrict to 10+ character serials only.",
         "issue_url": "https://github.com/your-org/project/issues/123"
     }
+    ,
+    {
+        "name": "York Style 2 - SDI-validated year-letter mapping + parenthesis-safe extraction",
+        "match": {
+            "brand": "YORK",
+            "style_name": "Manual: Style 2 (Plant + MonthLetter + YearLetter + Letter + seq)",
+            "serial_regex_any": [
+                r"^(?:\([A-Z]\))?[A-Z][A-HK-N][A-HJ-NP-W][A-Z]\d{6,}$",
+                r"^(?:\([A-Z]\))?[A-Z][A-HK-N][A-NP-W][A-Z]\d{6,}$",
+            ],
+        },
+        "fix": {
+            # Restrict to only the year letters we have validated from SDI truth so far.
+            "serial_regex": r"^(?:\([A-Z]\))?[A-Z][A-HK-N][BCDEH][A-Z]\d{6,}$",
+            "priority": "-2000",
+            "example_serials": ["NCHM034439", "EFDM218213", "NFBS015990", "(S)EBHM062202"],
+            "date_fields": {
+                "month": {
+                    "pattern": {"regex": r"^(?:\([A-Z]\))?[A-Z]([A-HK-N])", "group": 1},
+                    "mapping": {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "K": 9, "L": 10, "M": 11, "N": 12},
+                },
+                "year": {
+                    "pattern": {"regex": r"^(?:\([A-Z]\))?[A-Z][A-HK-N]([BCDEH])", "group": 1},
+                    "mapping": {"B": 1994, "C": 1994, "H": 2002, "D": 2003, "E": 2003},
+                },
+            },
+            "decade_ambiguity": {"is_ambiguous": False, "notes": "Year letter mapped to 4-digit year (SDI-validated subset)."},
+            "evidence_excerpt": "From SDI export (2026-01-25): York Style 2 serials match ^(?:\\([A-Z]\\))?[A-Z][A-HK-N][BCDEH][A-Z]\\d{6,}$. Validated year-letter mapping on observed samples: B/C->1994, H->2002, D/E->2003. Pattern-based extraction keeps positions stable even when a leading parenthetical letter like (S) is present.",
+            # Force a lexicographically newer timestamp so duplicate-removal keeps this fixed row.
+            "retrieved_on": "2026-01-30T23:59:59Z",
+        },
+        "reason": "Earlier manual York Style 2 mapping (A-H then J-N) did not match SDI truth for York assets; also absolute positions break when a leading parenthetical letter exists. This fix uses pattern capture groups and a conservative mapping limited to SDI-validated letters.",
+    },
+    {
+        "name": "AERCO G-YY-#### - Keep 2000+ bounds",
+        "match": {
+            "brand": "AERCO",
+            "style_name": "Manual: G-YY-#### (2000+)",
+            "serial_regex_any": [r"^G-?\d{2}-?\d{4}$"],
+        },
+        "fix": {
+            "style_name": "Manual: G-YY-#### (2000+)",
+            "serial_regex": r"^G-?\d{2}-?\d{4}$",
+            "example_serials": ["G-10-0919", "G-10-0924", "G-12-0785"],
+            "date_fields": {
+                "year": {
+                    "pattern": {"regex": r"^G-?(\d{2})", "group": 1},
+                    "transform": {"type": "year_add_base", "base": 2000, "min_year": 2000, "max_year": 2035},
+                }
+            },
+            "decade_ambiguity": {"is_ambiguous": False},
+            "evidence_excerpt": "User-provided AERCO: serials like G-10-0919 / G-12-0785 decode year from the two digits after 'G-' (10=>2010, 12=>2012).",
+            "retrieved_on": "2026-01-30T23:59:59Z",
+        },
+        "reason": "Keeps the AERCO G-YY-#### rule stable across promotions; earlier-year discrepancies vs SDI truth need separate investigation before constraining the year range.",
+    },
+    {
+        "name": "AERCO G-YY-#### - Remove duplicate 2010+ variant",
+        "match": {
+            "brand": "AERCO",
+            "style_name": "Manual: G-YY-#### (2010+ only)",
+            "serial_regex_any": [r"^G-?\d{2}-?\d{4}$"],
+        },
+        "fix": {
+            "style_name": "Manual: G-YY-#### (2000+)",
+            "serial_regex": r"^G-?\d{2}-?\d{4}$",
+            "example_serials": ["G-10-0919", "G-10-0924", "G-12-0785"],
+            "date_fields": {
+                "year": {
+                    "pattern": {"regex": r"^G-?(\d{2})", "group": 1},
+                    "transform": {"type": "year_add_base", "base": 2000, "min_year": 2000, "max_year": 2035},
+                }
+            },
+            "decade_ambiguity": {"is_ambiguous": False},
+            "evidence_excerpt": "User-provided AERCO: serials like G-10-0919 / G-12-0785 decode year from the two digits after 'G-' (10=>2010, 12=>2012).",
+            "retrieved_on": "2026-01-30T23:59:59Z",
+        },
+        "reason": "Collapses the short-lived 2010+ constrained variant back into the canonical 2000+ rule to avoid duplicate rows in SerialDecodeRule.csv.",
+    },
 ]
 
 
@@ -145,7 +224,7 @@ def remove_duplicates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     Remove duplicate rules, keeping the most recent version.
 
     Duplicates are identified by (brand, style_name) - we keep the one with
-    the most recent retrieved_on date or the first one if dates are equal.
+    the most recent retrieved_on date or the last one if dates are equal/missing.
     """
     from collections import defaultdict
 
@@ -160,13 +239,9 @@ def remove_duplicates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if len(group) == 1:
             keep_indices.add(group[0][0])
         else:
-            # Multiple rules with same (brand, style_name) - keep most recent
-            # Sort by retrieved_on descending, then by original index
-            sorted_group = sorted(
-                group,
-                key=lambda x: (x[1].get("retrieved_on", ""), -x[0]),
-                reverse=True
-            )
+            # Multiple rules with same (brand, style_name) - keep most recent.
+            # If retrieved_on is equal/blank, prefer later rows (candidates appended later should win).
+            sorted_group = sorted(group, key=lambda x: (x[1].get("retrieved_on", ""), x[0]), reverse=True)
             keep_indices.add(sorted_group[0][0])
 
     return [rows[i] for i in sorted(keep_indices)]

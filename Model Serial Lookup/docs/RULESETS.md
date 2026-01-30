@@ -36,3 +36,9 @@ Semantics:
 ## Validation expectations
 - Serial decode rows must include example values that match the regex.
 - Candidate promotions are hard-gated: malformed candidate rows block promotion.
+
+## Cleanup at publish time
+When a ruleset is published (either via `msl validate` from `data/rules_staged/...` or via `phase3-promote`),
+we apply conservative cleanup so `rules_normalized/*.csv` stays readable:
+- Guidance rows that are clearly superseded by deterministic decode rules are dropped.
+- This does not change decoder behavior (decoder never uses guidance rows for decoding).

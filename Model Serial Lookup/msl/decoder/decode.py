@@ -233,6 +233,18 @@ def decode_serial(
         if week is None:
             week = _apply_mapping(week_raw_t, week_spec.get("mapping"))
 
+        # Reject obviously invalid dates early so we can keep scanning for a better rule match.
+        try:
+            if month is not None and not (1 <= int(month) <= 12):
+                continue
+        except Exception:
+            continue
+        try:
+            if week is not None and not (1 <= int(week) <= 53):
+                continue
+        except Exception:
+            continue
+
         # Year base transforms (e.g., Trane style-specific years) are applied after numeric parse.
         if year is None:
             # Do not accept a match unless we can decode a year.

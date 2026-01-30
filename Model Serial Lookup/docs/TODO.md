@@ -7,7 +7,7 @@ Update rules:
 - When a checklist item is completed, mark it done and add a short note (run-id, ruleset folder, output path).
 - Keep `docs/STATUS.md` aligned with the current “last known good” ruleset.
 
-Last updated: 2026-01-29
+Last updated: 2026-01-30
 
 ---
 
@@ -27,7 +27,7 @@ Last updated: 2026-01-29
 - [ ] Validation: `msl validate` produces **0 validation exceptions** for the chosen release ruleset.
 - [ ] Artifacts: `SerialDecodeRule.csv` + `AttributeDecodeRule.csv` present, plus `data/raw_html/<run>/` for reproducibility.
 - [ ] Charts: OCR/overrides pipeline reduces `chart_required` where images are locally available.
-- [x] Documentation: `docs/STATUS.md` points to the correct latest ruleset and how to reproduce it. (2026-01-29-promoted4)
+- [x] Documentation: `docs/STATUS.md` points to the correct latest ruleset and how to reproduce it. (2026-01-30-promoted20-benchmark)
 
 ### Remaining work
 - [ ] Expand discovery seeds to cover non-HVAC brands from real asset exports (e.g., pumps/fans/towers) if Building-Center has relevant pages.
@@ -65,7 +65,7 @@ Last updated: 2026-01-29
   - [x] Add attribute conflict auditing (row-level counters + long-form conflict export). (code: `msl/decoder/attributes.py`, `msl/pipeline/decode_run.py`, 2026-01-29)
   - [x] Document “where to add new knowledge” in `docs/WORKFLOW.md` and update `docs/RULESETS.md`. (2026-01-29)
   - [x] Add/extend unit tests for typed gating and conflict reporting. (tests: `tests/test_decoder_serial.py`, `tests/test_decoder_attributes.py`, 2026-01-29)
-  - [x] Run a baseline + promote a new ruleset folder once validated (runs: `data/reports/2026-01-29__workflow.improve__aaon-mau-trane-ccu-capacity__20260129T212100Z/`, `data/reports/2026-01-29__workflow.improve__trane-ccu-manual-narrowed__20260129T213453Z/`, ruleset: `data/rules_normalized/2026-01-29-promoted3/`).
+  - [x] Run a baseline + promote a new ruleset folder once validated (runs: `data/reports/2026-01-29__workflow.improve__aaon-mau-trane-ccu-capacity__20260129T212100Z/`, `data/reports/2026-01-29__workflow.improve__trane-ccu-manual-narrowed__20260129T213453Z/`, ruleset: `data/rules_normalized/2026-01-30-promoted1/`).
 
 ---
 
