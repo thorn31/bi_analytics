@@ -640,7 +640,10 @@ def cmd_phase3_mine(args) -> int:
         return [best] if best else []
 
     capacity_groups: dict[tuple[str, str], list[tuple[str, str, float]]] = defaultdict(list)
-    if col_model and col_cap_val and col_cap_unit:
+    # Support both:
+    # - value+unit columns (Cooling Capacity Input/Unit), and
+    # - pre-normalized tons column (KnownCapacityTons / CapacityTons).
+    if col_model and ((col_cap_val and col_cap_unit) or col_known_tons):
         with input_path.open("r", newline="", encoding="utf-8-sig", errors="replace") as f3:
             reader = csv.DictReader(f3)
             row_i = 0
@@ -652,7 +655,9 @@ def cmd_phase3_mine(args) -> int:
                 model_raw = (row.get(col_model) or "").strip()
                 if not model_raw:
                     continue
-                tons = parse_tons(row.get(col_cap_val), row.get(col_cap_unit))
+                tons = None
+                if col_cap_val and col_cap_unit:
+                    tons = parse_tons(row.get(col_cap_val), row.get(col_cap_unit))
                 if tons is None and col_known_tons:
                     tons = parse_known_tons(row.get(col_known_tons))
                 if tons is None:

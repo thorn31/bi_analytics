@@ -1,0 +1,8 @@
+hvacexport_attribute,action,target_name,sdi_column,needs_mapping,needs_format_conversion,unit_ambiguous,reason
+HVACExport_CoolingCode,RENAME,NominalCapacityTons,KnownCapacityTons,True,False,True,Rename after mapping code→value (use capacity_from_codes script)
+HVACExport_CoolingHundredsCode,SKIP,HVACExport_CoolingHundredsCode,,False,False,False,Unknown attribute (needs manual research)
+HVACExport_CoolingTonCode,RENAME,NominalCapacityTons,KnownCapacityTons,True,False,True,Rename after mapping code→value (use capacity_from_codes script)
+HVACExport_TonsCFMCode,SKIP,HVACExport_TonsCFMCode,,False,False,False,Unknown attribute (needs manual research)
+NominalCapacityTons,MATCH,NominalCapacityTons,KnownCapacityTons,False,False,False,From capacity_from_codes - direct match with SDI column
+Refrigerant,MATCH,Refrigerant,Refrigerant,False,False,False,Direct match with SDI column
+VoltageVoltPhaseHz,RENAME,VoltageVolt-Phase,Voltage (Volt-Phase),False,True,False,Format conversion required (numeric → SDI text format)

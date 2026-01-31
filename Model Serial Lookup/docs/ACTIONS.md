@@ -79,6 +79,11 @@ Outputs (from baseline engine):
 ## Action: `mine.rules --input <labeled.csv>`
 Purpose: mine deterministic candidate rules from labeled data.
 
+Defaults (tunable via flags):
+- `--min-model-support` defaults to `20`
+- `--min-model-train-accuracy` defaults to `0.75`
+- `--min-model-holdout-accuracy` defaults to `0.75`
+
 Command:
 ```bash
 python3 scripts/actions.py mine.rules --input <labeled.csv> --tag mine
@@ -154,3 +159,43 @@ Consolidated output:
   - `data/reports/<run-id>/NEXT_TARGETS.md` (from truth evaluation)
   - `data/reports/<run-id>/NEXT_TARGETS_AFTER.md` (after promotion, if promoted)
   - `data/reports/<run-id>/RULESET_DIFF.md` (after promotion, if promoted)
+
+## Action: `specs.extract_text`
+Purpose: stage vendor spec sheets (PDF) into a versioned text snapshot folder for deterministic mining.
+
+Command:
+```bash
+python3 scripts/actions.py specs.extract_text --tag specs --snapshot-id <snapshot-id>
+```
+
+Inputs:
+- PDFs under `data/external_sources/specs/`
+
+Outputs:
+- `data/external_sources/specs_snapshots/<snapshot-id>/manifest.json`
+- `data/external_sources/specs_snapshots/<snapshot-id>/text/*.txt`
+
+## Action: `specs.mine_york_ahu --snapshot-id <snapshot-id>`
+Purpose: pilot miner for YORK/JCI XT-series air handlers (extracts model-coded attributes).
+
+Command:
+```bash
+python3 scripts/actions.py specs.mine_york_ahu --snapshot-id <snapshot-id> --tag york-ahu
+```
+
+Outputs:
+- Candidates: `data/rules_discovered/spec_sheets/<snapshot-id>/candidates/AttributeDecodeRule.candidates.jsonl`
+
+Notes:
+- This produces both SDI-auditable fields (e.g., `SupplyFanHP`) and spec-backed extras (e.g., `ReturnFanHP`).
+
+## Action: `specs.mine_snapshot --snapshot-id <snapshot-id>`
+Purpose: mine deterministic model-coded attributes from a spec sheet text snapshot using all supported miners.
+
+Command:
+```bash
+python3 scripts/actions.py specs.mine_snapshot --snapshot-id <snapshot-id> --tag specs
+```
+
+Outputs:
+- Candidates: `data/rules_discovered/spec_sheets/<snapshot-id>/candidates/AttributeDecodeRule.candidates.jsonl`

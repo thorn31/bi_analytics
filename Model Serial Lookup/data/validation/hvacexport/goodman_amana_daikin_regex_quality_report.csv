@@ -1,0 +1,1684 @@
+brand,attribute_name,model_regex,sdi_models_count,matches_count,match_rate_pct,status
+AAON,HVACExport_CoolingCode,"^(?=.{7,}$)(?:WH|WV)",0,0,0.0,NO_DATA
+AAON,HVACExport_CoolingCode,"^(?=.{8,}$)(?:CB)",0,0,0.0,NO_DATA
+AAON,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+AAON,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:CF)",0,0,0.0,NO_DATA
+AAON,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:RQ|RZ)",0,0,0.0,NO_DATA
+AAON,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:CC)",0,0,0.0,NO_DATA
+AAON,HVACExport_CoolingTonCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+AAON,HVACExport_CoolingTonCode,^[A-Z0-9-]{19}$,0,0,0.0,NO_DATA
+ADDISON,HVACExport_CoolingCode,"^(?=.{7,}$)(?:TRS)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingCode,"^(?=.{3,}$)(?:A|C|D|G|J|L|N|R|T|V|Y)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingCode,"^(?=.{4,}$)(?:C)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingCode,"^(?=.{4,}$)(?:P)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:S)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:A|D|G|H|J|L|N|P|R|T|Y)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:B|F|R)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingCode,^[A-Z0-9-]{7}$,0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingMaxCode,"^(?=.{7,}$)(?:L)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingMinCode,"^(?=.{4,}$)(?:L)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingTonCode,"^(?=.{3,}$)(?:LA|LH)",0,0,0.0,NO_DATA
+ADP,HVACExport_CoolingTonCode,"^(?=.{4,}$)(?:LA|LH)",0,0,0.0,NO_DATA
+ADP,HVACExport_TonsCFMCode,"^(?=.{5,}$)(?:AEF)",0,0,0.0,NO_DATA
+ADP,Refrigerant,^(?=.{7}$)(?:LA|LH),0,0,0.0,NO_DATA
+ADP,Refrigerant,^(?=.{8}$)(?:LA|LH),0,0,0.0,NO_DATA
+AIRE-FLO,HVACExport_CFMTonsCode,"^(?=.{12,}$)(?:C)",0,0,0.0,NO_DATA
+AIRE-FLO,HVACExport_CFMTonsCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AIRE-FLO,HVACExport_CoolingCode,"^(?=.{11,}$)(?:AF)",0,0,0.0,NO_DATA
+AIRE-FLO,HVACExport_CoolingCode,"^(?=.{9,}$)(?:AF)",0,0,0.0,NO_DATA
+AIRE-FLO,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+AIRE-FLO,VoltageVoltPhaseHz,^(?=.{10}$)(?:AF),0,0,0.0,NO_DATA
+AIRE-FLO,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+AIREASE,HVACExport_CoolingCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+AIRTEMP,HVACExport_CoolingCode,"^(?=.{10,}$)(?:V)",0,0,0.0,NO_DATA
+AIRTEMP,HVACExport_CoolingCode,"^(?=.{13,}$)(?:V)",0,0,0.0,NO_DATA
+AIRTEMP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:V)",0,0,0.0,NO_DATA
+AIRTEMP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:VR)",0,0,0.0,NO_DATA
+AIRTEMP,Refrigerant,^(?=.{11}$)(?:V),0,0,0.0,NO_DATA
+AIRTEMP,Refrigerant,^(?=.{14}$)(?:V),0,0,0.0,NO_DATA
+AIRTEMP,VoltageVoltPhaseHz,^(?=.{10}$)(?:V),0,0,0.0,NO_DATA
+AIRTEMP,VoltageVoltPhaseHz,^(?=.{11}$)(?:V),0,0,0.0,NO_DATA
+AIRTEMP,VoltageVoltPhaseHz,^(?=.{14}$)(?:V),0,0,0.0,NO_DATA
+AIRTEMP,VoltageVoltPhaseHz,^(?=.{14}$)(?:VR),0,0,0.0,NO_DATA
+ALLIED,HVACExport_CFMTonsCode,"^(?=.{14,}$)(?:LG)",0,0,0.0,NO_DATA
+ALLIED,HVACExport_CoolingCode,"^(?=.{11,}$)(?:ACB)",0,0,0.0,NO_DATA
+ALLIED,HVACExport_CoolingCode,"^(?=.{5,}$)(?:EL)",0,0,0.0,NO_DATA
+ALLIED,HVACExport_CoolingCode,"^(?=.{6,}$)(?:Q)",0,0,0.0,NO_DATA
+ALLIED,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+ALLIED,Refrigerant,^(?=.{12}$)(?:EL),0,0,0.0,NO_DATA
+ALLIED,Refrigerant,^(?=.{12}$)(?:Q),0,0,0.0,NO_DATA
+ALLIED,Refrigerant,^(?=.{17}$)(?:ACB),0,0,0.0,NO_DATA
+ALLIED,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+ALLIED,VoltageVoltPhaseHz,^(?=.{12}$)(?:EL),0,0,0.0,NO_DATA
+ALLIED,VoltageVoltPhaseHz,^(?=.{12}$)(?:Q),0,0,0.0,NO_DATA
+ALLIED,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+ALLSTYLE,HVACExport_CoolingCode,"^(?=.{4,}$)(?:B)",0,0,0.0,NO_DATA
+ALLSTYLE,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+ALLSTYLE,Refrigerant,^(?=.{11}$)(?:B),0,0,0.0,NO_DATA
+ALLSTYLE,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD,HVACExport_CoolingCode,"^(?=.{6,}$)(?:6|7)",0,0,0.0,NO_DATA
+AMERICAN STANDARD,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD,HVACExport_CoolingTonCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD,VoltageVoltPhaseHz,^(?=.{12}$)(?:6|7),0,0,0.0,NO_DATA
+AMERICAN STANDARD,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:AE|AV|AW|TE|TV|TW)",0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CTA)",0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:TC|TE|YC)",0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:T|Y)",0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingMaxCode,"^(?=.{9,}$)(?:A)",0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_CoolingMinCode,"^(?=.{7,}$)(?:A)",0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_TonsCFMCode,"^(?=.{10,}$)(?:L|S)",0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,HVACExport_TonsCFMCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,Refrigerant,^(?=.{15}$)(?:A),0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,Refrigerant,^(?=.{29}$)(?:T|Y),0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,VoltageVoltPhaseHz,^(?=.{11}$)(?:AE|AV|AW|TE|TV|TW),0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,VoltageVoltPhaseHz,^(?=.{29}$)(?:T|Y),0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERICAN STANDARD-TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERISTAR,HVACExport_CoolingCode,"^(?=.{12,}$)(?:C)",0,0,0.0,NO_DATA
+AMERISTAR,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+AMERISTAR,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERISTAR,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+AMERISTAR,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AMERISTAR,VoltageVoltPhaseHz,^(?=.{14}$)(?:C),0,0,0.0,NO_DATA
+AMERISTAR,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+AMERISTAR,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,"^(?=.{5,}$)(?:EF)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CFMTonsCode,^[A-Z0-9-]{19}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,"^(?=.{6,}$)(?:E)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,"^(?=.{7,}$)(?:E)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,"^(?=.{7,}$)(?:R)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,"^(?=.{8,}$)(?:P)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,"^(?=.{8,}$)(?:SC)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,"^(?=.{9,}$)(?:PRP)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,"^(?=.{9,}$)(?:RP)",0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARMSTRONG,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARMSTRONG,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+ARMSTRONG,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+ARMSTRONG,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+ARMSTRONG,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+ARMSTRONG,Refrigerant,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+ARMSTRONG,Refrigerant,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{11}$)(?:R),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{12}$)(?:PRP),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{13}$)(?:PRP),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{13}$)(?:RP),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{15}$)(?:P),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{15}$)(?:PRP),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{16}$)(?:PRP),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{18}$)(?:RP),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^(?=.{8}$)(?:EF),0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARMSTRONG,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+ARRCO,HVACExport_CoolingCode,"^(?=.{4,}$)(?:A)",0,0,0.0,NO_DATA
+ARRCO,Refrigerant,^(?=.{10}$)(?:A),0,0,0.0,NO_DATA
+ASPEN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:A)",0,0,0.0,NO_DATA
+ASPEN,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+ASPEN,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+AUX,HVACExport_CoolingCode,"^(?=.{7,}$)(?:A)",0,0,0.0,NO_DATA
+BARD,HVACExport_CoolingCode,"^(?=.{3,}$)(?:W)",0,0,0.0,NO_DATA
+BARD,HVACExport_CoolingCode,"^(?=.{4,}$)(?:WA|WH)",0,0,0.0,NO_DATA
+BOHN,HVACExport_CoolingCode,"^(?=.{11,}$)(?:B)",0,0,0.0,NO_DATA
+BOHN,HVACExport_CoolingHundredsCode,"^(?=.{7,}$)(?:B|H)",0,0,0.0,NO_DATA
+BOSCH,HVACExport_CoolingCode,"^(?=.{13,}$)(?:BMS)",0,0,0.0,NO_DATA
+BOSCH,HVACExport_CoolingCode,"^(?=.{5,}$)(?:AU|BC|BP|CP|EM|EP|ES|EV|GS|GT|LV|MB|MC|SL|SM|SV|TA|WT|WW)",0,0,0.0,NO_DATA
+BOSCH,HVACExport_CoolingCode,"^(?=.{5,}$)(?:B)",0,0,0.0,NO_DATA
+BOSCH,HVACExport_CoolingCode,"^(?=.{6,}$)(?:B)",0,0,0.0,NO_DATA
+BOSCH,HVACExport_CoolingCode,"^(?=.{7,}$)(?:B)",0,0,0.0,NO_DATA
+BOSCH,HVACExport_CoolingCode,"^(?=.{7,}$)(?:TRS)",0,0,0.0,NO_DATA
+BOSCH,HVACExport_CoolingTonCode,"^(?=.{11,}$)(?:B)",0,0,0.0,NO_DATA
+BOSCH,Refrigerant,^(?=.{11}$)(?:B),0,0,0.0,NO_DATA
+BOSCH,Refrigerant,^(?=.{13}$)(?:B),0,0,0.0,NO_DATA
+BOSCH,Refrigerant,^(?=.{14}$)(?:B),0,0,0.0,NO_DATA
+BOSCH,Refrigerant,^(?=.{16}$)(?:B),0,0,0.0,NO_DATA
+BOSCH,Refrigerant,^(?=.{17}$)(?:B),0,0,0.0,NO_DATA
+BOSCH/FHP,HVACExport_CoolingCode,"^(?=.{5,}$)(?:EC)",0,0,0.0,NO_DATA
+BRISTOL,HVACExport_CoolingCode,"^(?=.{6,}$)(?:H|L|M|R|S|T)",0,0,0.0,NO_DATA
+CALIFORNIA HEAT PUMP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CHP)",0,0,0.0,NO_DATA
+CARRIER-TOSHIBA,HVACExport_CoolingCode,"^(?=.{10,}$)(?:MM)",0,0,0.0,NO_DATA
+CARRIER-TOSHIBA,HVACExport_CoolingCode,"^(?=.{10,}$)(?:MMY)",0,0,0.0,NO_DATA
+CARRIER-TOSHIBA,HVACExport_CoolingCode,"^(?=.{9,}$)(?:MM)",0,0,0.0,NO_DATA
+CARRIER-TOSHIBA,Refrigerant,^(?=.{17}$)(?:MM),0,0,0.0,NO_DATA
+CARRIER-TOSHIBA,Refrigerant,^(?=.{18}$)(?:MM),0,0,0.0,NO_DATA
+CARRIER-TOSHIBA,Refrigerant,^(?=.{18}$)(?:MMY),0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{11,}$)(?:58CTA|58CTW|58CTX|58CVA|58CVX|58DHB|58DHC|58DLA|58DLX|58DRC|58MEC|58PAV|58PHA|58PHB|58PHX|58STA|58STX)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{13,}$)(?:58CLA|58CLR|58VLR|58VMR)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{13,}$)(?:58CMA|58CMR|58CTA|58CTW|58CTX|58CVA|58CVX|58DLA|58DLX|58GFA|58MCA|58MCB|58MVP|58MXA|58MXB|58PAV|58PHA|58PHX|58RAV|58STA|58STX|58SXC|58TUA|58UHV|58UVB|58UXT|58UXV|58VMR|58WAV)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{14,}$)(?:58DHB|58HDV|58HDX|58MEB|58MEC|58MTB|58MVB|58MVC|58MXA|58PAV)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{16,}$)(?:58|59)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{4,}$)(?:E|M)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{4,}$)(?:M)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,"^(?=.{9,}$)(?:G|T|V)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CFMTonsCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{5,}$)(?:A|Y)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{5,}$)(?:EB|EH)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{5,}$)(?:FC)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{5,}$)(?:GB|GP|GS|GT|GW)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{5,}$)(?:HB|HP|HS|HW)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A|G|P)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:F)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:FB)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:G)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:P)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:P)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:P|R)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:P|R)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{6,}$)(?:WL)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:28RH)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:38|50)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:40|45)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:42WKN)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:48GP|48GS|48GX|48SD|48TJ)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:48SS|48SX)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:50AH)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:50EZ|50VR|50VT)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:50GL|50HX|50JS|50JZ|50ZH)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:50GS|50GX|50SX|50SZ|50ZP)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:50PEC)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:90)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:E)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:F)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:HC)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:NH)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{7,}$)(?:R)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:30GX)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:37)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:38BRC|38BRG|38CKB|38CKC|38CKN|38CMB|38EYA|38EYG|38EZA|38HDL|38TKB|38TRA|38TRO|38TUA|38TZA|38YDA|38YKB)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:38ESG|38ETG|38EZG|38TXA|38YCC|38YRA|38YXA|38YZA)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:38|40)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:38|40)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:38|40|53)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:45)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:48ES|48EZ|48VG|48VL|48VR|48VT|48XL|50ES|50EZ|50VL|50XL|50XT)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:48GP)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:48GP|48GS|48GX|48SD|48TJ)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:48XL)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50PC)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50PSD|50PSH|50PSV)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50QQ)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50RD|50RH|50RV)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50YD|50YE)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50YER)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:50ZHB|50ZPB|50ZPC)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:52)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:DFC|DFF|DFS|DLC|DLF)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:F)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{8,}$)(?:RAV)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:330A|330J|331A|331J|333B|333J)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:37)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:38|40)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:394GA|398AA)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:40|45)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:45)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:524A)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:C)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:CH14)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:DFC|DFF|DFS|DLC|DLF)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:F)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:F)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,"^(?=.{9,}$)(?:G)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:39M)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:30GT)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:30GT)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:30HK|30HL|30HW)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:30HXA|30HXC)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:30MP)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:30RB|30XA)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:30XV)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:40RU)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:48)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:48)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:48|50)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:50)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_CoolingTonCode,"^(?=.{9,}$)(?:50AH)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_TonsCFMCode,"^(?=.{11,}$)(?:58)",0,0,0.0,NO_DATA
+CARRIER/ICP,HVACExport_TonsCFMCode,"^(?=.{8,}$)(?:58)",0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{10}$)(?:50BRN|50BYN|50BZN|50ZHC),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{10}$)(?:P|R),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{11}$)(?:38AKS|38AQS|38BYC),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{11}$)(?:48),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{12}$)(?:38AK|38AR),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{13}$)(?:09DE|09DK),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{13}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{14}$)(?:38ARQ),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{14}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{14}$)(?:50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{14}$)(?:50BV),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{15}$)(?:09),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{15}$)(?:38AH),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{15}$)(?:38AQ),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{15}$)(?:38AR),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{15}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:09DP|38AP),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:30RA),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:38AH),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:38AKO|38AKS|38AQS|38ARQ),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:38AK|38AR),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:40RM),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:48PG|48PM),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{16}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{17}$)(?:50XC),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{18}$)(?:38AU),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{18}$)(?:40RU),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{18}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{18}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^(?=.{18}$)(?:50),0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+CARRIER/ICP,NominalCapacityTons,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{10}$)(?:E),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{10}$)(?:F),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{10}$)(?:HC),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{10}$)(?:R),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{10}$)(?:WL),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{11}$)(?:DFC|DFF|DFS|DLC|DLF),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{11}$)(?:E),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{11}$)(?:F),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{11}$)(?:G),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{11}$)(?:R),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{12}$)(?:C),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{12}$)(?:F),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{12}$)(?:F),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{12}$)(?:G),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{13}$)(?:NH),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{14}$)(?:CH14),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^(?=.{18}$)(?:40RU),0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:38|50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:40AQ),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:40|45),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:48),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:50BRN|50BYN|50BZN|50ZHC),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:50GL|50HX|50JS|50JZ|50ZH),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:50QQ),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:A|G|P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:C),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:HC),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{10}$)(?:P|R),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:38AKS|38AQS|38BYC),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:38BRC|38BRG|38CKB|38CKC|38CKN|38CMB|38EYA|38EYG|38EZA|38HDL|38TKB|38TRA|38TRO|38TUA|38TZA|38YDA|38YKB),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:38ESG|38ETG|38EZG|38TXA|38YCC|38YRA|38YXA|38YZA),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:38|40),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:48),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:50AH),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:50EZ|50VR|50VT),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:90),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:A|G|P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:DFC|DFF|DFS|DLC|DLF),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:G),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{11}$)(?:P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:38AK|38AR),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:38|40),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:40|45),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:50GS|50GX|50SX|50SZ|50ZP),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:58),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:DFC|DFF|DFS|DLC|DLF),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:F),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{12}$)(?:G),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:09DE|09DK),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:30GT),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:48SS|48SX),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:48XL),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:52),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:F),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:NH),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{13}$)(?:P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:37),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:38ARQ),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:48GP),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:50BV),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:50YD|50YE),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:50YER),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:50YEW),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:524A),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:C),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:CH14),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{14}$)(?:P|R),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:09),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:38AH),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:38AQ),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:38AR),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:48ES|48EZ|48VG|48VL|48VR|48VT|48XL|50ES|50EZ|50VL|50XL|50XT),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:48GP|48GS|48GX|48SD|48TJ),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{15}$)(?:50ZHB|50ZPB|50ZPC),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:09DP|38AP),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:30GX),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:30HK|30HL|30HW),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:30HXA|30HXC),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:30MP),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:30RA),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:38AH),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:38AKO|38AKS|38AQS|38ARQ),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:38AK|38AR),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:40RM),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:48GP|48GS|48GX|48SD|48TJ),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:48PG|48PM),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:50AH),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:58|59),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{16}$)(?:F),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{17}$)(?:50XC),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{18}$)(?:38AU),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{18}$)(?:40RU),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{18}$)(?:48),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{18}$)(?:48|50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{18}$)(?:50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{7}$)(?:A|Y),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{8}$)(?:48),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{8}$)(?:50),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{8}$)(?:C),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{8}$)(?:P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{9}$)(?:38|40),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{9}$)(?:EHK),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{9}$)(?:FB),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{9}$)(?:G),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{9}$)(?:P),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^(?=.{9}$)(?:P|R),0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+CARRIER/ICP,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+CLIMATEMASTER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:EC|TC)",0,0,0.0,NO_DATA
+CLIMATEMASTER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:GC|GR|GS|TB|TC|TE|TS|TT|TZ)",0,0,0.0,NO_DATA
+CLIMATEMASTER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:T)",0,0,0.0,NO_DATA
+CLIMATEMASTER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:TRE)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C|M|V)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{5,}$)(?:DVC|DVH|SMA|SMH)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{5,}$)(?:H)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:EKTC|EKTH)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:H)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:A)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:CMA)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:R)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingMaxCode,"^(?=.{7,}$)(?:C|M|V)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingMinCode,"^(?=.{5,}$)(?:C|M|V)",0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_CoolingTonCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_TonsCFMCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+COMFORT AIRE,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+COMFORT AIRE,Refrigerant,^(?=.{10}$)(?:R),0,0,0.0,NO_DATA
+COMFORT AIRE,Refrigerant,^(?=.{11}$)(?:C|M|V),0,0,0.0,NO_DATA
+COMFORT AIRE,Refrigerant,^(?=.{8}$)(?:H),0,0,0.0,NO_DATA
+COMFORT AIRE,Refrigerant,^(?=.{9}$)(?:C|M|V),0,0,0.0,NO_DATA
+COMFORT AIRE,Refrigerant,^(?=.{9}$)(?:H),0,0,0.0,NO_DATA
+COMFORT AIRE,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+COMFORT STAR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:MAH|MHH)",0,0,0.0,NO_DATA
+COMFORT STAR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:MI)",0,0,0.0,NO_DATA
+COMFORT STAR,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CIM|CPG|CPP|CXH)",0,0,0.0,NO_DATA
+COMFORT STAR,Refrigerant,^(?=.{11}$)(?:MI),0,0,0.0,NO_DATA
+COMFORT STAR,Refrigerant,^(?=.{8}$)(?:MAH|MHH),0,0,0.0,NO_DATA
+COMFORT STAR,Refrigerant,^(?=.{9}$)(?:MI),0,0,0.0,NO_DATA
+COMMERCIAL AIRE PRODUCTS,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C|S)",0,0,0.0,NO_DATA
+COMPU-AIRE,HVACExport_CoolingTonCode,"^(?=.{5,}$)(?:CA)",0,0,0.0,NO_DATA
+COMPU-AIRE,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:CA)",0,0,0.0,NO_DATA
+CONCORD,HVACExport_CFMTonsCode,"^(?=.{12,}$)(?:C)",0,0,0.0,NO_DATA
+CONCORD,HVACExport_CoolingCode,"^(?=.{8,}$)(?:R)",0,0,0.0,NO_DATA
+CONCORD,VoltageVoltPhaseHz,^(?=.{15}$)(?:R),0,0,0.0,NO_DATA
+CONSOLIDATED INDUSTRIES,NominalCapacityTons,^(?=.{10}$)(?:M),0,0,0.0,NO_DATA
+COPELAND,HVACExport_CoolingCode,"^(?=.{4,}$)(?:C|V|X|Z)",0,0,0.0,NO_DATA
+COPELAND,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C|V|X|Z)",0,0,0.0,NO_DATA
+COPELAND,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C|V|X|Z)",0,0,0.0,NO_DATA
+COPELAND,Refrigerant,^(?=.{12}$)(?:C|V|X|Z),0,0,0.0,NO_DATA
+COPELAND,Refrigerant,^(?=.{13}$)(?:C|V|X|Z),0,0,0.0,NO_DATA
+COPELAND,Refrigerant,^(?=.{14}$)(?:C|V|X|Z),0,0,0.0,NO_DATA
+COPELAND,Refrigerant,^(?=.{15}$)(?:C|V|X|Z),0,0,0.0,NO_DATA
+DANFOSS,HVACExport_CoolingCode,"^(?=.{6,}$)(?:D|H)",0,0,0.0,NO_DATA
+DANFOSS,HVACExport_CoolingCode,"^(?=.{6,}$)(?:H)",0,0,0.0,NO_DATA
+DANFOSS,HVACExport_CoolingCode,"^(?=.{6,}$)(?:NT)",0,0,0.0,NO_DATA
+DESERT AIRE,NominalCapacityTons,^(?=.{15}$)(?:IH|PD|WC),0,0,0.0,NO_DATA
+DIAMOND AIR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:D)",0,0,0.0,NO_DATA
+DUCANE,HVACExport_CFMTonsCode,"^(?=.{15,}$)(?:R)",0,0,0.0,NO_DATA
+DUCANE,HVACExport_CFMTonsCode,"^(?=.{17,}$)(?:R)",0,0,0.0,NO_DATA
+DUCANE,HVACExport_CFMTonsCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,"^(?=.{8,}$)(?:PR)",0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,^[A-Z0-9-]{7}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+DUCANE,HVACExport_CoolingTonCode,"^(?=.{11,}$)(?:D)",0,0,0.0,NO_DATA
+DUCANE,HVACExport_TonsCFMCode,"^(?=.{9,}$)(?:CMPB|CMPU|CMPV|DPGB|FPBB|MGPA)",0,0,0.0,NO_DATA
+DUCANE,HVACExport_TonsCFMCode,"^(?=.{9,}$)(?:CMP|MPG)",0,0,0.0,NO_DATA
+DUCANE,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+DUCANE,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+DUCANE,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+DUCANE,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^(?=.{11}$)(?:PR),0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^(?=.{12}$)(?:PR),0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^(?=.{15}$)(?:PR),0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+DUCANE,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+DUNHAM-BUSH,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:AC)",0,0,0.0,NO_DATA
+DUNHAM-BUSH,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:AC|WC)",0,0,0.0,NO_DATA
+DUNHAM-BUSH,HVACExport_CoolingTonCode,"^(?=.{8,}$)(?:AVX)",0,0,0.0,NO_DATA
+DUNHAM-BUSH,HVACExport_CoolingTonCode,"^(?=.{9,}$)(?:AVX)",0,0,0.0,NO_DATA
+DUNHAM-BUSH,Refrigerant,^(?=.{11}$)(?:AC),0,0,0.0,NO_DATA
+DURASTAR,HVACExport_CoolingCode,"^(?=.{9,}$)(?:DR)",0,0,0.0,NO_DATA
+DURASTAR,HVACExport_TonsCFMCode,"^(?=.{13,}$)(?:DR)",0,0,0.0,NO_DATA
+DURASTAR,Refrigerant,^(?=.{14}$)(?:DR),0,0,0.0,NO_DATA
+DURASTAR,Refrigerant,^(?=.{15}$)(?:DR),0,0,0.0,NO_DATA
+DURASTAR,VoltageVoltPhaseHz,^(?=.{14}$)(?:DR),0,0,0.0,NO_DATA
+DURASTAR,VoltageVoltPhaseHz,^(?=.{15}$)(?:DR),0,0,0.0,NO_DATA
+ECR INTERNATIONAL,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C|H)",0,0,0.0,NO_DATA
+ECR INTERNATIONAL,HVACExport_CoolingCode,"^(?=.{5,}$)(?:M|Z)",0,0,0.0,NO_DATA
+ECR INTERNATIONAL,HVACExport_CoolingCode,"^(?=.{5,}$)(?:S|W)",0,0,0.0,NO_DATA
+ECR INTERNATIONAL,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CAS|MZ2|MZ3|MZ4|MZ5|SZ1|WAL)",0,0,0.0,NO_DATA
+ECR INTERNATIONAL,HVACExport_CoolingCode,"^(?=.{6,}$)(?:M|Z)",0,0,0.0,NO_DATA
+ECR INTERNATIONAL,HVACExport_CoolingCode,"^(?=.{7,}$)(?:D)",0,0,0.0,NO_DATA
+ENERTECH GLOBAL,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A|G|H|T)",0,0,0.0,NO_DATA
+EUBANK,HVACExport_CoolingCode,"^(?=.{3,}$)(?:V|W)",0,0,0.0,NO_DATA
+EUBANK,HVACExport_CoolingCode,"^(?=.{4,}$)(?:H|V)",0,0,0.0,NO_DATA
+EUBANK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:7|E|S)",0,0,0.0,NO_DATA
+EUBANK,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+EUBANK,Refrigerant,^(?=.{15}$)(?:H|V),0,0,0.0,NO_DATA
+EUBANK,Refrigerant,^(?=.{30}$)(?:7|E|S),0,0,0.0,NO_DATA
+EVAPCO,HVACExport_CoolingCode,"^(?=.{11,}$)(?:SST)",0,0,0.0,NO_DATA
+EVAPCO,HVACExport_CoolingCode,"^(?=.{12,}$)(?:SST)",0,0,0.0,NO_DATA
+FEDDERS,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+FEDDERS,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+FEDDERS,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+FEDDERS,Refrigerant,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+FIRST CO,HVACExport_CFMTonsCode,^[A-Z0-9-]{7}$,0,0,0.0,NO_DATA
+FIRST CO,HVACExport_CFMTonsCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+FIRST CO,HVACExport_CoolingCode,"^(?=.{5,}$)(?:E)",0,0,0.0,NO_DATA
+FIRST CO,HVACExport_CoolingCode,"^(?=.{7,}$)(?:WSVC)",0,0,0.0,NO_DATA
+FIRST CO,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+FIRST CO,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+FIRST CO,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+FRIEDRICH,HVACExport_CoolingCode,"^(?=.{4,}$)(?:E|K|S|X|Y)",0,0,0.0,NO_DATA
+FRIEDRICH,HVACExport_CoolingCode,"^(?=.{4,}$)(?:M)",0,0,0.0,NO_DATA
+FRIEDRICH,HVACExport_CoolingCode,"^(?=.{4,}$)(?:U|W)",0,0,0.0,NO_DATA
+FRIEDRICH,HVACExport_CoolingCode,"^(?=.{5,}$)(?:M)",0,0,0.0,NO_DATA
+FRIEDRICH,HVACExport_CoolingCode,"^(?=.{5,}$)(?:PD)",0,0,0.0,NO_DATA
+FRIEDRICH,HVACExport_CoolingCode,"^(?=.{5,}$)(?:VHA)",0,0,0.0,NO_DATA
+FRIGIDAIRE,HVACExport_CoolingCode,"^(?=.{13,}$)(?:E)",0,0,0.0,NO_DATA
+FRIGIDAIRE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:FF)",0,0,0.0,NO_DATA
+FRIGIDAIRE,Refrigerant,^(?=.{14}$)(?:E),0,0,0.0,NO_DATA
+FRIGIDAIRE,VoltageVoltPhaseHz,^(?=.{10}$)(?:FF),0,0,0.0,NO_DATA
+FRIGIDAIRE,VoltageVoltPhaseHz,^(?=.{14}$)(?:E),0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{4,}$)(?:A0U|ABU|AGU|AOU|ARU|ASU|AUU)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{4,}$)(?:FB|FH|FR)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{4,}$)(?:FH)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{4,}$)(?:FO)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{5,}$)(?:A0U|ABU|AGU|AOU|AQU|ARU|ASU|AUU)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{5,}$)(?:FC)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{5,}$)(?:W)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A0U|AAU|ABU|AGU|AOU|ARU|ASU|AUU)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+FUJITSU,HVACExport_TonsCFMCode,"^(?=.{7,}$)(?:FF)",0,0,0.0,NO_DATA
+FUJITSU,HVACExport_TonsCFMCode,"^(?=.{8,}$)(?:FF)",0,0,0.0,NO_DATA
+FUJITSU,Refrigerant,^(?=.{11}$)(?:W),0,0,0.0,NO_DATA
+FUJITSU,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+GENERAL ELECTRIC,HVACExport_CoolingCode,"^(?=.{5,}$)(?:T)",0,0,0.0,NO_DATA
+GENERAL ELECTRIC,HVACExport_CoolingCode,"^(?=.{5,}$)(?:W)",0,0,0.0,NO_DATA
+GENERAL ELECTRIC,HVACExport_CoolingCode,"^(?=.{6,}$)(?:B)",0,0,0.0,NO_DATA
+GENERAL ELECTRIC,HVACExport_CoolingCode,"^(?=.{7,}$)(?:AZ)",0,0,0.0,NO_DATA
+GENERAL ELECTRIC,VoltageVoltPhaseHz,^(?=.{8}$)(?:T),0,0,0.0,NO_DATA
+GOODMAN/AMANA/DAIKIN,HVACExport_CFMTonsCode,"^(?=.{6,}$)(?:MB)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CFMTonsCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CFMTonsCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CFMTonsCode,^[A-Z0-9-]{7}$,125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CFMTonsCode,^[A-Z0-9-]{8}$,125,2,1.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{4,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{4,}$)(?:R)",125,20,16.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:A)",125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:B)",125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:CKF|CKJ|CKL|CLJ|CLQ|CLT|CRT|HDC|HDP|TWC)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:DRY|PTC|PTH)",125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:F)",125,14,11.2,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:P)",125,2,1.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:R)",125,20,16.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{5,}$)(?:R|V)",125,21,16.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:2|3|4|5|R)",125,20,16.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A)",125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A|D)",125,19,15.2,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A|S|V|Z)",125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:B)",125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CD|CT|FD|FT|FX)",125,14,11.2,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CD|CT|FD|FT|FX|RM)",125,14,11.2,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CKLB|CPEE|CPKE|CPKJ|CPLE|CPLJ|CPLT|CPRT)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C|F|R)",125,44,35.2,WEAK
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:PGB)",125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:PGB|PGJ)",125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:REM|REY|RXY)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{7,}$)(?:A)",125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{7,}$)(?:A)",125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{7,}$)(?:REM|REY|RXY)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{7,}$)(?:W)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{8,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,"^(?=.{9,}$)(?:RCS)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,125,2,1.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{24}$,125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingMaxCode,"^(?=.{8,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingMaxCode,"^(?=.{9,}$)(?:A)",125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingMinCode,"^(?=.{6,}$)(?:C)",125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingMinCode,"^(?=.{7,}$)(?:A)",125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingTonCode,"^(?=.{5,}$)(?:RCS)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:R)",125,20,16.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:W)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:DPSA)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:MPS)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:MPS)",125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_CoolingTonCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{14}$,125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{7}$,125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{8}$,125,2,1.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{8}$,125,2,1.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,HVACExport_TonsCFMCode,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{10}$)(?:C),125,9,7.2,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{10}$)(?:C),125,9,7.2,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{10}$)(?:RCS),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{10}$)(?:REM|REY|RXY),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{11}$)(?:REM|REY|RXY),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{11}$)(?:RE|RQ|RT|RX|RY),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{12}$)(?:A),125,3,2.4,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{12}$)(?:C),125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{13}$)(?:A),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{13}$)(?:C),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^(?=.{14}$)(?:A|D),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{13}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{14}$,125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{15}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,Refrigerant,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{10}$)(?:A|S|V|Z),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{10}$)(?:CD|CT|FD|FT|FX|RM),125,5,4.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{10}$)(?:PGB),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{10}$)(?:R),125,9,7.2,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{10}$)(?:R),125,9,7.2,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{10}$)(?:REM|REY|RXY),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{11}$)(?:2|3|4|5|R),125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{11}$)(?:B),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{11}$)(?:CD|CT|FD|FT|FX),125,6,4.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{11}$)(?:FX|RS),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{11}$)(?:P),125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{11}$)(?:REM|REY|RXY),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{12}$)(?:A),125,3,2.4,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{12}$)(?:A),125,3,2.4,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{12}$)(?:PGB|PGJ),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{13}$)(?:A),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{14}$)(?:A|D),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{14}$)(?:MB),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{16}$)(?:C),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{7}$)(?:C),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{7}$)(?:CKF|CKJ|CKL|CLJ|CLQ|CLT|CRT|HDC|HDP|TWC),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{7}$)(?:CKF|CKJ|CKL|CLJ|CLQ|CLT|CRT|HDC|HDP|TWC),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{8}$)(?:C),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{8}$)(?:CKLB|CPEE|CPKE|CPKJ|CPLE|CPLJ|CPLT|CPRT),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{8}$)(?:HKS),125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{8}$)(?:R|V),125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^(?=.{9}$)(?:R),125,9,7.2,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,125,25,20.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,125,26,20.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,125,16,12.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,125,1,0.8,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,125,10,8.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,125,2,1.6,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{24}$,125,0,0.0,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GOODMAN/AMANA/DAIKIN,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,125,12,9.6,POOR
+GRANDAIRE,HVACExport_CoolingCode,"^(?=.{11,}$)(?:WF)",0,0,0.0,NO_DATA
+GRANDAIRE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:W)",0,0,0.0,NO_DATA
+GRANDAIRE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:WC)",0,0,0.0,NO_DATA
+GRANDAIRE,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+GRANDAIRE,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+GRANDAIRE,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+GRANDAIRE,Refrigerant,^(?=.{11}$)(?:WC),0,0,0.0,NO_DATA
+GRANDAIRE,Refrigerant,^(?=.{9}$)(?:W),0,0,0.0,NO_DATA
+GRANDAIRE,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+GRANDAIRE,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+GRANDAIRE,Refrigerant,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+GRANDAIRE,VoltageVoltPhaseHz,^(?=.{11}$)(?:WC),0,0,0.0,NO_DATA
+GRANDAIRE,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+GRANDAIRE,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{5,}$)(?:CAS|CON|DUC|ENV|FLR|FSU|FXE|FXU|LIV|MUL|OWC|SAP|VIR)",0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{5,}$)(?:CAS|FLR|NE0|NEO|RI0|RIO)",0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{5,}$)(?:G)",0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CONS|DUCT|LIV0|LIVO|LIVS|LIVV)",0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:ETAC)",0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:G)",0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:CROWN|MULTI|TERRA|VIRE0|VIREO)",0,0,0.0,NO_DATA
+GREE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:FLEXE|FLEXX)",0,0,0.0,NO_DATA
+GREE,Refrigerant,^(?=.{17}$)(?:CAS|CON|DUC|ENV|FLR|FSU|FXE|FXU|LIV|MUL|OWC|SAP|VIR),0,0,0.0,NO_DATA
+HAIER,HVACExport_CoolingCode,"^(?=.{4,}$)(?:H)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{5,}$)(?:A)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C|M|V)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{5,}$)(?:F)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{5,}$)(?:H)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{5,}$)(?:SW)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A|B)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:H)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:HB|HD|HE|HK|HL|HN|HP|HR|HT|HZ)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:HB|HZ)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:HE|HN|HW)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:T)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_CoolingCode,"^(?=.{6,}$)(?:W)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_TonsCFMCode,"^(?=.{8,}$)(?:M)",0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_TonsCFMCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+HEAT CONTROLLER,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{10}$)(?:H),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{10}$)(?:T),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{11}$)(?:H),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{12}$)(?:H),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{12}$)(?:W),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{8}$)(?:A),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{8}$)(?:F),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{9}$)(?:A),0,0,0.0,NO_DATA
+HEAT CONTROLLER,Refrigerant,^(?=.{9}$)(?:C|M|V),0,0,0.0,NO_DATA
+HITACHI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:RA)",0,0,0.0,NO_DATA
+ICP- ARCOAIRE-HEIL-TEMPSTAR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:E)",0,0,0.0,NO_DATA
+ICP- ARCOAIRE-HEIL-TEMPSTAR,HVACExport_CoolingCode,"^(?=.{6,}$)(?:E)",0,0,0.0,NO_DATA
+IEC- INTERNATIONAL ENVIRONMENTAL,HVACExport_CFMTonsCode,"^(?=.{5,}$)(?:HHY|HLY|HPY|HXY|VEY)",0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,"^(?=.{8,}$)(?:P)",0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_TonsCFMCode,"^(?=.{10,}$)(?:P)",0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_TonsCFMCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,HVACExport_TonsCFMCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,NominalCapacityTons,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+INGERSOLL RAND,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+INNOVAIR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:E|T|V|W)",0,0,0.0,NO_DATA
+INNOVAIR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:VOM)",0,0,0.0,NO_DATA
+ISLANDAIRE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:EZ)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{4,}$)(?:P)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{5,}$)(?:IE|OC)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{5,}$)(?:P)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{5,}$)(?:P)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:IE|OC)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:IE|OC)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:P)",0,0,0.0,NO_DATA
+J AND M FLUIDICS,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:IE|OC)",0,0,0.0,NO_DATA
+KEEPRITE,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+KEEPRITE,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+KRACK,HVACExport_CoolingHundredsCode,"^(?=.{7,}$)(?:GH|GL|KR|LH|MK|MS|MV|SM|SV)",0,0,0.0,NO_DATA
+KRACK,HVACExport_CoolingHundredsCode,"^(?=.{8,}$)(?:GH|GL|KR|LH|MK|MS|MV|SM|SV)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CFMTonsCode,"^(?=.{13,}$)(?:A)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{10,}$)(?:AF)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{10,}$)(?:EL|ML|SL)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{10,}$)(?:GCS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{11,}$)(?:EL|ML|SL)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{11,}$)(?:GCS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{11,}$)(?:L)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{13,}$)(?:EL|ML|SL)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{14,}$)(?:E|M|S)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{14,}$)(?:SL)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{18,}$)(?:EL|SL)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CH|CR)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:D)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:EL)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:K|L|S|T|Z)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:L)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:S|T)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{6,}$)(?:T)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{7,}$)(?:CHA|CHP|GCS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{7,}$)(?:CH|CR)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{7,}$)(?:D)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{8,}$)(?:CHA)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{8,}$)(?:CH|CR)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{8,}$)(?:C|S)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{8,}$)(?:GCS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{8,}$)(?:P)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{8,}$)(?:RCE|RHP)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{8,}$)(?:RGE)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{9,}$)(?:CHA|CHP|GCS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{9,}$)(?:CHA|CHP|GCS|GHP)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{9,}$)(?:GCS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{9,}$)(?:GCS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{9,}$)(?:L)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,"^(?=.{9,}$)(?:MS)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{18}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{20}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{20}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{21}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{21}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{23}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{7}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingMaxCode,"^(?=.{10,}$)(?:C)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingMinCode,"^(?=.{7,}$)(?:C)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_CoolingTonCode,"^(?=.{5,}$)(?:G21)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_HighTonsCFMCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_LowTonsCFMCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_LowTonsCFMCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_LowTonsCFMCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_LowTonsCFMCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,"^(?=.{5,}$)(?:ES5)",0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+LENNOX,HVACExport_TonsCFMCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+LENNOX,NominalCapacityTons,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,NominalCapacityTons,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{10}$)(?:D),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{11}$)(?:C),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{11}$)(?:D),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{11}$)(?:D),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{12}$)(?:CH|CR),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{12}$)(?:EL),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{12}$)(?:K|L|S|T|Z),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{12}$)(?:S|T),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{12}$)(?:T),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{14}$)(?:C),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{17}$)(?:EL|ML|SL),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^(?=.{9}$)(?:C),0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{20}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{21}$,0,0,0.0,NO_DATA
+LENNOX,Refrigerant,^[A-Z0-9-]{23}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{10}$)(?:CHA),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{10}$)(?:D),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{10}$)(?:L),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{11}$)(?:C|S),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{11}$)(?:D),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{11}$)(?:RCE|RHP),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{12}$)(?:CHA|CHP|GCS),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{12}$)(?:EL),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{12}$)(?:ES5),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{12}$)(?:K|L|S|T|Z),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{12}$)(?:MS),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{12}$)(?:S|T),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{12}$)(?:T),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{13}$)(?:L),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{14}$)(?:L),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{14}$)(?:RGE),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{16}$)(?:CHA|CHP|GCS|GHP),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{16}$)(?:GCS),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{16}$)(?:P),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{17}$)(?:EL|ML|SL),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{17}$)(?:EL|ML|SL),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{17}$)(?:GCS),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{17}$)(?:L),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{17}$)(?:L),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{18}$)(?:GCS),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{19}$)(?:L),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^(?=.{9}$)(?:L),0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{18}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{20}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{20}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{21}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{21}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{23}$,0,0,0.0,NO_DATA
+LENNOX,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+LG,HVACExport_CoolingCode,"^(?=.{4,}$)(?:L)",0,0,0.0,NO_DATA
+LG,HVACExport_CoolingCode,"^(?=.{5,}$)(?:L)",0,0,0.0,NO_DATA
+LG,HVACExport_CoolingCode,"^(?=.{6,}$)(?:ARN)",0,0,0.0,NO_DATA
+LG,HVACExport_CoolingCode,"^(?=.{6,}$)(?:A|H|J|M|S)",0,0,0.0,NO_DATA
+LG,HVACExport_CoolingCode,"^(?=.{7,}$)(?:ARU)",0,0,0.0,NO_DATA
+LG,HVACExport_CoolingHundredsCode,"^(?=.{6,}$)(?:L)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:BM|BR|DE|DH|FH|UH|VE|VH)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:CD|CS|CT|DD|DS)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:CF|CU|FD|UD)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:CF|CU|FE|FH|UE|UH|UP)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:MC)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:MT)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:PS)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{5,}$)(?:PW|PX)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{6,}$)(?:DMC)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{6,}$)(?:DME)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{6,}$)(?:PF)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{6,}$)(?:PFC|PFH)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_CoolingCode,"^(?=.{7,}$)(?:D|T)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_KWCoolingTonsCode,"^(?=.{5,}$)(?:CW)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_KWCoolingTonsCode,"^(?=.{5,}$)(?:DA)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_KWCoolingTonsCode,"^(?=.{5,}$)(?:DP)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_KWCoolingTonsCode,"^(?=.{5,}$)(?:DS|VS)",0,0,0.0,NO_DATA
+LIEBERT,HVACExport_KWCoolingTonsCode,"^(?=.{6,}$)(?:MC)",0,0,0.0,NO_DATA
+MAGIC AIRE,HVACExport_CFMTonsCode,"^(?=.{5,}$)(?:CEA)",0,0,0.0,NO_DATA
+MAGIC AIRE,HVACExport_CFMTonsCode,^[A-Z0-9-]{23}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,"^(?=.{10,}$)(?:E)",0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,"^(?=.{12,}$)(?:H)",0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,"^(?=.{12,}$)(?:MHP)",0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,"^(?=.{13,}$)(?:EWC)",0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,"^(?=.{13,}$)(?:MHP)",0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,"^(?=.{14,}$)(?:HWC)",0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,"^(?=.{14,}$)(?:MGE)",0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+MAGIC PAK,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^(?=.{18}$)(?:EWC),0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^(?=.{18}$)(?:MHP),0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^(?=.{19}$)(?:HWC),0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^(?=.{19}$)(?:MHP),0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^(?=.{20}$)(?:MGE),0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+MAGIC PAK,Refrigerant,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+MAMMOTH,HVACExport_CoolingCode,"^(?=.{7,}$)(?:P|R)",0,0,0.0,NO_DATA
+MAMMOTH,VoltageVoltPhaseHz,^(?=.{12}$)(?:P|R),0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:AVE|AVP|VWI)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:AVP|HVP|MVP)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:MVP)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{6,}$)(?:AVG)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{6,}$)(?:AVH|AVP|HVE|HVP)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{6,}$)(?:AVP)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:8|G|M|S|V)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:AVH|AVP|HVE)",0,0,0.0,NO_DATA
+MARVAIR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:AVH|AVP|HVE|HVP)",0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{13}$)(?:AVG),0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{14}$)(?:AVP),0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{15}$)(?:AVH|AVP|HVE|HVP),0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{19}$)(?:AVH|AVP|HVE|HVP),0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{21}$)(?:AVH|AVP|HVE|HVP),0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{22}$)(?:AVH|AVP|HVE),0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{22}$)(?:AVH|AVP|HVE|HVP),0,0,0.0,NO_DATA
+MARVAIR,Refrigerant,^(?=.{30}$)(?:8|G|M|S|V),0,0,0.0,NO_DATA
+MCQUAY,HVACExport_CoolingCode,"^(?=.{6,}$)(?:PTAC|PTHP)",0,0,0.0,NO_DATA
+MCQUAY,HVACExport_CoolingCode,"^(?=.{8,}$)(?:W)",0,0,0.0,NO_DATA
+MCQUAY,HVACExport_CoolingTonCode,"^(?=.{6,}$)(?:R)",0,0,0.0,NO_DATA
+MCQUAY,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:A)",0,0,0.0,NO_DATA
+MCQUAY,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:MPS)",0,0,0.0,NO_DATA
+MCQUAY,Refrigerant,^(?=.{14}$)(?:MPS),0,0,0.0,NO_DATA
+MIDEA,HVACExport_CoolingCode,"^(?=.{10,}$)(?:B)",0,0,0.0,NO_DATA
+MIDEA,HVACExport_CoolingCode,"^(?=.{6,}$)(?:M)",0,0,0.0,NO_DATA
+MIDEA,HVACExport_CoolingCode,"^(?=.{8,}$)(?:B)",0,0,0.0,NO_DATA
+MIDEA,HVACExport_CoolingCode,"^(?=.{8,}$)(?:M)",0,0,0.0,NO_DATA
+MITSUBISHI,HVACExport_CoolingCode,"^(?=.{10,}$)(?:M|P|S)",0,0,0.0,NO_DATA
+MITSUBISHI,HVACExport_CoolingCode,"^(?=.{6,}$)(?:M|P|S)",0,0,0.0,NO_DATA
+MITSUBISHI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:M|P|S)",0,0,0.0,NO_DATA
+MITSUBISHI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:M|P|S)",0,0,0.0,NO_DATA
+MITSUBISHI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:N)",0,0,0.0,NO_DATA
+MITSUBISHI,HVACExport_CoolingCode,"^(?=.{9,}$)(?:M|P|S)",0,0,0.0,NO_DATA
+MITSUBISHI,HVACExport_CoolingCode,"^(?=.{9,}$)(?:M|P|S)",0,0,0.0,NO_DATA
+MRCOOL,HVACExport_CFMTonsCode,"^(?=.{6,}$)(?:M)",0,0,0.0,NO_DATA
+MRCOOL,HVACExport_CoolingCode,"^(?=.{5,}$)(?:M)",0,0,0.0,NO_DATA
+MRCOOL,HVACExport_CoolingCode,"^(?=.{6,}$)(?:M)",0,0,0.0,NO_DATA
+MRCOOL,HVACExport_CoolingCode,"^(?=.{7,}$)(?:M)",0,0,0.0,NO_DATA
+MRCOOL,HVACExport_CoolingCode,"^(?=.{8,}$)(?:GC)",0,0,0.0,NO_DATA
+MRCOOL,HVACExport_CoolingCode,"^(?=.{8,}$)(?:M)",0,0,0.0,NO_DATA
+MRCOOL,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+MRCOOL,HVACExport_TonsCFMCode,"^(?=.{12,}$)(?:M)",0,0,0.0,NO_DATA
+MRCOOL,Refrigerant,^(?=.{13}$)(?:M),0,0,0.0,NO_DATA
+MRCOOL,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+MULTIAQUA,HVACExport_CoolingCode,"^(?=.{7,}$)(?:MAC)",0,0,0.0,NO_DATA
+MULTIAQUA,HVACExport_CoolingCode,"^(?=.{8,}$)(?:MHQWW)",0,0,0.0,NO_DATA
+NAPOLEON,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C|N)",0,0,0.0,NO_DATA
+NAPOLEON,HVACExport_CoolingCode,"^(?=.{8,}$)(?:N)",0,0,0.0,NO_DATA
+NAPOLEON,HVACExport_CoolingMaxCode,"^(?=.{9,}$)(?:C|N)",0,0,0.0,NO_DATA
+NAPOLEON,HVACExport_CoolingMaxCode,"^(?=.{9,}$)(?:W)",0,0,0.0,NO_DATA
+NAPOLEON,HVACExport_CoolingMinCode,"^(?=.{6,}$)(?:C|N)",0,0,0.0,NO_DATA
+NAPOLEON,HVACExport_CoolingMinCode,"^(?=.{7,}$)(?:W)",0,0,0.0,NO_DATA
+NAPOLEON,HVACExport_TonsCFMCode,"^(?=.{8,}$)(?:W)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CFMTonsCode,"^(?=.{11,}$)(?:F|K)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CFMTonsCode,"^(?=.{11,}$)(?:L)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CFMTonsCode,"^(?=.{12,}$)(?:GL)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CFMTonsCode,"^(?=.{12,}$)(?:G|M|P)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CFMTonsCode,"^(?=.{9,}$)(?:M)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CFMTonsCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{12,}$)(?:S)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{13,}$)(?:D|E|F|G|H|J|M|N|P|V|W)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{13,}$)(?:F)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{5,}$)(?:G)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{6,}$)(?:R)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:B)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:B)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:P|Q)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:P|Q)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:R)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:R)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:B)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:C)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:DF)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:D|P)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:GB)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:GR)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:G|P)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:P|Q)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{8,}$)(?:S)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:B)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:C)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:D|E|F|G|J|N|P|V)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:D|E|F|G|J|N|P|V)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:D|P)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:GB)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:G|P)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:G|P)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,"^(?=.{9,}$)(?:P)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingMaxCode,"^(?=.{10,}$)(?:C)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_CoolingMinCode,"^(?=.{8,}$)(?:C)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_HighTonsCFMCode,"^(?=.{12,}$)(?:B|F|G|I|M|N|R)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_HighTonsCFMCode,"^(?=.{12,}$)(?:F|K|V)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_HighTonsCFMCode,"^(?=.{12,}$)(?:MGC)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_HighTonsCFMCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+NORTEK,HVACExport_LowTonsCFMCode,"^(?=.{11,}$)(?:B|F|G|I|M|N|R)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_LowTonsCFMCode,"^(?=.{11,}$)(?:F|K|V)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_LowTonsCFMCode,"^(?=.{11,}$)(?:MGC)",0,0,0.0,NO_DATA
+NORTEK,HVACExport_LowTonsCFMCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+NORTEK,Refrigerant,^(?=.{11}$)(?:G),0,0,0.0,NO_DATA
+NORTEK,Refrigerant,^(?=.{12}$)(?:C),0,0,0.0,NO_DATA
+NORTEK,Refrigerant,^(?=.{13}$)(?:DF),0,0,0.0,NO_DATA
+NORTEK,Refrigerant,^(?=.{13}$)(?:S),0,0,0.0,NO_DATA
+NORTEK,Refrigerant,^(?=.{14}$)(?:D|E|F|G|H|J|M|N|P|V|W),0,0,0.0,NO_DATA
+NORTEK,Refrigerant,^(?=.{14}$)(?:F),0,0,0.0,NO_DATA
+NORTEK,Refrigerant,^(?=.{8}$)(?:P|Q),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{10}$)(?:B),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{10}$)(?:B),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{10}$)(?:D|E|F|G|J|N|P|V),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{10}$)(?:D|P),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{10}$)(?:G|P),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{10}$)(?:P|Q),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{11}$)(?:D|E|F|G|J|N|P|V),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{11}$)(?:M),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{11}$)(?:P),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{11}$)(?:R),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{12}$)(?:B),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{12}$)(?:GB),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{12}$)(?:R),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{13}$)(?:DF),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{13}$)(?:GR),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{13}$)(?:R),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{13}$)(?:S),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{14}$)(?:DF),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{14}$)(?:D|E|F|G|H|J|M|N|P|V|W),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{14}$)(?:F),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{14}$)(?:G|P),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{8}$)(?:P|Q),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{9}$)(?:D|P),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{9}$)(?:G|P),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{9}$)(?:P|Q),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{9}$)(?:P|Q),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^(?=.{9}$)(?:S),0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+NORTEK,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CFMTonsCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CFMTonsCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,"^(?=.{11,}$)(?:RCU)",0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,"^(?=.{6,}$)(?:D)",0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,"^(?=.{9,}$)(?:SFC)",0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{18}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingTonCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_CoolingTonCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_TonsCFMCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_TonsCFMCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_TonsCFMCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_TonsCFMCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_TonsCFMCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_TonsCFMCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,HVACExport_TonsCFMCode,^[A-Z0-9-]{18}$,0,0,0.0,NO_DATA
+PALOMA,NominalCapacityTons,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,NominalCapacityTons,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{18}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+PALOMA,Refrigerant,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^(?=.{12}$)(?:RCU),0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^(?=.{8}$)(?:D),0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^(?=.{9}$)(?:RXQJ),0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{18}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PALOMA,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+PANASONIC,HVACExport_CoolingCode,"^(?=.{4,}$)(?:S|U)",0,0,0.0,NO_DATA
+PANASONIC,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{10,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{10,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{8,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{9,}$)(?:480|481)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{9,}$)(?:DH)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{9,}$)(?:F)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{9,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{9,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{9,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,HVACExport_CoolingCode,"^(?=.{9,}$)(?:P)",0,0,0.0,NO_DATA
+PAYNE,Refrigerant,^(?=.{12}$)(?:F),0,0,0.0,NO_DATA
+PAYNE,Refrigerant,^(?=.{12}$)(?:P),0,0,0.0,NO_DATA
+PAYNE,Refrigerant,^(?=.{12}$)(?:P),0,0,0.0,NO_DATA
+PAYNE,Refrigerant,^(?=.{16}$)(?:P),0,0,0.0,NO_DATA
+PAYNE,VoltageVoltPhaseHz,^(?=.{12}$)(?:F),0,0,0.0,NO_DATA
+PAYNE,VoltageVoltPhaseHz,^(?=.{12}$)(?:P),0,0,0.0,NO_DATA
+PAYNE,VoltageVoltPhaseHz,^(?=.{16}$)(?:P),0,0,0.0,NO_DATA
+PAYNE,VoltageVoltPhaseHz,^(?=.{16}$)(?:P),0,0,0.0,NO_DATA
+PAYNE,VoltageVoltPhaseHz,^(?=.{9}$)(?:P),0,0,0.0,NO_DATA
+PIONEER,HVACExport_CoolingCode,"^(?=.{5,}$)(?:D)",0,0,0.0,NO_DATA
+PIONEER,Refrigerant,^(?=.{14}$)(?:D),0,0,0.0,NO_DATA
+RETROAIRE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CM|CW|WM)",0,0,0.0,NO_DATA
+RETROAIRE,Refrigerant,^(?=.{15}$)(?:CM|CW|WM),0,0,0.0,NO_DATA
+REVOLV,HVACExport_CoolingCode,"^(?=.{13,}$)(?:R)",0,0,0.0,NO_DATA
+REVOLV,HVACExport_CoolingCode,"^(?=.{8,}$)(?:C)",0,0,0.0,NO_DATA
+REVOLV,HVACExport_CoolingCode,"^(?=.{8,}$)(?:R)",0,0,0.0,NO_DATA
+REVOLV,HVACExport_CoolingCode,"^(?=.{8,}$)(?:RP|RQ)",0,0,0.0,NO_DATA
+REVOLV,HVACExport_TonsCFMCode,"^(?=.{8,}$)(?:R)",0,0,0.0,NO_DATA
+REVOLV,Refrigerant,^(?=.{14}$)(?:R),0,0,0.0,NO_DATA
+REZNOR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:P)",0,0,0.0,NO_DATA
+REZNOR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:P)",0,0,0.0,NO_DATA
+REZNOR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:R)",0,0,0.0,NO_DATA
+REZNOR,HVACExport_CoolingCode,"^(?=.{7,}$)(?:R)",0,0,0.0,NO_DATA
+REZNOR,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+REZNOR,HVACExport_CoolingCode,^[A-Z0-9-]{7}$,0,0,0.0,NO_DATA
+REZNOR,HVACExport_CoolingCode,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+REZNOR,VoltageVoltPhaseHz,^(?=.{12}$)(?:R),0,0,0.0,NO_DATA
+REZNOR,VoltageVoltPhaseHz,^(?=.{13}$)(?:R),0,0,0.0,NO_DATA
+REZNOR,VoltageVoltPhaseHz,^(?=.{8}$)(?:P),0,0,0.0,NO_DATA
+REZNOR,VoltageVoltPhaseHz,^(?=.{9}$)(?:P),0,0,0.0,NO_DATA
+REZNOR,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+REZNOR,VoltageVoltPhaseHz,^[A-Z0-9-]{8}$,0,0,0.0,NO_DATA
+RUSSELL,HVACExport_CoolingHundredsCode,"^(?=.{7,}$)(?:A)",0,0,0.0,NO_DATA
+RUSSELL,HVACExport_CoolingHundredsCode,"^(?=.{8,}$)(?:A)",0,0,0.0,NO_DATA
+SAFEAIR TECHNOLOGY,HVACExport_CoolingCode,^[A-Z0-9-]{19}$,0,0,0.0,NO_DATA
+SAFEAIR TECHNOLOGY,HVACExport_CoolingCode,^[A-Z0-9-]{22}$,0,0,0.0,NO_DATA
+SAMSUNG,HVACExport_CoolingCode,"^(?=.{4,}$)(?:AF|AR)",0,0,0.0,NO_DATA
+SAMSUNG,HVACExport_CoolingCode,"^(?=.{5,}$)(?:AC|AE|AJ|AM)",0,0,0.0,NO_DATA
+SAMSUNG,HVACExport_CoolingCode,"^(?=.{5,}$)(?:AC|AM|AR)",0,0,0.0,NO_DATA
+SAMSUNG,HVACExport_CoolingCode,"^(?=.{5,}$)(?:C)",0,0,0.0,NO_DATA
+SAMSUNG,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+SANYO,HVACExport_CoolingCode,"^(?=.{4,}$)(?:C)",0,0,0.0,NO_DATA
+SANYO,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C|K|T|U|X)",0,0,0.0,NO_DATA
+SEASONS 4,HVACExport_CoolingTonCode,"^(?=.{9,}$)(?:1|2|3|4|5|6|8|9)",0,0,0.0,NO_DATA
+SKIL-AIRE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:B|C|O|P|X)",0,0,0.0,NO_DATA
+SKIL-AIRE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:M)",0,0,0.0,NO_DATA
+SKYAIR,HVACExport_CoolingCode,"^(?=.{5,}$)(?:R)",0,0,0.0,NO_DATA
+SPACEPAK,HVACExport_CoolingCode,"^(?=.{6,}$)(?:SCM)",0,0,0.0,NO_DATA
+SPACEPAK,HVACExport_CoolingCode,"^(?=.{7,}$)(?:CC)",0,0,0.0,NO_DATA
+SPACEPAK,HVACExport_CoolingMaxCode,"^(?=.{7,}$)(?:ESP|WCS)",0,0,0.0,NO_DATA
+SPACEPAK,HVACExport_CoolingMaxCode,"^(?=.{8,}$)(?:WCSP)",0,0,0.0,NO_DATA
+SPACEPAK,HVACExport_CoolingMinCode,"^(?=.{5,}$)(?:ESP|WCS)",0,0,0.0,NO_DATA
+SPACEPAK,HVACExport_CoolingMinCode,"^(?=.{6,}$)(?:WCSP)",0,0,0.0,NO_DATA
+SPACEPAK,Refrigerant,^(?=.{12}$)(?:ESP|WCS),0,0,0.0,NO_DATA
+SPACEPAK,Refrigerant,^(?=.{13}$)(?:WCSP),0,0,0.0,NO_DATA
+SPACEPAK,Refrigerant,^(?=.{7}$)(?:CC),0,0,0.0,NO_DATA
+SPACEPAK,Refrigerant,^(?=.{8}$)(?:SCM),0,0,0.0,NO_DATA
+SUN,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+TEXAS FURNACE,HVACExport_TonsCFMCode,"^(?=.{9,}$)(?:ABA|CSA|VSA)",0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_CoolingCode,"^(?=.{10,}$)(?:C)",0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_CoolingCode,"^(?=.{12,}$)(?:C)",0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_CoolingMaxCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_CoolingMinCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_TonsCFMCode,"^(?=.{10,}$)(?:C)",0,0,0.0,NO_DATA
+THERMO-PRIDE,HVACExport_TonsCFMCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:BDC|BTC|BTF|BWC|BWF|BYC|BYF)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C|R|T)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:DC|TC|TF|WC|WF|YC|YF)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:E|G|T|W|Y)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:T)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:TTA|TWA)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:TW)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:T|Y)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:YC|YF)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:BCCD|BCHD|BCVD)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:CSHD)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:DXH|DXV|EXH|EXV|EXW|GEH|GEV)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:OA)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:T)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:VSH|VSV)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{8,}$)(?:N|P)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,"^(?=.{8,}$)(?:SFCOM)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingHundredsCode,"^(?=.{7,}$)(?:PT)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:CCA|CGW)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:CG)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:RT)",0,0,0.0,NO_DATA
+TRANE,HVACExport_CoolingTonCode,"^(?=.{7,}$)(?:S)",0,0,0.0,NO_DATA
+TRANE,HVACExport_TonsCFMCode,"^(?=.{7,}$)(?:SFCA)",0,0,0.0,NO_DATA
+TRANE,HVACExport_TonsCFMCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+TRANE,NominalCapacityTons,^(?=.{15}$)(?:S),0,0,0.0,NO_DATA
+TRANE,NominalCapacityTons,^(?=.{20}$)(?:R),0,0,0.0,NO_DATA
+TRANE,NominalCapacityTons,^(?=.{38}$)(?:S),0,0,0.0,NO_DATA
+TRANE,NominalCapacityTons,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,Refrigerant,^(?=.{15}$)(?:TTA|TWA),0,0,0.0,NO_DATA
+TRANE,Refrigerant,^(?=.{15}$)(?:TW),0,0,0.0,NO_DATA
+TRANE,Refrigerant,^(?=.{19}$)(?:SFCOM),0,0,0.0,NO_DATA
+TRANE,Refrigerant,^(?=.{32}$)(?:E|G|T|W|Y),0,0,0.0,NO_DATA
+TRANE,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+TRANE,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{11}$)(?:BDC|BTC|BTF|BWC|BWF|BYC|BYF),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{11}$)(?:SFCA),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{11}$)(?:TTA|TWA),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{11}$)(?:TW),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{12}$)(?:BDC|BTC|BTF|BWC|BWF|BYC|BYF),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{12}$)(?:DC|TC|TF|WC|WF|YC|YF),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{12}$)(?:T),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{12}$)(?:YC|YF),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{14}$)(?:C),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{14}$)(?:T),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{15}$)(?:S),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{15}$)(?:TTA|TWA),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{15}$)(?:TW),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{19}$)(?:VSH|VSV),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{25}$)(?:DXH|DXV|EXH|EXV|EXW|GEH|GEV),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{28}$)(?:E|G|T|W|Y),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{32}$)(?:E|G|T|W|Y),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{34}$)(?:T|Y),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{36}$)(?:S),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^(?=.{39}$)(?:OA),0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+TRANE,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+TURBO AIR,HVACExport_CoolingHundredsCode,"^(?=.{6,}$)(?:ST)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingCode,"^(?=.{7,}$)(?:AP)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingCode,"^(?=.{7,}$)(?:A|T)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingCode,"^(?=.{7,}$)(?:A|T)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingCode,"^(?=.{8,}$)(?:A4)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingCode,"^(?=.{8,}$)(?:AP)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingCode,"^(?=.{8,}$)(?:T4)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingMaxCode,"^(?=.{8,}$)(?:AC|TC)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_CoolingMinCode,"^(?=.{6,}$)(?:AC|TC)",0,0,0.0,NO_DATA
+TUTTOKOOL,HVACExport_TonsCFMCode,"^(?=.{11,}$)(?:A|T)",0,0,0.0,NO_DATA
+UNICO INC,HVACExport_CoolingMaxCode,"^(?=.{5,}$)(?:M|U|V)",0,0,0.0,NO_DATA
+UNICO INC,HVACExport_CoolingMinCode,"^(?=.{3,}$)(?:M|U|V)",0,0,0.0,NO_DATA
+VALENT,HVACExport_CoolingTonCode,"^(?=.{11,}$)(?:VPRD|VPRP|VPRX)",0,0,0.0,NO_DATA
+WATER FURNACE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:L|N|S)",0,0,0.0,NO_DATA
+WATER FURNACE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:N)",0,0,0.0,NO_DATA
+WATER FURNACE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:NDW)",0,0,0.0,NO_DATA
+WATER FURNACE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:NL|NX)",0,0,0.0,NO_DATA
+WATER FURNACE,HVACExport_CoolingCode,"^(?=.{6,}$)(?:SAH)",0,0,0.0,NO_DATA
+WEIL-MCLAIN,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+WEIL-MCLAIN,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+WESTINGHOUSE,HVACExport_CFMTonsCode,"^(?=.{10,}$)(?:G|L)",0,0,0.0,NO_DATA
+WESTINGHOUSE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C)",0,0,0.0,NO_DATA
+WESTINGHOUSE,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C)",0,0,0.0,NO_DATA
+WESTINGHOUSE,HVACExport_CoolingMaxCode,"^(?=.{10,}$)(?:C)",0,0,0.0,NO_DATA
+WESTINGHOUSE,HVACExport_CoolingMinCode,"^(?=.{8,}$)(?:C)",0,0,0.0,NO_DATA
+WHIRLPOOL,HVACExport_CFMTonsCode,"^(?=.{10,}$)(?:W)",0,0,0.0,NO_DATA
+WHIRLPOOL,HVACExport_CFMTonsCode,"^(?=.{7,}$)(?:W)",0,0,0.0,NO_DATA
+WHIRLPOOL,HVACExport_CoolingCode,"^(?=.{5,}$)(?:W)",0,0,0.0,NO_DATA
+WHIRLPOOL,HVACExport_CoolingCode,"^(?=.{6,}$)(?:W)",0,0,0.0,NO_DATA
+WHIRLPOOL,HVACExport_CoolingCode,"^(?=.{7,}$)(?:W)",0,0,0.0,NO_DATA
+WHIRLPOOL,HVACExport_CoolingCode,"^(?=.{8,}$)(?:W)",0,0,0.0,NO_DATA
+WHIRLPOOL,HVACExport_CoolingCode,"^(?=.{8,}$)(?:W)",0,0,0.0,NO_DATA
+WHIRLPOOL,Refrigerant,^(?=.{10}$)(?:W),0,0,0.0,NO_DATA
+WHIRLPOOL,Refrigerant,^(?=.{11}$)(?:W),0,0,0.0,NO_DATA
+WHIRLPOOL,Refrigerant,^(?=.{11}$)(?:W),0,0,0.0,NO_DATA
+WHIRLPOOL,Refrigerant,^(?=.{12}$)(?:W),0,0,0.0,NO_DATA
+XENON,HVACExport_TonsCFMCode,"^(?=.{11,}$)(?:X)",0,0,0.0,NO_DATA
+XENON,HVACExport_TonsCFMCode,"^(?=.{8,}$)(?:X)",0,0,0.0,NO_DATA
+YONAN,HVACExport_CoolingCode,"^(?=.{6,}$)(?:Y)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{10,}$)(?:C|F|G|L|M|T|Y)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{4,}$)(?:MA|MV)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{5,}$)(?:A|M)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{6,}$)(?:P)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{7,}$)(?:F|N)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{7,}$)(?:N)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{7,}$)(?:P)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{8,}$)(?:B)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{8,}$)(?:C|G|L|M|P|Y)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{9,}$)(?:C|F|G|L|M|T|Y)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,"^(?=.{9,}$)(?:P)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CFMTonsCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{4,}$)(?:A|M)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{4,}$)(?:C)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:A)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:AHE|AHP|AHR|AVY)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:A|M)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:B|D|N|U|Z)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:D)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:D|N|U)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:E|H)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:N)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{5,}$)(?:X|Z)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{6,}$)(?:CS|DS)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{6,}$)(?:C|Y)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{6,}$)(?:D)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{6,}$)(?:R)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{6,}$)(?:X)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:B|C|D|E|F)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:B|D)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C|E|H|Y)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:C|H|Y)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:E|H)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:F)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:F|N)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:G)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:G|M)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{7,}$)(?:PCE|PCG|PHE|PHG)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:B|D)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:D)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:E|H)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:R)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{8,}$)(?:SEAD|SGAD|SWAD)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,"^(?=.{9,}$)(?:D)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingCode,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingTonCode,"^(?=.{4,}$)(?:A)",0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingTonCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingTonCode,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_CoolingTonCode,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+YORK/JCI,HVACExport_TonsCFMCode,^[A-Z0-9-]{7}$,0,0,0.0,NO_DATA
+YORK/JCI,NominalCapacityTons,^(?=.{14}$)(?:P|X|Y|Z),0,0,0.0,NO_DATA
+YORK/JCI,NominalCapacityTons,^(?=.{15}$)(?:P|X|Y|Z),0,0,0.0,NO_DATA
+YORK/JCI,NominalCapacityTons,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+YORK/JCI,NominalCapacityTons,^[A-Z0-9-]{18}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^(?=.{12}$)(?:D),0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^(?=.{13}$)(?:R),0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^(?=.{14}$)(?:D),0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,Refrigerant,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{10}$)(?:A|M),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{10}$)(?:B|C|D|E|F),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{10}$)(?:B|D),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{10}$)(?:E|H),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{10}$)(?:X|Z),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{11}$)(?:A),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{11}$)(?:AHE|AHP|AHR|AVY),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{11}$)(?:C|E|H|Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{11}$)(?:C|H|Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{11}$)(?:C|Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{11}$)(?:F|N),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{12}$)(?:B|D),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{13}$)(?:B|D),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{13}$)(?:F),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{13}$)(?:R),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:B|D|N|U|Z),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:C|F|G|L|M|T|Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:C|F|G|L|M|T|Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:C|G|L|M|P|Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:D),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:D|N|U),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:E|H),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:P),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:P),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{14}$)(?:P|X|Y|Z),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{15}$)(?:D|N|U),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{15}$)(?:N),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{15}$)(?:P|X|Y|Z),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{15}$)(?:Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{16}$)(?:E|H),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{18}$)(?:KL|KQ|KX|KY),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{18}$)(?:S|V),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{18}$)(?:V),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{18}$)(?:X|Z),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{18}$)(?:X|Z),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{20}$)(?:XT),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{8}$)(?:A|M),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{8}$)(?:A|M),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{8}$)(?:C|Y),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{8}$)(?:MA|MV),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{9}$)(?:D),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{9}$)(?:E|H),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^(?=.{9}$)(?:N),0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{10}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{11}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{12}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{13}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{14}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{15}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{16}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{17}$,0,0,0.0,NO_DATA
+YORK/JCI,VoltageVoltPhaseHz,^[A-Z0-9-]{9}$,0,0,0.0,NO_DATA

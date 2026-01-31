@@ -115,3 +115,52 @@ See:
 - `docs/RULESETS.md`
 - `docs/ARTIFACTS.md`
 - `docs/ACTIONS.md`
+
+### Spec sheet PDF snapshots
+Spec sheets can contain model nomenclature/code breakdown tables (voltage, refrigerant, capacity codes, etc.).
+
+Put raw PDFs in:
+- `data/external_sources/specs/`
+
+Extract embedded text into a versioned snapshot folder:
+```bash
+python3 scripts/actions.py specs.extract_text --tag specs
+```
+
+Outputs:
+- `data/external_sources/specs_snapshots/<snapshot-id>/text/*.txt`
+- `data/external_sources/specs_snapshots/<snapshot-id>/manifest.json`
+
+Note: this step does not OCR scanned PDFs. If the extracted text is empty/garbled, the PDF likely needs OCR before mining.
+
+#### Pilot: YORK/JCI XT Air Handler nomenclature
+Mine deterministic model-coded attributes from the spec snapshot:
+```bash
+python3 scripts/actions.py specs.mine_york_ahu --snapshot-id <snapshot-id> --tag york-ahu
+```
+
+This writes candidates to:
+- `data/rules_discovered/spec_sheets/<snapshot-id>/candidates/AttributeDecodeRule.candidates.jsonl`
+
+Audit against SDI (where SDI has a comparable truth column):
+```bash
+python3 scripts/actions.py eval.candidates \
+  --input data/equipment_exports/2026-01-25/sdi_equipment_normalized.csv \
+  --candidates-dir data/rules_discovered/spec_sheets/<snapshot-id>/candidates \
+  --tag york-ahu
+```
+
+Promotion strategy (tiered):
+- SDI-auditable attributes (e.g., `SupplyFanHP`) can be promoted after audit review.
+- Spec-backed attributes with no SDI truth column (e.g., `ReturnFanHP`, `UnitEnvironment`, nominal dimensions) can still be promoted as additional attributes, but should be clearly labeled in `limitations` and reviewed for false positives (tight regex + equipment type scoping).
+
+#### Mine all supported spec miners for a snapshot
+Once you have multiple spec sheets in a snapshot, use:
+```bash
+python3 scripts/actions.py specs.mine_snapshot --snapshot-id <snapshot-id> --tag specs
+```
+
+Convenience script (extract → mine → audit):
+```bash
+./scripts/run_specs_snapshot_workflow.sh --snapshot-id <snapshot-id> --tag specs
+```

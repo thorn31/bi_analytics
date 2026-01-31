@@ -1,3 +1,14 @@
-# This repo is intentionally stdlib-only so it can run in minimal Python environments.
-# If you later enable `--provider openai` in `msl normalize`, install:
+# This repo was originally stdlib-only so it could run in minimal Python environments.
+# We now optionally support parsing vendor spec sheet PDFs to enrich AttributeDecodeRule.
+#
+# Dependencies:
+# - pypdf: extract text from PDF spec sheets (no system packages required)
+pypdf>=5.0.0
+
+# Data / OCR helpers
+numpy>=1.26
+pandas>=2.2
+pytesseract>=0.3.10
+
+# If you later enable `--provider openai` in `msl normalize`, also install:
 # - requests (for the OpenAI HTTP call)

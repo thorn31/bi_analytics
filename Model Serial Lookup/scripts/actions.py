@@ -1200,6 +1200,135 @@ def action_workflow_improve(args: argparse.Namespace) -> int:
     return 0
 
 
+def action_specs_extract_text(args: argparse.Namespace) -> int:
+    """
+    Extract text from PDF spec sheets into a versioned snapshot folder.
+
+    Note: This does NOT attempt OCR. If a PDF is scanned (no embedded text),
+    extraction will produce low/no signal and downstream mining will be limited.
+    """
+    action = "specs.extract_text"
+    run_id = args.run_id or _default_run_id(action, args.tag)
+
+    out_base = REPO_ROOT / "data" / "external_sources" / "specs_snapshots"
+    inbox_dir = Path(args.inbox_dir)
+    snapshot_id = (args.snapshot_id or "").strip() or run_id
+
+    cmd = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "specs_extract_text.py"),
+        "--inbox-dir",
+        str(inbox_dir),
+        "--out-base-dir",
+        str(out_base),
+        "--snapshot-id",
+        snapshot_id,
+    ]
+
+    run_root = _ensure_dir(REPORTS_BASE_DIR / run_id / action)
+    meta = _action_meta_base(
+        action=action,
+        run_id=run_id,
+        ruleset_dir=None,
+        inputs={"inbox_dir": str(inbox_dir), "snapshot_id": snapshot_id},
+    )
+    _write_json(run_root / "meta.json", meta)
+
+    rc = _run_cmd(
+        cmd,
+        cwd=REPO_ROOT,
+        stdout_path=run_root / "stdout.txt",
+        stderr_path=run_root / "stderr.txt",
+    )
+    if rc != 0:
+        raise SystemExit(f"{action} failed (exit {rc}). See: {run_root}")
+
+    _write_text(run_root / "snapshot_dir.txt", str(out_base / snapshot_id) + "\n")
+    print(str(run_root))
+    return 0
+
+
+def action_specs_mine_york_ahu(args: argparse.Namespace) -> int:
+    action = "specs.mine_york_ahu"
+    run_id = args.run_id or _default_run_id(action, args.tag)
+
+    cmd = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "specs_mine_york_ahu_attributes.py"),
+        "--snapshot-id",
+        str(args.snapshot_id),
+    ]
+    if args.out_candidates_dir:
+        cmd.extend(["--out-candidates-dir", str(args.out_candidates_dir)])
+    if args.sdi_csv:
+        cmd.extend(["--sdi-csv", str(args.sdi_csv)])
+
+    run_root = _ensure_dir(REPORTS_BASE_DIR / run_id / action)
+    meta = _action_meta_base(
+        action=action,
+        run_id=run_id,
+        ruleset_dir=None,
+        inputs={"snapshot_id": str(args.snapshot_id), "out_candidates_dir": str(args.out_candidates_dir or ""), "sdi_csv": str(args.sdi_csv or "")},
+    )
+    _write_json(run_root / "meta.json", meta)
+
+    rc = _run_cmd(
+        cmd,
+        cwd=REPO_ROOT,
+        stdout_path=run_root / "stdout.txt",
+        stderr_path=run_root / "stderr.txt",
+    )
+    if rc != 0:
+        raise SystemExit(f"{action} failed (exit {rc}). See: {run_root}")
+    # Convenience output pointer for humans
+    if (run_root / "stdout.txt").exists():
+        out = (run_root / "stdout.txt").read_text(encoding="utf-8", errors="replace").strip().splitlines()[-1:]
+        if out:
+            _write_text(run_root / "candidates_dir.txt", out[0] + "\n")
+    print(str(run_root))
+    return 0
+
+
+def action_specs_mine_snapshot(args: argparse.Namespace) -> int:
+    action = "specs.mine_snapshot"
+    run_id = args.run_id or _default_run_id(action, args.tag)
+
+    cmd = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "specs_mine_snapshot.py"),
+        "--snapshot-id",
+        str(args.snapshot_id),
+    ]
+    if args.out_candidates_dir:
+        cmd.extend(["--out-candidates-dir", str(args.out_candidates_dir)])
+    if args.sdi_csv:
+        cmd.extend(["--sdi-csv", str(args.sdi_csv)])
+
+    run_root = _ensure_dir(REPORTS_BASE_DIR / run_id / action)
+    meta = _action_meta_base(
+        action=action,
+        run_id=run_id,
+        ruleset_dir=None,
+        inputs={"snapshot_id": str(args.snapshot_id), "out_candidates_dir": str(args.out_candidates_dir or ""), "sdi_csv": str(args.sdi_csv or "")},
+    )
+    _write_json(run_root / "meta.json", meta)
+
+    rc = _run_cmd(
+        cmd,
+        cwd=REPO_ROOT,
+        stdout_path=run_root / "stdout.txt",
+        stderr_path=run_root / "stderr.txt",
+    )
+    if rc != 0:
+        raise SystemExit(f"{action} failed (exit {rc}). See: {run_root}")
+    if (run_root / "stdout.txt").exists():
+        out = (run_root / "stdout.txt").read_text(encoding="utf-8", errors="replace").strip().splitlines()[-1:]
+        if out:
+            _write_text(run_root / "candidates_dir.txt", out[0] + "\n")
+    print(str(run_root))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="actions", description="Action-driven workflow wrapper for model-serial-lookup")
     sub = p.add_subparsers(dest="command", required=True)
@@ -1234,10 +1363,10 @@ def build_parser() -> argparse.ArgumentParser:
     mine.add_argument("--input", required=True, help="Labeled asset CSV")
     mine.add_argument("--min-brand-similarity", type=float, default=0.90)
     mine.add_argument("--min-serial-support", type=int, default=50)
-    mine.add_argument("--min-model-support", type=int, default=50)
+    mine.add_argument("--min-model-support", type=int, default=20)
     mine.add_argument("--min-model-match-rate", type=float, default=0.50)
-    mine.add_argument("--min-model-train-accuracy", type=float, default=0.95)
-    mine.add_argument("--min-model-holdout-accuracy", type=float, default=0.95)
+    mine.add_argument("--min-model-train-accuracy", type=float, default=0.75)
+    mine.add_argument("--min-model-holdout-accuracy", type=float, default=0.75)
     mine.add_argument("--capacity-tolerance-tons", type=float, default=0.5)
     mine.set_defaults(func=action_mine_rules)
 
@@ -1287,12 +1416,55 @@ def build_parser() -> argparse.ArgumentParser:
     wf.add_argument("--no-cleanup", action="store_true", help="Skip ruleset cleanup during promotion")
     wf.add_argument("--min-brand-similarity", type=float, default=0.90)
     wf.add_argument("--min-serial-support", type=int, default=50)
-    wf.add_argument("--min-model-support", type=int, default=50)
+    wf.add_argument("--min-model-support", type=int, default=20)
     wf.add_argument("--min-model-match-rate", type=float, default=0.50)
-    wf.add_argument("--min-model-train-accuracy", type=float, default=0.95)
-    wf.add_argument("--min-model-holdout-accuracy", type=float, default=0.95)
+    wf.add_argument("--min-model-train-accuracy", type=float, default=0.75)
+    wf.add_argument("--min-model-holdout-accuracy", type=float, default=0.75)
     wf.add_argument("--capacity-tolerance-tons", type=float, default=0.5)
     wf.set_defaults(func=action_workflow_improve)
+
+    specs = sub.add_parser("specs.extract_text", help="Extract text from spec sheet PDFs into a snapshot folder")
+    specs.add_argument("--run-id", default="", help="Run folder name under data/reports (default: autogenerated)")
+    specs.add_argument("--tag", default="default", help="Free-form tag for run-id generation (default: default)")
+    specs.add_argument(
+        "--inbox-dir",
+        default=str(REPO_ROOT / "data" / "external_sources" / "specs"),
+        help="Folder containing input PDFs (default: data/external_sources/specs)",
+    )
+    specs.add_argument("--snapshot-id", default="", help="Snapshot folder id under data/external_sources/specs_snapshots/")
+    specs.set_defaults(func=action_specs_extract_text)
+
+    mine_york = sub.add_parser("specs.mine_york_ahu", help="Mine York XT AHU attributes (Supply/Return fan HP) from a specs snapshot")
+    mine_york.add_argument("--run-id", default="", help="Run folder name under data/reports (default: autogenerated)")
+    mine_york.add_argument("--tag", default="default", help="Free-form tag for run-id generation (default: default)")
+    mine_york.add_argument("--snapshot-id", required=True, help="Snapshot id under data/external_sources/specs_snapshots/")
+    mine_york.add_argument(
+        "--out-candidates-dir",
+        default="",
+        help="Output dir that will contain AttributeDecodeRule.candidates.jsonl (default: data/rules_discovered/spec_sheets/<snapshot-id>/candidates/)",
+    )
+    mine_york.add_argument(
+        "--sdi-csv",
+        default=str(REPO_ROOT / "data" / "equipment_exports" / "2026-01-25" / "sdi_equipment_normalized.csv"),
+        help="Optional SDI CSV for collecting example model numbers",
+    )
+    mine_york.set_defaults(func=action_specs_mine_york_ahu)
+
+    mine_snapshot = sub.add_parser("specs.mine_snapshot", help="Mine AttributeDecodeRule candidates from a specs snapshot (all supported miners)")
+    mine_snapshot.add_argument("--run-id", default="", help="Run folder name under data/reports (default: autogenerated)")
+    mine_snapshot.add_argument("--tag", default="default", help="Free-form tag for run-id generation (default: default)")
+    mine_snapshot.add_argument("--snapshot-id", required=True, help="Snapshot id under data/external_sources/specs_snapshots/")
+    mine_snapshot.add_argument(
+        "--out-candidates-dir",
+        default="",
+        help="Output dir that will contain AttributeDecodeRule.candidates.jsonl (default: data/rules_discovered/spec_sheets/<snapshot-id>/candidates/)",
+    )
+    mine_snapshot.add_argument(
+        "--sdi-csv",
+        default=str(REPO_ROOT / "data" / "equipment_exports" / "2026-01-25" / "sdi_equipment_normalized.csv"),
+        help="Optional SDI CSV for collecting example model numbers",
+    )
+    mine_snapshot.set_defaults(func=action_specs_mine_snapshot)
 
     return p
 
