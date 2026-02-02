@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "f69b3e14c2c008d5a357",
+  "position": {
+    "x": 0,
+    "y": 217.73493975903617,
+    "z": 4000,
+    "height": 232.48192771084339,
+    "width": 733.0120481927712
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year Label",
+              "nativeQueryRef": "Fiscal Year Label"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Service Contracts Revenue (Amend Recognized)"
+                }
+              },
+              "queryRef": "RS_Measures.Service Contracts Revenue (Amend Recognized)",
+              "nativeQueryRef": "Service Contracts Revenue (Amend Recognized)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Service Contracts Revenue (CRR Billings)"
+                }
+              },
+              "queryRef": "RS_Measures.Service Contracts Revenue (CRR Billings)",
+              "nativeQueryRef": "Service Contracts Revenue (CRR Billings)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal Year Label"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dd8b5eac81fc7e885583",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year Label"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6863368444d8be36cd79",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Service Contracts Revenue (Amend Recognized)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "568304f5f2d63738c068",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Service Contracts Revenue (CRR Billings)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -18,7 +18,7 @@ Sweeping refactors are **allowed**, provided they are explicitly approved in cha
 
 ---
 
-## 2. Read vs Write Contract (Critical)
+## 2. Read vs Write Contract (Preferred)
 **Read / Inspect**
 - The agent may read PBIP artifacts (including `.tmdl`) to understand:
   - model structure
@@ -26,12 +26,10 @@ Sweeping refactors are **allowed**, provided they are explicitly approved in cha
   - existing DAX
   - naming and foldering patterns
 
-**Write / Apply Changes**
-- All **semantic model changes** must be applied via the **Power BI Modeling MCP server connected to Power BI Desktop**.
-- The agent must **not directly hand-edit `.tmdl` files** to implement logic.
-- PBIP files are treated as **serialized outputs** of Desktop/model tooling.
-
-**Intent:** ensure all changes are validated by the tabular engine and remain Desktop-compatible.
+**Write / Apply Changes (Preferred)**
+- Prefer applying **semantic model changes** via the **Power BI Modeling MCP server connected to Power BI Desktop**.
+- **Fallback:** The agent may directly edit `.tmdl` files **only with explicit permission** from the user in chat.
+- PBIP files are treated as **serialized outputs** of Desktop/model tooling; MCP remains the default workflow when feasible.
 
 ---
 

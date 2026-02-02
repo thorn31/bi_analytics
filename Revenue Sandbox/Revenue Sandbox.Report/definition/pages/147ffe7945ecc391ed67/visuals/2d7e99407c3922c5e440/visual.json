@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "2d7e99407c3922c5e440",
+  "position": {
+    "x": 0,
+    "y": 98.891566265060248,
+    "z": 0,
+    "height": 261.10843373493981,
+    "width": 504.86746987951813
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Methodology"
+                }
+              },
+              "queryRef": "CustomerMonth_Stream_Method_F.Methodology",
+              "nativeQueryRef": "Methodology",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Stream"
+                }
+              },
+              "queryRef": "CustomerMonth_Stream_Method_F.Stream",
+              "nativeQueryRef": "Stream",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CustomerMonth_Stream_Method_F"
+                        }
+                      },
+                      "Property": "Revenue Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(CustomerMonth_Stream_Method_F.Revenue Amount)",
+              "nativeQueryRef": "Sum of Revenue Amount"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "CustomerMonth_Stream_Method_F"
+                      }
+                    },
+                    "Property": "Revenue Amount"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "42e7cd95adea414e2fa1",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "CustomerMonth_Stream_Method_F"
+                  }
+                },
+                "Property": "Revenue Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c3b2ff30312f4e9cd939",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CustomerMonth_Stream_Method_F"
+              }
+            },
+            "Property": "Methodology"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b5f166b2c949fbf0f367",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CustomerMonth_Stream_Method_F"
+              }
+            },
+            "Property": "Stream"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

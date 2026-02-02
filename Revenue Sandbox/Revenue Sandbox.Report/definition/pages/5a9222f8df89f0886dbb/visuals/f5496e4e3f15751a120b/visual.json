@@ -1,18 +1,18 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "0c8bb376db19030400ce",
+  "name": "f5496e4e3f15751a120b",
   "position": {
     "x": 0,
-    "y": 50.72164948453608,
-    "z": 2,
-    "height": 669.2783505154639,
-    "width": 278.35051546391753
+    "y": 78.07228915662651,
+    "z": 3,
+    "height": 290.60240963855426,
+    "width": 340.91566265060243
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {
@@ -22,17 +22,14 @@
                       "Entity": "RS_Measures"
                     }
                   },
-                  "Property": "Projects Revenue (Amend)"
+                  "Property": "Projects Cost (Amend)"
                 }
               },
-              "queryRef": "RS_Measures.Projects Revenue (Amend)",
-              "nativeQueryRef": "Projects Revenue (Amend)"
+              "queryRef": "RS_Measures.Projects Cost (Amend)",
+              "nativeQueryRef": "Projects Cost (Amend)"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "isDefaultSort": true
       }
     },
     "drillFilterOtherVisuals": true
@@ -40,7 +37,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "dcb853c09bba03779733",
+        "name": "5ca2027dc4549be939bd",
         "field": {
           "Measure": {
             "Expression": {
@@ -48,7 +45,7 @@
                 "Entity": "RS_Measures"
               }
             },
-            "Property": "Projects Revenue (Amend)"
+            "Property": "Projects Cost (Amend)"
           }
         },
         "type": "Advanced"

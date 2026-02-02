@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "711190825724a2352519",
+  "name": "917faa36374c2093cecb",
   "position": {
-    "x": 953.92074742268028,
-    "y": 0,
-    "z": 0,
-    "height": 300,
-    "width": 300
+    "x": 939.06024096385545,
+    "y": 129.25301204819277,
+    "z": 1,
+    "height": 300.144578313253,
+    "width": 340.93975903614455
   },
   "visual": {
     "visualType": "slicer",
@@ -19,14 +19,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FYCALENDAR_D"
+                      "Entity": "DIVISIONS_D"
                     }
                   },
-                  "Property": "Fiscal Year"
+                  "Property": "Company"
                 }
               },
-              "queryRef": "FYCALENDAR_D.Fiscal Year",
-              "nativeQueryRef": "Fiscal Year",
+              "queryRef": "DIVISIONS_D.Company",
+              "nativeQueryRef": "Company",
               "active": true
             }
           ]
@@ -40,7 +40,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "'Basic'"
                 }
               }
             }
@@ -58,18 +58,18 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "969e1e29a1f8ddee8b82",
+        "name": "c4c846594beeedbb19ef",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "FYCALENDAR_D"
+                "Entity": "DIVISIONS_D"
               }
             },
-            "Property": "Fiscal Year"
+            "Property": "Company"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical"
       }
     ]
   }

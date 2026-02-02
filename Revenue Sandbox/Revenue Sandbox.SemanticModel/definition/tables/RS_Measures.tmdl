@@ -1,146 +1,177 @@
 table RS_Measures
 	isHidden
-	lineageTag: 78cbfe40-3b70-4972-9e48-fd0b1a84c331
+	lineageTag: dbca8cbc-d337-4cd0-8a6f-3ffd8a3a7945
 
-	measure 'Projects Revenue (CRR)' = SUM('Projects_ProjectMonth_CRR_F'[Revenue Amount])
+	/// CRR methodology project revenue (job earned + service project billings), completed months only.
+	measure 'Projects Revenue (CRR)' = CALCULATE(SUM(Projects_ProjectMonth_CRR_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: 6f17cca9-245a-4c8c-813f-4e670a01e913
+		displayFolder: 1. Revenue\1.1 Projects
+		lineageTag: afd0578e-a50e-4ae8-a56f-c45a3281bf18
 
-	measure 'Projects Cost (CRR)' = SUM('Projects_ProjectMonth_CRR_F'[Cost Amount])
+	/// CRR methodology project costs, completed months only.
+	measure 'Projects Cost (CRR)' = CALCULATE(SUM(Projects_ProjectMonth_CRR_F[Cost Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: 3d6d7e85-7539-4c17-9592-aebcccd3fd74
+		displayFolder: 2. Cost\2.1 Projects
+		lineageTag: 9d826691-8515-44ab-a099-7698525ca226
 
+	/// CRR project gross profit.
 	measure 'Projects GP (CRR)' = [Projects Revenue (CRR)] - [Projects Cost (CRR)]
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: 24c1d722-b42d-42de-af47-2a4f30b4e601
+		displayFolder: 3. Gross Profit\3.1 Projects
+		lineageTag: 11119134-a334-44ed-88a5-5f30953a328d
 
+	/// CRR project gross margin.
 	measure 'Projects GP % (CRR)' = DIVIDE([Projects GP (CRR)], [Projects Revenue (CRR)])
 		formatString: 0.0%;-0.0%;0.0%
-		lineageTag: f333e1cf-47f1-4cc8-b7d1-2e3a31e1daee
+		displayFolder: 3. Gross Profit\3.1 Projects
+		lineageTag: 7b7a9caf-55f1-4226-999d-9ba1ec2ec7ef
 
-	measure 'Projects Revenue (Amend - Service Project)' =
-			CALCULATE(
-			    SUM('Projects_ProjectMonth_Amend_F'[Revenue Amount]),
-			    'Projects_ProjectMonth_Amend_F'[Project Subsegment] = "Service Project"
-			)
+	/// Amend methodology service-project billings, completed months only.
+	measure 'Projects Revenue (Amend - Service Project)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[Revenue Amount]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Service Project", FYCALENDAR_D[Is Completed Month] = TRUE)
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: a8138ec1-d233-462c-88e2-0d110452193d
+		displayFolder: 1. Revenue\1.1 Projects
+		lineageTag: f2faece4-eb53-43f9-82d2-9d90b6b3ba00
 
-	measure 'Amend Cum Actual (PerProject)' =
-			CALCULATE(
-			    SUM('Projects_ProjectMonth_Amend_F'[ActualCost_Mo]),
-			    'Projects_ProjectMonth_Amend_F'[Project Subsegment] = "Job Cost",
-			    FILTER(ALL('FYCALENDAR_D'[Date]), 'FYCALENDAR_D'[Date] <= MAX('FYCALENDAR_D'[Date]))
-			)
+	/// Cumulative actual costs per project (Amend).
+	measure 'Amend Cum Actual (PerProject)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[ActualCost_Mo]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FILTER(ALL(FYCALENDAR_D[Date]), FYCALENDAR_D[Date] <= MAX(FYCALENDAR_D[Date])))
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: 8415da2d-ebbe-4ade-b038-ff392d111b78
+		displayFolder: 7. Helper
+		lineageTag: b16eb35b-facf-41ca-9b85-0f46fc5d5d16
 
-	measure 'Amend Cum Forecast (PerProject)' =
-			CALCULATE(
-			    SUM('Projects_ProjectMonth_Amend_F'[ForecastCost_Mo]),
-			    'Projects_ProjectMonth_Amend_F'[Project Subsegment] = "Job Cost",
-			    FILTER(ALL('FYCALENDAR_D'[Date]), 'FYCALENDAR_D'[Date] <= MAX('FYCALENDAR_D'[Date]))
-			)
+	/// Cumulative forecast costs per project (Amend).
+	measure 'Amend Cum Forecast (PerProject)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[ForecastCost_Mo]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FILTER(ALL(FYCALENDAR_D[Date]), FYCALENDAR_D[Date] <= MAX(FYCALENDAR_D[Date])))
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: dc48cf01-83fe-4506-b6f6-43712a7503f0
+		displayFolder: 7. Helper
+		lineageTag: fa32e921-3a24-4418-9cae-ecd143efeef0
 
-	measure 'Amend % Complete (PerProject)' =
-			VAR cumForecast = [Amend Cum Forecast (PerProject)]
-			RETURN
-			    IF(
-			        ISBLANK(cumForecast) || cumForecast = 0,
-			        BLANK(),
-			        MIN(1, DIVIDE([Amend Cum Actual (PerProject)], cumForecast))
-			    )
+	/// Percent complete per project (Amend).
+	measure 'Amend % Complete (PerProject)' = VAR cumForecast = [Amend Cum Forecast (PerProject)] RETURN IF(ISBLANK(cumForecast) || cumForecast = 0, BLANK(), MIN(1, DIVIDE([Amend Cum Actual (PerProject)], cumForecast)))
 		formatString: 0.0%;-0.0%;0.0%
-		lineageTag: 07124019-3852-498b-9dc4-11926559c66d
+		displayFolder: 7. Helper
+		lineageTag: c0ff8c44-2eb7-4ed7-b223-5d1b6727969c
 
-	measure 'Amend Contract Amount (PerProject)' =
-			CALCULATE(
-			    MAX('Projects_ProjectMonth_Amend_F'[Orig Contract Amount]),
-			    'Projects_ProjectMonth_Amend_F'[Project Subsegment] = "Job Cost"
-			)
+	/// Contract amount per project (Amend).
+	measure 'Amend Contract Amount (PerProject)' = CALCULATE(MAX(Projects_ProjectMonth_Amend_F[Orig Contract Amount]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost")
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: d4c8fc77-23c7-432d-bff9-da84b6dccc04
+		displayFolder: 7. Helper
+		lineageTag: ee6b58a4-e71b-49ad-93a3-a596769b19f8
 
-	measure 'Amend Earned TTD (PerProject)' =
-			VAR contractAmount = [Amend Contract Amount (PerProject)]
-			VAR pctComplete = [Amend % Complete (PerProject)]
-			VAR earned = contractAmount * pctComplete
-			RETURN
-			    IF(
-			        ISBLANK(contractAmount) || ISBLANK(pctComplete),
-			        BLANK(),
-			        MIN(contractAmount, earned)
-			    )
+	/// Earned to-date per project (Amend).
+	measure 'Amend Earned TTD (PerProject)' = VAR contractAmount = [Amend Contract Amount (PerProject)] VAR pctComplete = [Amend % Complete (PerProject)] VAR earned = contractAmount * pctComplete RETURN IF(ISBLANK(contractAmount) || ISBLANK(pctComplete), BLANK(), MIN(contractAmount, earned))
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: 1be8e344-7b8a-4532-95a1-31d30b85bf71
+		displayFolder: 7. Helper
+		lineageTag: 74000d66-3558-40a4-9483-48e7a364af9d
 
-	measure 'Amend Earned Revenue (Mo) (PerProject)' =
-			// Earned within the current date filter context:
-			// Earned_TTD(at context end) - Earned_TTD(at month-end before context start)
-			[Amend Earned TTD (PerProject)] - [Amend Earned TTD (Start-1) (PerProject)]
+	/// Earned to-date at month-end prior to selection start (Amend).
+	measure 'Amend Earned TTD (Start-1) (PerProject)' = VAR startDate = MIN(FYCALENDAR_D[Date]) VAR priorDate = EOMONTH(startDate, -1) RETURN CALCULATE([Amend Earned TTD (PerProject)], TREATAS({priorDate}, FYCALENDAR_D[Date]))
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: c7f737e9-56cb-4f8f-bfcc-339d79a516c7
+		displayFolder: 7. Helper
+		lineageTag: b3ad759b-b50c-4347-81cf-dd014546a10f
 
-	measure 'Projects Revenue (Amend - Job Cost)' =
-			VAR jobProjects =
-			    CALCULATETABLE(
-			        VALUES('Projects_ProjectMonth_Amend_F'[SurrogateProjectID]),
-			        'Projects_ProjectMonth_Amend_F'[Project Subsegment] = "Job Cost"
-			    )
-			RETURN
-			    SUMX(jobProjects, [Amend Earned Revenue (Mo) (PerProject)])
+	/// Earned revenue in current month context (Amend).
+	measure 'Amend Earned Revenue (Mo) (PerProject)' = [Amend Earned TTD (PerProject)] - [Amend Earned TTD (Start-1) (PerProject)]
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: eaf9cb16-cc34-48a1-b042-711b36ffcf42
+		displayFolder: 7. Helper
+		lineageTag: 30325746-a1ca-44ac-85e7-22d4be3ee378
 
-	measure 'Projects Revenue (Amend)' = [Projects Revenue (Amend - Job Cost)] + [Projects Revenue (Amend - Service Project)]
+	/// Amend methodology earned revenue for job-cost projects, completed months only.
+	measure 'Projects Revenue (Amend - Job Cost)' = VAR jobProjects = CALCULATETABLE(VALUES(Projects_ProjectMonth_Amend_F[SurrogateProjectID]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FYCALENDAR_D[Is Completed Month] = TRUE) RETURN SUMX(jobProjects, [Amend Earned Revenue (Mo) (PerProject)])
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: 8483f42d-5edd-4a11-851a-a558451f3ae1
+		displayFolder: 1. Revenue\1.1 Projects
+		lineageTag: f483f9cf-c702-4a6b-9fe1-2c75caacfc9d
 
-	measure 'Projects Cost (Amend)' =
-			CALCULATE(
-			    SUM('Projects_ProjectMonth_Amend_F'[Cost Amount]),
-			    'Projects_ProjectMonth_Amend_F'[Project Subsegment] = "Job Cost"
-			)
+	/// Total Amend project revenue (job cost + service project), completed months only.
+	measure 'Projects Revenue (Amend)' = CALCULATE([Projects Revenue (Amend - Job Cost)] + [Projects Revenue (Amend - Service Project)], FYCALENDAR_D[Is Completed Month] = TRUE)
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: 37823ce4-ead0-473b-b388-cff70562ee43
+		displayFolder: 1. Revenue\1.1 Projects
+		lineageTag: 9261d9ba-e524-4b30-81fb-41ea02ad5aec
 
+	/// Amend methodology project costs, completed months only.
+	measure 'Projects Cost (Amend)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[Cost Amount]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FYCALENDAR_D[Is Completed Month] = TRUE)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Cost\2.1 Projects
+		lineageTag: b9ecee3d-a016-463d-84a8-f0ad3bfa55c9
+
+	/// Amend project gross profit.
 	measure 'Projects GP (Amend)' = [Projects Revenue (Amend)] - [Projects Cost (Amend)]
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: ed3f5503-38c0-4952-a899-119f573f69e2
+		displayFolder: 3. Gross Profit\3.1 Projects
+		lineageTag: 424b940e-c774-415f-b1b8-db012b60e41e
 
+	/// Amend project gross margin.
 	measure 'Projects GP % (Amend)' = DIVIDE([Projects GP (Amend)], [Projects Revenue (Amend)])
 		formatString: 0.0%;-0.0%;0.0%
-		lineageTag: ae5f40cc-9a69-4d03-a615-d1a329e0ca7c
+		displayFolder: 3. Gross Profit\3.1 Projects
+		lineageTag: 9f0cb4f7-c838-4384-af37-055e9d7bca38
 
+	/// Variance between Amend and CRR project revenue.
 	measure 'Projects Revenue Variance (Amend-CRR)' = [Projects Revenue (Amend)] - [Projects Revenue (CRR)]
 		formatString: $#,0;($#,0);$#,0
-		lineageTag: c68331c4-8f5e-4a05-9dba-7782a8baaf27
+		displayFolder: 1. Revenue\1.1 Projects
+		lineageTag: 8081108c-942d-4b53-9f09-4643b41a81a5
 
+	/// Percent variance between Amend and CRR project revenue.
 	measure 'Projects Revenue Variance %' = DIVIDE([Projects Revenue Variance (Amend-CRR)], [Projects Revenue (CRR)])
 		formatString: 0.0%;-0.0%;0.0%
-		lineageTag: c7cc2fd9-75da-4a79-a028-8f04d1fd7c91
+		displayFolder: 1. Revenue\1.1 Projects
+		lineageTag: 1d9eed3a-586f-4b91-8ed7-6079eeb41c25
 
-	measure 'Amend Earned TTD (Start-1) (PerProject)' = ```
-			
-			  VAR startDate =
-			      MIN ( 'FYCALENDAR_D'[Date] )
-			  VAR priorDate =
-			      EOMONTH ( startDate, -1 )
-			  RETURN
-			      CALCULATE (
-			          [Amend Earned TTD (PerProject)],
-			          TREATAS ( { priorDate }, 'FYCALENDAR_D'[Date] )
-			      )
-			
-			```
-		lineageTag: f2ee2d07-cf3b-4658-8666-77024be4d4fa
+	/// Service contract revenue from billings (CRR), completed months only.
+	measure 'Service Contracts Revenue (CRR Billings)' = CALCULATE(SUM(SERVCONTRACTS_CustomerMonth_Billings_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.2 Service Contracts
+		lineageTag: 1fccdd30-172f-40ad-a145-3605bce3fc89
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	/// Service contract revenue recognized on schedule (Amend), completed months only.
+	measure 'Service Contracts Revenue (Amend Recognized)' = CALCULATE(SUM(SERVCONTRACTS_CustomerMonth_Recognized_Alt_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.2 Service Contracts
+		lineageTag: 872f1e41-de8a-4aac-97bc-b34e836ca977
+
+	/// Variance between recognized and billed service contract revenue.
+	measure 'Service Contracts Revenue Variance (Amend-CRR)' = [Service Contracts Revenue (Amend Recognized)] - [Service Contracts Revenue (CRR Billings)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.2 Service Contracts
+		lineageTag: 6718f006-c0ec-4ce6-ab42-04ba349bfb2e
+
+	/// Percent variance between recognized and billed service contract revenue.
+	measure 'Service Contracts Revenue Variance %' = DIVIDE([Service Contracts Revenue Variance (Amend-CRR)], [Service Contracts Revenue (CRR Billings)])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 1. Revenue\1.2 Service Contracts
+		lineageTag: cbc6c5e8-212a-4920-b212-533913688524
+
+	/// T&M revenue from call-level billings (CRR), completed months only.
+	measure 'T&M Revenue (CRR Call-Level)' = CALCULATE(SUM(TM_CustomerMonth_CRR_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.3 T&M
+		lineageTag: ea2ab74d-6d62-4ca7-8bfb-553cf434528a
+
+	/// T&M revenue from call-detail billings (Amend), completed months only.
+	measure 'T&M Revenue (Amend Call-Detail)' = CALCULATE(SUM(TM_CustomerMonth_Amend_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.3 T&M
+		lineageTag: b2300b2b-010e-4e25-823f-a63316323901
+
+	/// Variance between call-detail and call-level T&M revenue.
+	measure 'T&M Revenue Variance (Amend-CRR)' = [T&M Revenue (Amend Call-Detail)] - [T&M Revenue (CRR Call-Level)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.3 T&M
+		lineageTag: 97c012ce-13af-460c-b4d6-48bf239e62e4
+
+	/// Percent variance between call-detail and call-level T&M revenue.
+	measure 'T&M Revenue Variance %' = DIVIDE([T&M Revenue Variance (Amend-CRR)], [T&M Revenue (CRR Call-Level)])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 1. Revenue\1.3 T&M
+		lineageTag: d26978f7-4ffa-4927-9605-6b3cfe36e154
+
+	/// Legacy service projects stored as contracts, billings-based revenue, completed months only.
+	measure 'Legacy Service Projects Revenue (Billings)' = CALCULATE(SUM(LEGACYPROJECTS_CustomerMonth_Billings_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.4 Legacy Service Projects
+		lineageTag: bfeeacd1-71cf-406c-a904-5562a584f26b
 
 	column _
-		lineageTag: aacafe00-4f85-45a5-9dcd-8d021d2a9125
+		lineageTag: aecc7c2b-f25a-46e0-8e58-8c8a466f17a0
 		isNameInferred
 		sourceColumn: [_]
 

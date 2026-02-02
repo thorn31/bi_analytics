@@ -1,10 +1,10 @@
 table Projects_ProjectMonth_CRR_F
-	lineageTag: a80c9677-3ab1-4db1-a81d-47a7525df5f4
+	lineageTag: dee43b3d-f3e5-420d-8de1-0e0b406b0da6
 
 	column 'Month End'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 8afae447-da8e-45e3-ab08-2c0743d741a5
+		lineageTag: 422356ef-1597-4795-b5e5-b6d566ecebba
 		summarizeBy: none
 		sourceColumn: Month End
 
@@ -14,111 +14,139 @@ table Projects_ProjectMonth_CRR_F
 
 	column 'Customer Key'
 		dataType: string
-		lineageTag: 223a0c02-3e7e-42c5-a1d7-558e5f6b8ff1
+		lineageTag: 3edfa34b-6a52-4829-b3d3-91fd11168177
 		sourceColumn: Customer Key
 
 	column SurrogateProjectID
 		dataType: string
-		lineageTag: 8a427709-e3ee-4496-8d4f-5a4a3d3e1401
+		lineageTag: 8b1df5c2-09d9-49aa-9ec9-f32df86225c8
 		sourceColumn: SurrogateProjectID
 
 	column 'Project Subsegment'
 		dataType: string
-		lineageTag: ddf3ae73-5e25-4287-a482-81d8f470fb5c
+		lineageTag: 5eed134e-aea3-45df-93b7-63fc043c640e
 		sourceColumn: Project Subsegment
 
 	column Stream
 		dataType: string
-		lineageTag: 1ec0bea0-745c-402a-aac6-7f35f99e4c8d
+		lineageTag: c766a361-4002-4534-9eec-698a1bd4cade
 		sourceColumn: Stream
 
 	column Methodology
 		dataType: string
-		lineageTag: e9bd7f8f-ac80-4945-b6bc-a87d2195bef9
+		lineageTag: 939ab8e2-7015-4003-a2b0-0627bbc649de
 		sourceColumn: Methodology
 
 	column 'Revenue Amount'
 		dataType: double
-		lineageTag: f2e0dd2b-5896-42fc-9068-1d0454868d84
+		lineageTag: 5dc6f9f0-7fbe-487d-84b1-b2ea0728868c
+		summarizeBy: sum
 		sourceColumn: Revenue Amount
 
 	column 'Cost Amount'
 		dataType: double
-		lineageTag: 9aa06b16-d061-469d-9d05-906a15e51a99
+		lineageTag: f5becb06-1de9-454f-bfaa-b1038720a1cd
+		summarizeBy: sum
 		sourceColumn: Cost Amount
 
 	partition Projects_ProjectMonth_CRR_F = m
 		mode: import
 		source =
 				let
-				    // ----------------------------
-				    // Job Cost (CRR-style)
-				    // ----------------------------
-				    SourceJobs = JOB_MONTHLY_SUMMARY_F,
-				    JobsSlim = Table.SelectColumns(SourceJobs,{"Period Date","Customer Key","Project Key","Contract Earned Curr Mo","Total Actual Cost"}),
-				    JobsWithMonthEnd = Table.AddColumn(JobsSlim, "Month End", each Date.EndOfMonth([Period Date]), type date),
-				    JobsGrouped = Table.Group(
-				        JobsWithMonthEnd,
-				        {"Customer Key","Project Key","Month End"},
-				        {
-				            {"Revenue Amount", each List.Sum([Contract Earned Curr Mo]), type number},
-				            {"TotalActualCost_TTD", each List.Max([Total Actual Cost]), type number}
-				        }
-				    ),
-				    JobsByProject = Table.Group(
-				        JobsGrouped,
-				        {"Customer Key","Project Key"},
-				        {
-				            {"Rows", (t) =>
-				                let
-				                    Sorted = Table.Sort(t, {{"Month End", Order.Ascending}}),
-				                    Indexed = Table.AddIndexColumn(Sorted, "Idx", 0, 1, Int64.Type),
-				                    WithPrev = Table.AddColumn(Indexed, "PrevTotal", each if [Idx] = 0 then 0 else Indexed{[Idx]-1}[TotalActualCost_TTD], type number),
-				                    WithCost = Table.AddColumn(WithPrev, "Cost Amount", each [TotalActualCost_TTD] - [PrevTotal], type number),
-				                    Clean = Table.RemoveColumns(WithCost, {"Idx","PrevTotal","TotalActualCost_TTD"})
-				                in
-				                    Clean,
-				                type table
-				            }
-				        }
-				    ),
-				    JobsExpanded = Table.ExpandTableColumn(JobsByProject, "Rows", {"Month End","Revenue Amount","Cost Amount"}, {"Month End","Revenue Amount","Cost Amount"}),
-				    JobsWithSurrogate = Table.AddColumn(JobsExpanded, "SurrogateProjectID", each "JOB_" & [Customer Key] & "_" & [Project Key], type text),
-				    JobsFinal = Table.AddColumn(
-				        Table.AddColumn(
-				            Table.AddColumn(JobsWithSurrogate, "Project Subsegment", each "Job Cost", type text),
-				            "Stream", each "Projects", type text
-				        ),
-				        "Methodology", each "CRR", type text
-				    ),
-				    JobsSelect = Table.SelectColumns(JobsFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount"}),
+				      StartDate = #date(2020, 1, 1),
 				
-				    // ----------------------------
-				    // Service Project (legacy) billings (kept inside Projects)
-				    // ----------------------------
-				    ServiceProjects = Table.SelectRows(PROJECTS_D, each [Project Type] = "Service Project"),
-				    // Keep join keys minimal; CONTRACT_BILLABLE_F already contains [Customer Key]
-				    ServiceKeys = Table.Distinct(Table.SelectColumns(ServiceProjects,{"Project Number","SurrogateProjectID"}),{"Project Number"}),
-				    Billing = CONTRACT_BILLABLE_F,
-				    Joined = Table.NestedJoin(Billing, {"CONTRACT_NUMBER"}, ServiceKeys, {"Project Number"}, "P", JoinKind.Inner),
-				    Expanded = Table.ExpandTableColumn(Joined, "P", {"SurrogateProjectID"}, {"SurrogateProjectID"}),
-				    WithMonthEnd = Table.AddColumn(Expanded, "Month End", each Date.EndOfMonth([WENNSOFT_BILLING_DATE]), type date),
-				    ServiceSlim = Table.SelectColumns(WithMonthEnd,{"Month End","Customer Key","SurrogateProjectID","BILLABLE_ALL"}),
-				    ServiceGrouped = Table.Group(ServiceSlim,{"Customer Key","SurrogateProjectID","Month End"},{{"Revenue Amount", each List.Sum([BILLABLE_ALL]), type number}}),
-				    ServiceWithCost = Table.AddColumn(ServiceGrouped, "Cost Amount", each null, type number),
-				    ServiceFinal = Table.AddColumn(
-				        Table.AddColumn(
-				            Table.AddColumn(ServiceWithCost, "Project Subsegment", each "Service Project", type text),
-				            "Stream", each "Projects", type text
-				        ),
-				        "Methodology", each "CRR", type text
-				    ),
-				    ServiceSelect = Table.SelectColumns(ServiceFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount"}),
+				      // Map Job Cost projects (Project Number = Job Number)
+				      JobDim = Table.SelectRows(PROJECTS_D, each [Project Type] = "Job Cost"),
+				      JobDimKeys = Table.SelectColumns(JobDim, {"Project Number","Customer Number","Customer Key","Project Key","SurrogateProjectID"}),
 				
-				    Combined = Table.Combine({JobsSelect, ServiceSelect}),
-				    Typed = Table.TransformColumnTypes(Combined,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
-				in
-				    Typed
+				      // ----------------------------
+				      // Job Cost (CRR-style)
+				      // ----------------------------
+				      SourceJobs = JOB_MONTHLY_SUMMARY_F,
+				      JobsFiltered = Table.SelectRows(SourceJobs, each [Period Date] >= StartDate),
+				      JobsSlim = Table.SelectColumns(JobsFiltered,{"Period Date","Customer Number","Job Number","Contract Earned Curr Mo","Total Actual Cost"}),
+				      JobsWithMonthEnd = Table.AddColumn(JobsSlim, "Month End", each Date.EndOfMonth([Period Date]), type date),
+				      JobsGrouped = Table.Group(
+				          JobsWithMonthEnd,
+				          {"Customer Number","Job Number","Month End"},
+				          {
+				              {"Revenue Amount", each List.Sum([Contract Earned Curr Mo]), type number},
+				              {"TotalActualCost_TTD", each List.Max([Total Actual Cost]), type number}
+				          }
+				      ),
+				      JobsByProject = Table.Group(
+				          JobsGrouped,
+				          {"Customer Number","Job Number"},
+				          {
+				              {"Rows", (t) =>
+				                  let
+				                      Sorted = Table.Sort(t, {{"Month End", Order.Ascending}}),
+				                      Indexed = Table.AddIndexColumn(Sorted, "Idx", 0, 1, Int64.Type),
+				                      WithPrev = Table.AddColumn(Indexed, "PrevTotal", each if [Idx] = 0 then 0 else
+				  Indexed{[Idx]-1}[TotalActualCost_TTD], type number),
+				                      WithCost = Table.AddColumn(WithPrev, "Cost Amount", each [TotalActualCost_TTD] - [PrevTotal],
+				  type number),
+				                      Clean = Table.RemoveColumns(WithCost, {"Idx","PrevTotal","TotalActualCost_TTD"})
+				                  in
+				                      Clean,
+				                  type table
+				              }
+				          }
+				      ),
+				      JobsExpanded = Table.ExpandTableColumn(JobsByProject, "Rows", {"Month End","Revenue Amount","Cost Amount"},
+				  {"Month End","Revenue Amount","Cost Amount"}),
+				
+				      // Join to PROJECTS_D to get SurrogateProjectID + Customer Key
+				      JobsWithDim = Table.NestedJoin(
+				          JobsExpanded,
+				          {"Job Number","Customer Number"},
+				          JobDimKeys,
+				          {"Project Number","Customer Number"},
+				          "D",
+				          JoinKind.LeftOuter
+				      ),
+				      JobsExpandedDim = Table.ExpandTableColumn(JobsWithDim, "D", {"Customer Key","Project Key","SurrogateProjectID"}, {"Customer Key","Project Key","SurrogateProjectID"}),
+				
+				      JobsFinal = Table.AddColumn(
+				          Table.AddColumn(
+				              Table.AddColumn(JobsExpandedDim, "Project Subsegment", each "Job Cost", type text),
+				              "Stream", each "Projects", type text
+				          ),
+				          "Methodology", each "CRR", type text
+				      ),
+				      JobsSelect = Table.SelectColumns(JobsFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount"}),
+				
+				      // ----------------------------
+				      // Service Project (legacy) billings (kept inside Projects)
+				      // ----------------------------
+				      ServiceProjects = Table.SelectRows(PROJECTS_D, each [Project Type] = "Service Project"),
+				      ServiceKeys = Table.Distinct(Table.SelectColumns(ServiceProjects,{"Project Number","SurrogateProjectID"}),
+				  {"Project Number"}),
+				      Billing = CONTRACT_BILLABLE_F,
+				      BillingFiltered = Table.SelectRows(Billing, each [WENNSOFT_BILLING_DATE] >= StartDate),
+				      Joined = Table.NestedJoin(BillingFiltered, {"CONTRACT_NUMBER"}, ServiceKeys, {"Project Number"}, "P",
+				  JoinKind.Inner),
+				      Expanded = Table.ExpandTableColumn(Joined, "P", {"SurrogateProjectID"}, {"SurrogateProjectID"}),
+				      WithMonthEnd = Table.AddColumn(Expanded, "Month End", each Date.EndOfMonth([WENNSOFT_BILLING_DATE]), type
+				  date),
+				      ServiceSlim = Table.SelectColumns(WithMonthEnd,{"Month End","Customer Key","SurrogateProjectID","BILLABLE_ALL"}),
+				      ServiceGrouped = Table.Group(ServiceSlim,{"Customer Key","SurrogateProjectID","Month End"},{{"Revenue Amount",
+				  each List.Sum([BILLABLE_ALL]), type number}}),
+				      ServiceWithCost = Table.AddColumn(ServiceGrouped, "Cost Amount", each null, type number),
+				      ServiceFinal = Table.AddColumn(
+				          Table.AddColumn(
+				              Table.AddColumn(ServiceWithCost, "Project Subsegment", each "Service Project", type text),
+				              "Stream", each "Projects", type text
+				          ),
+				          "Methodology", each "CRR", type text
+				      ),
+				      ServiceSelect = Table.SelectColumns(ServiceFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount"}),
+				
+				      Combined = Table.Combine({JobsSelect, ServiceSelect}),
+				      Typed = Table.TransformColumnTypes(Combined,{{"Revenue Amount", type number}, {"Cost Amount", type number},
+				  {"Month End", type date}})
+				  in
+				      Typed
 
 	annotation PBI_NavigationStepName = Navigation
 

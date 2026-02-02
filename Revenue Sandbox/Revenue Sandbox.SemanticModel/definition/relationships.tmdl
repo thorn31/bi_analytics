@@ -30,10 +30,6 @@ relationship 'Projects_ProjectMonth_Amend_F -> PROJECTS_D'
 	fromColumn: Projects_ProjectMonth_Amend_F.SurrogateProjectID
 	toColumn: PROJECTS_D.SurrogateProjectID
 
-relationship 'CustomerMonth_Stream_Method_F -> CUSTOMERS_D'
-	fromColumn: CustomerMonth_Stream_Method_F.'Customer Key'
-	toColumn: CUSTOMERS_D.'Customer Key'
-
 relationship 'Projects_ProjectMonth_CRR_F -> FYCALENDAR_D'
 	fromColumn: Projects_ProjectMonth_CRR_F.'Month End'
 	toColumn: FYCALENDAR_D.Date
@@ -42,7 +38,63 @@ relationship 'Projects_ProjectMonth_Amend_F -> FYCALENDAR_D'
 	fromColumn: Projects_ProjectMonth_Amend_F.'Month End'
 	toColumn: FYCALENDAR_D.Date
 
+relationship 'SERVCONTRACTS_CustomerMonth_Billings_F -> CUSTOMERS_D'
+	fromColumn: SERVCONTRACTS_CustomerMonth_Billings_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'SERVCONTRACTS_CustomerMonth_Billings_F -> FYCALENDAR_D'
+	fromColumn: SERVCONTRACTS_CustomerMonth_Billings_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'SERVCONTRACTS_CustomerMonth_Recognized_Alt_F -> CUSTOMERS_D'
+	fromColumn: SERVCONTRACTS_CustomerMonth_Recognized_Alt_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'SERVCONTRACTS_CustomerMonth_Recognized_Alt_F -> FYCALENDAR_D'
+	fromColumn: SERVCONTRACTS_CustomerMonth_Recognized_Alt_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'TM_CustomerMonth_CRR_F -> CUSTOMERS_D'
+	fromColumn: TM_CustomerMonth_CRR_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'TM_CustomerMonth_CRR_F -> FYCALENDAR_D'
+	fromColumn: TM_CustomerMonth_CRR_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'TM_CustomerMonth_Amend_F -> CUSTOMERS_D'
+	fromColumn: TM_CustomerMonth_Amend_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'TM_CustomerMonth_Amend_F -> FYCALENDAR_D'
+	fromColumn: TM_CustomerMonth_Amend_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'LEGACYPROJECTS_CustomerMonth_Billings_F -> CUSTOMERS_D'
+	fromColumn: LEGACYPROJECTS_CustomerMonth_Billings_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'LEGACYPROJECTS_CustomerMonth_Billings_F -> FYCALENDAR_D'
+	fromColumn: LEGACYPROJECTS_CustomerMonth_Billings_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'CustomerMonth_Stream_Method_F -> CUSTOMERS_D'
+	fromColumn: CustomerMonth_Stream_Method_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
 relationship 'CustomerMonth_Stream_Method_F -> FYCALENDAR_D'
 	fromColumn: CustomerMonth_Stream_Method_F.'Month End'
 	toColumn: FYCALENDAR_D.Date
+
+relationship dd4cb2b9-b55d-debd-32e8-bc65d45ca8bf
+	fromColumn: SERVCONTRACTS_D.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 'SERVCONTRACTS_CustomerMonth_Billings_F -> DIVISIONS_D'
+	fromColumn: SERVCONTRACTS_CustomerMonth_Billings_F.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 'SERVCONTRACTS_CustomerMonth_Recognized_Alt_F -> DIVISIONS_D'
+	fromColumn: SERVCONTRACTS_CustomerMonth_Recognized_Alt_F.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
 

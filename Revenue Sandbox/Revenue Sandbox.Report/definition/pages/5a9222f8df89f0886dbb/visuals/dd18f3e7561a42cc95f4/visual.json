@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "29ac66f34c3998ad1dd0",
+  "name": "dd18f3e7561a42cc95f4",
   "position": {
-    "x": 584.53608247422676,
-    "y": 50.72164948453608,
-    "z": 3,
-    "height": 669.2783505154639,
-    "width": 278.35051546391753
+    "x": 0,
+    "y": 419.85542168674704,
+    "z": 2,
+    "height": 300.144578313253,
+    "width": 539.566265060241
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -41,6 +41,20 @@
                       "Entity": "RS_Measures"
                     }
                   },
+                  "Property": "Projects Revenue (Amend)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (Amend)",
+              "nativeQueryRef": "Projects Revenue (Amend)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
                   "Property": "Projects Revenue (CRR)"
                 }
               },
@@ -60,7 +74,7 @@
                     "Entity": "RS_Measures"
                   }
                 },
-                "Property": "Projects Revenue (CRR)"
+                "Property": "Projects Revenue (Amend)"
               }
             },
             "direction": "Descending"
@@ -74,21 +88,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "2d8162f11660e2783587",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Projects Revenue (CRR)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d9d8754320bb08a4374d",
+        "name": "0c194b90403805c17fe3",
         "field": {
           "Column": {
             "Expression": {
@@ -134,6 +134,34 @@
             }
           ]
         }
+      },
+      {
+        "name": "cd692184366f6048ea8c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (Amend)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ae16100252e5c08e8038",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (CRR)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

@@ -1,0 +1,90 @@
+table SERVCONTRACTS_CustomerMonth_Billings_F
+	lineageTag: 14556adf-73a4-455a-9c5e-a0213d90f5c6
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: cf70991d-1eea-4892-b3fb-74933d6a2b6f
+		sourceColumn: Customer Key
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 310ad834-54a4-4104-9311-22aab1620f00
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Stream
+		dataType: string
+		lineageTag: 849aa97e-4691-483b-985e-d59e2f93a30a
+		sourceColumn: Stream
+
+	column Methodology
+		dataType: string
+		lineageTag: b0f75709-d212-4e32-873c-175a38eb7c38
+		sourceColumn: Methodology
+
+	column 'Project Subsegment'
+		dataType: string
+		lineageTag: 0cf68525-594b-42cd-be18-5e7f8c011426
+		sourceColumn: Project Subsegment
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: 1aa28fa0-9304-42d2-aa4e-276b7a69195f
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: 92cae17f-4c9f-4b3a-afdb-34d4ba6fac30
+		summarizeBy: sum
+		sourceColumn: Cost Amount
+
+	column Divisions
+		dataType: string
+		lineageTag: a6a1a2ee-e4a5-4e02-9d94-e7486a647b79
+		sourceColumn: Divisions
+
+	partition SERVCONTRACTS_CustomerMonth_Billings_F = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2020, 1, 1),
+				    // Legacy agreement keys
+				    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D, {"AgreementKey","Contract Number","Contract Type"}),
+				    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+				    LegacyAgreement = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"AgreementKey"})),
+				
+				    Billing = SERVCONTRACTS_REVENUE_F,
+				    BillingFiltered = Table.SelectRows(Billing, each [Date] >= StartDate),
+				    ExcludeLegacy = Table.NestedJoin(BillingFiltered, {"AgreementKey"}, LegacyAgreement, {"AgreementKey"}, "L", JoinKind.LeftAnti),
+				
+				    DimKeys = Table.SelectColumns(SERVCONTRACTS_D, {"AgreementKey","Custnmbr Key","Divisions"}),
+				    JoinCustomer = Table.NestedJoin(ExcludeLegacy, {"AgreementKey"}, DimKeys, {"AgreementKey"}, "D", JoinKind.LeftOuter),
+				    Expanded = Table.ExpandTableColumn(JoinCustomer, "D", {"Custnmbr Key","Divisions"}, {"Customer Key","Divisions"}),
+				    WithMonthEnd = Table.AddColumn(Expanded, "Month End", each Date.EndOfMonth([Date]), type date),
+				
+				    Slim = Table.SelectColumns(WithMonthEnd,{"Customer Key","Divisions","Month End","Amount"}),
+				    Grouped = Table.Group(Slim,{"Customer Key","Divisions","Month End"},{{"Revenue Amount", each List.Sum([Amount]), type number}}),
+				    WithCost = Table.AddColumn(Grouped, "Cost Amount", each null, type number),
+				    Final = Table.AddColumn(
+				        Table.AddColumn(
+				            Table.AddColumn(WithCost, "Project Subsegment", each "Billings", type text),
+				            "Stream", each "Service Contracts", type text
+				        ),
+				        "Methodology", each "CRR", type text
+				    ),
+				    SelectCols = Table.SelectColumns(Final,{"Customer Key","Divisions","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
+				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

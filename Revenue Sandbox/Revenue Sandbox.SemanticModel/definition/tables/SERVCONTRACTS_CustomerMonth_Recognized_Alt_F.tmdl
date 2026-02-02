@@ -1,0 +1,101 @@
+table SERVCONTRACTS_CustomerMonth_Recognized_Alt_F
+	lineageTag: 5ab77c62-317d-4a1e-bf57-8331dbbba515
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 2c3f37e6-268d-460e-ad51-165c68ac61c7
+		sourceColumn: Customer Key
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a3095cf2-1e0a-4a58-a62e-17113b5be7bc
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Stream
+		dataType: string
+		lineageTag: f59fc3d3-ed67-4c4e-bcb0-97edfa1c5bbb
+		sourceColumn: Stream
+
+	column Methodology
+		dataType: string
+		lineageTag: 048d84c2-891f-4a6d-bcf1-fe61bc33f4d1
+		sourceColumn: Methodology
+
+	column 'Project Subsegment'
+		dataType: string
+		lineageTag: 3cff6863-d30e-43eb-ba8e-f5e797850a5f
+		sourceColumn: Project Subsegment
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: cb147362-8f29-4cb8-aab8-62c90fd627fa
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: 00ed859f-3ea1-4c7d-87ec-8dd2ced9e538
+		summarizeBy: sum
+		sourceColumn: Cost Amount
+
+	column Divisions
+		dataType: string
+		lineageTag: cbedc2d1-a716-4b66-93c8-e55dedd9d1bb
+		sourceColumn: Divisions
+
+	partition SERVCONTRACTS_CustomerMonth_Recognized_Alt_F = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2020, 1, 1),
+				
+				    // Use billings to define contract-year population, term, and annual value proxy
+				    BillBase = Table.SelectColumns(SERVCONTRACTS_REVENUE_F, {"AgreementKey","Date","Amount"}),
+				    BillFiltered = Table.SelectRows(BillBase, each [Date] >= StartDate),
+				    BillAgg = Table.Group(
+				        BillFiltered,
+				        {"AgreementKey"},
+				        {
+				            {"Bill Start", each List.Min([Date]), type date},
+				            {"Bill End", each List.Max([Date]), type date},
+				            {"Bill Total", each List.Sum([Amount]), type number}
+				        }
+				    ),
+				
+				    DimBase = Table.SelectColumns(SERVCONTRACTS_D, {"AgreementKey","Custnmbr Key","Divisions","Contract Number","Contract Type"}),
+				    Clean = Table.TransformColumns(DimBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    LegacyFiltered = Table.SelectRows(Clean, each not ( ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P")) )),
+				
+				    JoinDim = Table.NestedJoin(BillAgg, {"AgreementKey"}, LegacyFiltered, {"AgreementKey"}, "D", JoinKind.Inner),
+				    Expanded = Table.ExpandTableColumn(JoinDim, "D", {"Custnmbr Key","Divisions"}, {"Customer Key","Divisions"}),
+				
+				    WithMonthBounds = Table.AddColumn(Expanded, "StartMonth", each Date.EndOfMonth([Bill Start]), type date),
+				    WithMonthBounds2 = Table.AddColumn(WithMonthBounds, "EndMonth", each Date.EndOfMonth([Bill End]), type date),
+				    WithMonthCount = Table.AddColumn(WithMonthBounds2, "MonthCount", each (Date.Year([EndMonth]) * 12 + Date.Month([EndMonth])) - (Date.Year([StartMonth]) * 12 + Date.Month([StartMonth])) + 1, Int64.Type),
+				    WithMonthList = Table.AddColumn(WithMonthCount, "Month End", each if [MonthCount] = null or [MonthCount] <= 0 then {} else List.Transform({0..[MonthCount]-1}, (i) => Date.EndOfMonth(Date.AddMonths([StartMonth], i))), type list),
+				    ExpandedMonths = Table.ExpandListColumn(WithMonthList, "Month End"),
+				
+				    WithMonthlyRevenue = Table.AddColumn(ExpandedMonths, "Revenue Amount", each if [MonthCount] = null or [MonthCount] <= 0 or [Bill Total] = null then null else [Bill Total] / [MonthCount], type number),
+				    WithCost = Table.AddColumn(WithMonthlyRevenue, "Cost Amount", each null, type number),
+				    Final = Table.AddColumn(
+				        Table.AddColumn(
+				            Table.AddColumn(WithCost, "Project Subsegment", each "Recognized Schedule", type text),
+				            "Stream", each "Service Contracts", type text
+				        ),
+				        "Methodology", each "Amend", type text
+				    ),
+				    SelectCols = Table.SelectColumns(Final,{"Customer Key","Divisions","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
+				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+				 in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
