@@ -1,9 +1,0 @@
-brand,attribute_name,model_regex,action,reason
-TRANE,NominalCapacityTons,"^(?=.{6,}$)(?:E|G|T|W|Y)",ADDED,INTEGRATE
-TRANE,NominalCapacityTons,"^(?=.{6,}$)(?:E|G|T|W|Y)",ADDED,INTEGRATE
-TRANE,NominalCapacityTons,^[A-Z0-9-]{15}$,ADDED,INTEGRATE
-TRANE,NominalCapacityTons,"^(?=.{6,}$)(?:E|G|T|W|Y)",ADDED,INTEGRATE
-TRANE,NominalCapacityTons,"^(?=.{6,}$)(?:E|G|T|W|Y)",ADDED,INTEGRATE
-TRANE,NominalCapacityTons,^[A-Z0-9-]{15}$,ADDED,INTEGRATE
-TRANE,NominalCapacityTons,"^(?=.{6,}$)(?:DC|TC|TF|WC|WF|YC|YF)",ADDED,INTEGRATE
-TRANE,NominalCapacityTons,"^(?=.{6,}$)(?:E|G|T|W|Y)",ADDED,INTEGRATE
