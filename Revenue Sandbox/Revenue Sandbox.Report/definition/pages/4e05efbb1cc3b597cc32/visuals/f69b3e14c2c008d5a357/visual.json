@@ -3,10 +3,10 @@
   "name": "f69b3e14c2c008d5a357",
   "position": {
     "x": 0,
-    "y": 217.73493975903617,
+    "y": 184.32989690721649,
     "z": 4000,
-    "height": 232.48192771084339,
-    "width": 733.0120481927712
+    "height": 232.57731958762886,
+    "width": 732.98969072164948
   },
   "visual": {
     "visualType": "tableEx",
@@ -78,51 +78,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "dd8b5eac81fc7e885583",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year Label"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "6863368444d8be36cd79",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Service Contracts Revenue (Amend Recognized)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "568304f5f2d63738c068",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Service Contracts Revenue (CRR Billings)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -4,7 +4,10 @@ table SERVCONTRACTS_CustomerMonth_Billings_F
 	column 'Customer Key'
 		dataType: string
 		lineageTag: cf70991d-1eea-4892-b3fb-74933d6a2b6f
+		summarizeBy: none
 		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Month End'
 		dataType: dateTime
@@ -20,17 +23,26 @@ table SERVCONTRACTS_CustomerMonth_Billings_F
 	column Stream
 		dataType: string
 		lineageTag: 849aa97e-4691-483b-985e-d59e2f93a30a
+		summarizeBy: none
 		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
 
 	column Methodology
 		dataType: string
 		lineageTag: b0f75709-d212-4e32-873c-175a38eb7c38
+		summarizeBy: none
 		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Subsegment'
 		dataType: string
 		lineageTag: 0cf68525-594b-42cd-be18-5e7f8c011426
+		summarizeBy: none
 		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Revenue Amount'
 		dataType: double
@@ -47,7 +59,10 @@ table SERVCONTRACTS_CustomerMonth_Billings_F
 	column Divisions
 		dataType: string
 		lineageTag: a6a1a2ee-e4a5-4e02-9d94-e7486a647b79
+		summarizeBy: none
 		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
 
 	partition SERVCONTRACTS_CustomerMonth_Billings_F = m
 		mode: import

@@ -133,6 +133,22 @@ table CUSTOMERS
 
 		annotation SummarizationSetBy = Automatic
 
+	column QUADRA_SOURCE
+		dataType: string
+		lineageTag: b4210e3a-9dae-48d8-8d38-2ea38fa1fbb4
+		summarizeBy: none
+		sourceColumn: QUADRA_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUADRA_CUSTOMER_KEY
+		dataType: string
+		lineageTag: c1634c08-9270-4f8f-a8d9-6ad63a82ecbc
+		summarizeBy: none
+		sourceColumn: QUADRA_CUSTOMER_KEY
+
+		annotation SummarizationSetBy = Automatic
+
 	partition CUSTOMERS = m
 		mode: import
 		source =

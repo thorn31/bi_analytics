@@ -5,8 +5,8 @@
     "x": 0,
     "y": 0,
     "z": 3000,
-    "height": 209.86842105263159,
-    "width": 591.4473684210526
+    "height": 300.61855670103091,
+    "width": 640.20618556701027
   },
   "visual": {
     "visualType": "pivotTable",
@@ -33,20 +33,6 @@
         },
         "Values": {
           "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RS_Measures"
-                    }
-                  },
-                  "Property": "Projects Cost (CRR)"
-                }
-              },
-              "queryRef": "RS_Measures.Projects Cost (CRR)",
-              "nativeQueryRef": "Projects Cost (CRR)"
-            },
             {
               "field": {
                 "Measure": {
@@ -97,65 +83,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "947293fa1305710dc5f2",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year Label"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e074a5721357b4b2db42",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Projects Cost (CRR)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "7cba4c9c1ced7dfaaab2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Projects Revenue (CRR)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d230970b4e961de42f77",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Projects Revenue (Amend)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

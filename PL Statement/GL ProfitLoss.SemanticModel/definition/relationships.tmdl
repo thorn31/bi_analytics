@@ -1,0 +1,20 @@
+relationship AutoDetected_1aef68aa-a579-4e0d-83f5-bab11fe65a52
+	fromColumn: POSTING_DATA_F.ACCTIDX_KEY
+	toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+relationship AutoDetected_fd31ff27-5825-45ce-b6ba-000cc8cf6b1a
+	fromColumn: BUDGET_F.ACCTIDX_KEY
+	toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+relationship c7bdba7f-ea44-4e98-1f70-a9161c622dcf
+	fromColumn: GL_ACCT_D.REGION
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 8a51cc0e-58ec-56dd-56b9-fabe3ab0ef08
+	fromColumn: POSTING_DATA_F.PERIODEND
+	toColumn: FYCALENDAR_D.Date
+
+relationship c1a8c799-2888-fffa-c450-34f7d059914a
+	fromColumn: BUDGET_F.PERIODEND
+	toColumn: FYCALENDAR_D.Date
+

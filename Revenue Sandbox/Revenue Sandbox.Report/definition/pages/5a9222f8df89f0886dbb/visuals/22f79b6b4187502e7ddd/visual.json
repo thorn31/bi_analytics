@@ -4,7 +4,7 @@
   "position": {
     "x": 680.09638554216872,
     "y": 429.39759036144579,
-    "z": 4,
+    "z": 4000,
     "height": 290.60240963855426,
     "width": 600.289156626506
   },
@@ -80,70 +80,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "559bc611dd7af79470f7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "TM_CustomerMonth_Amend_F"
-              }
-            },
-            "Property": "Project Subsegment"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "9c1c4421a2bc0a5a04c2",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "TM_CustomerMonth_Amend_F"
-              }
-            },
-            "Property": "Stream"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "884778603e0021580a3d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "TM_CustomerMonth_Amend_F"
-              }
-            },
-            "Property": "Methodology"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ab4447b70830fee28ef5",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "TM_CustomerMonth_Amend_F"
-                  }
-                },
-                "Property": "Revenue Amount"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

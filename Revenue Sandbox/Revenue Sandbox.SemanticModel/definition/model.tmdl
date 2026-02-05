@@ -20,12 +20,10 @@ queryGroup Facts
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling","TMDLView_Desktop"]
 
-annotation PBI_QueryOrder = ["CUSTOMERS_D","FYCALENDAR_D","DIVISIONS_D","PROJECTS_D","CALLS_F","SERVCONTRACTS_D","CONTRACTS_D","CUSTOMER_SEGMENTATION","JOBS_D","JOBSTRIMMED_D","SERVPROJECTS_D","SERVCONTRACTS_D_STAGING","SV00564","CONTRACT_BILLABLE_F","SERVCONTRACTS_REVENUE_F","SERVCONTRACTS_COSTS_F","JOB_COST_DETAILS","JOB_COST_FORECASTS_F","JOB_MONTHLY_SUMMARY_F","Projects_ProjectMonth_CRR_F","Projects_ProjectMonth_Amend_F","SERVCONTRACTS_CustomerMonth_Billings_F","SERVCONTRACTS_CustomerMonth_Recognized_Alt_F","TM_CustomerMonth_CRR_F","TM_CustomerMonth_Amend_F","LEGACYPROJECTS_CustomerMonth_Billings_F","CustomerMonth_Stream_Method_F"]
+annotation PBI_QueryOrder = ["DIVISIONS_D","PROJECTS_D","CALLS_F","SERVCONTRACTS_D","FYCALENDAR_D","CONTRACTS_D","CUSTOMER_SEGMENTATION","JOBS_D","JOBSTRIMMED_D","SERVPROJECTS_D","SERVCONTRACTS_D_STAGING","SV00564","CONTRACT_BILLABLE_F","SERVCONTRACTS_REVENUE_F","SERVCONTRACTS_COSTS_F","JOB_COST_DETAILS","JOB_COST_FORECASTS_F","JOB_MONTHLY_SUMMARY_F","Projects_ProjectMonth_CRR_F","Projects_ProjectMonth_Amend_F","SERVCONTRACTS_CustomerMonth_Billings_F","SERVCONTRACTS_CustomerMonth_Recognized_Alt_F","TM_CustomerMonth_CRR_F","TM_CustomerMonth_Amend_F","LEGACYPROJECTS_CustomerMonth_Billings_F","CustomerMonth_Stream_Method_F","GL_ACCT_D","BUDGET_F","POSTING_DATA_F","DivisionMonth_Stream_Method_F"]
 
-ref table CUSTOMERS_D
-ref table FYCALENDAR_D
 ref table DIVISIONS_D
 ref table PROJECTS_D
 ref table SERVCONTRACTS_D
@@ -44,6 +42,12 @@ ref table TM_CustomerMonth_CRR_F
 ref table TM_CustomerMonth_Amend_F
 ref table LEGACYPROJECTS_CustomerMonth_Billings_F
 ref table CustomerMonth_Stream_Method_F
+ref table FYCALENDAR_D
+ref table GL_ACCT_D
+ref table BUDGET_F
+ref table POSTING_DATA_F
+ref table CALLS_F
+ref table DivisionMonth_Stream_Method_F
 
 ref cultureInfo en-US
 

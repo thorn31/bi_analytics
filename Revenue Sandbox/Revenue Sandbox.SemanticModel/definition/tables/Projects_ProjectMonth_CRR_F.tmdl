@@ -15,27 +15,42 @@ table Projects_ProjectMonth_CRR_F
 	column 'Customer Key'
 		dataType: string
 		lineageTag: 3edfa34b-6a52-4829-b3d3-91fd11168177
+		summarizeBy: none
 		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
 
 	column SurrogateProjectID
 		dataType: string
 		lineageTag: 8b1df5c2-09d9-49aa-9ec9-f32df86225c8
+		summarizeBy: none
 		sourceColumn: SurrogateProjectID
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Subsegment'
 		dataType: string
 		lineageTag: 5eed134e-aea3-45df-93b7-63fc043c640e
+		summarizeBy: none
 		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
 
 	column Stream
 		dataType: string
 		lineageTag: c766a361-4002-4534-9eec-698a1bd4cade
+		summarizeBy: none
 		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
 
 	column Methodology
 		dataType: string
 		lineageTag: 939ab8e2-7015-4003-a2b0-0627bbc649de
+		summarizeBy: none
 		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Revenue Amount'
 		dataType: double

@@ -4,7 +4,10 @@ table LEGACYPROJECTS_CustomerMonth_Billings_F
 	column 'Customer Key'
 		dataType: string
 		lineageTag: ac49955b-fd40-463b-ab83-150253428064
+		summarizeBy: none
 		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Month End'
 		dataType: dateTime
@@ -20,17 +23,26 @@ table LEGACYPROJECTS_CustomerMonth_Billings_F
 	column Stream
 		dataType: string
 		lineageTag: 448fc3d0-f1ca-4448-9698-fee539eea6f9
+		summarizeBy: none
 		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
 
 	column Methodology
 		dataType: string
 		lineageTag: 52f9278b-fd7f-47f7-9253-141b03e1c7ad
+		summarizeBy: none
 		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Subsegment'
 		dataType: string
 		lineageTag: adc49857-744a-4969-9360-ba684e244183
+		summarizeBy: none
 		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Revenue Amount'
 		dataType: double

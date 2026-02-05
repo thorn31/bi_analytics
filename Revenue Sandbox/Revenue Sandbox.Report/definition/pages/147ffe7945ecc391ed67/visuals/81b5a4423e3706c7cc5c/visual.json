@@ -4,7 +4,7 @@
   "position": {
     "x": 586.40963855421694,
     "y": 136.19277108433735,
-    "z": 1,
+    "z": 1000,
     "height": 460.62650602409644,
     "width": 621.97590361445793
   },
@@ -186,84 +186,5 @@
       }
     ],
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f7093d007482295cfaa7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year Label"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "b7b1c0e2f6cf625d02a4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CustomerMonth_Stream_Method_F"
-              }
-            },
-            "Property": "Methodology"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7ffebe81a027a9c59bb3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CustomerMonth_Stream_Method_F"
-              }
-            },
-            "Property": "Project Subsegment"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "03d303a037fd8a3fab3c",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "CustomerMonth_Stream_Method_F"
-                  }
-                },
-                "Property": "Revenue Amount"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "618823d9f74a245cd86e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CustomerMonth_Stream_Method_F"
-              }
-            },
-            "Property": "Stream"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

@@ -32,50 +32,13 @@ table RS_Measures
 		displayFolder: 1. Revenue\1.1 Projects
 		lineageTag: f2faece4-eb53-43f9-82d2-9d90b6b3ba00
 
-	/// Cumulative actual costs per project (Amend).
-	measure 'Amend Cum Actual (PerProject)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[ActualCost_Mo]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FILTER(ALL(FYCALENDAR_D[Date]), FYCALENDAR_D[Date] <= MAX(FYCALENDAR_D[Date])))
-		formatString: $#,0;($#,0);$#,0
-		displayFolder: 7. Helper
-		lineageTag: b16eb35b-facf-41ca-9b85-0f46fc5d5d16
-
-	/// Cumulative forecast costs per project (Amend).
-	measure 'Amend Cum Forecast (PerProject)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[ForecastCost_Mo]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FILTER(ALL(FYCALENDAR_D[Date]), FYCALENDAR_D[Date] <= MAX(FYCALENDAR_D[Date])))
-		formatString: $#,0;($#,0);$#,0
-		displayFolder: 7. Helper
-		lineageTag: fa32e921-3a24-4418-9cae-ecd143efeef0
-
-	/// Percent complete per project (Amend).
-	measure 'Amend % Complete (PerProject)' = VAR cumForecast = [Amend Cum Forecast (PerProject)] RETURN IF(ISBLANK(cumForecast) || cumForecast = 0, BLANK(), MIN(1, DIVIDE([Amend Cum Actual (PerProject)], cumForecast)))
-		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: 7. Helper
-		lineageTag: c0ff8c44-2eb7-4ed7-b223-5d1b6727969c
-
-	/// Contract amount per project (Amend).
-	measure 'Amend Contract Amount (PerProject)' = CALCULATE(MAX(Projects_ProjectMonth_Amend_F[Orig Contract Amount]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost")
-		formatString: $#,0;($#,0);$#,0
-		displayFolder: 7. Helper
-		lineageTag: ee6b58a4-e71b-49ad-93a3-a596769b19f8
-
-	/// Earned to-date per project (Amend).
-	measure 'Amend Earned TTD (PerProject)' = VAR contractAmount = [Amend Contract Amount (PerProject)] VAR pctComplete = [Amend % Complete (PerProject)] VAR earned = contractAmount * pctComplete RETURN IF(ISBLANK(contractAmount) || ISBLANK(pctComplete), BLANK(), MIN(contractAmount, earned))
-		formatString: $#,0;($#,0);$#,0
-		displayFolder: 7. Helper
-		lineageTag: 74000d66-3558-40a4-9483-48e7a364af9d
-
-	/// Earned to-date at month-end prior to selection start (Amend).
-	measure 'Amend Earned TTD (Start-1) (PerProject)' = VAR startDate = MIN(FYCALENDAR_D[Date]) VAR priorDate = EOMONTH(startDate, -1) RETURN CALCULATE([Amend Earned TTD (PerProject)], TREATAS({priorDate}, FYCALENDAR_D[Date]))
-		formatString: $#,0;($#,0);$#,0
-		displayFolder: 7. Helper
-		lineageTag: b3ad759b-b50c-4347-81cf-dd014546a10f
-
-	/// Earned revenue in current month context (Amend).
-	measure 'Amend Earned Revenue (Mo) (PerProject)' = [Amend Earned TTD (PerProject)] - [Amend Earned TTD (Start-1) (PerProject)]
-		formatString: $#,0;($#,0);$#,0
-		displayFolder: 7. Helper
-		lineageTag: 30325746-a1ca-44ac-85e7-22d4be3ee378
-
-	/// Amend methodology earned revenue for job-cost projects, completed months only.
-	measure 'Projects Revenue (Amend - Job Cost)' = VAR jobProjects = CALCULATETABLE(VALUES(Projects_ProjectMonth_Amend_F[SurrogateProjectID]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FYCALENDAR_D[Is Completed Month] = TRUE) RETURN SUMX(jobProjects, [Amend Earned Revenue (Mo) (PerProject)])
+	/// Amend job-cost project revenue from precomputed earned Revenue Amount, completed months only.
+	measure 'Projects Revenue (Amend - Job Cost)' =
+			CALCULATE(
+			    SUM(Projects_ProjectMonth_Amend_F[Revenue Amount]),
+			    Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost",
+			    FYCALENDAR_D[Is Completed Month] = TRUE
+			)
 		formatString: $#,0;($#,0);$#,0
 		displayFolder: 1. Revenue\1.1 Projects
 		lineageTag: f483f9cf-c702-4a6b-9fe1-2c75caacfc9d
@@ -169,6 +132,36 @@ table RS_Measures
 		formatString: $#,0;($#,0);$#,0
 		displayFolder: 1. Revenue\1.4 Legacy Service Projects
 		lineageTag: bfeeacd1-71cf-406c-a904-5562a584f26b
+
+	/// GL revenue (all markets) from POSTING_DATA_F, sign-adjusted.
+	measure 'GL Revenue (Total)' = - CALCULATE(SUM(POSTING_DATA_F[PERDBLNC]), GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE")
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.5 GL
+		lineageTag: db13d6d0-6412-4c12-a9cf-522109729ea4
+
+	/// GL revenue mapped to Projects markets.
+	measure 'GL Revenue (Projects)' = CALCULATE([GL Revenue (Total)], KEEPFILTERS(GL_ACCT_D[MARKET] IN {"O&M PROJECTS","SPECIAL PROJECT","PROJECTS","PLAN SPEC","CONTROLS","INDUSTRIAL","PERFORMANCE CONTRACT", "DESIGN BUILD"}))
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.5 GL
+		lineageTag: e6fcf582-453e-41eb-96de-ae0fe1c22b5e
+
+	/// GL revenue mapped to Spot/T&M markets.
+	measure 'GL Revenue (Spot/T&M)' = CALCULATE([GL Revenue (Total)], KEEPFILTERS(GL_ACCT_D[MARKET] IN {"SPOT","O&M SPOT","INTERCOMPANY SPOT","PROJECT REPAIR"}))
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.5 GL
+		lineageTag: 7dbd27a9-1d52-4a7f-afac-d13ab92bc8ed
+
+	/// GL revenue mapped to Contract markets.
+	measure 'GL Revenue (Contracts)' = CALCULATE([GL Revenue (Total)], KEEPFILTERS(GL_ACCT_D[MARKET] IN {"ASSURED","CERTIFIED","INSPECTION","O&M"}))
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.5 GL
+		lineageTag: fd90ce9d-867a-49f6-bbb9-708eff8e1a89
+
+	/// GL revenue not captured by Projects/Spot/Contracts market buckets.
+	measure 'GL Revenue (Other/Unmapped)' = [GL Revenue (Total)] - [GL Revenue (Projects)] - [GL Revenue (Spot/T&M)] - [GL Revenue (Contracts)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.5 GL
+		lineageTag: 2b201657-cb86-4c64-b242-541ffe792afd
 
 	column _
 		lineageTag: aecc7c2b-f25a-46e0-8e58-8c8a466f17a0

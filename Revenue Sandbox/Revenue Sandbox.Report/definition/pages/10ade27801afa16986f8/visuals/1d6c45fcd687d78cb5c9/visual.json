@@ -1,0 +1,177 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "1d6c45fcd687d78cb5c9",
+  "position": {
+    "x": 718.18181818181813,
+    "y": 453.63636363636363,
+    "z": 2000,
+    "height": 266.36363636363632,
+    "width": 561.81818181818176
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Sum of Fiscal Year",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "MMM Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.MMM Label",
+              "nativeQueryRef": "MMM Label",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Projects Revenue (Amend)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (Amend)",
+              "nativeQueryRef": "Projects Revenue (Amend)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Projects Revenue (CRR)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (CRR)",
+              "nativeQueryRef": "Projects Revenue (CRR)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Projects)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Projects)",
+              "nativeQueryRef": "GL Revenue (Projects)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal Year"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "MMM Label"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.Fiscal Year"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.MMM Label"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "2020L"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  }
+}

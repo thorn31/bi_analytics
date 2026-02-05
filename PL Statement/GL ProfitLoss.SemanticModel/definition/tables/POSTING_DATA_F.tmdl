@@ -1,0 +1,193 @@
+table POSTING_DATA_F
+	lineageTag: f4749499-42d5-44ea-9710-f56bda0b726e
+
+	column ACTINDX
+		dataType: string
+		lineageTag: a55c29ce-3b1a-4426-b3f2-f9fb115ed608
+		summarizeBy: none
+		sourceColumn: ACTINDX
+
+		annotation SummarizationSetBy = Automatic
+
+	column FISCAL_YEAR
+		dataType: double
+		lineageTag: d812cb97-d3f8-4c1d-a619-7862288ed6d5
+		summarizeBy: sum
+		sourceColumn: FISCAL_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_MONTH
+		dataType: double
+		lineageTag: c3b79bce-23c3-4014-90c4-2816e4f12708
+		summarizeBy: sum
+		sourceColumn: FISCAL_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PERDBLNC
+		dataType: double
+		lineageTag: a739efda-9639-462a-b8e1-17f650a8affa
+		summarizeBy: sum
+		sourceColumn: PERDBLNC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DEBITAMT
+		dataType: double
+		lineageTag: 3a4cc26d-1eef-428d-9fe1-8b9837f2e841
+		summarizeBy: sum
+		sourceColumn: DEBITAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CRDTAMNT
+		dataType: double
+		lineageTag: e3c86cc3-250f-43d6-9af8-12a1fe35b616
+		summarizeBy: sum
+		sourceColumn: CRDTAMNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACCATNUM
+		dataType: string
+		lineageTag: 7df32126-f574-446e-a7a5-1b174b286e15
+		summarizeBy: none
+		sourceColumn: ACCATNUM
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 71a9f8b8-6ec2-4d80-8e3d-8f5d017fc5d2
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_STATUS
+		dataType: string
+		lineageTag: ef5f1047-c94e-4779-b304-7c7e1f869e4f
+		summarizeBy: none
+		sourceColumn: TRANSACTION_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTNUM_KEY
+		dataType: string
+		lineageTag: 59fd1ac1-abcb-404a-b0de-61f8d748de7c
+		summarizeBy: none
+		sourceColumn: ACCTNUM_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTIDX_KEY
+		dataType: string
+		lineageTag: 3bdcb6ae-ad89-49be-b321-3dd7d7f5ef30
+		summarizeBy: none
+		sourceColumn: ACCTIDX_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_1
+		dataType: string
+		lineageTag: 9d782dcc-0942-4287-be60-2dc17d0fd094
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_2
+		dataType: string
+		lineageTag: c64b6aeb-b052-4411-83da-752d9e3fe1e6
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_3
+		dataType: string
+		lineageTag: 7a98c44c-2bbe-4dd7-8cbd-d2eb68e2005e
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMST
+		dataType: string
+		lineageTag: ca71997c-b184-4280-9f51-6c14d553ef82
+		summarizeBy: none
+		sourceColumn: ACTNUMST
+
+		annotation SummarizationSetBy = Automatic
+
+	column REGION
+		dataType: string
+		lineageTag: 37bf0346-ef99-4574-88eb-30b2c1642425
+		summarizeBy: none
+		sourceColumn: REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_TYPE
+		dataType: string
+		lineageTag: 4e80f682-d62a-45f5-a323-c84234cc0e40
+		summarizeBy: none
+		sourceColumn: ACCOUNT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERIODEND
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7da59b22-7418-48f0-86d7-457ef4f7e68b
+		summarizeBy: none
+		sourceColumn: PERIODEND
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition POSTING_DATA_F = m
+		mode: import
+		source =
+				let
+				  Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", [Role = null, CreateNavigationProperties = null, ConnectionTimeout = null, CommandTimeout = null]),
+				  #"Navigation 1" = Source{[Name = "DATA_WAREHOUSE", Kind = "Database"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Name = "DW_FINAL", Kind = "Schema"]}[Data],
+				  #"Navigation 3" = #"Navigation 2"{[Name = "POSTING_DATA_F", Kind = "Table"]}[Data],
+				  #"Filtered Rows" = Table.SelectRows(#"Navigation 3", each ([YEAR] >2019 ) and ([ACTNUMBR_1] <> null)),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each ([FISCAL_MONTH] <> 0)),
+				  #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows1", {"ACTINDX", "YEAR", "FISCAL_MONTH", "PERDBLNC", "DEBITAMT", "CRDTAMNT", "ACCATNUM", "SOURCE", "TRANSACTION_STATUS", "ACCTNUM_KEY", "ACCTIDX_KEY", "ACTNUMBR_1", "ACTNUMBR_2", "ACTNUMBR_3", "ACTNUMST"}),
+				  #"Renamed columns" = Table.RenameColumns(#"Removed Other Columns", {{"YEAR", "FISCAL_YEAR"}}),
+				  #"Sorted rows" = Table.Sort(#"Renamed columns", {{"ACTNUMST", Order.Ascending}, {"FISCAL_YEAR", Order.Ascending}, {"FISCAL_MONTH", Order.Ascending}}),
+				  #"Merged queries 1" = Table.NestedJoin(#"Sorted rows", {"ACCTIDX_KEY"}, GL_ACCT_D, {"ACCTIDX_KEY"}, "GL_ACCT", JoinKind.LeftOuter),
+				  #"Expanded GL_ACCT" = Table.ExpandTableColumn(#"Merged queries 1", "GL_ACCT", {"REGION", "ACCOUNT_TYPE"}, {"REGION", "ACCOUNT_TYPE"}),
+				  #"Transform columns" = Table.TransformColumnTypes(#"Expanded GL_ACCT", {{"REGION", type text}, {"ACCOUNT_TYPE", type text}}),
+				  #"Replace errors" = Table.ReplaceErrorValues(#"Transform columns", {{"REGION", null}, {"ACCOUNT_TYPE", null}}),
+				    #"Added Custom" = Table.AddColumn(#"Replace errors", "PERIODEND", each let
+				            fy = [FISCAL_YEAR],
+				            fm = [FISCAL_MONTH],
+				            calMonth = Number.Mod(fm + 9 - 1, 12) + 1,          // shift so FM=1 -> Oct (10)
+				            calYear  = fy - (if fm <= 3 then 1 else 0)          // Oct-Dec belong to prior calendar year
+				        in
+				            Date.EndOfMonth(#date(calYear, calMonth, 1)),
+				    type date
+				)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

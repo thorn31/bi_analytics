@@ -4,7 +4,7 @@
   "position": {
     "x": 953.92074742268028,
     "y": 300,
-    "z": 5001,
+    "z": 6000,
     "height": 150,
     "width": 300
   },
@@ -214,37 +214,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f5743904994e7bb3fa40",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Company"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "857ebb9f131c4485e531",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

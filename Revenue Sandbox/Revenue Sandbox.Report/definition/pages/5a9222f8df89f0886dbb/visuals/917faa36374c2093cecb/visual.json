@@ -4,7 +4,7 @@
   "position": {
     "x": 939.06024096385545,
     "y": 129.25301204819277,
-    "z": 1,
+    "z": 1000,
     "height": 300.144578313253,
     "width": 340.93975903614455
   },
@@ -54,23 +54,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c4c846594beeedbb19ef",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Company"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

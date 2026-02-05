@@ -4,7 +4,10 @@ table CustomerMonth_Stream_Method_F
 	column 'Customer Key'
 		dataType: string
 		lineageTag: 9dc307c7-f2c1-4127-9bea-b1c0088cfc32
+		summarizeBy: none
 		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Month End'
 		dataType: dateTime
@@ -20,17 +23,26 @@ table CustomerMonth_Stream_Method_F
 	column Stream
 		dataType: string
 		lineageTag: ff385250-5e90-44a5-94c0-d54d6a1806bd
+		summarizeBy: none
 		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
 
 	column Methodology
 		dataType: string
 		lineageTag: ce08a51a-aa9c-41af-9ac8-4b414f76cfb6
+		summarizeBy: none
 		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Subsegment'
 		dataType: string
 		lineageTag: 64c50882-12e6-48f7-8553-2918e158c11d
+		summarizeBy: none
 		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Revenue Amount'
 		dataType: double

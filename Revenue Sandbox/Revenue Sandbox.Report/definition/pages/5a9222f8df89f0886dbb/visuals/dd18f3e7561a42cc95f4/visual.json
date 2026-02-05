@@ -4,7 +4,7 @@
   "position": {
     "x": 0,
     "y": 419.85542168674704,
-    "z": 2,
+    "z": 2000,
     "height": 300.144578313253,
     "width": 539.566265060241
   },
@@ -134,34 +134,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "cd692184366f6048ea8c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Projects Revenue (Amend)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ae16100252e5c08e8038",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Projects Revenue (CRR)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

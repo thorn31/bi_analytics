@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "711190825724a2352519",
   "position": {
-    "x": 953.92074742268028,
+    "x": 960.85333333333335,
     "y": 0,
     "z": 0,
-    "height": 300,
-    "width": 300
+    "height": 300.37333333333333,
+    "width": 299.52
   },
   "visual": {
     "visualType": "slicer",
@@ -54,23 +54,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "969e1e29a1f8ddee8b82",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

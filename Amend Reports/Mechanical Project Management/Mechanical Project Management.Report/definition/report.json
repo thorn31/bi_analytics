@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.1.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "CY22SU03",
@@ -364,17 +364,6 @@
   ],
   "resourcePackages": [
     {
-      "name": "BulletChart1443347686880",
-      "type": "CustomVisual",
-      "items": [
-        {
-          "name": "BulletChart1443347686880.pbiviz.json",
-          "path": "BulletChart1443347686880.pbiviz.json",
-          "type": "CustomVisualMetadata"
-        }
-      ]
-    },
-    {
       "name": "RegisteredResources",
       "type": "RegisteredResources",
       "items": [
@@ -406,7 +395,8 @@
     "useStylableVisualContainerHeader": true,
     "defaultDrillFilterOtherVisuals": true,
     "useCrossReportDrillthrough": true,
-    "allowChangeFilterTypes": true
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": false
   },
   "slowDataSourceSettings": {
     "isCrossHighlightingDisabled": false,

@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "aa12f389953a13a6369a",
+  "position": {
+    "x": 383.50515463917526,
+    "y": 29.072164948453608,
+    "z": 0,
+    "height": 300,
+    "width": 745.360824742268
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Sum of Fiscal Year",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "MMM Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.MMM Label",
+              "nativeQueryRef": "MMM Label",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Spot/T&M)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Spot/T&M)",
+              "nativeQueryRef": "GL Revenue (Spot/T&M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "T&M Revenue (Amend Call-Detail)"
+                }
+              },
+              "queryRef": "RS_Measures.T&M Revenue (Amend Call-Detail)",
+              "nativeQueryRef": "T&M Revenue (Amend Call-Detail)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "T&M Revenue (CRR Call-Level)"
+                }
+              },
+              "queryRef": "RS_Measures.T&M Revenue (CRR Call-Level)",
+              "nativeQueryRef": "T&M Revenue (CRR Call-Level)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.Fiscal Year"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.MMM Label"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  }
+}

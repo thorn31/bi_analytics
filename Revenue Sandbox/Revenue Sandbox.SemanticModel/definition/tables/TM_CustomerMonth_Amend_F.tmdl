@@ -4,7 +4,10 @@ table TM_CustomerMonth_Amend_F
 	column 'Customer Key'
 		dataType: string
 		lineageTag: 27d61f4b-6b5c-4813-9a8a-4946bb44fc37
+		summarizeBy: none
 		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Month End'
 		dataType: dateTime
@@ -20,17 +23,26 @@ table TM_CustomerMonth_Amend_F
 	column Stream
 		dataType: string
 		lineageTag: a2899ec3-8fda-4686-8d0a-135ab5ded494
+		summarizeBy: none
 		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
 
 	column Methodology
 		dataType: string
 		lineageTag: 850fe81c-5c78-481a-a369-38225e43336b
+		summarizeBy: none
 		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Subsegment'
 		dataType: string
 		lineageTag: 0c6916c5-926f-482b-b8a3-f77678c8836b
+		summarizeBy: none
 		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Revenue Amount'
 		dataType: double
@@ -43,6 +55,14 @@ table TM_CustomerMonth_Amend_F
 		lineageTag: e4b98a59-456b-475c-af98-6b8edd182a29
 		summarizeBy: sum
 		sourceColumn: Cost Amount
+
+	column Divisions
+		dataType: string
+		lineageTag: 33e86715-1984-495c-b41c-d9d1288429f6
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
 
 	partition TM_CustomerMonth_Amend_F = m
 		mode: import
@@ -62,16 +82,16 @@ table TM_CustomerMonth_Amend_F
 				
 				    Calls = CALLS_F,
 				    CallsTrim = Table.TransformColumns(Calls, {{"Contract Number", each if _ = null then null else Text.Trim(_), type text}, {"Type Of Call", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
-				    CallsJoinCols = Table.SelectColumns(CallsTrim,{"Service Call Id","Customernbr Key","Contract Number","Type Of Call"}),
+				    CallsJoinCols = Table.SelectColumns(CallsTrim,{"Service Call Id","Customernbr Key","Contract Number","Type Of Call","Divisions"}),
 				    Joined = Table.NestedJoin(DetailsFiltered, {"Service Call Id"}, CallsJoinCols, {"Service Call Id"}, "C", JoinKind.LeftOuter),
-				    Expanded = Table.ExpandTableColumn(Joined, "C", {"Customernbr Key","Contract Number","Type Of Call"}, {"Customer Key","Contract Number","Type Of Call"}),
+				    Expanded = Table.ExpandTableColumn(Joined, "C", {"Customernbr Key","Contract Number","Type Of Call","Divisions"}, {"Customer Key","Contract Number","Type Of Call","Divisions"}),
 				
 				    FilteredNonContract = Table.SelectRows(Expanded, each [Contract Number] = null or [Contract Number] = ""),
 				    FilteredTypes = Table.SelectRows(FilteredNonContract, each List.Contains(Types, [Type Of Call])),
 				
 				    WithMonthEnd = Table.AddColumn(FilteredTypes, "Month End", each Date.EndOfMonth([Date]), type date),
-				    Slim = Table.SelectColumns(WithMonthEnd,{"Customer Key","Month End","Billing Amount"}),
-				    Grouped = Table.Group(Slim,{"Customer Key","Month End"},{{"Revenue Amount", each List.Sum([Billing Amount]), type number}}),
+				    Slim = Table.SelectColumns(WithMonthEnd,{"Customer Key","Month End","Billing Amount","Divisions"}),
+				    Grouped = Table.Group(Slim,{"Customer Key","Month End","Divisions"},{{"Revenue Amount", each List.Sum([Billing Amount]), type number}}),
 				    WithCost = Table.AddColumn(Grouped, "Cost Amount", each null, type number),
 				    Final = Table.AddColumn(
 				        Table.AddColumn(
@@ -80,9 +100,9 @@ table TM_CustomerMonth_Amend_F
 				        ),
 				        "Methodology", each "Amend", type text
 				    ),
-				    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
-				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
-				in
+				    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount","Divisions"}),
+				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}, {"Divisions", type text}})
+				 in
 				    Typed
 
 	annotation PBI_NavigationStepName = Navigation

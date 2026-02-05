@@ -78,51 +78,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "280a70eb8bf4eeef3bd3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year Label"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4d070d766f6ecee1e882",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "T&M Revenue (Amend Call-Detail)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5abde31705f1f9f122bb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "T&M Revenue (CRR Call-Level)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

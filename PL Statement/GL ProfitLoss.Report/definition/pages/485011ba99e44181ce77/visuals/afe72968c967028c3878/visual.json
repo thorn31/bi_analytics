@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "afe72968c967028c3878",
+  "position": {
+    "x": 353.10344827586209,
+    "y": 376.64367816091954,
+    "z": 1000,
+    "height": 243.49425287356323,
+    "width": 434.02298850574715
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "POSTING_DATA_F"
+                    }
+                  },
+                  "Property": "FISCAL_YEAR"
+                }
+              },
+              "queryRef": "POSTING_DATA_F.FISCAL_YEAR",
+              "nativeQueryRef": "Sum of FISCAL_YEAR",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "Revenue"
+                }
+              },
+              "queryRef": "GL_ACCT.Measure",
+              "nativeQueryRef": "Revenue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "GL_ACCT_D"
+                  }
+                },
+                "Property": "Revenue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "172ec3c5abf31df93ca8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "POSTING_DATA_F"
+              }
+            },
+            "Property": "FISCAL_YEAR"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "72def776f314b1ff2dd4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "GL_ACCT_D"
+              }
+            },
+            "Property": "Revenue"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

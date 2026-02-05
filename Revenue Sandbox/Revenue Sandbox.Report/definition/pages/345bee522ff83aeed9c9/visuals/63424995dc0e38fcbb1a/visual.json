@@ -1,0 +1,195 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "63424995dc0e38fcbb1a",
+  "position": {
+    "x": 53.814432989690722,
+    "y": 49.484536082474229,
+    "z": 1000,
+    "height": 653.81443298969066,
+    "width": 565.979381443299
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DivisionMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Methodology"
+                }
+              },
+              "queryRef": "DivisionMonth_Stream_Method_F.Methodology",
+              "nativeQueryRef": "Methodology",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year Label",
+              "nativeQueryRef": "Fiscal Year Label",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DivisionMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Stream"
+                }
+              },
+              "queryRef": "DivisionMonth_Stream_Method_F.Stream",
+              "nativeQueryRef": "Stream",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DivisionMonth_Stream_Method_F"
+                        }
+                      },
+                      "Property": "Revenue Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DivisionMonth_Stream_Method_F.Revenue Amount)",
+              "nativeQueryRef": "Sum of Revenue Amount"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.Fiscal Year Label"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year Label"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DivisionMonth_Stream_Method_F.Stream"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5c49f2942381527c2fee",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DivisionMonth_Stream_Method_F"
+                  }
+                },
+                "Property": "Revenue Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "01dbf480a3d771163528",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year Label"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "28186d2ddbf56b39db8f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DivisionMonth_Stream_Method_F"
+              }
+            },
+            "Property": "Stream"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ed6ce0fb377097d84df5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DivisionMonth_Stream_Method_F"
+              }
+            },
+            "Property": "Methodology"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

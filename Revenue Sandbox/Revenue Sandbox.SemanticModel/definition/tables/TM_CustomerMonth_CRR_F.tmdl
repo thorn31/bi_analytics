@@ -4,7 +4,10 @@ table TM_CustomerMonth_CRR_F
 	column 'Customer Key'
 		dataType: string
 		lineageTag: a9be418c-982f-4731-961e-a9255ea05ee7
+		summarizeBy: none
 		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Month End'
 		dataType: dateTime
@@ -20,17 +23,26 @@ table TM_CustomerMonth_CRR_F
 	column Stream
 		dataType: string
 		lineageTag: cc700008-36bf-4a0c-99b9-ce85ecf40cb2
+		summarizeBy: none
 		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
 
 	column Methodology
 		dataType: string
 		lineageTag: 8fc428e0-7a5b-44f0-ada3-1c1f2ac23956
+		summarizeBy: none
 		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Subsegment'
 		dataType: string
 		lineageTag: cda79552-15e1-4c91-ae06-f1f9aab41f42
+		summarizeBy: none
 		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Revenue Amount'
 		dataType: double
@@ -43,6 +55,14 @@ table TM_CustomerMonth_CRR_F
 		lineageTag: 33fbee5b-8b29-4cde-8e86-c84318a01229
 		summarizeBy: sum
 		sourceColumn: Cost Amount
+
+	column Divisions
+		dataType: string
+		lineageTag: 533a4120-bf59-4465-9a8d-af551e3057c9
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
 
 	partition TM_CustomerMonth_CRR_F = m
 		mode: import
@@ -57,9 +77,9 @@ table TM_CustomerMonth_CRR_F
 				    #"Changed Type" = Table.TransformColumnTypes(FilteredTypes,{{"Date Of Service Call", type date}, {"Completion Date", type date}, {"Created Date", type date}}),
 				    FilteredDate = Table.SelectRows(#"Changed Type", each [Date Of Service Call] >= StartDate),
 				    WithMonthEnd = Table.AddColumn(FilteredDate, "Month End", each Date.EndOfMonth([Date Of Service Call]), type date),
-				    Slim = Table.SelectColumns(WithMonthEnd,{"Customernbr Key","Month End","Billable All","Cost All"}),
+				    Slim = Table.SelectColumns(WithMonthEnd,{"Customernbr Key","Month End","Billable All","Cost All","Divisions"}),
 				    Renamed = Table.RenameColumns(Slim, {{"Customernbr Key","Customer Key"}, {"Billable All","Revenue Amount"}, {"Cost All","Cost Amount"}}),
-				    Grouped = Table.Group(Renamed,{"Customer Key","Month End"},{{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+				    Grouped = Table.Group(Renamed,{"Customer Key","Month End","Divisions"},{{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
 				    Final = Table.AddColumn(
 				        Table.AddColumn(
 				            Table.AddColumn(Grouped, "Project Subsegment", each "Call-Level", type text),
@@ -67,9 +87,9 @@ table TM_CustomerMonth_CRR_F
 				        ),
 				        "Methodology", each "CRR", type text
 				    ),
-				    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
-				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
-				in
+				    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount","Divisions"}),
+				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}, {"Divisions", type text}})
+				 in
 				    Typed
 
 	annotation PBI_NavigationStepName = Navigation
