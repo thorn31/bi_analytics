@@ -113,3 +113,4 @@ Actuals (JOB_COST_DETAILS, MECH_GP):
 - Hard-setting 2021-01-01 may stabilize early years but would diverge from a rolling window used in the Amend report.
 - Outcome note: shifting the start date/window does not fix the 2021 issues; it only moves which years are included.
 - Reminder: if we test changing the start date/window, reset StartDate back to 2020-01-01 afterward.
+- Note: Mechanical report uses "Net Earned Rev Across Jobs" (job-grain SUMX/SUMMARIZE). This enforces job-level aggregation and can avoid double-counting when fact tables have multiple rows per job. Our model currently sums precomputed job-month revenue, which should already be at job grain, but differences can arise if job grain is not enforced in visuals/measures.

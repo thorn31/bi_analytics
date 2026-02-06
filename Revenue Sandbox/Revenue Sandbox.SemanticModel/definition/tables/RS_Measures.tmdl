@@ -146,7 +146,7 @@ table RS_Measures
 		lineageTag: e6fcf582-453e-41eb-96de-ae0fe1c22b5e
 
 	/// GL revenue mapped to Spot/T&M markets.
-	measure 'GL Revenue (Spot/T&M)' = CALCULATE([GL Revenue (Total)], KEEPFILTERS(GL_ACCT_D[MARKET] IN {"SPOT","O&M SPOT","INTERCOMPANY SPOT","PROJECT REPAIR"}))
+	measure 'GL Revenue (Spot/T&M)' = CALCULATE([GL Revenue (Total)], KEEPFILTERS(GL_ACCT_D[MARKET] IN {"SPOT","O&M SPOT","INTERCOMPANY SPOT", "PROJECT REPAIR"}))
 		formatString: $#,0;($#,0);$#,0
 		displayFolder: 1. Revenue\1.5 GL
 		lineageTag: 7dbd27a9-1d52-4a7f-afac-d13ab92bc8ed

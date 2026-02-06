@@ -33,23 +33,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3afcbe95c160b3ffcb1a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Company"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

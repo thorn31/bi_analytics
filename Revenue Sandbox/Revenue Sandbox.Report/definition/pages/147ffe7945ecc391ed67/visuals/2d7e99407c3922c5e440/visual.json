@@ -99,5 +99,56 @@
       }
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3ebe40e85838216bf158",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CustomerMonth_Stream_Method_F"
+              }
+            },
+            "Property": "Methodology"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b043c9866fc3b598f616",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CustomerMonth_Stream_Method_F"
+              }
+            },
+            "Property": "Stream"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c37dd6040d150d1c4fff",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "CustomerMonth_Stream_Method_F"
+                  }
+                },
+                "Property": "Revenue Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

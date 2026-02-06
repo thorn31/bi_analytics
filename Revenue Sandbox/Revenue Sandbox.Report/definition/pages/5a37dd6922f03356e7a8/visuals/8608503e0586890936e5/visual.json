@@ -93,7 +93,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "7dc76b41574a5e48e6df",
+        "name": "1b2ec85e66f8bd4c7a09",
         "field": {
           "Column": {
             "Expression": {
@@ -105,6 +105,48 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "b4494e2c8b779708fbcf",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "MMM Label"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "950c4e1ab89db17f7e9c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIVISIONS_D"
+              }
+            },
+            "Property": "Division"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ffc15cf1141b65112b7d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (Amend - Job Cost)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

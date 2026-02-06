@@ -148,7 +148,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Service'"
+                                "Value": "'TFS'"
                               }
                             }
                           ]
@@ -176,7 +176,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'Service'"
+                                      "Value": "'TFS'"
                                     }
                                   }
                                 ]
@@ -200,7 +200,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Service"
+                            "0": "TFS"
                           }
                         ]
                       }
@@ -214,5 +214,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fb87d926c3eb0f8b7c1b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIVISIONS_D"
+              }
+            },
+            "Property": "Company"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7db52f580927ef3476c2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIVISIONS_D"
+              }
+            },
+            "Property": "Division"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

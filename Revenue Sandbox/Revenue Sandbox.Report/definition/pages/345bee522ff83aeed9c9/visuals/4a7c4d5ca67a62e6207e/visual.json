@@ -4,7 +4,7 @@
   "position": {
     "x": 934.020618556701,
     "y": 132.98969072164948,
-    "z": 2002,
+    "z": 4000,
     "height": 288.55670103092785,
     "width": 335.87628865979377
   },
@@ -74,42 +74,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b615a585d7331900df4b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year Label"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "1e206ae95afad0d56d18",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Projects_ProjectMonth_Amend_F"
-                  }
-                },
-                "Property": "Revenue Amount"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

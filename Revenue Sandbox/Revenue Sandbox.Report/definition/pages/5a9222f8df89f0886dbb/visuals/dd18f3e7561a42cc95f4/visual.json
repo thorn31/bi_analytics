@@ -3,10 +3,10 @@
   "name": "dd18f3e7561a42cc95f4",
   "position": {
     "x": 0,
-    "y": 419.85542168674704,
+    "y": 420,
     "z": 2000,
-    "height": 300.144578313253,
-    "width": 539.566265060241
+    "height": 300,
+    "width": 1243.3333333333333
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -46,6 +46,20 @@
               },
               "queryRef": "RS_Measures.Projects Revenue (Amend)",
               "nativeQueryRef": "Projects Revenue (Amend)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Projects)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Projects)",
+              "nativeQueryRef": "GL Revenue (Projects)"
             },
             {
               "field": {
@@ -134,6 +148,48 @@
             }
           ]
         }
+      },
+      {
+        "name": "ae15d7279efc06bd6984",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (Amend)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8689dd106e4a7b85039c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (CRR)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0ddba77579d7ef294d48",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "GL Revenue (Projects)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

@@ -1,0 +1,718 @@
+table FYCALENDAR_D
+	lineageTag: 8c51d82e-3ecf-4212-8568-9ddefa6c0efd
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: e5609764-a193-4319-934d-f156ea750691
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: a7397bc3-f38b-46d7-9974-63597583d74c
+		summarizeBy: none
+		sourceColumn: Fiscal Year
+
+		annotation SummarizationSetBy = User
+
+	column 'Fiscal Year Label'
+		dataType: string
+		lineageTag: 4bf297d8-628e-43a2-a27d-1238e18efb45
+		summarizeBy: none
+		sourceColumn: Fiscal Year Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year Default'
+		dataType: string
+		lineageTag: da27f082-d594-4996-8d04-1d1212467e2b
+		summarizeBy: none
+		sourceColumn: Fiscal Year Default
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Start Of Year'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 57c36fbc-5f4a-4510-a9d3-a14eac7c522a
+		summarizeBy: none
+		sourceColumn: Fiscal Start Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal End Of Year'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 62e86422-3e81-411b-aea7-1381a8ef6285
+		summarizeBy: none
+		sourceColumn: Fiscal End Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal Day Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 54409dc9-b334-4f54-b7f6-340ed9fb939b
+		summarizeBy: sum
+		sourceColumn: Fiscal Day Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Week Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 80318a93-8a17-4185-9459-a14843206b83
+		summarizeBy: sum
+		sourceColumn: Fiscal Week Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Week Label'
+		dataType: string
+		lineageTag: 6ff4b888-20ab-416a-8f75-aaa4858f4700
+		summarizeBy: none
+		sourceColumn: Fiscal Week Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year Offset'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c294462-7a5b-4f14-aa35-9cf5e4213bff
+		summarizeBy: sum
+		sourceColumn: Fiscal Year Offset
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e7968c8-7cdb-48f1-b7dd-e72910aec80a
+		summarizeBy: sum
+		sourceColumn: Fiscal Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month Default'
+		dataType: string
+		lineageTag: 76b464fc-cdfd-48d7-985e-61b658cdc047
+		summarizeBy: none
+		sourceColumn: Fiscal Month Default
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter'
+		dataType: int64
+		formatString: 0
+		lineageTag: 839b38ec-a6a2-4853-b92b-ab04f6af0510
+		summarizeBy: sum
+		sourceColumn: Fiscal Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter Label'
+		dataType: string
+		lineageTag: 018937bc-1b26-46fb-b27c-83eeafd38e63
+		summarizeBy: none
+		sourceColumn: Fiscal Quarter Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month Of Quarter'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8834829d-313b-440f-8fd4-2e017e0a2e1c
+		summarizeBy: sum
+		sourceColumn: Fiscal Month Of Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year Quarter Label'
+		dataType: string
+		lineageTag: e8b1c8ec-68ab-4ebc-86bb-8d0df2662da7
+		summarizeBy: none
+		sourceColumn: Fiscal Year Quarter Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Start Of Quarter'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d306494b-4e55-4e04-a9c6-7c614fbeb309
+		summarizeBy: none
+		sourceColumn: Fiscal Start Of Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal End Of Quarter'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eaa069a1-2825-4d26-8346-85f523dbb752
+		summarizeBy: none
+		sourceColumn: Fiscal End Of Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal Quarter Offset'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e226a19-b075-496d-acd0-c6e321066b77
+		summarizeBy: sum
+		sourceColumn: Fiscal Quarter Offset
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter Month Label'
+		dataType: string
+		lineageTag: 651f4cd6-4253-4c9a-b2a7-a0893f68bcf3
+		summarizeBy: none
+		sourceColumn: Fiscal Quarter Month Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Day Of Quarter'
+		dataType: int64
+		formatString: 0
+		lineageTag: 602d70e1-c2d6-4f73-b1f0-b1282b3f613a
+		summarizeBy: sum
+		sourceColumn: Fiscal Day Of Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Current Month'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ea6159cd-fb23-4fb7-ba91-0eaf2c4407d6
+		summarizeBy: none
+		sourceColumn: Is Current Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Current Calendar Year'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 96b70501-708d-43f0-a89c-7f7926382c9a
+		summarizeBy: none
+		sourceColumn: Is Current Calendar Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Current Fiscal Year'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: de18c3fb-9c4d-45ed-a92f-22a0a2b74ff2
+		summarizeBy: none
+		sourceColumn: Is Current Fiscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Start'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 21dd5858-105b-44eb-88c0-ca150179dfbb
+		summarizeBy: none
+		sourceColumn: Week Start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is Current Week'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a1115c5c-da38-41e5-9568-137630698db7
+		summarizeBy: none
+		sourceColumn: Is Current Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Previous Month'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d22efa5d-2fed-48ea-b010-0eb99a909f34
+		summarizeBy: none
+		sourceColumn: Is Previous Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Previous Fiscal Year'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 094cbfe5-f9d3-4d66-9a19-a1e77bb7f16d
+		summarizeBy: none
+		sourceColumn: Is Previous Fiscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Previous Week'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1be3ce16-94e9-4139-a733-b9832a5379d0
+		summarizeBy: none
+		sourceColumn: Is Previous Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month Name'
+		dataType: string
+		lineageTag: 71b78bd3-d45a-446e-aa2f-c241e62a942a
+		summarizeBy: none
+		sourceColumn: Fiscal Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month Name Long'
+		dataType: string
+		lineageTag: 90365dd2-94ff-4cdc-bba4-6c7d35ee81f9
+		summarizeBy: none
+		sourceColumn: Fiscal Month Name Long
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Week Name'
+		dataType: string
+		lineageTag: c69efe37-4b5c-4ace-95be-eb392bb54f23
+		summarizeBy: none
+		sourceColumn: Fiscal Week Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 2cd4eeab-6d68-45b7-87d0-8bf8dc5c50c3
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MMM Label'
+		dataType: string
+		lineageTag: adaa6baa-a9e0-492e-a8b9-1530f9f192b0
+		summarizeBy: none
+		sourceColumn: MMM Label
+		sortByColumn: 'Fiscal Month'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Completed Month'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5560eba4-d4ab-48b2-93ed-2fa8cf3aa9e1
+		summarizeBy: none
+		sourceColumn: Is Completed Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Completed Quarter'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9fbddba7-80cd-4ae5-a177-ddfb24ce82d1
+		summarizeBy: none
+		sourceColumn: Is Completed Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FYCALENDAR_D = m
+		mode: import
+		queryGroup: dim
+		source = ```
+				let
+				    // The FiscalYearEnd determines in which month the fiscal year ends. If necessary you can adjust it. 
+				    FiscalYearEnd = 9,
+				
+				    // Today is used throughout the fiscal logic and for determining current period flags
+				    Today = Date.From(DateTime.LocalNow()),
+				
+				    // Sets the start date for your calendar
+				    StartDate = #date(2000, 1, 1),
+				
+				    // The calendar runs until the end of the current year. Change this if you need your calendar to run to another date. 
+				    EndDate = Date.AddYears(Date.EndOfYear(Today),1),
+				
+				    // The current Fiscal Year value is a helper value for other calculations
+				    CurrentFiscalYear = Date.Year( Date.AddMonths( Today, 12 - FiscalYearEnd ) ),
+				
+				    ListOfDates =
+				        List.Dates(
+				            StartDate,
+				            Duration.Days(EndDate - StartDate) + 1,
+				            #duration(1, 0, 0, 0)
+				        ),
+				
+				    MyDateTable =
+				        Table.FromList(
+				            ListOfDates,
+				            Splitter.SplitByNothing(),
+				            type table[Date = date],
+				            null,
+				            ExtraValues.Error
+				        ),
+				
+				    Add_FiscalYearNumber =
+				        Table.AddColumn(
+				            MyDateTable,
+				            "FiscalYear",
+				            each Date.Year(Date.AddMonths([Date], 12 - FiscalYearEnd)),
+				            Int64.Type
+				        ),
+				
+				    Add_FiscalYearLabel =
+				        Table.AddColumn(
+				            Add_FiscalYearNumber,
+				            "FiscalYearLabel",
+				            each "FY" & Text.From([FiscalYear]),
+				            Text.Type
+				        ),
+				
+				    // Allows you to select the 'Current' or 'Previous' year dynamically. 
+				    Add_FiscalYearDefault =
+				        Table.AddColumn(
+				            Add_FiscalYearLabel,
+				            "FiscalYearDefault",
+				            each
+				                if [FiscalYear] = CurrentFiscalYear then "Current"
+				                else if [FiscalYear] = (CurrentFiscalYear - 1) then "Previous"
+				                else "FY" & Text.From([FiscalYear]),
+				            Text.Type
+				        ),
+				
+				    Add_FiscalStartOfYear =
+				        Table.AddColumn(
+				            Add_FiscalYearDefault,
+				            "FiscalStartOfYear",
+				            each [
+				                Offset = if FiscalYearEnd = 12 then 0 else FiscalYearEnd - 12,
+				                FiscalStartOfYear = Date.AddMonths(Date.StartOfYear([Date]), Offset)
+				            ][FiscalStartOfYear],
+				            Date.Type
+				        ),
+				
+				    Add_FiscalEndOfYear =
+				        Table.AddColumn(
+				            Add_FiscalStartOfYear,
+				            "FiscalEndOfYear",
+				            each Date.AddMonths(Date.EndOfYear([Date]), FiscalYearEnd - 12),
+				            Date.Type
+				        ),
+				
+				    // -----------------------------------------------------
+				    // Fiscal Day & Week of Fiscal Year
+				    // -----------------------------------------------------
+				
+				    Add_FiscalDayOfYear =
+				        Table.AddColumn(
+				            Add_FiscalEndOfYear,
+				            "FiscalDayOfYear",
+				            each Number.From([Date] - [FiscalStartOfYear]) + 1,
+				            Int64.Type
+				        ),
+				
+				    Add_FiscalWeekOfYear =
+				        Table.AddColumn(
+				            Add_FiscalDayOfYear,
+				            "FiscalWeekOfYear",
+				            each Number.RoundUp([FiscalDayOfYear] / 7),
+				            Int64.Type
+				        ),
+				
+				    Add_FiscalWeekLabel =
+				        Table.AddColumn(
+				            Add_FiscalWeekOfYear,
+				            "FiscalWeekLabel",
+				            each
+				                "FY" &
+				                Text.From([FiscalYear]) &
+				                " W" &
+				                Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
+				            Text.Type
+				        ),
+				
+				    // -----------------------------------------------------
+				    // Continue existing logic
+				    // -----------------------------------------------------
+				
+				    // A year Offset value indicates the relative position of the current year (based on today's date)
+				    Add_FiscalYearOffset =
+				        Table.AddColumn(
+				            Add_FiscalWeekLabel,
+				            "FiscalYearOffset",
+				            each ([FiscalYear] - CurrentFiscalYear),
+				            Int64.Type
+				        ),
+				
+				    Add_FiscalMonthNumber =
+				        Table.AddColumn(
+				            Add_FiscalYearOffset,
+				            "FiscalMonth",
+				            each Date.Month(Date.AddMonths([Date], -FiscalYearEnd)),
+				            Int64.Type
+				        ),
+				
+				    // Allows you to select the 'Current' or 'Previous' month dynamically.
+				    Add_FiscalMonthDefault =
+				        Table.AddColumn(
+				            Add_FiscalMonthNumber,
+				            "FiscalMonthDefault",
+				            each
+				                if Date.IsInCurrentMonth([Date]) then "Current"
+				                else if Date.IsInPreviousMonth([Date]) then "Previous"
+				                else Text.From([FiscalMonth]),
+				            Text.Type
+				        ),
+				
+				    Add_FiscalQuarterNumber =
+				        Table.AddColumn(
+				            Add_FiscalMonthDefault,
+				            "FiscalQuarter",
+				            each Number.RoundUp([FiscalMonth] / 3),
+				            Int64.Type
+				        ),
+				
+				    Add_FiscalQuarterLabel =
+				        Table.AddColumn(
+				            Add_FiscalQuarterNumber,
+				            "FiscalQuarterLabel",
+				            each "FQ" & Text.From([FiscalQuarter]),
+				            Text.Type
+				        ),
+				
+				    Add_FiscalMonthOfQuarter =
+				        Table.AddColumn(
+				            Add_FiscalQuarterLabel,
+				            "FiscalMonthOfQuarter",
+				            each [FiscalMonth] - 3 * ([FiscalQuarter] - 1),
+				            Int64.Type
+				        ),
+				
+				    Add_FiscalYearQuarterLabel =
+				        Table.AddColumn(
+				            Add_FiscalMonthOfQuarter,
+				            "FiscalYearQuarterLabel",
+				            each "FY" & Text.From([FiscalYear]) & " Q" & Text.From([FiscalQuarter]),
+				            Text.Type
+				        ),
+				
+				    Add_FiscalStartOfQuarter =
+				        Table.AddColumn(
+				            Add_FiscalYearQuarterLabel,
+				            "FiscalStartOfQuarter",
+				            each Date.StartOfMonth(Date.AddMonths([Date], 1 - [FiscalMonthOfQuarter])),
+				            Date.Type
+				        ),
+				
+				    Add_FiscalEndOfQuarter =
+				        Table.AddColumn(
+				            Add_FiscalStartOfQuarter,
+				            "FiscalEndOfQuarter",
+				            each Date.EndOfMonth(Date.AddMonths([Date], 3 - [FiscalMonthOfQuarter])),
+				            Date.Type
+				        ),
+				
+				    // Quarter offset logic
+				    Add_FiscalQuarterOffset =
+				        Table.AddColumn(
+				            Add_FiscalEndOfQuarter,
+				            "FiscalQuarterOffset",
+				            each [
+				                CurrentFiscalMonth = Date.Month(Date.AddMonths(Today, -FiscalYearEnd)),
+				                CurrentFiscalQuarter = Number.RoundUp(CurrentFiscalMonth / 3),
+				                FiscalQuarterOffset =
+				                    (([FiscalYear] - CurrentFiscalYear) * 4)
+				                        + ([FiscalQuarter] - CurrentFiscalQuarter)
+				            ][FiscalQuarterOffset],
+				            Int64.Type
+				        ),
+				
+				    Add_FiscalQuarterMonthLabel =
+				        Table.AddColumn(
+				            Add_FiscalQuarterOffset,
+				            "FiscalQuarterMonthLabel",
+				            each
+				                "FQ"
+				                    & Text.From([FiscalQuarter])
+				                    & ": "
+				                    & Date.ToText([FiscalStartOfQuarter], "MMM yyyy")
+				                    & " - "
+				                    & Date.ToText([FiscalEndOfQuarter], "MMM yyyy"),
+				            Text.Type
+				        ),
+				
+				    Add_FiscalDayOfQuarter =
+				        Table.AddColumn(
+				            Add_FiscalQuarterMonthLabel,
+				            "FiscalDayOfQuarter",
+				            each Number.From([Date] - [FiscalStartOfQuarter]) + 1,
+				            Int64.Type
+				        ),
+				
+				    // -----------------------------------------------------
+				    // Current-period indicators
+				    // -----------------------------------------------------
+				
+				    Add_IsCurrentMonth =
+				        Table.AddColumn(
+				            Add_FiscalDayOfQuarter,
+				            "IsCurrentMonth",
+				            each Date.Year([Date]) = Date.Year(Today)
+				                and Date.Month([Date]) = Date.Month(Today),
+				            type logical
+				        ),
+				
+				    Add_IsCurrentCalendarYear =
+				        Table.AddColumn(
+				            Add_IsCurrentMonth,
+				            "IsCurrentCalendarYear",
+				            each Date.Year([Date]) = Date.Year(Today),
+				            type logical
+				        ),
+				
+				    Add_IsCurrentFiscalYear =
+				        Table.AddColumn(
+				            Add_IsCurrentCalendarYear,
+				            "IsCurrentFiscalYear",
+				            each [FiscalYear] = CurrentFiscalYear,
+				            type logical
+				        ),
+				
+				    CurrentWeekStart =
+				        Date.AddDays(Today, 1 - Date.DayOfWeek(Today, Day.Monday)),
+				
+				    Add_WeekStart =
+				        Table.AddColumn(
+				            Add_IsCurrentFiscalYear,
+				            "WeekStart",
+				            each Date.AddDays([Date], 1 - Date.DayOfWeek([Date], Day.Monday)),
+				            type date
+				        ),
+				
+				    Add_IsCurrentWeek =
+				        Table.AddColumn(
+				            Add_WeekStart,
+				            "IsCurrentWeek",
+				            each [WeekStart] = CurrentWeekStart,
+				            type logical
+				        ),
+				
+				    // -----------------------------------------------------
+				    // Previous-period indicators
+				    // -----------------------------------------------------
+				
+				    Add_IsPreviousMonth =
+				        Table.AddColumn(
+				            Add_IsCurrentWeek,
+				            "IsPreviousMonth",
+				            each Date.IsInPreviousMonth([Date]),
+				            type logical
+				        ),
+				
+				    Add_IsPreviousFiscalYear =
+				        Table.AddColumn(
+				            Add_IsPreviousMonth,
+				            "IsPreviousFiscalYear",
+				            each [FiscalYear] = (CurrentFiscalYear - 1),
+				            type logical
+				        ),
+				
+				    PreviousWeekStart =
+				        Date.AddDays(Today, 1 - Date.DayOfWeek(Today, Day.Monday) - 7),
+				
+				    Add_IsPreviousWeek =
+				        Table.AddColumn(
+				            Add_IsPreviousFiscalYear,
+				            "IsPreviousWeek",
+				            each [WeekStart] = PreviousWeekStart,
+				            type logical
+				        ),
+				
+				    // -----------------------------------------------------
+				    // Column cleanup
+				    // -----------------------------------------------------
+				// -----------------------------------------------------
+				// Additional fiscal month & week labels for CB-TI
+				// -----------------------------------------------------
+				
+				Add_FiscalMonthName =
+				    Table.AddColumn(
+				        Add_IsPreviousWeek,
+				        "FiscalMonthName",
+				        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0"),
+				        Text.Type
+				    ),
+				
+				Add_FiscalMonthNameLong =
+				    Table.AddColumn(
+				        Add_FiscalMonthName,
+				        "FiscalMonthNameLong",
+				        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0") 
+				            & " - " & Date.MonthName([Date]),
+				        Text.Type
+				    ),
+				
+				Add_FiscalWeekName =
+				    Table.AddColumn(
+				        Add_FiscalMonthNameLong,
+				        "FiscalWeekName",
+				        each "FW" & Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
+				        Text.Type
+				    ),
+				
+				    #"Rename Columns" =
+				        Table.TransformColumnNames(
+				            Add_FiscalWeekName,
+				            each [
+				                SplitTextByTransition =
+				                    Splitter.SplitTextByCharacterTransition({"a" .. "z"}, {"A" .. "Z"})(_),
+				                CombineValues = Text.Combine(SplitTextByTransition, " "),
+				                RemoveUnderscores = Text.Replace(CombineValues, "_", " ")
+				            ][RemoveUnderscores]
+				        ),
+				
+				    #"Inserted Month Name" =
+				        Table.AddColumn(#"Rename Columns", "Month Name", each Date.MonthName([Date]), type text),
+				    #"Added Custom" = Table.AddColumn(#"Inserted Month Name", "MMM Label", each Text.Start([Month Name], 3)),
+				    Add_IsCompletedMonth = Table.AddColumn(#"Added Custom", "Is Completed Month", each Date.EndOfMonth([Date])< Date.StartOfMonth(Date.From(DateTime.LocalNow())), type logical),
+				    #"Added Custom1" = Table.AddColumn(Add_IsCompletedMonth, "Is Completed Quarter", each [Fiscal End Of Quarter] < Date.From(DateTime.LocalNow()), type logical)
+				in
+				    #"Added Custom1"
+				```
+
+	calendar Fiscal
+		lineageTag: 0ce76435-f31a-4740-ad8d-33b28ad7c553
+
+		calendarColumnGroup = year
+			primaryColumn: 'Fiscal Year'
+			associatedColumn: 'Fiscal Year Label'
+
+		calendarColumnGroup = quarterOfYear
+			primaryColumn: 'Fiscal Quarter'
+			associatedColumn: 'Fiscal Quarter Label'
+
+		calendarColumnGroup = monthOfYear
+			primaryColumn: 'Fiscal Month'
+			associatedColumn: 'MMM Label'
+
+		calendarColumnGroup = weekOfYear
+			primaryColumn: 'Fiscal Week Of Year'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
