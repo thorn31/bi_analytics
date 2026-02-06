@@ -54,12 +54,12 @@ table JOB_COST_DETAILS
 				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
 				    DW_CLEAN_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
 				    JOB_COST_DETAILS_View = DW_CLEAN_Schema{[Name="JOB_COST_DETAILS",Kind="View"]}[Data],
-				    Filtered = Table.SelectRows(JOB_COST_DETAILS_View, each [SOURCE] = "MECH_GP"),
+				    Filtered = Table.SelectRows(JOB_COST_DETAILS_View, each List.Contains({"MECH_GP","SERV_GP"}, [SOURCE])),
 				    Trimmed = Table.TransformColumns(Filtered,{{"JOB_NUMBER", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
 				    Cleaned = Table.TransformColumns(Trimmed,{{"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
 				    AddedJobCostCode = Table.AddColumn(Cleaned, "Job_Cost Code", each [JOB_NUMBER] & ":" & [COST_CODE], type text),
 				    Selected = Table.SelectColumns(AddedJobCostCode,{"JOB_NUMBER","JOB_KEY","COST_CODE","TRAN_DATE","COST_AMT","SOURCE","Job_Cost Code"}),
 				    Typed = Table.TransformColumnTypes(Selected,{{"JOB_NUMBER", type text},{"JOB_KEY", type text},{"COST_CODE", type text},{"TRAN_DATE", type date},{"COST_AMT", type number},{"SOURCE", type text},{"Job_Cost Code", type text}})
-				in
+				 in
 				    Typed
 

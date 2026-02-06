@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "554d65cfddfddcbc8c97",
+  "position": {
+    "x": 760.82474226804118,
+    "y": 138.55670103092783,
+    "z": 0,
+    "height": 300.61855670103091,
+    "width": 300
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Total)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Total)",
+              "nativeQueryRef": "GL Revenue (Total)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Other/Unmapped)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Other/Unmapped)",
+              "nativeQueryRef": "GL Revenue (Other/Unmapped)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "RS_Measures"
+                  }
+                },
+                "Property": "GL Revenue (Total)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "8729712bf1535c95bbd0",
+  "position": {
+    "x": 48.865979381443296,
+    "y": 102.06185567010309,
+    "z": 0,
+    "height": 300.61855670103091,
+    "width": 761.4432989690722
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Methodology"
+                }
+              },
+              "queryRef": "CustomerMonth_Stream_Method_F.Methodology",
+              "nativeQueryRef": "Methodology"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Stream"
+                }
+              },
+              "queryRef": "CustomerMonth_Stream_Method_F.Stream",
+              "nativeQueryRef": "Stream"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CustomerMonth_Stream_Method_F"
+                        }
+                      },
+                      "Property": "Revenue Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(CustomerMonth_Stream_Method_F.Revenue Amount)",
+              "nativeQueryRef": "Sum of Revenue Amount"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

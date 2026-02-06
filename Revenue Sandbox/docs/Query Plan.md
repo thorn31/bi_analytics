@@ -1,12 +1,12 @@
 # Revenue Sandbox — Query Plan (Customer × Month)
 
-Goal: compute monthly totals per customer for the three revenue streams, with optional parallel “alternate” methods for reconciliation.
+Goal: compute monthly totals per customer for four revenue streams, with parallel “alternate” methods for reconciliation.
 
 ## 0) Canonical keys and grain
 **Grain:** one row per:
 - `Customer Key`
 - `Month End` (or fiscal month end)
-- `Revenue Stream` ∈ {Project, Service Contract, T&M}
+- `Revenue Stream` ∈ {Project, Service Contract, T&M, Legacy Service Projects (Contracts)}
 
 **Required columns (minimum):**
 - `Customer Key`
@@ -117,20 +117,31 @@ Outputs:
 Costs (optional for GP):
 - from calls cost columns (or unpivoted cost table), filtered to the same stream ownership.
 
-## 5) Conformed output tables
-### 5.1 Primary
-`CustomerMonth_Stream_Primary_F` = union of:
-- `PROJECT_CustomerMonth_Revenue_Primary`
-- `SERVCONTRACT_CustomerMonth_Revenue_Primary`
-- `TM_CustomerMonth_Revenue_Primary`
+## 5) Stream 4 — Legacy Service Projects (stored as contracts)
+Definition:
+- Legacy service projects are contracts where either:
+  - `Contract Type = "PROJECT"` **OR**
+  - `Contract Number` starts with `"P"` (case-insensitive, trimmed)
 
-### 5.2 Alternate
-`CustomerMonth_Stream_Alt_F` = union of:
-- `PROJECT_CustomerMonth_Revenue_Alt`
-- `SERVCONTRACT_CustomerMonth_Revenue_Alt`
-- `TM_CustomerMonth_Revenue_Alt`
+Primary method (CRR-style):
+- Revenue = billings from `CONTRACT_BILLABLE_F[BILLABLE_ALL]`
+- Month End = `Date.EndOfMonth([WENNSOFT_BILLING_DATE])`
+- No costs (revenue-only)
 
-## 6) Required reconciliation checks
+Output:
+- `LEGACYPROJECTS_CustomerMonth_Billings_F`
+
+## 6) Conformed output tables
+`CustomerMonth_Stream_Method_F` = union of:
+- `PROJECT_CustomerMonth_Revenue_Primary` (CRR)
+- `PROJECT_CustomerMonth_Revenue_Alt` (Amend)
+- `SERVCONTRACT_CustomerMonth_Revenue_Primary` (CRR)
+- `SERVCONTRACT_CustomerMonth_Revenue_Alt` (Amend)
+- `TM_CustomerMonth_Revenue_Primary` (CRR)
+- `TM_CustomerMonth_Revenue_Alt` (Amend)
+- `LEGACYPROJECTS_CustomerMonth_Billings_F` (CRR)
+
+## 7) Required reconciliation checks
 At minimum:
 - `Variance = Primary - Alt` by stream / customer / month
 - “Source totals” vs “dest totals” checks (CRR already includes patterns like this for calls/revenue).

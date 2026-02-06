@@ -1,0 +1,161 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "37c88fc08787a45462ef",
+  "position": {
+    "x": 186.14003590664271,
+    "y": 334.36265709156191,
+    "z": 0,
+    "height": 301.04129263913825,
+    "width": 914.6140035906642
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendar"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "Calendar.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Revenue Measures"
+                    }
+                  },
+                  "Property": "Net Earned Rev Amount Across Jobs"
+                }
+              },
+              "queryRef": "Revenue Measures.Net Earned Rev Amount Across Jobs",
+              "nativeQueryRef": "Net Earned Rev Amount Across Jobs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Revenue Measures"
+                    }
+                  },
+                  "Property": "Net Earned Revenue"
+                }
+              },
+              "queryRef": "Revenue Measures.Net Earned Revenue",
+              "nativeQueryRef": "Net Earned Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Backlog Measures"
+                    }
+                  },
+                  "Property": "GL Revenue"
+                }
+              },
+              "queryRef": "Backlog Measures.GL Revenue",
+              "nativeQueryRef": "GL Revenue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar"
+                  }
+                },
+                "Property": "Fiscal Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0c915525f9c91a5c5968",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4db8e52243cac46d4e76",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Revenue Measures"
+              }
+            },
+            "Property": "Net Earned Rev Amount Across Jobs"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "eae1964f8831e441515c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Revenue Measures"
+              }
+            },
+            "Property": "Net Earned Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fcf121f80ee74cf0ab12",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Backlog Measures"
+              }
+            },
+            "Property": "GL Revenue"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

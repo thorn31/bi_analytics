@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "51a7a6375eb59114647a",
+  "position": {
+    "x": 0,
+    "y": 42.222222222222221,
+    "z": 2001,
+    "height": 354.44444444444446,
+    "width": 332.22222222222223
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Legacy Service Projects Revenue (Billings)"
+                }
+              },
+              "queryRef": "RS_Measures.Legacy Service Projects Revenue (Billings)",
+              "nativeQueryRef": "Legacy Service Projects Revenue (Billings)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "96233d4a4c119da5edc5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Legacy Service Projects Revenue (Billings)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

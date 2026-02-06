@@ -1,0 +1,112 @@
+table DivisionMonth_Stream_Method_F
+	lineageTag: 47830755-5717-470f-a88b-165d0da32909
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c6022f72-d1de-4277-8a4e-4cb9db9fe458
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Divisions
+		dataType: string
+		lineageTag: 7957047e-12f0-4e6f-938b-334f0bbba1b6
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stream
+		dataType: string
+		lineageTag: 4b6536d9-5fb4-496b-aa14-a7efee405b99
+		summarizeBy: none
+		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
+
+	column Methodology
+		dataType: string
+		lineageTag: 561bce7f-0c5c-4045-97d3-740b33c25f93
+		summarizeBy: none
+		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: 43eb3b33-ee05-489c-8d15-eea579d7db0d
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DivisionMonth_Stream_Method_F = m
+		mode: import
+		source =
+				let
+				    ProjectMarkets = {"O&M PROJECTS","SPECIAL PROJECT","PROJECTS","PLAN SPEC","CONTROLS","INDUSTRIAL","PERFORMANCE CONTRACT","DESIGN BUILD"},
+				    SpotMarkets = {"SPOT","O&M SPOT","INTERCOMPANY SPOT","PROJECT REPAIR"},
+				    ContractMarkets = {"ASSURED","CERTIFIED","INSPECTION","O&M"},
+				
+				    ProjectsCRR = Table.NestedJoin(Projects_ProjectMonth_CRR_F, {"SurrogateProjectID"}, PROJECTS_D, {"SurrogateProjectID"}, "P", JoinKind.LeftOuter),
+				    ProjectsCRRExp = Table.ExpandTableColumn(ProjectsCRR, "P", {"Divisions"}, {"Divisions"}),
+				    ProjectsCRRSel = Table.SelectColumns(ProjectsCRRExp, {"Month End","Divisions","Stream","Methodology","Revenue Amount"}),
+				
+				    ProjectsAmend = Table.NestedJoin(Projects_ProjectMonth_Amend_F, {"SurrogateProjectID"}, PROJECTS_D, {"SurrogateProjectID"}, "P", JoinKind.LeftOuter),
+				    ProjectsAmendExp = Table.ExpandTableColumn(ProjectsAmend, "P", {"Divisions"}, {"Divisions"}),
+				    ProjectsAmendSel = Table.SelectColumns(ProjectsAmendExp, {"Month End","Divisions","Stream","Methodology","Revenue Amount"}),
+				
+				    ServBillFix = Table.TransformColumns(SERVCONTRACTS_CustomerMonth_Billings_F, {{"Stream", each "Contracts", type text}}),
+				    ServBillSel = Table.SelectColumns(ServBillFix, {"Month End","Divisions","Stream","Methodology","Revenue Amount"}),
+				
+				    ServRecFix = Table.TransformColumns(SERVCONTRACTS_CustomerMonth_Recognized_Alt_F, {{"Stream", each "Contracts", type text}}),
+				    ServRecSel = Table.SelectColumns(ServRecFix, {"Month End","Divisions","Stream","Methodology","Revenue Amount"}),
+				
+				    TM_CRR_Fix = Table.TransformColumns(TM_CustomerMonth_CRR_F, {{"Stream", each "T&M", type text}}),
+				    TM_CRR_Sel = Table.SelectColumns(TM_CRR_Fix, {"Month End","Divisions","Stream","Methodology","Revenue Amount"}),
+				
+				    TM_Amend_Fix = Table.TransformColumns(TM_CustomerMonth_Amend_F, {{"Stream", each "T&M", type text}}),
+				    TM_Amend_Sel = Table.SelectColumns(TM_Amend_Fix, {"Month End","Divisions","Stream","Methodology","Revenue Amount"}),
+				
+				    // POSTING_DATA_F already includes REGION and ACCOUNT_TYPE
+				    GLBase = Table.NestedJoin(POSTING_DATA_F, {"ACCTIDX_KEY"}, GL_ACCT_D, {"ACCTIDX_KEY"}, "GL", JoinKind.LeftOuter),
+				    GLExp = Table.ExpandTableColumn(GLBase, "GL", {"MARKET"}, {"GL_MARKET"}),
+				    GLRev = Table.SelectRows(GLExp, each [ACCOUNT_TYPE] = "REVENUE"),
+				    GLStream = Table.AddColumn(
+				        GLRev,
+				        "Stream",
+				        each if List.Contains(ProjectMarkets, [GL_MARKET]) then "Projects"
+				        else if List.Contains(SpotMarkets, [GL_MARKET]) then "T&M"
+				        else if List.Contains(ContractMarkets, [GL_MARKET]) then "Contracts"
+				        else null,
+				        type text
+				    ),
+				    GLFiltered = Table.SelectRows(GLStream, each [Stream] <> null),
+				    GLMethod = Table.AddColumn(GLFiltered, "Methodology", each "GL", type text),
+				    GLRevenue = Table.AddColumn(GLMethod, "Revenue Amount", each -[PERDBLNC], type number),
+				    GLSel = Table.SelectColumns(GLRevenue, {"PERIODEND","REGION","Stream","Methodology","Revenue Amount"}),
+				    GLRenamed = Table.RenameColumns(GLSel, {{"PERIODEND","Month End"},{"REGION","Divisions"}}),
+				
+				    Combined = Table.Combine({ProjectsCRRSel, ProjectsAmendSel, ServBillSel, ServRecSel, TM_CRR_Sel, TM_Amend_Sel, GLRenamed}),
+				    Grouped = Table.Group(
+				        Combined,
+				        {"Month End","Divisions","Stream","Methodology"},
+				        {{"Revenue Amount", each List.Sum([Revenue Amount]), type number}}
+				    ),
+				    Typed = Table.TransformColumnTypes(
+				        Grouped,
+				        {{"Month End", type date}, {"Divisions", type text}, {"Stream", type text}, {"Methodology", type text}, {"Revenue Amount", type number}}
+				    )
+				 in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

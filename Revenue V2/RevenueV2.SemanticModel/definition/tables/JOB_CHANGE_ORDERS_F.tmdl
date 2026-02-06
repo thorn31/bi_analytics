@@ -1,0 +1,105 @@
+table JOB_CHANGE_ORDERS_F
+	lineageTag: 46979dd0-516c-49e0-a02e-71cdab8d3ff5
+
+	column 'Job Number'
+		dataType: string
+		lineageTag: d1609dda-9db7-44e3-a551-d92fb218578e
+		summarizeBy: none
+		sourceColumn: Job Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change Order Number'
+		dataType: string
+		lineageTag: f79f1d33-1b1f-4226-89d4-d785981f4fbe
+		summarizeBy: none
+		sourceColumn: Change Order Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Firscal Year'
+		dataType: double
+		lineageTag: 75cc7cae-dc0f-4278-8f45-5d4a39494f12
+		summarizeBy: sum
+		sourceColumn: Firscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fiscal Month'
+		dataType: double
+		lineageTag: 2d89668c-6699-4de4-b73c-143a4efe5ecc
+		summarizeBy: sum
+		sourceColumn: Fiscal Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Change Order Est Cost'
+		dataType: double
+		lineageTag: b2d4f92f-d995-4414-81fb-d52b933a0f34
+		summarizeBy: sum
+		sourceColumn: Change Order Est Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Source
+		dataType: string
+		lineageTag: ae2ec317-b560-4183-b89f-35174d0af708
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rn
+		dataType: double
+		lineageTag: 696d08b1-599a-4d07-b4c5-7c201085b38e
+		summarizeBy: sum
+		sourceColumn: Rn
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: 2fb482c6-5ee3-4107-ac35-ac35374256c7
+		summarizeBy: none
+		sourceColumn: Job Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3b0f4c04-c66d-4170-bff4-127c2028cf37
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition JOB_CHANGE_ORDERS_F = m
+		mode: import
+		queryGroup: fact
+		source =
+				let
+				     Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_CLEAN_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
+				    JOB_CHANGE_ORDERS_View = DW_CLEAN_Schema{[Name="JOB_CHANGE_ORDERS",Kind="View"]}[Data],
+				    #"Removed Duplicates" = Table.Distinct(JOB_CHANGE_ORDERS_View),
+				    ProperCase = Table.RenameColumns(#"Removed Duplicates", List.Transform(Table.ColumnNames(#"Removed Duplicates"), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    CalcDate = Table.AddColumn(ProperCase, "Date", each Date.AddMonths(#date(Number.From([Firscal Year]), Number.From([Fiscal Month]), 1), -3), type date)
+				in
+				    CalcDate
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

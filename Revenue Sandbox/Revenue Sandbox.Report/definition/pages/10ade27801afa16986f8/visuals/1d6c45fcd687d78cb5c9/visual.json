@@ -1,0 +1,282 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "1d6c45fcd687d78cb5c9",
+  "position": {
+    "x": 120,
+    "y": 426.66666666666663,
+    "z": 2000,
+    "height": 293.33333333333331,
+    "width": 1040
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year",
+              "nativeQueryRef": "Sum of Fiscal Year",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "MMM Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.MMM Label",
+              "nativeQueryRef": "MMM Label",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Projects Revenue (Amend)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (Amend)",
+              "nativeQueryRef": "Projects Revenue (Amend)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Projects Revenue (CRR)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (CRR)",
+              "nativeQueryRef": "Projects Revenue (CRR)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Projects)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Projects)",
+              "nativeQueryRef": "GL Revenue (Projects)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Projects Revenue (Amend - Job Cost)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (Amend - Job Cost)",
+              "nativeQueryRef": "Projects Revenue (Amend - Job Cost)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Projects Revenue (Amend - Service Project)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (Amend - Service Project)",
+              "nativeQueryRef": "Projects Revenue (Amend - Service Project)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.Fiscal Year"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.MMM Label"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "10e37193e5ef999fc05e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c7cd1f41d0c008cdc3ac",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "MMM Label"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a92e1e5d6337d3791bdf",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (Amend)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8500c6f42785513c1236",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (CRR)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bc66cc0c7bf9a8127d92",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "GL Revenue (Projects)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "835456cbd6fc59d2843c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (Amend - Job Cost)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "39ff274d899ad6c506dd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (Amend - Service Project)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

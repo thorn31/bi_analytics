@@ -1,0 +1,190 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "81b5a4423e3706c7cc5c",
+  "position": {
+    "x": 586.40963855421694,
+    "y": 136.19277108433735,
+    "z": 1000,
+    "height": 460.62650602409644,
+    "width": 621.97590361445793
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Methodology"
+                }
+              },
+              "queryRef": "CustomerMonth_Stream_Method_F.Methodology",
+              "nativeQueryRef": "Methodology",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year Label",
+              "nativeQueryRef": "Fiscal Year Label",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Stream"
+                }
+              },
+              "queryRef": "CustomerMonth_Stream_Method_F.Stream",
+              "nativeQueryRef": "Stream",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Project Subsegment"
+                }
+              },
+              "queryRef": "CustomerMonth_Stream_Method_F.Project Subsegment",
+              "nativeQueryRef": "Project Subsegment",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CustomerMonth_Stream_Method_F"
+                        }
+                      },
+                      "Property": "Revenue Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(CustomerMonth_Stream_Method_F.Revenue Amount)",
+              "nativeQueryRef": "Sum of Revenue Amount"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "FYCALENDAR_D.Fiscal Year Label"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year Label"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "CustomerMonth_Stream_Method_F.Stream"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerMonth_Stream_Method_F"
+                    }
+                  },
+                  "Property": "Stream"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "CustomerMonth_Stream_Method_F.Project Subsegment"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'FY2026'"
+                  }
+                }
+              ],
+              "isToggled": true,
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Projects'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  }
+}

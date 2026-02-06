@@ -1,16 +1,12 @@
 table FYCALENDAR_D
-	lineageTag: d1be4ef6-3b8b-4ac2-9dda-4d2aa5498064
-	dataCategory: Time
+	lineageTag: de961a84-4131-4274-ac2c-b2c7ffe47a2c
 
 	column Date
 		dataType: dateTime
-		isKey
 		formatString: Long Date
-		lineageTag: 05f795c0-ff26-46f5-8c84-a15fbb07aef7
+		lineageTag: 75282af5-c658-4be9-be7d-74539190f358
 		summarizeBy: none
 		sourceColumn: Date
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -19,42 +15,34 @@ table FYCALENDAR_D
 	column 'Fiscal Year'
 		dataType: int64
 		formatString: 0
-		lineageTag: 6ff994e3-d271-46b6-bbac-7d04ce653ff6
+		lineageTag: fb125b7b-c329-4911-99a0-e3fc5e806adf
 		summarizeBy: sum
 		sourceColumn: Fiscal Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Year Label'
 		dataType: string
-		lineageTag: 6b5c1783-08cf-4846-80ea-91f2938d9af2
+		lineageTag: f8dde07e-1369-4d07-aaa9-1f637875ed21
 		summarizeBy: none
 		sourceColumn: Fiscal Year Label
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Year Default'
 		dataType: string
-		lineageTag: cbe1faf0-4cd2-4fdd-afe9-8da236a39f0f
+		lineageTag: 382ee2f1-a4e8-4929-a1d8-5713f7197aee
 		summarizeBy: none
 		sourceColumn: Fiscal Year Default
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Start Of Year'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: b80d3381-35a0-454c-945f-5e9202bcd1b0
+		lineageTag: c6a77b35-d2c8-4e55-9541-2931a4d84e3a
 		summarizeBy: none
 		sourceColumn: Fiscal Start Of Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -63,11 +51,9 @@ table FYCALENDAR_D
 	column 'Fiscal End Of Year'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: d76af377-fa96-49cd-9022-6318e9cb43f7
+		lineageTag: ae00b1c3-71db-439d-8965-237727be6f65
 		summarizeBy: none
 		sourceColumn: Fiscal End Of Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -76,117 +62,95 @@ table FYCALENDAR_D
 	column 'Fiscal Day Of Year'
 		dataType: int64
 		formatString: 0
-		lineageTag: 694fb482-b6ab-47a0-aaba-2b933f409cc5
+		lineageTag: 33c5c25d-4779-456c-b5d5-2a0e2afc8d10
 		summarizeBy: sum
 		sourceColumn: Fiscal Day Of Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Week Of Year'
 		dataType: int64
 		formatString: 0
-		lineageTag: 541117c0-b603-41b8-af96-d12899765cf3
+		lineageTag: 194c0cde-a57a-4387-8c8f-f988bc5c78c4
 		summarizeBy: sum
 		sourceColumn: Fiscal Week Of Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Week Label'
 		dataType: string
-		lineageTag: d8b94c45-26de-40bf-aadf-6f5530943db1
+		lineageTag: 90a33c60-e4f7-4654-8f11-80f1e493927c
 		summarizeBy: none
 		sourceColumn: Fiscal Week Label
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Year Offset'
 		dataType: int64
 		formatString: 0
-		lineageTag: 90fa9b49-bafa-4e04-a8be-6a5c62457f99
+		lineageTag: 175aecf4-83e5-4a2f-8e9e-22e86e4b5bab
 		summarizeBy: sum
 		sourceColumn: Fiscal Year Offset
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Month'
 		dataType: int64
 		formatString: 0
-		lineageTag: f6fc7f2c-c456-4f3b-a803-d5986034135d
+		lineageTag: b310717f-5853-4bad-a772-8d82f60812fe
 		summarizeBy: sum
 		sourceColumn: Fiscal Month
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Month Default'
 		dataType: string
-		lineageTag: 12def2a8-01dc-4164-aa75-80c33c8d99b2
+		lineageTag: 6e2af2a0-2e63-41c6-becc-2694044fe933
 		summarizeBy: none
 		sourceColumn: Fiscal Month Default
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Quarter'
 		dataType: int64
 		formatString: 0
-		lineageTag: 5371a100-3de3-4eb8-a3a5-a1c65bce8232
+		lineageTag: 41565f81-0950-4643-845d-654bf0ccaa40
 		summarizeBy: sum
 		sourceColumn: Fiscal Quarter
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Quarter Label'
 		dataType: string
-		lineageTag: 02e70ae3-9dd6-45ff-a044-94675300b0a3
+		lineageTag: 5db5bf27-2184-4f33-afb4-9ad77efb5ffa
 		summarizeBy: none
 		sourceColumn: Fiscal Quarter Label
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Month Of Quarter'
 		dataType: int64
 		formatString: 0
-		lineageTag: bc653b01-b91a-43f3-8f87-f7cf3b4e7f5c
+		lineageTag: 112da37a-ddeb-4973-8151-876d740eb9d1
 		summarizeBy: sum
 		sourceColumn: Fiscal Month Of Quarter
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Year Quarter Label'
 		dataType: string
-		lineageTag: fa05485f-45a6-4aea-b0f7-0872cade3a39
+		lineageTag: d7ca276f-f1c4-423c-8f9f-36b6d8a601dd
 		summarizeBy: none
 		sourceColumn: Fiscal Year Quarter Label
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Start Of Quarter'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 74b2c4ae-a628-4131-baf8-6f7fc8442b58
+		lineageTag: 16ab7895-a999-4a7c-a936-db711dc3a6ff
 		summarizeBy: none
 		sourceColumn: Fiscal Start Of Quarter
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -195,11 +159,9 @@ table FYCALENDAR_D
 	column 'Fiscal End Of Quarter'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 9c79a533-f695-4019-bcb7-bfb5b7d1dc17
+		lineageTag: dab6d125-8bfc-40d9-a003-0048e7728161
 		summarizeBy: none
 		sourceColumn: Fiscal End Of Quarter
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -208,76 +170,62 @@ table FYCALENDAR_D
 	column 'Fiscal Quarter Offset'
 		dataType: int64
 		formatString: 0
-		lineageTag: 645afbec-8d13-4253-ae43-3e5464820ecd
+		lineageTag: 35146e11-fdee-46ed-9563-140e4af70c00
 		summarizeBy: sum
 		sourceColumn: Fiscal Quarter Offset
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Quarter Month Label'
 		dataType: string
-		lineageTag: 696f426b-f6c5-4e89-a178-b3fd71434052
+		lineageTag: cdb9e8f5-9e59-45bd-bf1c-8407db405901
 		summarizeBy: none
 		sourceColumn: Fiscal Quarter Month Label
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Day Of Quarter'
 		dataType: int64
 		formatString: 0
-		lineageTag: cf9387c6-db20-4dda-9d09-a9a7b0932c58
+		lineageTag: 7cf962c1-f0b0-4679-996f-ce0cae980957
 		summarizeBy: sum
 		sourceColumn: Fiscal Day Of Quarter
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Current Month'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 21a73bc0-6ae2-4bbd-a129-2f5a0f77f93a
+		lineageTag: a451e694-e74f-449c-96df-1a02e60af57a
 		summarizeBy: none
 		sourceColumn: Is Current Month
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Current Calendar Year'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 327a0bf5-3523-48c5-b33e-b0d408e71b62
+		lineageTag: 9538e5e0-883a-469b-a779-4264bf0fcf99
 		summarizeBy: none
 		sourceColumn: Is Current Calendar Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Current Fiscal Year'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 899bdcfa-134c-4b23-abe7-a1cff3f9d999
+		lineageTag: 2f1791b7-324a-47f5-bffb-215e963cc341
 		summarizeBy: none
 		sourceColumn: Is Current Fiscal Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Week Start'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: b5b1d75a-1a8c-468a-aa9f-d318d37bf87e
+		lineageTag: fa4a40b5-902e-44f5-bd1d-809ec7d58d73
 		summarizeBy: none
 		sourceColumn: Week Start
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -286,116 +234,97 @@ table FYCALENDAR_D
 	column 'Is Current Week'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: d48eea9b-ba1a-418f-934c-7e5dbf9219fc
+		lineageTag: 7bc10ce6-fe2e-4b5e-ad71-149595969d95
 		summarizeBy: none
 		sourceColumn: Is Current Week
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Previous Month'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: d1312d9b-2a98-4348-be1d-9870b35c2529
+		lineageTag: dac72968-1617-4f1e-9834-c6fd21274554
 		summarizeBy: none
 		sourceColumn: Is Previous Month
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Previous Fiscal Year'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 73c8a462-60b0-44fd-92b0-e9325ae74c40
+		lineageTag: 4d25fcaa-6d98-42e4-8394-df85a21d80cc
 		summarizeBy: none
 		sourceColumn: Is Previous Fiscal Year
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Previous Week'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 455ef902-7205-4042-abd6-036f6d352ded
+		lineageTag: d6a8ba9b-3473-44da-ae54-6d81bc31e79a
 		summarizeBy: none
 		sourceColumn: Is Previous Week
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Month Name'
 		dataType: string
-		lineageTag: ff44adbd-e8ae-4082-bc18-467866d7e26c
+		lineageTag: ad1a20d7-a942-480d-a16a-97afb707ec6d
 		summarizeBy: none
 		sourceColumn: Fiscal Month Name
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Month Name Long'
 		dataType: string
-		lineageTag: d12b31ae-64b9-425b-8a9f-779a1b9cc0e2
+		lineageTag: e80ab730-e6b7-43da-b0e5-8d4109e6d618
 		summarizeBy: none
 		sourceColumn: Fiscal Month Name Long
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Fiscal Week Name'
 		dataType: string
-		lineageTag: 7147260c-6837-4bec-9fb6-90af331ddeae
+		lineageTag: 19df90fc-27ae-4ad4-89ce-8faf085eaa5b
 		summarizeBy: none
 		sourceColumn: Fiscal Week Name
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Month Name'
 		dataType: string
-		lineageTag: 0cb5d95d-cd2c-452b-b394-a9404709acf5
+		lineageTag: 6e5a687d-75cd-479c-917d-ec8ee2276e5d
 		summarizeBy: none
 		sourceColumn: Month Name
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'MMM Label'
 		dataType: string
-		lineageTag: 63d09c0e-aa74-41ca-94d0-f107417a3323
+		lineageTag: 4f2a140f-b912-4a2e-a1d4-a0e3815d8b7a
 		summarizeBy: none
 		sourceColumn: MMM Label
+		sortByColumn: 'Fiscal Month'
 
-		changedProperty = IsHidden
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Completed Month'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: e743b36e-c843-4899-8ec9-10bf1018ba03
+		lineageTag: 861a0d9d-b8ed-4de9-ae88-26ec6ef5ec7f
 		summarizeBy: none
 		sourceColumn: Is Completed Month
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Is Completed Quarter'
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: b8d937db-3ed5-4603-b844-c43a917f057d
+		lineageTag: 845dfa85-00d1-4de1-b440-3beddcf9a082
 		summarizeBy: none
 		sourceColumn: Is Completed Quarter
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -762,29 +691,6 @@ table FYCALENDAR_D
 				in
 				    #"Added Custom1"
 				```
-
-	changedProperty = IsHidden
-
-	calendar Fiscal
-		lineageTag: 74a05a70-928a-4f4e-aa9b-a695308e7b6b
-
-		calendarColumnGroup = year
-			primaryColumn: 'Fiscal Year'
-			associatedColumn: 'Fiscal Year Default'
-			associatedColumn: 'Fiscal Year Label'
-
-		calendarColumnGroup = quarterOfYear
-			primaryColumn: 'Fiscal Quarter'
-			associatedColumn: 'Fiscal Quarter Label'
-
-		calendarColumnGroup = monthOfYear
-			primaryColumn: 'Fiscal Month'
-			associatedColumn: 'MMM Label'
-			associatedColumn: 'Month Name'
-			associatedColumn: 'Fiscal Month Name'
-
-		calendarColumnGroup = weekOfYear
-			primaryColumn: 'Fiscal Week Name'
 
 	annotation PBI_NavigationStepName = Navigation
 

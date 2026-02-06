@@ -1,0 +1,73 @@
+relationship AutoDetected_b1db3909-9d09-4ec7-9fc2-1318acafdc34
+	fromColumn: JOB_COST_FORECAST_F.'Job Number'
+	toColumn: JOBS_D.'Job Number'
+
+relationship AutoDetected_cc4b5ddb-b17b-4303-8d37-26b1bd18b216
+	fromColumn: JOBS_D.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship AutoDetected_55691e1a-aeff-4d68-8f2b-2da777b532de
+	fromColumn: JOB_COST_DETAILS_F.'Job Cost Key'
+	toColumn: JOB_COST_DESCRIPTION_D.'Job Cost Key'
+
+relationship AutoDetected_d66465eb-fece-4634-8b2a-dded982f5ce0
+	fromColumn: JOB_COST_FORECAST_F.'Job Cost Key'
+	toColumn: JOB_COST_DESCRIPTION_D.'Job Cost Key'
+
+relationship c80c048e-2560-1a33-c132-a78c17b45ba0
+	isActive: false
+	fromColumn: JOB_COST_DESCRIPTION_D.'Job Key'
+	toColumn: JOBS_D.'Job Key'
+
+relationship 84004db3-84fc-6b8a-7330-6a397604494b
+	fromColumn: JOB_COST_DETAILS_F.'Tran Date'
+	toColumn: FYCALENDAR_D.Date
+
+relationship dd9970d0-840e-c2a6-9408-b429b6af54f7
+	fromColumn: JOB_COST_FORECAST_F.Date
+	toColumn: FYCALENDAR_D.Date
+
+relationship AutoDetected_ac2bed56-745d-4900-af90-fe408472216d
+	fromColumn: JOB_CHANGE_ORDERS_F.'Job Number'
+	toColumn: JOBS_D.'Job Number'
+
+relationship 6932e33e-ccd3-4a25-2c32-e90740133710
+	fromColumn: JOB_CHANGE_ORDERS_F.Date
+	toColumn: FYCALENDAR_D.Date
+
+relationship AutoDetected_ce995d8d-a9ed-478d-8b81-0bc03472e629
+	fromColumn: POSTING_DATA_F.ACCTIDX_KEY
+	toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+relationship AutoDetected_cd0f21a0-3929-4aa0-8b0d-86d8ea9f6fc5
+	fromColumn: BUDGET_F.ACCTIDX_KEY
+	toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+relationship 83f67464-c987-69f5-bb82-d4f0dfc8e257
+	fromColumn: BUDGET_F.PERIODEND
+	toColumn: FYCALENDAR_D.Date
+
+relationship 788e4ca7-4557-6ca4-7bd5-a1d6500a4c09
+	fromColumn: POSTING_DATA_F.PERIODEND
+	toColumn: FYCALENDAR_D.Date
+
+relationship 554bd42e-dd9c-9d86-cabe-3e78fcb7dabc
+	fromColumn: JOBS_D.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship b452cf45-c5f7-4a50-0dff-34c5d53b89ee
+	fromColumn: GL_ACCT_D.REGION
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 969c9789-54d1-9dee-02ff-ac418a3e2416
+	fromColumn: JOB_COST_DETAILS_F.'Job Key'
+	toColumn: JOBS_D.'Job Key'
+
+relationship rel_JOB_EARNED_MONTHLY_F_JobKey_to_JOBS_D_JobKey
+	fromColumn: JOB_EARNED_MONTHLY_F.'Job Key'
+	toColumn: JOBS_D.'Job Key'
+
+relationship rel_JOB_EARNED_MONTHLY_F_Date_to_FYCALENDAR_D_Date
+	fromColumn: JOB_EARNED_MONTHLY_F.Date
+	toColumn: FYCALENDAR_D.Date
+

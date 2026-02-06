@@ -1,0 +1,1361 @@
+createOrReplace
+
+	model Model
+		culture: en-US
+		defaultPowerBIDataSourceVersion: powerBI_V3
+		sourceQueryCulture: en-US
+		dataAccessOptions
+			legacyRedirects
+			returnErrorValuesAsNull
+
+		table POSTING_DATA_F
+			lineageTag: f4749499-42d5-44ea-9710-f56bda0b726e
+
+			column ACTINDX
+				dataType: string
+				lineageTag: a55c29ce-3b1a-4426-b3f2-f9fb115ed608
+				summarizeBy: none
+				sourceColumn: ACTINDX
+
+				annotation SummarizationSetBy = Automatic
+
+			column FISCAL_YEAR
+				dataType: double
+				lineageTag: d812cb97-d3f8-4c1d-a619-7862288ed6d5
+				summarizeBy: sum
+				sourceColumn: FISCAL_YEAR
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column FISCAL_MONTH
+				dataType: double
+				lineageTag: c3b79bce-23c3-4014-90c4-2816e4f12708
+				summarizeBy: sum
+				sourceColumn: FISCAL_MONTH
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column PERDBLNC
+				dataType: double
+				lineageTag: a739efda-9639-462a-b8e1-17f650a8affa
+				summarizeBy: sum
+				sourceColumn: PERDBLNC
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column DEBITAMT
+				dataType: double
+				lineageTag: 3a4cc26d-1eef-428d-9fe1-8b9837f2e841
+				summarizeBy: sum
+				sourceColumn: DEBITAMT
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column CRDTAMNT
+				dataType: double
+				lineageTag: e3c86cc3-250f-43d6-9af8-12a1fe35b616
+				summarizeBy: sum
+				sourceColumn: CRDTAMNT
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column ACCATNUM
+				dataType: string
+				lineageTag: 7df32126-f574-446e-a7a5-1b174b286e15
+				summarizeBy: none
+				sourceColumn: ACCATNUM
+
+				annotation SummarizationSetBy = Automatic
+
+			column SOURCE
+				dataType: string
+				lineageTag: 71a9f8b8-6ec2-4d80-8e3d-8f5d017fc5d2
+				summarizeBy: none
+				sourceColumn: SOURCE
+
+				annotation SummarizationSetBy = Automatic
+
+			column TRANSACTION_STATUS
+				dataType: string
+				lineageTag: ef5f1047-c94e-4779-b304-7c7e1f869e4f
+				summarizeBy: none
+				sourceColumn: TRANSACTION_STATUS
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACCTNUM_KEY
+				dataType: string
+				lineageTag: 59fd1ac1-abcb-404a-b0de-61f8d748de7c
+				summarizeBy: none
+				sourceColumn: ACCTNUM_KEY
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACCTIDX_KEY
+				dataType: string
+				lineageTag: 3bdcb6ae-ad89-49be-b321-3dd7d7f5ef30
+				summarizeBy: none
+				sourceColumn: ACCTIDX_KEY
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_1
+				dataType: string
+				lineageTag: 9d782dcc-0942-4287-be60-2dc17d0fd094
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_1
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_2
+				dataType: string
+				lineageTag: c64b6aeb-b052-4411-83da-752d9e3fe1e6
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_2
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_3
+				dataType: string
+				lineageTag: 7a98c44c-2bbe-4dd7-8cbd-d2eb68e2005e
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_3
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMST
+				dataType: string
+				lineageTag: ca71997c-b184-4280-9f51-6c14d553ef82
+				summarizeBy: none
+				sourceColumn: ACTNUMST
+
+				annotation SummarizationSetBy = Automatic
+
+			column REGION
+				dataType: string
+				lineageTag: 37bf0346-ef99-4574-88eb-30b2c1642425
+				summarizeBy: none
+				sourceColumn: REGION
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACCOUNT_TYPE
+				dataType: string
+				lineageTag: 4e80f682-d62a-45f5-a323-c84234cc0e40
+				summarizeBy: none
+				sourceColumn: ACCOUNT_TYPE
+
+				annotation SummarizationSetBy = Automatic
+
+			partition POSTING_DATA_F = m
+				mode: import
+				source =
+						let
+						  Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", [Role = null, CreateNavigationProperties = null, ConnectionTimeout = null, CommandTimeout = null]),
+						  #"Navigation 1" = Source{[Name = "DATA_WAREHOUSE", Kind = "Database"]}[Data],
+						  #"Navigation 2" = #"Navigation 1"{[Name = "DW_FINAL", Kind = "Schema"]}[Data],
+						  #"Navigation 3" = #"Navigation 2"{[Name = "POSTING_DATA_F", Kind = "Table"]}[Data],
+						  #"Filtered Rows" = Table.SelectRows(#"Navigation 3", each ([YEAR] >2019 ) and ([ACTNUMBR_1] <> null)),
+						  #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows", {"ACTINDX", "YEAR", "FISCAL_MONTH", "PERDBLNC", "DEBITAMT", "CRDTAMNT", "ACCATNUM", "SOURCE", "TRANSACTION_STATUS", "ACCTNUM_KEY", "ACCTIDX_KEY", "ACTNUMBR_1", "ACTNUMBR_2", "ACTNUMBR_3", "ACTNUMST"}),
+						  #"Renamed columns" = Table.RenameColumns(#"Removed Other Columns", {{"YEAR", "FISCAL_YEAR"}}),
+						  #"Sorted rows" = Table.Sort(#"Renamed columns", {{"ACTNUMST", Order.Ascending}, {"FISCAL_YEAR", Order.Ascending}, {"FISCAL_MONTH", Order.Ascending}}),
+						  #"Merged queries 1" = Table.NestedJoin(#"Sorted rows", {"ACCTIDX_KEY"}, GL_ACCT_D, {"ACCTIDX_KEY"}, "GL_ACCT", JoinKind.LeftOuter),
+						  #"Expanded GL_ACCT" = Table.ExpandTableColumn(#"Merged queries 1", "GL_ACCT", {"REGION", "ACCOUNT_TYPE"}, {"REGION", "ACCOUNT_TYPE"}),
+						  #"Transform columns" = Table.TransformColumnTypes(#"Expanded GL_ACCT", {{"REGION", type text}, {"ACCOUNT_TYPE", type text}}),
+						  #"Replace errors" = Table.ReplaceErrorValues(#"Transform columns", {{"REGION", null}, {"ACCOUNT_TYPE", null}})
+						in
+						  #"Replace errors"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table GL_ACCT_D
+			lineageTag: d29d8fe9-389b-430d-8e8a-26f07b625910
+
+			measure Revenue = - CALCULATE(SUM(POSTING_DATA_F[PERDBLNC]), FILTER(GL_ACCT_D, GL_ACCT_D[ACCOUNT_TYPE]= "REVENUE"))
+				formatString: \$#,0;(\$#,0);\$#,0
+				lineageTag: a8451936-171b-4857-91dc-801aae800fc7
+
+			measure 'Cost of Sales' = ```
+					
+					CALCULATE(
+					    SUM(POSTING_DATA_F[PERDBLNC]),
+					    GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES"
+					)
+					
+					```
+				lineageTag: 2f509157-488f-4538-8e32-6b811f6455dc
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Gross Profit' = [Revenue] - [Cost of Sales]
+				lineageTag: c7a46520-1e7e-475e-a0af-44b7dda711f2
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column ACCTIDX_KEY
+				dataType: string
+				lineageTag: c7196d9d-ffae-4bc4-bc2d-ffe049b60018
+				summarizeBy: none
+				sourceColumn: ACCTIDX_KEY
+
+				annotation SummarizationSetBy = Automatic
+
+			column SOURCE
+				dataType: string
+				lineageTag: f50c05a7-e896-48b5-8c53-29d576b7712b
+				summarizeBy: none
+				sourceColumn: SOURCE
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_1
+				dataType: string
+				lineageTag: a93926be-44de-45f2-a1d8-75a39d3d2cc3
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_1
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_2
+				dataType: string
+				lineageTag: 9bb966fd-5fcb-46d6-8241-9b0449622f54
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_2
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_3
+				dataType: string
+				lineageTag: d6850d09-7f70-483b-af38-77bfd716c31c
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_3
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMST
+				dataType: string
+				lineageTag: ceff4b58-deea-40c3-b1f1-78d12ff35f35
+				summarizeBy: none
+				sourceColumn: ACTNUMST
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_1_RANGE
+				dataType: int64
+				formatString: 0
+				lineageTag: bab35963-3475-4970-9e8f-4e7d879fc447
+				summarizeBy: sum
+				sourceColumn: ACTNUMBR_1_RANGE
+
+				annotation SummarizationSetBy = Automatic
+
+			column NUMBR1_xx_NUMBR3
+				dataType: string
+				lineageTag: 05a36d2f-96f8-4d4d-914b-1fc9f1e1c9fa
+				summarizeBy: none
+				sourceColumn: NUMBR1_xx_NUMBR3
+
+				annotation SummarizationSetBy = Automatic
+
+			column REGION
+				dataType: string
+				lineageTag: 67b1cb16-7158-4a1a-814d-6ccabd55069f
+				summarizeBy: none
+				sourceColumn: REGION
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACCOUNT_TYPE
+				dataType: string
+				lineageTag: 0c10b01b-72ba-4ec3-9145-9123b63b5533
+				summarizeBy: none
+				sourceColumn: ACCOUNT_TYPE
+
+				annotation SummarizationSetBy = Automatic
+
+			column COSTOFSALES_SUBCATEGORY
+				dataType: string
+				lineageTag: ca6d6993-8482-410b-8e87-7b28c79b51b4
+				summarizeBy: none
+				sourceColumn: COSTOFSALES_SUBCATEGORY
+
+				annotation SummarizationSetBy = Automatic
+
+			column MARKET
+				dataType: string
+				lineageTag: 24f65529-7de8-4333-98e6-841e3ea0c9c4
+				summarizeBy: none
+				sourceColumn: MARKET
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTDESCR
+				dataType: string
+				lineageTag: bd0494a0-83ec-4ed3-b77e-50b61dc929d1
+				summarizeBy: none
+				sourceColumn: ACTDESCR
+
+				annotation SummarizationSetBy = Automatic
+
+			partition GL_ACCT_D = m
+				mode: import
+				source = ```
+						let
+						  Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", [Role = null, CreateNavigationProperties = null, ConnectionTimeout = null, CommandTimeout = null]),
+						  #"Navigation 1" = Source{[Name = "DATA_WAREHOUSE", Kind = "Database"]}[Data],
+						  #"Navigation 2" = #"Navigation 1"{[Name = "DW_CLEAN", Kind = "Schema"]}[Data],
+						  #"Navigation 3" = #"Navigation 2"{[Name = "GL_ACCT", Kind = "View"]}[Data],
+						  #"Filtered rows" = Table.SelectRows(#"Navigation 3", each [ACTIVE] = 1),
+						  #"Removed Other Columns" = Table.SelectColumns(#"Filtered rows", {"ACTNUMBR_1", "ACTNUMBR_2", "ACTNUMBR_3", "ACTNUMST", "ACCTTYPE", "ACTDESCR", "DIVISION", "CATEGORY", "SOURCE", "ACCTIDX_KEY"}),
+						  #"Added ACTNUMBR1_RANGE" = Table.TransformColumnTypes(Table.AddColumn(#"Removed Other Columns", "ACTNUMBR_1_RANGE", each Number.RoundDown(Number.FromText([ACTNUMBR_1])/100)*100), {{"ACTNUMBR_1_RANGE", Int64.Type}}),
+						  #"Added custom 1" = Table.AddColumn(#"Added ACTNUMBR1_RANGE", "NUMBR1_xx_NUMBR3", each Text.From([ACTNUMBR_1]) & "-xx-" & [ACTNUMBR_3]),
+						  AddRegion = Table.AddColumn(#"Added custom 1", "REGION", each let value = Text.Trim([ACTNUMBR_2])
+						      in
+						        if [SOURCE] = "SERV_GP" then
+						          if List.Contains({"20", "27"}, value) then "KNOXVILLE" else
+						          if List.Contains({"00", "07"}, value) then "CINCINNATI" else
+						          if List.Contains({"10", "17"}, value) then "LEXINGTON" else
+						          if List.Contains({"90"}, value) then "LOUISVILLE" else
+						          if List.Contains({"60", "67"}, value) then "NASHVILLE" else
+						          if List.Contains({"30", "37"}, value) then "INDIANAPOLIS" else
+						          if List.Contains({"40", "47"}, value) then "WEST VIRGINIA" else
+						          if List.Contains({"70", "77"}, value) then "TFS" else
+						          if List.Contains({"80", "81", "87", "85"}, value) then "DAYTON" else
+						          "Missing Division" 
+						        else if [SOURCE] = "MECH_GP" then
+						          if List.Contains({"00", "01", "02", "04", "05"}, value) then "DESIGN BUILD" else
+						          if List.Contains({"03", "09", "40"}, value) then "GREEN" else
+						          if List.Contains({"20", "21"}, value) then "LEOPARDO" else
+						          "Missing Division"
+						        else "BROKEN"),
+						  AddAccountType = Table.AddColumn(AddRegion, "ACCOUNT_TYPE", each let 
+						      value = [ACTNUMBR_1_RANGE],
+						      subcat = Text.Trim([ACTNUMBR_1])
+						  in
+						      if value = 500 then "OPERATIONS EXPENSE" else
+						      if value = 600 then "SALES EXPENSE" else
+						      if value = 700 then "G&A EXPENSE" else
+						      if value = 800 then "OTHER INCOME & EXPENSE" else
+						      if value = 300 then 
+						          if List.Contains({"330", "331", "332"}, Text.From(subcat)) then "REVENUE" else
+						          "COST OF SALES" 
+						      else "BROKEN"),
+						  AddSubcategory = Table.AddColumn(AddAccountType, "COSTOFSALES_SUBCATEGORY", each let
+						    category = [ACCOUNT_TYPE],
+						    act3 = Text.Trim([ACTNUMBR_3]),
+						    lastDigit = Text.End(act3, 1)
+						  in
+						    if category = "COST OF SALES" then
+						      if lastDigit = "2" then "EQUIPMENT & MATERIAL" else
+						      if lastDigit = "3" then "LABOR" else
+						      if lastDigit = "9" then "BURDEN" else
+						      if lastDigit = "7" then "SUBCONTRACT" else
+						      if lastDigit = "0" then "DISCOUNTS" else
+						      if lastDigit = "6" then "VEHICLE EXPENSE" else
+						      if lastDigit = "8" then "TAX EXPENSE" else
+						      null
+						    else
+						      null),
+						  AddSubCategory2 = Table.AddColumn(AddSubcategory, "MARKET", each let
+						        source = Text.Trim([SOURCE]),
+						        act3 = Text.Trim([ACTNUMBR_3]),
+						        act2 = Text.Trim([ACTNUMBR_2]),
+						        act1 = Text.Trim([ACTNUMBR_1]),
+						        firstDigitAct3 = Text.Start(act3, 1),
+						        firstDigitAct1 = Text.Start(act1, 1),
+						        lastDigitAct2 = Text.End(act2, 1),
+						        lastDigitAct1 = Text.End(act1, 1)
+						    in
+						        if source = "SERV_GP" then
+						            if firstDigitAct1 = "3" then
+						                if firstDigitAct3 = "4" then "CERTIFIED" else
+						                if firstDigitAct3 = "7" then "INSPECTION" else
+						                if firstDigitAct3 = "6" then
+						                    if lastDigitAct1 = "5" or lastDigitAct2 = "5" then "INTERCOMPANY SPOT" else 
+						                    if lastDigitAct2 = "7" then "O&M SPOT" else "SPOT" else
+						                if firstDigitAct3 = "8" then "PROJECT REPAIR" else
+						                if firstDigitAct3 = "3" then
+						                    if lastDigitAct2 = "7" then "O&M" else "ASSURED"
+						                else if firstDigitAct3 = "5" then
+						                    if lastDigitAct2 = "7" then "O&M PROJECTS" else "PROJECTS"
+						                else null
+						            else
+						                if firstDigitAct3 = "3" then
+						                    if lastDigitAct2 = "7" then "O&M" else "A"
+						                else if firstDigitAct3 = "5" then
+						                    if lastDigitAct2 = "7" then "O&M PROJECTS" else "PROJECTS"
+						                else null
+						        else
+						        if source = "MECH_GP" then
+						            if firstDigitAct1 = "3" then
+						                if lastDigitAct2 = "0" then "CONTROLS" else
+						                if lastDigitAct2 = "1" then "DESIGN BUILD" else
+						                if lastDigitAct2 = "2" then "INDUSTRIAL" else
+						                if lastDigitAct2 = "3" then "PERFORMANCE CONTRACT" else 
+						                if lastDigitAct2 = "4" then "PLAN SPEC" else
+						                if lastDigitAct2 = "5" then "SPECIAL PROJECT" else      
+						                null
+						            else null
+						        else null),
+						  #"Removed other columns 1" = Table.SelectColumns(AddSubCategory2, {"ACTNUMBR_1", "ACTNUMBR_2", "ACTNUMBR_3", "ACTNUMST", "ACTDESCR", "SOURCE", "ACCTIDX_KEY", "ACTNUMBR_1_RANGE", "NUMBR1_xx_NUMBR3", "REGION", "ACCOUNT_TYPE", "COSTOFSALES_SUBCATEGORY", "MARKET"}),
+						  #"Reordered columns" = Table.ReorderColumns(#"Removed other columns 1", {"ACCTIDX_KEY", "SOURCE", "ACTNUMBR_1", "ACTNUMBR_2", "ACTNUMBR_3", "ACTNUMST", "ACTNUMBR_1_RANGE", "NUMBR1_xx_NUMBR3", "REGION", "ACCOUNT_TYPE", "COSTOFSALES_SUBCATEGORY", "MARKET", "ACTDESCR"}),
+						  #"Transform columns" = Table.TransformColumnTypes(#"Reordered columns", {{"NUMBR1_xx_NUMBR3", type text}, {"REGION", type text}, {"ACCOUNT_TYPE", type text}, {"COSTOFSALES_SUBCATEGORY", type text}, {"MARKET", type text}}),
+						  #"Replace errors" = Table.ReplaceErrorValues(#"Transform columns", {{"NUMBR1_xx_NUMBR3", null}, {"REGION", null}, {"ACCOUNT_TYPE", null}, {"COSTOFSALES_SUBCATEGORY", null}, {"MARKET", null}})
+						in
+						  #"Replace errors"
+						```
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table _KeyMeasures
+			lineageTag: 32ca591c-de98-457a-abc9-d46aab01f291
+
+			column Column1
+				dataType: string
+				isHidden
+				lineageTag: 0fa8453c-108a-4742-a0af-30b2fce24539
+				summarizeBy: none
+				sourceColumn: Column1
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			partition _KeyMeasures = m
+				mode: import
+				source =
+						let
+						    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+						    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+						in
+						    #"Changed Type"
+
+			annotation PBI_ResultType = Table
+
+		table BUDGET_F
+			lineageTag: a1d65742-901b-4405-be4b-d5af913955cb
+
+			column ACCATNUM
+				dataType: string
+				lineageTag: a102992e-f35e-4e93-9142-d903022b29f3
+				summarizeBy: none
+				sourceColumn: ACCATNUM
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTINDX
+				dataType: string
+				lineageTag: fde54f06-df34-4f1f-a6ab-6647f1b58279
+				summarizeBy: none
+				sourceColumn: ACTINDX
+
+				annotation SummarizationSetBy = Automatic
+
+			column BUDGETID
+				dataType: string
+				lineageTag: 645bef6b-de7d-4ddc-8717-0e46a5056404
+				summarizeBy: none
+				sourceColumn: BUDGETID
+
+				annotation SummarizationSetBy = Automatic
+
+			column PERIODDT
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 49ec9d48-de73-4a00-9d05-e442cd184995
+				summarizeBy: none
+				sourceColumn: PERIODDT
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column BUDGETAMT
+				dataType: double
+				lineageTag: c4181542-e3d9-4f5f-8d17-b8b7e497c65b
+				summarizeBy: sum
+				sourceColumn: BUDGETAMT
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column FISCAL_YEAR
+				dataType: double
+				lineageTag: c22ef36e-c74d-4e4b-b269-e8c2e25615d3
+				summarizeBy: sum
+				sourceColumn: FISCAL_YEAR
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column FISCAL_MONTH
+				dataType: double
+				lineageTag: e93bebb3-1077-4e22-8b1e-3f181e2fb976
+				summarizeBy: sum
+				sourceColumn: FISCAL_MONTH
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column SOURCE
+				dataType: string
+				lineageTag: b75f5268-2960-4c8e-9f72-927b85f0405b
+				summarizeBy: none
+				sourceColumn: SOURCE
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACCTNUM_KEY
+				dataType: string
+				lineageTag: 3a16fc63-722d-4993-bde0-bd4a3471c1f4
+				summarizeBy: none
+				sourceColumn: ACCTNUM_KEY
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACCTIDX_KEY
+				dataType: string
+				lineageTag: 072fb4de-c781-42c3-8b7e-be8884d9ae18
+				summarizeBy: none
+				sourceColumn: ACCTIDX_KEY
+
+				annotation SummarizationSetBy = Automatic
+
+			column DIVISION
+				dataType: string
+				lineageTag: 7027fe1b-a89f-4314-80c5-c9df371e27f7
+				summarizeBy: none
+				sourceColumn: DIVISION
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_1
+				dataType: string
+				lineageTag: 78a18ee3-a245-4b46-9a3d-e9d97c4692ac
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_1
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_2
+				dataType: string
+				lineageTag: 98833256-4a93-44d0-9a28-298e9f6321e4
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_2
+
+				annotation SummarizationSetBy = Automatic
+
+			column ACTNUMBR_3
+				dataType: string
+				lineageTag: 3ecc6825-e5d4-4ea9-9d45-390f3ff1e7e6
+				summarizeBy: none
+				sourceColumn: ACTNUMBR_3
+
+				annotation SummarizationSetBy = Automatic
+
+			partition BUDGET_F = m
+				mode: import
+				source =
+						let
+						  Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", [Role = null, CreateNavigationProperties = null, ConnectionTimeout = null, CommandTimeout = null]),
+						  #"Navigation 1" = Source{[Name = "DATA_WAREHOUSE", Kind = "Database"]}[Data],
+						  #"Navigation 2" = #"Navigation 1"{[Name = "DW_FINAL", Kind = "Schema"]}[Data],
+						  #"Navigation 3" = #"Navigation 2"{[Name = "BUDGET_F", Kind = "Table"]}[Data],
+						  #"Filtered rows" = Table.SelectRows(#"Navigation 3", each [YEAR] >= 2020),
+						  #"Removed columns" = Table.RemoveColumns(#"Filtered rows", {"ACTNUMST", "CATEGORY", "ACCOUNT_TYPE"}),
+						  #"Changed column type" = Table.TransformColumnTypes(#"Removed columns", {{"PERIODDT", type date}}),
+						  #"Renamed columns" = Table.RenameColumns(#"Changed column type", {{"YEAR", "FISCAL_YEAR"}}),
+						  #"Sorted rows" = Table.Sort(#"Renamed columns", {{"ACTNUMBR_1", Order.Ascending}, {"ACTNUMBR_2", Order.Ascending}, {"ACTNUMBR_3", Order.Ascending},{"PERIODDT", Order.Ascending}})
+						in
+						    #"Sorted rows"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table DIVISIONS_D
+			lineageTag: fb9acfc4-5c41-4c13-864a-edbaa992ccc6
+
+			column DivisionCode
+				dataType: string
+				lineageTag: dc7f7987-b4d9-414f-bee1-9bc302f1d9ea
+				summarizeBy: none
+				sourceColumn: DivisionCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column Division
+				dataType: string
+				lineageTag: 7579a13a-6c7c-40e1-959b-bcab9a85beac
+				summarizeBy: none
+				sourceColumn: Division
+
+				annotation SummarizationSetBy = Automatic
+
+			column Region
+				dataType: string
+				lineageTag: 70d2fe73-79b9-4ab9-b02e-02436e88e0c7
+				summarizeBy: none
+				sourceColumn: Region
+
+				annotation SummarizationSetBy = Automatic
+
+			column Company
+				dataType: string
+				lineageTag: a027e4a9-1369-4524-82ba-2cff8d5de7e8
+				summarizeBy: none
+				sourceColumn: Company
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DIVISIONS_D = m
+				mode: import
+				source =
+						let
+						    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+						    #"Navigation 1" = Source{[Name = "datasets"]}[Data],
+						    #"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv" = #"Navigation 1"{[#"Folder Path"="https://stgreen.blob.core.windows.net/datasets/",Name="DIVISIONS_D.csv"]}[Content],
+						    #"Imported CSV" = Csv.Document(#"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv",[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+						    #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+						    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+						    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"DivisionCode", type text}, {"Division", type text}, {"Region", type text}, {"Company", type text}})
+						    in #"Changed Type1"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table FYCALENDAR_D
+			lineageTag: e6e5a61e-f972-4b57-b19b-b9bfff0791a2
+
+			column Date
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 91c0ab92-7555-43f9-8854-8704c496cc43
+				summarizeBy: none
+				sourceColumn: Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: f9441bb2-b73e-4474-b8c1-8bf166f451f9
+				summarizeBy: sum
+				sourceColumn: Fiscal Year
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Label'
+				dataType: string
+				lineageTag: 132e9122-541c-4d1a-9a38-31e15ea9c762
+				summarizeBy: none
+				sourceColumn: Fiscal Year Label
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Default'
+				dataType: string
+				lineageTag: bfa7a663-f0c5-43c4-967e-5fefa6be2346
+				summarizeBy: none
+				sourceColumn: Fiscal Year Default
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Start Of Year'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 898bde51-39a2-4c7e-8ebc-560265a3bec5
+				summarizeBy: none
+				sourceColumn: Fiscal Start Of Year
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal End Of Year'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 9fe4cf87-f841-4376-8016-17c57f9a8910
+				summarizeBy: none
+				sourceColumn: Fiscal End Of Year
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal Day Of Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 4936e064-ec03-4f1f-9dcc-4a90f79121bb
+				summarizeBy: sum
+				sourceColumn: Fiscal Day Of Year
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Week Of Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 58e9f869-85c2-4698-a5e8-cf655604cd60
+				summarizeBy: sum
+				sourceColumn: Fiscal Week Of Year
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Week Label'
+				dataType: string
+				lineageTag: 8e5276dd-2b99-4b6f-b5c5-5288efa51adc
+				summarizeBy: none
+				sourceColumn: Fiscal Week Label
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Offset'
+				dataType: int64
+				formatString: 0
+				lineageTag: 2a5720e5-b7c8-4d52-b44c-6b8011148869
+				summarizeBy: sum
+				sourceColumn: Fiscal Year Offset
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month'
+				dataType: int64
+				formatString: 0
+				lineageTag: 9b6ef66a-189b-4795-b926-6ac2e613142d
+				summarizeBy: sum
+				sourceColumn: Fiscal Month
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Default'
+				dataType: string
+				lineageTag: 9887306d-a2ce-4f80-be3c-bdb2611a96a5
+				summarizeBy: none
+				sourceColumn: Fiscal Month Default
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: cf16f834-9ac5-49a3-8052-3ddcba5a99c3
+				summarizeBy: sum
+				sourceColumn: Fiscal Quarter
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Quarter Label'
+				dataType: string
+				lineageTag: c09dae23-f4e7-459d-a4fd-63cec2957ae3
+				summarizeBy: none
+				sourceColumn: Fiscal Quarter Label
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Of Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: 7a50b146-82ae-4963-88a0-20d28c4d4f91
+				summarizeBy: sum
+				sourceColumn: Fiscal Month Of Quarter
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Quarter Label'
+				dataType: string
+				lineageTag: 15554fb0-b220-401e-b2f7-185164b8e858
+				summarizeBy: none
+				sourceColumn: Fiscal Year Quarter Label
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Start Of Quarter'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 7a288138-6d10-4eee-bfcb-533426b8805d
+				summarizeBy: none
+				sourceColumn: Fiscal Start Of Quarter
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal End Of Quarter'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: a69a0901-bb42-4fe3-aab3-f2b1449ea25d
+				summarizeBy: none
+				sourceColumn: Fiscal End Of Quarter
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal Quarter Offset'
+				dataType: int64
+				formatString: 0
+				lineageTag: e9175ed7-c550-4d24-aede-abbd8abcbb38
+				summarizeBy: sum
+				sourceColumn: Fiscal Quarter Offset
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Quarter Month Label'
+				dataType: string
+				lineageTag: 3260245b-2779-40bd-ba87-3c23767f1e32
+				summarizeBy: none
+				sourceColumn: Fiscal Quarter Month Label
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Day Of Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: f493debb-0e49-43a4-965b-424fe6f193ff
+				summarizeBy: sum
+				sourceColumn: Fiscal Day Of Quarter
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Current Month'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: bf051b7e-7df0-4f26-b907-2b4350c38e28
+				summarizeBy: none
+				sourceColumn: Is Current Month
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Current Calendar Year'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: c2caa0f6-b3fb-46d2-93b0-5aaca2ae2287
+				summarizeBy: none
+				sourceColumn: Is Current Calendar Year
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Current Fiscal Year'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 65eab5c5-e62c-48e9-a570-7cad07d6a9fc
+				summarizeBy: none
+				sourceColumn: Is Current Fiscal Year
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Week Start'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 6294d521-fa85-413c-b836-69f5fc226fb8
+				summarizeBy: none
+				sourceColumn: Week Start
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Is Current Week'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 6e5df2b8-bc5f-42d6-b98c-f2be92bbd9fe
+				summarizeBy: none
+				sourceColumn: Is Current Week
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Previous Month'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 91b5eb97-51e5-4de0-80b0-85559f80cd0d
+				summarizeBy: none
+				sourceColumn: Is Previous Month
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Previous Fiscal Year'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: a66a281c-f0e1-427a-8d6b-55e5298eac09
+				summarizeBy: none
+				sourceColumn: Is Previous Fiscal Year
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Previous Week'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 89f28732-1ebb-4eaf-b179-8a90561a177e
+				summarizeBy: none
+				sourceColumn: Is Previous Week
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Name'
+				dataType: string
+				lineageTag: 96c09c0d-5488-4f8b-85fe-c25e85db67cd
+				summarizeBy: none
+				sourceColumn: Fiscal Month Name
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Name Long'
+				dataType: string
+				lineageTag: 99ee6583-4bf7-49e8-95bb-4bb46d4f0966
+				summarizeBy: none
+				sourceColumn: Fiscal Month Name Long
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Week Name'
+				dataType: string
+				lineageTag: a8698402-1dd0-44c9-88c2-ad882c23ff07
+				summarizeBy: none
+				sourceColumn: Fiscal Week Name
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Month Name'
+				dataType: string
+				lineageTag: 2571abae-5ceb-4d5c-af12-4f8afd7fa2aa
+				summarizeBy: none
+				sourceColumn: Month Name
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'MMM Label'
+				dataType: string
+				lineageTag: 62bc4f47-c0b9-4309-af54-dcf64922b1c8
+				summarizeBy: none
+				sourceColumn: MMM Label
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Completed Month'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 37ea12fd-1179-42f4-b70a-00e1b8f1af84
+				summarizeBy: none
+				sourceColumn: Is Completed Month
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Completed Quarter'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 59c247c6-daba-42c0-ab85-7aabaf3414d5
+				summarizeBy: none
+				sourceColumn: Is Completed Quarter
+
+				annotation SummarizationSetBy = Automatic
+
+			partition FYCALENDAR_D = m
+				mode: import
+				source = ```
+						let
+						    // The FiscalYearEnd determines in which month the fiscal year ends. If necessary you can adjust it. 
+						    FiscalYearEnd = 9,
+						
+						    // Today is used throughout the fiscal logic and for determining current period flags
+						    Today = Date.From(DateTime.LocalNow()),
+						
+						    // Sets the start date for your calendar
+						    StartDate = #date(2000, 1, 1),
+						
+						    // The calendar runs until the end of the current year. Change this if you need your calendar to run to another date. 
+						    EndDate = Date.AddYears(Date.EndOfYear(Today),1),
+						
+						    // The current Fiscal Year value is a helper value for other calculations
+						    CurrentFiscalYear = Date.Year( Date.AddMonths( Today, 12 - FiscalYearEnd ) ),
+						
+						    ListOfDates =
+						        List.Dates(
+						            StartDate,
+						            Duration.Days(EndDate - StartDate) + 1,
+						            #duration(1, 0, 0, 0)
+						        ),
+						
+						    MyDateTable =
+						        Table.FromList(
+						            ListOfDates,
+						            Splitter.SplitByNothing(),
+						            type table[Date = date],
+						            null,
+						            ExtraValues.Error
+						        ),
+						
+						    Add_FiscalYearNumber =
+						        Table.AddColumn(
+						            MyDateTable,
+						            "FiscalYear",
+						            each Date.Year(Date.AddMonths([Date], 12 - FiscalYearEnd)),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalYearLabel =
+						        Table.AddColumn(
+						            Add_FiscalYearNumber,
+						            "FiscalYearLabel",
+						            each "FY" & Text.From([FiscalYear]),
+						            Text.Type
+						        ),
+						
+						    // Allows you to select the 'Current' or 'Previous' year dynamically. 
+						    Add_FiscalYearDefault =
+						        Table.AddColumn(
+						            Add_FiscalYearLabel,
+						            "FiscalYearDefault",
+						            each
+						                if [FiscalYear] = CurrentFiscalYear then "Current"
+						                else if [FiscalYear] = (CurrentFiscalYear - 1) then "Previous"
+						                else "FY" & Text.From([FiscalYear]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalStartOfYear =
+						        Table.AddColumn(
+						            Add_FiscalYearDefault,
+						            "FiscalStartOfYear",
+						            each [
+						                Offset = if FiscalYearEnd = 12 then 0 else FiscalYearEnd - 12,
+						                FiscalStartOfYear = Date.AddMonths(Date.StartOfYear([Date]), Offset)
+						            ][FiscalStartOfYear],
+						            Date.Type
+						        ),
+						
+						    Add_FiscalEndOfYear =
+						        Table.AddColumn(
+						            Add_FiscalStartOfYear,
+						            "FiscalEndOfYear",
+						            each Date.AddMonths(Date.EndOfYear([Date]), FiscalYearEnd - 12),
+						            Date.Type
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Fiscal Day & Week of Fiscal Year
+						    // -----------------------------------------------------
+						
+						    Add_FiscalDayOfYear =
+						        Table.AddColumn(
+						            Add_FiscalEndOfYear,
+						            "FiscalDayOfYear",
+						            each Number.From([Date] - [FiscalStartOfYear]) + 1,
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalWeekOfYear =
+						        Table.AddColumn(
+						            Add_FiscalDayOfYear,
+						            "FiscalWeekOfYear",
+						            each Number.RoundUp([FiscalDayOfYear] / 7),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalWeekLabel =
+						        Table.AddColumn(
+						            Add_FiscalWeekOfYear,
+						            "FiscalWeekLabel",
+						            each
+						                "FY" &
+						                Text.From([FiscalYear]) &
+						                " W" &
+						                Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
+						            Text.Type
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Continue existing logic
+						    // -----------------------------------------------------
+						
+						    // A year Offset value indicates the relative position of the current year (based on today's date)
+						    Add_FiscalYearOffset =
+						        Table.AddColumn(
+						            Add_FiscalWeekLabel,
+						            "FiscalYearOffset",
+						            each ([FiscalYear] - CurrentFiscalYear),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalMonthNumber =
+						        Table.AddColumn(
+						            Add_FiscalYearOffset,
+						            "FiscalMonth",
+						            each Date.Month(Date.AddMonths([Date], -FiscalYearEnd)),
+						            Int64.Type
+						        ),
+						
+						    // Allows you to select the 'Current' or 'Previous' month dynamically.
+						    Add_FiscalMonthDefault =
+						        Table.AddColumn(
+						            Add_FiscalMonthNumber,
+						            "FiscalMonthDefault",
+						            each
+						                if Date.IsInCurrentMonth([Date]) then "Current"
+						                else if Date.IsInPreviousMonth([Date]) then "Previous"
+						                else Text.From([FiscalMonth]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalQuarterNumber =
+						        Table.AddColumn(
+						            Add_FiscalMonthDefault,
+						            "FiscalQuarter",
+						            each Number.RoundUp([FiscalMonth] / 3),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalQuarterLabel =
+						        Table.AddColumn(
+						            Add_FiscalQuarterNumber,
+						            "FiscalQuarterLabel",
+						            each "FQ" & Text.From([FiscalQuarter]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalMonthOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalQuarterLabel,
+						            "FiscalMonthOfQuarter",
+						            each [FiscalMonth] - 3 * ([FiscalQuarter] - 1),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalYearQuarterLabel =
+						        Table.AddColumn(
+						            Add_FiscalMonthOfQuarter,
+						            "FiscalYearQuarterLabel",
+						            each "FY" & Text.From([FiscalYear]) & " Q" & Text.From([FiscalQuarter]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalStartOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalYearQuarterLabel,
+						            "FiscalStartOfQuarter",
+						            each Date.StartOfMonth(Date.AddMonths([Date], 1 - [FiscalMonthOfQuarter])),
+						            Date.Type
+						        ),
+						
+						    Add_FiscalEndOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalStartOfQuarter,
+						            "FiscalEndOfQuarter",
+						            each Date.EndOfMonth(Date.AddMonths([Date], 3 - [FiscalMonthOfQuarter])),
+						            Date.Type
+						        ),
+						
+						    // Quarter offset logic
+						    Add_FiscalQuarterOffset =
+						        Table.AddColumn(
+						            Add_FiscalEndOfQuarter,
+						            "FiscalQuarterOffset",
+						            each [
+						                CurrentFiscalMonth = Date.Month(Date.AddMonths(Today, -FiscalYearEnd)),
+						                CurrentFiscalQuarter = Number.RoundUp(CurrentFiscalMonth / 3),
+						                FiscalQuarterOffset =
+						                    (([FiscalYear] - CurrentFiscalYear) * 4)
+						                        + ([FiscalQuarter] - CurrentFiscalQuarter)
+						            ][FiscalQuarterOffset],
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalQuarterMonthLabel =
+						        Table.AddColumn(
+						            Add_FiscalQuarterOffset,
+						            "FiscalQuarterMonthLabel",
+						            each
+						                "FQ"
+						                    & Text.From([FiscalQuarter])
+						                    & ": "
+						                    & Date.ToText([FiscalStartOfQuarter], "MMM yyyy")
+						                    & " - "
+						                    & Date.ToText([FiscalEndOfQuarter], "MMM yyyy"),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalDayOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalQuarterMonthLabel,
+						            "FiscalDayOfQuarter",
+						            each Number.From([Date] - [FiscalStartOfQuarter]) + 1,
+						            Int64.Type
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Current-period indicators
+						    // -----------------------------------------------------
+						
+						    Add_IsCurrentMonth =
+						        Table.AddColumn(
+						            Add_FiscalDayOfQuarter,
+						            "IsCurrentMonth",
+						            each Date.Year([Date]) = Date.Year(Today)
+						                and Date.Month([Date]) = Date.Month(Today),
+						            type logical
+						        ),
+						
+						    Add_IsCurrentCalendarYear =
+						        Table.AddColumn(
+						            Add_IsCurrentMonth,
+						            "IsCurrentCalendarYear",
+						            each Date.Year([Date]) = Date.Year(Today),
+						            type logical
+						        ),
+						
+						    Add_IsCurrentFiscalYear =
+						        Table.AddColumn(
+						            Add_IsCurrentCalendarYear,
+						            "IsCurrentFiscalYear",
+						            each [FiscalYear] = CurrentFiscalYear,
+						            type logical
+						        ),
+						
+						    CurrentWeekStart =
+						        Date.AddDays(Today, 1 - Date.DayOfWeek(Today, Day.Monday)),
+						
+						    Add_WeekStart =
+						        Table.AddColumn(
+						            Add_IsCurrentFiscalYear,
+						            "WeekStart",
+						            each Date.AddDays([Date], 1 - Date.DayOfWeek([Date], Day.Monday)),
+						            type date
+						        ),
+						
+						    Add_IsCurrentWeek =
+						        Table.AddColumn(
+						            Add_WeekStart,
+						            "IsCurrentWeek",
+						            each [WeekStart] = CurrentWeekStart,
+						            type logical
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Previous-period indicators
+						    // -----------------------------------------------------
+						
+						    Add_IsPreviousMonth =
+						        Table.AddColumn(
+						            Add_IsCurrentWeek,
+						            "IsPreviousMonth",
+						            each Date.IsInPreviousMonth([Date]),
+						            type logical
+						        ),
+						
+						    Add_IsPreviousFiscalYear =
+						        Table.AddColumn(
+						            Add_IsPreviousMonth,
+						            "IsPreviousFiscalYear",
+						            each [FiscalYear] = (CurrentFiscalYear - 1),
+						            type logical
+						        ),
+						
+						    PreviousWeekStart =
+						        Date.AddDays(Today, 1 - Date.DayOfWeek(Today, Day.Monday) - 7),
+						
+						    Add_IsPreviousWeek =
+						        Table.AddColumn(
+						            Add_IsPreviousFiscalYear,
+						            "IsPreviousWeek",
+						            each [WeekStart] = PreviousWeekStart,
+						            type logical
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Column cleanup
+						    // -----------------------------------------------------
+						// -----------------------------------------------------
+						// Additional fiscal month & week labels for CB-TI
+						// -----------------------------------------------------
+						
+						Add_FiscalMonthName =
+						    Table.AddColumn(
+						        Add_IsPreviousWeek,
+						        "FiscalMonthName",
+						        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0"),
+						        Text.Type
+						    ),
+						
+						Add_FiscalMonthNameLong =
+						    Table.AddColumn(
+						        Add_FiscalMonthName,
+						        "FiscalMonthNameLong",
+						        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0") 
+						            & " - " & Date.MonthName([Date]),
+						        Text.Type
+						    ),
+						
+						Add_FiscalWeekName =
+						    Table.AddColumn(
+						        Add_FiscalMonthNameLong,
+						        "FiscalWeekName",
+						        each "FW" & Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
+						        Text.Type
+						    ),
+						
+						    #"Rename Columns" =
+						        Table.TransformColumnNames(
+						            Add_FiscalWeekName,
+						            each [
+						                SplitTextByTransition =
+						                    Splitter.SplitTextByCharacterTransition({"a" .. "z"}, {"A" .. "Z"})(_),
+						                CombineValues = Text.Combine(SplitTextByTransition, " "),
+						                RemoveUnderscores = Text.Replace(CombineValues, "_", " ")
+						            ][RemoveUnderscores]
+						        ),
+						
+						    #"Inserted Month Name" =
+						        Table.AddColumn(#"Rename Columns", "Month Name", each Date.MonthName([Date]), type text),
+						    #"Added Custom" = Table.AddColumn(#"Inserted Month Name", "MMM Label", each Text.Start([Month Name], 3)),
+						    Add_IsCompletedMonth = Table.AddColumn(#"Added Custom", "Is Completed Month", each Date.EndOfMonth([Date])< Date.StartOfMonth(Date.From(DateTime.LocalNow())), type logical),
+						    #"Added Custom1" = Table.AddColumn(Add_IsCompletedMonth, "Is Completed Quarter", each [Fiscal End Of Quarter] < Date.From(DateTime.LocalNow()), type logical)
+						in
+						    #"Added Custom1"
+						```
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		relationship AutoDetected_1aef68aa-a579-4e0d-83f5-bab11fe65a52
+			fromColumn: POSTING_DATA_F.ACCTIDX_KEY
+			toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+		relationship AutoDetected_fd31ff27-5825-45ce-b6ba-000cc8cf6b1a
+			fromColumn: BUDGET_F.ACCTIDX_KEY
+			toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+		cultureInfo en-US
+
+			linguisticMetadata =
+					{
+					  "Version": "1.0.0",
+					  "Language": "en-US"
+					}
+				contentType: json
+
+		annotation __PBI_TimeIntelligenceEnabled = 0
+
+		annotation PBI_QueryOrder = ["POSTING_DATA_F","GL_ACCT_D","_KeyMeasures","BUDGET_F","DIVISIONS_D","FYCALENDAR_D"]
+
+		annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+

@@ -1,0 +1,158 @@
+table JOB_COST_FORECAST_F
+	lineageTag: 0fc6873f-ea51-4c14-a1c7-5580c7fbc1fe
+
+	column 'Job Number'
+		dataType: string
+		lineageTag: 591509f2-a431-424f-b03e-19cb0a9ea4fc
+		summarizeBy: none
+		sourceColumn: Job Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Code 1'
+		dataType: string
+		lineageTag: bf31de0e-67ef-44d8-a705-001e6fba042f
+		summarizeBy: none
+		sourceColumn: Cost Code 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Code 2'
+		dataType: string
+		lineageTag: f5dd2efa-5e1e-4b6c-9daf-2f745c836ef6
+		summarizeBy: none
+		sourceColumn: Cost Code 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Code 3'
+		dataType: string
+		lineageTag: 0512cad3-7081-4f1d-a52d-fcf85180ad88
+		summarizeBy: none
+		sourceColumn: Cost Code 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Code'
+		dataType: string
+		lineageTag: fe3a927f-e2ef-433d-a09c-e494224cf387
+		summarizeBy: none
+		sourceColumn: Cost Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0aed65fd-c0a3-4288-93a7-be11aabc2692
+		summarizeBy: none
+		sourceColumn: Modified Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Current Cost Amt'
+		dataType: double
+		lineageTag: 3e035132-2617-459d-9eaf-43e9891855e4
+		summarizeBy: sum
+		sourceColumn: Current Cost Amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Costs'
+		dataType: double
+		lineageTag: 5a5ce832-6567-40f5-a322-fb5e9b29c6f4
+		summarizeBy: sum
+		sourceColumn: Forecast Costs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Forecast Untis'
+		dataType: double
+		lineageTag: 9114ab67-feab-4104-84eb-f5261e7a3314
+		summarizeBy: sum
+		sourceColumn: Forecast Untis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: double
+		lineageTag: dc0fd343-ca9d-4cdd-831c-d570bb56c4b6
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fiscal Month'
+		dataType: double
+		lineageTag: 345d0201-fd06-4f74-bbd0-18cf1a0193de
+		summarizeBy: sum
+		sourceColumn: Fiscal Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Source
+		dataType: string
+		lineageTag: f4089ddd-1f7b-4417-8e62-0a06d35845f6
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: 053f98c0-c48d-4aa5-94df-4f32bf49166e
+		summarizeBy: none
+		sourceColumn: Job Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Cost Key'
+		dataType: string
+		lineageTag: 9e826e5b-2dc8-499c-8532-ba407ab4e223
+		summarizeBy: none
+		sourceColumn: Job Cost Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4021a6ac-fcd9-471a-ae97-95ce7619aae6
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition JOB_COST_FORECAST_F = m
+		mode: import
+		queryGroup: fact
+		source =
+				let
+				    Source = Snowflake.Databases("ws53155.central-us.azure.snowflakecomputing.com","COMPUTE_WH"),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOB_COST_FORECASTS_F_Table = DW_FINAL_Schema{[Name="JOB_COST_FORECASTS_F",Kind="Table"]}[Data],
+				    ProperCase = Table.RenameColumns(JOB_COST_FORECASTS_F_Table, List.Transform(Table.ColumnNames(JOB_COST_FORECASTS_F_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    CalcDate = Table.AddColumn(ProperCase, "Date", each Date.AddMonths(#date(Number.From([Year]), Number.From([Fiscal Month]), 1), -3), type date),
+				    #"Filtered Rows" = Table.SelectRows(CalcDate, each [Date] >= #date(2020, 1, 1))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

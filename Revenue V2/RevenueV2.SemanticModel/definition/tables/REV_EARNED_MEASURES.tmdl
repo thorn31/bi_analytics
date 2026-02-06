@@ -1,0 +1,14 @@
+/// Measure table for earned revenue and reconciliation metrics.
+table REV_EARNED_MEASURES
+	lineageTag: d1575e38-56a8-4650-8b32-10c96bd40995
+
+	column Stub
+		isHidden
+		lineageTag: d9f75846-d5ec-4301-b23e-45c145a29844
+		isNameInferred
+		sourceColumn: [Stub]
+
+	partition REV_EARNED_MEASURES = calculated
+		mode: import
+		source = DATATABLE("Stub", INTEGER, {{1}})
+

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "ec18b1ba13d0f52ed4a2",
+  "position": {
+    "x": 306.8041237113402,
+    "y": 377.319587628866,
+    "z": 2000,
+    "height": 300,
+    "width": 554.2268041237113
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TM_CustomerMonth_Amend_F"
+                    }
+                  },
+                  "Property": "Divisions"
+                }
+              },
+              "queryRef": "TM_CustomerMonth_Amend_F.Divisions",
+              "nativeQueryRef": "Divisions"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIVISIONS_D"
+                    }
+                  },
+                  "Property": "Company"
+                }
+              },
+              "queryRef": "DIVISIONS_D.Company",
+              "nativeQueryRef": "Company"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

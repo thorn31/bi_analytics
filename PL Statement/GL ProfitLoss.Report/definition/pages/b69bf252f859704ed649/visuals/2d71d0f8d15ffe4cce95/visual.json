@@ -1,0 +1,349 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "2d71d0f8d15ffe4cce95",
+  "position": {
+    "x": 57.379310344827587,
+    "y": 71.356321839080465,
+    "z": 0,
+    "height": 500.9655172413793,
+    "width": 979.86206896551721
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "POSTING_DATA_F"
+                    }
+                  },
+                  "Property": "FISCAL_YEAR"
+                }
+              },
+              "queryRef": "POSTING_DATA_F.FISCAL_YEAR",
+              "nativeQueryRef": "Sum of FISCAL_YEAR",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "GL_ACCT.REGION",
+              "nativeQueryRef": "REGION",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "MARKET"
+                }
+              },
+              "queryRef": "GL_ACCT.MARKET",
+              "nativeQueryRef": "MARKET",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "COSTOFSALES_SUBCATEGORY"
+                }
+              },
+              "queryRef": "GL_ACCT.COSTOFSALES_SUBCATEGORY",
+              "nativeQueryRef": "COSTOFSALES_SUBCATEGORY",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "ACCOUNT_TYPE"
+                }
+              },
+              "queryRef": "GL_ACCT.ACCOUNT_TYPE",
+              "nativeQueryRef": "ACCOUNT_TYPE",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "POSTING_DATA_F"
+                        }
+                      },
+                      "Property": "PERDBLNC"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(POSTING_DATA_F.PERDBLNC)",
+              "nativeQueryRef": "Sum of PERDBLNC"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "GL_ACCT.REGION"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "GL_ACCT.MARKET"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "MARKET"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "GL_ACCT.COSTOFSALES_SUBCATEGORY"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "COSTOFSALES_SUBCATEGORY"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "GL_ACCT.ACCOUNT_TYPE"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "null"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "null"
+                      }
+                    }
+                  ],
+                  "isToggled": true,
+                  "children": [
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "null"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'CINCINNATI'"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "null"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f5ecea71ef5a71617f2f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "POSTING_DATA_F"
+              }
+            },
+            "Property": "FISCAL_YEAR"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4c19f87d6a910e999f80",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "GL_ACCT_D"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fdb96d42d6b707597108",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "GL_ACCT_D"
+              }
+            },
+            "Property": "MARKET"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7c5321f2c51f045d3cdd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "GL_ACCT_D"
+              }
+            },
+            "Property": "COSTOFSALES_SUBCATEGORY"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4dde0cbea3743494b801",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "GL_ACCT_D"
+              }
+            },
+            "Property": "ACCOUNT_TYPE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5595a63a693b8e525411",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "POSTING_DATA_F"
+                  }
+                },
+                "Property": "PERDBLNC"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

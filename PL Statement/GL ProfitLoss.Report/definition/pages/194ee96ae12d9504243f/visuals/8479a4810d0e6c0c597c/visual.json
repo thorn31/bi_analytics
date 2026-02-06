@@ -1,0 +1,127 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "8479a4810d0e6c0c597c",
+  "position": {
+    "x": 27.133640552995391,
+    "y": 116.7926267281106,
+    "z": 0,
+    "height": 299.64976958525347,
+    "width": 730.24884792626733
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "POSTING_DATA_F"
+                    }
+                  },
+                  "Property": "REGION"
+                }
+              },
+              "queryRef": "POSTING_DATA_F.REGION",
+              "nativeQueryRef": "REGION"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "POSTING_DATA_F"
+                        }
+                      },
+                      "Property": "PERDBLNC"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(POSTING_DATA_F.PERDBLNC)",
+              "nativeQueryRef": "Sum of PERDBLNC"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "ACTDESCR"
+                }
+              },
+              "queryRef": "GL_ACCT.ACTDESCR",
+              "nativeQueryRef": "ACTDESCR"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8d6a761dc5fb1232370a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "POSTING_DATA_F"
+              }
+            },
+            "Property": "REGION"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "POSTING_DATA_F",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "REGION"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Missing Division'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

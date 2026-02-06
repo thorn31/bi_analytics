@@ -1,15 +1,18 @@
 table CustomerMonth_Stream_Method_F
-	lineageTag: 7fe35449-0932-482f-94cf-2a0d9ced5fca
+	lineageTag: 92037533-2e5c-467b-bf0d-427aaf074215
 
 	column 'Customer Key'
 		dataType: string
-		lineageTag: 23e5d934-22a2-484f-8907-6bda3059c14f
+		lineageTag: 9dc307c7-f2c1-4127-9bea-b1c0088cfc32
+		summarizeBy: none
 		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Month End'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 1359f19b-d2df-4d68-be92-00507282b61a
+		lineageTag: f578b7ff-eaed-4c72-a8d1-fa8f129c1635
 		summarizeBy: none
 		sourceColumn: Month End
 
@@ -19,34 +22,53 @@ table CustomerMonth_Stream_Method_F
 
 	column Stream
 		dataType: string
-		lineageTag: 824b9990-a4dc-4fb2-8a4c-bf982a2a1cbe
+		lineageTag: ff385250-5e90-44a5-94c0-d54d6a1806bd
+		summarizeBy: none
 		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
 
 	column Methodology
 		dataType: string
-		lineageTag: 382ea05a-f578-4b1c-ab65-ce6d4c62f28f
+		lineageTag: ce08a51a-aa9c-41af-9ac8-4b414f76cfb6
+		summarizeBy: none
 		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Subsegment'
 		dataType: string
-		lineageTag: bc54fe19-db8d-4cf0-9e51-9d0495956085
+		lineageTag: 64c50882-12e6-48f7-8553-2918e158c11d
+		summarizeBy: none
 		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Revenue Amount'
 		dataType: double
-		lineageTag: 41c64ca8-4b8a-44ed-b1aa-41f734d562a7
+		lineageTag: ba37eeec-969a-4817-a528-3265fbb1831c
+		summarizeBy: sum
 		sourceColumn: Revenue Amount
 
 	column 'Cost Amount'
 		dataType: double
-		lineageTag: 63028091-175c-402f-bf13-c45e35a72654
+		lineageTag: 02295839-aea5-418f-ac63-c36bc6e39a9d
+		summarizeBy: sum
 		sourceColumn: Cost Amount
 
 	partition CustomerMonth_Stream_Method_F = m
 		mode: import
 		source =
 				let
-				    Source = Table.Combine({Projects_ProjectMonth_CRR_F, Projects_ProjectMonth_Amend_F}),
+				    Source = Table.Combine({
+				        Projects_ProjectMonth_CRR_F,
+				        Projects_ProjectMonth_Amend_F,
+				        SERVCONTRACTS_CustomerMonth_Billings_F,
+				        SERVCONTRACTS_CustomerMonth_Recognized_Alt_F,
+				        TM_CustomerMonth_CRR_F,
+				        TM_CustomerMonth_Amend_F,
+				        LEGACYPROJECTS_CustomerMonth_Billings_F
+				    }),
 				    Grouped = Table.Group(
 				        Source,
 				        {"Customer Key","Month End","Stream","Methodology","Project Subsegment"},
@@ -57,4 +79,8 @@ table CustomerMonth_Stream_Method_F
 				    )
 				in
 				    Grouped
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

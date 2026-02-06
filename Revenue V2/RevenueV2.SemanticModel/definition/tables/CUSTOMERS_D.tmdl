@@ -1,0 +1,295 @@
+table CUSTOMERS_D
+	lineageTag: 1525556d-c144-4177-9220-4e18c259f0a0
+
+	column 'Customer Number'
+		dataType: string
+		lineageTag: 24f3db63-ce5b-4a0c-b219-d32c9d84266b
+		summarizeBy: none
+		sourceColumn: Customer Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: ea3905fd-7c9e-43d8-99a2-95bba9e3a645
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Class'
+		dataType: string
+		lineageTag: 68a58cb4-7c89-4e23-bd11-a084824d8626
+		summarizeBy: none
+		sourceColumn: Customer Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address1
+		dataType: string
+		lineageTag: 637cdca1-0e07-42f5-9964-7057fee1262d
+		summarizeBy: none
+		sourceColumn: Address1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address2
+		dataType: string
+		lineageTag: fa5b6250-a430-4e49-a3b9-3e55f459e2eb
+		summarizeBy: none
+		sourceColumn: Address2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 2882ff65-760e-4aa1-b11a-bb39e438dcf8
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: fd16c945-af0e-4e64-b18d-f2c83ee4a477
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 090b0f33-a986-4ecc-acd3-8bd95198a470
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: string
+		lineageTag: b730a78a-5c1a-4256-84c0-29c003efe518
+		summarizeBy: none
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone1
+		dataType: string
+		lineageTag: 149bd3b6-95f7-4672-9c30-46b9fb1e1ed5
+		summarizeBy: none
+		sourceColumn: Phone1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payment Term'
+		dataType: string
+		lineageTag: ce75f4fe-4109-4899-b1dd-34ee3a58f114
+		summarizeBy: none
+		sourceColumn: Payment Term
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 711b5ccb-5466-4f9f-8dca-652f8f43b000
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = Automatic
+
+	column Updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6d5702c7-9756-4ecd-a1c5-b6b54a082d9e
+		summarizeBy: none
+		sourceColumn: Updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: 32668646-52d1-4ebc-a5dc-252ebeaccb66
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quadra Source'
+		dataType: string
+		lineageTag: 3db5b134-e933-4894-8b24-1c045602da2c
+		summarizeBy: none
+		sourceColumn: Quadra Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 49b96ad6-1aba-4ec6-8078-798de2a41672
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quadra Customer Key'
+		dataType: string
+		lineageTag: 1c580b23-4e6d-4bee-9a15-c5beff02a8b3
+		summarizeBy: none
+		sourceColumn: Quadra Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Customer Name'
+		dataType: string
+		lineageTag: 4ad29d3d-1c3d-4fa9-b864-52dba3fb2a19
+		summarizeBy: none
+		sourceColumn: Master Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Customer Name Canonical'
+		dataType: string
+		lineageTag: 3beb9661-bad6-45e4-b362-0d31734ec039
+		summarizeBy: none
+		sourceColumn: Master Customer Name Canonical
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Industrial Group'
+		dataType: string
+		lineageTag: ff574cfa-08a2-4354-a2e0-c325da7ec10e
+		summarizeBy: none
+		sourceColumn: Industrial Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column NAICS
+		dataType: int64
+		formatString: 0
+		lineageTag: e4ec8e32-2c4e-482b-82ac-952b3440e513
+		summarizeBy: none
+		sourceColumn: NAICS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Raw'
+		dataType: string
+		lineageTag: 035ed08b-8f80-46a4-930c-d535f3a7a900
+		summarizeBy: none
+		sourceColumn: NAICS Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Sector Code'
+		dataType: string
+		lineageTag: 7df49337-0c41-44e4-9361-d2e9eeb8442d
+		summarizeBy: none
+		sourceColumn: NAICS Sector Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Sector Title'
+		dataType: string
+		lineageTag: ee03dcb8-88ed-4f02-bfee-b0f36305e830
+		summarizeBy: none
+		sourceColumn: NAICS Sector Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Subsector Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3919e15d-6d09-4ba4-bf90-426d897f15e0
+		summarizeBy: none
+		sourceColumn: NAICS Subsector Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Subsector Title'
+		dataType: string
+		lineageTag: 861f439b-5a4f-4ae6-8da7-1b05cb19a254
+		summarizeBy: none
+		sourceColumn: NAICS Subsector Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Group Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 12f214db-03ea-4e68-babb-cbc58dd231ef
+		summarizeBy: none
+		sourceColumn: NAICS Industry Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Group Title'
+		dataType: string
+		lineageTag: de86196b-de0e-4cfa-8b36-76afe6f70c71
+		summarizeBy: none
+		sourceColumn: NAICS Industry Group Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: d6faaa82-7166-41ba-8f2c-523db218f2ed
+		summarizeBy: none
+		sourceColumn: NAICS Industry Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS Industry Title'
+		dataType: string
+		lineageTag: f8d7030b-fb17-4a1c-a9da-4bbb8c0e0cd6
+		summarizeBy: none
+		sourceColumn: NAICS Industry Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS National Industry Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 74d4b63b-d18a-42df-a809-067a91036761
+		summarizeBy: none
+		sourceColumn: NAICS National Industry Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NAICS National Industry Title'
+		dataType: string
+		lineageTag: 1afc6862-b2b0-49e2-ac8c-cbae5f3a3f4a
+		summarizeBy: none
+		sourceColumn: NAICS National Industry Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Logo URL (Final)'
+		dataType: string
+		lineageTag: 57f56c10-df32-4ae4-870a-a53785d53628
+		summarizeBy: none
+		sourceColumn: Logo URL (Final)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CUSTOMERS_D = m
+		mode: import
+		queryGroup: dim
+		source = ```
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CUSTOMERS_D",Kind="Table"]}[Data], 
+				    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Capitalized Each Word" = Table.TransformColumns(ProperCase,{{"Customer Name", Text.Proper, type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Capitalized Each Word", {"Customer Key"}, CUSTOMER_SEGMENTATION, {"Customer Key"}, "CUSTOMER_SEGMENTATION", JoinKind.LeftOuter),
+				    #"Expanded CUSTOMER_SEGMENTATION" = Table.ExpandTableColumn(#"Merged Queries", "CUSTOMER_SEGMENTATION", {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"}, {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"})
+				in
+				    #"Expanded CUSTOMER_SEGMENTATION"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

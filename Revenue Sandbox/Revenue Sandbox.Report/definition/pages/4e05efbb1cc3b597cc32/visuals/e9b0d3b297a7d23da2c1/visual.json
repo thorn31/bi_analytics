@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "e9b0d3b297a7d23da2c1",
+  "position": {
+    "x": 641.4473684210526,
+    "y": 448.68421052631578,
+    "z": 5000,
+    "height": 271.05263157894734,
+    "width": 638.81578947368416
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal Year Label"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal Year Label",
+              "nativeQueryRef": "Fiscal Year Label"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "T&M Revenue (Amend Call-Detail)"
+                }
+              },
+              "queryRef": "RS_Measures.T&M Revenue (Amend Call-Detail)",
+              "nativeQueryRef": "T&M Revenue (Amend Call-Detail)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "T&M Revenue (CRR Call-Level)"
+                }
+              },
+              "queryRef": "RS_Measures.T&M Revenue (CRR Call-Level)",
+              "nativeQueryRef": "T&M Revenue (CRR Call-Level)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal Year Label"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

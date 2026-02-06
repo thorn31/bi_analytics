@@ -1,0 +1,175 @@
+/// Optimized period-only job-month snapshot fact for earned revenue modeling. Includes additive monthly cost/value fields and forecast data-quality flags.
+table JOB_EARNED_MONTHLY_F
+	lineageTag: 084f8414-6fee-4572-820e-72d37f55bfbf
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: 79eb4f23-c2e7-488d-a2cd-0358083d0b48
+		sourceColumn: Job Key
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 36675cd8-54d2-4ffa-8198-3ae4ddb3c812
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual Cost Period'
+		dataType: double
+		lineageTag: 63919189-1972-4b12-aa05-8a1f5bb95e1e
+		sourceColumn: Actual Cost Period
+
+	column 'Forecast Cost Period'
+		dataType: double
+		lineageTag: 5202d06e-f3d8-462d-a789-c20b3dd34bef
+		sourceColumn: Forecast Cost Period
+
+	column 'Change Order Value Period'
+		dataType: double
+		lineageTag: 27854f91-d72d-4e89-8591-173ce31f2d2f
+		sourceColumn: Change Order Value Period
+
+	column 'Missing Forecast Period'
+		dataType: boolean
+		lineageTag: 8ebbd06e-6b76-47a0-9e5c-2786baee8e98
+		sourceColumn: Missing Forecast Period
+
+	column 'Forecast Rows'
+		dataType: int64
+		lineageTag: f94210d8-644b-4b03-99cb-f942c2c94092
+		sourceColumn: Forecast Rows
+
+	column 'Forecast Distinct Modified Dates'
+		dataType: int64
+		lineageTag: 201e961a-c96e-4d57-b49b-3425f01fc98b
+		sourceColumn: Forecast Distinct Modified Dates
+
+	column 'Has Negative Forecast Period'
+		dataType: boolean
+		lineageTag: b54935cb-26f2-49a8-aeb5-4af3f521a6a5
+		sourceColumn: Has Negative Forecast Period
+
+	column 'Has Zero Forecast Period'
+		dataType: boolean
+		lineageTag: 71d01fae-576c-4cda-8010-d3aec7960170
+		sourceColumn: Has Zero Forecast Period
+
+	partition JOB_EARNED_MONTHLY_F = m
+		mode: import
+		source =
+				let
+				    CalendarBase = Table.SelectColumns(FYCALENDAR_D, {"Date", "Fiscal Year", "Fiscal Month"}),
+				    CalendarTyped = Table.TransformColumnTypes(CalendarBase, {{"Date", type date}, {"Fiscal Year", Int64.Type}, {"Fiscal Month", Int64.Type}}),
+				
+				    FiscalMonthEnds = Table.Group(
+				        CalendarTyped,
+				        {"Fiscal Year", "Fiscal Month"},
+				        {{"MonthEnd", each List.Max([Date]), type date}}
+				    ),
+				
+				    DateToMonthEndJoin = Table.NestedJoin(
+				        CalendarTyped,
+				        {"Fiscal Year", "Fiscal Month"},
+				        FiscalMonthEnds,
+				        {"Fiscal Year", "Fiscal Month"},
+				        "MonthEndTable",
+				        JoinKind.LeftOuter
+				    ),
+				    DateToMonthEndExpanded = Table.ExpandTableColumn(DateToMonthEndJoin, "MonthEndTable", {"MonthEnd"}, {"MonthEnd"}),
+				    DateToMonthEnd = Table.Distinct(Table.SelectColumns(DateToMonthEndExpanded, {"Date", "MonthEnd"})),
+				
+				    ActualBase = Table.SelectColumns(JOB_COST_DETAILS_F, {"Job Key", "Tran Date", "Cost Amt"}),
+				    ActualTyped = Table.TransformColumnTypes(ActualBase, {{"Job Key", type text}, {"Tran Date", type date}, {"Cost Amt", type number}}),
+				    ActualMappedJoin = Table.NestedJoin(ActualTyped, {"Tran Date"}, DateToMonthEnd, {"Date"}, "MonthMap", JoinKind.LeftOuter),
+				    ActualMapped = Table.ExpandTableColumn(ActualMappedJoin, "MonthMap", {"MonthEnd"}, {"Date"}),
+				    ActualFiltered = Table.SelectRows(ActualMapped, each [Job Key] <> null and [Job Key] <> "" and [Date] <> null),
+				    ActualPeriod = Table.Group(
+				        ActualFiltered,
+				        {"Job Key", "Date"},
+				        {{"Actual Cost Period", each List.Sum([Cost Amt]), type nullable number}}
+				    ),
+				
+				    ForecastBase = Table.SelectColumns(JOB_COST_FORECAST_F, {"Job Key", "Date", "Forecast Costs", "Modified Date"}),
+				    ForecastTyped = Table.TransformColumnTypes(ForecastBase, {{"Job Key", type text}, {"Date", type date}, {"Forecast Costs", type number}, {"Modified Date", type date}}),
+				    ForecastMappedJoin = Table.NestedJoin(ForecastTyped, {"Date"}, DateToMonthEnd, {"Date"}, "MonthMap", JoinKind.LeftOuter),
+				    ForecastMappedExpanded = Table.ExpandTableColumn(ForecastMappedJoin, "MonthMap", {"MonthEnd"}, {"MonthEnd"}),
+				    ForecastMapped = Table.RenameColumns(Table.RemoveColumns(ForecastMappedExpanded, {"Date"}), {{"MonthEnd", "Date"}}),
+				    ForecastFiltered = Table.SelectRows(ForecastMapped, each [Job Key] <> null and [Job Key] <> "" and [Date] <> null),
+				    ForecastPeriod = Table.Group(
+				        ForecastFiltered,
+				        {"Job Key", "Date"},
+				        {
+				            {"Forecast Cost Period", each List.Sum([Forecast Costs]), type nullable number},
+				            {"Forecast Rows", each Table.RowCount(_), Int64.Type},
+				            {"Forecast Distinct Modified Dates", each List.NonNullCount(List.Distinct([Modified Date])), Int64.Type}
+				        }
+				    ),
+				
+				    COBase = Table.SelectColumns(JOB_CHANGE_ORDERS_F, {"Job Key", "Date", "Change Order Est Cost"}),
+				    COTyped = Table.TransformColumnTypes(COBase, {{"Job Key", type text}, {"Date", type date}, {"Change Order Est Cost", type number}}),
+				    COMappedJoin = Table.NestedJoin(COTyped, {"Date"}, DateToMonthEnd, {"Date"}, "MonthMap", JoinKind.LeftOuter),
+				    COMappedExpanded = Table.ExpandTableColumn(COMappedJoin, "MonthMap", {"MonthEnd"}, {"MonthEnd"}),
+				    COMapped = Table.RenameColumns(Table.RemoveColumns(COMappedExpanded, {"Date"}), {{"MonthEnd", "Date"}}),
+				    COFiltered = Table.SelectRows(COMapped, each [Job Key] <> null and [Job Key] <> "" and [Date] <> null),
+				    COPeriod = Table.Group(
+				        COFiltered,
+				        {"Job Key", "Date"},
+				        {{"Change Order Value Period", each List.Sum([Change Order Est Cost]), type nullable number}}
+				    ),
+				
+				    JobMonthActual = Table.SelectColumns(ActualPeriod, {"Job Key", "Date"}),
+				    JobMonthForecast = Table.SelectColumns(ForecastPeriod, {"Job Key", "Date"}),
+				    JobMonthCO = Table.SelectColumns(COPeriod, {"Job Key", "Date"}),
+				    JobMonthScaffold = Table.Distinct(Table.Combine({JobMonthActual, JobMonthForecast, JobMonthCO})),
+				
+				    JoinActual = Table.NestedJoin(JobMonthScaffold, {"Job Key", "Date"}, ActualPeriod, {"Job Key", "Date"}, "Actual", JoinKind.LeftOuter),
+				    ExpandActual = Table.ExpandTableColumn(JoinActual, "Actual", {"Actual Cost Period"}, {"Actual Cost Period"}),
+				
+				    JoinForecast = Table.NestedJoin(ExpandActual, {"Job Key", "Date"}, ForecastPeriod, {"Job Key", "Date"}, "Forecast", JoinKind.LeftOuter),
+				    ExpandForecast = Table.ExpandTableColumn(
+				        JoinForecast,
+				        "Forecast",
+				        {"Forecast Cost Period", "Forecast Rows", "Forecast Distinct Modified Dates"},
+				        {"Forecast Cost Period", "Forecast Rows", "Forecast Distinct Modified Dates"}
+				    ),
+				
+				    JoinCO = Table.NestedJoin(ExpandForecast, {"Job Key", "Date"}, COPeriod, {"Job Key", "Date"}, "CO", JoinKind.LeftOuter),
+				    ExpandCO = Table.ExpandTableColumn(JoinCO, "CO", {"Change Order Value Period"}, {"Change Order Value Period"}),
+				
+				    AddMissingForecast = Table.AddColumn(ExpandCO, "Missing Forecast Period", each [Forecast Cost Period] = null, type logical),
+				    AddNegativeFlag = Table.AddColumn(AddMissingForecast, "Has Negative Forecast Period", each if [Forecast Cost Period] <> null and [Forecast Cost Period] < 0 then true else false, type logical),
+				    AddZeroFlag = Table.AddColumn(AddNegativeFlag, "Has Zero Forecast Period", each if [Forecast Cost Period] <> null and [Forecast Cost Period] = 0 then true else false, type logical),
+				
+				    FillAdditiveNulls = Table.TransformColumns(
+				        AddZeroFlag,
+				        {
+				            {"Actual Cost Period", each if _ = null then 0 else _, type number},
+				            {"Change Order Value Period", each if _ = null then 0 else _, type number},
+				            {"Forecast Rows", each if _ = null then 0 else _, Int64.Type},
+				            {"Forecast Distinct Modified Dates", each if _ = null then 0 else _, Int64.Type}
+				        }
+				    ),
+				
+				    FinalSorted = Table.Sort(FillAdditiveNulls, {{"Job Key", Order.Ascending}, {"Date", Order.Ascending}}),
+				    Final = Table.TransformColumnTypes(
+				        FinalSorted,
+				        {
+				            {"Job Key", type text},
+				            {"Date", type date},
+				            {"Actual Cost Period", type number},
+				            {"Forecast Cost Period", type number},
+				            {"Change Order Value Period", type number},
+				            {"Missing Forecast Period", type logical},
+				            {"Forecast Rows", Int64.Type},
+				            {"Forecast Distinct Modified Dates", Int64.Type},
+				            {"Has Negative Forecast Period", type logical},
+				            {"Has Zero Forecast Period", type logical}
+				        }
+				    )
+				in
+				    Final
+
