@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "f5496e4e3f15751a120b",
+  "position": {
+    "x": 0,
+    "y": 78.07228915662651,
+    "z": 3000,
+    "height": 290.60240963855426,
+    "width": 340.91566265060243
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "Projects Cost (Amend)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Cost (Amend)",
+              "nativeQueryRef": "Projects Cost (Amend)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

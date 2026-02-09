@@ -66,13 +66,13 @@ table JOB_COST_FORECASTS_F
 				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
 				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
 				    JOB_COST_FORECASTS_F_Table = DW_FINAL_Schema{[Name="JOB_COST_FORECASTS_F",Kind="Table"]}[Data],
-				    Filtered = Table.SelectRows(JOB_COST_FORECASTS_F_Table, each [SOURCE] = "MECH_GP"),
+				    Filtered = Table.SelectRows(JOB_COST_FORECASTS_F_Table, each List.Contains({"MECH_GP","SERV_GP"}, [SOURCE])),
 				    Trimmed = Table.TransformColumns(Filtered,{{"JOB_NUMBER", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
 				    Cleaned = Table.TransformColumns(Trimmed,{{"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
 				    AddedJobCostCode = Table.AddColumn(Cleaned, "Job_Cost Code", each [JOB_NUMBER] & ":" & [COST_CODE], type text),
 				    AddedDate = Table.AddColumn(AddedJobCostCode, "Date", each Date.AddMonths(#date(Number.From([YEAR]), Number.From([FISCAL_MONTH]), 1), -3), type date),
 				    Selected = Table.SelectColumns(AddedDate,{"JOB_NUMBER","JOB_KEY","COST_CODE","YEAR","FISCAL_MONTH","FORECAST_COSTS","SOURCE","Job_Cost Code","Date"}),
 				    Typed = Table.TransformColumnTypes(Selected,{{"JOB_NUMBER", type text},{"JOB_KEY", type text},{"COST_CODE", type text},{"YEAR", Int64.Type},{"FISCAL_MONTH", Int64.Type},{"FORECAST_COSTS", type number},{"SOURCE", type text},{"Job_Cost Code", type text},{"Date", type date}})
-				in
+				 in
 				    Typed
 

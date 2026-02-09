@@ -1,0 +1,13 @@
+/// Disconnected selector for earned revenue method comparison.
+table REV_EARNED_METHOD_D
+	lineageTag: a78173e0-80ca-436c-82dc-a3104f435e37
+
+	column Method
+		lineageTag: 7e91b18f-db6f-4796-9960-d8a66dc9d201
+		isNameInferred
+		sourceColumn: [Method]
+
+	partition REV_EARNED_METHOD_D = calculated
+		mode: import
+		source = DATATABLE("Method", STRING, {{"EAC"}, {"CumToDate"}})
+

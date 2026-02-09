@@ -1,0 +1,111 @@
+table TM_CustomerMonth_Amend_F
+	lineageTag: 58af20ed-069f-42b2-afe1-3bf5557f8d2f
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 27d61f4b-6b5c-4813-9a8a-4946bb44fc37
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 202158ca-9a11-4ff3-bc64-3897c22b77a0
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Stream
+		dataType: string
+		lineageTag: a2899ec3-8fda-4686-8d0a-135ab5ded494
+		summarizeBy: none
+		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
+
+	column Methodology
+		dataType: string
+		lineageTag: 850fe81c-5c78-481a-a369-38225e43336b
+		summarizeBy: none
+		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Subsegment'
+		dataType: string
+		lineageTag: 0c6916c5-926f-482b-b8a3-f77678c8836b
+		summarizeBy: none
+		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: 0b341eda-9095-4f05-a4b2-faec61e91a5f
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: e4b98a59-456b-475c-af98-6b8edd182a29
+		summarizeBy: sum
+		sourceColumn: Cost Amount
+
+	column Divisions
+		dataType: string
+		lineageTag: 33e86715-1984-495c-b41c-d9d1288429f6
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TM_CustomerMonth_Amend_F = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2020, 1, 1),
+				    Types = {"REPAIR","QUOTED SERVICE"},
+				
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CALL_DETAILS_F_Table = DW_FINAL_Schema{[Name="CALL_DETAILS_F",Kind="Table"]}[Data],
+				    ProperCase = Table.RenameColumns(CALL_DETAILS_F_Table, List.Transform(Table.ColumnNames(CALL_DETAILS_F_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				
+				    DetailsSlim = Table.SelectColumns(ProperCase,{"Service Call Id","Date","Billing Amount"}),
+				    DetailsFiltered = Table.SelectRows(DetailsSlim, each [Date] >= StartDate),
+				
+				    Calls = CALLS_F,
+				    CallsTrim = Table.TransformColumns(Calls, {{"Contract Number", each if _ = null then null else Text.Trim(_), type text}, {"Type Of Call", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    CallsJoinCols = Table.SelectColumns(CallsTrim,{"Service Call Id","Customernbr Key","Contract Number","Type Of Call","Divisions"}),
+				    Joined = Table.NestedJoin(DetailsFiltered, {"Service Call Id"}, CallsJoinCols, {"Service Call Id"}, "C", JoinKind.LeftOuter),
+				    Expanded = Table.ExpandTableColumn(Joined, "C", {"Customernbr Key","Contract Number","Type Of Call","Divisions"}, {"Customer Key","Contract Number","Type Of Call","Divisions"}),
+				
+				    FilteredNonContract = Table.SelectRows(Expanded, each [Contract Number] = null or [Contract Number] = ""),
+				    FilteredTypes = Table.SelectRows(FilteredNonContract, each List.Contains(Types, [Type Of Call])),
+				
+				    WithMonthEnd = Table.AddColumn(FilteredTypes, "Month End", each Date.EndOfMonth([Date]), type date),
+				    Slim = Table.SelectColumns(WithMonthEnd,{"Customer Key","Month End","Billing Amount","Divisions"}),
+				    Grouped = Table.Group(Slim,{"Customer Key","Month End","Divisions"},{{"Revenue Amount", each List.Sum([Billing Amount]), type number}}),
+				    WithCost = Table.AddColumn(Grouped, "Cost Amount", each null, type number),
+				    Final = Table.AddColumn(
+				        Table.AddColumn(
+				            Table.AddColumn(WithCost, "Project Subsegment", each "Call-Detail", type text),
+				            "Stream", each "T&M", type text
+				        ),
+				        "Methodology", each "Amend", type text
+				    ),
+				    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount","Divisions"}),
+				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}, {"Divisions", type text}})
+				 in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

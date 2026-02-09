@@ -1,0 +1,54 @@
+table DIVISIONS_D
+	lineageTag: 9052b4c0-0818-4d56-9abb-8606701afaf6
+
+	column DivisionCode
+		dataType: string
+		lineageTag: 35ef7ebf-1b69-4959-b98c-f2a43aa0797d
+		summarizeBy: none
+		sourceColumn: DivisionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: 43559f38-edb5-423e-9193-9226bcdae9a6
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 1c2f2627-30cc-45b4-9d6f-4daf4d9c43c4
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: b635e70e-4f91-4576-bb3a-1c2bcb51bd97
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIVISIONS_D = m
+		mode: import
+		queryGroup: dim
+		source =
+				let
+				    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+				    #"Navigation 1" = Source{[Name = "datasets"]}[Data],
+				    #"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv" = #"Navigation 1"{[#"Folder Path"="https://stgreen.blob.core.windows.net/datasets/",Name="DIVISIONS_D.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv",[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"DivisionCode", type text}, {"Division", type text}, {"Region", type text}, {"Company", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type1",{{"Company", Text.Trim, type text}})
+				    in #"Trimmed Text"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

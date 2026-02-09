@@ -84,37 +84,6 @@ expression CUSTOMER_SEGMENTATION =
 
 	annotation PBI_ResultType = Table
 
-expression CALLS_F = ```
-		let
-		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
-		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
-		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
-		    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data], 
-		    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
-		    #"Uppercased Text" = Table.TransformColumns(ProperCase,{{"Contract Number", Text.Upper, type text}}),
-		    AddKey = Table.AddColumn(
-		    #"Uppercased Text",
-		    "Customer_Contract_Year Key",
-		    each
-		        if [Contract Number] = null 
-		            or Text.Trim([Contract Number]) = "" 
-		        then
-		            null
-		        else
-		            [Customernbr Key] 
-		            & "_" & [Contract Number] 
-		            & "_" & Number.ToText([Wscontsq])
-		)
-		in
-		    AddKey
-		```
-	lineageTag: 9cb3f692-ed1e-4513-a1e4-ab151c3edaf2
-	queryGroup: DIM
-
-	annotation PBI_NavigationStepName = Navigation
-
-	annotation PBI_ResultType = Table
-
 expression CONTRACTS_D = ```
 		let
 		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),

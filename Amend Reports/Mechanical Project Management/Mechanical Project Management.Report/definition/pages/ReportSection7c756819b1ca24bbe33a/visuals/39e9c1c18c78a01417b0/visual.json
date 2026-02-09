@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "39e9c1c18c78a01417b0",
   "position": {
     "x": 10.729253981559095,
@@ -512,5 +512,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0e27a3a05b911ef83ccf",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "MonthNameLong"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "47a0ef822a7b0d1655a0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Revenue Measures"
+              }
+            },
+            "Property": "Revenue YTD"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5def852b8eeb2b5fdcf9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Revenue Measures"
+              }
+            },
+            "Property": "Revenue LY YTD"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3be597c6d29d1e9f82b3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BUDGET"
+              }
+            },
+            "Property": "Revenue Budget YTD"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -1,0 +1,48 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup dim
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup fact
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup stage
+
+	annotation PBI_QueryGroupOrder = 2
+
+/// Query group for diagnostics
+queryGroup Diagnostics
+
+	annotation PBI_QueryGroupOrder = 3
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["FYCALENDAR_D","JOBS_D","CUSTOMERS_D","DIVISIONS_D","JOB_COST_DESCRIPTION_D","GL_ACCT_D","CUSTOMER_SEGMENTATION","JOB_COST_DETAILS_F","JOB_COST_FORECAST_F","JOB_CHANGE_ORDERS_F","POSTING_DATA_F","BUDGET_F","JOBS_D_ProperCase_Counters_2026-02-06_10:35","JOBS_D_ProperCase_Detailed_2026-02-06_10:35","JOBS_D_ProperCase_Aggregated_2026-02-06_10:35","JOBS_D_Filtered Rows_Counters_2026-02-06_10:36","JOBS_D_Filtered Rows_Detailed_2026-02-06_10:36","JOBS_D_Filtered Rows_Aggregated_2026-02-06_10:36","JOBS_D_ProperCase_Counters_202_RemovedColumns_Detailed_2026-02-06_10:47","JOBS_D_ProperCase_Counters_202_RemovedColumns_Aggregated_2026-02-06_10:47","JOB_EARNED_MONTHLY_F"]
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+ref table FYCALENDAR_D
+ref table JOBS_D
+ref table CUSTOMERS_D
+ref table JOB_COST_DETAILS_F
+ref table JOB_COST_FORECAST_F
+ref table JOB_COST_DESCRIPTION_D
+ref table JOB_CHANGE_ORDERS_F
+ref table DIVISIONS_D
+ref table GL_ACCT_D
+ref table POSTING_DATA_F
+ref table BUDGET_F
+ref table JOB_EARNED_MONTHLY_F
+ref table REV_EARNED_MEASURES
+ref table REV_EARNED_METHOD_D
+
+ref cultureInfo en-US
+
