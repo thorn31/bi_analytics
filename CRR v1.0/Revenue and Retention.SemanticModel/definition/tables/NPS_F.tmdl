@@ -1,0 +1,202 @@
+table NPS_F
+	lineageTag: 02b567a6-f292-41f4-9348-ce1fd28065b5
+
+	column 'SERVICE CALL NUMBER'
+		dataType: string
+		lineageTag: 48e9cdd1-b06d-4515-8983-d96075be40c4
+		summarizeBy: none
+		sourceColumn: SERVICE CALL NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER
+		dataType: string
+		lineageTag: 5c59258c-6181-46fa-accc-79c9a6e33754
+		summarizeBy: none
+		sourceColumn: CUSTOMER
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOCATION
+		dataType: string
+		lineageTag: 3ad04097-de0e-4798-80a9-487708e3b34e
+		summarizeBy: none
+		sourceColumn: LOCATION
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FIRST, LAST NAME OF CALLER'
+		dataType: string
+		lineageTag: af1c5797-c74c-4f1e-94b1-1c1c276380a2
+		summarizeBy: none
+		sourceColumn: FIRST, LAST NAME OF CALLER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PHONE NUMBER'
+		dataType: string
+		lineageTag: 05c923d2-98a1-49a7-be6c-1b96463f4c8d
+		summarizeBy: none
+		sourceColumn: PHONE NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SERVICE CALL COMPLETED DATE'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 04c472e6-7f2e-4066-ae7c-01f03fd9b73f
+		summarizeBy: none
+		sourceColumn: SERVICE CALL COMPLETED DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Service Description'
+		dataType: string
+		lineageTag: 33df9af2-c188-45c2-a040-21f3af6857c7
+		summarizeBy: none
+		sourceColumn: Service Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type of Call'
+		dataType: string
+		lineageTag: f707269c-9235-40f9-9175-81c896483660
+		summarizeBy: none
+		sourceColumn: Type of Call
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comment
+		dataType: string
+		lineageTag: 03d228ae-85bb-4391-ad99-97d08e13bf23
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prompt and On Time'
+		dataType: string
+		lineageTag: 2b35e4f5-978e-435d-8f3d-806166a75216
+		summarizeBy: none
+		sourceColumn: Prompt and On Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Time Fix'
+		dataType: string
+		lineageTag: fe2db240-517d-4170-b74e-1a1b62eb7284
+		summarizeBy: none
+		sourceColumn: First Time Fix
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: f4dc13a2-addb-4de4-9c1f-cd93635a19f8
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month of Service'
+		dataType: double
+		lineageTag: 917eb82a-df2a-432c-8cde-aba6339d765f
+		summarizeBy: sum
+		sourceColumn: Month of Service
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Market
+		dataType: string
+		lineageTag: e629f805-6a1c-4aeb-8857-fc732a662048
+		summarizeBy: none
+		sourceColumn: Market
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1-10 Score'
+		dataType: double
+		lineageTag: 6b637f91-11f2-4688-b1d1-4ff8f9f286da
+		summarizeBy: sum
+		sourceColumn: 1-10 Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fiscal Year'
+		dataType: double
+		lineageTag: c6ee0a8b-9cb0-4cd5-824b-07eed595df51
+		summarizeBy: sum
+		sourceColumn: Fiscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Region
+		dataType: string
+		lineageTag: 4d3f682e-4a6f-47ad-84d0-41bc99227d78
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capitalize Each Word'
+		dataType: string
+		lineageTag: eba7e3f2-8f09-4a4b-b6d3-de974e0a638b
+		summarizeBy: none
+		sourceColumn: Capitalize Each Word
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customernbr Key'
+		dataType: string
+		lineageTag: 43e08219-7ced-4650-b3b2-5352a865ce10
+		summarizeBy: none
+		sourceColumn: Customernbr Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition NPS_F = m
+		mode: import
+		source =
+				let
+				    SiteRoot = SharePoint.Contents("https://perfectiongroup.sharepoint.com/sites/dispatch"),
+				    SharedDocs = SiteRoot{[Name="Documents"]}[Content],
+				    TargetFolder = SharedDocs{[Name="Customer Experience"]}[Content],
+				
+				    // Optional: keep only actual files (not folders) if needed
+				    FilesOnly = Table.SelectRows(TargetFolder, each [Extension] <> null),
+				
+				    // Parse FY#### from Name
+				    AddFYText = Table.AddColumn(FilesOnly, "FYText", each try Text.Start(Text.AfterDelimiter([Name], "FY"), 4) otherwise null, type text),
+				    AddFY = Table.TransformColumnTypes(AddFYText, {{"FYText", Int64.Type}}),
+				    FilterFY = Table.SelectRows(AddFY, each [FYText] <> null),
+				
+				    // Most recent FY first, then take top 1 row
+				    Sorted = Table.Sort(FilterFY, {{"FYText", Order.Descending}}),
+				    Top1 = Table.FirstN(Sorted, 1),
+				
+				    // Convert single row to a record and pull Content (Binary)
+				    TopRecord = Top1{0},
+				    FileBinary = TopRecord[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(FileBinary),
+				    Historical_and_CYData_Table = #"Imported Excel Workbook"{[Item="Historical_and_CYData",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(Historical_and_CYData_Table, each ([Market] <> "GOODWILL")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"QUESTION:  Hi this is <INTRODUCE YOURSELF> from Perfection Group, just checking ", "Comment"}, {"Were we prompt an on time?", "Prompt and On Time"}, {"Did we fix the issue the first time? #(lf)#(lf)If the customer says “NO”:#(lf)#(lf)Please ask, “", "First Time Fix"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"SERVICE CALL NUMBER", "CUSTOMER", "LOCATION", "FIRST, LAST NAME OF CALLER", "PHONE NUMBER", "SERVICE CALL COMPLETED DATE", "Service Description", "Type of Call", "Comment", "Prompt and On Time", "First Time Fix", "Notes", "Month of Service", "Market", "1-10 Score", "Fiscal Year", "Region"}),
+				    #"Inserted Capitalize Each Word" = Table.AddColumn(#"Removed Other Columns", "Capitalize Each Word", each Text.Proper([CUSTOMER]), type text),
+				    #"Merged Queries" = Table.NestedJoin(#"Inserted Capitalize Each Word", {"SERVICE CALL NUMBER"}, #"CALLS_F", {"Service Call Id"}, "CALLS_F", JoinKind.LeftOuter),
+				    #"Expanded CALLS_F" = Table.ExpandTableColumn(#"Merged Queries", "CALLS_F", {"Customernbr Key"}, {"Customernbr Key"})
+				in
+				    #"Expanded CALLS_F"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

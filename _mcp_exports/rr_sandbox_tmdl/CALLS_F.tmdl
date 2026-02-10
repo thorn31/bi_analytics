@@ -1,0 +1,547 @@
+table CALLS_F
+	lineageTag: bd4f37a8-72b8-49d5-88a5-84dfab401a59
+
+	column 'Service Call Id'
+		dataType: string
+		lineageTag: 1b4ef7f4-2ed6-4257-85f5-8ceb7c362040
+		summarizeBy: none
+		sourceColumn: Service Call Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Description'
+		dataType: string
+		lineageTag: 259c1126-422a-44b3-9a25-2f05dedd821e
+		summarizeBy: none
+		sourceColumn: Service Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custnmbr
+		dataType: string
+		lineageTag: b1695fa7-4f82-4bad-9204-b30cbc44791f
+		summarizeBy: none
+		sourceColumn: Custnmbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Technician
+		dataType: string
+		lineageTag: 798ade65-cbe8-45ad-9b88-1cfb503589df
+		summarizeBy: none
+		sourceColumn: Technician
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Number'
+		dataType: string
+		lineageTag: 38c8f2cc-2eb1-43fd-b91f-48c6ec030ffb
+		summarizeBy: none
+		sourceColumn: Contract Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Wscontsq
+		dataType: double
+		lineageTag: b5a7f0dd-4327-4d62-93d8-b0da5fbccbcf
+		summarizeBy: sum
+		sourceColumn: Wscontsq
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Type Of Problem'
+		dataType: string
+		lineageTag: a38a830d-7cab-4a0f-b11f-6623feb06c22
+		summarizeBy: none
+		sourceColumn: Type Of Problem
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Resolution Description'
+		dataType: string
+		lineageTag: a1d663aa-8c47-4765-887c-1ff3694e7925
+		summarizeBy: none
+		sourceColumn: Resolution Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type Of Call'
+		dataType: string
+		lineageTag: 31aab4d5-8254-4e32-b03d-228d4d621130
+		summarizeBy: none
+		sourceColumn: Type Of Call
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Of Call'
+		dataType: string
+		lineageTag: eb395dde-107d-4f91-82c7-b63b882eb01c
+		summarizeBy: none
+		sourceColumn: Status Of Call
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Type Udf1A'
+		dataType: string
+		lineageTag: d6bf78e5-1eab-4806-ae7d-feceebcff9f6
+		summarizeBy: none
+		sourceColumn: Invoice Type Udf1A
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing Type Udf2A'
+		dataType: string
+		lineageTag: 3fd91f5c-7c18-46b2-9d2d-676451ec7fea
+		summarizeBy: none
+		sourceColumn: Billing Type Udf2A
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Of Service Call'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7578801-664c-48d3-8603-c446748c3506
+		summarizeBy: none
+		sourceColumn: Date Of Service Call
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Completion Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 68ca496e-41cb-474e-92d4-cbb3e101eb15
+		summarizeBy: none
+		sourceColumn: Completion Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5819c84f-86e1-4a30-b1de-6a7f3fbe927e
+		summarizeBy: none
+		sourceColumn: Created Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Divisions
+		dataType: string
+		lineageTag: 780632dc-d9b0-4741-aca7-a387d5e80f8b
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Divisions Clean'
+		dataType: string
+		lineageTag: 5159de7a-e006-4ce9-82e2-771448479055
+		summarizeBy: none
+		sourceColumn: Divisions Clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimated Hours'
+		dataType: double
+		lineageTag: 28f58dc3-72a7-4d74-9157-bad87733dfa0
+		summarizeBy: sum
+		sourceColumn: Estimated Hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billing Amount Fixed'
+		dataType: double
+		lineageTag: 6cc407ad-d2e0-4118-9700-7211100a9aad
+		summarizeBy: sum
+		sourceColumn: Billing Amount Fixed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billing Amount Nte'
+		dataType: double
+		lineageTag: 2a58a965-0c40-411a-889f-c0bf2679ff54
+		summarizeBy: sum
+		sourceColumn: Billing Amount Nte
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billable All'
+		dataType: double
+		lineageTag: e47f6b6e-b032-4d62-aabd-34c6acee501e
+		summarizeBy: sum
+		sourceColumn: Billable All
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billing Status'
+		dataType: string
+		lineageTag: e0c8e291-99ae-4f57-af8c-634ee3108d4e
+		summarizeBy: none
+		sourceColumn: Billing Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Style'
+		dataType: double
+		lineageTag: 68e70901-5b30-4752-9814-3173cdeb7cf2
+		summarizeBy: sum
+		sourceColumn: Invoice Style
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Invoice Type'
+		dataType: double
+		lineageTag: 462270df-5989-4c71-8065-540c9c539f9f
+		summarizeBy: sum
+		sourceColumn: Invoice Type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost All'
+		dataType: double
+		lineageTag: 222d2466-202c-4916-af89-ba900129c0c6
+		summarizeBy: sum
+		sourceColumn: Cost All
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax Amount1'
+		dataType: double
+		lineageTag: 8803ebd0-6326-4203-8b03-8b1004979e60
+		summarizeBy: sum
+		sourceColumn: Tax Amount1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax Amount2'
+		dataType: double
+		lineageTag: 0468b3ac-7c2e-4d40-ab43-b47224a111e3
+		summarizeBy: sum
+		sourceColumn: Tax Amount2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax Amount3'
+		dataType: double
+		lineageTag: 44362a15-308a-4cb6-8908-e7f4d830c668
+		summarizeBy: sum
+		sourceColumn: Tax Amount3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Billing Catagory 1'
+		dataType: double
+		lineageTag: 035a64bb-5c29-48b5-8f86-58c767633f3a
+		summarizeBy: sum
+		sourceColumn: Labor Billing Catagory 1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Billing Catagory 2'
+		dataType: double
+		lineageTag: ee6bff5b-97ad-4420-a164-c5d0426af2a1
+		summarizeBy: sum
+		sourceColumn: Labor Billing Catagory 2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Billing Catagory 3'
+		dataType: double
+		lineageTag: dc1cbebc-a07f-44ab-aead-99d8957daada
+		summarizeBy: sum
+		sourceColumn: Labor Billing Catagory 3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Billing Catagory 4'
+		dataType: double
+		lineageTag: 4a3d39c7-d191-4b61-af38-42281d6bc969
+		summarizeBy: sum
+		sourceColumn: Labor Billing Catagory 4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Billing Catagory 5'
+		dataType: double
+		lineageTag: 9211c746-9dfb-477b-92b4-9272c5fde5ee
+		summarizeBy: sum
+		sourceColumn: Labor Billing Catagory 5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billable Equipment'
+		dataType: double
+		lineageTag: 866e9726-6234-4f5d-aeee-b2a41246e491
+		summarizeBy: sum
+		sourceColumn: Billable Equipment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billable Labor'
+		dataType: double
+		lineageTag: 367b950c-a902-469a-b093-61bc209ebd30
+		summarizeBy: sum
+		sourceColumn: Billable Labor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billable Material'
+		dataType: double
+		lineageTag: 46050b9b-a858-4dec-bd12-8dc23d9f8c85
+		summarizeBy: sum
+		sourceColumn: Billable Material
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billable Other'
+		dataType: double
+		lineageTag: fb0fcea2-6346-4d86-9b32-0889e792b907
+		summarizeBy: sum
+		sourceColumn: Billable Other
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billable Subs'
+		dataType: double
+		lineageTag: e4e0b4be-a89c-48d5-b9c5-e273b92983ca
+		summarizeBy: sum
+		sourceColumn: Billable Subs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Billable Tax'
+		dataType: double
+		lineageTag: a305d442-9759-4bf3-9ec0-f43f7ea4cba3
+		summarizeBy: sum
+		sourceColumn: Billable Tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Cost Catagory 1'
+		dataType: double
+		lineageTag: 1d725e28-690c-40c6-b88a-3cf423e72a4b
+		summarizeBy: sum
+		sourceColumn: Labor Cost Catagory 1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Cost Catagory 2'
+		dataType: double
+		lineageTag: 21d79253-4e08-44ea-a061-157aeb3a290e
+		summarizeBy: sum
+		sourceColumn: Labor Cost Catagory 2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Cost Catagory 3'
+		dataType: double
+		lineageTag: 4f843416-7588-4a40-977b-0037437a6345
+		summarizeBy: sum
+		sourceColumn: Labor Cost Catagory 3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Cost Catagory 4'
+		dataType: double
+		lineageTag: 78ea5b88-a1e4-4b7d-87ae-efafd8a31020
+		summarizeBy: sum
+		sourceColumn: Labor Cost Catagory 4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Labor Cost Catagory 5'
+		dataType: double
+		lineageTag: b232a8bf-9480-4a68-87c1-6c6f7a97446d
+		summarizeBy: sum
+		sourceColumn: Labor Cost Catagory 5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Equipment'
+		dataType: double
+		lineageTag: 635af3dd-1982-4874-905a-c730220c8027
+		summarizeBy: sum
+		sourceColumn: Cost Equipment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Labor'
+		dataType: double
+		lineageTag: 857354bc-7026-4ccc-a071-5ac0399cbb19
+		summarizeBy: sum
+		sourceColumn: Cost Labor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Material'
+		dataType: double
+		lineageTag: 9d716546-48ac-40d1-983a-94559b28455c
+		summarizeBy: sum
+		sourceColumn: Cost Material
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Other'
+		dataType: double
+		lineageTag: 8e334808-ee6d-4b90-8808-13556995a414
+		summarizeBy: sum
+		sourceColumn: Cost Other
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Subs'
+		dataType: double
+		lineageTag: 5cbc0324-b60b-4473-beb7-dcbcab489df6
+		summarizeBy: sum
+		sourceColumn: Cost Subs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Tax'
+		dataType: double
+		lineageTag: dbf8d8be-783e-47d2-9078-df2f50b26aed
+		summarizeBy: sum
+		sourceColumn: Cost Tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date1
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ec9c3d1e-3739-4f28-9f45-e4ad9496b0dd
+		summarizeBy: none
+		sourceColumn: Date1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: a889944f-dd2e-4867-aabd-108273f58653
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Call Key'
+		dataType: string
+		lineageTag: decd15f3-bb98-48e4-b321-e12078703c80
+		summarizeBy: none
+		sourceColumn: Service Call Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customernbr Key'
+		dataType: string
+		lineageTag: 5e84747e-949e-4b09-9410-ad4f03e8902d
+		summarizeBy: none
+		sourceColumn: Customernbr Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer_Contract_Year Key'
+		dataType: string
+		lineageTag: 367d38d1-252d-4b08-baf8-1ebd21f982a8
+		summarizeBy: none
+		sourceColumn: Customer_Contract_Year Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CALLS_F = m
+		mode: import
+		queryGroup: DIM
+		source = ```
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data], 
+				    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Uppercased Text" = Table.TransformColumns(ProperCase,{{"Contract Number", Text.Upper, type text}}),
+				    AddKey = Table.AddColumn(
+				    #"Uppercased Text",
+				    "Customer_Contract_Year Key",
+				    each
+				        if [Contract Number] = null 
+				            or Text.Trim([Contract Number]) = "" 
+				        then
+				            null
+				        else
+				            [Customernbr Key] 
+				            & "_" & [Contract Number] 
+				            & "_" & Number.ToText([Wscontsq])
+				)
+				in
+				    AddKey
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

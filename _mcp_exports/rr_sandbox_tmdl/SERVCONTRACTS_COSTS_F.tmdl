@@ -1,0 +1,102 @@
+table SERVCONTRACTS_COSTS_F
+	lineageTag: 7f027d10-e038-415f-bfa1-a7e9e8c7d762
+
+	column 'Service Call Id'
+		dataType: string
+		lineageTag: 5b4ea442-a39c-487b-ab26-3dd5e0f2b6f0
+		summarizeBy: none
+		sourceColumn: Service Call Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type Of Call'
+		dataType: string
+		lineageTag: ace32ebd-70da-4034-8d89-0d8264533f5f
+		summarizeBy: none
+		sourceColumn: Type Of Call
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c684149e-7db2-4164-99d1-7002c3600d5f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Amount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6516d6e5-030b-43b8-ae4b-a8ce6b45a829
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column AgreementKey
+		dataType: string
+		lineageTag: 217a70c1-f399-4c95-81e9-05595fd65f50
+		summarizeBy: none
+		sourceColumn: AgreementKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Source Type'
+		dataType: string
+		lineageTag: 48af3716-0a41-49e3-ba7e-a224d5dafbfb
+		summarizeBy: none
+		sourceColumn: Source Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SERVCONTRACTS_COSTS_F = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2020, 1, 1),
+				    // --- Define Service Projects for exclusion ---
+				    Projects_Source = PROJECTS_D,
+				    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
+				    Service_Project_Numbers =
+				        Table.TransformColumns(
+				            Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
+				            {{"Project Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}
+				        ),
+				
+				    // --- Define Legacy Contracts for exclusion (use staging to avoid cycles) ---
+				    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D_STAGING, {"Contract Number","Contract Type"}),
+				    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+				    LegacyContracts = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"Contract Number"})),
+				
+				    // --- Maintenance Call Stream (Costs) ---
+				    Calls_Source = CALLS_F,
+				    Calls_Slim = Table.SelectColumns(Calls_Source,{"Service Call Id", "Type Of Call", "Date Of Service Call", "Cost All", "Customer_Contract_Year Key", "Contract Number"}),
+				    Calls_Dated = Table.SelectRows(Calls_Slim, each [Date Of Service Call] <= Date.From(DateTime.LocalNow()) and [Date Of Service Call] >= StartDate),
+				    Calls_Upper = Table.TransformColumns(Calls_Dated, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    // Filter out Service Projects and Legacy Contracts; ensure Contract Number is not null
+				    Calls_NoServiceProjects = Table.NestedJoin(Calls_Upper, {"Contract Number"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+				    Calls_NoServiceProjects_Clean = Table.RemoveColumns(Calls_NoServiceProjects, {"ServiceProjects"}),
+				    Calls_NoLegacy = Table.NestedJoin(Calls_NoServiceProjects_Clean, {"Contract Number"}, LegacyContracts, {"Contract Number"}, "Legacy", JoinKind.LeftAnti),
+				    Calls_NoLegacy_Clean = Table.RemoveColumns(Calls_NoLegacy, {"Legacy"}),
+				    Calls_Filtered_NonContract = Table.SelectRows(Calls_NoLegacy_Clean, each [Contract Number] <> null and [Contract Number] <> ""),
+				
+				    // --- Maintenance Call Costs Stream ---
+				    Call_Cost_Selected = Table.SelectColumns(Calls_Filtered_NonContract,{"Service Call Id", "Type Of Call", "Date Of Service Call", "Cost All", "Customer_Contract_Year Key"}),
+				    Call_Cost_Renamed = Table.RenameColumns(Call_Cost_Selected, {{"Date Of Service Call", "Date"}, {"Customer_Contract_Year Key", "AgreementKey"}, {"Cost All", "Amount"}}),
+				    Call_Cost_Typed = Table.TransformColumnTypes(Call_Cost_Renamed, {{"Date", type date}, {"AgreementKey", type text}, {"Amount", Currency.Type}}),
+				
+				    SERVCONTRACTS_COSTS_F = Table.AddColumn(Call_Cost_Typed, "Source Type", each "Contract Call Cost", type text)
+				in
+				    SERVCONTRACTS_COSTS_F
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

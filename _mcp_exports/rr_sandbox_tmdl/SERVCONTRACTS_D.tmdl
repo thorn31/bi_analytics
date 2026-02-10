@@ -1,0 +1,550 @@
+table SERVCONTRACTS_D
+	lineageTag: 3dab7111-c121-4fd1-9375-adc5b75d9cf3
+
+	column AgreementKey
+		dataType: string
+		lineageTag: 390fb57e-73e2-4346-bf87-8a21baf775ed
+		summarizeBy: none
+		sourceColumn: AgreementKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custnmbr Key'
+		dataType: string
+		lineageTag: 6897928f-7bee-43b8-bf0e-2303a5ebf586
+		summarizeBy: none
+		sourceColumn: Custnmbr Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Number'
+		dataType: string
+		lineageTag: ff2e4754-4662-4523-8343-29c8cd969afa
+		summarizeBy: none
+		sourceColumn: Contract Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Number'
+		dataType: string
+		lineageTag: e1cf8052-5b0d-4a99-bd2d-c2e2795431c8
+		summarizeBy: none
+		sourceColumn: Customer Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a6535ee-35f6-4816-b93d-f4f57d70d0c8
+		summarizeBy: sum
+		sourceColumn: YearIndex
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Description'
+		dataType: string
+		lineageTag: a84e8acb-1cc0-4553-8053-99dcabb17f88
+		summarizeBy: none
+		sourceColumn: Contract Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Type'
+		dataType: string
+		lineageTag: 9b8d2c20-54a7-4248-8606-0089f0454b21
+		summarizeBy: none
+		sourceColumn: Contract Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divisions
+		dataType: string
+		lineageTag: db65209d-d822-46ce-8034-27933008b476
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Status'
+		dataType: string
+		lineageTag: 00b1ac61-0244-4b86-ab4f-a3c735815a6e
+		summarizeBy: none
+		sourceColumn: Contract Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 03a51639-dbe8-44e7-938d-3c673bb9dc3d
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 69402719-c545-4a00-8ce9-c904be893604
+		summarizeBy: none
+		sourceColumn: End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Contract Amount'
+		dataType: double
+		lineageTag: dadb86c1-4110-4b96-b2f8-e7818592b845
+		summarizeBy: sum
+		sourceColumn: Contract Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Annual Contract Value'
+		dataType: double
+		lineageTag: c413529a-3b84-4d83-998f-72208eb9b3cb
+		summarizeBy: sum
+		sourceColumn: Annual Contract Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cancel Box'
+		dataType: string
+		lineageTag: 0efd6147-9d44-49a7-8858-0c14877a2562
+		summarizeBy: none
+		sourceColumn: Cancel Box
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrphanSource
+		dataType: string
+		lineageTag: 8f2e2248-fd71-418e-85d5-5aadae4c6a3d
+		summarizeBy: none
+		sourceColumn: OrphanSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column LatestYearIndex
+		dataType: string
+		lineageTag: 8781b08d-b6dd-4399-9ad1-0d7a8f2cb973
+		summarizeBy: none
+		sourceColumn: LatestYearIndex
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActiveContract
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b35253ff-34f6-4046-a3f2-7f55b4802615
+		summarizeBy: none
+		sourceColumn: IsActiveContract
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsLatestContract
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fb1adcab-14b0-49f3-8e3f-6650736b930a
+		summarizeBy: none
+		sourceColumn: IsLatestContract
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActiveContractYear
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b2fff84c-0c95-47dc-a959-e193bba07f61
+		summarizeBy: none
+		sourceColumn: IsActiveContractYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractYearStatus
+		dataType: string
+		lineageTag: 51ec887c-83d4-40a3-b9a8-37bc5b054a1d
+		summarizeBy: none
+		sourceColumn: ContractYearStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Renewal Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0c0c3705-3594-4f52-a342-5d847491f880
+		summarizeBy: none
+		sourceColumn: Renewal Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition SERVCONTRACTS_D = m
+		mode: import
+		queryGroup: DIM
+		source = ```
+				let
+				    //=============================================================================
+				    // 1) BASE DIM + SMALL LOOKUPS
+				    //=============================================================================
+				    SourceDim = SERVCONTRACTS_D_STAGING,
+				
+				    // Trimmed dimension key set (for orphan detection on trimmed key)
+				    DimKeysTrim =
+				        Table.Distinct(
+				            Table.AddColumn(
+				                Table.SelectColumns(SourceDim, {"AgreementKey"}),
+				                "KeyTrim",
+				                each Text.Trim(Text.From([AgreementKey])),
+				                type text
+				            ),
+				            {"KeyTrim"}
+				        ),
+				
+				    // Contract -> Divisions map (small; buffer optional)
+				    DivMap =
+				        Table.Buffer(
+				            Table.Distinct(
+				                Table.SelectColumns(SourceDim, {"Contract Number", "Divisions"}),
+				                {"Contract Number"}
+				            )
+				        ),
+				
+				    //=============================================================================
+				    // 2) FACT AGGREGATIONS (ONE ROW PER RAW AGREEMENTKEY)
+				    //    This is the key change: MIN/MAX happens BEFORE any joins.
+				    //=============================================================================
+				    RevAgg_Raw =
+				        Table.Group(
+				            Table.SelectColumns(SERVCONTRACTS_REVENUE_F, {"AgreementKey", "Date"}),
+				            {"AgreementKey"},
+				            {
+				                {"MinRev", each List.Min([Date]), type nullable date},
+				                {"MaxRev", each List.Max([Date]), type nullable date}
+				            }
+				        ),
+				
+				    CostAgg_Raw =
+				        Table.Group(
+				            Table.SelectColumns(SERVCONTRACTS_COSTS_F, {"AgreementKey", "Date"}),
+				            {"AgreementKey"},
+				            {
+				                {"MinCost", each List.Min([Date]), type nullable date},
+				                {"MaxCost", each List.Max([Date]), type nullable date}
+				            }
+				        ),
+				
+				    // Add trimmed key and normalize columns for union
+				    RevAgg =
+				        Table.AddColumn(
+				            Table.AddColumn(RevAgg_Raw, "KeyTrim", each Text.Trim(Text.From([AgreementKey])), type text),
+				            "Source",
+				            each "Revenue Only",
+				            type text
+				        ),
+				    RevAgg_Norm =
+				        Table.AddColumn(
+				            Table.AddColumn(RevAgg, "MinCost", each null, type nullable date),
+				            "MaxCost",
+				            each null,
+				            type nullable date
+				        ),
+				
+				    CostAgg =
+				        Table.AddColumn(
+				            Table.AddColumn(CostAgg_Raw, "KeyTrim", each Text.Trim(Text.From([AgreementKey])), type text),
+				            "Source",
+				            each "Cost Only",
+				            type text
+				        ),
+				    CostAgg_Norm =
+				        Table.AddColumn(
+				            Table.AddColumn(CostAgg, "MinRev", each null, type nullable date),
+				            "MaxRev",
+				            each null,
+				            type nullable date
+				        ),
+				
+				    //=============================================================================
+				    // 3) CONSOLIDATE TO ONE ROW PER TRIMMED KEY (handles whitespace variants)
+				    //=============================================================================
+				    FactKeyUnion = Table.Combine({RevAgg_Norm, CostAgg_Norm}),
+				
+				    FactByTrim =
+				        Table.Group(
+				            FactKeyUnion,
+				            {"KeyTrim"},
+				            {
+				                // pick a representative raw key (doesn't matter much since we output trimmed key as AgreementKey)
+				                {"AgreementKeyRaw", each _[AgreementKey]{0}, type text},
+				
+				                {"OrphanSource", each
+				                    let s = List.Distinct([Source])
+				                    in if List.Count(s) > 1 then "Both" else s{0},
+				                    type text
+				                },
+				
+				                {"MinRev",  each List.Min(List.RemoveNulls([MinRev])),  type nullable date},
+				                {"MaxRev",  each List.Max(List.RemoveNulls([MaxRev])),  type nullable date},
+				                {"MinCost", each List.Min(List.RemoveNulls([MinCost])), type nullable date},
+				                {"MaxCost", each List.Max(List.RemoveNulls([MaxCost])), type nullable date}
+				            }
+				        ),
+				
+				    //=============================================================================
+				    // 4) ORPHANS = FACT TRIM KEYS NOT IN DIM TRIM KEYS
+				    //=============================================================================
+				    Orphans =
+				        Table.NestedJoin(
+				            FactByTrim, {"KeyTrim"},
+				            DimKeysTrim, {"KeyTrim"},
+				            "DimMatch",
+				            JoinKind.LeftAnti
+				        ),
+				    Orphans_Clean = Table.RemoveColumns(Orphans, {"DimMatch"}),
+				
+				    //=============================================================================
+				    // 5) FINAL DATES (no join to raw fact tables needed anymore)
+				    //=============================================================================
+				    WithStartDate =
+				        Table.AddColumn(
+				            Orphans_Clean,
+				            "Start Date",
+				            each
+				                let mins = List.RemoveNulls({[MinRev], [MinCost]})
+				                in if List.IsEmpty(mins) then #date(1900,1,1) else List.Min(mins),
+				            type date
+				        ),
+				    WithEndDate =
+				        Table.AddColumn(
+				            WithStartDate,
+				            "End Date",
+				            each
+				                let maxs = List.RemoveNulls({[MaxRev], [MaxCost]})
+				                in if List.IsEmpty(maxs) then #date(1900,1,1) else List.Max(maxs),
+				            type date
+				        ),
+				    DatesReduced = Table.RemoveColumns(WithEndDate, {"AgreementKeyRaw","MinRev","MaxRev","MinCost","MaxCost"}),
+				
+				    //=============================================================================
+				    // 6) PARSE + DIVISION LOOKUP (operates on small orphan set only)
+				    //=============================================================================
+				    Parsed =
+				        Table.AddColumn(
+				            DatesReduced,
+				            "Parsed",
+				            each
+				                let
+				                    k = [KeyTrim],
+				                    cust = try Text.BeforeDelimiter(k, "SERV_GP") otherwise null,
+				                    after = try Text.AfterDelimiter(k, "SERV_GP_", 0) otherwise null,
+				                    contract =
+				                        if after = null
+				                        then null
+				                        else (try Text.BeforeDelimiter(after, "_", {0, RelativePosition.FromEnd}) otherwise after),
+				                    yearTxt = try Text.AfterDelimiter(k, "_", {0, RelativePosition.FromEnd}) otherwise null,
+				                    yearNum = try Number.FromText(yearTxt) otherwise 0
+				                in
+				                    [CustomerPart = cust, ContractPart = contract, YearPart = yearNum],
+				            type record
+				        ),
+				    ParsedExpanded =
+				        Table.ExpandRecordColumn(
+				            Parsed,
+				            "Parsed",
+				            {"CustomerPart", "ContractPart", "YearPart"},
+				            {"CustomerPart", "ContractPart", "YearPart"}
+				        ),
+				
+				    WithDiv =
+				        Table.NestedJoin(
+				            ParsedExpanded, {"ContractPart"},
+				            DivMap, {"Contract Number"},
+				            "Div",
+				            JoinKind.LeftOuter
+				        ),
+				    DivExpanded = Table.ExpandTableColumn(WithDiv, "Div", {"Divisions"}, {"Divisions"}),
+				
+				    DivFixed =
+				        Table.TransformColumns(
+				            DivExpanded,
+				            {{"Divisions", each if _ = null or _ = "" then "Unknown" else _, type text}}
+				        ),
+				
+				    //=============================================================================
+				    // 7) SHAPE TO DIMENSION SCHEMA (table-native, no TransformRows)
+				    //=============================================================================
+				    Orphans_Final =
+				        Table.SelectColumns(
+				            Table.AddColumn(
+				                Table.AddColumn(
+				                    Table.AddColumn(
+				                        Table.AddColumn(
+				                            Table.AddColumn(
+				                                Table.AddColumn(
+				                                    Table.AddColumn(
+				                                        Table.AddColumn(
+				                                            Table.AddColumn(
+				                                                Table.AddColumn(
+				                                                    Table.AddColumn(
+				                                                        DivFixed,
+				                                                        "AgreementKey", each [KeyTrim], type text
+				                                                    ),
+				                                                    "Custnmbr Key", each [CustomerPart] & "SERV_GP", type text
+				                                                ),
+				                                                "Contract Number", each [ContractPart], type text
+				                                            ),
+				                                            "Customer Number", each [CustomerPart], type text
+				                                        ),
+				                                        "YearIndex", each [YearPart], Int64.Type
+				                                    ),
+				                                    "Contract Description",
+				                                    each "Data Integrity - Missing in Source (" & [OrphanSource] & ")",
+				                                    type text
+				                                ),
+				                                "Contract Type", each "Unknown", type text
+				                            ),
+				                            "Contract Status", each "Orphan", type text
+				                        ),
+				                        "Contract Amount", each 0, type number
+				                    ),
+				                    "Annual Contract Value", each 0, type number
+				                ),
+				                "Cancel Box", each null, type any
+				            ),
+				            {
+				                "AgreementKey",
+				                "Custnmbr Key",
+				                "Contract Number",
+				                "Customer Number",
+				                "YearIndex",
+				                "Contract Description",
+				                "Contract Type",
+				                "Divisions",
+				                "Contract Status",
+				                "Start Date",
+				                "End Date",
+				                "Contract Amount",
+				                "Annual Contract Value",
+				                "Cancel Box",
+				                "OrphanSource"
+				            }
+				        ),
+				
+				    // Append (align columns)
+				    SourceDim_Ready =
+				        if List.Contains(Table.ColumnNames(SourceDim), "OrphanSource")
+				        then SourceDim
+				        else Table.AddColumn(SourceDim, "OrphanSource", each null, type text),
+				
+				    Orphans_Aligned =
+				        Table.SelectColumns(Orphans_Final, Table.ColumnNames(SourceDim_Ready), MissingField.UseNull),
+				
+				    Combined = Table.Combine({SourceDim_Ready, Orphans_Aligned}),
+				
+				    // Ensure required types
+				    Typed =
+				        Table.TransformColumnTypes(
+				            Combined,
+				            {
+				                {"Customer Number", type text},
+				                {"Contract Number", type text},
+				                {"YearIndex", Int64.Type},
+				                {"Start Date", type date},
+				                {"End Date", type date}
+				            }
+				        ),
+				
+				// Build a contract-level table inside the same query
+				ContractSummary =
+				    Table.Group(
+				        Typed,
+				        {"Customer Number", "Contract Number"},
+				        {
+				            {
+				                "Latest",
+				                each Table.MaxN(_, "YearIndex", 1),
+				                type table
+				            }
+				        }
+				    ),
+				
+				ExpandedLatest =
+				    Table.ExpandTableColumn(
+				        ContractSummary,
+				        "Latest",
+				        {"YearIndex", "Start Date", "End Date"},
+				        {"LatestYearIndex", "LatestStartDate", "LatestEndDate"}
+				    )
+				,
+				Today = Date.From(DateTime.LocalNow()),
+				    WithIsActive =
+				        Table.AddColumn(
+				            ExpandedLatest,
+				            "IsActiveContract",
+				            each
+				            Date.From([LatestEndDate]) >= Today,
+				            type logical
+				        ),
+				
+				    // Merge back to original rows
+				    MergedBack =
+				        Table.NestedJoin(
+				            Typed,
+				            {"Customer Number", "Contract Number"},
+				            WithIsActive,
+				            {"Customer Number", "Contract Number"},
+				            "ContractFlags",
+				            JoinKind.LeftOuter
+				        ),
+				
+				    ExpandedFlags =
+				        Table.ExpandTableColumn(
+				            MergedBack,
+				            "ContractFlags",
+				            {"LatestYearIndex", "IsActiveContract"},
+				            {"LatestYearIndex", "IsActiveContract"}
+				        ),
+				
+				    // Latest row flag
+				    WithIsLatest =
+				        Table.AddColumn(
+				            ExpandedFlags,
+				            "IsLatestContract",
+				            each [YearIndex] = [LatestYearIndex],
+				            type logical
+				        ),
+				    WithIsActiveYear =
+				    Table.AddColumn(
+				        WithIsLatest,          // or whatever your prior step name is
+				        "IsActiveContractYear",
+				        each [IsLatestContract] and [IsActiveContract],
+				        type logical
+				    ),    
+				    WithYearStatus =
+				        Table.AddColumn(
+				        WithIsActiveYear,
+				        "ContractYearStatus",
+				        each
+				            if [IsLatestContract] and [IsActiveContract] then "Active Contract Year"
+				            else if [IsLatestContract] and not [IsActiveContract] then "Final Contract Year (Ended)"
+				            else "Completed Contract Year",
+				        type text
+				    ),
+				    #"Added Custom" = Table.AddColumn(WithYearStatus, "Renewal Date", each if [ContractYearStatus] = "Active Contract Year" then [End Date] else null, type date)
+				
+				in
+				    #"Added Custom"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

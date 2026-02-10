@@ -1,0 +1,81 @@
+table FINANCIALS_F
+	lineageTag: 4d9f6cea-7040-4b24-956c-a2c92f4b7bd6
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: a7b7396d-89a5-42bc-a16f-a4a505061343
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 14ff090e-e6c3-4e1e-a792-4d36508c704e
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Divisions
+		dataType: string
+		lineageTag: 9b80b1e4-6d6d-469a-b594-6330c67cc1a8
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stream
+		dataType: string
+		lineageTag: 49e7254a-76d1-4ce5-bc05-25aaef6866d2
+		summarizeBy: none
+		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: 92d7a481-14c1-49a1-9df1-7427373ce226
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: b7637b1d-e7b1-4e84-99a5-82e5cb14f31d
+		summarizeBy: sum
+		sourceColumn: Cost Amount
+
+	partition FINANCIALS_F = m
+		mode: import
+		source =
+				let
+				    Projects0 = Table.SelectColumns(PROJECTS_Financials_F, {"Customer Key","SurrogateProjectID","Month End","Revenue Amount","Cost Amount"}, MissingField.UseNull),
+				    ProjWithDim = Table.NestedJoin(Projects0, {"SurrogateProjectID"}, Table.SelectColumns(PROJECTS_D, {"SurrogateProjectID","Divisions"}, MissingField.UseNull), {"SurrogateProjectID"}, "Dim", JoinKind.LeftOuter),
+				    ProjExpanded = Table.ExpandTableColumn(ProjWithDim, "Dim", {"Divisions"}, {"Divisions"}),
+				    ProjFilled = Table.TransformColumns(ProjExpanded, {{"Divisions", each if _ = null or _ = "" then "Unknown" else Text.Upper(Text.Trim(Text.From(_))), type text}}),
+				    ProjGrouped = Table.Group(ProjFilled, {"Customer Key","Month End","Divisions"}, {{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+				    ProjStream = Table.AddColumn(ProjGrouped, "Stream", each "Projects", type text),
+				    ProjSelect = Table.SelectColumns(ProjStream, {"Customer Key","Month End","Divisions","Stream","Revenue Amount","Cost Amount"}),
+				
+				    TM0 = Table.SelectColumns(TM_Financials_F, {"Customer Key","Month End","Divisions","Revenue Amount","Cost Amount"}, MissingField.UseNull),
+				    TMGrouped = Table.Group(TM0, {"Customer Key","Month End","Divisions"}, {{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+				    TMStream = Table.AddColumn(TMGrouped, "Stream", each "T&M", type text),
+				    TMSelect = Table.SelectColumns(TMStream, {"Customer Key","Month End","Divisions","Stream","Revenue Amount","Cost Amount"}),
+				
+				    SC0 = Table.SelectColumns(SERVCONTRACTS_Financials_F, {"Customer Key","Month End","Divisions","Revenue Amount","Cost Amount"}, MissingField.UseNull),
+				    SCGrouped = Table.Group(SC0, {"Customer Key","Month End","Divisions"}, {{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+				    SCStream = Table.AddColumn(SCGrouped, "Stream", each "Service Contracts", type text),
+				    SCSelect = Table.SelectColumns(SCStream, {"Customer Key","Month End","Divisions","Stream","Revenue Amount","Cost Amount"}),
+				
+				    Combined = Table.Combine({ProjSelect, TMSelect, SCSelect}),
+				    Typed = Table.TransformColumnTypes(Combined, {{"Customer Key", type text}, {"Month End", type date}, {"Divisions", type text}, {"Stream", type text}, {"Revenue Amount", type number}, {"Cost Amount", type number}})
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

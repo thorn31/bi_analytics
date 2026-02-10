@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "97e8997d6c4a00aeb16b",
+  "position": {
+    "x": 20.273037542662117,
+    "y": 100.44368600682593,
+    "z": 3000,
+    "height": 534.47098976109214,
+    "width": 688.36177474402723,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Month Letter"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Month Letter",
+              "nativeQueryRef": "Month Letter",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "GL Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.GL Revenue",
+              "nativeQueryRef": "GL Revenue"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

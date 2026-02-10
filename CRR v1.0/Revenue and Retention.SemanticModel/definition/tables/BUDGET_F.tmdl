@@ -1,0 +1,156 @@
+table BUDGET_F
+	lineageTag: 2e370832-ff07-441e-b497-a436a2c6c1e3
+
+	column ACCATNUM
+		dataType: string
+		lineageTag: ff33fd07-a3d0-400b-b75b-36f72b06bd97
+		summarizeBy: none
+		sourceColumn: ACCATNUM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTINDX
+		dataType: string
+		lineageTag: 25a1885b-aad7-448b-9dee-34b14d57af90
+		summarizeBy: none
+		sourceColumn: ACTINDX
+
+		annotation SummarizationSetBy = Automatic
+
+	column BUDGETID
+		dataType: string
+		lineageTag: ea831973-3683-42c8-8164-4fea1a603c31
+		summarizeBy: none
+		sourceColumn: BUDGETID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERIODDT
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ea5a7239-3675-46e5-886f-d6cc7d0706d4
+		summarizeBy: none
+		sourceColumn: PERIODDT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BUDGETAMT
+		dataType: double
+		lineageTag: 97fa09b0-6a6b-4a46-8fc5-ae107ae98d8e
+		summarizeBy: sum
+		sourceColumn: BUDGETAMT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_YEAR
+		dataType: double
+		lineageTag: a5f532bf-372f-48f9-be51-ad57d45eebaf
+		summarizeBy: sum
+		sourceColumn: FISCAL_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_MONTH
+		dataType: double
+		lineageTag: 6aa34122-3de2-4754-8413-a23e81e16d88
+		summarizeBy: sum
+		sourceColumn: FISCAL_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE
+		dataType: string
+		lineageTag: 057f49d0-5901-45d1-9e26-09149f2de85d
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTNUM_KEY
+		dataType: string
+		lineageTag: e66188f6-baa3-4b8b-a2a9-c0fd4fe99fde
+		summarizeBy: none
+		sourceColumn: ACCTNUM_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCTIDX_KEY
+		dataType: string
+		lineageTag: b4121d30-3961-4d77-b3ec-d3227af14f2a
+		summarizeBy: none
+		sourceColumn: ACCTIDX_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVISION
+		dataType: string
+		lineageTag: 97ca1840-30d8-43cc-bd4f-025b080a5ca2
+		summarizeBy: none
+		sourceColumn: DIVISION
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_1
+		dataType: string
+		lineageTag: 270c6b5d-f62a-40fb-ad33-4a3b3310ebba
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_2
+		dataType: string
+		lineageTag: c4a217ee-d1de-4470-a1a3-e783e1c24d42
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTNUMBR_3
+		dataType: string
+		lineageTag: 24b88318-5650-4bfb-b3ba-10834e391aca
+		summarizeBy: none
+		sourceColumn: ACTNUMBR_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERIODEND
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7d607427-15af-4d6c-816d-f4b6d19ec27a
+		summarizeBy: none
+		sourceColumn: PERIODEND
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition BUDGET_F = m
+		mode: import
+		source =
+				let
+				  Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", [Role = null, CreateNavigationProperties = null, ConnectionTimeout = null, CommandTimeout = null]),
+				  #"Navigation 1" = Source{[Name = "DATA_WAREHOUSE", Kind = "Database"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Name = "DW_FINAL", Kind = "Schema"]}[Data],
+				  #"Navigation 3" = #"Navigation 2"{[Name = "BUDGET_F", Kind = "Table"]}[Data],
+				  #"Filtered rows" = Table.SelectRows(#"Navigation 3", each [YEAR] >= 2020),
+				  #"Removed columns" = Table.RemoveColumns(#"Filtered rows", {"ACTNUMST", "CATEGORY", "ACCOUNT_TYPE"}),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Removed columns", {{"PERIODDT", type date}}),
+				  #"Renamed columns" = Table.RenameColumns(#"Changed column type", {{"YEAR", "FISCAL_YEAR"}}),
+				  #"Sorted rows" = Table.Sort(#"Renamed columns", {{"ACTNUMBR_1", Order.Ascending}, {"ACTNUMBR_2", Order.Ascending}, {"ACTNUMBR_3", Order.Ascending},{"PERIODDT", Order.Ascending}}),
+				    #"Added Custom" = Table.AddColumn(#"Sorted rows", "PERIODEND", each Date.EndOfMonth([PERIODDT]), type date)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

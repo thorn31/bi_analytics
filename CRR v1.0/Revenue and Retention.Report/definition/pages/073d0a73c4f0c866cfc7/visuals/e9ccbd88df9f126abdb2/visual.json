@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "e9ccbd88df9f126abdb2",
+  "position": {
+    "x": 848.5665529010239,
+    "y": 0,
+    "z": 2000,
+    "height": 715.69965870307169,
+    "width": 431.4334470989761
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "GL Budget Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.GL Budget Revenue",
+              "nativeQueryRef": "GL Budget Revenue"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

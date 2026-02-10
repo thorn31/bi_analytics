@@ -1,0 +1,18 @@
+/// Disconnected helper table defining the ordered customer profile metrics shown in the report.
+table UI_CustomerProfileRows
+	lineageTag: c7721c29-7ccd-47a1-bdf4-dba59b2559dd
+
+	column 'Metric Name'
+		lineageTag: dece1b6d-846f-4e45-b27b-0bb3ed9e3b0e
+		isNameInferred
+		sourceColumn: [Metric Name]
+
+	column 'Row ID'
+		lineageTag: 015fc278-0c6a-44b0-8efc-1868d1340e0e
+		isNameInferred
+		sourceColumn: [Row ID]
+
+	partition UI_CustomerProfileRows = calculated
+		mode: import
+		source = DATATABLE ( "Metric Name", STRING, "Row ID", INTEGER, { { "Lifecycle Status", 1 }, { "Last Billing Date", 2 }, { "Active Contracts", 3 }, { "Active Projects", 4 }, { "Lifetime Revenue", 5 }, { "Lifetime GP", 6 }, { "Lifetime GP %", 7 }, { "Revenue Rank", 8 } } )
+

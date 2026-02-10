@@ -1,0 +1,80 @@
+table SERVCONTRACTS_REVENUE_F
+	lineageTag: 249708cf-51ca-446a-8f5d-27c81e3a22ec
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2577e77b-701e-4b94-b22a-30683a05d918
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AgreementKey
+		dataType: string
+		lineageTag: f4d06e29-801c-4192-909e-50b0b656fb2c
+		summarizeBy: none
+		sourceColumn: AgreementKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: fa8fef8a-7551-46f6-89ee-2da5fd223b8b
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Source Type'
+		dataType: string
+		lineageTag: a269ec29-310b-433c-b564-5b5cccb09016
+		summarizeBy: none
+		sourceColumn: Source Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SERVCONTRACTS_REVENUE_F = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2020, 1, 1),
+				    // --- Define Service Projects for exclusion ---
+				    Projects_Source = PROJECTS_D,
+				    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
+				    Service_Project_Numbers = Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
+				
+				    // --- Define Legacy Contracts for exclusion (use staging to avoid cycles) ---
+				    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D_STAGING, {"Contract Number","Contract Type"}),
+				    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+				    LegacyContracts = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"Contract Number"})),
+				
+				    // --- Maintenance Billing Revenue Stream ---
+				    Billing_Source = CONTRACT_BILLABLE_F,
+				    Billing_Clean = Table.TransformColumns(Billing_Source, {{"CONTRACT_NUMBER", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    Billing_Slim = Table.SelectColumns(Billing_Clean, {"WENNSOFT_BILLING_DATE", "Customer_Contract_Year Key", "BILLABLE_ALL", "CONTRACT_NUMBER"}),
+				    Billing_Dated = Table.SelectRows(Billing_Slim, each [WENNSOFT_BILLING_DATE] <= Date.From(DateTime.LocalNow()) and [WENNSOFT_BILLING_DATE] >= StartDate),
+				    // Filter out Service Projects and Legacy Contracts from CONTRACT_BILLABLE_F
+				    Merged_For_Filter = Table.NestedJoin(Billing_Dated, {"CONTRACT_NUMBER"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+				    Billing_Filtered_SP = Table.RemoveColumns(Merged_For_Filter, {"ServiceProjects"}),
+				    Merged_For_Legacy = Table.NestedJoin(Billing_Filtered_SP, {"CONTRACT_NUMBER"}, LegacyContracts, {"Contract Number"}, "Legacy", JoinKind.LeftAnti),
+				    Billing_Filtered = Table.RemoveColumns(Merged_For_Legacy, {"Legacy"}),
+				
+				    Billing_Selected = Table.SelectColumns(Billing_Filtered, {"WENNSOFT_BILLING_DATE", "Customer_Contract_Year Key", "BILLABLE_ALL"}),
+				    Billing_Renamed = Table.RenameColumns(Billing_Selected, {{"WENNSOFT_BILLING_DATE", "Date"}, {"Customer_Contract_Year Key", "AgreementKey"}, {"BILLABLE_ALL", "Amount"}}),
+				    Billing_Typed = Table.TransformColumnTypes(Billing_Renamed, {{"Date", type date}, {"AgreementKey", type text}, {"Amount", Currency.Type}}),
+				
+				    AGREEMENT_REVENUE_F = Table.AddColumn(Billing_Typed, "Source Type", each "Service Contract Billing", type text)
+				in
+				    AGREEMENT_REVENUE_F
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

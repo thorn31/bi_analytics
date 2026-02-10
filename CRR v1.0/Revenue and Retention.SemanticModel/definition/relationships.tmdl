@@ -1,0 +1,112 @@
+relationship 'PROJECTS_D -> DIVISIONS_D'
+	fromColumn: PROJECTS_D.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 'SERVCONTRACTS_REVENUE_F -> SERVCONTRACTS_D'
+	fromColumn: SERVCONTRACTS_REVENUE_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship 'SERVCONTRACTS_COSTS_F -> SERVCONTRACTS_D'
+	fromColumn: SERVCONTRACTS_COSTS_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship 'POSTING_DATA_F -> GL_ACCT_D'
+	fromColumn: POSTING_DATA_F.ACCTIDX_KEY
+	toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+relationship 'POSTING_DATA_F -> FYCALENDAR_D'
+	fromColumn: POSTING_DATA_F.PERIODEND
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'PROJECTS_Financials_F -> PROJECTS_D'
+	fromColumn: PROJECTS_Financials_F.SurrogateProjectID
+	toColumn: PROJECTS_D.SurrogateProjectID
+
+relationship 'PROJECTS_Financials_F -> CUSTOMERS_D'
+	fromColumn: PROJECTS_Financials_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'PROJECTS_Financials_F -> FYCALENDAR_D'
+	fromColumn: PROJECTS_Financials_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'TM_Financials_F -> CUSTOMERS_D'
+	fromColumn: TM_Financials_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'TM_Financials_F -> FYCALENDAR_D'
+	fromColumn: TM_Financials_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'TM_Financials_F -> DIVISIONS_D'
+	fromColumn: TM_Financials_F.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 'SERVCONTRACTS_Financials_F -> SERVCONTRACTS_D'
+	fromColumn: SERVCONTRACTS_Financials_F.AgreementKey
+	toColumn: SERVCONTRACTS_D.AgreementKey
+
+relationship 'SERVCONTRACTS_Financials_F -> CUSTOMERS_D'
+	fromColumn: SERVCONTRACTS_Financials_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'SERVCONTRACTS_Financials_F -> FYCALENDAR_D'
+	fromColumn: SERVCONTRACTS_Financials_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'SERVCONTRACTS_Financials_F -> DIVISIONS_D'
+	fromColumn: SERVCONTRACTS_Financials_F.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship bc13f483-12d2-274c-83f4-176bf9e187ba
+	fromColumn: POSTING_DATA_F.REGION
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 'FINANCIALS_F -> CUSTOMERS_D'
+	fromColumn: FINANCIALS_F.'Customer Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'FINANCIALS_F -> FYCALENDAR_D'
+	fromColumn: FINANCIALS_F.'Month End'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 'FINANCIALS_F -> DIVISIONS_D'
+	fromColumn: FINANCIALS_F.Divisions
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship 'FINANCIALS_F -> STREAM_D'
+	fromColumn: FINANCIALS_F.Stream
+	toColumn: STREAM_D.Stream
+
+relationship 'GL_MARKET_STREAM_D -> STREAM_D'
+	fromColumn: GL_MARKET_STREAM_D.Stream
+	toColumn: STREAM_D.Stream
+
+relationship 'GL_ACCT_D -> GL_MARKET_STREAM_D'
+	fromColumn: GL_ACCT_D.MARKET
+	toColumn: GL_MARKET_STREAM_D.Market
+
+relationship 'NPS_F -> CUSTOMERS_D'
+	fromColumn: NPS_F.'Customernbr Key'
+	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'NPS_F -> FYCALENDAR_D'
+	fromColumn: NPS_F.'SERVICE CALL COMPLETED DATE'
+	toColumn: FYCALENDAR_D.Date
+
+relationship 148286d5-b78f-5e51-78af-f8cdc01fbd92
+	fromColumn: NPS_F.Market
+	toColumn: DIVISIONS_D.DivisionCode
+
+relationship AutoDetected_2462015a-dfab-4489-8ea6-ec5181750c64
+	fromColumn: BUDGET_F.ACCTIDX_KEY
+	toColumn: GL_ACCT_D.ACCTIDX_KEY
+
+relationship 789322f2-233d-08f6-0eb3-0e819875939f
+	fromColumn: BUDGET_F.PERIODEND
+	toColumn: FYCALENDAR_D.Date
+
+relationship 5d32c47d-8a4a-1b67-9b1b-e2626aa3acfd
+	fromColumn: BUDGET_F.DIVISION
+	toColumn: DIVISIONS_D.DivisionCode
+

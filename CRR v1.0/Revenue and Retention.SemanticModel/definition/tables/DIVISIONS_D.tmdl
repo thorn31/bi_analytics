@@ -1,0 +1,115 @@
+table DIVISIONS_D
+	lineageTag: 24ca026e-11eb-4dd2-a29c-a1eb19cd7d4a
+
+	column DivisionCode
+		dataType: string
+		lineageTag: 1724eff6-a4db-4a50-bc50-7e0bee303697
+		summarizeBy: none
+		sourceColumn: DivisionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: b56fdaa3-895d-46d9-95c1-13be6192c923
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 4049a164-7e99-4331-b4d4-f27a75fcc548
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: ef29d508-5aa2-498b-a4bf-adde34c20cdc
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Budget Division'
+		dataType: string
+		lineageTag: df8ce1bf-f866-4d8f-9bf1-c6b9dc39edd2
+		summarizeBy: none
+		sourceColumn: Budget Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Office Location'
+		dataType: string
+		lineageTag: f75a35ae-2059-43cf-ac8d-50cfec18f257
+		summarizeBy: none
+		sourceColumn: Office Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Street Address 1'
+		dataType: string
+		lineageTag: 5bb95f24-b167-43cf-9281-cfffc968d3c8
+		dataCategory: Address
+		summarizeBy: none
+		sourceColumn: Street Address 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Street Address 2'
+		dataType: string
+		lineageTag: a40acd5c-86c1-4a8a-93bc-8fbaf73f1f36
+		summarizeBy: none
+		sourceColumn: Street Address 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: a0d5ef89-6149-4d16-bf48-eebbf1a3a197
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 087e502c-ae48-4ce5-a8b8-0a3b9a7be6f0
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZIP
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e84ae66-4473-4236-8222-472241b6a852
+		summarizeBy: sum
+		sourceColumn: ZIP
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIVISIONS_D = m
+		mode: import
+		queryGroup: DIM
+		source =
+				let
+				    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+				    #"Navigation 1" = Source{[Name = "datasets"]}[Data],
+				    #"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv" = #"Navigation 1"{[#"Folder Path"="https://stgreen.blob.core.windows.net/datasets/",Name="DIVISIONS_D.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv",[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"DivisionCode", type text}, {"Division", type text}, {"Region", type text}, {"Company", type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"Division"}, OFFICE_LOCATIONS, {"Division"}, "OFFICE_LOCATIONS", JoinKind.LeftOuter),
+				    #"Expanded OFFICE_LOCATIONS" = Table.ExpandTableColumn(#"Merged Queries", "OFFICE_LOCATIONS", {"Budget Division", "Office Location", "Street Address 1", "Street Address 2", "City", "State", "ZIP"}, {"Budget Division", "Office Location", "Street Address 1", "Street Address 2", "City", "State", "ZIP"})
+				    in #"Expanded OFFICE_LOCATIONS"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

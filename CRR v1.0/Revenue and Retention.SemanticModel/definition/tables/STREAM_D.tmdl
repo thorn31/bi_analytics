@@ -1,0 +1,26 @@
+table STREAM_D
+	lineageTag: 9a77a2c0-1f2c-4d5c-a317-2df666c247f2
+
+	column Stream
+		lineageTag: bbc3acd2-25a3-4150-8e21-364f630955b2
+		isNameInferred
+		sourceColumn: [Stream]
+
+	column StreamSort
+		lineageTag: 9b9cd1fc-b386-49d7-a8d8-2e0a994e9e99
+		isNameInferred
+		sourceColumn: [StreamSort]
+
+	partition STREAM_D = calculated
+		mode: import
+		source =
+				DATATABLE(
+					"Stream", STRING,
+					"StreamSort", INTEGER,
+					{
+						{ "Projects", 1 },
+						{ "Service Contracts", 2 },
+						{ "T&M", 3 }
+					}
+				)
+
