@@ -209,10 +209,10 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.1 Base
 		lineageTag: c4b7bf44-e5a3-45e9-8ad6-8f7e3a890a0f
 
-	/// Retention denominator (R12M As Of): prior-year rolling revenue for customers that existed in the prior window.
+	/// Retention denominator (R12M As Of): prior-year rolling revenue for master customers that existed in the prior window (master-customer grain).
 	measure 'Retention Base PY (R12M As Of)' =
 			SUMX (
-			    VALUES ( CUSTOMERS_D[Customer Key] ),
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			    VAR RevenuePY = [Service Contract Revenue PY (R12M As Of)]
 			    RETURN IF ( RevenuePY > 0, RevenuePY, 0 )
 			)
@@ -220,10 +220,10 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.2 Components
 		lineageTag: 9a325994-61a8-4330-b910-0900e78d7c34
 
-	/// Churn component (R12M As Of): lost revenue from customers with PY revenue but zero CY revenue in the rolling window.
+	/// Churn component (R12M As Of): lost revenue from master customers with PY revenue but zero CY revenue in the rolling window (master-customer grain).
 	measure 'Churn Revenue (R12M As Of)' =
 			SUMX (
-			    VALUES ( CUSTOMERS_D[Customer Key] ),
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			    VAR RevenueCY = [Service Contract Revenue (R12M As Of)]
 			    VAR RevenuePY = [Service Contract Revenue PY (R12M As Of)]
 			    RETURN IF ( RevenuePY > 0 && ( ISBLANK ( RevenueCY ) || RevenueCY = 0 ), RevenuePY, 0 )
@@ -232,10 +232,10 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.2 Components
 		lineageTag: 2c5b531f-5e3f-4b4f-a047-1d8455ea838f
 
-	/// Contraction component (R12M As Of): decreases for retained customers (CY < PY) in the rolling window.
+	/// Contraction component (R12M As Of): decreases for retained master customers (CY < PY) in the rolling window (master-customer grain).
 	measure 'Contraction Revenue (R12M As Of)' =
 			SUMX (
-			    VALUES ( CUSTOMERS_D[Customer Key] ),
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			    VAR RevenueCY = COALESCE ( [Service Contract Revenue (R12M As Of)], 0 )
 			    VAR RevenuePY = COALESCE ( [Service Contract Revenue PY (R12M As Of)], 0 )
 			    RETURN IF ( RevenuePY > 0 && RevenueCY > 0 && RevenueCY < RevenuePY, RevenuePY - RevenueCY, 0 )
@@ -244,10 +244,10 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.2 Components
 		lineageTag: 12ab1f31-b1e4-41ad-9922-ac28d2c34bc6
 
-	/// Upsell component (R12M As Of): increases for retained customers (CY > PY) in the rolling window.
+	/// Upsell component (R12M As Of): increases for retained master customers (CY > PY) in the rolling window (master-customer grain).
 	measure 'Upsell Revenue (R12M As Of)' =
 			SUMX (
-			    VALUES ( CUSTOMERS_D[Customer Key] ),
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			    VAR RevenueCY = COALESCE ( [Service Contract Revenue (R12M As Of)], 0 )
 			    VAR RevenuePY = COALESCE ( [Service Contract Revenue PY (R12M As Of)], 0 )
 			    RETURN IF ( RevenuePY > 0 && RevenueCY > RevenuePY, RevenueCY - RevenuePY, 0 )
@@ -309,7 +309,7 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.3 KPIs\GRR
 		lineageTag: 6dac9fb7-8d78-450c-acba-51115862b1e9
 
-	/// Text indicator showing NRR (R12M As Of) change vs prior-year anchor (arrow + percent-point delta).
+	/// Text indicator showing NRR (R12M As Of) delta vs prior-year anchor (arrow + absolute delta). Returns BLANK when CY or PY is missing/zero.
 	measure 'Net Revenue Retention Trend vs PY (R12M As Of)' =
 			VAR CY = [Net Revenue Retention % (R12M As Of)]
 			VAR PY = [Net Revenue Retention % PY (R12M As Of)]
@@ -327,7 +327,7 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.3 KPIs\NRR
 		lineageTag: fcf0440a-fe65-4583-80ab-55aa032e107a
 
-	/// Text indicator showing GRR (R12M As Of) change vs prior-year anchor (arrow + percent-point delta).
+	/// Text indicator showing GRR (R12M As Of) delta vs prior-year anchor (arrow + absolute delta). Returns BLANK when CY or PY is missing/zero.
 	measure 'Gross Revenue Retention Trend vs PY (R12M As Of)' =
 			VAR CY = [Gross Revenue Retention % (R12M As Of)]
 			VAR PY = [Gross Revenue Retention % PY (R12M As Of)]
@@ -345,17 +345,17 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.3 KPIs\GRR
 		lineageTag: c69604eb-250a-4861-9757-e1fde99c85e1
 
-	/// Logo retention denominator: count of customers with prior-year rolling service contract revenue > 0 (R12M As Of).
-	measure 'Retention Base Count PY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Customer Key] ), [Service Contract Revenue PY (R12M As Of)] > 0 ) )
+	/// Logo retention denominator: count of master customers with prior-year rolling service contract revenue > 0 (R12M As Of).
+	measure 'Retention Base Count PY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Master Customer Name] ), [Service Contract Revenue PY (R12M As Of)] > 0 ) )
 		formatString: 0
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.4 Logo (SC)
 		lineageTag: 78bbd7d1-d531-477d-bcbc-37f5e4d34139
 
-	/// Logo churn count: customers with PY rolling service contract revenue > 0 and CY rolling revenue = 0/blank (R12M As Of).
+	/// Logo churn count (master-customer grain): master customers with PY rolling service contract revenue > 0 and CY rolling revenue = 0/blank (R12M As Of).
 	measure 'Logo Churn Count (SC) (R12M As Of)' =
 			COUNTROWS (
 			    FILTER (
-			        VALUES ( CUSTOMERS_D[Customer Key] ),
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			        [Service Contract Revenue PY (R12M As Of)] > 0
 			            && ( ISBLANK ( [Service Contract Revenue (R12M As Of)] )
 			                || [Service Contract Revenue (R12M As Of)] = 0 )
@@ -468,23 +468,23 @@ table '_Key Measures'
 		displayFolder: 7. Helper\7.1 Retention\R12M As Of
 		lineageTag: 2c96b912-2ba5-4b6a-a90f-4a34699d3c74
 
-	/// Count of customers with prior-year rolling service contract revenue > 0 (R12M As Of).
-	measure 'Customers PY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Customer Key] ), [Service Contract Revenue PY (R12M As Of)] > 0 ) )
+	/// Count of master customers with prior-year rolling service contract revenue > 0 (R12M As Of).
+	measure 'Customers PY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Master Customer Name] ), [Service Contract Revenue PY (R12M As Of)] > 0 ) )
 		formatString: 0
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.4 Logo (SC)
 		lineageTag: 5cefcee4-c77f-4d64-abba-9101f1833bed
 
-	/// Count of customers with current rolling service contract revenue > 0 (R12M As Of).
-	measure 'Customers CY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Customer Key] ), [Service Contract Revenue (R12M As Of)] > 0 ) )
+	/// Count of master customers with current rolling service contract revenue > 0 (R12M As Of).
+	measure 'Customers CY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Master Customer Name] ), [Service Contract Revenue (R12M As Of)] > 0 ) )
 		formatString: 0
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.4 Logo (SC)
 		lineageTag: f0fdbadc-4e43-47ab-bf66-d6a472ddaab4
 
-	/// Count of churned customers for service contracts (R12M As Of): PY>0 and CY=0/blank.
+	/// Count of churned master customers for service contracts (R12M As Of): PY>0 and CY=0/blank (master-customer grain).
 	measure 'Customers Churned (SC) (R12M As Of)' =
 			COUNTROWS (
 			    FILTER (
-			        VALUES ( CUSTOMERS_D[Customer Key] ),
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			        [Service Contract Revenue PY (R12M As Of)] > 0
 			            && ( ISBLANK ( [Service Contract Revenue (R12M As Of)] )
 			                || [Service Contract Revenue (R12M As Of)] = 0 )
@@ -494,11 +494,11 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.4 Logo (SC)
 		lineageTag: 26cd9fd6-e0e4-43ed-9b49-9cb7be263abd
 
-	/// Count of contracting customers for service contracts (R12M As Of): PY>0, CY>0, CY<PY.
+	/// Count of contracting master customers for service contracts (R12M As Of): PY>0, CY>0, CY<PY (master-customer grain).
 	measure 'Customers Contraction (SC) (R12M As Of)' =
 			COUNTROWS (
 			    FILTER (
-			        VALUES ( CUSTOMERS_D[Customer Key] ),
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			        [Service Contract Revenue PY (R12M As Of)] > 0
 			            && [Service Contract Revenue (R12M As Of)] > 0
 			            && [Service Contract Revenue (R12M As Of)] < [Service Contract Revenue PY (R12M As Of)]
@@ -508,11 +508,11 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.4 Logo (SC)
 		lineageTag: 106b9b2a-5a6f-4107-b24f-e4248603aaa6
 
-	/// Count of upsell customers for service contracts (R12M As Of): PY>0 and CY>PY.
+	/// Count of upsell master customers for service contracts (R12M As Of): PY>0 and CY>PY (master-customer grain).
 	measure 'Customers Upsell (SC) (R12M As Of)' =
 			COUNTROWS (
 			    FILTER (
-			        VALUES ( CUSTOMERS_D[Customer Key] ),
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			        [Service Contract Revenue PY (R12M As Of)] > 0
 			            && [Service Contract Revenue (R12M As Of)] > [Service Contract Revenue PY (R12M As Of)]
 			    )
@@ -521,11 +521,11 @@ table '_Key Measures'
 		displayFolder: 5. Retention\5.4 R12M As Of\5.4.4 Logo (SC)
 		lineageTag: b87e2141-3ff2-454a-ad6c-27990a53ae5d
 
-	/// Count of retained customers for service contracts (R12M As Of): PY>0 and CY>0.
+	/// Count of retained master customers for service contracts (R12M As Of): PY>0 and CY>0 (master-customer grain).
 	measure 'Customers Retained (SC) (R12M As Of)' =
 			COUNTROWS (
 			    FILTER (
-			        VALUES ( CUSTOMERS_D[Customer Key] ),
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
 			        [Service Contract Revenue PY (R12M As Of)] > 0
 			            && [Service Contract Revenue (R12M As Of)] > 0
 			    )
@@ -805,7 +805,7 @@ table '_Key Measures'
 
 	/// Total gross profit percent over the rolling 12 months ending at the financial as-of anchor month end.
 	measure 'Total GP % (R12M As Of)' = DIVIDE ( [Total Gross Profit (R12M As Of)], [Total Revenue (R12M As Of)] )
-		formatString: 0.00%;-0.00%;0.00%
+		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: 4. Time Intelligence\4.1 R12M As Of\Gross Profit
 		lineageTag: 0481e564-78dd-40c9-ab55-6df437e81fb4
 
@@ -1080,16 +1080,16 @@ table '_Key Measures'
 		displayFolder: 3. Gross Profit\3.1 Total
 		lineageTag: d708ce1f-38a2-4734-a7ab-f3d77cd7fdf0
 
-	/// UI helper: friendly label for the current customer selection (single, multiple, or all).
+	/// UI helper: friendly label for the current customer selection. Uses Master Customer Name so a single customer can span multiple customer keys.
 	measure 'Selected Customer Name' =
-			VAR HasOne = HASONEVALUE ( CUSTOMERS_D[Customer Key] )
-			VAR HasAny = ISCROSSFILTERED ( CUSTOMERS_D[Customer Key] )
+			VAR HasAnyMaster = ISCROSSFILTERED ( CUSTOMERS_D[Master Customer Name] )
+			VAR HasOneMaster = HASONEVALUE ( CUSTOMERS_D[Master Customer Name] )
 			RETURN
 			    IF (
-			        HasAny,
+			        HasAnyMaster,
 			        IF (
-			            HasOne,
-			            COALESCE ( SELECTEDVALUE ( CUSTOMERS_D[Customer Name] ), "Selected Customer" ),
+			            HasOneMaster,
+			            COALESCE ( SELECTEDVALUE ( CUSTOMERS_D[Master Customer Name] ), "Selected Customer" ),
 			            "Multiple Customers Selected"
 			        ),
 			        "All Customers (Company Total)"
@@ -1195,36 +1195,52 @@ table '_Key Measures'
 		displayFolder: 6. Customer Status\6.2 Contract
 		lineageTag: 53b5ecc1-d555-4d6a-ba72-2aa3730edfbc
 
-	/// Customer rank by lifetime total revenue (all customers, ignoring customer filters).
-	measure 'Customer Revenue Rank (All Time)' = RANKX ( ALL ( CUSTOMERS_D ), [Total Revenue], , DESC, Dense )
+	/// Master-customer rank by lifetime total revenue (distinct master customers). Returns BLANK for customers with no revenue.
+	measure 'Customer Revenue Rank (All Time)' =
+			IF (
+			    ISBLANK ( [Total Revenue] ) || [Total Revenue] = 0,
+			    BLANK (),
+			    RANKX (
+			        ALL ( CUSTOMERS_D[Master Customer Name] ),
+			        CALCULATE ( [Total Revenue] ),
+			        ,
+			        DESC,
+			        Dense
+			    )
+			)
 		formatString: #,0
 		displayFolder: 6. Customer Status\6.4 Profile
 		lineageTag: c7579629-bbd2-42a8-b433-5c4baff36c3c
 
-	/// Formatted rank string for customer profile display (e.g., '#12 of 1,234').
+	/// Formatted master-customer rank string for customer profile display (e.g., '#12 of 1,234').
 	measure 'Customer Rank Context String' =
 			VAR RankVal = [Customer Revenue Rank (All Time)]
 			VAR TotalCustomers =
-			    CALCULATE ( COUNTROWS ( CUSTOMERS_D ), FILTER ( ALL ( CUSTOMERS_D ), [Total Revenue] > 0 ) )
+			    CALCULATE (
+			        DISTINCTCOUNT ( CUSTOMERS_D[Master Customer Name] ),
+			        FILTER ( ALL ( CUSTOMERS_D[Master Customer Name] ), [Total Revenue] > 0 )
+			    )
 			RETURN
 			    IF ( ISBLANK ( [Total Revenue] ), "No Revenue", "#" & FORMAT ( RankVal, "#,0" ) & " of " & FORMAT ( TotalCustomers, "#,0" ) )
 		displayFolder: 6. Customer Status\6.4 Profile
 		lineageTag: 2d899a3e-ebd3-4df8-aecc-095508917d5c
 
-	/// Text value for the selected UI_CustomerProfileRows metric, formatted for display in the customer profile visual.
+	/// Text value for the selected UI_CustomerProfileRows metric, formatted for display in the customer profile visual. Includes Industrial Group and Industrial Rank.
 	measure 'Customer Profile Metric Value' =
 			VAR Metric = SELECTEDVALUE ( UI_CustomerProfileRows[Metric Name] )
 			VAR Result =
 			    SWITCH (
 			        Metric,
 			        "Lifecycle Status", [Customer Lifecycle Status],
+			        "Industrial Group", SELECTEDVALUE ( CUSTOMERS_D[Industrial Group] ),
 			        "Last Billing Date", FORMAT ( [Last Billing Date (Any Stream)], "MMM d, yyyy" ),
 			        "Active Contracts", FORMAT ( [Active Contracts], "#,0" ),
 			        "Active Projects", FORMAT ( [Active Projects], "#,0" ),
 			        "Lifetime Revenue", FORMAT ( [Total Revenue], "$#,0" ),
 			        "Lifetime GP", FORMAT ( [Total Gross Profit], "$#,0" ),
 			        "Lifetime GP %", FORMAT ( [Total GP %], "0.0%" ),
-			        "Revenue Rank", [Customer Rank Context String]
+			        "Revenue Rank", [Customer Rank Context String],
+			        "Industrial Rank", [Industrial Rank Context String]
 			    )
 			RETURN
 			    IF ( ISBLANK ( Result ), "--", Result )
@@ -2332,6 +2348,332 @@ table '_Key Measures'
 	measure 'P&L Divider' = " "
 		displayFolder: 4. P&L\4.1 YTD
 		lineageTag: c8c62224-2419-4306-82e8-62db4947b4c3
+
+	/// Gross Profit amount over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Gross Profit' from UI_P&L Structure.
+	measure 'P&L Gross Profit' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Gross Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 4. P&L\4.2 Period
+		lineageTag: 8d3ac1a4-afde-4e05-811e-ef96ef936fa3
+
+	/// Prior-year Gross Profit aligned to the visible (completed) date context. Blanks out months that are incomplete in the current year context. Uses the P&L line-item logic for 'Gross Profit' from UI_P&L Structure.
+	measure 'P&L Gross Profit PY' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			VAR DatesPY =
+			    SELECTCOLUMNS (
+			        ADDCOLUMNS ( DatesCompleted, "DatePY", EDATE ( [Date], -12 ) ),
+			        "Date", [DatePY]
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Gross Profit",
+			        TREATAS ( DatesPY, FYCALENDAR_D[Date] )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 4. P&L\4.2 Period
+		lineageTag: 7eee3cad-3e96-46f4-b229-4588bb539fa5
+
+	/// Budget Gross Profit over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Gross Profit' from UI_P&L Structure.
+	measure 'P&L Gross Profit Budget' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Budget Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Gross Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 4. P&L\4.2 Period
+		lineageTag: 2527d144-5fee-4d02-b35f-a82de31a59fc
+
+	/// Net Profit amount over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Net Profit' from UI_P&L Structure.
+	measure 'P&L Net Profit' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Net Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 4. P&L\4.2 Period
+		lineageTag: 0edfea89-f040-47f3-8fd9-2c384b6fdfb3
+
+	/// Prior-year Net Profit aligned to the visible (completed) date context. Blanks out months that are incomplete in the current year context. Uses the P&L line-item logic for 'Net Profit' from UI_P&L Structure.
+	measure 'P&L Net Profit PY' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			VAR DatesPY =
+			    SELECTCOLUMNS (
+			        ADDCOLUMNS ( DatesCompleted, "DatePY", EDATE ( [Date], -12 ) ),
+			        "Date", [DatePY]
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Net Profit",
+			        TREATAS ( DatesPY, FYCALENDAR_D[Date] )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 4. P&L\4.2 Period
+		lineageTag: d315414a-a722-493f-bb77-cd328429159b
+
+	/// Budget Net Profit over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Net Profit' from UI_P&L Structure.
+	measure 'P&L Net Profit Budget' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Budget Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Net Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 4. P&L\4.2 Period
+		lineageTag: 18b9f4f4-ce03-41ab-abf6-5184f5d9a663
+
+	/// Filter helper for Master Customer Name slicers: returns 1 when the customer has revenue in the current filter context (respects page filters like date/division/stream).
+	measure 'Customer Has Revenue' = IF ( [Total Revenue] > 0, 1, 0 )
+		formatString: 0
+		displayFolder: 6. Customer Status\6.0 UI
+		lineageTag: 59449520-3494-486b-91da-8218f7fad4da
+
+	/// Prior-year total gross profit percent over the rolling 12 months aligned to the financial as-of anchor month end.
+	measure 'Total GP % PY (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        DIVIDE (
+			            CALCULATE ( [Total Gross Profit], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) ),
+			            CALCULATE ( [Total Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 4. Time Intelligence\4.1 R12M As Of\Gross Profit
+		lineageTag: cf988878-0c4e-44d6-947e-0d9c64667dec
+
+	/// Text indicator showing total gross profit % delta vs prior year for the R12M As Of framework (arrow + absolute delta, formatted as %). Returns BLANK when CY or PY is missing/zero.
+	measure 'Total GP % Trend vs PY (R12M As Of)' =
+			VAR CY = [Total GP % (R12M As Of)]
+			VAR PY = [Total GP % PY (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR Icon =
+			            SWITCH (
+			                TRUE (),
+			                Diff > 0, UNICHAR ( 9650 ),
+			                Diff < 0, UNICHAR ( 9660 ),
+			                UNICHAR ( 9644 )
+			            )
+			        VAR DiffText =
+			            IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			        RETURN
+			            Icon & " " & DiffText
+			    )
+		displayFolder: 4. Time Intelligence\4.1 R12M As Of\Gross Profit
+		lineageTag: f4228e70-c14e-4810-90f8-74f5da4bfd9d
+
+	/// Text indicator showing total revenue change vs prior year for the R12M As Of framework (arrow + percent change). Returns BLANK when CY or PY is missing/zero.
+	measure 'Total Revenue Trend vs PY (R12M As Of)' =
+			VAR CY = [Total Revenue (R12M As Of)]
+			VAR PY = [Total Revenue PY (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR PctChange = DIVIDE ( Diff, PY )
+			        VAR Icon =
+			            SWITCH (
+			                TRUE (),
+			                PctChange > 0, UNICHAR ( 9650 ),
+			                PctChange < 0, UNICHAR ( 9660 ),
+			                UNICHAR ( 9644 )
+			            )
+			        VAR PctText =
+			            IF ( PctChange >= 0, UNICHAR ( 8199 ) & FORMAT ( PctChange, "0.0%" ), FORMAT ( PctChange, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		displayFolder: 4. Time Intelligence\4.1 R12M As Of\Revenue
+		lineageTag: 47309a7d-7e68-4207-89da-fd81745865c7
+
+	/// Helper (hidden): revenue delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'Revenue Δ vs PY (R12M As Of)' = [Total Revenue (R12M As Of)] - [Total Revenue PY (R12M As Of)]
+		formatString: $#,0;($#,0);$#,0
+		isHidden
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: 5aa07c06-a220-479c-b036-7eef1f69b919
+
+	/// Hex color for revenue trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'Revenue Trend Color (R12M As Of)' =
+			VAR Delta = [Revenue Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: 5cbb36ba-fbaf-472d-b9f5-e6b7cceff1cc
+
+	/// Helper (hidden): total GP% delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'Total GP % Δ vs PY (R12M As Of)' = [Total GP % (R12M As Of)] - [Total GP % PY (R12M As Of)]
+		formatString: 0.00%;-0.00%;0.00%
+		isHidden
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: efc3769a-9532-4e19-aee3-3591f65ac4f2
+
+	/// Hex color for total GP% trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'Total GP % Trend Color (R12M As Of)' =
+			VAR Delta = [Total GP % Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: 7b0e1103-50d8-492f-8518-83e50b3d9fe0
+
+	/// Helper (hidden): NRR% delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'NRR % Δ vs PY (R12M As Of)' = [Net Revenue Retention % (R12M As Of)] - [Net Revenue Retention % PY (R12M As Of)]
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: c12e6319-cc80-4274-a2cf-e03559427d76
+
+	/// Hex color for NRR trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'NRR Trend Color (R12M As Of)' =
+			VAR Delta = [NRR % Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: 4b063dd2-f14f-46d6-934f-9aaf3c085e05
+
+	/// Helper (hidden): GRR% delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'GRR % Δ vs PY (R12M As Of)' = [Gross Revenue Retention % (R12M As Of)] - [Gross Revenue Retention % PY (R12M As Of)]
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: 65a22a46-1fb4-4e59-a290-eefc5655977b
+
+	/// Hex color for GRR trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'GRR Trend Color (R12M As Of)' =
+			VAR Delta = [GRR % Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: 3f6a87ea-22fb-475d-a603-c562e22c470c
+
+	measure 'Customer Lifecycle Status Color' = ```
+			
+			VAR MonthsInactive = [Months Since Last Billing]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( MonthsInactive ), "#BDBDBD", -- No Activity
+			        MonthsInactive < 6,         "#5FB3A2", -- Active
+			        MonthsInactive < 12,        "#EBC06D", -- Dormant
+			        "#D17A73"                              -- Inactive
+			    )
+			
+			```
+		displayFolder: 7. Helper\7.4 UI\Conditional Formatting
+		lineageTag: e3cd322f-baea-4345-a440-d92ecbe226bb
+
+	/// Rank of the current master customer by Total Revenue within the same Industrial Group (dense rank, descending). Returns BLANK when Industrial Group is blank or customer has no revenue.
+	measure 'Industrial Revenue Rank' =
+			VAR ThisGroup = SELECTEDVALUE ( CUSTOMERS_D[Industrial Group] )
+			VAR ThisRevenue = [Total Revenue]
+			VAR MastersInGroup =
+			    CALCULATETABLE (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        ALL ( CUSTOMERS_D ),
+			        CUSTOMERS_D[Industrial Group] = ThisGroup
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( ThisGroup ) || ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			        BLANK (),
+			        RANKX ( MastersInGroup, CALCULATE ( [Total Revenue] ), , DESC, Dense )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\6.4 Profile
+		lineageTag: 9daba2cd-7871-4c8c-89e9-78d143ca08a2
+
+	/// Formatted rank string within the current Industrial Group (e.g., '#12 of 340'), based on distinct master customers with Total Revenue > 0.
+	measure 'Industrial Rank Context String' =
+			VAR ThisGroup = SELECTEDVALUE ( CUSTOMERS_D[Industrial Group] )
+			VAR ThisRevenue = [Total Revenue]
+			VAR RankVal = [Industrial Revenue Rank]
+			VAR MastersInGroup =
+			    CALCULATETABLE (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        ALL ( CUSTOMERS_D ),
+			        CUSTOMERS_D[Industrial Group] = ThisGroup
+			    )
+			VAR TotalMasters =
+			    COUNTROWS ( FILTER ( MastersInGroup, CALCULATE ( [Total Revenue] ) > 0 ) )
+			RETURN
+			    IF (
+			        ISBLANK ( ThisGroup ),
+			        "--",
+			        IF (
+			            ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			            "No Revenue",
+			            "#" & FORMAT ( RankVal, "#,0" ) & " of " & FORMAT ( TotalMasters, "#,0" )
+			        )
+			    )
+		displayFolder: 6. Customer Status\6.4 Profile
+		lineageTag: 8046ee5a-3a7a-409d-b89f-0cea66ce0805
 
 	column _
 		isHidden

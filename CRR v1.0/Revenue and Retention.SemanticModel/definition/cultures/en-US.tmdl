@@ -3367,6 +3367,16 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "Revenue": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -3498,6 +3508,16 @@ cultureInfo en-US
 			          "total GP %": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "GP %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -14728,6 +14748,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "customer key": {
@@ -15387,6 +15410,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "custnmbr key": {
@@ -28541,9 +28567,6 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
 			          "customer key": {
@@ -28843,9 +28866,6 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
 			          "customer key": {
@@ -34105,6 +34125,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "fiscal year": {
@@ -35879,6 +35902,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "fiscal year": {
@@ -37421,22 +37447,1538 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.485
 			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_gross_profit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Gross Profit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L gross profit": {
+			            "State": "Generated"
+			          }
 			        },
 			        {
-			          "\"\"": {
+			          "p&l aggregate profit": {
+			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
+			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.9
+			            "Weight": 0.657
+			          }
+			        },
+			        {
+			          "p&l overall profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.657
+			          }
+			        },
+			        {
+			          "p&l whole profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.657
+			          }
+			        },
+			        {
+			          "p&l sum profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "p&l total profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "p&l gross income": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "p&l gross revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "p&l gross turnover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "p&l gross return": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "p&l gross yield": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_gross_profit_PY": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Gross Profit PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L gross profit PY": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "p&l aggregate profit py": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "p&l overall profit py": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "p&l whole profit py": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "p&l sum profit py": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "p&l total profit py": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_gross_profit_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Gross Profit Budget"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L gross profit budget": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "p&l gross profit account": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "p&l gross profit cost": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "p&l gross profit finance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "p&l aggregate profit budget": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "p&l overall profit budget": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "p&l whole profit budget": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "p&l sum profit budget": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "p&l total profit budget": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_net_profit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Net Profit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L net profit": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "p&l net income": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "p&l net revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "p&l net turnover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "p&l net return": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "p&l net yield": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "p&l net advantage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "p&l net gain": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "p&l net benefit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "p&l net use": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "p&l net reward": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_net_profit_PY": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Net Profit PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L net profit PY": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_net_profit_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Net Profit Budget"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L net profit budget": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "p&l net profit account": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "p&l net profit cost": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "p&l net profit finance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.customer_has_revenue": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Customer Has Revenue"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "customer has revenue": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "client has revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "consumer has revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "user has revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "buyer has revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "patron has revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "purchaser has revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "shopper has revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "customer has income": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "customer has profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "customer has turnover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_GP__PY_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total GP % PY (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total GP % PY (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total GP % PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total GP % Trend vs PY (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total GP % trend vs PY (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total GP % trend vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue Trend vs PY (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue trend vs PY (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue trend vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.revenue_δ_vs_PY_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Revenue Δ vs PY (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "revenue δ vs PY (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "revenue δ vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.revenue_trend_color_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Revenue Trend Color (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "revenue trend color (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "revenue trend color": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_GP__δ_vs_PY_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total GP % Δ vs PY (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "total GP % δ vs PY (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total GP % δ vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_GP__trend_color_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total GP % Trend Color (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total GP % trend color (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total GP % trend color": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.NRR__δ_vs_PY_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "NRR % Δ vs PY (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "NRR % δ vs PY (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NRR % δ vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.NRR_trend_color_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "NRR Trend Color (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NRR trend color (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NRR trend color": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.GRR__δ_vs_PY_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "GRR % Δ vs PY (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "GRR % δ vs PY (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "GRR % δ vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.GRR_trend_color_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "GRR Trend Color (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "GRR trend color (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "GRR trend color": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.customer_lifecycle_status_color": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Customer Lifecycle Status Color"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "customer lifecycle status color": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "color": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "status color": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "lifecycle status color": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "client lifecycle status color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "consumer lifecycle status color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "user lifecycle status color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "buyer lifecycle status color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "patron lifecycle status color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "purchaser lifecycle status color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "shopper lifecycle status color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "customer lifecycle category color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "customer lifecycle importance color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "customer lifecycle prestige color": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.industrial_revenue_rank": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Industrial Revenue Rank"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "industrial revenue rank": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "revenue rank": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "industrial income rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "income rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "industrial profit rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "industrial turnover rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "industrial yield rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "profit rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "turnover rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "yield rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.industrial_rank_context_string": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Industrial Rank Context String"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "industrial rank context string": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "string": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "context string": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "rank context string": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "industrial rank context filament": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "rank context filament": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "context filament": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "industrial rank context cord": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "industrial rank context thread": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "industrial rank context twine": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "industrial rank context rope": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "rank context cord": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "rank context thread": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "rank context twine": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
 			          }
 			        }
 			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "financials_f_has_divisions_d": {
+			    "entity__key_measure_has_industrial_revenue_rank": {
+			      "Binding": {
+			        "ConceptualEntity": "_Key Measures"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "entity__key_measure": {
+			          "Target": {
+			            "Entity": "entity__key_measure"
+			          }
+			        },
+			        "entity__key_measure.industrial_revenue_rank": {
+			          "Target": {
+			            "Entity": "entity__key_measure.industrial_revenue_rank"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "entity__key_measure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.industrial_revenue_rank"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Phrasing_key_measures_have_industrial_revenue_rank"
+			        }
+			      ]
+			    },
+			    "entity__key_measure_has_customer_lifecycle_status_color": {
+			      "Binding": {
+			        "ConceptualEntity": "_Key Measures"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "entity__key_measure": {
+			          "Target": {
+			            "Entity": "entity__key_measure"
+			          }
+			        },
+			        "entity__key_measure.customer_lifecycle_status_color": {
+			          "Target": {
+			            "Entity": "entity__key_measure.customer_lifecycle_status_color"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "entity__key_measure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.customer_lifecycle_status_color"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Phrasing_key_measures_have_customer_lifecycle_status_color"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_GRR_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.GRR_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.GRR_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.GRR_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_GRR_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_GRR_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.GRR_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.GRR_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.GRR_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_GRR_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_GRR_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.GRR_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.GRR_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.GRR_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_GRR_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_NRR_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.NRR_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_NRR_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_NRR_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.NRR_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_NRR_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_NRR_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.NRR_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_NRR_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_GP__trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_GP__trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_GP__trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_GP__trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_GP__trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_GP__trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_GP__trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_GP__trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_GP__trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_GP__trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_GP__trend_color_R12M_as_of": {
 			      "Binding": {
 			        "ConceptualEntity": "FINANCIALS_F"
 			      },
@@ -37447,17 +38989,10 @@ cultureInfo en-US
 			            "Entity": "financials_f"
 			          }
 			        },
-			        "divisions_d": {
+			        "entity__key_measure.total_GP__trend_color_R12M_as_of": {
 			          "Target": {
-			            "Entity": "divisions_d"
-			          },
-			          "Nouns": [
-			            {
-			              "division": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
+			            "Entity": "entity__key_measure.total_GP__trend_color_R12M_as_of"
+			          }
 			        }
 			      },
 			      "Phrasings": [
@@ -37467,29 +39002,82 @@ cultureInfo en-US
 			              "Role": "financials_f"
 			            },
 			            "Object": {
-			              "Role": "divisions_d"
+			              "Role": "entity__key_measure.total_GP__trend_color_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "financials_f_have_divisions_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "divisions_d"
-			            },
-			            "Object": {
-			              "Role": "financials_f"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "divisions_Ds_have_financials_f"
+			          "ID": "financials_f_have_total_GP__trend_color_R12M_as_of"
 			        }
 			      ]
 			    },
-			    "financials_f_has_fycalendar_d": {
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_revenue_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.revenue_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_revenue_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_revenue_trend_color_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_trend_color_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_trend_color_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_trend_color_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_revenue_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_revenue_trend_color_R12M_as_of": {
 			      "Binding": {
 			        "ConceptualEntity": "FINANCIALS_F"
 			      },
@@ -37500,9 +39088,9 @@ cultureInfo en-US
 			            "Entity": "financials_f"
 			          }
 			        },
-			        "fycalendar_d": {
+			        "entity__key_measure.revenue_trend_color_R12M_as_of": {
 			          "Target": {
-			            "Entity": "fycalendar_d"
+			            "Entity": "entity__key_measure.revenue_trend_color_R12M_as_of"
 			          }
 			        }
 			      },
@@ -37513,29 +39101,82 @@ cultureInfo en-US
 			              "Role": "financials_f"
 			            },
 			            "Object": {
-			              "Role": "fycalendar_d"
+			              "Role": "entity__key_measure.revenue_trend_color_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "financials_f_have_fycalendar_Ds"
+			          "ID": "financials_f_have_revenue_trend_color_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_trend_vs_PY_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
 			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_trend_vs_PY_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_trend_vs_PY_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
 			              "Role": "fycalendar_d"
 			            },
 			            "Object": {
-			              "Role": "financials_f"
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "fycalendar_Ds_have_financials_f"
+			          "ID": "fycalendar_Ds_have_total_revenue_trend_vs_PY_R12M_as_of"
 			        }
 			      ]
 			    },
-			    "financials_f_has_customers_d": {
+			    "financials_f_has_entity__key_measure_total_revenue_trend_vs_PY_R12M_as_of": {
 			      "Binding": {
 			        "ConceptualEntity": "FINANCIALS_F"
 			      },
@@ -37546,9 +39187,9 @@ cultureInfo en-US
 			            "Entity": "financials_f"
 			          }
 			        },
-			        "customers_d": {
+			        "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of": {
 			          "Target": {
-			            "Entity": "customers_d"
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of"
 			          }
 			        }
 			      },
@@ -37559,141 +39200,194 @@ cultureInfo en-US
 			              "Role": "financials_f"
 			            },
 			            "Object": {
-			              "Role": "customers_d"
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "financials_f_have_customers_Ds"
+			          "ID": "financials_f_have_total_revenue_trend_vs_PY_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_GP__trend_vs_PY_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
 			        },
+			        "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "customers_d"
+			              "Role": "SERVCONTRACTS_financials_F"
 			            },
 			            "Object": {
+			              "Role": "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_GP__trend_vs_PY_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_GP__trend_vs_PY_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_GP__trend_vs_PY_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_GP__trend_vs_PY_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
 			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_GP__trend_vs_PY_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "customers_Ds_have_financials_f"
+			          "ID": "financials_f_have_total_GP__trend_vs_PY_R12M_as_of"
 			        }
 			      ]
 			    },
-			    "TM_financials_F_has_divisions_d": {
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_GP__PY_R12M_as_of": {
 			      "Binding": {
-			        "ConceptualEntity": "TM_Financials_F"
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "TM_financials_F": {
+			        "SERVCONTRACTS_financials_F": {
 			          "Target": {
-			            "Entity": "TM_financials_F"
+			            "Entity": "SERVCONTRACTS_financials_F"
 			          }
 			        },
-			        "divisions_d": {
+			        "entity__key_measure.total_GP__PY_R12M_as_of": {
 			          "Target": {
-			            "Entity": "divisions_d"
-			          },
-			          "Nouns": [
-			            {
-			              "division": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
+			            "Entity": "entity__key_measure.total_GP__PY_R12M_as_of"
+			          }
 			        }
 			      },
 			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "TM_financials_F"
+			              "Role": "SERVCONTRACTS_financials_F"
 			            },
 			            "Object": {
-			              "Role": "divisions_d"
+			              "Role": "entity__key_measure.total_GP__PY_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TM_financials_F_have_divisions_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "divisions_d"
-			            },
-			            "Object": {
-			              "Role": "TM_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "divisions_Ds_have_TM_financials_F"
+			          "ID": "SERVCONTRACTS_financials_F_have_total_GP__PY_R12M_as_of"
 			        }
 			      ]
 			    },
-			    "TM_financials_F_has_fycalendar_d": {
+			    "fycalendar_d_has_entity__key_measure_total_GP__PY_R12M_as_of": {
 			      "Binding": {
-			        "ConceptualEntity": "TM_Financials_F"
+			        "ConceptualEntity": "FYCALENDAR_D"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "TM_financials_F": {
-			          "Target": {
-			            "Entity": "TM_financials_F"
-			          }
-			        },
 			        "fycalendar_d": {
 			          "Target": {
 			            "Entity": "fycalendar_d"
 			          }
+			        },
+			        "entity__key_measure.total_GP__PY_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_GP__PY_R12M_as_of"
+			          }
 			        }
 			      },
 			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "TM_financials_F"
+			              "Role": "fycalendar_d"
 			            },
 			            "Object": {
-			              "Role": "fycalendar_d"
+			              "Role": "entity__key_measure.total_GP__PY_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TM_financials_F_have_fycalendar_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fycalendar_d"
-			            },
-			            "Object": {
-			              "Role": "TM_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fycalendar_Ds_have_TM_financials_F"
+			          "ID": "fycalendar_Ds_have_total_GP__PY_R12M_as_of"
 			        }
 			      ]
 			    },
-			    "TM_financials_F_has_customers_d": {
+			    "financials_f_has_entity__key_measure_total_GP__PY_R12M_as_of": {
 			      "Binding": {
-			        "ConceptualEntity": "TM_Financials_F"
+			        "ConceptualEntity": "FINANCIALS_F"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "TM_financials_F": {
+			        "financials_f": {
 			          "Target": {
-			            "Entity": "TM_financials_F"
+			            "Entity": "financials_f"
 			          }
 			        },
-			        "customers_d": {
+			        "entity__key_measure.total_GP__PY_R12M_as_of": {
 			          "Target": {
-			            "Entity": "customers_d"
+			            "Entity": "entity__key_measure.total_GP__PY_R12M_as_of"
 			          }
 			        }
 			      },
@@ -37701,32 +39395,19 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "TM_financials_F"
+			              "Role": "financials_f"
 			            },
 			            "Object": {
-			              "Role": "customers_d"
+			              "Role": "entity__key_measure.total_GP__PY_R12M_as_of"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TM_financials_F_have_customers_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "customers_d"
-			            },
-			            "Object": {
-			              "Role": "TM_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "customers_Ds_have_TM_financials_F"
+			          "ID": "financials_f_have_total_GP__PY_R12M_as_of"
 			        }
 			      ]
 			    },
-			    "SERVCONTRACTS_financials_F_has_divisions_d": {
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_customer_has_revenue": {
 			      "Binding": {
 			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
 			      },
@@ -37737,62 +39418,9 @@ cultureInfo en-US
 			            "Entity": "SERVCONTRACTS_financials_F"
 			          }
 			        },
-			        "divisions_d": {
+			        "entity__key_measure.customer_has_revenue": {
 			          "Target": {
-			            "Entity": "divisions_d"
-			          },
-			          "Nouns": [
-			            {
-			              "division": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "SERVCONTRACTS_financials_F"
-			            },
-			            "Object": {
-			              "Role": "divisions_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "SERVCONTRACTS_financials_F_have_divisions_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "divisions_d"
-			            },
-			            "Object": {
-			              "Role": "SERVCONTRACTS_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "divisions_Ds_have_SERVCONTRACTS_financials_F"
-			        }
-			      ]
-			    },
-			    "SERVCONTRACTS_financials_F_has_fycalendar_d": {
-			      "Binding": {
-			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "SERVCONTRACTS_financials_F": {
-			          "Target": {
-			            "Entity": "SERVCONTRACTS_financials_F"
-			          }
-			        },
-			        "fycalendar_d": {
-			          "Target": {
-			            "Entity": "fycalendar_d"
+			            "Entity": "entity__key_measure.customer_has_revenue"
 			          }
 			        }
 			      },
@@ -37803,42 +39431,29 @@ cultureInfo en-US
 			              "Role": "SERVCONTRACTS_financials_F"
 			            },
 			            "Object": {
-			              "Role": "fycalendar_d"
+			              "Role": "entity__key_measure.customer_has_revenue"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "SERVCONTRACTS_financials_F_have_fycalendar_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fycalendar_d"
-			            },
-			            "Object": {
-			              "Role": "SERVCONTRACTS_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fycalendar_Ds_have_SERVCONTRACTS_financials_F"
+			          "ID": "SERVCONTRACTS_financials_F_have_customer_has_revenue"
 			        }
 			      ]
 			    },
-			    "SERVCONTRACTS_financials_F_has_customers_d": {
+			    "financials_f_has_entity__key_measure_customer_has_revenue": {
 			      "Binding": {
-			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			        "ConceptualEntity": "FINANCIALS_F"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "SERVCONTRACTS_financials_F": {
+			        "financials_f": {
 			          "Target": {
-			            "Entity": "SERVCONTRACTS_financials_F"
+			            "Entity": "financials_f"
 			          }
 			        },
-			        "customers_d": {
+			        "entity__key_measure.customer_has_revenue": {
 			          "Target": {
-			            "Entity": "customers_d"
+			            "Entity": "entity__key_measure.customer_has_revenue"
 			          }
 			        }
 			      },
@@ -37846,45 +39461,32 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "SERVCONTRACTS_financials_F"
+			              "Role": "financials_f"
 			            },
 			            "Object": {
-			              "Role": "customers_d"
+			              "Role": "entity__key_measure.customer_has_revenue"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "SERVCONTRACTS_financials_F_have_customers_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "customers_d"
-			            },
-			            "Object": {
-			              "Role": "SERVCONTRACTS_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "customers_Ds_have_SERVCONTRACTS_financials_F"
+			          "ID": "financials_f_have_customer_has_revenue"
 			        }
 			      ]
 			    },
-			    "SERVCONTRACTS_financials_F_has_servcontracts_d": {
+			    "UI_Pl_structure_has_entity__key_measure_PL_net_profit_budget": {
 			      "Binding": {
-			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			        "ConceptualEntity": "UI_P&L Structure"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "SERVCONTRACTS_financials_F": {
+			        "UI_Pl_structure": {
 			          "Target": {
-			            "Entity": "SERVCONTRACTS_financials_F"
+			            "Entity": "UI_Pl_structure"
 			          }
 			        },
-			        "servcontracts_d": {
+			        "entity__key_measure.PL_net_profit_budget": {
 			          "Target": {
-			            "Entity": "servcontracts_d"
+			            "Entity": "entity__key_measure.PL_net_profit_budget"
 			          }
 			        }
 			      },
@@ -37892,45 +39494,32 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "SERVCONTRACTS_financials_F"
+			              "Role": "UI_Pl_structure"
 			            },
 			            "Object": {
-			              "Role": "servcontracts_d"
+			              "Role": "entity__key_measure.PL_net_profit_budget"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "SERVCONTRACTS_financials_F_have_servcontracts_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "servcontracts_d"
-			            },
-			            "Object": {
-			              "Role": "SERVCONTRACTS_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "servcontracts_Ds_have_SERVCONTRACTS_financials_F"
+			          "ID": "UI_Pl_structures_have_PL_net_profit_budget"
 			        }
 			      ]
 			    },
-			    "PROJECTS_financials_F_has_fycalendar_d": {
+			    "budget_f_has_entity__key_measure_PL_net_profit_budget": {
 			      "Binding": {
-			        "ConceptualEntity": "PROJECTS_Financials_F"
+			        "ConceptualEntity": "BUDGET_F"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "PROJECTS_financials_F": {
+			        "budget_f": {
 			          "Target": {
-			            "Entity": "PROJECTS_financials_F"
+			            "Entity": "budget_f"
 			          }
 			        },
-			        "fycalendar_d": {
+			        "entity__key_measure.PL_net_profit_budget": {
 			          "Target": {
-			            "Entity": "fycalendar_d"
+			            "Entity": "entity__key_measure.PL_net_profit_budget"
 			          }
 			        }
 			      },
@@ -37938,45 +39527,32 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "PROJECTS_financials_F"
+			              "Role": "budget_f"
 			            },
 			            "Object": {
-			              "Role": "fycalendar_d"
+			              "Role": "entity__key_measure.PL_net_profit_budget"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "PROJECTS_financials_F_have_fycalendar_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fycalendar_d"
-			            },
-			            "Object": {
-			              "Role": "PROJECTS_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fycalendar_Ds_have_PROJECTS_financials_F"
+			          "ID": "budget_f_have_PL_net_profit_budget"
 			        }
 			      ]
 			    },
-			    "PROJECTS_financials_F_has_customers_d": {
+			    "UI_Pl_structure_has_entity__key_measure_PL_net_profit_PY": {
 			      "Binding": {
-			        "ConceptualEntity": "PROJECTS_Financials_F"
+			        "ConceptualEntity": "UI_P&L Structure"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "PROJECTS_financials_F": {
+			        "UI_Pl_structure": {
 			          "Target": {
-			            "Entity": "PROJECTS_financials_F"
+			            "Entity": "UI_Pl_structure"
 			          }
 			        },
-			        "customers_d": {
+			        "entity__key_measure.PL_net_profit_PY": {
 			          "Target": {
-			            "Entity": "customers_d"
+			            "Entity": "entity__key_measure.PL_net_profit_PY"
 			          }
 			        }
 			      },
@@ -37984,114 +39560,19 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "PROJECTS_financials_F"
+			              "Role": "UI_Pl_structure"
 			            },
 			            "Object": {
-			              "Role": "customers_d"
+			              "Role": "entity__key_measure.PL_net_profit_PY"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "PROJECTS_financials_F_have_customers_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "customers_d"
-			            },
-			            "Object": {
-			              "Role": "PROJECTS_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "customers_Ds_have_PROJECTS_financials_F"
+			          "ID": "UI_Pl_structures_have_PL_net_profit_PY"
 			        }
 			      ]
 			    },
-			    "PROJECTS_financials_F_has_projects_d": {
-			      "Binding": {
-			        "ConceptualEntity": "PROJECTS_Financials_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "PROJECTS_financials_F": {
-			          "Target": {
-			            "Entity": "PROJECTS_financials_F"
-			          }
-			        },
-			        "projects_d": {
-			          "Target": {
-			            "Entity": "projects_d"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "PROJECTS_financials_F"
-			            },
-			            "Object": {
-			              "Role": "projects_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "PROJECTS_financials_F_have_projects_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "projects_d"
-			            },
-			            "Object": {
-			              "Role": "PROJECTS_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "projects_Ds_have_PROJECTS_financials_F"
-			        }
-			      ]
-			    },
-			    "servcontracts_costs_f_has_servcontracts_d": {
-			      "Binding": {
-			        "ConceptualEntity": "SERVCONTRACTS_COSTS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "servcontracts_costs_f": {
-			          "Target": {
-			            "Entity": "servcontracts_costs_f"
-			          }
-			        },
-			        "servcontracts_d": {
-			          "Target": {
-			            "Entity": "servcontracts_d"
-			          }
-			        }
-			      }
-			    },
-			    "servcontracts_revenue_f_has_servcontracts_d": {
-			      "Binding": {
-			        "ConceptualEntity": "SERVCONTRACTS_REVENUE_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "servcontracts_revenue_f": {
-			          "Target": {
-			            "Entity": "servcontracts_revenue_f"
-			          }
-			        },
-			        "servcontracts_d": {
-			          "Target": {
-			            "Entity": "servcontracts_d"
-			          }
-			        }
-			      }
-			    },
-			    "posting_data_f_has_divisions_d": {
+			    "posting_data_f_has_entity__key_measure_PL_net_profit_PY": {
 			      "Binding": {
 			        "ConceptualEntity": "POSTING_DATA_F"
 			      },
@@ -38102,119 +39583,231 @@ cultureInfo en-US
 			            "Entity": "posting_data_f"
 			          }
 			        },
-			        "divisions_d": {
+			        "entity__key_measure.PL_net_profit_PY": {
 			          "Target": {
-			            "Entity": "divisions_d"
+			            "Entity": "entity__key_measure.PL_net_profit_PY"
 			          }
 			        }
 			      }
 			    },
-			    "posting_data_f_has_fycalendar_d": {
+			    "UI_Pl_structure_has_entity__key_measure_PL_net_profit": {
 			      "Binding": {
-			        "ConceptualEntity": "POSTING_DATA_F"
+			        "ConceptualEntity": "UI_P&L Structure"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "posting_data_f": {
+			        "UI_Pl_structure": {
 			          "Target": {
-			            "Entity": "posting_data_f"
+			            "Entity": "UI_Pl_structure"
 			          }
 			        },
-			        "fycalendar_d": {
+			        "entity__key_measure.PL_net_profit": {
 			          "Target": {
-			            "Entity": "fycalendar_d"
+			            "Entity": "entity__key_measure.PL_net_profit"
 			          }
-			        }
-			      }
-			    },
-			    "posting_data_f_has_gl_acct_d": {
-			      "Binding": {
-			        "ConceptualEntity": "POSTING_DATA_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "posting_data_f": {
-			          "Target": {
-			            "Entity": "posting_data_f"
-			          }
-			        },
-			        "gl_acct_d": {
-			          "Target": {
-			            "Entity": "gl_acct_d"
-			          }
-			        }
-			      }
-			    },
-			    "gl_acct_d_has_gl_market_stream_d": {
-			      "Binding": {
-			        "ConceptualEntity": "GL_ACCT_D"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "gl_acct_d": {
-			          "Target": {
-			            "Entity": "gl_acct_d"
-			          }
-			        },
-			        "gl_market_stream_d": {
-			          "Target": {
-			            "Entity": "gl_market_stream_d"
-			          }
-			        }
-			      }
-			    },
-			    "projects_d_has_divisions_d": {
-			      "Binding": {
-			        "ConceptualEntity": "PROJECTS_D"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "projects_d": {
-			          "Target": {
-			            "Entity": "projects_d"
-			          }
-			        },
-			        "divisions_d": {
-			          "Target": {
-			            "Entity": "divisions_d"
-			          },
-			          "Nouns": [
-			            {
-			              "division": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
 			        }
 			      },
 			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "projects_d"
+			              "Role": "UI_Pl_structure"
 			            },
 			            "Object": {
-			              "Role": "divisions_d"
+			              "Role": "entity__key_measure.PL_net_profit"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "projects_Ds_have_divisions_Ds"
+			          "ID": "UI_Pl_structures_have_PL_net_profit"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_PL_net_profit": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
 			        },
+			        "entity__key_measure.PL_net_profit": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_net_profit"
+			          }
+			        }
+			      }
+			    },
+			    "UI_Pl_structure_has_entity__key_measure_PL_gross_profit_budget": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_P&L Structure"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Pl_structure": {
+			          "Target": {
+			            "Entity": "UI_Pl_structure"
+			          }
+			        },
+			        "entity__key_measure.PL_gross_profit_budget": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_gross_profit_budget"
+			          }
+			        }
+			      },
+			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "divisions_d"
+			              "Role": "UI_Pl_structure"
 			            },
 			            "Object": {
-			              "Role": "projects_d"
+			              "Role": "entity__key_measure.PL_gross_profit_budget"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "divisions_Ds_have_projects_Ds"
+			          "ID": "UI_Pl_structures_have_PL_gross_profit_budget"
 			        }
 			      ]
+			    },
+			    "budget_f_has_entity__key_measure_PL_gross_profit_budget": {
+			      "Binding": {
+			        "ConceptualEntity": "BUDGET_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "budget_f": {
+			          "Target": {
+			            "Entity": "budget_f"
+			          }
+			        },
+			        "entity__key_measure.PL_gross_profit_budget": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_gross_profit_budget"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "budget_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_gross_profit_budget"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "budget_f_have_PL_gross_profit_budget"
+			        }
+			      ]
+			    },
+			    "UI_Pl_structure_has_entity__key_measure_PL_gross_profit_PY": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_P&L Structure"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Pl_structure": {
+			          "Target": {
+			            "Entity": "UI_Pl_structure"
+			          }
+			        },
+			        "entity__key_measure.PL_gross_profit_PY": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_gross_profit_PY"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_Pl_structure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_gross_profit_PY"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_Pl_structures_have_PL_gross_profit_PY"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_PL_gross_profit_PY": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.PL_gross_profit_PY": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_gross_profit_PY"
+			          }
+			        }
+			      }
+			    },
+			    "UI_Pl_structure_has_entity__key_measure_PL_gross_profit": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_P&L Structure"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Pl_structure": {
+			          "Target": {
+			            "Entity": "UI_Pl_structure"
+			          }
+			        },
+			        "entity__key_measure.PL_gross_profit": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_gross_profit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_Pl_structure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_gross_profit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_Pl_structures_have_PL_gross_profit"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_PL_gross_profit": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.PL_gross_profit": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_gross_profit"
+			          }
+			        }
+			      }
 			    },
 			    "entity__key_measure_has_PL_divider": {
 			      "Binding": {
@@ -38726,39 +40319,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "budget_f_have_fiscal_months"
-			        }
-			      ]
-			    },
-			    "budget_f_has_fiscal_year": {
-			      "Binding": {
-			        "ConceptualEntity": "BUDGET_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "budget_f": {
-			          "Target": {
-			            "Entity": "budget_f"
-			          }
-			        },
-			        "budget_f.fiscal_year": {
-			          "Target": {
-			            "Entity": "budget_f.fiscal_year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "budget_f"
-			            },
-			            "Object": {
-			              "Role": "budget_f.fiscal_year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "budget_f_have_fiscal_years"
 			        }
 			      ]
 			    },
@@ -39995,39 +41555,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "nps_f_has_fiscal_year": {
-			      "Binding": {
-			        "ConceptualEntity": "NPS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "nps_f": {
-			          "Target": {
-			            "Entity": "nps_f"
-			          }
-			        },
-			        "nps_f.fiscal_year": {
-			          "Target": {
-			            "Entity": "nps_f.fiscal_year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "nps_f"
-			            },
-			            "Object": {
-			              "Role": "nps_f.fiscal_year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "nps_f_have_fiscal_years"
-			        }
-			      ]
-			    },
 			    "nps_f_has_entity_110_score": {
 			      "Binding": {
 			        "ConceptualEntity": "NPS_F"
@@ -41227,6 +42754,39 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "SERVCONTRACTS_financials_F_has_customer_key": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "SERVCONTRACTS_financials_F.customer_key": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F.customer_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "SERVCONTRACTS_financials_F.customer_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_customer_keys"
+			        }
+			      ]
+			    },
 			    "PROJECTS_financials_F_has_confirmed_chg_order_amt": {
 			      "Binding": {
 			        "ConceptualEntity": "PROJECTS_Financials_F"
@@ -41257,6 +42817,39 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "PROJECTS_financials_F_have_confirmed_chg_order_amts"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_customer_key": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "PROJECTS_financials_F.customer_key": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F.customer_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "PROJECTS_financials_F.customer_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_customer_keys"
 			        }
 			      ]
 			    },
@@ -42857,39 +44450,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "servcontracts_d_has_custnmbr_key": {
-			      "Binding": {
-			        "ConceptualEntity": "SERVCONTRACTS_D"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "servcontracts_d": {
-			          "Target": {
-			            "Entity": "servcontracts_d"
-			          }
-			        },
-			        "servcontracts_d.custnmbr_key": {
-			          "Target": {
-			            "Entity": "servcontracts_d.custnmbr_key"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "servcontracts_d"
-			            },
-			            "Object": {
-			              "Role": "servcontracts_d.custnmbr_key"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "servcontracts_Ds_have_custnmbr_keys"
-			        }
-			      ]
-			    },
 			    "servcontracts_d_has_agreement_key": {
 			      "Binding": {
 			        "ConceptualEntity": "SERVCONTRACTS_D"
@@ -43019,39 +44579,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "projects_Ds_have_inactive"
-			        }
-			      ]
-			    },
-			    "projects_d_has_customer_key": {
-			      "Binding": {
-			        "ConceptualEntity": "PROJECTS_D"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "projects_d": {
-			          "Target": {
-			            "Entity": "projects_d"
-			          }
-			        },
-			        "projects_d.customer_key": {
-			          "Target": {
-			            "Entity": "projects_d.customer_key"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "projects_d"
-			            },
-			            "Object": {
-			              "Role": "projects_d.customer_key"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "projects_Ds_have_customer_keys"
 			        }
 			      ]
 			    },
@@ -54390,6 +55917,819 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_projects_Ds_are_inactive_projects_Ds"
+			        }
+			      ]
+			    },
+			    "entity__key_measure_has_industrial_rank_context_string": {
+			      "Binding": {
+			        "ConceptualEntity": "_Key Measures"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "entity__key_measure": {
+			          "Target": {
+			            "Entity": "entity__key_measure"
+			          }
+			        },
+			        "entity__key_measure.industrial_rank_context_string": {
+			          "Target": {
+			            "Entity": "entity__key_measure.industrial_rank_context_string"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "entity__key_measure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.industrial_rank_context_string"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Phrasing_key_measures_have_industrial_rank_context_string"
+			        }
+			      ]
+			    },
+			    "projects_d_has_divisions_d": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "projects_d": {
+			          "Target": {
+			            "Entity": "projects_d"
+			          }
+			        },
+			        "divisions_d": {
+			          "Target": {
+			            "Entity": "divisions_d"
+			          },
+			          "Nouns": [
+			            {
+			              "division": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "projects_d"
+			            },
+			            "Object": {
+			              "Role": "divisions_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_Ds_have_divisions_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "divisions_d"
+			            },
+			            "Object": {
+			              "Role": "projects_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "divisions_Ds_have_projects_Ds"
+			        }
+			      ]
+			    },
+			    "projects_d_has_customers_d": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "projects_d": {
+			          "Target": {
+			            "Entity": "projects_d"
+			          }
+			        },
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "projects_d"
+			            },
+			            "Object": {
+			              "Role": "customers_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_Ds_have_customers_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "projects_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_projects_Ds"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_customers_d": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "customers_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_customers_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "servcontracts_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_servcontracts_Ds"
+			        }
+			      ]
+			    },
+			    "gl_acct_d_has_gl_market_stream_d": {
+			      "Binding": {
+			        "ConceptualEntity": "GL_ACCT_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "gl_acct_d": {
+			          "Target": {
+			            "Entity": "gl_acct_d"
+			          }
+			        },
+			        "gl_market_stream_d": {
+			          "Target": {
+			            "Entity": "gl_market_stream_d"
+			          }
+			        }
+			      }
+			    },
+			    "posting_data_f_has_gl_acct_d": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "gl_acct_d": {
+			          "Target": {
+			            "Entity": "gl_acct_d"
+			          }
+			        }
+			      }
+			    },
+			    "posting_data_f_has_fycalendar_d": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        }
+			      }
+			    },
+			    "posting_data_f_has_divisions_d": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "divisions_d": {
+			          "Target": {
+			            "Entity": "divisions_d"
+			          }
+			        }
+			      }
+			    },
+			    "servcontracts_revenue_f_has_servcontracts_d": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_REVENUE_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_revenue_f": {
+			          "Target": {
+			            "Entity": "servcontracts_revenue_f"
+			          }
+			        },
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        }
+			      }
+			    },
+			    "servcontracts_costs_f_has_servcontracts_d": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_COSTS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_costs_f": {
+			          "Target": {
+			            "Entity": "servcontracts_costs_f"
+			          }
+			        },
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        }
+			      }
+			    },
+			    "PROJECTS_financials_F_has_projects_d": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "projects_d": {
+			          "Target": {
+			            "Entity": "projects_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "projects_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_projects_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "projects_d"
+			            },
+			            "Object": {
+			              "Role": "PROJECTS_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_Ds_have_PROJECTS_financials_F"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_fycalendar_d": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_fycalendar_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "PROJECTS_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_PROJECTS_financials_F"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_servcontracts_d": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "servcontracts_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_servcontracts_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_SERVCONTRACTS_financials_F"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_fycalendar_d": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_fycalendar_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_SERVCONTRACTS_financials_F"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_divisions_d": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "divisions_d": {
+			          "Target": {
+			            "Entity": "divisions_d"
+			          },
+			          "Nouns": [
+			            {
+			              "division": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "divisions_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_divisions_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "divisions_d"
+			            },
+			            "Object": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "divisions_Ds_have_SERVCONTRACTS_financials_F"
+			        }
+			      ]
+			    },
+			    "TM_financials_F_has_customers_d": {
+			      "Binding": {
+			        "ConceptualEntity": "TM_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "TM_financials_F": {
+			          "Target": {
+			            "Entity": "TM_financials_F"
+			          }
+			        },
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "TM_financials_F"
+			            },
+			            "Object": {
+			              "Role": "customers_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "TM_financials_F_have_customers_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "TM_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_TM_financials_F"
+			        }
+			      ]
+			    },
+			    "TM_financials_F_has_fycalendar_d": {
+			      "Binding": {
+			        "ConceptualEntity": "TM_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "TM_financials_F": {
+			          "Target": {
+			            "Entity": "TM_financials_F"
+			          }
+			        },
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "TM_financials_F"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "TM_financials_F_have_fycalendar_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "TM_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_TM_financials_F"
+			        }
+			      ]
+			    },
+			    "TM_financials_F_has_divisions_d": {
+			      "Binding": {
+			        "ConceptualEntity": "TM_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "TM_financials_F": {
+			          "Target": {
+			            "Entity": "TM_financials_F"
+			          }
+			        },
+			        "divisions_d": {
+			          "Target": {
+			            "Entity": "divisions_d"
+			          },
+			          "Nouns": [
+			            {
+			              "division": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "TM_financials_F"
+			            },
+			            "Object": {
+			              "Role": "divisions_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "TM_financials_F_have_divisions_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "divisions_d"
+			            },
+			            "Object": {
+			              "Role": "TM_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "divisions_Ds_have_TM_financials_F"
+			        }
+			      ]
+			    },
+			    "financials_f_has_customers_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "customers_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_customers_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_financials_f"
+			        }
+			      ]
+			    },
+			    "financials_f_has_fycalendar_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_fycalendar_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_financials_f"
+			        }
+			      ]
+			    },
+			    "financials_f_has_divisions_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "divisions_d": {
+			          "Target": {
+			            "Entity": "divisions_d"
+			          },
+			          "Nouns": [
+			            {
+			              "division": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "divisions_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_divisions_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "divisions_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "divisions_Ds_have_financials_f"
 			        }
 			      ]
 			    },

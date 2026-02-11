@@ -6,6 +6,7 @@ table UI_CustomerProfileRows
 		lineageTag: dece1b6d-846f-4e45-b27b-0bb3ed9e3b0e
 		isNameInferred
 		sourceColumn: [Metric Name]
+		sortByColumn: 'Row ID'
 
 	column 'Row ID'
 		lineageTag: 015fc278-0c6a-44b0-8efc-1868d1340e0e
@@ -14,5 +15,21 @@ table UI_CustomerProfileRows
 
 	partition UI_CustomerProfileRows = calculated
 		mode: import
-		source = DATATABLE ( "Metric Name", STRING, "Row ID", INTEGER, { { "Lifecycle Status", 1 }, { "Last Billing Date", 2 }, { "Active Contracts", 3 }, { "Active Projects", 4 }, { "Lifetime Revenue", 5 }, { "Lifetime GP", 6 }, { "Lifetime GP %", 7 }, { "Revenue Rank", 8 } } )
+		source =
+				DATATABLE (
+				    "Metric Name", STRING,
+				    "Row ID", INTEGER,
+				    {
+				        { "Lifecycle Status", 1 },
+				        { "Industrial Group", 2 },
+				        { "Last Billing Date", 3 },
+				        { "Active Contracts", 4 },
+				        { "Active Projects", 5 },
+				        { "Lifetime Revenue", 6 },
+				        { "Lifetime GP", 7 },
+				        { "Lifetime GP %", 8 },
+				        { "Revenue Rank", 9 },
+				        { "Industrial Rank", 10 }
+				    }
+				)
 

@@ -285,9 +285,12 @@ table CUSTOMERS_D
 				    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
 				    #"Capitalized Each Word" = Table.TransformColumns(ProperCase,{{"Customer Name", Text.Proper, type text}}),
 				    #"Merged Queries" = Table.NestedJoin(#"Capitalized Each Word", {"Customer Key"}, CUSTOMER_SEGMENTATION, {"Customer Key"}, "CUSTOMER_SEGMENTATION", JoinKind.LeftOuter),
-				    #"Expanded CUSTOMER_SEGMENTATION" = Table.ExpandTableColumn(#"Merged Queries", "CUSTOMER_SEGMENTATION", {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"}, {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"})
+				    #"Expanded CUSTOMER_SEGMENTATION" = Table.ExpandTableColumn(#"Merged Queries", "CUSTOMER_SEGMENTATION", {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"}, {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Expanded CUSTOMER_SEGMENTATION",null,each [Customer Name],Replacer.ReplaceValue,{"Master Customer Name"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"Master Customer Name", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Master Customer Name] <> ""))
 				in
-				    #"Expanded CUSTOMER_SEGMENTATION"
+				    #"Filtered Rows"
 				```
 
 	annotation PBI_NavigationStepName = Navigation

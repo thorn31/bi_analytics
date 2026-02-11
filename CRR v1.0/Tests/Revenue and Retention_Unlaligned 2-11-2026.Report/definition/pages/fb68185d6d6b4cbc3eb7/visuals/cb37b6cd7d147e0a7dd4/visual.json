@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "cb37b6cd7d147e0a7dd4",
+  "position": {
+    "x": 439.55631399317406,
+    "y": 669.93174061433444,
+    "z": 14000,
+    "height": 389.79522184300333,
+    "width": 720.61433447098955,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FINANCIALS_F"
+                    }
+                  },
+                  "Property": "Stream"
+                }
+              },
+              "queryRef": "FINANCIALS_F.Stream",
+              "nativeQueryRef": "Stream",
+              "active": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

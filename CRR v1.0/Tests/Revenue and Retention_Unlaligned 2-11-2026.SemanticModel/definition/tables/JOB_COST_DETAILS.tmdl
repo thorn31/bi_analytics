@@ -1,0 +1,65 @@
+table JOB_COST_DETAILS
+	lineageTag: 3076e546-82f4-4886-b40d-064399336d2f
+
+	column JOB_NUMBER
+		dataType: string
+		lineageTag: 8aa3c973-ef63-4f37-b009-ffb3ef1c29b9
+		summarizeBy: none
+		sourceColumn: JOB_NUMBER
+
+	column JOB_KEY
+		dataType: string
+		lineageTag: 6f908e12-6efb-4436-a82b-2bd65a3768b2
+		summarizeBy: none
+		sourceColumn: JOB_KEY
+
+	column COST_CODE
+		dataType: string
+		lineageTag: 95599ce2-484c-40c2-8b44-07835245fd0e
+		summarizeBy: none
+		sourceColumn: COST_CODE
+
+	column TRAN_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f2fcdc54-8e48-45b1-8fbc-4ee728287269
+		summarizeBy: none
+		sourceColumn: TRAN_DATE
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column COST_AMT
+		dataType: double
+		lineageTag: e2efd49d-3772-45a4-9cd1-217b5a4df7e2
+		summarizeBy: sum
+		sourceColumn: COST_AMT
+
+	column SOURCE
+		dataType: string
+		lineageTag: 0e7d1b05-c2ee-4c82-b9c8-aa476cdd6b01
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+	column 'Job_Cost Code'
+		dataType: string
+		lineageTag: 25e3431e-f365-42c2-bce4-fa1375190696
+		summarizeBy: none
+		sourceColumn: Job_Cost Code
+
+	partition JOB_COST_DETAILS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_CLEAN_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
+				    JOB_COST_DETAILS_View = DW_CLEAN_Schema{[Name="JOB_COST_DETAILS",Kind="View"]}[Data],
+				    Filtered = Table.SelectRows(JOB_COST_DETAILS_View, each [SOURCE] = "MECH_GP"),
+				    Trimmed = Table.TransformColumns(Filtered,{{"JOB_NUMBER", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
+				    Cleaned = Table.TransformColumns(Trimmed,{{"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
+				    AddedJobCostCode = Table.AddColumn(Cleaned, "Job_Cost Code", each [JOB_NUMBER] & ":" & [COST_CODE], type text),
+				    Selected = Table.SelectColumns(AddedJobCostCode,{"JOB_NUMBER","JOB_KEY","COST_CODE","TRAN_DATE","COST_AMT","SOURCE","Job_Cost Code"}),
+				    Typed = Table.TransformColumnTypes(Selected,{{"JOB_NUMBER", type text},{"JOB_KEY", type text},{"COST_CODE", type text},{"TRAN_DATE", type date},{"COST_AMT", type number},{"SOURCE", type text},{"Job_Cost Code", type text}})
+				in
+				    Typed
+
