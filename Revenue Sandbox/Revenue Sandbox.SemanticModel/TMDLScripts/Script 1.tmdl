@@ -1,0 +1,4442 @@
+createOrReplace
+
+	model Model
+		culture: en-US
+		defaultPowerBIDataSourceVersion: powerBI_V3
+		sourceQueryCulture: en-US
+		dataAccessOptions
+			legacyRedirects
+			returnErrorValuesAsNull
+
+		table CUSTOMERS_D
+			lineageTag: eb750d85-e1ca-4d32-a33b-be93d9f36fa9
+
+			column 'Customer Number'
+				dataType: string
+				lineageTag: 2a4c560e-8fef-4996-b122-fe179992677a
+				summarizeBy: none
+				sourceColumn: Customer Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Name'
+				dataType: string
+				lineageTag: caa672b3-bc44-4b5c-9011-2afcae6e5a81
+				summarizeBy: none
+				sourceColumn: Customer Name
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Class'
+				dataType: string
+				lineageTag: 450cbf7f-30b8-474d-9d87-5a87a03ae8f1
+				summarizeBy: none
+				sourceColumn: Customer Class
+
+				annotation SummarizationSetBy = Automatic
+
+			column Address1
+				dataType: string
+				lineageTag: fa6c80b3-14ee-446d-a89c-5594f31be8a6
+				summarizeBy: none
+				sourceColumn: Address1
+
+				annotation SummarizationSetBy = Automatic
+
+			column Address2
+				dataType: string
+				lineageTag: 7254c573-5eff-43fd-89a6-2eca393837fe
+				summarizeBy: none
+				sourceColumn: Address2
+
+				annotation SummarizationSetBy = Automatic
+
+			column Country
+				dataType: string
+				lineageTag: 159b3f4e-70ad-494d-9dd3-426e7d702224
+				summarizeBy: none
+				sourceColumn: Country
+
+				annotation SummarizationSetBy = Automatic
+
+			column City
+				dataType: string
+				lineageTag: 67a5a3d6-5c41-4bbf-a32a-28f2885a7c0c
+				summarizeBy: none
+				sourceColumn: City
+
+				annotation SummarizationSetBy = Automatic
+
+			column State
+				dataType: string
+				lineageTag: 7901c611-8fa8-479c-8509-62a5426c2b0b
+				summarizeBy: none
+				sourceColumn: State
+
+				annotation SummarizationSetBy = Automatic
+
+			column Zip
+				dataType: string
+				lineageTag: c96a5b24-42c9-4788-ad97-4d859ce32d12
+				summarizeBy: none
+				sourceColumn: Zip
+
+				annotation SummarizationSetBy = Automatic
+
+			column Phone1
+				dataType: string
+				lineageTag: 50268a60-4bbc-4f59-8129-a84d2382d0d1
+				summarizeBy: none
+				sourceColumn: Phone1
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Payment Term'
+				dataType: string
+				lineageTag: b1f79cd0-2c98-47b3-9b44-8cd32f4bd38c
+				summarizeBy: none
+				sourceColumn: Payment Term
+
+				annotation SummarizationSetBy = Automatic
+
+			column Created
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 095da605-9a9b-4ac8-a629-6abba1611082
+				summarizeBy: none
+				sourceColumn: Created
+
+				annotation SummarizationSetBy = Automatic
+
+			column Updated
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 82d3e3a8-d323-40cc-8b2b-99442561be11
+				summarizeBy: none
+				sourceColumn: Updated
+
+				annotation SummarizationSetBy = Automatic
+
+			column Source
+				dataType: string
+				lineageTag: 98f8e7eb-6e0b-4c0b-8858-1d6389b799cc
+				summarizeBy: none
+				sourceColumn: Source
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Quadra Source'
+				dataType: string
+				lineageTag: d8cd334a-3baa-4b82-89cc-d3a50cfec29a
+				summarizeBy: none
+				sourceColumn: Quadra Source
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 56d0b2ff-4193-40ca-8a8f-1bbe4ddefd2d
+				summarizeBy: none
+				sourceColumn: Customer Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Quadra Customer Key'
+				dataType: string
+				lineageTag: 381a9086-e03e-44ee-8327-1f3a0c95b11a
+				summarizeBy: none
+				sourceColumn: Quadra Customer Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Master Customer Name'
+				dataType: string
+				lineageTag: f44cf83d-3da3-47a4-a7f2-39855e69270f
+				summarizeBy: none
+				sourceColumn: Master Customer Name
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Master Customer Name Canonical'
+				dataType: string
+				lineageTag: 7b4ffdb9-82ed-4d94-8497-51829fd2aa63
+				summarizeBy: none
+				sourceColumn: Master Customer Name Canonical
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Industrial Group'
+				dataType: string
+				lineageTag: 69dac826-a73c-42d9-a566-9608cef8687d
+				summarizeBy: none
+				sourceColumn: Industrial Group
+
+				annotation SummarizationSetBy = Automatic
+
+			column NAICS
+				dataType: int64
+				formatString: 0
+				lineageTag: d999e2a4-6860-40ea-a12c-8d18457124a4
+				summarizeBy: sum
+				sourceColumn: NAICS
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Raw'
+				dataType: string
+				lineageTag: e40a9df8-7fa2-4157-ab63-6f6d42ef47b9
+				summarizeBy: none
+				sourceColumn: NAICS Raw
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Sector Code'
+				dataType: string
+				lineageTag: 0ffb7b64-4f59-4f07-87b7-ac695318c016
+				summarizeBy: none
+				sourceColumn: NAICS Sector Code
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Sector Title'
+				dataType: string
+				lineageTag: 929e7716-961e-4e36-8a41-9993dbfe0f81
+				summarizeBy: none
+				sourceColumn: NAICS Sector Title
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Subsector Code'
+				dataType: int64
+				formatString: 0
+				lineageTag: b9b989f4-bb50-489f-b299-ec0a13ca5350
+				summarizeBy: count
+				sourceColumn: NAICS Subsector Code
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Subsector Title'
+				dataType: string
+				lineageTag: f297f38f-d551-441d-a4d8-24ca2d9f7380
+				summarizeBy: none
+				sourceColumn: NAICS Subsector Title
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Industry Group Code'
+				dataType: int64
+				formatString: 0
+				lineageTag: 105b74d7-f1c8-4ae5-b51b-4a1d1a32c967
+				summarizeBy: count
+				sourceColumn: NAICS Industry Group Code
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Industry Group Title'
+				dataType: string
+				lineageTag: d510c89e-c14a-421d-8fea-221e9ae1e237
+				summarizeBy: none
+				sourceColumn: NAICS Industry Group Title
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Industry Code'
+				dataType: int64
+				formatString: 0
+				lineageTag: db9aadae-8386-41c9-8294-9784d8a3392c
+				summarizeBy: count
+				sourceColumn: NAICS Industry Code
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS Industry Title'
+				dataType: string
+				lineageTag: 82ed14b3-a67c-4b2b-9ecd-9c205e73d921
+				summarizeBy: none
+				sourceColumn: NAICS Industry Title
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS National Industry Code'
+				dataType: int64
+				formatString: 0
+				lineageTag: 9afd91fb-333f-4f70-b737-814719aa8cd1
+				summarizeBy: count
+				sourceColumn: NAICS National Industry Code
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'NAICS National Industry Title'
+				dataType: string
+				lineageTag: a2f36ebd-3e3d-42bd-aad7-dbb055a9723a
+				summarizeBy: none
+				sourceColumn: NAICS National Industry Title
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Logo URL (Final)'
+				dataType: string
+				lineageTag: 605965d0-c7ee-4054-bd95-f0e6e06cef7d
+				summarizeBy: none
+				sourceColumn: Logo URL (Final)
+
+				annotation SummarizationSetBy = Automatic
+
+			partition CUSTOMERS_D = m
+				mode: import
+				queryGroup: DIM
+				source = ```
+						let
+						    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+						    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+						    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+						    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CUSTOMERS_D",Kind="Table"]}[Data], 
+						    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+						    #"Capitalized Each Word" = Table.TransformColumns(ProperCase,{{"Customer Name", Text.Proper, type text}}),
+						    #"Merged Queries" = Table.NestedJoin(#"Capitalized Each Word", {"Customer Key"}, CUSTOMER_SEGMENTATION, {"Customer Key"}, "CUSTOMER_SEGMENTATION", JoinKind.LeftOuter),
+						    #"Expanded CUSTOMER_SEGMENTATION" = Table.ExpandTableColumn(#"Merged Queries", "CUSTOMER_SEGMENTATION", {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"}, {"Master Customer Name", "Master Customer Name Canonical", "Industrial Group", "NAICS", "NAICS Raw", "NAICS Sector Code", "NAICS Sector Title", "NAICS Subsector Code", "NAICS Subsector Title", "NAICS Industry Group Code", "NAICS Industry Group Title", "NAICS Industry Code", "NAICS Industry Title", "NAICS National Industry Code", "NAICS National Industry Title", "Logo URL (Final)"})
+						in
+						    #"Expanded CUSTOMER_SEGMENTATION"
+						```
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table FYCALENDAR_D
+			lineageTag: d1be4ef6-3b8b-4ac2-9dda-4d2aa5498064
+			dataCategory: Time
+
+			column Date
+				dataType: dateTime
+				isKey
+				formatString: Long Date
+				lineageTag: 05f795c0-ff26-46f5-8c84-a15fbb07aef7
+				summarizeBy: none
+				sourceColumn: Date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 6ff994e3-d271-46b6-bbac-7d04ce653ff6
+				summarizeBy: sum
+				sourceColumn: Fiscal Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Label'
+				dataType: string
+				lineageTag: 6b5c1783-08cf-4846-80ea-91f2938d9af2
+				summarizeBy: none
+				sourceColumn: Fiscal Year Label
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Default'
+				dataType: string
+				lineageTag: cbe1faf0-4cd2-4fdd-afe9-8da236a39f0f
+				summarizeBy: none
+				sourceColumn: Fiscal Year Default
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Start Of Year'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: b80d3381-35a0-454c-945f-5e9202bcd1b0
+				summarizeBy: none
+				sourceColumn: Fiscal Start Of Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal End Of Year'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: d76af377-fa96-49cd-9022-6318e9cb43f7
+				summarizeBy: none
+				sourceColumn: Fiscal End Of Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal Day Of Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 694fb482-b6ab-47a0-aaba-2b933f409cc5
+				summarizeBy: sum
+				sourceColumn: Fiscal Day Of Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Week Of Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 541117c0-b603-41b8-af96-d12899765cf3
+				summarizeBy: sum
+				sourceColumn: Fiscal Week Of Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Week Label'
+				dataType: string
+				lineageTag: d8b94c45-26de-40bf-aadf-6f5530943db1
+				summarizeBy: none
+				sourceColumn: Fiscal Week Label
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Offset'
+				dataType: int64
+				formatString: 0
+				lineageTag: 90fa9b49-bafa-4e04-a8be-6a5c62457f99
+				summarizeBy: sum
+				sourceColumn: Fiscal Year Offset
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month'
+				dataType: int64
+				formatString: 0
+				lineageTag: f6fc7f2c-c456-4f3b-a803-d5986034135d
+				summarizeBy: sum
+				sourceColumn: Fiscal Month
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Default'
+				dataType: string
+				lineageTag: 12def2a8-01dc-4164-aa75-80c33c8d99b2
+				summarizeBy: none
+				sourceColumn: Fiscal Month Default
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: 5371a100-3de3-4eb8-a3a5-a1c65bce8232
+				summarizeBy: sum
+				sourceColumn: Fiscal Quarter
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Quarter Label'
+				dataType: string
+				lineageTag: 02e70ae3-9dd6-45ff-a044-94675300b0a3
+				summarizeBy: none
+				sourceColumn: Fiscal Quarter Label
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Of Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: bc653b01-b91a-43f3-8f87-f7cf3b4e7f5c
+				summarizeBy: sum
+				sourceColumn: Fiscal Month Of Quarter
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year Quarter Label'
+				dataType: string
+				lineageTag: fa05485f-45a6-4aea-b0f7-0872cade3a39
+				summarizeBy: none
+				sourceColumn: Fiscal Year Quarter Label
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Start Of Quarter'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 74b2c4ae-a628-4131-baf8-6f7fc8442b58
+				summarizeBy: none
+				sourceColumn: Fiscal Start Of Quarter
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal End Of Quarter'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 9c79a533-f695-4019-bcb7-bfb5b7d1dc17
+				summarizeBy: none
+				sourceColumn: Fiscal End Of Quarter
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Fiscal Quarter Offset'
+				dataType: int64
+				formatString: 0
+				lineageTag: 645afbec-8d13-4253-ae43-3e5464820ecd
+				summarizeBy: sum
+				sourceColumn: Fiscal Quarter Offset
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Quarter Month Label'
+				dataType: string
+				lineageTag: 696f426b-f6c5-4e89-a178-b3fd71434052
+				summarizeBy: none
+				sourceColumn: Fiscal Quarter Month Label
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Day Of Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: cf9387c6-db20-4dda-9d09-a9a7b0932c58
+				summarizeBy: sum
+				sourceColumn: Fiscal Day Of Quarter
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Current Month'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 21a73bc0-6ae2-4bbd-a129-2f5a0f77f93a
+				summarizeBy: none
+				sourceColumn: Is Current Month
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Current Calendar Year'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 327a0bf5-3523-48c5-b33e-b0d408e71b62
+				summarizeBy: none
+				sourceColumn: Is Current Calendar Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Current Fiscal Year'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 899bdcfa-134c-4b23-abe7-a1cff3f9d999
+				summarizeBy: none
+				sourceColumn: Is Current Fiscal Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Week Start'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: b5b1d75a-1a8c-468a-aa9f-d318d37bf87e
+				summarizeBy: none
+				sourceColumn: Week Start
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Is Current Week'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: d48eea9b-ba1a-418f-934c-7e5dbf9219fc
+				summarizeBy: none
+				sourceColumn: Is Current Week
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Previous Month'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: d1312d9b-2a98-4348-be1d-9870b35c2529
+				summarizeBy: none
+				sourceColumn: Is Previous Month
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Previous Fiscal Year'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 73c8a462-60b0-44fd-92b0-e9325ae74c40
+				summarizeBy: none
+				sourceColumn: Is Previous Fiscal Year
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Previous Week'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 455ef902-7205-4042-abd6-036f6d352ded
+				summarizeBy: none
+				sourceColumn: Is Previous Week
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Name'
+				dataType: string
+				lineageTag: ff44adbd-e8ae-4082-bc18-467866d7e26c
+				summarizeBy: none
+				sourceColumn: Fiscal Month Name
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Month Name Long'
+				dataType: string
+				lineageTag: d12b31ae-64b9-425b-8a9f-779a1b9cc0e2
+				summarizeBy: none
+				sourceColumn: Fiscal Month Name Long
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Week Name'
+				dataType: string
+				lineageTag: 7147260c-6837-4bec-9fb6-90af331ddeae
+				summarizeBy: none
+				sourceColumn: Fiscal Week Name
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Month Name'
+				dataType: string
+				lineageTag: 0cb5d95d-cd2c-452b-b394-a9404709acf5
+				summarizeBy: none
+				sourceColumn: Month Name
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'MMM Label'
+				dataType: string
+				lineageTag: 63d09c0e-aa74-41ca-94d0-f107417a3323
+				summarizeBy: none
+				sourceColumn: MMM Label
+				sortByColumn: 'Fiscal Month'
+
+				changedProperty = IsHidden
+
+				changedProperty = SortByColumn
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Completed Month'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: e743b36e-c843-4899-8ec9-10bf1018ba03
+				summarizeBy: none
+				sourceColumn: Is Completed Month
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Is Completed Quarter'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: b8d937db-3ed5-4603-b844-c43a917f057d
+				summarizeBy: none
+				sourceColumn: Is Completed Quarter
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			partition FYCALENDAR_D = m
+				mode: import
+				queryGroup: DIM
+				source = ```
+						let
+						    // The FiscalYearEnd determines in which month the fiscal year ends. If necessary you can adjust it. 
+						    FiscalYearEnd = 9,
+						
+						    // Today is used throughout the fiscal logic and for determining current period flags
+						    Today = Date.From(DateTime.LocalNow()),
+						
+						    // Sets the start date for your calendar
+						    StartDate = #date(2000, 1, 1),
+						
+						    // The calendar runs until the end of the current year. Change this if you need your calendar to run to another date. 
+						    EndDate = Date.AddYears(Date.EndOfYear(Today),1),
+						
+						    // The current Fiscal Year value is a helper value for other calculations
+						    CurrentFiscalYear = Date.Year( Date.AddMonths( Today, 12 - FiscalYearEnd ) ),
+						
+						    ListOfDates =
+						        List.Dates(
+						            StartDate,
+						            Duration.Days(EndDate - StartDate) + 1,
+						            #duration(1, 0, 0, 0)
+						        ),
+						
+						    MyDateTable =
+						        Table.FromList(
+						            ListOfDates,
+						            Splitter.SplitByNothing(),
+						            type table[Date = date],
+						            null,
+						            ExtraValues.Error
+						        ),
+						
+						    Add_FiscalYearNumber =
+						        Table.AddColumn(
+						            MyDateTable,
+						            "FiscalYear",
+						            each Date.Year(Date.AddMonths([Date], 12 - FiscalYearEnd)),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalYearLabel =
+						        Table.AddColumn(
+						            Add_FiscalYearNumber,
+						            "FiscalYearLabel",
+						            each "FY" & Text.From([FiscalYear]),
+						            Text.Type
+						        ),
+						
+						    // Allows you to select the 'Current' or 'Previous' year dynamically. 
+						    Add_FiscalYearDefault =
+						        Table.AddColumn(
+						            Add_FiscalYearLabel,
+						            "FiscalYearDefault",
+						            each
+						                if [FiscalYear] = CurrentFiscalYear then "Current"
+						                else if [FiscalYear] = (CurrentFiscalYear - 1) then "Previous"
+						                else "FY" & Text.From([FiscalYear]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalStartOfYear =
+						        Table.AddColumn(
+						            Add_FiscalYearDefault,
+						            "FiscalStartOfYear",
+						            each [
+						                Offset = if FiscalYearEnd = 12 then 0 else FiscalYearEnd - 12,
+						                FiscalStartOfYear = Date.AddMonths(Date.StartOfYear([Date]), Offset)
+						            ][FiscalStartOfYear],
+						            Date.Type
+						        ),
+						
+						    Add_FiscalEndOfYear =
+						        Table.AddColumn(
+						            Add_FiscalStartOfYear,
+						            "FiscalEndOfYear",
+						            each Date.AddMonths(Date.EndOfYear([Date]), FiscalYearEnd - 12),
+						            Date.Type
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Fiscal Day & Week of Fiscal Year
+						    // -----------------------------------------------------
+						
+						    Add_FiscalDayOfYear =
+						        Table.AddColumn(
+						            Add_FiscalEndOfYear,
+						            "FiscalDayOfYear",
+						            each Number.From([Date] - [FiscalStartOfYear]) + 1,
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalWeekOfYear =
+						        Table.AddColumn(
+						            Add_FiscalDayOfYear,
+						            "FiscalWeekOfYear",
+						            each Number.RoundUp([FiscalDayOfYear] / 7),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalWeekLabel =
+						        Table.AddColumn(
+						            Add_FiscalWeekOfYear,
+						            "FiscalWeekLabel",
+						            each
+						                "FY" &
+						                Text.From([FiscalYear]) &
+						                " W" &
+						                Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
+						            Text.Type
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Continue existing logic
+						    // -----------------------------------------------------
+						
+						    // A year Offset value indicates the relative position of the current year (based on today's date)
+						    Add_FiscalYearOffset =
+						        Table.AddColumn(
+						            Add_FiscalWeekLabel,
+						            "FiscalYearOffset",
+						            each ([FiscalYear] - CurrentFiscalYear),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalMonthNumber =
+						        Table.AddColumn(
+						            Add_FiscalYearOffset,
+						            "FiscalMonth",
+						            each Date.Month(Date.AddMonths([Date], -FiscalYearEnd)),
+						            Int64.Type
+						        ),
+						
+						    // Allows you to select the 'Current' or 'Previous' month dynamically.
+						    Add_FiscalMonthDefault =
+						        Table.AddColumn(
+						            Add_FiscalMonthNumber,
+						            "FiscalMonthDefault",
+						            each
+						                if Date.IsInCurrentMonth([Date]) then "Current"
+						                else if Date.IsInPreviousMonth([Date]) then "Previous"
+						                else Text.From([FiscalMonth]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalQuarterNumber =
+						        Table.AddColumn(
+						            Add_FiscalMonthDefault,
+						            "FiscalQuarter",
+						            each Number.RoundUp([FiscalMonth] / 3),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalQuarterLabel =
+						        Table.AddColumn(
+						            Add_FiscalQuarterNumber,
+						            "FiscalQuarterLabel",
+						            each "FQ" & Text.From([FiscalQuarter]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalMonthOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalQuarterLabel,
+						            "FiscalMonthOfQuarter",
+						            each [FiscalMonth] - 3 * ([FiscalQuarter] - 1),
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalYearQuarterLabel =
+						        Table.AddColumn(
+						            Add_FiscalMonthOfQuarter,
+						            "FiscalYearQuarterLabel",
+						            each "FY" & Text.From([FiscalYear]) & " Q" & Text.From([FiscalQuarter]),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalStartOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalYearQuarterLabel,
+						            "FiscalStartOfQuarter",
+						            each Date.StartOfMonth(Date.AddMonths([Date], 1 - [FiscalMonthOfQuarter])),
+						            Date.Type
+						        ),
+						
+						    Add_FiscalEndOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalStartOfQuarter,
+						            "FiscalEndOfQuarter",
+						            each Date.EndOfMonth(Date.AddMonths([Date], 3 - [FiscalMonthOfQuarter])),
+						            Date.Type
+						        ),
+						
+						    // Quarter offset logic
+						    Add_FiscalQuarterOffset =
+						        Table.AddColumn(
+						            Add_FiscalEndOfQuarter,
+						            "FiscalQuarterOffset",
+						            each [
+						                CurrentFiscalMonth = Date.Month(Date.AddMonths(Today, -FiscalYearEnd)),
+						                CurrentFiscalQuarter = Number.RoundUp(CurrentFiscalMonth / 3),
+						                FiscalQuarterOffset =
+						                    (([FiscalYear] - CurrentFiscalYear) * 4)
+						                        + ([FiscalQuarter] - CurrentFiscalQuarter)
+						            ][FiscalQuarterOffset],
+						            Int64.Type
+						        ),
+						
+						    Add_FiscalQuarterMonthLabel =
+						        Table.AddColumn(
+						            Add_FiscalQuarterOffset,
+						            "FiscalQuarterMonthLabel",
+						            each
+						                "FQ"
+						                    & Text.From([FiscalQuarter])
+						                    & ": "
+						                    & Date.ToText([FiscalStartOfQuarter], "MMM yyyy")
+						                    & " - "
+						                    & Date.ToText([FiscalEndOfQuarter], "MMM yyyy"),
+						            Text.Type
+						        ),
+						
+						    Add_FiscalDayOfQuarter =
+						        Table.AddColumn(
+						            Add_FiscalQuarterMonthLabel,
+						            "FiscalDayOfQuarter",
+						            each Number.From([Date] - [FiscalStartOfQuarter]) + 1,
+						            Int64.Type
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Current-period indicators
+						    // -----------------------------------------------------
+						
+						    Add_IsCurrentMonth =
+						        Table.AddColumn(
+						            Add_FiscalDayOfQuarter,
+						            "IsCurrentMonth",
+						            each Date.Year([Date]) = Date.Year(Today)
+						                and Date.Month([Date]) = Date.Month(Today),
+						            type logical
+						        ),
+						
+						    Add_IsCurrentCalendarYear =
+						        Table.AddColumn(
+						            Add_IsCurrentMonth,
+						            "IsCurrentCalendarYear",
+						            each Date.Year([Date]) = Date.Year(Today),
+						            type logical
+						        ),
+						
+						    Add_IsCurrentFiscalYear =
+						        Table.AddColumn(
+						            Add_IsCurrentCalendarYear,
+						            "IsCurrentFiscalYear",
+						            each [FiscalYear] = CurrentFiscalYear,
+						            type logical
+						        ),
+						
+						    CurrentWeekStart =
+						        Date.AddDays(Today, 1 - Date.DayOfWeek(Today, Day.Monday)),
+						
+						    Add_WeekStart =
+						        Table.AddColumn(
+						            Add_IsCurrentFiscalYear,
+						            "WeekStart",
+						            each Date.AddDays([Date], 1 - Date.DayOfWeek([Date], Day.Monday)),
+						            type date
+						        ),
+						
+						    Add_IsCurrentWeek =
+						        Table.AddColumn(
+						            Add_WeekStart,
+						            "IsCurrentWeek",
+						            each [WeekStart] = CurrentWeekStart,
+						            type logical
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Previous-period indicators
+						    // -----------------------------------------------------
+						
+						    Add_IsPreviousMonth =
+						        Table.AddColumn(
+						            Add_IsCurrentWeek,
+						            "IsPreviousMonth",
+						            each Date.IsInPreviousMonth([Date]),
+						            type logical
+						        ),
+						
+						    Add_IsPreviousFiscalYear =
+						        Table.AddColumn(
+						            Add_IsPreviousMonth,
+						            "IsPreviousFiscalYear",
+						            each [FiscalYear] = (CurrentFiscalYear - 1),
+						            type logical
+						        ),
+						
+						    PreviousWeekStart =
+						        Date.AddDays(Today, 1 - Date.DayOfWeek(Today, Day.Monday) - 7),
+						
+						    Add_IsPreviousWeek =
+						        Table.AddColumn(
+						            Add_IsPreviousFiscalYear,
+						            "IsPreviousWeek",
+						            each [WeekStart] = PreviousWeekStart,
+						            type logical
+						        ),
+						
+						    // -----------------------------------------------------
+						    // Column cleanup
+						    // -----------------------------------------------------
+						// -----------------------------------------------------
+						// Additional fiscal month & week labels for CB-TI
+						// -----------------------------------------------------
+						
+						Add_FiscalMonthName =
+						    Table.AddColumn(
+						        Add_IsPreviousWeek,
+						        "FiscalMonthName",
+						        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0"),
+						        Text.Type
+						    ),
+						
+						Add_FiscalMonthNameLong =
+						    Table.AddColumn(
+						        Add_FiscalMonthName,
+						        "FiscalMonthNameLong",
+						        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0") 
+						            & " - " & Date.MonthName([Date]),
+						        Text.Type
+						    ),
+						
+						Add_FiscalWeekName =
+						    Table.AddColumn(
+						        Add_FiscalMonthNameLong,
+						        "FiscalWeekName",
+						        each "FW" & Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
+						        Text.Type
+						    ),
+						
+						    #"Rename Columns" =
+						        Table.TransformColumnNames(
+						            Add_FiscalWeekName,
+						            each [
+						                SplitTextByTransition =
+						                    Splitter.SplitTextByCharacterTransition({"a" .. "z"}, {"A" .. "Z"})(_),
+						                CombineValues = Text.Combine(SplitTextByTransition, " "),
+						                RemoveUnderscores = Text.Replace(CombineValues, "_", " ")
+						            ][RemoveUnderscores]
+						        ),
+						
+						    #"Inserted Month Name" =
+						        Table.AddColumn(#"Rename Columns", "Month Name", each Date.MonthName([Date]), type text),
+						    #"Added Custom" = Table.AddColumn(#"Inserted Month Name", "MMM Label", each Text.Start([Month Name], 3)),
+						    Add_IsCompletedMonth = Table.AddColumn(#"Added Custom", "Is Completed Month", each Date.EndOfMonth([Date])< Date.StartOfMonth(Date.From(DateTime.LocalNow())), type logical),
+						    #"Added Custom1" = Table.AddColumn(Add_IsCompletedMonth, "Is Completed Quarter", each [Fiscal End Of Quarter] < Date.From(DateTime.LocalNow()), type logical)
+						in
+						    #"Added Custom1"
+						```
+
+			changedProperty = IsHidden
+
+			calendar Fiscal
+				lineageTag: 74a05a70-928a-4f4e-aa9b-a695308e7b6b
+
+				calendarColumnGroup = year
+					primaryColumn: 'Fiscal Year'
+					associatedColumn: 'Fiscal Year Default'
+					associatedColumn: 'Fiscal Year Label'
+
+				calendarColumnGroup = quarterOfYear
+					primaryColumn: 'Fiscal Quarter'
+					associatedColumn: 'Fiscal Quarter Label'
+
+				calendarColumnGroup = monthOfYear
+					primaryColumn: 'Fiscal Month'
+					associatedColumn: 'MMM Label'
+					associatedColumn: 'Month Name'
+					associatedColumn: 'Fiscal Month Name'
+
+				calendarColumnGroup = weekOfYear
+					primaryColumn: 'Fiscal Week Name'
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table DIVISIONS_D
+			lineageTag: 24ca026e-11eb-4dd2-a29c-a1eb19cd7d4a
+
+			column DivisionCode
+				dataType: string
+				lineageTag: 1724eff6-a4db-4a50-bc50-7e0bee303697
+				summarizeBy: none
+				sourceColumn: DivisionCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column Division
+				dataType: string
+				lineageTag: b56fdaa3-895d-46d9-95c1-13be6192c923
+				summarizeBy: none
+				sourceColumn: Division
+
+				annotation SummarizationSetBy = Automatic
+
+			column Region
+				dataType: string
+				lineageTag: 4049a164-7e99-4331-b4d4-f27a75fcc548
+				summarizeBy: none
+				sourceColumn: Region
+
+				annotation SummarizationSetBy = Automatic
+
+			column Company
+				dataType: string
+				lineageTag: ef29d508-5aa2-498b-a4bf-adde34c20cdc
+				summarizeBy: none
+				sourceColumn: Company
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DIVISIONS_D = m
+				mode: import
+				queryGroup: DIM
+				source =
+						let
+						    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+						    #"Navigation 1" = Source{[Name = "datasets"]}[Data],
+						    #"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv" = #"Navigation 1"{[#"Folder Path"="https://stgreen.blob.core.windows.net/datasets/",Name="DIVISIONS_D.csv"]}[Content],
+						    #"Imported CSV" = Csv.Document(#"https://stgreen blob core windows net/datasets/_DIVISIONS_D csv",[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+						    #"Changed Type" = Table.TransformColumnTypes(#"Imported CSV",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+						    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+						    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"DivisionCode", type text}, {"Division", type text}, {"Region", type text}, {"Company", type text}})
+						    in #"Changed Type1"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table PROJECTS_D
+			lineageTag: 3c6a90d7-8e9b-4a35-9e17-5c5e4984b4b2
+
+			column 'Customer Number'
+				dataType: string
+				lineageTag: 3a78250c-194d-4ad6-89f3-9e7856fb8fc7
+				summarizeBy: none
+				sourceColumn: Customer Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Project Number'
+				dataType: string
+				lineageTag: 084e1dc3-3eef-4253-9d4a-d569031528bf
+				summarizeBy: none
+				sourceColumn: Project Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Project Name/Description'
+				dataType: string
+				lineageTag: acd4df33-40cf-423d-bf4c-d71f8d54f68b
+				summarizeBy: none
+				sourceColumn: Project Name/Description
+
+				annotation SummarizationSetBy = Automatic
+
+			column Divisions
+				dataType: string
+				lineageTag: c7fb7709-7f9e-4780-8b2e-ab9760189ab0
+				summarizeBy: none
+				sourceColumn: Divisions
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Start Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 7d3b1ab9-3c1d-4b89-a7c7-a0263555ee8e
+				summarizeBy: none
+				sourceColumn: Start Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'End Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 2533a3c0-5846-426d-a06d-2da42eecda0f
+				summarizeBy: none
+				sourceColumn: End Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Source
+				dataType: string
+				lineageTag: 6c085b10-ac68-486e-b931-704e2da4316d
+				summarizeBy: none
+				sourceColumn: Source
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Project Key'
+				dataType: string
+				lineageTag: 90f15eec-3d2d-4c2e-9871-287bfe934591
+				summarizeBy: none
+				sourceColumn: Project Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 99e6c133-d83e-42c7-887d-7fc722501106
+				summarizeBy: none
+				sourceColumn: Customer Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column Inactive
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 3f7648bb-4dd8-410d-b7f5-8b3014acbd24
+				summarizeBy: none
+				sourceColumn: Inactive
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Project Type'
+				dataType: string
+				lineageTag: 6e7519dc-4a14-49f5-b349-8fcdaeb2aa09
+				summarizeBy: none
+				sourceColumn: Project Type
+
+				annotation SummarizationSetBy = Automatic
+
+			column SurrogateProjectID
+				dataType: string
+				lineageTag: ffe36857-7a57-4572-ba92-8b9452c38ce5
+				summarizeBy: none
+				sourceColumn: SurrogateProjectID
+
+				annotation SummarizationSetBy = Automatic
+
+			partition PROJECTS_D = m
+				mode: import
+				queryGroup: DIM
+				source =
+						let
+						    //=== SERVPROJECTS_D ===================================================//
+						    SERV = SERVPROJECTS_D,
+						
+						    SERV_Std = Table.RenameColumns(
+						        SERV,
+						        {
+						            {"Custnmbr", "Customer Number"},
+						            {"Contract Number", "Project Number"},
+						            {"Contract Description", "Project Name/Description"},
+						            {"Contract Start Date", "Start Date"},
+						            {"Contract Expiration Date", "End Date"},
+						            {"Contract Number Key", "Project Key"},
+						            {"Custnmbr Key", "Customer Key"}
+						        },
+						        MissingField.Ignore
+						    ),
+						
+						    // Add Project Type
+						    SERV_Type = Table.AddColumn(SERV_Std, "Project Type", each "Service Project"),
+						
+						    // Add Surrogate Project ID
+						    SERV_Surrogate =
+						        Table.AddColumn(
+						            SERV_Type,
+						            "SurrogateProjectID",
+						           each "SERV_" &
+						     Text.From([Customer Number]) & "_" &
+						     Text.From([Project Number]),
+						            type text
+						        ),
+						
+						    // Enforce data types for SERVPROJECTS_D
+						    SERV_Typed =
+						        Table.TransformColumnTypes(
+						            SERV_Surrogate,
+						            {
+						                {"Project Number", type text},
+						                {"Project Name/Description", type text},
+						                {"Divisions", type text},
+						                {"Customer Number", type text},
+						                {"Start Date", type date},
+						                {"End Date", type date},
+						                {"Source", type text},
+						                {"Project Key", type text},
+						                {"Customer Key", type text},
+						                {"Project Type", type text},
+						                {"SurrogateProjectID", type text}
+						            },
+						            "en-US"
+						        ),
+						
+						    SERV_Select = Table.SelectColumns(SERV_Typed,{"Customer Number", "Project Number", "Project Name/Description", "Divisions", "Start Date", "End Date", "Source", "Project Key", "Customer Key", "Inactive", "Project Type", "SurrogateProjectID"}),
+						
+						    //=== JOBSTRIMMED_D ===================================================//
+						    JOBS = JOBSTRIMMED_D,
+						
+						    JOBS_Std = Table.RenameColumns(
+						        JOBS,
+						        {
+						            {"Job Number", "Project Number"},
+						            {"Job Name", "Project Name/Description"},
+						            {"Customer Number", "Customer Number"},
+						            {"Start Date", "Start Date"},
+						            {"Act Completion Date", "End Date"},
+						            {"Job Key", "Project Key"},
+						            {"Customer Key", "Customer Key"}
+						        },
+						        MissingField.Ignore
+						    ),
+						
+						    // Add Project Type
+						    JOBS_Type = Table.AddColumn(JOBS_Std, "Project Type", each "Job Cost"),
+						
+						    // Add Surrogate Project ID
+						    JOBS_Surrogate =
+						        Table.AddColumn(JOBS_Type, "SurrogateProjectID", each "JOB_" & Text.From([Customer Key]) & "_" & Text.From([Project Key])),
+						
+						    // Enforce data types for JOBSTRIMMED_D
+						    JOBS_Typed =
+						        Table.TransformColumnTypes(
+						            JOBS_Surrogate,
+						            {
+						                {"Project Number", type text},
+						                {"Project Name/Description", type text},
+						                {"Divisions", type text},
+						                {"Customer Number", type text},
+						                {"Start Date", type date},
+						                {"End Date", type date},
+						                {"Source", type text},
+						                {"Project Key", type text},
+						                {"Customer Key", type text},
+						                {"Project Type", type text},
+						                {"SurrogateProjectID", type text}
+						            },
+						            "en-US"
+						        ),
+						
+						    JOBS_Select = Table.SelectColumns(JOBS_Typed,{"Project Number", "Project Name/Description", "Divisions", "Customer Number", "Start Date", "End Date", "Inactive", "Source", "Project Key", "Customer Key", "Project Type", "SurrogateProjectID"}),
+						
+						    //=== APPEND ===================================================//
+						    PROJECTS_D = Table.Combine({SERV_Select, JOBS_Select}),
+						    #"Removed Duplicates" = Table.Distinct(PROJECTS_D),
+						    RemovedBadProject =
+						        Table.SelectRows(
+						            #"Removed Duplicates",
+						            each not (
+						                [SurrogateProjectID] = "SERV_CN991413_11/21REPEX"
+						                and
+						                [Divisions] = "CINCY OM CONT"
+						            )
+						        ),
+						    #"Trimmed Text" = Table.TransformColumns(RemovedBadProject,{{"Divisions", Text.Trim, type text}})
+						in
+						    #"Trimmed Text"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table SERVCONTRACTS_D
+			lineageTag: 3dab7111-c121-4fd1-9375-adc5b75d9cf3
+
+			column AgreementKey
+				dataType: string
+				lineageTag: 390fb57e-73e2-4346-bf87-8a21baf775ed
+				summarizeBy: none
+				sourceColumn: AgreementKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Custnmbr Key'
+				dataType: string
+				lineageTag: 6897928f-7bee-43b8-bf0e-2303a5ebf586
+				summarizeBy: none
+				sourceColumn: Custnmbr Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Contract Number'
+				dataType: string
+				lineageTag: ff2e4754-4662-4523-8343-29c8cd969afa
+				summarizeBy: none
+				sourceColumn: Contract Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Number'
+				dataType: string
+				lineageTag: e1cf8052-5b0d-4a99-bd2d-c2e2795431c8
+				summarizeBy: none
+				sourceColumn: Customer Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column YearIndex
+				dataType: int64
+				formatString: 0
+				lineageTag: 7a6535ee-35f6-4816-b93d-f4f57d70d0c8
+				summarizeBy: sum
+				sourceColumn: YearIndex
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Contract Description'
+				dataType: string
+				lineageTag: a84e8acb-1cc0-4553-8053-99dcabb17f88
+				summarizeBy: none
+				sourceColumn: Contract Description
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Contract Type'
+				dataType: string
+				lineageTag: 9b8d2c20-54a7-4248-8606-0089f0454b21
+				summarizeBy: none
+				sourceColumn: Contract Type
+
+				annotation SummarizationSetBy = Automatic
+
+			column Divisions
+				dataType: string
+				lineageTag: db65209d-d822-46ce-8034-27933008b476
+				summarizeBy: none
+				sourceColumn: Divisions
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Contract Status'
+				dataType: string
+				lineageTag: 00b1ac61-0244-4b86-ab4f-a3c735815a6e
+				summarizeBy: none
+				sourceColumn: Contract Status
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Start Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 03a51639-dbe8-44e7-938d-3c673bb9dc3d
+				summarizeBy: none
+				sourceColumn: Start Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'End Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 69402719-c545-4a00-8ce9-c904be893604
+				summarizeBy: none
+				sourceColumn: End Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Contract Amount'
+				dataType: double
+				lineageTag: dadb86c1-4110-4b96-b2f8-e7818592b845
+				summarizeBy: sum
+				sourceColumn: Contract Amount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Annual Contract Value'
+				dataType: double
+				lineageTag: c413529a-3b84-4d83-998f-72208eb9b3cb
+				summarizeBy: sum
+				sourceColumn: Annual Contract Value
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Cancel Box'
+				dataType: string
+				lineageTag: 0efd6147-9d44-49a7-8858-0c14877a2562
+				summarizeBy: none
+				sourceColumn: Cancel Box
+
+				annotation SummarizationSetBy = Automatic
+
+			column OrphanSource
+				dataType: string
+				lineageTag: 8f2e2248-fd71-418e-85d5-5aadae4c6a3d
+				summarizeBy: none
+				sourceColumn: OrphanSource
+
+				annotation SummarizationSetBy = Automatic
+
+			column LatestYearIndex
+				dataType: string
+				lineageTag: 8781b08d-b6dd-4399-9ad1-0d7a8f2cb973
+				summarizeBy: none
+				sourceColumn: LatestYearIndex
+
+				annotation SummarizationSetBy = Automatic
+
+			column IsActiveContract
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: b35253ff-34f6-4046-a3f2-7f55b4802615
+				summarizeBy: none
+				sourceColumn: IsActiveContract
+
+				annotation SummarizationSetBy = Automatic
+
+			column IsLatestContract
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: fb1adcab-14b0-49f3-8e3f-6650736b930a
+				summarizeBy: none
+				sourceColumn: IsLatestContract
+
+				annotation SummarizationSetBy = Automatic
+
+			column IsActiveContractYear
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: b2fff84c-0c95-47dc-a959-e193bba07f61
+				summarizeBy: none
+				sourceColumn: IsActiveContractYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column ContractYearStatus
+				dataType: string
+				lineageTag: 51ec887c-83d4-40a3-b9a8-37bc5b054a1d
+				summarizeBy: none
+				sourceColumn: ContractYearStatus
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Renewal Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 0c0c3705-3594-4f52-a342-5d847491f880
+				summarizeBy: none
+				sourceColumn: Renewal Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			partition SERVCONTRACTS_D = m
+				mode: import
+				queryGroup: DIM
+				source = ```
+						let
+						    //=============================================================================
+						    // 1) BASE DIM + SMALL LOOKUPS
+						    //=============================================================================
+						    SourceDim = SERVCONTRACTS_D_STAGING,
+						
+						    // Trimmed dimension key set (for orphan detection on trimmed key)
+						    DimKeysTrim =
+						        Table.Distinct(
+						            Table.AddColumn(
+						                Table.SelectColumns(SourceDim, {"AgreementKey"}),
+						                "KeyTrim",
+						                each Text.Trim(Text.From([AgreementKey])),
+						                type text
+						            ),
+						            {"KeyTrim"}
+						        ),
+						
+						    // Contract -> Divisions map (small; buffer optional)
+						    DivMap =
+						        Table.Buffer(
+						            Table.Distinct(
+						                Table.SelectColumns(SourceDim, {"Contract Number", "Divisions"}),
+						                {"Contract Number"}
+						            )
+						        ),
+						
+						    //=============================================================================
+						    // 2) FACT AGGREGATIONS (ONE ROW PER RAW AGREEMENTKEY)
+						    //    This is the key change: MIN/MAX happens BEFORE any joins.
+						    //=============================================================================
+						    RevAgg_Raw =
+						        Table.Group(
+						            Table.SelectColumns(SERVCONTRACTS_REVENUE_F, {"AgreementKey", "Date"}),
+						            {"AgreementKey"},
+						            {
+						                {"MinRev", each List.Min([Date]), type nullable date},
+						                {"MaxRev", each List.Max([Date]), type nullable date}
+						            }
+						        ),
+						
+						    CostAgg_Raw =
+						        Table.Group(
+						            Table.SelectColumns(SERVCONTRACTS_COSTS_F, {"AgreementKey", "Date"}),
+						            {"AgreementKey"},
+						            {
+						                {"MinCost", each List.Min([Date]), type nullable date},
+						                {"MaxCost", each List.Max([Date]), type nullable date}
+						            }
+						        ),
+						
+						    // Add trimmed key and normalize columns for union
+						    RevAgg =
+						        Table.AddColumn(
+						            Table.AddColumn(RevAgg_Raw, "KeyTrim", each Text.Trim(Text.From([AgreementKey])), type text),
+						            "Source",
+						            each "Revenue Only",
+						            type text
+						        ),
+						    RevAgg_Norm =
+						        Table.AddColumn(
+						            Table.AddColumn(RevAgg, "MinCost", each null, type nullable date),
+						            "MaxCost",
+						            each null,
+						            type nullable date
+						        ),
+						
+						    CostAgg =
+						        Table.AddColumn(
+						            Table.AddColumn(CostAgg_Raw, "KeyTrim", each Text.Trim(Text.From([AgreementKey])), type text),
+						            "Source",
+						            each "Cost Only",
+						            type text
+						        ),
+						    CostAgg_Norm =
+						        Table.AddColumn(
+						            Table.AddColumn(CostAgg, "MinRev", each null, type nullable date),
+						            "MaxRev",
+						            each null,
+						            type nullable date
+						        ),
+						
+						    //=============================================================================
+						    // 3) CONSOLIDATE TO ONE ROW PER TRIMMED KEY (handles whitespace variants)
+						    //=============================================================================
+						    FactKeyUnion = Table.Combine({RevAgg_Norm, CostAgg_Norm}),
+						
+						    FactByTrim =
+						        Table.Group(
+						            FactKeyUnion,
+						            {"KeyTrim"},
+						            {
+						                // pick a representative raw key (doesn't matter much since we output trimmed key as AgreementKey)
+						                {"AgreementKeyRaw", each _[AgreementKey]{0}, type text},
+						
+						                {"OrphanSource", each
+						                    let s = List.Distinct([Source])
+						                    in if List.Count(s) > 1 then "Both" else s{0},
+						                    type text
+						                },
+						
+						                {"MinRev",  each List.Min(List.RemoveNulls([MinRev])),  type nullable date},
+						                {"MaxRev",  each List.Max(List.RemoveNulls([MaxRev])),  type nullable date},
+						                {"MinCost", each List.Min(List.RemoveNulls([MinCost])), type nullable date},
+						                {"MaxCost", each List.Max(List.RemoveNulls([MaxCost])), type nullable date}
+						            }
+						        ),
+						
+						    //=============================================================================
+						    // 4) ORPHANS = FACT TRIM KEYS NOT IN DIM TRIM KEYS
+						    //=============================================================================
+						    Orphans =
+						        Table.NestedJoin(
+						            FactByTrim, {"KeyTrim"},
+						            DimKeysTrim, {"KeyTrim"},
+						            "DimMatch",
+						            JoinKind.LeftAnti
+						        ),
+						    Orphans_Clean = Table.RemoveColumns(Orphans, {"DimMatch"}),
+						
+						    //=============================================================================
+						    // 5) FINAL DATES (no join to raw fact tables needed anymore)
+						    //=============================================================================
+						    WithStartDate =
+						        Table.AddColumn(
+						            Orphans_Clean,
+						            "Start Date",
+						            each
+						                let mins = List.RemoveNulls({[MinRev], [MinCost]})
+						                in if List.IsEmpty(mins) then #date(1900,1,1) else List.Min(mins),
+						            type date
+						        ),
+						    WithEndDate =
+						        Table.AddColumn(
+						            WithStartDate,
+						            "End Date",
+						            each
+						                let maxs = List.RemoveNulls({[MaxRev], [MaxCost]})
+						                in if List.IsEmpty(maxs) then #date(1900,1,1) else List.Max(maxs),
+						            type date
+						        ),
+						    DatesReduced = Table.RemoveColumns(WithEndDate, {"AgreementKeyRaw","MinRev","MaxRev","MinCost","MaxCost"}),
+						
+						    //=============================================================================
+						    // 6) PARSE + DIVISION LOOKUP (operates on small orphan set only)
+						    //=============================================================================
+						    Parsed =
+						        Table.AddColumn(
+						            DatesReduced,
+						            "Parsed",
+						            each
+						                let
+						                    k = [KeyTrim],
+						                    cust = try Text.BeforeDelimiter(k, "SERV_GP") otherwise null,
+						                    after = try Text.AfterDelimiter(k, "SERV_GP_", 0) otherwise null,
+						                    contract =
+						                        if after = null
+						                        then null
+						                        else (try Text.BeforeDelimiter(after, "_", {0, RelativePosition.FromEnd}) otherwise after),
+						                    yearTxt = try Text.AfterDelimiter(k, "_", {0, RelativePosition.FromEnd}) otherwise null,
+						                    yearNum = try Number.FromText(yearTxt) otherwise 0
+						                in
+						                    [CustomerPart = cust, ContractPart = contract, YearPart = yearNum],
+						            type record
+						        ),
+						    ParsedExpanded =
+						        Table.ExpandRecordColumn(
+						            Parsed,
+						            "Parsed",
+						            {"CustomerPart", "ContractPart", "YearPart"},
+						            {"CustomerPart", "ContractPart", "YearPart"}
+						        ),
+						
+						    WithDiv =
+						        Table.NestedJoin(
+						            ParsedExpanded, {"ContractPart"},
+						            DivMap, {"Contract Number"},
+						            "Div",
+						            JoinKind.LeftOuter
+						        ),
+						    DivExpanded = Table.ExpandTableColumn(WithDiv, "Div", {"Divisions"}, {"Divisions"}),
+						
+						    DivFixed =
+						        Table.TransformColumns(
+						            DivExpanded,
+						            {{"Divisions", each if _ = null or _ = "" then "Unknown" else _, type text}}
+						        ),
+						
+						    //=============================================================================
+						    // 7) SHAPE TO DIMENSION SCHEMA (table-native, no TransformRows)
+						    //=============================================================================
+						    Orphans_Final =
+						        Table.SelectColumns(
+						            Table.AddColumn(
+						                Table.AddColumn(
+						                    Table.AddColumn(
+						                        Table.AddColumn(
+						                            Table.AddColumn(
+						                                Table.AddColumn(
+						                                    Table.AddColumn(
+						                                        Table.AddColumn(
+						                                            Table.AddColumn(
+						                                                Table.AddColumn(
+						                                                    Table.AddColumn(
+						                                                        DivFixed,
+						                                                        "AgreementKey", each [KeyTrim], type text
+						                                                    ),
+						                                                    "Custnmbr Key", each [CustomerPart] & "SERV_GP", type text
+						                                                ),
+						                                                "Contract Number", each [ContractPart], type text
+						                                            ),
+						                                            "Customer Number", each [CustomerPart], type text
+						                                        ),
+						                                        "YearIndex", each [YearPart], Int64.Type
+						                                    ),
+						                                    "Contract Description",
+						                                    each "Data Integrity - Missing in Source (" & [OrphanSource] & ")",
+						                                    type text
+						                                ),
+						                                "Contract Type", each "Unknown", type text
+						                            ),
+						                            "Contract Status", each "Orphan", type text
+						                        ),
+						                        "Contract Amount", each 0, type number
+						                    ),
+						                    "Annual Contract Value", each 0, type number
+						                ),
+						                "Cancel Box", each null, type any
+						            ),
+						            {
+						                "AgreementKey",
+						                "Custnmbr Key",
+						                "Contract Number",
+						                "Customer Number",
+						                "YearIndex",
+						                "Contract Description",
+						                "Contract Type",
+						                "Divisions",
+						                "Contract Status",
+						                "Start Date",
+						                "End Date",
+						                "Contract Amount",
+						                "Annual Contract Value",
+						                "Cancel Box",
+						                "OrphanSource"
+						            }
+						        ),
+						
+						    // Append (align columns)
+						    SourceDim_Ready =
+						        if List.Contains(Table.ColumnNames(SourceDim), "OrphanSource")
+						        then SourceDim
+						        else Table.AddColumn(SourceDim, "OrphanSource", each null, type text),
+						
+						    Orphans_Aligned =
+						        Table.SelectColumns(Orphans_Final, Table.ColumnNames(SourceDim_Ready), MissingField.UseNull),
+						
+						    Combined = Table.Combine({SourceDim_Ready, Orphans_Aligned}),
+						
+						    // Ensure required types
+						    Typed =
+						        Table.TransformColumnTypes(
+						            Combined,
+						            {
+						                {"Customer Number", type text},
+						                {"Contract Number", type text},
+						                {"YearIndex", Int64.Type},
+						                {"Start Date", type date},
+						                {"End Date", type date}
+						            }
+						        ),
+						
+						// Build a contract-level table inside the same query
+						ContractSummary =
+						    Table.Group(
+						        Typed,
+						        {"Customer Number", "Contract Number"},
+						        {
+						            {
+						                "Latest",
+						                each Table.MaxN(_, "YearIndex", 1),
+						                type table
+						            }
+						        }
+						    ),
+						
+						ExpandedLatest =
+						    Table.ExpandTableColumn(
+						        ContractSummary,
+						        "Latest",
+						        {"YearIndex", "Start Date", "End Date"},
+						        {"LatestYearIndex", "LatestStartDate", "LatestEndDate"}
+						    )
+						,
+						Today = Date.From(DateTime.LocalNow()),
+						    WithIsActive =
+						        Table.AddColumn(
+						            ExpandedLatest,
+						            "IsActiveContract",
+						            each
+						            Date.From([LatestEndDate]) >= Today,
+						            type logical
+						        ),
+						
+						    // Merge back to original rows
+						    MergedBack =
+						        Table.NestedJoin(
+						            Typed,
+						            {"Customer Number", "Contract Number"},
+						            WithIsActive,
+						            {"Customer Number", "Contract Number"},
+						            "ContractFlags",
+						            JoinKind.LeftOuter
+						        ),
+						
+						    ExpandedFlags =
+						        Table.ExpandTableColumn(
+						            MergedBack,
+						            "ContractFlags",
+						            {"LatestYearIndex", "IsActiveContract"},
+						            {"LatestYearIndex", "IsActiveContract"}
+						        ),
+						
+						    // Latest row flag
+						    WithIsLatest =
+						        Table.AddColumn(
+						            ExpandedFlags,
+						            "IsLatestContract",
+						            each [YearIndex] = [LatestYearIndex],
+						            type logical
+						        ),
+						    WithIsActiveYear =
+						    Table.AddColumn(
+						        WithIsLatest,          // or whatever your prior step name is
+						        "IsActiveContractYear",
+						        each [IsLatestContract] and [IsActiveContract],
+						        type logical
+						    ),    
+						    WithYearStatus =
+						        Table.AddColumn(
+						        WithIsActiveYear,
+						        "ContractYearStatus",
+						        each
+						            if [IsLatestContract] and [IsActiveContract] then "Active Contract Year"
+						            else if [IsLatestContract] and not [IsActiveContract] then "Final Contract Year (Ended)"
+						            else "Completed Contract Year",
+						        type text
+						    ),
+						    #"Added Custom" = Table.AddColumn(WithYearStatus, "Renewal Date", each if [ContractYearStatus] = "Active Contract Year" then [End Date] else null, type date)
+						
+						in
+						    #"Added Custom"
+						```
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table CONTRACT_BILLABLE_F
+			lineageTag: 982c3a9a-e340-49fb-922e-5653b03952b4
+
+			column CUSTNMBR
+				dataType: string
+				lineageTag: f51b9edd-0855-42ab-a88d-821f5b78f6fc
+				summarizeBy: none
+				sourceColumn: CUSTNMBR
+
+				annotation SummarizationSetBy = Automatic
+
+			column ADRSCODE
+				dataType: string
+				lineageTag: d35ef548-af65-4cb5-be6b-91b9e0a85842
+				summarizeBy: none
+				sourceColumn: ADRSCODE
+
+				annotation SummarizationSetBy = Automatic
+
+			column CONTRACT_NUMBER
+				dataType: string
+				lineageTag: 99a3efeb-1df4-485f-8798-94ec1d01a54d
+				summarizeBy: none
+				sourceColumn: CONTRACT_NUMBER
+
+				annotation SummarizationSetBy = Automatic
+
+			column WSCONTSQ
+				dataType: double
+				lineageTag: 6b751d5a-2941-47ca-886c-a7be43143edd
+				summarizeBy: sum
+				sourceColumn: WSCONTSQ
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column WENNSOFT_BILLING_DATE
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 436de59a-5fe2-45cf-9593-6432954dcb0b
+				summarizeBy: none
+				sourceColumn: WENNSOFT_BILLING_DATE
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column BILLABLE_ALL
+				dataType: double
+				lineageTag: ec0aa730-29f7-4d1a-aa3b-8fed9e5635f7
+				summarizeBy: sum
+				sourceColumn: BILLABLE_ALL
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column CONTRACT_BILLING_DESC
+				dataType: string
+				lineageTag: f942c287-24ab-49fd-9e72-cef129016fbe
+				summarizeBy: none
+				sourceColumn: CONTRACT_BILLING_DESC
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 38ca69e7-c4ce-475c-b74a-2d05d5f6e6c4
+				summarizeBy: none
+				sourceColumn: Customer Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column CONTRACT_FULL_YEAR_ID
+				dataType: string
+				lineageTag: 93a44955-bff8-491d-95c6-7ba4038a2527
+				summarizeBy: none
+				sourceColumn: CONTRACT_FULL_YEAR_ID
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer_Contract_Year Key'
+				dataType: string
+				lineageTag: 57e530d5-02c3-4233-9ae2-c22e69c06341
+				summarizeBy: none
+				sourceColumn: Customer_Contract_Year Key
+
+				annotation SummarizationSetBy = Automatic
+
+			partition CONTRACT_BILLABLE_F = m
+				mode: import
+				source =
+						let
+						    Source = SV00564,
+						    #"Trimmed Text" = Table.TransformColumns(Source,{{"CUSTNMBR", Text.Trim, type text}}),
+						    #"Trimmed Text1" = Table.TransformColumns(#"Trimmed Text",{{"CONTRACT_NUMBER", Text.Trim, type text}, {"CUSTNMBR", Text.Trim, type text}, {"ADRSCODE", Text.Trim, type text}}),
+						    #"Removed Other Columns" = Table.SelectColumns(#"Trimmed Text1",{"CUSTNMBR", "ADRSCODE", "CONTRACT_NUMBER", "WSCONTSQ", "WENNSOFT_BILLING_DATE", "BILLABLE_ALL", "CONTRACT_BILLING_DESC"}),
+						    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"WENNSOFT_BILLING_DATE", type date}}),
+						    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"CUSTNMBR", Order.Ascending}, {"CONTRACT_NUMBER", Order.Ascending}, {"WSCONTSQ", Order.Ascending}, {"WENNSOFT_BILLING_DATE", Order.Ascending}}),
+						    #"Added Custom" = Table.AddColumn(#"Sorted Rows", "Customer Key", each [CUSTNMBR] & "SERV_GP"),
+						    #"Added Custom1" = Table.AddColumn(#"Added Custom", "CONTRACT_FULL_YEAR_ID", each [Customer Key] & "_" & [CONTRACT_NUMBER] & "_" & [ADRSCODE] & "_" & Number.ToText([WSCONTSQ])),
+						    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Customer_Contract_Year Key", each [Customer Key] & "_" & [CONTRACT_NUMBER] & "_" & Number.ToText([WSCONTSQ]))
+						in
+						    #"Added Custom2"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table SERVCONTRACTS_REVENUE_F
+			lineageTag: 249708cf-51ca-446a-8f5d-27c81e3a22ec
+
+			column Date
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 2577e77b-701e-4b94-b22a-30683a05d918
+				summarizeBy: none
+				sourceColumn: Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column AgreementKey
+				dataType: string
+				lineageTag: f4d06e29-801c-4192-909e-50b0b656fb2c
+				summarizeBy: none
+				sourceColumn: AgreementKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column Amount
+				dataType: decimal
+				formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+				lineageTag: fa8fef8a-7551-46f6-89ee-2da5fd223b8b
+				summarizeBy: sum
+				sourceColumn: Amount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+			column 'Source Type'
+				dataType: string
+				lineageTag: a269ec29-310b-433c-b564-5b5cccb09016
+				summarizeBy: none
+				sourceColumn: Source Type
+
+				annotation SummarizationSetBy = Automatic
+
+			partition SERVCONTRACTS_REVENUE_F = m
+				mode: import
+				source =
+						let
+						    StartDate = #date(2020, 1, 1),
+						    // --- Define Service Projects for exclusion ---
+						    Projects_Source = PROJECTS_D,
+						    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
+						    Service_Project_Numbers = Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
+						
+						    // --- Define Legacy Contracts for exclusion (use staging to avoid cycles) ---
+						    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D_STAGING, {"Contract Number","Contract Type"}),
+						    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+						    LegacyContracts = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"Contract Number"})),
+						
+						    // --- Maintenance Billing Revenue Stream ---
+						    Billing_Source = CONTRACT_BILLABLE_F,
+						    Billing_Clean = Table.TransformColumns(Billing_Source, {{"CONTRACT_NUMBER", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    Billing_Slim = Table.SelectColumns(Billing_Clean, {"WENNSOFT_BILLING_DATE", "Customer_Contract_Year Key", "BILLABLE_ALL", "CONTRACT_NUMBER"}),
+						    Billing_Dated = Table.SelectRows(Billing_Slim, each [WENNSOFT_BILLING_DATE] <= Date.From(DateTime.LocalNow()) and [WENNSOFT_BILLING_DATE] >= StartDate),
+						    // Filter out Service Projects and Legacy Contracts from CONTRACT_BILLABLE_F
+						    Merged_For_Filter = Table.NestedJoin(Billing_Dated, {"CONTRACT_NUMBER"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+						    Billing_Filtered_SP = Table.RemoveColumns(Merged_For_Filter, {"ServiceProjects"}),
+						    Merged_For_Legacy = Table.NestedJoin(Billing_Filtered_SP, {"CONTRACT_NUMBER"}, LegacyContracts, {"Contract Number"}, "Legacy", JoinKind.LeftAnti),
+						    Billing_Filtered = Table.RemoveColumns(Merged_For_Legacy, {"Legacy"}),
+						
+						    Billing_Selected = Table.SelectColumns(Billing_Filtered, {"WENNSOFT_BILLING_DATE", "Customer_Contract_Year Key", "BILLABLE_ALL"}),
+						    Billing_Renamed = Table.RenameColumns(Billing_Selected, {{"WENNSOFT_BILLING_DATE", "Date"}, {"Customer_Contract_Year Key", "AgreementKey"}, {"BILLABLE_ALL", "Amount"}}),
+						    Billing_Typed = Table.TransformColumnTypes(Billing_Renamed, {{"Date", type date}, {"AgreementKey", type text}, {"Amount", Currency.Type}}),
+						
+						    AGREEMENT_REVENUE_F = Table.AddColumn(Billing_Typed, "Source Type", each "Service Contract Billing", type text)
+						in
+						    AGREEMENT_REVENUE_F
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table SERVCONTRACTS_COSTS_F
+			lineageTag: 7f027d10-e038-415f-bfa1-a7e9e8c7d762
+
+			column 'Service Call Id'
+				dataType: string
+				lineageTag: 5b4ea442-a39c-487b-ab26-3dd5e0f2b6f0
+				summarizeBy: none
+				sourceColumn: Service Call Id
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Type Of Call'
+				dataType: string
+				lineageTag: ace32ebd-70da-4034-8d89-0d8264533f5f
+				summarizeBy: none
+				sourceColumn: Type Of Call
+
+				annotation SummarizationSetBy = Automatic
+
+			column Date
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: c684149e-7db2-4164-99d1-7002c3600d5f
+				summarizeBy: none
+				sourceColumn: Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Amount
+				dataType: decimal
+				formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+				lineageTag: 6516d6e5-030b-43b8-ae4b-a8ce6b45a829
+				summarizeBy: sum
+				sourceColumn: Amount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+			column AgreementKey
+				dataType: string
+				lineageTag: 217a70c1-f399-4c95-81e9-05595fd65f50
+				summarizeBy: none
+				sourceColumn: AgreementKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Source Type'
+				dataType: string
+				lineageTag: 48af3716-0a41-49e3-ba7e-a224d5dafbfb
+				summarizeBy: none
+				sourceColumn: Source Type
+
+				annotation SummarizationSetBy = Automatic
+
+			partition SERVCONTRACTS_COSTS_F = m
+				mode: import
+				source =
+						let
+						    StartDate = #date(2020, 1, 1),
+						    // --- Define Service Projects for exclusion ---
+						    Projects_Source = PROJECTS_D,
+						    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
+						    Service_Project_Numbers =
+						        Table.TransformColumns(
+						            Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
+						            {{"Project Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}
+						        ),
+						
+						    // --- Define Legacy Contracts for exclusion (use staging to avoid cycles) ---
+						    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D_STAGING, {"Contract Number","Contract Type"}),
+						    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+						    LegacyContracts = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"Contract Number"})),
+						
+						    // --- Maintenance Call Stream (Costs) ---
+						    Calls_Source = CALLS_F,
+						    Calls_Slim = Table.SelectColumns(Calls_Source,{"Service Call Id", "Type Of Call", "Date Of Service Call", "Cost All", "Customer_Contract_Year Key", "Contract Number"}),
+						    Calls_Dated = Table.SelectRows(Calls_Slim, each [Date Of Service Call] <= Date.From(DateTime.LocalNow()) and [Date Of Service Call] >= StartDate),
+						    Calls_Upper = Table.TransformColumns(Calls_Dated, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    // Filter out Service Projects and Legacy Contracts; ensure Contract Number is not null
+						    Calls_NoServiceProjects = Table.NestedJoin(Calls_Upper, {"Contract Number"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+						    Calls_NoServiceProjects_Clean = Table.RemoveColumns(Calls_NoServiceProjects, {"ServiceProjects"}),
+						    Calls_NoLegacy = Table.NestedJoin(Calls_NoServiceProjects_Clean, {"Contract Number"}, LegacyContracts, {"Contract Number"}, "Legacy", JoinKind.LeftAnti),
+						    Calls_NoLegacy_Clean = Table.RemoveColumns(Calls_NoLegacy, {"Legacy"}),
+						    Calls_Filtered_NonContract = Table.SelectRows(Calls_NoLegacy_Clean, each [Contract Number] <> null and [Contract Number] <> ""),
+						
+						    // --- Maintenance Call Costs Stream ---
+						    Call_Cost_Selected = Table.SelectColumns(Calls_Filtered_NonContract,{"Service Call Id", "Type Of Call", "Date Of Service Call", "Cost All", "Customer_Contract_Year Key"}),
+						    Call_Cost_Renamed = Table.RenameColumns(Call_Cost_Selected, {{"Date Of Service Call", "Date"}, {"Customer_Contract_Year Key", "AgreementKey"}, {"Cost All", "Amount"}}),
+						    Call_Cost_Typed = Table.TransformColumnTypes(Call_Cost_Renamed, {{"Date", type date}, {"AgreementKey", type text}, {"Amount", Currency.Type}}),
+						
+						    SERVCONTRACTS_COSTS_F = Table.AddColumn(Call_Cost_Typed, "Source Type", each "Contract Call Cost", type text)
+						in
+						    SERVCONTRACTS_COSTS_F
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table JOB_COST_DETAILS
+			lineageTag: 3076e546-82f4-4886-b40d-064399336d2f
+
+			column JOB_NUMBER
+				dataType: string
+				lineageTag: 8aa3c973-ef63-4f37-b009-ffb3ef1c29b9
+				summarizeBy: none
+				sourceColumn: JOB_NUMBER
+
+			column JOB_KEY
+				dataType: string
+				lineageTag: 6f908e12-6efb-4436-a82b-2bd65a3768b2
+				summarizeBy: none
+				sourceColumn: JOB_KEY
+
+			column COST_CODE
+				dataType: string
+				lineageTag: 95599ce2-484c-40c2-8b44-07835245fd0e
+				summarizeBy: none
+				sourceColumn: COST_CODE
+
+			column TRAN_DATE
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: f2fcdc54-8e48-45b1-8fbc-4ee728287269
+				summarizeBy: none
+				sourceColumn: TRAN_DATE
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column COST_AMT
+				dataType: double
+				lineageTag: e2efd49d-3772-45a4-9cd1-217b5a4df7e2
+				summarizeBy: sum
+				sourceColumn: COST_AMT
+
+			column SOURCE
+				dataType: string
+				lineageTag: 0e7d1b05-c2ee-4c82-b9c8-aa476cdd6b01
+				summarizeBy: none
+				sourceColumn: SOURCE
+
+			column 'Job_Cost Code'
+				dataType: string
+				lineageTag: 25e3431e-f365-42c2-bce4-fa1375190696
+				summarizeBy: none
+				sourceColumn: Job_Cost Code
+
+			partition JOB_COST_DETAILS = m
+				mode: import
+				source =
+						let
+						    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+						    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+						    DW_CLEAN_Schema = DATA_WAREHOUSE_Database{[Name="DW_CLEAN",Kind="Schema"]}[Data],
+						    JOB_COST_DETAILS_View = DW_CLEAN_Schema{[Name="JOB_COST_DETAILS",Kind="View"]}[Data],
+						    Filtered = Table.SelectRows(JOB_COST_DETAILS_View, each [SOURCE] = "MECH_GP"),
+						    Trimmed = Table.TransformColumns(Filtered,{{"JOB_NUMBER", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
+						    Cleaned = Table.TransformColumns(Trimmed,{{"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
+						    AddedJobCostCode = Table.AddColumn(Cleaned, "Job_Cost Code", each [JOB_NUMBER] & ":" & [COST_CODE], type text),
+						    Selected = Table.SelectColumns(AddedJobCostCode,{"JOB_NUMBER","JOB_KEY","COST_CODE","TRAN_DATE","COST_AMT","SOURCE","Job_Cost Code"}),
+						    Typed = Table.TransformColumnTypes(Selected,{{"JOB_NUMBER", type text},{"JOB_KEY", type text},{"COST_CODE", type text},{"TRAN_DATE", type date},{"COST_AMT", type number},{"SOURCE", type text},{"Job_Cost Code", type text}})
+						in
+						    Typed
+
+		table JOB_COST_FORECASTS_F
+			lineageTag: 6cce4d75-30ac-4637-a3d5-641369ad0ae1
+
+			column JOB_NUMBER
+				dataType: string
+				lineageTag: 59ae8279-1f18-4df0-86ff-44b9bc8f9527
+				summarizeBy: none
+				sourceColumn: JOB_NUMBER
+
+			column JOB_KEY
+				dataType: string
+				lineageTag: dae2086d-1a55-4d82-baf2-873afa11a314
+				summarizeBy: none
+				sourceColumn: JOB_KEY
+
+			column COST_CODE
+				dataType: string
+				lineageTag: 836d66a1-fd12-48a3-b5ea-86f4d4098b05
+				summarizeBy: none
+				sourceColumn: COST_CODE
+
+			column YEAR
+				dataType: int64
+				lineageTag: 18d9b6bc-67f2-401b-b541-96aca9367c84
+				summarizeBy: sum
+				sourceColumn: YEAR
+
+			column FISCAL_MONTH
+				dataType: int64
+				lineageTag: 731992fb-4c5e-4141-824a-a1b0eba41807
+				summarizeBy: sum
+				sourceColumn: FISCAL_MONTH
+
+			column FORECAST_COSTS
+				dataType: double
+				lineageTag: bf7eb01c-7496-4d02-88d6-d6cdc99cfd8d
+				summarizeBy: sum
+				sourceColumn: FORECAST_COSTS
+
+			column SOURCE
+				dataType: string
+				lineageTag: f53b9f42-5c21-4bec-a6ff-0ad469df4cb3
+				summarizeBy: none
+				sourceColumn: SOURCE
+
+			column 'Job_Cost Code'
+				dataType: string
+				lineageTag: 8bd6baf0-0a01-47e8-acda-6623e4979af1
+				summarizeBy: none
+				sourceColumn: Job_Cost Code
+
+			column Date
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 19127813-68ee-428d-9491-fd0af94d74f0
+				summarizeBy: none
+				sourceColumn: Date
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			partition JOB_COST_FORECASTS_F = m
+				mode: import
+				source =
+						let
+						    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+						    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+						    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+						    JOB_COST_FORECASTS_F_Table = DW_FINAL_Schema{[Name="JOB_COST_FORECASTS_F",Kind="Table"]}[Data],
+						    Filtered = Table.SelectRows(JOB_COST_FORECASTS_F_Table, each [SOURCE] = "MECH_GP"),
+						    Trimmed = Table.TransformColumns(Filtered,{{"JOB_NUMBER", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
+						    Cleaned = Table.TransformColumns(Trimmed,{{"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
+						    AddedJobCostCode = Table.AddColumn(Cleaned, "Job_Cost Code", each [JOB_NUMBER] & ":" & [COST_CODE], type text),
+						    AddedDate = Table.AddColumn(AddedJobCostCode, "Date", each Date.AddMonths(#date(Number.From([YEAR]), Number.From([FISCAL_MONTH]), 1), -3), type date),
+						    Selected = Table.SelectColumns(AddedDate,{"JOB_NUMBER","JOB_KEY","COST_CODE","YEAR","FISCAL_MONTH","FORECAST_COSTS","SOURCE","Job_Cost Code","Date"}),
+						    Typed = Table.TransformColumnTypes(Selected,{{"JOB_NUMBER", type text},{"JOB_KEY", type text},{"COST_CODE", type text},{"YEAR", Int64.Type},{"FISCAL_MONTH", Int64.Type},{"FORECAST_COSTS", type number},{"SOURCE", type text},{"Job_Cost Code", type text},{"Date", type date}})
+						in
+						    Typed
+
+		table JOB_MONTHLY_SUMMARY_F
+			lineageTag: ecce44fd-3c02-4562-b358-d45f601fa4c1
+
+			column 'Job Number'
+				dataType: string
+				lineageTag: df4f5e02-21ee-496f-b877-a3ccad8d2014
+				summarizeBy: none
+				sourceColumn: Job Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Period Month'
+				dataType: double
+				lineageTag: e1e7a7b3-8184-4856-b0d7-4a8a7b395904
+				summarizeBy: sum
+				sourceColumn: Period Month
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Period Year'
+				dataType: double
+				lineageTag: 4007bcd1-9061-442f-83c5-1336ff86b6ee
+				summarizeBy: sum
+				sourceColumn: Period Year
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Period Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 0f614d52-ff01-48c5-a3ed-c76c71743df9
+				summarizeBy: none
+				sourceColumn: Period Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Project Number'
+				dataType: string
+				lineageTag: 0ed403ed-f720-4483-8d52-794070c10db6
+				summarizeBy: none
+				sourceColumn: Project Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Job Name'
+				dataType: string
+				lineageTag: 6f040fcd-5333-4bb3-9cc0-b25f87e6239e
+				summarizeBy: none
+				sourceColumn: Job Name
+
+				annotation SummarizationSetBy = Automatic
+
+			column Divisions
+				dataType: string
+				lineageTag: c67458fc-ffd0-474b-9b2d-f8e8d75a0c3c
+				summarizeBy: none
+				sourceColumn: Divisions
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Number'
+				dataType: string
+				lineageTag: 270b3aac-20d9-4a84-b738-68eeaeb2b11a
+				summarizeBy: none
+				sourceColumn: Customer Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Jc Contract Number'
+				dataType: string
+				lineageTag: c62d860f-59d6-43f9-ad7a-da949fdfb766
+				summarizeBy: none
+				sourceColumn: Jc Contract Number
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Contract Type'
+				dataType: string
+				lineageTag: 0946889e-e314-4ddb-97db-cea5d220eae6
+				summarizeBy: none
+				sourceColumn: Contract Type
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Ws Billing Type'
+				dataType: string
+				lineageTag: 3d0b6375-6842-4bc2-8ac2-ddc5d184d272
+				summarizeBy: none
+				sourceColumn: Ws Billing Type
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Technician Id'
+				dataType: string
+				lineageTag: f5fef623-7641-4ca8-9b86-4745c3306973
+				summarizeBy: none
+				sourceColumn: Technician Id
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Contract To Date'
+				dataType: double
+				lineageTag: 301a72a1-57fb-41cf-b0cb-28b444341b5d
+				summarizeBy: sum
+				sourceColumn: Contract To Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Retention Pct'
+				dataType: double
+				lineageTag: 5901ae42-e7d2-4265-99d4-3442337273f1
+				summarizeBy: sum
+				sourceColumn: Retention Pct
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Actual Units Ttd'
+				dataType: double
+				lineageTag: e49a4c98-29a5-413c-a048-ea8acaeee660
+				summarizeBy: sum
+				sourceColumn: Actual Units Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Act Labor Cost Ttd'
+				dataType: double
+				lineageTag: b0dadd51-dd6a-4dd1-a304-c9a6cbed30b3
+				summarizeBy: sum
+				sourceColumn: Act Labor Cost Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Act Materials Cost Ttd'
+				dataType: double
+				lineageTag: 41b079c2-b72a-4f8c-ba38-f0258367eb7f
+				summarizeBy: sum
+				sourceColumn: Act Materials Cost Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Act Equipment Cost Ttd'
+				dataType: double
+				lineageTag: d86182c0-ffef-40d8-9be9-c69fb64212e7
+				summarizeBy: sum
+				sourceColumn: Act Equipment Cost Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Act Subs Cost Ttd'
+				dataType: double
+				lineageTag: fa654c85-e0a9-4a13-8730-03d795acb280
+				summarizeBy: sum
+				sourceColumn: Act Subs Cost Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Act Misc Other Cost Ttd'
+				dataType: double
+				lineageTag: 9ab5fc36-d36a-4e10-8ea9-4668958e12ef
+				summarizeBy: sum
+				sourceColumn: Act Misc Other Cost Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Total Actual Cost'
+				dataType: double
+				lineageTag: 872ecec5-e3e6-48b1-b20e-badfa7bd37ad
+				summarizeBy: sum
+				sourceColumn: Total Actual Cost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Orig Contract Amount'
+				dataType: double
+				lineageTag: c8d6ea9f-5874-47c7-9d0f-fbd2a5985d8c
+				summarizeBy: sum
+				sourceColumn: Orig Contract Amount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Contract Earned'
+				dataType: double
+				lineageTag: dfd496df-e385-48ad-a622-ecd7b6297e60
+				summarizeBy: sum
+				sourceColumn: Contract Earned
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Contract Earned Curr Mo'
+				dataType: double
+				lineageTag: 94848aea-5440-4e8d-827a-5bee7b0d6350
+				summarizeBy: sum
+				sourceColumn: Contract Earned Curr Mo
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Billed Labor Ttd Mkup'
+				dataType: double
+				lineageTag: 4e07eb38-a798-46ea-ad4b-9b4ca11a30a6
+				summarizeBy: sum
+				sourceColumn: Billed Labor Ttd Mkup
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Billed Mat Cst Ttd Mkup'
+				dataType: double
+				lineageTag: 04ce5185-6fd1-461a-abfa-ce96ab4a6791
+				summarizeBy: sum
+				sourceColumn: Billed Mat Cst Ttd Mkup
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Billed Equipttd Mkup'
+				dataType: double
+				lineageTag: 305d0dc6-74df-4dc7-9043-945db9c64322
+				summarizeBy: sum
+				sourceColumn: Billed Equipttd Mkup
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Billed Subs Ttd Mkup'
+				dataType: double
+				lineageTag: bcefca02-7ecf-4eed-a4d9-16d6da057178
+				summarizeBy: sum
+				sourceColumn: Billed Subs Ttd Mkup
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Billed Other Ttd Mkup'
+				dataType: double
+				lineageTag: f1ca506f-e3e1-4fca-b62c-b82d75527624
+				summarizeBy: sum
+				sourceColumn: Billed Other Ttd Mkup
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Billed Amount Ttd'
+				dataType: double
+				lineageTag: 591441c9-5107-40f9-b35b-d00933c20285
+				summarizeBy: sum
+				sourceColumn: Billed Amount Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Retention Amount Ttd'
+				dataType: double
+				lineageTag: 4b666959-f8e6-4d8d-a357-18ac13f5bac8
+				summarizeBy: sum
+				sourceColumn: Retention Amount Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Retention Billed Ttd'
+				dataType: double
+				lineageTag: de0ede94-a361-4625-b253-02a8bbabdb23
+				summarizeBy: sum
+				sourceColumn: Retention Billed Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Net Billed Ttd'
+				dataType: double
+				lineageTag: a3f5fd72-f344-452e-a6c5-f7d616b0f659
+				summarizeBy: sum
+				sourceColumn: Net Billed Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Cash Received Ttd'
+				dataType: double
+				lineageTag: 66bb199f-f076-47ba-add8-6c981c3698ae
+				summarizeBy: sum
+				sourceColumn: Cash Received Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column Msctxamt
+				dataType: double
+				lineageTag: f6e14539-b31b-4c4b-ac51-514d434e7d28
+				summarizeBy: sum
+				sourceColumn: Msctxamt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column Taxamnt
+				dataType: double
+				lineageTag: 40814dcc-1961-4839-8b23-7a1b0a06202c
+				summarizeBy: sum
+				sourceColumn: Taxamnt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column Discamnt
+				dataType: double
+				lineageTag: fdd09945-6954-4d50-9609-8ef0eb62c096
+				summarizeBy: sum
+				sourceColumn: Discamnt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column Wrofamnt
+				dataType: double
+				lineageTag: 1bba862a-c001-4916-88e9-549ca49c9ea8
+				summarizeBy: sum
+				sourceColumn: Wrofamnt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Last Billing Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 3ed3d2db-fa3a-4b74-be03-d7fd04f98474
+				summarizeBy: none
+				sourceColumn: Last Billing Date
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Expected Contract'
+				dataType: double
+				lineageTag: 5920a71d-5d6e-4121-9552-47d17580ccaf
+				summarizeBy: sum
+				sourceColumn: Expected Contract
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Committed Equipment Ttd'
+				dataType: double
+				lineageTag: 536e226b-27df-4c10-a259-6d43c589dc54
+				summarizeBy: sum
+				sourceColumn: Committed Equipment Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Committed Materials Ttd'
+				dataType: double
+				lineageTag: 4177c492-9f78-4443-9c91-cedc8bce699d
+				summarizeBy: sum
+				sourceColumn: Committed Materials Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Committed Labor Ttd'
+				dataType: double
+				lineageTag: b1154b43-19af-4514-ab93-7a3cb5ca5652
+				summarizeBy: sum
+				sourceColumn: Committed Labor Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Committed Subs Ttd'
+				dataType: double
+				lineageTag: 67f6d896-a4a3-48b3-883a-ffe01bffe077
+				summarizeBy: sum
+				sourceColumn: Committed Subs Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Committed Other Ttd'
+				dataType: double
+				lineageTag: 8f17a534-eac4-4e02-abb5-d2552ea4086a
+				summarizeBy: sum
+				sourceColumn: Committed Other Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Committed Cost'
+				dataType: double
+				lineageTag: e5de5c3c-4ae1-4f30-818d-9844d736c625
+				summarizeBy: sum
+				sourceColumn: Committed Cost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Revsd Equip Forecasted'
+				dataType: double
+				lineageTag: 90374bdd-f326-4340-805f-453aa5164718
+				summarizeBy: sum
+				sourceColumn: Revsd Equip Forecasted
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Revsd Labor Forecasted'
+				dataType: double
+				lineageTag: ddb89bcb-3b49-45d3-aebd-1204c327c10a
+				summarizeBy: sum
+				sourceColumn: Revsd Labor Forecasted
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Revsd Materials Forecst'
+				dataType: double
+				lineageTag: a15c29fe-fb04-436e-849b-e4e122e034fc
+				summarizeBy: sum
+				sourceColumn: Revsd Materials Forecst
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Revsd Subs Forecast Cst'
+				dataType: double
+				lineageTag: cbeb71d1-ffa5-4e2d-a8ea-656890cf43d3
+				summarizeBy: sum
+				sourceColumn: Revsd Subs Forecast Cst
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Revsd Other Forecst Cst'
+				dataType: double
+				lineageTag: b3068363-e4ba-4245-8e86-eb5a322da81a
+				summarizeBy: sum
+				sourceColumn: Revsd Other Forecst Cst
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Tot Revsd Forecast Cost'
+				dataType: double
+				lineageTag: 0ac64e1d-4e3d-4396-bdd2-3db337926355
+				summarizeBy: sum
+				sourceColumn: Tot Revsd Forecast Cost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Confirmed Chg Order Amt'
+				dataType: double
+				lineageTag: b275223a-9422-4f0b-a527-eed04a71bff8
+				summarizeBy: sum
+				sourceColumn: Confirmed Chg Order Amt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'In Process Chg Ord Amt'
+				dataType: double
+				lineageTag: 2d661c16-ccc8-4b53-87cd-26b5590d5823
+				summarizeBy: sum
+				sourceColumn: In Process Chg Ord Amt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Est Labor Units Ttd'
+				dataType: double
+				lineageTag: 193231e2-3dff-480d-b652-8558d1b990e7
+				summarizeBy: sum
+				sourceColumn: Est Labor Units Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Act Labor Units Ttd'
+				dataType: double
+				lineageTag: 1e18184a-fa80-4d0e-bb1f-dd943a3c442c
+				summarizeBy: sum
+				sourceColumn: Act Labor Units Ttd
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Total Act Plus Markup'
+				dataType: double
+				lineageTag: 9ec6ebad-3100-4c78-aaf7-311b5bdc56e7
+				summarizeBy: sum
+				sourceColumn: Total Act Plus Markup
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Revsd Forecast Lab Units'
+				dataType: double
+				lineageTag: 680294e2-1f67-44c3-8e6b-8fff62c9ee8b
+				summarizeBy: sum
+				sourceColumn: Revsd Forecast Lab Units
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column Modifdt
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 6bf6e322-abb8-4c5c-b76a-2fd6738c22c0
+				summarizeBy: none
+				sourceColumn: Modifdt
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Modified Time'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 6352eef9-3eba-4242-91f4-f56a6f71c499
+				summarizeBy: none
+				sourceColumn: Modified Time
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Modified User Id'
+				dataType: string
+				lineageTag: d69c7765-f8b3-4569-89ff-e00b1a0fc9f4
+				summarizeBy: none
+				sourceColumn: Modified User Id
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Dex Row Id'
+				dataType: string
+				lineageTag: 1f63a378-5b82-4959-b7d8-e5654bae99ba
+				summarizeBy: none
+				sourceColumn: Dex Row Id
+
+				annotation SummarizationSetBy = Automatic
+
+			column Source
+				dataType: string
+				lineageTag: 9723d106-1f45-424d-8a28-440d7a8a7583
+				summarizeBy: none
+				sourceColumn: Source
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Job Key'
+				dataType: string
+				lineageTag: 46544fbc-76ed-409d-a308-535e7e978aea
+				summarizeBy: none
+				sourceColumn: Job Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: c7b4dfb4-7ae7-4802-9dc6-453a38d40669
+				summarizeBy: none
+				sourceColumn: Customer Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Project Key'
+				dataType: string
+				lineageTag: fe13a20b-a9a0-4e8b-a05b-5eccc2eb6f73
+				summarizeBy: none
+				sourceColumn: Project Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Jc Contract Key'
+				dataType: string
+				lineageTag: 0238770e-fc94-47d8-a581-dfbcb296f00a
+				summarizeBy: none
+				sourceColumn: Jc Contract Key
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Cleaned Divisions'
+				dataType: string
+				lineageTag: 0b8b9f84-1781-4bfa-99af-a932b01a9e9f
+				summarizeBy: none
+				sourceColumn: Cleaned Divisions
+
+				annotation SummarizationSetBy = Automatic
+
+			partition JOB_MONTHLY_SUMMARY_F = m
+				mode: import
+				source =
+						let
+						    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+						    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+						    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+						    JOB_MONTHLY_SUMMARY_F_Table = DW_FINAL_Schema{[Name="JOB_MONTHLY_SUMMARY_F",Kind="Table"]}[Data],
+						    ProperCase = Table.RenameColumns(JOB_MONTHLY_SUMMARY_F_Table, List.Transform(Table.ColumnNames(JOB_MONTHLY_SUMMARY_F_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+						    #"Filtered Rows" = Table.SelectRows(ProperCase, each [Period Date] < Date.From(DateTime.LocalNow()))
+						in
+						    #"Filtered Rows"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table RS_Measures
+			isHidden
+			lineageTag: dbca8cbc-d337-4cd0-8a6f-3ffd8a3a7945
+
+			/// CRR methodology project revenue (job earned + service project billings), completed months only.
+			measure 'Projects Revenue (CRR)' = CALCULATE(SUM(Projects_ProjectMonth_CRR_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.1 Projects
+				lineageTag: afd0578e-a50e-4ae8-a56f-c45a3281bf18
+
+			/// CRR methodology project costs, completed months only.
+			measure 'Projects Cost (CRR)' = CALCULATE(SUM(Projects_ProjectMonth_CRR_F[Cost Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 2. Cost\2.1 Projects
+				lineageTag: 9d826691-8515-44ab-a099-7698525ca226
+
+			/// CRR project gross profit.
+			measure 'Projects GP (CRR)' = [Projects Revenue (CRR)] - [Projects Cost (CRR)]
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 3. Gross Profit\3.1 Projects
+				lineageTag: 11119134-a334-44ed-88a5-5f30953a328d
+
+			/// CRR project gross margin.
+			measure 'Projects GP % (CRR)' = DIVIDE([Projects GP (CRR)], [Projects Revenue (CRR)])
+				formatString: 0.0%;-0.0%;0.0%
+				displayFolder: 3. Gross Profit\3.1 Projects
+				lineageTag: 7b7a9caf-55f1-4226-999d-9ba1ec2ec7ef
+
+			/// Amend methodology service-project billings, completed months only.
+			measure 'Projects Revenue (Amend - Service Project)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[Revenue Amount]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Service Project", FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.1 Projects
+				lineageTag: f2faece4-eb53-43f9-82d2-9d90b6b3ba00
+
+			/// Cumulative actual costs per project (Amend).
+			measure 'Amend Cum Actual (PerProject)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[ActualCost_Mo]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FILTER(ALL(FYCALENDAR_D[Date]), FYCALENDAR_D[Date] <= MAX(FYCALENDAR_D[Date])))
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 7. Helper
+				lineageTag: b16eb35b-facf-41ca-9b85-0f46fc5d5d16
+
+			/// Cumulative forecast costs per project (Amend).
+			measure 'Amend Cum Forecast (PerProject)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[ForecastCost_Mo]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FILTER(ALL(FYCALENDAR_D[Date]), FYCALENDAR_D[Date] <= MAX(FYCALENDAR_D[Date])))
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 7. Helper
+				lineageTag: fa32e921-3a24-4418-9cae-ecd143efeef0
+
+			/// Percent complete per project (Amend).
+			measure 'Amend % Complete (PerProject)' = VAR cumForecast = [Amend Cum Forecast (PerProject)] RETURN IF(ISBLANK(cumForecast) || cumForecast = 0, BLANK(), MIN(1, DIVIDE([Amend Cum Actual (PerProject)], cumForecast)))
+				formatString: 0.0%;-0.0%;0.0%
+				displayFolder: 7. Helper
+				lineageTag: c0ff8c44-2eb7-4ed7-b223-5d1b6727969c
+
+			/// Contract amount per project (Amend).
+			measure 'Amend Contract Amount (PerProject)' = CALCULATE(MAX(Projects_ProjectMonth_Amend_F[Orig Contract Amount]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost")
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 7. Helper
+				lineageTag: ee6b58a4-e71b-49ad-93a3-a596769b19f8
+
+			/// Earned to-date per project (Amend).
+			measure 'Amend Earned TTD (PerProject)' = VAR contractAmount = [Amend Contract Amount (PerProject)] VAR pctComplete = [Amend % Complete (PerProject)] VAR earned = contractAmount * pctComplete RETURN IF(ISBLANK(contractAmount) || ISBLANK(pctComplete), BLANK(), MIN(contractAmount, earned))
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 7. Helper
+				lineageTag: 74000d66-3558-40a4-9483-48e7a364af9d
+
+			/// Earned to-date at month-end prior to selection start (Amend).
+			measure 'Amend Earned TTD (Start-1) (PerProject)' = VAR startDate = MIN(FYCALENDAR_D[Date]) VAR priorDate = EOMONTH(startDate, -1) RETURN CALCULATE([Amend Earned TTD (PerProject)], TREATAS({priorDate}, FYCALENDAR_D[Date]))
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 7. Helper
+				lineageTag: b3ad759b-b50c-4347-81cf-dd014546a10f
+
+			/// Earned revenue in current month context (Amend).
+			measure 'Amend Earned Revenue (Mo) (PerProject)' = [Amend Earned TTD (PerProject)] - [Amend Earned TTD (Start-1) (PerProject)]
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 7. Helper
+				lineageTag: 30325746-a1ca-44ac-85e7-22d4be3ee378
+
+			/// Amend methodology earned revenue for job-cost projects, completed months only.
+			measure 'Projects Revenue (Amend - Job Cost)' = VAR jobProjects = CALCULATETABLE(VALUES(Projects_ProjectMonth_Amend_F[SurrogateProjectID]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FYCALENDAR_D[Is Completed Month] = TRUE) RETURN SUMX(jobProjects, [Amend Earned Revenue (Mo) (PerProject)])
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.1 Projects
+				lineageTag: f483f9cf-c702-4a6b-9fe1-2c75caacfc9d
+
+			/// Total Amend project revenue (job cost + service project), completed months only.
+			measure 'Projects Revenue (Amend)' = CALCULATE([Projects Revenue (Amend - Job Cost)] + [Projects Revenue (Amend - Service Project)], FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.1 Projects
+				lineageTag: 9261d9ba-e524-4b30-81fb-41ea02ad5aec
+
+			/// Amend methodology project costs, completed months only.
+			measure 'Projects Cost (Amend)' = CALCULATE(SUM(Projects_ProjectMonth_Amend_F[Cost Amount]), Projects_ProjectMonth_Amend_F[Project Subsegment] = "Job Cost", FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 2. Cost\2.1 Projects
+				lineageTag: b9ecee3d-a016-463d-84a8-f0ad3bfa55c9
+
+			/// Amend project gross profit.
+			measure 'Projects GP (Amend)' = [Projects Revenue (Amend)] - [Projects Cost (Amend)]
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 3. Gross Profit\3.1 Projects
+				lineageTag: 424b940e-c774-415f-b1b8-db012b60e41e
+
+			/// Amend project gross margin.
+			measure 'Projects GP % (Amend)' = DIVIDE([Projects GP (Amend)], [Projects Revenue (Amend)])
+				formatString: 0.0%;-0.0%;0.0%
+				displayFolder: 3. Gross Profit\3.1 Projects
+				lineageTag: 9f0cb4f7-c838-4384-af37-055e9d7bca38
+
+			/// Variance between Amend and CRR project revenue.
+			measure 'Projects Revenue Variance (Amend-CRR)' = [Projects Revenue (Amend)] - [Projects Revenue (CRR)]
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.1 Projects
+				lineageTag: 8081108c-942d-4b53-9f09-4643b41a81a5
+
+			/// Percent variance between Amend and CRR project revenue.
+			measure 'Projects Revenue Variance %' = DIVIDE([Projects Revenue Variance (Amend-CRR)], [Projects Revenue (CRR)])
+				formatString: 0.0%;-0.0%;0.0%
+				displayFolder: 1. Revenue\1.1 Projects
+				lineageTag: 1d9eed3a-586f-4b91-8ed7-6079eeb41c25
+
+			/// Service contract revenue from billings (CRR), completed months only.
+			measure 'Service Contracts Revenue (CRR Billings)' = CALCULATE(SUM(SERVCONTRACTS_CustomerMonth_Billings_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.2 Service Contracts
+				lineageTag: 1fccdd30-172f-40ad-a145-3605bce3fc89
+
+			/// Service contract revenue recognized on schedule (Amend), completed months only.
+			measure 'Service Contracts Revenue (Amend Recognized)' = CALCULATE(SUM(SERVCONTRACTS_CustomerMonth_Recognized_Alt_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.2 Service Contracts
+				lineageTag: 872f1e41-de8a-4aac-97bc-b34e836ca977
+
+			/// Variance between recognized and billed service contract revenue.
+			measure 'Service Contracts Revenue Variance (Amend-CRR)' = [Service Contracts Revenue (Amend Recognized)] - [Service Contracts Revenue (CRR Billings)]
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.2 Service Contracts
+				lineageTag: 6718f006-c0ec-4ce6-ab42-04ba349bfb2e
+
+			/// Percent variance between recognized and billed service contract revenue.
+			measure 'Service Contracts Revenue Variance %' = DIVIDE([Service Contracts Revenue Variance (Amend-CRR)], [Service Contracts Revenue (CRR Billings)])
+				formatString: 0.0%;-0.0%;0.0%
+				displayFolder: 1. Revenue\1.2 Service Contracts
+				lineageTag: cbc6c5e8-212a-4920-b212-533913688524
+
+			/// T&M revenue from call-level billings (CRR), completed months only.
+			measure 'T&M Revenue (CRR Call-Level)' = CALCULATE(SUM(TM_CustomerMonth_CRR_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.3 T&M
+				lineageTag: ea2ab74d-6d62-4ca7-8bfb-553cf434528a
+
+			/// T&M revenue from call-detail billings (Amend), completed months only.
+			measure 'T&M Revenue (Amend Call-Detail)' = CALCULATE(SUM(TM_CustomerMonth_Amend_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.3 T&M
+				lineageTag: b2300b2b-010e-4e25-823f-a63316323901
+
+			/// Variance between call-detail and call-level T&M revenue.
+			measure 'T&M Revenue Variance (Amend-CRR)' = [T&M Revenue (Amend Call-Detail)] - [T&M Revenue (CRR Call-Level)]
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.3 T&M
+				lineageTag: 97c012ce-13af-460c-b4d6-48bf239e62e4
+
+			/// Percent variance between call-detail and call-level T&M revenue.
+			measure 'T&M Revenue Variance %' = DIVIDE([T&M Revenue Variance (Amend-CRR)], [T&M Revenue (CRR Call-Level)])
+				formatString: 0.0%;-0.0%;0.0%
+				displayFolder: 1. Revenue\1.3 T&M
+				lineageTag: d26978f7-4ffa-4927-9605-6b3cfe36e154
+
+			/// Legacy service projects stored as contracts, billings-based revenue, completed months only.
+			measure 'Legacy Service Projects Revenue (Billings)' = CALCULATE(SUM(LEGACYPROJECTS_CustomerMonth_Billings_F[Revenue Amount]), FYCALENDAR_D[Is Completed Month] = TRUE)
+				formatString: $#,0;($#,0);$#,0
+				displayFolder: 1. Revenue\1.4 Legacy Service Projects
+				lineageTag: bfeeacd1-71cf-406c-a904-5562a584f26b
+
+			column _
+				lineageTag: aecc7c2b-f25a-46e0-8e58-8c8a466f17a0
+				isNameInferred
+				sourceColumn: [_]
+
+			partition RS_Measures = calculated
+				mode: import
+				source = DATATABLE("_", INTEGER, {{1}})
+
+		table Projects_ProjectMonth_CRR_F
+			lineageTag: dee43b3d-f3e5-420d-8de1-0e0b406b0da6
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 422356ef-1597-4795-b5e5-b6d566ecebba
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 3edfa34b-6a52-4829-b3d3-91fd11168177
+				sourceColumn: Customer Key
+
+			column SurrogateProjectID
+				dataType: string
+				lineageTag: 8b1df5c2-09d9-49aa-9ec9-f32df86225c8
+				sourceColumn: SurrogateProjectID
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: 5eed134e-aea3-45df-93b7-63fc043c640e
+				sourceColumn: Project Subsegment
+
+			column Stream
+				dataType: string
+				lineageTag: c766a361-4002-4534-9eec-698a1bd4cade
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: 939ab8e2-7015-4003-a2b0-0627bbc649de
+				sourceColumn: Methodology
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: 5dc6f9f0-7fbe-487d-84b1-b2ea0728868c
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: f5becb06-1de9-454f-bfaa-b1038720a1cd
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			partition Projects_ProjectMonth_CRR_F = m
+				mode: import
+				source =
+						let
+						      StartDate = #date(2020, 1, 1),
+						
+						      // Map Job Cost projects (Project Number = Job Number)
+						      JobDim = Table.SelectRows(PROJECTS_D, each [Project Type] = "Job Cost"),
+						      JobDimKeys = Table.SelectColumns(JobDim, {"Project Number","Customer Number","Customer Key","Project Key","SurrogateProjectID"}),
+						
+						      // ----------------------------
+						      // Job Cost (CRR-style)
+						      // ----------------------------
+						      SourceJobs = JOB_MONTHLY_SUMMARY_F,
+						      JobsFiltered = Table.SelectRows(SourceJobs, each [Period Date] >= StartDate),
+						      JobsSlim = Table.SelectColumns(JobsFiltered,{"Period Date","Customer Number","Job Number","Contract Earned Curr Mo","Total Actual Cost"}),
+						      JobsWithMonthEnd = Table.AddColumn(JobsSlim, "Month End", each Date.EndOfMonth([Period Date]), type date),
+						      JobsGrouped = Table.Group(
+						          JobsWithMonthEnd,
+						          {"Customer Number","Job Number","Month End"},
+						          {
+						              {"Revenue Amount", each List.Sum([Contract Earned Curr Mo]), type number},
+						              {"TotalActualCost_TTD", each List.Max([Total Actual Cost]), type number}
+						          }
+						      ),
+						      JobsByProject = Table.Group(
+						          JobsGrouped,
+						          {"Customer Number","Job Number"},
+						          {
+						              {"Rows", (t) =>
+						                  let
+						                      Sorted = Table.Sort(t, {{"Month End", Order.Ascending}}),
+						                      Indexed = Table.AddIndexColumn(Sorted, "Idx", 0, 1, Int64.Type),
+						                      WithPrev = Table.AddColumn(Indexed, "PrevTotal", each if [Idx] = 0 then 0 else
+						  Indexed{[Idx]-1}[TotalActualCost_TTD], type number),
+						                      WithCost = Table.AddColumn(WithPrev, "Cost Amount", each [TotalActualCost_TTD] - [PrevTotal],
+						  type number),
+						                      Clean = Table.RemoveColumns(WithCost, {"Idx","PrevTotal","TotalActualCost_TTD"})
+						                  in
+						                      Clean,
+						                  type table
+						              }
+						          }
+						      ),
+						      JobsExpanded = Table.ExpandTableColumn(JobsByProject, "Rows", {"Month End","Revenue Amount","Cost Amount"},
+						  {"Month End","Revenue Amount","Cost Amount"}),
+						
+						      // Join to PROJECTS_D to get SurrogateProjectID + Customer Key
+						      JobsWithDim = Table.NestedJoin(
+						          JobsExpanded,
+						          {"Job Number","Customer Number"},
+						          JobDimKeys,
+						          {"Project Number","Customer Number"},
+						          "D",
+						          JoinKind.LeftOuter
+						      ),
+						      JobsExpandedDim = Table.ExpandTableColumn(JobsWithDim, "D", {"Customer Key","Project Key","SurrogateProjectID"}, {"Customer Key","Project Key","SurrogateProjectID"}),
+						
+						      JobsFinal = Table.AddColumn(
+						          Table.AddColumn(
+						              Table.AddColumn(JobsExpandedDim, "Project Subsegment", each "Job Cost", type text),
+						              "Stream", each "Projects", type text
+						          ),
+						          "Methodology", each "CRR", type text
+						      ),
+						      JobsSelect = Table.SelectColumns(JobsFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount"}),
+						
+						      // ----------------------------
+						      // Service Project (legacy) billings (kept inside Projects)
+						      // ----------------------------
+						      ServiceProjects = Table.SelectRows(PROJECTS_D, each [Project Type] = "Service Project"),
+						      ServiceKeys = Table.Distinct(Table.SelectColumns(ServiceProjects,{"Project Number","SurrogateProjectID"}),
+						  {"Project Number"}),
+						      Billing = CONTRACT_BILLABLE_F,
+						      BillingFiltered = Table.SelectRows(Billing, each [WENNSOFT_BILLING_DATE] >= StartDate),
+						      Joined = Table.NestedJoin(BillingFiltered, {"CONTRACT_NUMBER"}, ServiceKeys, {"Project Number"}, "P",
+						  JoinKind.Inner),
+						      Expanded = Table.ExpandTableColumn(Joined, "P", {"SurrogateProjectID"}, {"SurrogateProjectID"}),
+						      WithMonthEnd = Table.AddColumn(Expanded, "Month End", each Date.EndOfMonth([WENNSOFT_BILLING_DATE]), type
+						  date),
+						      ServiceSlim = Table.SelectColumns(WithMonthEnd,{"Month End","Customer Key","SurrogateProjectID","BILLABLE_ALL"}),
+						      ServiceGrouped = Table.Group(ServiceSlim,{"Customer Key","SurrogateProjectID","Month End"},{{"Revenue Amount",
+						  each List.Sum([BILLABLE_ALL]), type number}}),
+						      ServiceWithCost = Table.AddColumn(ServiceGrouped, "Cost Amount", each null, type number),
+						      ServiceFinal = Table.AddColumn(
+						          Table.AddColumn(
+						              Table.AddColumn(ServiceWithCost, "Project Subsegment", each "Service Project", type text),
+						              "Stream", each "Projects", type text
+						          ),
+						          "Methodology", each "CRR", type text
+						      ),
+						      ServiceSelect = Table.SelectColumns(ServiceFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount"}),
+						
+						      Combined = Table.Combine({JobsSelect, ServiceSelect}),
+						      Typed = Table.TransformColumnTypes(Combined,{{"Revenue Amount", type number}, {"Cost Amount", type number},
+						  {"Month End", type date}})
+						  in
+						      Typed
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table Projects_ProjectMonth_Amend_F
+			lineageTag: 49fbb8e1-f707-4611-adf3-a2494b6a79fe
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 045dbdae-62b6-4782-8747-cdbdcf9cdc5d
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 1cccf740-906e-4e42-affa-6a6b62d0f84a
+				sourceColumn: Customer Key
+
+			column SurrogateProjectID
+				dataType: string
+				lineageTag: 3c558f95-a536-4411-a5a5-c1e4b21e4d2c
+				sourceColumn: SurrogateProjectID
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: 898e9781-389c-4019-943e-fadc4389c348
+				sourceColumn: Project Subsegment
+
+			column Stream
+				dataType: string
+				lineageTag: 1d166b37-6026-44cb-8eaa-2e6e08be75ca
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: e43e1bbd-d7d9-48d7-ac27-be2e6650cbfc
+				sourceColumn: Methodology
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: 7e634cd9-e96e-4da2-a464-36b6cca4d495
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: 87e3ad8f-50f2-4896-949c-3cfeb93ec068
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			column ActualCost_Mo
+				dataType: double
+				lineageTag: 0b2a634e-6eb3-458b-85ed-76095bf1a6be
+				sourceColumn: ActualCost_Mo
+
+			column ForecastCost_Mo
+				dataType: double
+				lineageTag: b37e0509-ab05-4cb5-afd0-a4554977ee64
+				sourceColumn: ForecastCost_Mo
+
+			column 'Orig Contract Amount'
+				dataType: double
+				lineageTag: 71f8be07-5080-4273-a567-bb7c25d9818f
+				sourceColumn: Orig Contract Amount
+
+			partition Projects_ProjectMonth_Amend_F = m
+				mode: import
+				source =
+						let
+						    // ----------------------------
+						    // Job Cost (Amend inputs at Job × Month)
+						    // ----------------------------
+						    StartDate = #date(2020, 1, 1),
+						
+						    // Map Job Cost projects (Project Number = Job Number)
+						    JobDim = Table.SelectRows(PROJECTS_D, each [Project Type] = "Job Cost"),
+						    JobDimKeysRaw = Table.SelectColumns(JobDim,{"Project Number","Customer Number","Customer Key","SurrogateProjectID"}),
+						    JobDimKeys = Table.TransformColumns(
+						        JobDimKeysRaw,
+						        {
+						            {"Project Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+						            {"Customer Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}
+						        }
+						    ),
+						
+						    // Build JobKey -> Job Number + Customer Number bridge from JOB_MONTHLY_SUMMARY_F
+						    JobMapBase = Table.SelectRows(JOB_MONTHLY_SUMMARY_F, each [Period Date] >= StartDate),
+						    JobMapBaseSlim = Table.SelectColumns(JobMapBase,{"Job Key","Job Number","Customer Number","Orig Contract Amount"}),
+						    JobMapBaseClean = Table.TransformColumns(
+						        JobMapBaseSlim,
+						        {
+						            {"Job Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+						            {"Customer Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}
+						        }
+						    ),
+						    JobMapGrouped =
+						        Table.Group(
+						            JobMapBaseClean,
+						            {"Job Key"},
+						            {
+						                {"Job Number", each List.Max([Job Number]), type text},
+						                {"Customer Number", each List.Max([Customer Number]), type text},
+						                {"Orig Contract Amount", each List.Max([Orig Contract Amount]), type number}
+						            }
+						        ),
+						
+						    ActualSrc = Table.SelectRows(JOB_COST_DETAILS, each Date.From([TRAN_DATE]) >= StartDate),
+						    ActualWithMonthEnd =
+						        Table.AddColumn(
+						            Table.SelectColumns(ActualSrc,{"JOB_KEY","TRAN_DATE","COST_AMT"}),
+						            "Month End",
+						            each Date.EndOfMonth(Date.From([TRAN_DATE])),
+						            type date
+						        ),
+						    ActualGrouped = Table.Group(ActualWithMonthEnd,{"JOB_KEY","Month End"},{{"ActualCost_Mo", each List.Sum([COST_AMT]), type number}}),
+						
+						    FcstSrc = Table.SelectRows(JOB_COST_FORECASTS_F, each Date.From([Date]) >= StartDate),
+						    FcstWithMonthEnd =
+						        Table.AddColumn(
+						            Table.SelectColumns(FcstSrc,{"JOB_KEY","Date","FORECAST_COSTS"}),
+						            "Month End",
+						            each Date.EndOfMonth(Date.From([Date])),
+						            type date
+						        ),
+						    FcstGrouped = Table.Group(FcstWithMonthEnd,{"JOB_KEY","Month End"},{{"ForecastCost_Mo", each List.Sum([FORECAST_COSTS]), type number}}),
+						
+						    // Align Actual/Forecast by Job+Month
+						    ActualLabeled = Table.RenameColumns(Table.AddColumn(ActualGrouped, "Kind", each "ActualCost_Mo", type text), {{"ActualCost_Mo", "Amount"}}),
+						    FcstLabeled = Table.RenameColumns(Table.AddColumn(FcstGrouped, "Kind", each "ForecastCost_Mo", type text), {{"ForecastCost_Mo", "Amount"}}),
+						    CostsCombined = Table.Combine({ActualLabeled, FcstLabeled}),
+						    CostsGrouped = Table.Group(CostsCombined, {"JOB_KEY","Month End","Kind"}, {{"Amount", each List.Sum([Amount]), type number}}),
+						    CostsPivoted = Table.Pivot(CostsGrouped, List.Distinct(CostsGrouped[Kind]), "Kind", "Amount", List.Sum),
+						    EnsureActual = if List.Contains(Table.ColumnNames(CostsPivoted), "ActualCost_Mo") then CostsPivoted else Table.AddColumn(CostsPivoted, "ActualCost_Mo", each 0, type number),
+						    EnsureForecast = if List.Contains(Table.ColumnNames(EnsureActual), "ForecastCost_Mo") then EnsureActual else Table.AddColumn(EnsureActual, "ForecastCost_Mo", each 0, type number),
+						
+						    // Join to JobMap to get Job Number + Customer Number + Orig Contract
+						    WithJobMap = Table.NestedJoin(EnsureForecast, {"JOB_KEY"}, JobMapGrouped, {"Job Key"}, "JM", JoinKind.LeftOuter),
+						    ExpandedJobMap = Table.ExpandTableColumn(WithJobMap, "JM", {"Job Number","Customer Number","Orig Contract Amount"}, {"Job Number","Customer Number","Orig Contract Amount"}),
+						
+						    // Join to PROJECTS_D using Project Number + Customer Number
+						    WithDim = Table.NestedJoin(ExpandedJobMap, {"Job Number","Customer Number"}, JobDimKeys, {"Project Number","Customer Number"}, "D", JoinKind.LeftOuter),
+						    ExpandedDim = Table.ExpandTableColumn(WithDim, "D", {"Customer Key","SurrogateProjectID"}, {"Customer Key","SurrogateProjectID"}),
+						
+						    JobsBase =
+						        Table.AddColumn(
+						            Table.AddColumn(
+						                Table.AddColumn(
+						                    Table.AddColumn(ExpandedDim, "Project Subsegment", each "Job Cost", type text),
+						                    "Stream", each "Projects", type text
+						                ),
+						                "Methodology", each "Amend", type text
+						            ),
+						            "Revenue Amount", each null, type number
+						        ),
+						    JobsWithCost = Table.AddColumn(JobsBase, "Cost Amount", each [ActualCost_Mo], type number),
+						    JobsSelect =
+						        Table.SelectColumns(
+						            JobsWithCost,
+						            {"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount","ActualCost_Mo","ForecastCost_Mo","Orig Contract Amount"}
+						        ),
+						
+						    // ----------------------------
+						    // Service Project billings (same for both methodologies)
+						    // ----------------------------
+						    ServiceProjects = Table.SelectRows(PROJECTS_D, each [Project Type] = "Service Project"),
+						    ServiceKeys = Table.Distinct(Table.SelectColumns(ServiceProjects,{"Project Number","SurrogateProjectID"}),{"Project Number"}),
+						    Billing = Table.SelectRows(CONTRACT_BILLABLE_F, each [WENNSOFT_BILLING_DATE] >= StartDate),
+						    Joined = Table.NestedJoin(Billing, {"CONTRACT_NUMBER"}, ServiceKeys, {"Project Number"}, "P", JoinKind.Inner),
+						    ExpandedSP = Table.ExpandTableColumn(Joined, "P", {"SurrogateProjectID"}, {"SurrogateProjectID"}),
+						    WithMonthEndSP = Table.AddColumn(ExpandedSP, "Month End", each Date.EndOfMonth([WENNSOFT_BILLING_DATE]), type date),
+						    ServiceSlim = Table.SelectColumns(WithMonthEndSP,{"Month End","Customer Key","SurrogateProjectID","BILLABLE_ALL"}),
+						    ServiceGrouped = Table.Group(ServiceSlim,{"Customer Key","SurrogateProjectID","Month End"},{{"Revenue Amount", each List.Sum([BILLABLE_ALL]), type number}}),
+						    ServiceWithCost = Table.AddColumn(ServiceGrouped, "Cost Amount", each null, type number),
+						    ServiceWithInputs =
+						        Table.AddColumn(
+						            Table.AddColumn(
+						                Table.AddColumn(ServiceWithCost, "ActualCost_Mo", each null, type number),
+						                "ForecastCost_Mo", each null, type number
+						            ),
+						            "Orig Contract Amount", each null, type number
+						        ),
+						    ServiceFinal = Table.AddColumn(
+						        Table.AddColumn(
+						            Table.AddColumn(ServiceWithInputs, "Project Subsegment", each "Service Project", type text),
+						            "Stream", each "Projects", type text
+						        ),
+						        "Methodology", each "Amend", type text
+						    ),
+						    ServiceSelect = Table.SelectColumns(ServiceFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount","ActualCost_Mo","ForecastCost_Mo","Orig Contract Amount"}),
+						
+						    Combined = Table.Combine({JobsSelect, ServiceSelect}),
+						    Typed = Table.TransformColumnTypes(Combined,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+						 in
+						    Typed
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table SERVCONTRACTS_CustomerMonth_Billings_F
+			lineageTag: 14556adf-73a4-455a-9c5e-a0213d90f5c6
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: cf70991d-1eea-4892-b3fb-74933d6a2b6f
+				sourceColumn: Customer Key
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 310ad834-54a4-4104-9311-22aab1620f00
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Stream
+				dataType: string
+				lineageTag: 849aa97e-4691-483b-985e-d59e2f93a30a
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: b0f75709-d212-4e32-873c-175a38eb7c38
+				sourceColumn: Methodology
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: 0cf68525-594b-42cd-be18-5e7f8c011426
+				sourceColumn: Project Subsegment
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: 1aa28fa0-9304-42d2-aa4e-276b7a69195f
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: 92cae17f-4c9f-4b3a-afdb-34d4ba6fac30
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			column Divisions
+				dataType: string
+				lineageTag: a6a1a2ee-e4a5-4e02-9d94-e7486a647b79
+				sourceColumn: Divisions
+
+			partition SERVCONTRACTS_CustomerMonth_Billings_F = m
+				mode: import
+				source =
+						let
+						    StartDate = #date(2020, 1, 1),
+						    // Legacy agreement keys
+						    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D, {"AgreementKey","Contract Number","Contract Type"}),
+						    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+						    LegacyAgreement = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"AgreementKey"})),
+						
+						    Billing = SERVCONTRACTS_REVENUE_F,
+						    BillingFiltered = Table.SelectRows(Billing, each [Date] >= StartDate),
+						    ExcludeLegacy = Table.NestedJoin(BillingFiltered, {"AgreementKey"}, LegacyAgreement, {"AgreementKey"}, "L", JoinKind.LeftAnti),
+						
+						    DimKeys = Table.SelectColumns(SERVCONTRACTS_D, {"AgreementKey","Custnmbr Key","Divisions"}),
+						    JoinCustomer = Table.NestedJoin(ExcludeLegacy, {"AgreementKey"}, DimKeys, {"AgreementKey"}, "D", JoinKind.LeftOuter),
+						    Expanded = Table.ExpandTableColumn(JoinCustomer, "D", {"Custnmbr Key","Divisions"}, {"Customer Key","Divisions"}),
+						    WithMonthEnd = Table.AddColumn(Expanded, "Month End", each Date.EndOfMonth([Date]), type date),
+						
+						    Slim = Table.SelectColumns(WithMonthEnd,{"Customer Key","Divisions","Month End","Amount"}),
+						    Grouped = Table.Group(Slim,{"Customer Key","Divisions","Month End"},{{"Revenue Amount", each List.Sum([Amount]), type number}}),
+						    WithCost = Table.AddColumn(Grouped, "Cost Amount", each null, type number),
+						    Final = Table.AddColumn(
+						        Table.AddColumn(
+						            Table.AddColumn(WithCost, "Project Subsegment", each "Billings", type text),
+						            "Stream", each "Service Contracts", type text
+						        ),
+						        "Methodology", each "CRR", type text
+						    ),
+						    SelectCols = Table.SelectColumns(Final,{"Customer Key","Divisions","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
+						    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+						in
+						    Typed
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table SERVCONTRACTS_CustomerMonth_Recognized_Alt_F
+			lineageTag: 5ab77c62-317d-4a1e-bf57-8331dbbba515
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 2c3f37e6-268d-460e-ad51-165c68ac61c7
+				sourceColumn: Customer Key
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: a3095cf2-1e0a-4a58-a62e-17113b5be7bc
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Stream
+				dataType: string
+				lineageTag: f59fc3d3-ed67-4c4e-bcb0-97edfa1c5bbb
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: 048d84c2-891f-4a6d-bcf1-fe61bc33f4d1
+				sourceColumn: Methodology
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: 3cff6863-d30e-43eb-ba8e-f5e797850a5f
+				sourceColumn: Project Subsegment
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: cb147362-8f29-4cb8-aab8-62c90fd627fa
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: 00ed859f-3ea1-4c7d-87ec-8dd2ced9e538
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			column Divisions
+				dataType: string
+				lineageTag: cbedc2d1-a716-4b66-93c8-e55dedd9d1bb
+				sourceColumn: Divisions
+
+			partition SERVCONTRACTS_CustomerMonth_Recognized_Alt_F = m
+				mode: import
+				source =
+						let
+						    StartDate = #date(2020, 1, 1),
+						
+						    // Use billings to define contract-year population, term, and annual value proxy
+						    BillBase = Table.SelectColumns(SERVCONTRACTS_REVENUE_F, {"AgreementKey","Date","Amount"}),
+						    BillFiltered = Table.SelectRows(BillBase, each [Date] >= StartDate),
+						    BillAgg = Table.Group(
+						        BillFiltered,
+						        {"AgreementKey"},
+						        {
+						            {"Bill Start", each List.Min([Date]), type date},
+						            {"Bill End", each List.Max([Date]), type date},
+						            {"Bill Total", each List.Sum([Amount]), type number}
+						        }
+						    ),
+						
+						    DimBase = Table.SelectColumns(SERVCONTRACTS_D, {"AgreementKey","Custnmbr Key","Divisions","Contract Number","Contract Type"}),
+						    Clean = Table.TransformColumns(DimBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    LegacyFiltered = Table.SelectRows(Clean, each not ( ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P")) )),
+						
+						    JoinDim = Table.NestedJoin(BillAgg, {"AgreementKey"}, LegacyFiltered, {"AgreementKey"}, "D", JoinKind.Inner),
+						    Expanded = Table.ExpandTableColumn(JoinDim, "D", {"Custnmbr Key","Divisions"}, {"Customer Key","Divisions"}),
+						
+						    WithMonthBounds = Table.AddColumn(Expanded, "StartMonth", each Date.EndOfMonth([Bill Start]), type date),
+						    WithMonthBounds2 = Table.AddColumn(WithMonthBounds, "EndMonth", each Date.EndOfMonth([Bill End]), type date),
+						    WithMonthCount = Table.AddColumn(WithMonthBounds2, "MonthCount", each (Date.Year([EndMonth]) * 12 + Date.Month([EndMonth])) - (Date.Year([StartMonth]) * 12 + Date.Month([StartMonth])) + 1, Int64.Type),
+						    WithMonthList = Table.AddColumn(WithMonthCount, "Month End", each if [MonthCount] = null or [MonthCount] <= 0 then {} else List.Transform({0..[MonthCount]-1}, (i) => Date.EndOfMonth(Date.AddMonths([StartMonth], i))), type list),
+						    ExpandedMonths = Table.ExpandListColumn(WithMonthList, "Month End"),
+						
+						    WithMonthlyRevenue = Table.AddColumn(ExpandedMonths, "Revenue Amount", each if [MonthCount] = null or [MonthCount] <= 0 or [Bill Total] = null then null else [Bill Total] / [MonthCount], type number),
+						    WithCost = Table.AddColumn(WithMonthlyRevenue, "Cost Amount", each null, type number),
+						    Final = Table.AddColumn(
+						        Table.AddColumn(
+						            Table.AddColumn(WithCost, "Project Subsegment", each "Recognized Schedule", type text),
+						            "Stream", each "Service Contracts", type text
+						        ),
+						        "Methodology", each "Amend", type text
+						    ),
+						    SelectCols = Table.SelectColumns(Final,{"Customer Key","Divisions","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
+						    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+						 in
+						    Typed
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table TM_CustomerMonth_CRR_F
+			lineageTag: 3b9d945b-c0d7-4c8d-855e-791439a37539
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: a9be418c-982f-4731-961e-a9255ea05ee7
+				sourceColumn: Customer Key
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 3fb9f222-c09f-439f-b5e8-334234a6f248
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Stream
+				dataType: string
+				lineageTag: cc700008-36bf-4a0c-99b9-ce85ecf40cb2
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: 8fc428e0-7a5b-44f0-ada3-1c1f2ac23956
+				sourceColumn: Methodology
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: cda79552-15e1-4c91-ae06-f1f9aab41f42
+				sourceColumn: Project Subsegment
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: 1df14fc3-8465-4aad-96e5-7202eb0787d7
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: 33fbee5b-8b29-4cde-8e86-c84318a01229
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			partition TM_CustomerMonth_CRR_F = m
+				mode: import
+				source =
+						let
+						    StartDate = #date(2020, 1, 1),
+						    Types = {"REPAIR","QUOTED SERVICE"},
+						    Source = CALLS_F,
+						    WithTrim = Table.TransformColumns(Source, {{"Contract Number", each if _ = null then null else Text.Trim(_), type text}, {"Type Of Call", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    FilteredNonContract = Table.SelectRows(WithTrim, each [Contract Number] = null or [Contract Number] = ""),
+						    FilteredTypes = Table.SelectRows(FilteredNonContract, each List.Contains(Types, [Type Of Call])),
+						    #"Changed Type" = Table.TransformColumnTypes(FilteredTypes,{{"Date Of Service Call", type date}, {"Completion Date", type date}, {"Created Date", type date}}),
+						    FilteredDate = Table.SelectRows(#"Changed Type", each [Date Of Service Call] >= StartDate),
+						    WithMonthEnd = Table.AddColumn(FilteredDate, "Month End", each Date.EndOfMonth([Date Of Service Call]), type date),
+						    Slim = Table.SelectColumns(WithMonthEnd,{"Customernbr Key","Month End","Billable All","Cost All"}),
+						    Renamed = Table.RenameColumns(Slim, {{"Customernbr Key","Customer Key"}, {"Billable All","Revenue Amount"}, {"Cost All","Cost Amount"}}),
+						    Grouped = Table.Group(Renamed,{"Customer Key","Month End"},{{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+						    Final = Table.AddColumn(
+						        Table.AddColumn(
+						            Table.AddColumn(Grouped, "Project Subsegment", each "Call-Level", type text),
+						            "Stream", each "T&M", type text
+						        ),
+						        "Methodology", each "CRR", type text
+						    ),
+						    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
+						    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+						in
+						    Typed
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table TM_CustomerMonth_Amend_F
+			lineageTag: 58af20ed-069f-42b2-afe1-3bf5557f8d2f
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 27d61f4b-6b5c-4813-9a8a-4946bb44fc37
+				sourceColumn: Customer Key
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 202158ca-9a11-4ff3-bc64-3897c22b77a0
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Stream
+				dataType: string
+				lineageTag: a2899ec3-8fda-4686-8d0a-135ab5ded494
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: 850fe81c-5c78-481a-a369-38225e43336b
+				sourceColumn: Methodology
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: 0c6916c5-926f-482b-b8a3-f77678c8836b
+				sourceColumn: Project Subsegment
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: 0b341eda-9095-4f05-a4b2-faec61e91a5f
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: e4b98a59-456b-475c-af98-6b8edd182a29
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			partition TM_CustomerMonth_Amend_F = m
+				mode: import
+				source =
+						let
+						    StartDate = #date(2020, 1, 1),
+						    Types = {"REPAIR","QUOTED SERVICE"},
+						
+						    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+						    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+						    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+						    CALL_DETAILS_F_Table = DW_FINAL_Schema{[Name="CALL_DETAILS_F",Kind="Table"]}[Data],
+						    ProperCase = Table.RenameColumns(CALL_DETAILS_F_Table, List.Transform(Table.ColumnNames(CALL_DETAILS_F_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+						
+						    DetailsSlim = Table.SelectColumns(ProperCase,{"Service Call Id","Date","Billing Amount"}),
+						    DetailsFiltered = Table.SelectRows(DetailsSlim, each [Date] >= StartDate),
+						
+						    Calls = CALLS_F,
+						    CallsTrim = Table.TransformColumns(Calls, {{"Contract Number", each if _ = null then null else Text.Trim(_), type text}, {"Type Of Call", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+						    CallsJoinCols = Table.SelectColumns(CallsTrim,{"Service Call Id","Customernbr Key","Contract Number","Type Of Call"}),
+						    Joined = Table.NestedJoin(DetailsFiltered, {"Service Call Id"}, CallsJoinCols, {"Service Call Id"}, "C", JoinKind.LeftOuter),
+						    Expanded = Table.ExpandTableColumn(Joined, "C", {"Customernbr Key","Contract Number","Type Of Call"}, {"Customer Key","Contract Number","Type Of Call"}),
+						
+						    FilteredNonContract = Table.SelectRows(Expanded, each [Contract Number] = null or [Contract Number] = ""),
+						    FilteredTypes = Table.SelectRows(FilteredNonContract, each List.Contains(Types, [Type Of Call])),
+						
+						    WithMonthEnd = Table.AddColumn(FilteredTypes, "Month End", each Date.EndOfMonth([Date]), type date),
+						    Slim = Table.SelectColumns(WithMonthEnd,{"Customer Key","Month End","Billing Amount"}),
+						    Grouped = Table.Group(Slim,{"Customer Key","Month End"},{{"Revenue Amount", each List.Sum([Billing Amount]), type number}}),
+						    WithCost = Table.AddColumn(Grouped, "Cost Amount", each null, type number),
+						    Final = Table.AddColumn(
+						        Table.AddColumn(
+						            Table.AddColumn(WithCost, "Project Subsegment", each "Call-Detail", type text),
+						            "Stream", each "T&M", type text
+						        ),
+						        "Methodology", each "Amend", type text
+						    ),
+						    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
+						    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+						in
+						    Typed
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table LEGACYPROJECTS_CustomerMonth_Billings_F
+			lineageTag: 36ccf6af-c161-475e-8752-9c134f5d2f6d
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: ac49955b-fd40-463b-ab83-150253428064
+				sourceColumn: Customer Key
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: fdef6dc9-00d4-4327-a668-69ae70d10fd8
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Stream
+				dataType: string
+				lineageTag: 448fc3d0-f1ca-4448-9698-fee539eea6f9
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: 52f9278b-fd7f-47f7-9253-141b03e1c7ad
+				sourceColumn: Methodology
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: adc49857-744a-4969-9360-ba684e244183
+				sourceColumn: Project Subsegment
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: 40ff0865-13e5-417e-bc85-63bad0f928cd
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: cf657aba-db0c-404e-9dd8-9135a5630a18
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			partition LEGACYPROJECTS_CustomerMonth_Billings_F = m
+				mode: import
+				source =
+						let
+						    StartDate = #date(2020, 1, 1),
+						    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D, {"Contract Number","Contract Type","Custnmbr Key"}),
+						    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Custnmbr Key", each if _ = null then null else Text.Trim(_), type text}}),
+						    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+						    LegacyKeys = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"Contract Number","Custnmbr Key"})),
+						    Billing = CONTRACT_BILLABLE_F,
+						    BillingFiltered = Table.SelectRows(Billing, each [WENNSOFT_BILLING_DATE] >= StartDate),
+						    BillingClean = Table.TransformColumns(BillingFiltered, {{"CONTRACT_NUMBER", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Customer Key", each if _ = null then null else Text.Trim(_), type text}}),
+						    Joined = Table.NestedJoin(BillingClean, {"CONTRACT_NUMBER","Customer Key"}, LegacyKeys, {"Contract Number","Custnmbr Key"}, "L", JoinKind.Inner),
+						    WithMonthEnd = Table.AddColumn(Joined, "Month End", each Date.EndOfMonth([WENNSOFT_BILLING_DATE]), type date),
+						    Slim = Table.SelectColumns(WithMonthEnd,{"Customer Key","Month End","BILLABLE_ALL"}),
+						    Grouped = Table.Group(Slim,{"Customer Key","Month End"},{{"Revenue Amount", each List.Sum([BILLABLE_ALL]), type number}}),
+						    WithCost = Table.AddColumn(Grouped, "Cost Amount", each null, type number),
+						    Final = Table.AddColumn(
+						        Table.AddColumn(
+						            Table.AddColumn(WithCost, "Project Subsegment", each "Legacy Contract", type text),
+						            "Stream", each "Legacy Service Projects", type text
+						        ),
+						        "Methodology", each "CRR", type text
+						    ),
+						    SelectCols = Table.SelectColumns(Final,{"Customer Key","Month End","Stream","Methodology","Project Subsegment","Revenue Amount","Cost Amount"}),
+						    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}})
+						in
+						    Typed
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table CustomerMonth_Stream_Method_F
+			lineageTag: 92037533-2e5c-467b-bf0d-427aaf074215
+
+			column 'Customer Key'
+				dataType: string
+				lineageTag: 9dc307c7-f2c1-4127-9bea-b1c0088cfc32
+				sourceColumn: Customer Key
+
+			column 'Month End'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: f578b7ff-eaed-4c72-a8d1-fa8f129c1635
+				summarizeBy: none
+				sourceColumn: Month End
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Stream
+				dataType: string
+				lineageTag: ff385250-5e90-44a5-94c0-d54d6a1806bd
+				sourceColumn: Stream
+
+			column Methodology
+				dataType: string
+				lineageTag: ce08a51a-aa9c-41af-9ac8-4b414f76cfb6
+				sourceColumn: Methodology
+
+			column 'Project Subsegment'
+				dataType: string
+				lineageTag: 64c50882-12e6-48f7-8553-2918e158c11d
+				sourceColumn: Project Subsegment
+
+			column 'Revenue Amount'
+				dataType: double
+				lineageTag: ba37eeec-969a-4817-a528-3265fbb1831c
+				summarizeBy: sum
+				sourceColumn: Revenue Amount
+
+			column 'Cost Amount'
+				dataType: double
+				lineageTag: 02295839-aea5-418f-ac63-c36bc6e39a9d
+				summarizeBy: sum
+				sourceColumn: Cost Amount
+
+			partition CustomerMonth_Stream_Method_F = m
+				mode: import
+				source =
+						let
+						    Source = Table.Combine({
+						        Projects_ProjectMonth_CRR_F,
+						        Projects_ProjectMonth_Amend_F,
+						        SERVCONTRACTS_CustomerMonth_Billings_F,
+						        SERVCONTRACTS_CustomerMonth_Recognized_Alt_F,
+						        TM_CustomerMonth_CRR_F,
+						        TM_CustomerMonth_Amend_F,
+						        LEGACYPROJECTS_CustomerMonth_Billings_F
+						    }),
+						    Grouped = Table.Group(
+						        Source,
+						        {"Customer Key","Month End","Stream","Methodology","Project Subsegment"},
+						        {
+						            {"Revenue Amount", each List.Sum([Revenue Amount]), type number},
+						            {"Cost Amount", each List.Sum(List.RemoveNulls([Cost Amount])), type number}
+						        }
+						    )
+						in
+						    Grouped
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		relationship AutoDetected_a1b5326b-e868-4190-9c30-e3ec7792fb55
+			fromColumn: PROJECTS_D.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship AutoDetected_614aadaa-60d7-4ea2-b295-658c7789d065
+			fromColumn: SERVCONTRACTS_REVENUE_F.AgreementKey
+			toColumn: SERVCONTRACTS_D.AgreementKey
+
+		relationship AutoDetected_cb0b4144-088b-42a2-8420-ff032288edc8
+			fromColumn: SERVCONTRACTS_COSTS_F.AgreementKey
+			toColumn: SERVCONTRACTS_D.AgreementKey
+
+		relationship e283a684-e1b7-32d7-8ae2-068b157f0401
+			fromColumn: PROJECTS_D.Divisions
+			toColumn: DIVISIONS_D.DivisionCode
+
+		relationship 62df3a2b-80c4-ab50-f80c-17a2188168a3
+			fromColumn: SERVCONTRACTS_D.'Custnmbr Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship AutoDetected_9d45e2d5-1998-4931-b725-77e611a20a0a
+			fromColumn: JOB_MONTHLY_SUMMARY_F.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship 'Projects_ProjectMonth_CRR_F -> PROJECTS_D'
+			fromColumn: Projects_ProjectMonth_CRR_F.SurrogateProjectID
+			toColumn: PROJECTS_D.SurrogateProjectID
+
+		relationship 'Projects_ProjectMonth_Amend_F -> PROJECTS_D'
+			fromColumn: Projects_ProjectMonth_Amend_F.SurrogateProjectID
+			toColumn: PROJECTS_D.SurrogateProjectID
+
+		relationship 'Projects_ProjectMonth_CRR_F -> FYCALENDAR_D'
+			fromColumn: Projects_ProjectMonth_CRR_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship 'Projects_ProjectMonth_Amend_F -> FYCALENDAR_D'
+			fromColumn: Projects_ProjectMonth_Amend_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship 'SERVCONTRACTS_CustomerMonth_Billings_F -> CUSTOMERS_D'
+			fromColumn: SERVCONTRACTS_CustomerMonth_Billings_F.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship 'SERVCONTRACTS_CustomerMonth_Billings_F -> FYCALENDAR_D'
+			fromColumn: SERVCONTRACTS_CustomerMonth_Billings_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship 'SERVCONTRACTS_CustomerMonth_Recognized_Alt_F -> CUSTOMERS_D'
+			fromColumn: SERVCONTRACTS_CustomerMonth_Recognized_Alt_F.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship 'SERVCONTRACTS_CustomerMonth_Recognized_Alt_F -> FYCALENDAR_D'
+			fromColumn: SERVCONTRACTS_CustomerMonth_Recognized_Alt_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship 'TM_CustomerMonth_CRR_F -> CUSTOMERS_D'
+			fromColumn: TM_CustomerMonth_CRR_F.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship 'TM_CustomerMonth_CRR_F -> FYCALENDAR_D'
+			fromColumn: TM_CustomerMonth_CRR_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship 'TM_CustomerMonth_Amend_F -> CUSTOMERS_D'
+			fromColumn: TM_CustomerMonth_Amend_F.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship 'TM_CustomerMonth_Amend_F -> FYCALENDAR_D'
+			fromColumn: TM_CustomerMonth_Amend_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship 'LEGACYPROJECTS_CustomerMonth_Billings_F -> CUSTOMERS_D'
+			fromColumn: LEGACYPROJECTS_CustomerMonth_Billings_F.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship 'LEGACYPROJECTS_CustomerMonth_Billings_F -> FYCALENDAR_D'
+			fromColumn: LEGACYPROJECTS_CustomerMonth_Billings_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship 'CustomerMonth_Stream_Method_F -> CUSTOMERS_D'
+			fromColumn: CustomerMonth_Stream_Method_F.'Customer Key'
+			toColumn: CUSTOMERS_D.'Customer Key'
+
+		relationship 'CustomerMonth_Stream_Method_F -> FYCALENDAR_D'
+			fromColumn: CustomerMonth_Stream_Method_F.'Month End'
+			toColumn: FYCALENDAR_D.Date
+
+		relationship dd4cb2b9-b55d-debd-32e8-bc65d45ca8bf
+			fromColumn: SERVCONTRACTS_D.Divisions
+			toColumn: DIVISIONS_D.DivisionCode
+
+		relationship 'SERVCONTRACTS_CustomerMonth_Billings_F -> DIVISIONS_D'
+			fromColumn: SERVCONTRACTS_CustomerMonth_Billings_F.Divisions
+			toColumn: DIVISIONS_D.DivisionCode
+
+		relationship 'SERVCONTRACTS_CustomerMonth_Recognized_Alt_F -> DIVISIONS_D'
+			fromColumn: SERVCONTRACTS_CustomerMonth_Recognized_Alt_F.Divisions
+			toColumn: DIVISIONS_D.DivisionCode
+
+		cultureInfo en-US
+
+			linguisticMetadata =
+					{
+					  "Version": "1.0.0",
+					  "Language": "en-US"
+					}
+				contentType: json
+
+		expression CUSTOMER_SEGMENTATION =
+				let
+				    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+				    #"Navigation 1" = Source{[Name = "datasets"]}[Data],
+				    Navigation =
+				        #"Navigation 1"{
+				            [
+				                #"Folder Path" = "https://stgreen.blob.core.windows.net/datasets/",
+				                Name = "customer_segmentation/CustomerSegmentation.csv"
+				            ]
+				        }[Content],
+				
+				    #"Imported CSV" =
+				        Csv.Document(
+				            Navigation,
+				            [Delimiter = ",", Columns = 29, Encoding = 65001, QuoteStyle = QuoteStyle.None]
+				        ),
+				
+				    #"Promoted headers" =
+				        Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars = true]),
+				
+				    // Fix dot edge-case by renaming once
+				    #"Renamed LogoDev Column" =
+				        Table.RenameColumns(
+				            #"Promoted headers",
+				            {{"Company Logo URL (Logo.dev)", "Company Logo URL (LogoDev)"}},
+				            MissingField.Ignore
+				        ),
+				
+				    #"Changed column type" =
+				        Table.TransformColumnTypes(
+				            #"Renamed LogoDev Column",
+				            {
+				                {"Customer Key", type text},
+				                {"Original Name", type text},
+				                {"Master Customer Name", type text},
+				                {"Master Customer Name Canonical", type text},
+				                {"Industrial Group", type text},
+				                {"Industry Detail", type text},
+				                {"NAICS", Int64.Type},
+				                {"NAICS Source", type text},
+				                {"NAICS Sector Code", type text},
+				                {"NAICS Sector Title", type text},
+				                {"NAICS Subsector Code", Int64.Type},
+				                {"NAICS Subsector Title", type text},
+				                {"NAICS Industry Group Code", Int64.Type},
+				                {"NAICS Industry Group Title", type text},
+				                {"NAICS Industry Code", Int64.Type},
+				                {"NAICS Industry Title", type text},
+				                {"NAICS National Industry Code", Int64.Type},
+				                {"NAICS National Industry Title", type text},
+				                {"Method", type text},
+				                {"Status", type text},
+				                {"Confidence", type text},
+				                {"Rationale", type text},
+				                {"Support Category", type text},
+				                {"Company Website", type text},
+				                {"Company Logo URL", type text},
+				                {"Company Logo URL (Apistemic)", type text},
+				                {"Company Logo URL (LogoDev)", type text},
+				                {"Source", type text}
+				            }
+				        ),
+				
+				    PickLogo =
+				        Table.AddColumn(
+				            #"Changed column type",
+				            "Logo URL (Final)",
+				            each
+				                if [#"Company Logo URL"] <> null and [#"Company Logo URL"] <> "" then
+				                    [#"Company Logo URL"]
+				                else if [#"Company Logo URL (LogoDev)"] <> null and [#"Company Logo URL (LogoDev)"] <> "" then
+				                    [#"Company Logo URL (LogoDev)"]
+				                else
+				                    [#"Company Logo URL (Apistemic)"],
+				            type text
+				        )
+				in
+				    PickLogo
+			lineageTag: 5112bc86-c721-4390-93d3-5f3aeacb128c
+			queryGroup: Staging
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		expression CALLS_F = ```
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data], 
+				    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Uppercased Text" = Table.TransformColumns(ProperCase,{{"Contract Number", Text.Upper, type text}}),
+				    AddKey = Table.AddColumn(
+				    #"Uppercased Text",
+				    "Customer_Contract_Year Key",
+				    each
+				        if [Contract Number] = null 
+				            or Text.Trim([Contract Number]) = "" 
+				        then
+				            null
+				        else
+				            [Customernbr Key] 
+				            & "_" & [Contract Number] 
+				            & "_" & Number.ToText([Wscontsq])
+				)
+				in
+				    AddKey
+				```
+			lineageTag: 9cb3f692-ed1e-4513-a1e4-ab151c3edaf2
+			queryGroup: DIM
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		expression CONTRACTS_D = ```
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data], 
+				    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Trimmed Text" = Table.TransformColumns(ProperCase,{{"Divisions", Text.Trim, type text}})
+				in
+				    #"Trimmed Text"
+				```
+			lineageTag: 6a2b893a-1656-4c37-bd27-65773ebeda3d
+			queryGroup: Staging
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		expression JOBS_D = ```
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
+				    JOBS_D_Table = DW_FINAL_Schema{[Name="JOBS_D",Kind="Table"]}[Data], 
+				    ProperCase = Table.RenameColumns(JOBS_D_Table, List.Transform(Table.ColumnNames(JOBS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Filtered Rows" = Table.SelectRows(ProperCase, each ([Divisions] <> "BURDEN" and [Divisions] <> "BURDEN - FIELD" and [Divisions] <> "ENGINEERING" and [Divisions] <> "FREE SERVICE DB" and [Divisions] <> "FREE SERVICE GR" and [Divisions] <> "SLS ASSIST DB" and [Divisions] <> "SLS ASSIST GRN" and [Divisions] <> "TRAINING" and [Divisions] <> "VACATION"))
+				in
+				    #"Filtered Rows"
+				```
+			lineageTag: 86a0dd46-db80-4a7a-a886-83bcf815df68
+			queryGroup: Staging
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		expression JOBSTRIMMED_D =
+				let
+				    Source = JOBS_D,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Job Number", "Job Name", "Divisions", "Customer Number", "Start Date", "Act Completion Date", "Inactive", "Source", "Job Key", "Customer Key"})
+				in
+				    #"Removed Other Columns"
+			lineageTag: 2d59dc64-3692-4084-9c13-48c0658b9485
+			queryGroup: Staging
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		expression SERVPROJECTS_D = ```
+				let
+				    CUSTOMERS_D_Table = CONTRACTS_D,
+				    #"Filtered Rows" = Table.SelectRows(CUSTOMERS_D_Table, each [Contract Description] = "SERVICE PROJECT" or Text.StartsWith([Contract Number], "P")),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","","Service Project",Replacer.ReplaceValue,{"Contract Description"}), 
+				    ProperCase = Table.RenameColumns(#"Replaced Value", List.Transform(Table.ColumnNames(#"Replaced Value"), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
+				    #"Removed Other Columns" = Table.SelectColumns(ProperCase,{"Custnmbr", "Contract Number", "Contract Description", "Divisions", "Contract Start Date", "Contract Expiration Date", "Source", "Contract Number Key", "Custnmbr Key"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Removed Other Columns",{{"Divisions", Text.Trim, type text}}),
+				    #"Added Custom" = Table.AddColumn(#"Trimmed Text", "Inactive", each if Date.From([Contract Expiration Date]) < Date.From(DateTime.LocalNow()) then true else false, type logical)
+				in
+				    #"Added Custom"
+				```
+			lineageTag: f843551f-7bbc-4a44-8dd0-91a469c97ce3
+			queryGroup: Staging
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		expression SERVCONTRACTS_D_STAGING = ```
+				let
+				    // 1. Get Source Data
+				    Source = CONTRACTS_D, 
+				    
+				    // 2. Identify Service Projects to Exclude
+				    Projects_Source = PROJECTS_D,
+				    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
+				    Service_Project_Numbers = Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
+				    
+				    // 3. Filter Contracts to Exclude Service Projects
+				    Merged_For_Filter = Table.NestedJoin(Source, {"Contract Number"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+				    Filtered_Agreements = Table.RemoveColumns(Merged_For_Filter, {"ServiceProjects"}),
+				
+				    // 4. Explode Years based on Wscontsq
+				    Add_Year_List = Table.AddColumn(Filtered_Agreements, "YearIndex", each List.Numbers(1, if [Wscontsq] = null or [Wscontsq] < 1 then 1 else [Wscontsq])),
+				    Expanded_Years = Table.ExpandListColumn(Add_Year_List, "YearIndex"),
+				
+				    // 5. Create Keys
+				    Add_Customer_Key = Table.AddColumn(Expanded_Years, "Customer Key Full", each [Custnmbr] & [Source], type text),
+				    Add_Agreement_Key = Table.AddColumn(Add_Customer_Key, "AgreementKey", each [Customer Key Full] & "_" & [Contract Number] & "_" & Text.From([YearIndex]), type text),
+				
+				    // 6. Set Types
+				    Typed_Final = Table.TransformColumnTypes(Add_Agreement_Key, {{"AgreementKey", type text}, {"YearIndex", Int64.Type}}),
+				
+				    // 7. Group by AgreementKey to Deduplicate (Master/Servant Aggregation)
+				    Grouped_Agreements = Table.Group(Typed_Final, {"AgreementKey", "Custnmbr Key"}, {{"Contract Number", each List.Max([Contract Number]), type nullable text}, {"Customer Number", each List.Max([Custnmbr]), type nullable text}, {"YearIndex", each List.Max([YearIndex]), type nullable number}, {"Contract Description", each List.Max([Contract Description]), type nullable text}, {"Contract Type", each List.Max([Contract Type]), type nullable text}, {"Divisions", each List.Max([Divisions]), type nullable text}, {"Contract Status", each List.Max([Contract Status]), type nullable text}, {"Start Date", each List.Min([Contract Start Date]), type nullable datetime}, {"End Date", each List.Max([Contract Expiration Date]), type nullable datetime}, {"Contract Amount", each List.Sum([Contract Amount]), type nullable number}, {"Annual Contract Value", each List.Sum([Annual Contract Value]), type nullable number}, {"Cancel Box", each List.Max([Cancel Box]), type nullable logical}})
+				in
+				    Grouped_Agreements
+				```
+			lineageTag: 13ae3e80-b5b2-4563-a5b1-c153c4a725ce
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		expression SV00564 =
+				let
+				    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
+				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
+				    SERV_GP_STAGE_Schema = DATA_WAREHOUSE_Database{[Name="SERV_GP_STAGE",Kind="Schema"]}[Data],
+				    SV00564_Table = SERV_GP_STAGE_Schema{[Name="SV00564",Kind="Table"]}[Data]
+				in
+				    SV00564_Table
+			lineageTag: 974b9a90-614d-4ec3-abb6-cf94c0251e6b
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		queryGroup DIM
+
+			annotation PBI_QueryGroupOrder = 0
+
+		queryGroup Staging
+
+			annotation PBI_QueryGroupOrder = 1
+
+		queryGroup Facts
+
+			annotation PBI_QueryGroupOrder = 2
+
+		annotation __PBI_TimeIntelligenceEnabled = 0
+
+		annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+		annotation PBI_QueryOrder = ["CUSTOMERS_D","FYCALENDAR_D","DIVISIONS_D","PROJECTS_D","CALLS_F","SERVCONTRACTS_D","CONTRACTS_D","CUSTOMER_SEGMENTATION","JOBS_D","JOBSTRIMMED_D","SERVPROJECTS_D","SERVCONTRACTS_D_STAGING","SV00564","CONTRACT_BILLABLE_F","SERVCONTRACTS_REVENUE_F","SERVCONTRACTS_COSTS_F","JOB_COST_DETAILS","JOB_COST_FORECASTS_F","JOB_MONTHLY_SUMMARY_F","Projects_ProjectMonth_CRR_F","Projects_ProjectMonth_Amend_F","SERVCONTRACTS_CustomerMonth_Billings_F","SERVCONTRACTS_CustomerMonth_Recognized_Alt_F","TM_CustomerMonth_CRR_F","TM_CustomerMonth_Amend_F","LEGACYPROJECTS_CustomerMonth_Billings_F","CustomerMonth_Stream_Method_F"]
+

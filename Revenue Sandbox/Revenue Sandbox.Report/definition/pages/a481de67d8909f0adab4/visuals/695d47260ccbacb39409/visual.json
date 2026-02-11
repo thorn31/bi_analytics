@@ -1,0 +1,185 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "695d47260ccbacb39409",
+  "position": {
+    "x": 0,
+    "y": 365.55555555555554,
+    "z": 1000,
+    "height": 300,
+    "width": 1128.8888888888889
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GL_ACCT_D"
+                    }
+                  },
+                  "Property": "ACTDESCR"
+                }
+              },
+              "queryRef": "GL_ACCT_D.ACTDESCR",
+              "nativeQueryRef": "ACTDESCR"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Other/Unmapped)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Other/Unmapped)",
+              "nativeQueryRef": "GL Revenue (Other/Unmapped)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Contracts)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Contracts)",
+              "nativeQueryRef": "GL Revenue (Contracts)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Spot/T&M)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Spot/T&M)",
+              "nativeQueryRef": "GL Revenue (Spot/T&M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Projects)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Projects)",
+              "nativeQueryRef": "GL Revenue (Projects)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "RS_Measures"
+                  }
+                },
+                "Property": "GL Revenue (Other/Unmapped)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6fabaaf4eee2caed0730",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "GL_ACCT_D"
+              }
+            },
+            "Property": "ACTDESCR"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2956a2dacc0dd2db100f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "GL Revenue (Other/Unmapped)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0871daf36887bddf3e6e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "GL Revenue (Contracts)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1e5f6ad32cf5f9452ca6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "GL Revenue (Spot/T&M)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "47f0c7d962051f60bf3a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "GL Revenue (Projects)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

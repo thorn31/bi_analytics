@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "29ac66f34c3998ad1dd0",
+  "name": "dd18f3e7561a42cc95f4",
   "position": {
-    "x": 584.53608247422676,
-    "y": 50.72164948453608,
-    "z": 3,
-    "height": 669.2783505154639,
-    "width": 278.35051546391753
+    "x": 0,
+    "y": 420,
+    "z": 2000,
+    "height": 300,
+    "width": 1243.3333333333333
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -41,6 +41,34 @@
                       "Entity": "RS_Measures"
                     }
                   },
+                  "Property": "Projects Revenue (Amend)"
+                }
+              },
+              "queryRef": "RS_Measures.Projects Revenue (Amend)",
+              "nativeQueryRef": "Projects Revenue (Amend)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
+                  "Property": "GL Revenue (Projects)"
+                }
+              },
+              "queryRef": "RS_Measures.GL Revenue (Projects)",
+              "nativeQueryRef": "GL Revenue (Projects)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RS_Measures"
+                    }
+                  },
                   "Property": "Projects Revenue (CRR)"
                 }
               },
@@ -60,7 +88,7 @@
                     "Entity": "RS_Measures"
                   }
                 },
-                "Property": "Projects Revenue (CRR)"
+                "Property": "Projects Revenue (Amend)"
               }
             },
             "direction": "Descending"
@@ -74,21 +102,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "2d8162f11660e2783587",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RS_Measures"
-              }
-            },
-            "Property": "Projects Revenue (CRR)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d9d8754320bb08a4374d",
+        "name": "0c194b90403805c17fe3",
         "field": {
           "Column": {
             "Expression": {
@@ -134,6 +148,48 @@
             }
           ]
         }
+      },
+      {
+        "name": "ae15d7279efc06bd6984",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (Amend)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8689dd106e4a7b85039c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "Projects Revenue (CRR)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0ddba77579d7ef294d48",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RS_Measures"
+              }
+            },
+            "Property": "GL Revenue (Projects)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

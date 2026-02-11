@@ -41,28 +41,38 @@ table SERVCONTRACTS_REVENUE_F
 
 	partition SERVCONTRACTS_REVENUE_F = m
 		mode: import
-		source = ```
+		source =
 				let
+				    StartDate = #date(2020, 1, 1),
 				    // --- Define Service Projects for exclusion ---
 				    Projects_Source = PROJECTS_D,
 				    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
 				    Service_Project_Numbers = Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
-				    
+				
+				    // --- Define Legacy Contracts for exclusion (use staging to avoid cycles) ---
+				    LegacyBase = Table.SelectColumns(SERVCONTRACTS_D_STAGING, {"Contract Number","Contract Type"}),
+				    LegacyClean = Table.TransformColumns(LegacyBase, {{"Contract Number", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}, {"Contract Type", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    LegacyFiltered = Table.SelectRows(LegacyClean, each ([Contract Type] = "PROJECT") or ( [Contract Number] <> null and Text.StartsWith([Contract Number], "P"))),
+				    LegacyContracts = Table.Distinct(Table.SelectColumns(LegacyFiltered, {"Contract Number"})),
+				
 				    // --- Maintenance Billing Revenue Stream ---
 				    Billing_Source = CONTRACT_BILLABLE_F,
-				    // Filter out Service Projects from CONTRACT_BILLABLE_F
-				    Merged_For_Filter = Table.NestedJoin(Billing_Source, {"CONTRACT_NUMBER"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
-				    Billing_Filtered = Table.RemoveColumns(Merged_For_Filter, {"ServiceProjects"}),
+				    Billing_Clean = Table.TransformColumns(Billing_Source, {{"CONTRACT_NUMBER", each if _ = null then null else Text.Upper(Text.Trim(_)), type text}}),
+				    Billing_Slim = Table.SelectColumns(Billing_Clean, {"WENNSOFT_BILLING_DATE", "Customer_Contract_Year Key", "BILLABLE_ALL", "CONTRACT_NUMBER"}),
+				    Billing_Dated = Table.SelectRows(Billing_Slim, each [WENNSOFT_BILLING_DATE] <= Date.From(DateTime.LocalNow()) and [WENNSOFT_BILLING_DATE] >= StartDate),
+				    // Filter out Service Projects and Legacy Contracts from CONTRACT_BILLABLE_F
+				    Merged_For_Filter = Table.NestedJoin(Billing_Dated, {"CONTRACT_NUMBER"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+				    Billing_Filtered_SP = Table.RemoveColumns(Merged_For_Filter, {"ServiceProjects"}),
+				    Merged_For_Legacy = Table.NestedJoin(Billing_Filtered_SP, {"CONTRACT_NUMBER"}, LegacyContracts, {"Contract Number"}, "Legacy", JoinKind.LeftAnti),
+				    Billing_Filtered = Table.RemoveColumns(Merged_For_Legacy, {"Legacy"}),
 				
 				    Billing_Selected = Table.SelectColumns(Billing_Filtered, {"WENNSOFT_BILLING_DATE", "Customer_Contract_Year Key", "BILLABLE_ALL"}),
 				    Billing_Renamed = Table.RenameColumns(Billing_Selected, {{"WENNSOFT_BILLING_DATE", "Date"}, {"Customer_Contract_Year Key", "AgreementKey"}, {"BILLABLE_ALL", "Amount"}}),
 				    Billing_Typed = Table.TransformColumnTypes(Billing_Renamed, {{"Date", type date}, {"AgreementKey", type text}, {"Amount", Currency.Type}}),
-				    
-				    AGREEMENT_REVENUE_F = Table.AddColumn(Billing_Typed, "Source Type", each "Service Contract Billing", type text),
-				    AddDateGuard = Table.SelectRows(#"AGREEMENT_REVENUE_F", each [Date] <= Date.AddYears(Date.From(DateTime.LocalNow()), 0))
+				
+				    AGREEMENT_REVENUE_F = Table.AddColumn(Billing_Typed, "Source Type", each "Service Contract Billing", type text)
 				in
-				    AddDateGuard
-				```
+				    AGREEMENT_REVENUE_F
 
 	annotation PBI_NavigationStepName = Navigation
 
