@@ -2728,6 +2728,402 @@ table '_Key Measures'
 		displayFolder: 1. Revenue\1.1 GL
 		lineageTag: fd7370ee-a5b1-4fa0-802e-68266945d059
 
+	/// Sandbox-style GL revenue total: -SUM(POSTING_DATA_F[PERDBLNC]) for REVENUE accounts. Mirrors Revenue Sandbox definitions.
+	measure 'GL Revenue (Total - Sandbox)' =
+			- CALCULATE(
+			    SUM(POSTING_DATA_F[PERDBLNC]),
+			    GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE"
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.1 GL\Sandbox
+		lineageTag: 41bc2eb0-ad48-453e-8411-e4e401e198a0
+
+	/// Sandbox-style GL revenue mapped to Projects markets via explicit market list. Mirrors Revenue Sandbox definitions.
+	measure 'GL Revenue (Projects - Sandbox)' =
+			CALCULATE(
+			    [GL Revenue (Total - Sandbox)],
+			    KEEPFILTERS(
+			        GL_ACCT_D[MARKET] IN {
+			            "O&M PROJECTS",
+			            "SPECIAL PROJECT",
+			            "PROJECTS",
+			            "PLAN SPEC",
+			            "CONTROLS",
+			            "INDUSTRIAL",
+			            "PERFORMANCE CONTRACT",
+			            "DESIGN BUILD"
+			        }
+			    )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. Revenue\1.1 GL\Sandbox
+		lineageTag: 86e4efd8-344d-403a-bf57-4b181a9f3e8e
+
+	/// Revenue for a single UI_ActiveItems row over the rolling 12 months ending at the last completed month end. Routes to Projects vs Service Contracts based on UI_ActiveItems[Item Type] and applies the model's active flags.
+	measure 'Active Item Revenue (R12M As Of)' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR AsOfMonthEnd =
+			    CALCULATE(
+			        MAX('FYCALENDAR_D'[Date]),
+			        TREATAS({ TRUE() }, 'FYCALENDAR_D'[Is Completed Month])
+			    )
+			VAR StartMonthEnd = EOMONTH(EDATE(AsOfMonthEnd, -11), 0)
+			VAR DateFilter = DATESBETWEEN('FYCALENDAR_D'[Date], StartMonthEnd, AsOfMonthEnd)
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Project",
+			            SUMX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        SUM('PROJECTS_Financials_F'[Revenue Amount]),
+			                        KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                        TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                        DateFilter
+			                    )
+			            ),
+			        ItemType = "Service Contract",
+			            SUMX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        SUM('SERVCONTRACTS_Financials_F'[Revenue Amount]),
+			                        KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                        TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey]),
+			                        DateFilter
+			                    )
+			            ),
+			        BLANK()
+			    )
+		formatString: $#,0;($#,0);-
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: e2b48778-6806-4eba-93be-0dc22c29121d
+
+	/// Helper (hidden): returns 1 when the current UI_ActiveItems row is considered active by flags (Projects: not inactive; Contracts: active contract year).
+	measure 'Active Item Is Active (Flag)' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			VAR AnyActive =
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Project",
+			            MAXX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    IF(
+			                        CALCULATE(
+			                            COUNTROWS('PROJECTS_D'),
+			                            KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                            TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                        ) > 0,
+			                        1
+			                    )
+			            ),
+			        ItemType = "Service Contract",
+			            MAXX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    IF(
+			                        CALCULATE(
+			                            COUNTROWS('SERVCONTRACTS_D'),
+			                            KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                            TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                        ) > 0,
+			                        1
+			                    )
+			            ),
+			        BLANK()
+			    )
+			RETURN
+			    AnyActive
+		formatString: 0
+		isHidden
+		displayFolder: 7. Helper\7.4 UI\Active Items
+		lineageTag: 916c958f-3589-4a45-92d0-db3d2db792ed
+
+	/// Helper (hidden): returns 1 when the current UI_ActiveItems row is active by flags AND has non-zero revenue in the R12M As Of window. Use as a visual filter to show only active items with revenue for the selected customer.
+	measure 'Active Item Show Row' =
+			VAR IsActive = [Active Item Is Active (Flag)]
+			VAR Rev = [Active Item Revenue (R12M As Of)]
+			RETURN
+			    IF(IsActive = 1 && NOT ISBLANK(Rev) && Rev <> 0, 1)
+		formatString: 0
+		isHidden
+		displayFolder: 7. Helper\7.4 UI\Active Items
+		lineageTag: 372e904b-01d1-4146-a51d-540cd4b03d5a
+
+	/// Start date for the current UI_ActiveItems row. Service Contracts: contract start date. Projects: first month-end with non-zero revenue (first billing) for the project.
+	measure 'Active Item Start Date' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Service Contract",
+			            MINX(
+			                Keys,
+			                VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        MIN('SERVCONTRACTS_D'[Start Date]),
+			                        TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                    )
+			            ),
+			        ItemType = "Project",
+			            MINX(
+			                Keys,
+			                VAR ProjectKey = 'UI_ActiveItems'[Item Key]
+			                VAR FirstRevenueDate =
+			                    MINX(
+			                        FILTER(
+			                            VALUES('FYCALENDAR_D'[Date]),
+			                            CALCULATE(
+			                                SUM('PROJECTS_Financials_F'[Revenue Amount]),
+			                                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                            ) <> 0
+			                        ),
+			                        'FYCALENDAR_D'[Date]
+			                    )
+			                RETURN
+			                    FirstRevenueDate
+			            ),
+			        BLANK()
+			    )
+		formatString: MMM d, yyyy
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: ffff250a-63a1-49d4-9586-6eada6586879
+
+	/// Total revenue across all active items (Projects not inactive + Service Contract active contract years), respecting current filter context (including date context). Excludes items with zero revenue by requiring [Active Item Show Row] = 1 at item grain.
+	measure 'Active Items Total Revenue' =
+			SUMX(
+			    FILTER(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        CALCULATE([Active Item Show Row]) = 1
+			    ),
+			    CALCULATE([Active Item Revenue (R12M As Of)])
+			)
+		formatString: $#,0;($#,0);-
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: 8c5ca05f-c0fa-46ab-8cc1-4e1954bf5278
+
+	/// Total gross profit across all active items (Projects not inactive + Service Contract active contract years), respecting current filter context (including date context). Uses routed revenue/cost and excludes items with zero revenue by requiring [Active Item Show Row] = 1 at item grain.
+	measure 'Active Items Total Gross Profit' =
+			SUMX(
+			    FILTER(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        CALCULATE([Active Item Show Row]) = 1
+			    ),
+			    VAR ItemType = CALCULATE(SELECTEDVALUE('UI_ActiveItems'[Item Type]))
+			    VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            ItemType = "Project",
+			                CALCULATE(
+			                    SUM('PROJECTS_Financials_F'[Revenue Amount]) - SUM('PROJECTS_Financials_F'[Cost Amount]),
+			                    KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                    TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                ),
+			            ItemType = "Service Contract",
+			                CALCULATE(
+			                    SUM('SERVCONTRACTS_Financials_F'[Revenue Amount]) - SUM('SERVCONTRACTS_Financials_F'[Cost Amount]),
+			                    KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                    TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                ),
+			            BLANK()
+			        )
+			)
+		formatString: $#,0;($#,0);-
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: 499e45f4-90dd-42ee-89aa-e68b87daebe3
+
+	/// Gross profit percent across all active items = [Active Items Total Gross Profit] / [Active Items Total Revenue], respecting current filter context.
+	measure 'Active Items Total GP %' = DIVIDE([Active Items Total Gross Profit], [Active Items Total Revenue])
+		formatString: 0.0%
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: 69bdb81e-ba1f-44ad-bc59-c0d428004f5d
+
+	/// End date for the current UI_ActiveItems row. Service Contracts: contract end date. Projects: blank (project end dates not used for active-items table). Multi-key safe for duplicate item names.
+	measure 'Active Item End Date' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			VAR RawDate =
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Service Contract",
+			            MAXX(
+			                Keys,
+			                VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        MAX('SERVCONTRACTS_D'[End Date]),
+			                        TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                    )
+			            ),
+			        ItemType = "Project", BLANK(),
+			        BLANK()
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(RawDate),
+			        BLANK(),
+			        DATE(YEAR(RawDate), MONTH(RawDate), DAY(RawDate))
+			    )
+		formatString: MMM d, yyyy
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: 16bfbf00-1070-4609-b011-74d409d6217b
+
+	/// Contract value for the current UI_ActiveItems row. Projects: latest (as of last completed month end) value of Orig Contract Amount + Confirmed Chg Order Amt from PROJECTS_Financials_F. Service Contracts: Annual Contract Value from SERVCONTRACTS_D. Multi-key safe for duplicate item names. Totals across mixed item types are supported.
+	measure 'Active Item Contract Value' =
+			VAR AsOfMonthEnd =
+			    CALCULATE(
+			        MAX('FYCALENDAR_D'[Date]),
+			        TREATAS({ TRUE() }, 'FYCALENDAR_D'[Is Completed Month])
+			    )
+			VAR CalcProject =
+			    SUMX(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        VAR ProjectKey = 'UI_ActiveItems'[Item Key]
+			        VAR LatestMonthEnd =
+			            MAXX(
+			                FILTER(
+			                    VALUES('PROJECTS_Financials_F'[Month End]),
+			                    'PROJECTS_Financials_F'[Month End] <= AsOfMonthEnd
+			                        && NOT ISBLANK(
+			                            CALCULATE(
+			                                MAX('PROJECTS_Financials_F'[Orig Contract Amount])
+			                                    + MAX('PROJECTS_Financials_F'[Confirmed Chg Order Amt]),
+			                                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                            )
+			                        )
+			                ),
+			                'PROJECTS_Financials_F'[Month End]
+			            )
+			        RETURN
+			            CALCULATE(
+			                MAX('PROJECTS_Financials_F'[Orig Contract Amount])
+			                    + MAX('PROJECTS_Financials_F'[Confirmed Chg Order Amt]),
+			                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                TREATAS({ LatestMonthEnd }, 'PROJECTS_Financials_F'[Month End])
+			            )
+			    )
+			VAR CalcContract =
+			    SUMX(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			        RETURN
+			            CALCULATE(
+			                MAX('SERVCONTRACTS_D'[Annual Contract Value]),
+			                TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			            )
+			    )
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			RETURN
+			    IF(
+			        HASONEVALUE('UI_ActiveItems'[Item Type]),
+			        IF(
+			            ItemType = "Project",
+			            CalcProject,
+			            IF(ItemType = "Service Contract", CalcContract)
+			        ),
+			        CALCULATE(CalcProject, TREATAS({"Project"}, 'UI_ActiveItems'[Item Type]))
+			            + CALCULATE(CalcContract, TREATAS({"Service Contract"}, 'UI_ActiveItems'[Item Type]))
+			    )
+		formatString: $#,0;($#,0);-
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: 55d1877b-885d-4711-b686-2898bffe3b4f
+
+	/// Percent complete for the current UI_ActiveItems row. Projects: cost-based percent complete = cumulative ActualCost_Mo / cumulative ForecastCost_Mo as of last completed month end, clamped to [0,1]. Service Contracts: term elapsed percent based on (Last Billing Month End - Start Date) / (End Date - Start Date), clamped to [0,1]. Multi-key safe.
+	measure 'Active Item % Complete' =
+			VAR AsOfMonthEnd =
+			    CALCULATE(
+			        MAX('FYCALENDAR_D'[Date]),
+			        TREATAS({ TRUE() }, 'FYCALENDAR_D'[Is Completed Month])
+			    )
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			
+			VAR ProjectsPOC =
+			    AVERAGEX(
+			        Keys,
+			        VAR ProjectKey = 'UI_ActiveItems'[Item Key]
+			        VAR ActualITD =
+			            CALCULATE(
+			                SUM('PROJECTS_Financials_F'[ActualCost_Mo]),
+			                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                FILTER(ALL('FYCALENDAR_D'[Date]), 'FYCALENDAR_D'[Date] <= AsOfMonthEnd)
+			            )
+			        VAR ForecastITD =
+			            CALCULATE(
+			                SUM('PROJECTS_Financials_F'[ForecastCost_Mo]),
+			                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                FILTER(ALL('FYCALENDAR_D'[Date]), 'FYCALENDAR_D'[Date] <= AsOfMonthEnd)
+			            )
+			        VAR PctRaw = DIVIDE(ActualITD, ForecastITD)
+			        RETURN
+			            IF(
+			                ISBLANK(PctRaw),
+			                BLANK(),
+			                MIN(1, MAX(0, PctRaw))
+			            )
+			    )
+			
+			VAR ContractsElapsed =
+			    AVERAGEX(
+			        Keys,
+			        VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			        VAR StartDate =
+			            CALCULATE(
+			                MIN('SERVCONTRACTS_D'[Start Date]),
+			                TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			            )
+			        VAR EndDate =
+			            CALCULATE(
+			                MAX('SERVCONTRACTS_D'[End Date]),
+			                TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			            )
+			        RETURN
+			            IF(
+			                ISBLANK(StartDate)
+			                    || ISBLANK(EndDate)
+			                    || EndDate <= StartDate,
+			                BLANK(),
+			                VAR LastBillingMonthEnd =
+			                    MAXX(
+			                        FILTER(
+			                            VALUES('SERVCONTRACTS_Financials_F'[Month End]),
+			                            'SERVCONTRACTS_Financials_F'[Month End] <= AsOfMonthEnd
+			                                && CALCULATE(
+			                                    SUM('SERVCONTRACTS_Financials_F'[Revenue Amount]),
+			                                    TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                                ) <> 0
+			                        ),
+			                        'SERVCONTRACTS_Financials_F'[Month End]
+			                    )
+			                VAR Anchor = COALESCE(LastBillingMonthEnd, AsOfMonthEnd)
+			                VAR PctRaw = DIVIDE(Anchor - StartDate, EndDate - StartDate)
+			                RETURN
+			                    MIN(1, MAX(0, PctRaw))
+			            )
+			    )
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Project", ProjectsPOC,
+			        ItemType = "Service Contract", ContractsElapsed,
+			        BLANK()
+			    )
+		formatString: 0.0%
+		displayFolder: 6. Customer Status\6.5 Active Items
+		lineageTag: d2545398-1450-4a50-98ac-6bc49c7654fe
+
 	column _
 		isHidden
 		lineageTag: 51e1d78c-186d-4eac-8cc2-14bfc214dd1c

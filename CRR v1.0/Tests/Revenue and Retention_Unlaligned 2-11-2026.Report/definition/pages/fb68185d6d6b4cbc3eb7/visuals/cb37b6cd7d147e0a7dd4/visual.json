@@ -2,33 +2,179 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "cb37b6cd7d147e0a7dd4",
   "position": {
-    "x": 439.55631399317406,
-    "y": 669.93174061433444,
+    "x": 440,
+    "y": 670,
     "z": 14000,
-    "height": 389.79522184300333,
-    "width": 720.61433447098955,
+    "height": 390,
+    "width": 1460,
     "tabOrder": 14000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FINANCIALS_F"
+                      "Entity": "UI_ActiveItems"
                     }
                   },
-                  "Property": "Stream"
+                  "Property": "Item Type"
                 }
               },
-              "queryRef": "FINANCIALS_F.Stream",
-              "nativeQueryRef": "Stream",
-              "active": true
+              "queryRef": "UI_ActiveItems.Item Type",
+              "nativeQueryRef": "Item Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UI_ActiveItems"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "UI_ActiveItems.Division",
+              "nativeQueryRef": "Division"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UI_ActiveItems"
+                    }
+                  },
+                  "Property": "Item Number"
+                }
+              },
+              "queryRef": "UI_ActiveItems.Item Number",
+              "nativeQueryRef": "Item Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UI_ActiveItems"
+                    }
+                  },
+                  "Property": "Item Name"
+                }
+              },
+              "queryRef": "UI_ActiveItems.Item Name",
+              "nativeQueryRef": "Item Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item Start Date"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item Start Date",
+              "nativeQueryRef": "Start Date",
+              "displayName": "Start Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item End Date"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item End Date",
+              "nativeQueryRef": "End Date",
+              "displayName": "End Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item % Complete"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item % Complete",
+              "nativeQueryRef": "% Complete",
+              "displayName": "% Complete"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item Contract Value"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item Contract Value",
+              "nativeQueryRef": "Contract Value",
+              "displayName": "Contract Value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total Revenue"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total Revenue",
+              "nativeQueryRef": "Revenue ITD",
+              "displayName": "Revenue ITD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total Gross Profit"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total Gross Profit",
+              "nativeQueryRef": "Gross Profit ITD",
+              "displayName": "Gross Profit ITD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total GP %"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total GP %",
+              "nativeQueryRef": "GP % ITD",
+              "displayName": "GP % ITD"
             }
           ]
         }
@@ -37,6 +183,186 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Active Projects and Contracts'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ae42a3a0eb42389b3b8e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "UI_ActiveItems"
+              }
+            },
+            "Property": "Item Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "99e720ab3241a553e57a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "UI_ActiveItems"
+              }
+            },
+            "Property": "Item Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d51f199519a24ffeca2a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Item Start Date"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6bf6be0b461f2581417c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Items Total Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2bc8384abe44c3d34a57",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Items Total Gross Profit"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f994c887d53ea020d43f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Items Total GP %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "439e825e815fc962d78e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "UI_ActiveItems"
+              }
+            },
+            "Property": "Division"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4e68b7a01e29199da084",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Item End Date"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "456df1cb6f50d9c2b4ad",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "UI_ActiveItems"
+              }
+            },
+            "Property": "Item Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "530e343b624358e982b8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Item Contract Value"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0b41f641f3abe1a4a4e4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Item % Complete"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -111,7 +111,7 @@ table PROJECTS_Financials_F
 				    // ----------------------------
 				    // Job Cost (Amend inputs at Job x Month)
 				    // ----------------------------
-				    StartDate = #date(2021, 1, 1),
+				    StartDate = #date(2020, 1, 1),
 				    // Include earlier months so cumulative inputs at StartDate have carry-in.
 				    CarryInStartDate = #date(2015, 1, 1),
 				    EndDate = Date.EndOfMonth(Date.From(DateTime.LocalNow())),

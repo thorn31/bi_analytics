@@ -38689,200 +38689,1979 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "entity__key_measure.GL_revenue_projects__amend_markets": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "GL Revenue (Projects - Amend Markets)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "GL revenue (projects - amend markets)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "GL revenue": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "GL revenue (projects amend markets)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.GL_revenue_total__sandbox": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "GL Revenue (Total - Sandbox)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "GL revenue (total - sandbox)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "GL revenue": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "GL revenue (total sandbox)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.GL_revenue_projects__sandbox": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "GL Revenue (Projects - Sandbox)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "GL revenue (projects - sandbox)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "GL revenue": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "GL revenue (projects sandbox)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_item_revenue_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Item Revenue (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active item revenue (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active item revenue": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_item_is_active_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Item Is Active (Flag)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "active item is active (flag)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active item is active": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_item_show_row": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Item Show Row"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "active item show row": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "row": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "show row": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "item show row": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "active item show line": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "item show line": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "show line": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "active product show row": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active element show row": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active entry show row": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "product show row": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "element show row": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "entry show row": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "active article show row": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_item_start_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Item Start Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active item start date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "item start date": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "active item start moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "item start moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "active item start period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "item start period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "active item commencement date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.629
+			          }
+			        },
+			        {
+			          "active item inception date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.629
+			          }
+			        },
+			        {
+			          "active item kickoff date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.629
+			          }
+			        },
+			        {
+			          "active product start date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active element start date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active entry start date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "Start Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "entity__key_measure.active_items_total_revenue": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Items Total Revenue"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active items total revenue": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "items total revenue": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "active item total income": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "item total income": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "active item total profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "active item total turnover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "active item total yield": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "item total profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "item total turnover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "item total yield": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "active item aggregate revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "active item overall revenue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "Revenue ITD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_items_total_gross_profit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Items Total Gross Profit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active items total gross profit": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "profit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "items total gross profit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "active item total aggregate profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.673
+			          }
+			        },
+			        {
+			          "active item total overall profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.673
+			          }
+			        },
+			        {
+			          "active item total whole profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.673
+			          }
+			        },
+			        {
+			          "item total aggregate profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "item total overall profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "item total whole profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.665
+			          }
+			        },
+			        {
+			          "active item aggregate gross profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "active item overall gross profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "active item total sum profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "active item total total profit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "Gross Profit ITD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_items_total_GP_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Items Total GP %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active items total GP %": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active item total gp percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "active item total gp pct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.757
+			          }
+			        },
+			        {
+			          "active item aggregate gp %": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "active item overall gp %": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "GP % ITD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_item_end_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Item End Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active item end date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "item end date": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "active item end moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "item end moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "active item end period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "item end period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "active item culmination date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.629
+			          }
+			        },
+			        {
+			          "active product end date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active element end date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active entry end date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active item completion date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active item conclusion date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "End Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "entity__key_measure.active_item_contract_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Item Contract Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active item contract value": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "value": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "contract value": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "item contract value": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "active product contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active element contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active entry contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "product contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "element contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "entry contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "active article contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "active object contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "active piece contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "active token contract value": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "UI_active_item": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "UI_ActiveItems"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "UI active item": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "UI_ActiveItems": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "item": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "active item": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "ui active product": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "ui active element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "ui active entry": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "active product": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "active element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "active entry": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "ui active article": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "ui active object": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "ui active piece": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "ui active token": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "UI_active_item.item_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "UI_ActiveItems",
+			          "ConceptualProperty": "Item Type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "item type": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "type": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "item category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "item genre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "item manner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "item variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "genre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "manner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "item brand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "item class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "item kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "UI_active_item.item_type_sort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "UI_ActiveItems",
+			          "ConceptualProperty": "Item Type Sort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "item type sort": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "type sort": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "product type sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "element type sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "entry type sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "item category sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "item genre sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "item manner sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "item variety sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "category sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "genre sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "manner sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        }
+			      ]
+			    },
+			    "UI_active_item.item_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "UI_ActiveItems",
+			          "ConceptualProperty": "Item Key"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "item key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "product key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "element key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "entry key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "article key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "object key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "piece key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "token key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "UI_active_item.item_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "UI_ActiveItems",
+			          "ConceptualProperty": "Item Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "item name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "item": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "product": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "entry": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "item nickname": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "item title": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "item label": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "item tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "article": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "object": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "piece": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "UI_active_item.division": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "UI_ActiveItems",
+			          "ConceptualProperty": "Division"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "division": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "separation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "dissection": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "detachment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "disunion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "partition": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "disagreement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "schism": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "disharmony": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "dissonance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "split": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "UI_active_item.item_number": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "UI_ActiveItems",
+			          "ConceptualProperty": "Item Number"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "item number": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "item no": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "product number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "element number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "entry number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "article number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "object number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "piece number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "token number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ],
+			      "NameType": "Identifier"
+			    },
+			    "entity__key_measure.active_item__complete": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Item % Complete"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active item % complete": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active item percentage complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "active item pct complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "active product % complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active element % complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active entry % complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "active article % complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "active object % complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "active piece % complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "active token % complete": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "% Complete": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "financials_f_has_stream_d": {
-			      "Binding": {
-			        "ConceptualEntity": "FINANCIALS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "financials_f": {
-			          "Target": {
-			            "Entity": "financials_f"
-			          }
-			        },
-			        "stream_d": {
-			          "Target": {
-			            "Entity": "stream_d"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "financials_f"
-			            },
-			            "Object": {
-			              "Role": "stream_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "financials_f_have_stream_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "stream_d"
-			            },
-			            "Object": {
-			              "Role": "financials_f"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "stream_Ds_have_financials_f"
-			        }
-			      ]
-			    },
-			    "financials_f_has_divisions_d": {
-			      "Binding": {
-			        "ConceptualEntity": "FINANCIALS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "financials_f": {
-			          "Target": {
-			            "Entity": "financials_f"
-			          }
-			        },
-			        "divisions_d": {
-			          "Target": {
-			            "Entity": "divisions_d"
-			          },
-			          "Nouns": [
-			            {
-			              "division": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "financials_f"
-			            },
-			            "Object": {
-			              "Role": "divisions_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "financials_f_have_divisions_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "divisions_d"
-			            },
-			            "Object": {
-			              "Role": "financials_f"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "divisions_Ds_have_financials_f"
-			        }
-			      ]
-			    },
-			    "financials_f_has_fycalendar_d": {
-			      "Binding": {
-			        "ConceptualEntity": "FINANCIALS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "financials_f": {
-			          "Target": {
-			            "Entity": "financials_f"
-			          }
-			        },
-			        "fycalendar_d": {
-			          "Target": {
-			            "Entity": "fycalendar_d"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "financials_f"
-			            },
-			            "Object": {
-			              "Role": "fycalendar_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "financials_f_have_fycalendar_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fycalendar_d"
-			            },
-			            "Object": {
-			              "Role": "financials_f"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fycalendar_Ds_have_financials_f"
-			        }
-			      ]
-			    },
-			    "financials_f_has_customers_d": {
-			      "Binding": {
-			        "ConceptualEntity": "FINANCIALS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "financials_f": {
-			          "Target": {
-			            "Entity": "financials_f"
-			          }
-			        },
-			        "customers_d": {
-			          "Target": {
-			            "Entity": "customers_d"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "financials_f"
-			            },
-			            "Object": {
-			              "Role": "customers_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "financials_f_have_customers_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "customers_d"
-			            },
-			            "Object": {
-			              "Role": "financials_f"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "customers_Ds_have_financials_f"
-			        }
-			      ]
-			    },
 			    "TM_financials_F_has_divisions_d": {
 			      "Binding": {
 			        "ConceptualEntity": "TM_Financials_F"
@@ -39517,6 +41296,1063 @@ cultureInfo en-US
 			          "ID": "divisions_Ds_have_projects_Ds"
 			        }
 			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_item__complete": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_item__complete": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item__complete"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item__complete"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_item__complete"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_active_item__complete": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_item__complete": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item__complete"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item__complete"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_active_item__complete"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_active_item__complete": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_item__complete": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item__complete"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item__complete"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_active_item__complete"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_active_item__complete": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_item__complete": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item__complete"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item__complete"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_active_item__complete"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_active_item__complete": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_item__complete": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item__complete"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item__complete"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_active_item__complete"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_item_number": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "UI_active_item.item_number": {
+			          "Target": {
+			            "Entity": "UI_active_item.item_number"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "UI_active_item.item_number"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_item_numbers"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Name": {
+			              "Role": "UI_active_item.item_number"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "item_numbers_are_names_IDs_of_UI_active_items"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_division": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "UI_active_item.division": {
+			          "Target": {
+			            "Entity": "UI_active_item.division"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "UI_active_item.division"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_divisions"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_item_name": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "UI_active_item.item_name": {
+			          "Target": {
+			            "Entity": "UI_active_item.item_name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "UI_active_item.item_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_item_names"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_item_key": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "UI_active_item.item_key": {
+			          "Target": {
+			            "Entity": "UI_active_item.item_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "UI_active_item.item_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_item_keys"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_item_type": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "UI_active_item.item_type": {
+			          "Target": {
+			            "Entity": "UI_active_item.item_type"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "UI_active_item.item_type"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_item_types"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_item_contract_value": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_item_contract_value": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_contract_value"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_contract_value"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_item_contract_value"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_active_item_contract_value": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_item_contract_value": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_contract_value"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_contract_value"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_active_item_contract_value"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_active_item_contract_value": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_item_contract_value": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_contract_value"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_contract_value"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_active_item_contract_value"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_item_end_date": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_item_end_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_end_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_end_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_item_end_date"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_active_item_end_date": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_item_end_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_end_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_end_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_active_item_end_date"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_items_total_GP_": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_GP_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_GP_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_GP_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_items_total_GP_"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_active_items_total_GP_": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_GP_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_GP_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_GP_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_active_items_total_GP_"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_active_items_total_GP_": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_GP_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_GP_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_GP_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_active_items_total_GP_"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_items_total_gross_profit": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_gross_profit": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_gross_profit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_gross_profit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_items_total_gross_profit"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_active_items_total_gross_profit": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_gross_profit": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_gross_profit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_gross_profit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_active_items_total_gross_profit"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_active_items_total_gross_profit": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_gross_profit": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_gross_profit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_gross_profit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_active_items_total_gross_profit"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_items_total_revenue": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_revenue": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_revenue"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_revenue"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_items_total_revenue"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_active_items_total_revenue": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_revenue": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_revenue"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_revenue"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_active_items_total_revenue"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_active_items_total_revenue": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_items_total_revenue": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_items_total_revenue"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_items_total_revenue"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_active_items_total_revenue"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_item_start_date": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_item_start_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_start_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_start_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_item_start_date"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_active_item_start_date": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_item_start_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_start_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_start_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_active_item_start_date"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_active_item_start_date": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_item_start_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_start_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_start_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_active_item_start_date"
+			        }
+			      ]
+			    },
+			    "UI_active_item_has_entity__key_measure_active_item_revenue_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_item_revenue_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_revenue_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_active_item"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_revenue_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_active_items_have_active_item_revenue_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_active_item_revenue_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_item_revenue_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_revenue_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_revenue_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_active_item_revenue_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_active_item_revenue_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.active_item_revenue_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_revenue_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_item_revenue_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_active_item_revenue_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_GL_revenue_projects__sandbox": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.GL_revenue_projects__sandbox": {
+			          "Target": {
+			            "Entity": "entity__key_measure.GL_revenue_projects__sandbox"
+			          }
+			        }
+			      }
+			    },
+			    "posting_data_f_has_entity__key_measure_GL_revenue_total__sandbox": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.GL_revenue_total__sandbox": {
+			          "Target": {
+			            "Entity": "entity__key_measure.GL_revenue_total__sandbox"
+			          }
+			        }
+			      }
+			    },
+			    "posting_data_f_has_entity__key_measure_GL_revenue_projects__amend_markets": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.GL_revenue_projects__amend_markets": {
+			          "Target": {
+			            "Entity": "entity__key_measure.GL_revenue_projects__amend_markets"
+			          }
+			        }
+			      }
 			    },
 			    "entity__key_measure_has_customer_rank_context_string_R12M_as_of": {
 			      "Binding": {
@@ -56411,6 +59247,216 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "UI_active_item_is_Ended_on_entity__key_measure_active_item_end_date": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_item_end_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_end_date"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "When": {
+			          "Role": "entity__key_measure.active_item_end_date"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Verbs": [
+			              {
+			                "End": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "UI_active_item"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.9,
+			          "ID": "UI_active_items_are_Ended_on_active_item_end_date"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_is_Ended_on_entity__key_measure_active_item_end_date": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_item_end_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_end_date"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "When": {
+			          "Role": "entity__key_measure.active_item_end_date"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Verbs": [
+			              {
+			                "End": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "servcontracts_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.9,
+			          "ID": "servcontracts_Ds_are_Ended_on_active_item_end_date"
+			        }
+			      ]
+			    },
+			    "UI_active_item_is_Started_on_entity__key_measure_active_item_start_date": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_ActiveItems"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_active_item": {
+			          "Target": {
+			            "Entity": "UI_active_item"
+			          }
+			        },
+			        "entity__key_measure.active_item_start_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_start_date"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "When": {
+			          "Role": "entity__key_measure.active_item_start_date"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Verbs": [
+			              {
+			                "Start": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "UI_active_item"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.9,
+			          "ID": "UI_active_items_are_Started_on_active_item_start_date"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_is_Started_on_entity__key_measure_active_item_start_date": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_item_start_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_start_date"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "When": {
+			          "Role": "entity__key_measure.active_item_start_date"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Verbs": [
+			              {
+			                "Start": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "servcontracts_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.9,
+			          "ID": "servcontracts_Ds_are_Started_on_active_item_start_date"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_is_Started_on_entity__key_measure_active_item_start_date": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_item_start_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_item_start_date"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "When": {
+			          "Role": "entity__key_measure.active_item_start_date"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Verbs": [
+			              {
+			                "Start": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "fycalendar_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.9,
+			          "ID": "fycalendar_Ds_are_Started_on_active_item_start_date"
+			        }
+			      ]
+			    },
 			    "nps_f_is_completed_on_service_call_completed_date": {
 			      "Binding": {
 			        "ConceptualEntity": "NPS_F"
@@ -56886,6 +59932,197 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_projects_Ds_are_inactive_projects_Ds"
+			        }
+			      ]
+			    },
+			    "financials_f_has_customers_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "customers_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_customers_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_financials_f"
+			        }
+			      ]
+			    },
+			    "financials_f_has_fycalendar_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_fycalendar_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_financials_f"
+			        }
+			      ]
+			    },
+			    "financials_f_has_divisions_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "divisions_d": {
+			          "Target": {
+			            "Entity": "divisions_d"
+			          },
+			          "Nouns": [
+			            {
+			              "division": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "divisions_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_divisions_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "divisions_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "divisions_Ds_have_financials_f"
+			        }
+			      ]
+			    },
+			    "financials_f_has_stream_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "stream_d": {
+			          "Target": {
+			            "Entity": "stream_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "stream_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_stream_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "stream_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "stream_Ds_have_financials_f"
 			        }
 			      ]
 			    },

@@ -4,13 +4,19 @@ table GL_MARKET_STREAM_D
 
 	column Market
 		lineageTag: b1d5e1a4-b47a-4fd0-b0e6-41d85f88cad4
+		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Market]
 
+		annotation SummarizationSetBy = Automatic
+
 	column Stream
 		lineageTag: d4daa995-5bf2-42a5-a07f-710857607941
+		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Stream]
+
+		annotation SummarizationSetBy = Automatic
 
 	partition GL_MARKET_STREAM_D = calculated
 		mode: import
@@ -21,7 +27,6 @@ table GL_MARKET_STREAM_D
 					{
 						{ "PROJECTS", "Projects" },
 						{ "O&M PROJECTS", "Projects" },
-						{ "PROJECT REPAIR", "Projects" },
 						{ "DESIGN BUILD", "Projects" },
 						{ "PERFORMANCE CONTRACT", "Projects" },
 						{ "CONTROLS", "Projects" },
@@ -36,7 +41,7 @@ table GL_MARKET_STREAM_D
 				
 						{ "SPOT", "T&M" },
 						{ "O&M SPOT", "T&M" },
-						{ "INTERCOMPANY SPOT", "T&M" }
+						{ "INTERCOMPANY SPOT", "T&M" },{ "PROJECT REPAIR", "T&M" }
 					}
 				)
 

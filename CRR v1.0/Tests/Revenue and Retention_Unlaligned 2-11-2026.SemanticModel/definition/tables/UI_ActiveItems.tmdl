@@ -1,0 +1,100 @@
+/// Disconnected union of active Projects and active Service Contract years for customer profile tables. Use measures to route revenue based on [Item Type] and [Item Key].
+table UI_ActiveItems
+	lineageTag: 2dce84a5-c3b5-4fe0-858e-e08a3ff79699
+
+	column 'Item Type'
+		lineageTag: a468d6cb-0b87-4a69-a80c-f1bcfb1e3b57
+		isNameInferred
+		sourceColumn: [Item Type]
+		sortByColumn: 'Item Type Sort'
+
+	column 'Item Type Sort'
+		isHidden
+		lineageTag: 736e3e6f-e0c5-4c8e-96d9-0287048bd6db
+		isNameInferred
+		sourceColumn: [Item Type Sort]
+
+	column 'Item Key'
+		lineageTag: 37c84c94-a25b-4e98-9c81-133e9c524fb3
+		isNameInferred
+		sourceColumn: [Item Key]
+
+	column 'Item Name'
+		lineageTag: faca266b-1664-4ee2-b8f8-cebc20ba8c86
+		isNameInferred
+		sourceColumn: [Item Name]
+
+	column Division =
+			VAR DivisionCode =
+			    SWITCH(
+			        TRUE(),
+			        'UI_ActiveItems'[Item Type] = "Project",
+			            LOOKUPVALUE(
+			                'PROJECTS_D'[Divisions],
+			                'PROJECTS_D'[SurrogateProjectID], 'UI_ActiveItems'[Item Key]
+			            ),
+			        'UI_ActiveItems'[Item Type] = "Service Contract",
+			            LOOKUPVALUE(
+			                'SERVCONTRACTS_D'[Divisions],
+			                'SERVCONTRACTS_D'[AgreementKey], 'UI_ActiveItems'[Item Key]
+			            ),
+			        BLANK()
+			    )
+			RETURN
+			    LOOKUPVALUE(
+			        'DIVISIONS_D'[Division],
+			        'DIVISIONS_D'[DivisionCode], DivisionCode
+			    )
+		dataType: string
+		lineageTag: 65357a2c-857c-4206-935d-9dbb2d159c35
+		summarizeBy: none
+
+	column 'Item Number' =
+			SWITCH(
+			    TRUE(),
+			    'UI_ActiveItems'[Item Type] = "Project",
+			        LOOKUPVALUE(
+			            'PROJECTS_D'[Project Number],
+			            'PROJECTS_D'[SurrogateProjectID], 'UI_ActiveItems'[Item Key]
+			        ),
+			    'UI_ActiveItems'[Item Type] = "Service Contract",
+			        LOOKUPVALUE(
+			            'SERVCONTRACTS_D'[Contract Number],
+			            'SERVCONTRACTS_D'[AgreementKey], 'UI_ActiveItems'[Item Key]
+			        ),
+			    BLANK()
+			)
+		dataType: string
+		lineageTag: a4d466f2-c65e-4d84-9c5c-1411a9d0d684
+		summarizeBy: none
+
+	partition UI_ActiveItems = calculated
+		mode: import
+		source =
+				VAR ProjectsTable =
+				    SELECTCOLUMNS(
+				        FILTER(
+				            PROJECTS_D,
+				            PROJECTS_D[Inactive] = FALSE()
+				                && NOT ISBLANK(PROJECTS_D[SurrogateProjectID])
+				        ),
+				        "Item Type", "Project",
+				        "Item Type Sort", 1,
+				        "Item Key", PROJECTS_D[SurrogateProjectID],
+				        "Item Name", PROJECTS_D[Project Name/Description]
+				    )
+				VAR ContractsTable =
+				    SELECTCOLUMNS(
+				        FILTER(
+				            SERVCONTRACTS_D,
+				            SERVCONTRACTS_D[IsActiveContractYear] = TRUE()
+				                && NOT ISBLANK(SERVCONTRACTS_D[AgreementKey])
+				        ),
+				        "Item Type", "Service Contract",
+				        "Item Type Sort", 2,
+				        "Item Key", SERVCONTRACTS_D[AgreementKey],
+				        "Item Name", SERVCONTRACTS_D[Contract Description]
+				    )
+				RETURN
+				    DISTINCT(UNION(ProjectsTable, ContractsTable))
+

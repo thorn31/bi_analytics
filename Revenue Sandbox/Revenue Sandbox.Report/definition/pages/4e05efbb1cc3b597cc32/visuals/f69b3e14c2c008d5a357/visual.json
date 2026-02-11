@@ -9,10 +9,10 @@
     "width": 841.11111111111109
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -26,7 +26,8 @@
                 }
               },
               "queryRef": "FYCALENDAR_D.Fiscal Year Label",
-              "nativeQueryRef": "Fiscal Year Label"
+              "nativeQueryRef": "Fiscal Year Label",
+              "active": true
             },
             {
               "field": {
@@ -40,8 +41,13 @@
                 }
               },
               "queryRef": "FYCALENDAR_D.MMM Label",
-              "nativeQueryRef": "MMM Label"
-            },
+              "nativeQueryRef": "MMM Label",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -128,7 +134,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "788e5ea52b9c267b4d11",
+        "name": "646291aca799b2a608a7",
         "field": {
           "Column": {
             "Expression": {
@@ -139,10 +145,68 @@
             "Property": "Fiscal Year Label"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FYCALENDAR_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "f"
+                              }
+                            },
+                            "Property": "Fiscal Year Label"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'FY2020'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       },
       {
-        "name": "c0dd55936e4f5480bf2d",
+        "name": "b485a974a4027deb5f06",
         "field": {
           "Measure": {
             "Expression": {
@@ -156,7 +220,7 @@
         "type": "Advanced"
       },
       {
-        "name": "fa125b5d612f3306051c",
+        "name": "09bfdcbfa46850bccd12",
         "field": {
           "Measure": {
             "Expression": {
@@ -170,7 +234,7 @@
         "type": "Advanced"
       },
       {
-        "name": "60e7b2a451236d90420c",
+        "name": "ac91b6823206f6b79e56",
         "field": {
           "Measure": {
             "Expression": {
@@ -184,7 +248,7 @@
         "type": "Advanced"
       },
       {
-        "name": "802a6509598dd7f981c0",
+        "name": "faabe83c3dfab26b8308",
         "field": {
           "Column": {
             "Expression": {

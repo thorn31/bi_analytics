@@ -67,7 +67,7 @@ table JOB_COST_FORECASTS_F
 				    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
 				    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
 				    JOB_COST_FORECASTS_F_Table = DW_FINAL_Schema{[Name="JOB_COST_FORECASTS_F",Kind="Table"]}[Data],
-				    Filtered = Table.SelectRows(JOB_COST_FORECASTS_F_Table, each [SOURCE] = "MECH_GP"),
+				    Filtered = Table.SelectRows(JOB_COST_FORECASTS_F_Table, each [SOURCE] = "MECH_GP" or [SOURCE] = "SERV_GP"),
 				    Trimmed = Table.TransformColumns(Filtered,{{"JOB_NUMBER", Text.Trim, type text}, {"COST_CODE", Text.Trim, type text}}),
 				    Cleaned = Table.TransformColumns(Trimmed,{{"JOB_NUMBER", Text.Clean, type text}, {"COST_CODE", Text.Clean, type text}}),
 				    AddedJobCostCode = Table.AddColumn(Cleaned, "Job_Cost Code", each [JOB_NUMBER] & ":" & [COST_CODE], type text),
@@ -76,4 +76,8 @@ table JOB_COST_FORECASTS_F
 				    Typed = Table.TransformColumnTypes(Selected,{{"JOB_NUMBER", type text},{"JOB_KEY", type text},{"COST_CODE", type text},{"YEAR", Int64.Type},{"FISCAL_MONTH", Int64.Type},{"FORECAST_COSTS", type number},{"SOURCE", type text},{"Job_Cost Code", type text},{"Date", type date}})
 				in
 				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

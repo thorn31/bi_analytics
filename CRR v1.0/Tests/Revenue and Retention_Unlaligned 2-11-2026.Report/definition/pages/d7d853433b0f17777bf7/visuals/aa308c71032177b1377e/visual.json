@@ -6,14 +6,14 @@
     "y": 5.5290102389078495,
     "z": 0,
     "height": 632.15017064846415,
-    "width": 446.00682593856658,
+    "width": 658.5665529010239,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -27,13 +27,8 @@
                 }
               },
               "queryRef": "FYCALENDAR_D.Fiscal Year",
-              "nativeQueryRef": "Fiscal Year",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
+              "nativeQueryRef": "Fiscal Year"
+            },
             {
               "field": {
                 "Measure": {
@@ -70,11 +65,11 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "GL Revenue (Projects - Amend Markets)"
+                  "Property": "GL Revenue (Projects - Sandbox)"
                 }
               },
-              "queryRef": "_Key Measures.GL Revenue (Projects - Amend Markets)",
-              "nativeQueryRef": "GL Revenue (Projects - Amend Markets)"
+              "queryRef": "_Key Measures.GL Revenue (Projects - Sandbox)",
+              "nativeQueryRef": "GL Revenue (Projects - Sandbox)"
             }
           ]
         }
@@ -83,81 +78,20 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Key Measures"
+                    "Entity": "FYCALENDAR_D"
                   }
                 },
-                "Property": "Project Revenue"
+                "Property": "Fiscal Year"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b45999da3a65525a6cf1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Project Revenue"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e52d9df79c3ab7f888ea",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GL Revenue (Projects)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e114191441734a53994f",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2f9e3c5e5dfb22f81d3d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GL Revenue (Projects - Amend Markets)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

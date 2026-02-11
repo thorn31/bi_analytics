@@ -137,6 +137,11 @@
 - [x] Port DAX UDF pack into `Revenue and Retention` (verified visible in Desktop + via MCP function listing).
 - [ ] Create initial IBCS SVG wrapper measures for matrix visuals (start with Revenue vs Budget variance bars).
 
+## 6.3) Customer Profile — Active Projects + Contracts
+- [x] Create combined active-items table `UI_ActiveItems` (Projects + active contract years).
+- [x] Add active-items measures (start/end dates, contract value, totals).
+- [ ] Backlog: define and validate a backlog metric for the Active Projects + Contracts table (projects remaining value as-of; decide service-contract remaining-value definition; avoid misleading `Contract Value - Revenue`).
+
 ## 10) P&L Page (YTD First)
 - Goal: mirror the system P&L layout using a disconnected row structure + YTD measures (monthly view later).
 - [x] Add disconnected structure table: `UI_P&L Structure` with ordered rows:

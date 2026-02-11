@@ -80,14 +80,6 @@ relationship 'FINANCIALS_F -> STREAM_D'
 	fromColumn: FINANCIALS_F.Stream
 	toColumn: STREAM_D.Stream
 
-relationship 'GL_MARKET_STREAM_D -> STREAM_D'
-	fromColumn: GL_MARKET_STREAM_D.Stream
-	toColumn: STREAM_D.Stream
-
-relationship 'GL_ACCT_D -> GL_MARKET_STREAM_D'
-	fromColumn: GL_ACCT_D.MARKET
-	toColumn: GL_MARKET_STREAM_D.Market
-
 relationship 'NPS_F -> CUSTOMERS_D'
 	fromColumn: NPS_F.'Customernbr Key'
 	toColumn: CUSTOMERS_D.'Customer Key'
@@ -119,4 +111,12 @@ relationship 6f604bed-66a2-9200-f903-28c256dfc959
 relationship 0852274f-6852-2ef7-3fec-ff9fb388e698
 	fromColumn: SERVCONTRACTS_D.'Custnmbr Key'
 	toColumn: CUSTOMERS_D.'Customer Key'
+
+relationship 'GL_ACCT_D -> GL_MARKET_STREAM_D'
+	fromColumn: GL_ACCT_D.MARKET
+	toColumn: GL_MARKET_STREAM_D.Market
+
+relationship 'GL_MARKET_STREAM_D -> STREAM_D'
+	fromColumn: GL_MARKET_STREAM_D.Stream
+	toColumn: STREAM_D.Stream
 

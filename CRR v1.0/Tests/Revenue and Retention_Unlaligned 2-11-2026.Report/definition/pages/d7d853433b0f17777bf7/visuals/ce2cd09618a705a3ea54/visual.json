@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "ce2cd09618a705a3ea54",
   "position": {
-    "x": 444.16382252559725,
-    "y": 0,
-    "z": 2000,
-    "height": 632.15017064846415,
-    "width": 446.00682593856658,
-    "tabOrder": 2000
+    "x": 397.85714285714289,
+    "y": 5,
+    "z": 1000,
+    "height": 632.14285714285722,
+    "width": 537.85714285714289,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -27,13 +27,8 @@
                 }
               },
               "queryRef": "FYCALENDAR_D.Fiscal Year",
-              "nativeQueryRef": "Fiscal Year",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
+              "nativeQueryRef": "Fiscal Year"
+            },
             {
               "field": {
                 "Measure": {
@@ -69,67 +64,20 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Key Measures"
+                    "Entity": "FYCALENDAR_D"
                   }
                 },
-                "Property": "T&M Revenue"
+                "Property": "Fiscal Year"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "25e506b578eadda7acd0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "T&M Revenue"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a703ff7d93815ec44dea",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GL Revenue (T&M)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "27dd530efe4d003d5825",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

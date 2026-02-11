@@ -112,12 +112,50 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'109 Independence Lane'"
+                                "Value": "'Greater Clark County Schools'"
                               }
                             }
                           ]
                         ]
                       }
+                    }
+                  }
+                ]
+              }
+            },
+            "selfFilter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "c",
+                    "Entity": "CUSTOMERS_D",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Contains": {
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "c"
+                              }
+                            },
+                            "Property": "Master Customer Name"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'schools'"
+                          }
+                        }
+                      }
+                    },
+                    "Annotations": {
+                      "PowerBI.MParameterBehavior": 1
                     }
                   }
                 ]
@@ -192,6 +230,20 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "1b944e85f964fd3fc99d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Master Customer Name"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }
