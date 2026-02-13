@@ -1,0 +1,29 @@
+/// Disconnected selector table for dashboard Revenue Analysis stream toggle (All Streams, Projects, Service Contracts, T&M).
+table 'UI_Revenue Stream Selector'
+	lineageTag: eb3a0a66-8499-4ca6-87b3-db2cef7853f4
+
+	column Stream
+		lineageTag: 171132f7-84d6-40aa-8115-cd0e4f439512
+		isNameInferred
+		sourceColumn: [Stream]
+		sortByColumn: StreamSort
+
+	column StreamSort
+		isHidden
+		lineageTag: b5828ed5-5580-4095-ad93-c5b9ce369e75
+		isNameInferred
+		sourceColumn: [StreamSort]
+
+	partition 'UI_Revenue Stream Selector' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				  "Stream", STRING,
+				  "StreamSort", INTEGER,
+				  {
+				    { "Projects", 1 },
+				    { "Service Contracts", 2 },
+				    { "T&M", 3 }
+				  }
+				)
+

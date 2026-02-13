@@ -149,7 +149,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'schools'"
+                            "Value": "'Greater'"
                           }
                         }
                       }
@@ -230,20 +230,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "1b944e85f964fd3fc99d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Master Customer Name"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

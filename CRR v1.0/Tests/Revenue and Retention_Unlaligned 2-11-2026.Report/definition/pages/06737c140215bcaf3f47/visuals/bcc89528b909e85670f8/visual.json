@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "bcc89528b909e85670f8",
   "position": {
-    "x": 31.331058020477816,
-    "y": 605.42662116040947,
+    "x": 321.60409556313994,
+    "y": 597.13310580204779,
     "z": 3000,
     "height": 446.00682593856652,
-    "width": 1879.8634812286689,
+    "width": 1560.1023890784982,
     "tabOrder": 3000
   },
   "visual": {
-    "visualType": "pivotTable",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Rows": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -27,13 +27,22 @@
                 }
               },
               "queryRef": "CUSTOMERS_D.Master Customer Name",
-              "nativeQueryRef": "Master Customer Name",
-              "active": true
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
+              "nativeQueryRef": "Master Customer Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customer Revenue Rank (All Time)"
+                }
+              },
+              "queryRef": "_Key Measures.Customer Revenue Rank (All Time)",
+              "nativeQueryRef": "Customer Revenue Rank (All Time)"
+            },
             {
               "field": {
                 "Measure": {
@@ -98,20 +107,6 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Customer Revenue Rank (All Time)"
-                }
-              },
-              "queryRef": "_Key Measures.Customer Revenue Rank (All Time)",
-              "nativeQueryRef": "Customer Revenue Rank (All Time)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
                   "Property": "Customer Lifecycle Status"
                 }
               },
@@ -132,6 +127,20 @@
               "queryRef": "_Key Measures.Last Billing Date (Any Stream)",
               "nativeQueryRef": "Last Billing Date",
               "displayName": "Last Billing Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Industrial Revenue Rank"
+                }
+              },
+              "queryRef": "_Key Measures.Industrial Revenue Rank",
+              "nativeQueryRef": "Industrial Revenue Rank"
             }
           ]
         }
@@ -146,43 +155,14 @@
                     "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Total Revenue"
+                "Property": "Last Billing Date (Any Stream)"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
     },
-    "expansionStates": [
-      {
-        "roles": [
-          "Rows"
-        ],
-        "levels": [
-          {
-            "queryRefs": [
-              "CUSTOMERS_D.Master Customer Name"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "CUSTOMERS_D"
-                    }
-                  },
-                  "Property": "Master Customer Name"
-                }
-              }
-            ],
-            "isPinned": true
-          }
-        ],
-        "root": {}
-      }
-    ],
     "objects": {
       "columnWidth": [
         {
@@ -197,6 +177,21 @@
           },
           "selector": {
             "metadata": "_Key Measures.Last Billing Date (Any Stream)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ]

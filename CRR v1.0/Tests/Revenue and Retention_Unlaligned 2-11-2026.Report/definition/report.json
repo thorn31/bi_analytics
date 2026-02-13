@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Perfection_-_Clean_Neutral_(v63185588133546885.json",
+      "name": "Perfection_-_Clean_Neutral_(v62985957638241017.json",
       "reportVersionAtImport": {
         "visual": "2.5.0",
         "report": "3.1.0",
@@ -85,6 +85,126 @@
           }
         },
         "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DIVISIONS_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Division"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Burden'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Engineering'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Free Service DB'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Free Service GR'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Industrial'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Plan Spec'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sales Assist'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Special Project'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Training'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Vacation'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Controls'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
         "howCreated": "User",
         "objects": {
           "general": [
@@ -117,8 +237,24 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
     ]
   },
+  "publicCustomVisuals": [
+    "markdown094043B111794F2C815A4B97BA2D325B"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",
@@ -141,9 +277,24 @@
           "type": "Image"
         },
         {
-          "name": "Perfection_-_Clean_Neutral_(v63185588133546885.json",
-          "path": "Perfection_-_Clean_Neutral_(v63185588133546885.json",
+          "name": "Perfection_-_Clean_Neutral_(v62985957638241017.json",
+          "path": "Perfection_-_Clean_Neutral_(v62985957638241017.json",
           "type": "CustomTheme"
+        },
+        {
+          "name": "Navigation_Arrow5291009444146907.svg",
+          "path": "Navigation_Arrow5291009444146907.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Navigation_Arrow_-_Inverse6287781539356028.svg",
+          "path": "Navigation_Arrow_-_Inverse6287781539356028.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Navigation_Arrow9627682918641088.svg",
+          "path": "Navigation_Arrow9627682918641088.svg",
+          "type": "Image"
         }
       ]
     }

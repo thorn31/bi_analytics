@@ -124,6 +124,20 @@
                       "Entity": "_Key Measures"
                     }
                   },
+                  "Property": "Placeholder v1"
+                }
+              },
+              "queryRef": "_Key Measures.Placeholder v1",
+              "nativeQueryRef": "Placeholder v1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
                   "Property": "Active Item Contract Value"
                 }
               },
@@ -139,12 +153,71 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Active Items Total Revenue"
+                  "Property": "Active Item Estimated Cost"
                 }
               },
-              "queryRef": "_Key Measures.Active Items Total Revenue",
+              "queryRef": "_Key Measures.Active Item Estimated Cost",
+              "nativeQueryRef": "Estimated Cost",
+              "displayName": "Estimated Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item Sold GP %"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item Sold GP %",
+              "nativeQueryRef": "Estimated GP %",
+              "displayName": "Estimated GP %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Placeholder v2"
+                }
+              },
+              "queryRef": "_Key Measures.Placeholder v2",
+              "nativeQueryRef": "Placeholder v2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total Revenue (ITD)"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total Revenue (ITD)",
               "nativeQueryRef": "Revenue ITD",
               "displayName": "Revenue ITD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total Cost",
+              "nativeQueryRef": "Cost ITD",
+              "displayName": "Cost ITD"
             },
             {
               "field": {
@@ -188,6 +261,74 @@
         {
           "properties": {}
         }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v2"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F6F8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v1"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F6F8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v2"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -206,163 +347,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ae42a3a0eb42389b3b8e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_ActiveItems"
-              }
-            },
-            "Property": "Item Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "99e720ab3241a553e57a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_ActiveItems"
-              }
-            },
-            "Property": "Item Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d51f199519a24ffeca2a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Item Start Date"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6bf6be0b461f2581417c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Items Total Revenue"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2bc8384abe44c3d34a57",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Items Total Gross Profit"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f994c887d53ea020d43f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Items Total GP %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "439e825e815fc962d78e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_ActiveItems"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4e68b7a01e29199da084",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Item End Date"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "456df1cb6f50d9c2b4ad",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_ActiveItems"
-              }
-            },
-            "Property": "Item Number"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "530e343b624358e982b8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Item Contract Value"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0b41f641f3abe1a4a4e4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Item % Complete"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

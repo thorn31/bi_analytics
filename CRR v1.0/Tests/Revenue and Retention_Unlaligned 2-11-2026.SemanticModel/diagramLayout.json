@@ -4,30 +4,17 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
-        "y": 41.075732864267465
+        "x": 518,
+        "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 1510.7504053527659,
-            "y": 875.38743868183246
+            "x": 2724.7005801355162,
+            "y": 178.25985833402865
           },
           "nodeIndex": "_Key Measures",
           "nodeLineageTag": "edee0a95-274b-48e3-9abb-e41cca48e9fb",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 6
-        },
-        {
-          "location": {
-            "x": 1794.7504053527659,
-            "y": 875.38743868183246
-          },
-          "nodeIndex": "CONTRACT_BILLABLE_F",
-          "nodeLineageTag": "982c3a9a-e340-49fb-922e-5653b03952b4",
           "size": {
             "height": 300,
             "width": 234
@@ -36,11 +23,11 @@
         },
         {
           "location": {
-            "x": 477.3669338081877,
-            "y": 403.78500749128716
+            "x": 3014.902272255054,
+            "y": 265.08354800755825
           },
-          "nodeIndex": "CUSTOMERS_D",
-          "nodeLineageTag": "eb750d85-e1ca-4d32-a33b-be93d9f36fa9",
+          "nodeIndex": "CONTRACT_BILLABLE_F",
+          "nodeLineageTag": "982c3a9a-e340-49fb-922e-5653b03952b4",
           "size": {
             "height": 300,
             "width": 234
@@ -49,24 +36,11 @@
         },
         {
           "location": {
-            "x": 729.96904654777165,
-            "y": 759.65958891248056
+            "x": 1097.6995051581953,
+            "y": 0
           },
-          "nodeIndex": "DIVISIONS_D",
-          "nodeLineageTag": "24ca026e-11eb-4dd2-a29c-a1eb19cd7d4a",
-          "size": {
-            "height": 176,
-            "width": 234
-          },
-          "zIndex": 20
-        },
-        {
-          "location": {
-            "x": 535.05988519445623,
-            "y": 990.68116964062142
-          },
-          "nodeIndex": "FYCALENDAR_D",
-          "nodeLineageTag": "d1be4ef6-3b8b-4ac2-9dda-4d2aa5498064",
+          "nodeIndex": "CUSTOMERS_D",
+          "nodeLineageTag": "eb750d85-e1ca-4d32-a33b-be93d9f36fa9",
           "size": {
             "height": 300,
             "width": 234
@@ -75,8 +49,34 @@
         },
         {
           "location": {
-            "x": 3137.195172431771,
-            "y": 9.2159508712415814
+            "x": 518.09092108474169,
+            "y": 0
+          },
+          "nodeIndex": "DIVISIONS_D",
+          "nodeLineageTag": "24ca026e-11eb-4dd2-a29c-a1eb19cd7d4a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 826.89228260504365,
+            "y": 0
+          },
+          "nodeIndex": "FYCALENDAR_D",
+          "nodeLineageTag": "d1be4ef6-3b8b-4ac2-9dda-4d2aa5498064",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 201.85285234953471,
+            "y": 0
           },
           "nodeIndex": "GL_ACCT_D",
           "nodeLineageTag": "429944f9-fc34-41d2-9b67-5ea6c9c5031e",
@@ -88,8 +88,8 @@
         },
         {
           "location": {
-            "x": 2078.7504053527659,
-            "y": 877.38743868183246
+            "x": 3307.1711950811041,
+            "y": 211.26831893171783
           },
           "nodeIndex": "JOB_CHANGE_ORDERS_F",
           "nodeLineageTag": "9ed1c1c8-a639-4837-99e9-d16fe3418e48",
@@ -97,12 +97,12 @@
             "height": 296,
             "width": 234
           },
-          "zIndex": 10
+          "zIndex": 11
         },
         {
           "location": {
-            "x": 2362.7504053527659,
-            "y": 901.38743868183246
+            "x": 3208.7335143762716,
+            "y": 650.78169094075224
           },
           "nodeIndex": "JOB_COST_DETAILS",
           "nodeLineageTag": "3076e546-82f4-4886-b40d-064399336d2f",
@@ -110,12 +110,12 @@
             "height": 248,
             "width": 234
           },
-          "zIndex": 11
+          "zIndex": 12
         },
         {
           "location": {
-            "x": 2646.7504053527659,
-            "y": 877.38743868183246
+            "x": 3492.7335143762716,
+            "y": 626.78169094075224
           },
           "nodeIndex": "JOB_COST_FORECASTS_F",
           "nodeLineageTag": "6cce4d75-30ac-4637-a3d5-641369ad0ae1",
@@ -123,28 +123,15 @@
             "height": 296,
             "width": 234
           },
-          "zIndex": 12
-        },
-        {
-          "location": {
-            "x": 2930.7504053527659,
-            "y": 875.38743868183246
-          },
-          "nodeIndex": "JOB_MONTHLY_SUMMARY_F",
-          "nodeLineageTag": "ecce44fd-3c02-4562-b358-d45f601fa4c1",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
           "zIndex": 13
         },
         {
           "location": {
-            "x": 789.630374029812,
-            "y": 1343.4590746325814
+            "x": 3776.7335143762716,
+            "y": 624.78169094075224
           },
-          "nodeIndex": "POSTING_DATA_F",
-          "nodeLineageTag": "45f0f53b-bc12-4d86-b85b-3e95f7ccb316",
+          "nodeIndex": "JOB_MONTHLY_SUMMARY_F",
+          "nodeLineageTag": "ecce44fd-3c02-4562-b358-d45f601fa4c1",
           "size": {
             "height": 300,
             "width": 234
@@ -153,8 +140,21 @@
         },
         {
           "location": {
-            "x": 770.02348017319014,
-            "y": -50
+            "x": 257.10761098355874,
+            "y": 1012.9257896752936
+          },
+          "nodeIndex": "POSTING_DATA_F",
+          "nodeLineageTag": "45f0f53b-bc12-4d86-b85b-3e95f7ccb316",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 1098.3614773874178,
+            "y": 368.53663786343537
           },
           "nodeIndex": "PROJECTS_D",
           "nodeLineageTag": "3c6a90d7-8e9b-4a35-9e17-5c5e4984b4b2",
@@ -166,8 +166,8 @@
         },
         {
           "location": {
-            "x": 138.99863155592953,
-            "y": 41.075732864267465
+            "x": 1804.1070438949523,
+            "y": 996.40314901309557
           },
           "nodeIndex": "PROJECTS_Financials_F",
           "nodeLineageTag": "5c54f3b0-87ea-4bd6-92b7-baf206b178f4",
@@ -179,8 +179,8 @@
         },
         {
           "location": {
-            "x": 50,
-            "y": 1405.6306215864729
+            "x": 1812.6489083993806,
+            "y": 681.88819933492323
           },
           "nodeIndex": "SERVCONTRACTS_COSTS_F",
           "nodeLineageTag": "7f027d10-e038-415f-bfa1-a7e9e8c7d762",
@@ -188,12 +188,12 @@
             "height": 224,
             "width": 234
           },
-          "zIndex": 15
+          "zIndex": 16
         },
         {
           "location": {
-            "x": 0,
-            "y": 757.66768473463083
+            "x": 1380.8000544206036,
+            "y": 365.98121244787552
           },
           "nodeIndex": "SERVCONTRACTS_D",
           "nodeLineageTag": "3dab7111-c121-4fd1-9375-adc5b75d9cf3",
@@ -201,12 +201,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 16
+          "zIndex": 17
         },
         {
           "location": {
-            "x": 246.8473431240439,
-            "y": 1103.4091024236764
+            "x": 1467.8100929569903,
+            "y": 876.14724878413926
           },
           "nodeIndex": "SERVCONTRACTS_Financials_F",
           "nodeLineageTag": "61aa4981-ec4f-45e0-9f70-3c0b81f7431d",
@@ -214,12 +214,12 @@
             "height": 248,
             "width": 234
           },
-          "zIndex": 17
+          "zIndex": 18
         },
         {
           "location": {
-            "x": 211.8749564278454,
-            "y": 1760.0349967399957
+            "x": 2102.0513787491514,
+            "y": 681.39194412170866
           },
           "nodeIndex": "SERVCONTRACTS_REVENUE_F",
           "nodeLineageTag": "249708cf-51ca-446a-8f5d-27c81e3a22ec",
@@ -227,12 +227,12 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 18
+          "zIndex": 19
         },
         {
           "location": {
-            "x": 1332.30549636515,
-            "y": 385.46892574085064
+            "x": 1548.8100175499492,
+            "y": -50
           },
           "nodeIndex": "TM_Financials_F",
           "nodeLineageTag": "3d1cbb2d-acde-4eb1-a910-22cce8ed4d66",
@@ -240,12 +240,12 @@
             "height": 224,
             "width": 234
           },
-          "zIndex": 19
+          "zIndex": 20
         },
         {
           "location": {
-            "x": 2068.1345726101063,
-            "y": 529.81578460945207
+            "x": 1389.6797330279198,
+            "y": 1176.3201591001382
           },
           "nodeIndex": "FINANCIALS_F",
           "nodeLineageTag": "4d9f6cea-7040-4b24-956c-a2c92f4b7bd6",
@@ -257,8 +257,8 @@
         },
         {
           "location": {
-            "x": 2083.0613969519536,
-            "y": 0
+            "x": 50,
+            "y": 773.11208057045485
           },
           "nodeIndex": "GL_MARKET_STREAM_D",
           "nodeLineageTag": "b7a4e3a4-6b0c-43d7-b12d-f3e13ca8d72b",
@@ -270,8 +270,8 @@
         },
         {
           "location": {
-            "x": 2487.2735959218135,
-            "y": 0
+            "x": 385.06115493331004,
+            "y": 845.139413356821
           },
           "nodeIndex": "STREAM_D",
           "nodeLineageTag": "9a77a2c0-1f2c-4d5c-a317-2df666c247f2",
@@ -283,22 +283,10 @@
         },
         {
           "location": {
-            "x": 3782.7504053527659,
-            "y": 961.38743868183246
+            "x": 4060.7335143762716,
+            "y": 710.78169094075224
           },
           "nodeIndex": "UI_BarFillParts",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 4
-        },
-        {
-          "location": {
-            "x": 4066.7504053527659,
-            "y": 961.38743868183246
-          },
-          "nodeIndex": "UI_CustomerProfileRows",
           "size": {
             "height": 128,
             "width": 234
@@ -307,24 +295,74 @@
         },
         {
           "location": {
-            "x": 2017.0447874583142,
-            "y": 1281.297983427665
+            "x": 4344.7335143762721,
+            "y": 710.78169094075224
+          },
+          "nodeIndex": "UI_CustomerProfileRows",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 514.80558217122916,
+            "y": 1387.4926797677415
           },
           "nodeIndex": "NPS_F",
           "nodeLineageTag": "02b567a6-f292-41f4-9348-ce1fd28065b5",
           "size": {
-            "height": 300,
+            "height": 302.06723070651265,
             "width": 234
           },
-          "zIndex": 21
+          "zIndex": 29
         },
         {
           "location": {
-            "x": 4818.7504053527664,
-            "y": 925.38743868183246
+            "x": 4628.7335143762721,
+            "y": 674.78169094075224
           },
           "nodeIndex": "UI_Customer Status Selector",
           "nodeLineageTag": "d5225688-3e9f-42db-8f96-eaa9daaeb793",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 4912.7335143762721,
+            "y": 710.78169094075224
+          },
+          "nodeIndex": "UI_Waterfall - NRR Breakdown",
+          "nodeLineageTag": "a2fbd847-71d1-46cb-8764-6fa59d662dae",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 216.08767303558614,
+            "y": 394.967001299604
+          },
+          "nodeIndex": "BUDGET_F",
+          "nodeLineageTag": "2e370832-ff07-441e-b497-a436a2c6c1e3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 5196.7335143762721,
+            "y": 674.78169094075224
+          },
+          "nodeIndex": "UI_P&L Structure",
           "size": {
             "height": 200,
             "width": 234
@@ -333,57 +371,56 @@
         },
         {
           "location": {
-            "x": 5102.7504053527664,
-            "y": 961.38743868183246
+            "x": 5480.7335143762721,
+            "y": 662.78169094075224
           },
-          "nodeIndex": "UI_Waterfall - NRR Breakdown",
-          "nodeLineageTag": "a2fbd847-71d1-46cb-8764-6fa59d662dae",
+          "nodeIndex": "UI_ActiveItems",
           "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 3
-        },
-        {
-          "location": {
-            "x": 1712.9426633743456,
-            "y": 1601.6009202019861
-          },
-          "nodeIndex": "BUDGET_F",
-          "nodeLineageTag": "2e370832-ff07-441e-b497-a436a2c6c1e3",
-          "size": {
-            "height": 444.38198549127014,
-            "width": 234
-          },
-          "zIndex": 22
-        },
-        {
-          "location": {
-            "x": 5336.7504053527664,
-            "y": 971.99145284662814
-          },
-          "nodeIndex": "UI_P&L Structure",
-          "size": {
-            "height": 152,
+            "height": 224,
             "width": 234
           },
           "zIndex": 1
         },
         {
           "location": {
-            "x": 5620.7504053527664,
-            "y": 959.99145284662814
+            "x": 1985.449319827525,
+            "y": 194.23274083733611
           },
-          "nodeIndex": "UI_ActiveItems",
+          "nodeIndex": "JOBS_D_LOOKUP",
+          "nodeLineageTag": "eed7775d-c204-48ab-8621-64d5555a884a",
           "size": {
-            "height": 176,
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 5714.7335143762721,
+            "y": 805.77995523712707
+          },
+          "nodeIndex": "UI_Revenue Stream Selector",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5998.7335143762721,
+            "y": 805.77995523712707
+          },
+          "nodeIndex": "UI_Revenue View Selector",
+          "size": {
+            "height": 128,
             "width": 234
           },
           "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 115.99999999999999,
+      "zoomValue": 48.373894449690461,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

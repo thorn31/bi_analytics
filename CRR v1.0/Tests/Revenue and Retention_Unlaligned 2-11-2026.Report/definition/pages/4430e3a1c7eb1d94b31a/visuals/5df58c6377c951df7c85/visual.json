@@ -55,7 +55,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "' PORTFOLIO ANALYSIS'"
+                  "Value": "'PROFIT AND LOSS STATEMENT'"
                 }
               }
             },
@@ -147,7 +147,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -180,6 +180,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Segoe UI Light'"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
                 }
               }
             }

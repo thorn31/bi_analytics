@@ -1,0 +1,3886 @@
+table '_Key Measures'
+	lineageTag: edee0a95-274b-48e3-9abb-e41cca48e9fb
+
+	/// Deprecated: not used in the current report calculation tree. Prefer stream-aware measures (e.g., [Revenue (By Stream)]) and their downstream time-intelligence variants.
+	measure Revenue = SUM ( FINANCIALS_F[Revenue Amount] )
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		isHidden
+		displayFolder: 9. Deprecated\Customer Financials\Base
+		lineageTag: b0a5e6ef-3e51-4d10-bbd3-1bdea3cc4804
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Deprecated: not used in the current report calculation tree. Prefer stream-aware measures (e.g., [Cost (By Stream)]) and their downstream time-intelligence variants.
+	measure Cost = SUM ( FINANCIALS_F[Cost Amount] )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		isHidden
+		displayFolder: 9. Deprecated\Customer Financials\Base
+		lineageTag: ddb90d73-ddae-41b5-a5f2-8444d45fc424
+
+	/// Deprecated: not used in the current report calculation tree. Prefer stream-aware measures (e.g., [Gross Profit (By Stream)]) and their downstream time-intelligence variants.
+	measure 'Gross Profit' = [Revenue] - [Cost]
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		isHidden
+		displayFolder: 9. Deprecated\Customer Financials\Base
+		lineageTag: 5c4fd06d-2b02-433d-826a-15892c0c6e05
+
+	/// Service contract revenue only (completed months), intended as the revenue basis for retention metrics.
+	measure 'Service Contract Revenue' = CALCULATE ( SUM ( SERVCONTRACTS_Financials_F[Revenue Amount] ), FYCALENDAR_D[Is Completed Month] = TRUE () )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 2. Customer Financials\1. Revenue\Streams
+		lineageTag: 5ad68fe2-c1ac-4873-a32a-a946fd4adabc
+
+	/// GL revenue from POSTING_DATA_F, filtered to GL_ACCT_D[ACCOUNT_TYPE] = REVENUE and completed months only. Sign convention uses (Credits - Debits) to return positive revenue.
+	measure 'GL Revenue' =
+			CALCULATE(
+			    SUM(POSTING_DATA_F[CRDTAMNT]) - SUM(POSTING_DATA_F[DEBITAMT]),
+			    GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			    'FYCALENDAR_D'[Is Completed Month] = TRUE
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 1. GL Financials\1. Revenue
+		lineageTag: 86628367-4060-4974-bd5f-4d4d2c9fad6e
+
+	/// GL revenue (credits - debits) for revenue accounts, scoped to Projects using STREAM_D/GL market mapping. Completed months only via [GL Revenue].
+	measure 'GL Revenue (Projects)' = CALCULATE ( [GL Revenue], STREAM_D[Stream] = "Projects" )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 1. GL Financials\1. Revenue
+		lineageTag: 27a0ddaf-537b-4bda-bbce-5fe0baf866e8
+
+	/// GL revenue (credits - debits) for revenue accounts, scoped to Service Contracts using STREAM_D/GL market mapping. Completed months only via [GL Revenue].
+	measure 'GL Revenue (Service Contracts)' = CALCULATE ( [GL Revenue], STREAM_D[Stream] = "Service Contracts" )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 1. GL Financials\1. Revenue
+		lineageTag: 169a95a0-b078-4bba-8888-639fd14eadbc
+
+	/// GL revenue (credits - debits) for revenue accounts, scoped to T&M using STREAM_D/GL market mapping. Completed months only via [GL Revenue].
+	measure 'GL Revenue (T&M)' = CALCULATE ( [GL Revenue], STREAM_D[Stream] = "T&M" )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 1. GL Financials\1. Revenue
+		lineageTag: e8c4acc0-eb66-4b38-aa88-b4c16e814c71
+
+	/// DEPRECATED: Prior-year service contract revenue for the current fiscal period selection (completed months). Superseded by R12M As Of metrics.
+	measure 'Service Contract Revenue PY (FY Period)' = CALCULATE ( [Service Contract Revenue], SAMEPERIODLASTYEAR ( FYCALENDAR_D[Date] ) )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\Base
+		lineageTag: b5559eba-db1a-40a7-b6f3-a6c13cebf9cc
+
+	/// DEPRECATED: Retention denominator for FY Period. Superseded by R12M As Of metrics.
+	measure 'Retention Base PY (FY Period)' =
+			VAR Customers = VALUES ( CUSTOMERS_D[Customer Key] )
+			RETURN
+			SUMX (
+			    Customers,
+			    VAR RevenuePY = [Service Contract Revenue PY (FY Period)]
+			    RETURN IF ( RevenuePY > 0, RevenuePY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\Components
+		lineageTag: 629c0203-9bc6-4da2-afd9-19f89cbed31c
+
+	/// DEPRECATED: FY Period churn component. Superseded by R12M As Of metrics.
+	measure 'Churn Revenue (FY Period)' =
+			VAR Customers = VALUES ( CUSTOMERS_D[Customer Key] )
+			RETURN
+			SUMX (
+			    Customers,
+			    VAR RevenueCY = COALESCE ( [Service Contract Revenue], 0 )
+			    VAR RevenuePY = COALESCE ( [Service Contract Revenue PY (FY Period)], 0 )
+			    RETURN IF ( RevenuePY > 0 && RevenueCY = 0, RevenuePY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\Components
+		lineageTag: f119ebf3-e4ad-4463-960c-cdfb15f5d523
+
+	/// DEPRECATED: FY Period contraction component. Superseded by R12M As Of metrics.
+	measure 'Contraction Revenue (FY Period)' =
+			VAR Customers = VALUES ( CUSTOMERS_D[Customer Key] )
+			RETURN
+			SUMX (
+			    Customers,
+			    VAR RevenueCY = COALESCE ( [Service Contract Revenue], 0 )
+			    VAR RevenuePY = COALESCE ( [Service Contract Revenue PY (FY Period)], 0 )
+			    RETURN
+			        IF ( RevenuePY > 0 && RevenueCY > 0 && RevenueCY < RevenuePY, RevenuePY - RevenueCY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\Components
+		lineageTag: 9f7f8586-583c-48e4-89eb-a0fc03ada693
+
+	/// DEPRECATED: FY Period upsell component. Superseded by R12M As Of metrics.
+	measure 'Upsell Revenue (FY Period)' =
+			VAR Customers = VALUES ( CUSTOMERS_D[Customer Key] )
+			RETURN
+			SUMX (
+			    Customers,
+			    VAR RevenueCY = COALESCE ( [Service Contract Revenue], 0 )
+			    VAR RevenuePY = COALESCE ( [Service Contract Revenue PY (FY Period)], 0 )
+			    RETURN IF ( RevenuePY > 0 && RevenueCY > RevenuePY, RevenueCY - RevenuePY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\Components
+		lineageTag: 898a71c0-9cfc-4002-b8e1-258faa3a14f0
+
+	/// DEPRECATED: FY Period NRR. Superseded by R12M As Of metrics.
+	measure 'Net Revenue Retention % (FY Period)' =
+			VAR BasePY = [Retention Base PY (FY Period)]
+			VAR Numerator =
+			    BasePY
+			        - [Churn Revenue (FY Period)]
+			        - [Contraction Revenue (FY Period)]
+			        + [Upsell Revenue (FY Period)]
+			RETURN
+			IF ( BasePY > 0, DIVIDE ( Numerator, BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\KPIs
+		lineageTag: 191ad3fe-b90c-4713-be00-0e7e62d3e296
+
+	/// DEPRECATED: FY Period GRR. Superseded by R12M As Of metrics.
+	measure 'Gross Revenue Retention % (FY Period)' =
+			VAR BasePY = [Retention Base PY (FY Period)]
+			VAR Numerator = BasePY - [Churn Revenue (FY Period)] - [Contraction Revenue (FY Period)]
+			RETURN
+			IF ( BasePY > 0, DIVIDE ( Numerator, BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\KPIs
+		lineageTag: 059ece90-0c06-4b7d-acd0-0ddf7bf9619f
+
+	/// DEPRECATED: FY Period churn rate. Superseded by R12M As Of metrics.
+	measure 'Churn Rate % (FY Period)' =
+			VAR BasePY = [Retention Base PY (FY Period)]
+			RETURN
+			IF ( BasePY > 0, DIVIDE ( [Churn Revenue (FY Period)], BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 9. Deprecated\8.1 Retention\FY Period\KPIs
+		lineageTag: 0c0a99cd-5af0-4ea2-9cd6-a334f4f19bb2
+
+	/// Helper (hidden): last available service-contract month end within current non-date slice (e.g., Division/Contract filters), ignoring customer filters.
+	measure 'Last SC Data Month End (In Slice)' =
+			CALCULATE (
+			    MAX ( SERVCONTRACTS_Financials_F[Month End] ),
+			    REMOVEFILTERS ( FYCALENDAR_D[Date] ),
+			    REMOVEFILTERS ( CUSTOMERS_D )
+			)
+		formatString: Long Date
+		isHidden
+		displayFolder: 7. Helper\Retention\Anchors
+		lineageTag: 05f31032-8ab2-4ac8-920b-14f618a904a7
+
+	/// Helper (hidden): as-of anchor month end for service contract rolling metrics. Clamped to last available month end in current slice and to the last completed month to avoid partial-month distortion.
+	measure 'As Of Month End (SC)' =
+			VAR SelectedMonthEnd =
+			    EOMONTH ( CALCULATE ( MAX ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( CUSTOMERS_D ) ), 0 )
+			VAR LastDataMonthEnd =
+			    [Last SC Data Month End (In Slice)]
+			VAR LastCompletedMonthEnd =
+			    CALCULATE ( MAX ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( FYCALENDAR_D[Date] ), FYCALENDAR_D[Is Completed Month] = TRUE () )
+			VAR EffectiveCap =
+			    MIN ( LastDataMonthEnd, LastCompletedMonthEnd )
+			RETURN
+			IF ( ISBLANK ( EffectiveCap ), BLANK (), MIN ( SelectedMonthEnd, EffectiveCap ) )
+		formatString: Long Date
+		isHidden
+		displayFolder: 7. Helper\Retention\Anchors
+		lineageTag: f7db6df4-8c75-43e0-8be7-aeb263f74734
+
+	/// Service contract revenue for the rolling 12 months ending at the as-of anchor month (completed months).
+	measure 'Service Contract Revenue (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (SC)]
+			RETURN
+			IF (
+			    ISBLANK ( AnchorDate ),
+			    BLANK (),
+			    CALCULATE ( [Service Contract Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Base
+		lineageTag: 06bacd2e-ee92-4536-a173-14753522d2b0
+
+	/// Prior-year rolling 12-month service contract revenue aligned to the as-of anchor (completed months).
+	measure 'Service Contract Revenue PY (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (SC)]
+			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			RETURN
+			IF (
+			    ISBLANK ( AnchorDate ),
+			    BLANK (),
+			    CALCULATE ( [Service Contract Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Base
+		lineageTag: c4b7bf44-e5a3-45e9-8ad6-8f7e3a890a0f
+
+	/// Retention denominator (R12M As Of): prior-year rolling revenue for master customers that existed in the prior window (master-customer grain).
+	measure 'Retention Base PY (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenuePY = [Service Contract Revenue PY (R12M As Of)]
+			    RETURN IF ( RevenuePY > 0, RevenuePY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Components
+		lineageTag: 9a325994-61a8-4330-b910-0900e78d7c34
+
+	/// Churn component (R12M As Of): lost revenue from master customers with PY revenue but zero CY revenue in the rolling window (master-customer grain).
+	measure 'Churn Revenue (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenueCY = [Service Contract Revenue (R12M As Of)]
+			    VAR RevenuePY = [Service Contract Revenue PY (R12M As Of)]
+			    RETURN IF ( RevenuePY > 0 && ( ISBLANK ( RevenueCY ) || RevenueCY = 0 ), RevenuePY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Components
+		lineageTag: 2c5b531f-5e3f-4b4f-a047-1d8455ea838f
+
+	/// Contraction component (R12M As Of): decreases for retained master customers (CY < PY) in the rolling window (master-customer grain).
+	measure 'Contraction Revenue (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenueCY = COALESCE ( [Service Contract Revenue (R12M As Of)], 0 )
+			    VAR RevenuePY = COALESCE ( [Service Contract Revenue PY (R12M As Of)], 0 )
+			    RETURN IF ( RevenuePY > 0 && RevenueCY > 0 && RevenueCY < RevenuePY, RevenuePY - RevenueCY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Components
+		lineageTag: 12ab1f31-b1e4-41ad-9922-ac28d2c34bc6
+
+	/// Upsell component (R12M As Of): increases for retained master customers (CY > PY) in the rolling window (master-customer grain).
+	measure 'Upsell Revenue (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenueCY = COALESCE ( [Service Contract Revenue (R12M As Of)], 0 )
+			    VAR RevenuePY = COALESCE ( [Service Contract Revenue PY (R12M As Of)], 0 )
+			    RETURN IF ( RevenuePY > 0 && RevenueCY > RevenuePY, RevenueCY - RevenuePY, 0 )
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Components
+		lineageTag: afcb9530-d884-49ba-9b8a-1f818099fc99
+
+	/// Net Revenue Retention (NRR) for service contracts over rolling 12 months ending at the as-of anchor month.
+	measure 'Net Revenue Retention % (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (R12M As Of)]
+			VAR Numerator =
+			    BasePY
+			        - [Churn Revenue (R12M As Of)]
+			        - [Contraction Revenue (R12M As Of)]
+			        + [Upsell Revenue (R12M As Of)]
+			RETURN
+			IF ( BasePY > 0, DIVIDE ( Numerator, BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\KPIs
+		lineageTag: 1ff6524f-8e1e-4746-a8fc-e15fdf80fd3d
+
+	/// Gross Revenue Retention (GRR) for service contracts over rolling 12 months ending at the as-of anchor month (excludes upsell).
+	measure 'Gross Revenue Retention % (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (R12M As Of)]
+			VAR Numerator = BasePY - [Churn Revenue (R12M As Of)] - [Contraction Revenue (R12M As Of)]
+			RETURN
+			IF ( BasePY > 0, DIVIDE ( Numerator, BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\KPIs
+		lineageTag: 87b699e8-d092-46e2-90e4-ec20b721aed6
+
+	/// Service contract churn rate over rolling 12 months ending at the as-of anchor month.
+	measure 'Churn Rate % (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (R12M As Of)]
+			RETURN
+			IF ( BasePY > 0, DIVIDE ( [Churn Revenue (R12M As Of)], BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\KPIs
+		lineageTag: 019f715d-01c2-4410-9017-b3916d5ac935
+
+	/// Prior-year NRR for service contracts, evaluated at the anchor shifted back 12 months (R12M As Of).
+	measure 'Net Revenue Retention % PY (R12M As Of)' =
+			VAR CurrentAnchor = [As Of Month End (SC)]
+			VAR PriorAnchor = EDATE ( CurrentAnchor, -12 )
+			RETURN
+			CALCULATE ( [Net Revenue Retention % (R12M As Of)], FYCALENDAR_D[Date] = PriorAnchor )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\KPIs\NRR
+		lineageTag: 77f84c88-0594-46f4-9535-c8ba52e8d321
+
+	/// Prior-year GRR for service contracts, evaluated at the anchor shifted back 12 months (R12M As Of).
+	measure 'Gross Revenue Retention % PY (R12M As Of)' =
+			VAR CurrentAnchor = [As Of Month End (SC)]
+			VAR PriorAnchor = EDATE ( CurrentAnchor, -12 )
+			RETURN
+			CALCULATE ( [Gross Revenue Retention % (R12M As Of)], FYCALENDAR_D[Date] = PriorAnchor )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\KPIs\GRR
+		lineageTag: 6dac9fb7-8d78-450c-acba-51115862b1e9
+
+	/// Text indicator showing NRR (R12M As Of) delta vs prior-year anchor (arrow + absolute delta). Returns BLANK when CY or PY is missing/zero.
+	measure 'Net Revenue Retention Trend vs PY (R12M As Of)' =
+			VAR CY = [Net Revenue Retention % (R12M As Of)]
+			VAR PY = [Net Revenue Retention % PY (R12M As Of)]
+			RETURN
+			IF (
+			    ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			    BLANK (),
+			    VAR Diff = CY - PY
+			    VAR Icon =
+			        SWITCH ( TRUE (), Diff > 0, UNICHAR ( 9650 ), Diff < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			    VAR PctText = IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			    RETURN
+			        Icon & " " & PctText
+			)
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\KPIs\NRR\Labels
+		lineageTag: fcf0440a-fe65-4583-80ab-55aa032e107a
+
+	/// Text indicator showing GRR (R12M As Of) delta vs prior-year anchor (arrow + absolute delta). Returns BLANK when CY or PY is missing/zero.
+	measure 'Gross Revenue Retention Trend vs PY (R12M As Of)' =
+			VAR CY = [Gross Revenue Retention % (R12M As Of)]
+			VAR PY = [Gross Revenue Retention % PY (R12M As Of)]
+			RETURN
+			IF (
+			    ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			    BLANK (),
+			    VAR Diff = CY - PY
+			    VAR Icon =
+			        SWITCH ( TRUE (), Diff > 0, UNICHAR ( 9650 ), Diff < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			    VAR PctText = IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			    RETURN
+			        Icon & " " & PctText
+			)
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\KPIs\GRR\Labels
+		lineageTag: c69604eb-250a-4861-9757-e1fde99c85e1
+
+	/// Logo retention denominator: count of master customers with prior-year rolling service contract revenue > 0 (R12M As Of).
+	measure 'Retention Base Count PY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Master Customer Name] ), [Service Contract Revenue PY (R12M As Of)] > 0 ) )
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: 78bbd7d1-d531-477d-bcbc-37f5e4d34139
+
+	/// Logo churn count (master-customer grain): master customers with PY rolling service contract revenue > 0 and CY rolling revenue = 0/blank (R12M As Of).
+	measure 'Logo Churn Count (SC) (R12M As Of)' =
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        [Service Contract Revenue PY (R12M As Of)] > 0
+			            && ( ISBLANK ( [Service Contract Revenue (R12M As Of)] )
+			                || [Service Contract Revenue (R12M As Of)] = 0 )
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: 4aec9ea3-444d-44f9-a4c8-4e0cd5ece61b
+
+	/// Logo retention % for service contracts (R12M As Of): 1 - (logo churn / prior-year logos).
+	measure 'Logo Retention % (SC) (R12M As Of)' =
+			VAR Base = [Retention Base Count PY (SC) (R12M As Of)]
+			VAR Churn = [Logo Churn Count (SC) (R12M As Of)]
+			RETURN
+			IF ( Base > 0, DIVIDE ( Base - Churn, Base ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: 28c0c74f-8141-4d5d-97fc-f2770a249ee3
+
+	/// Prior-year logo retention % for service contracts, evaluated at the anchor shifted back 12 months (R12M As Of).
+	measure 'Logo Retention % (SC) PY (R12M As Of)' =
+			VAR CurrentAnchor = [As Of Month End (SC)]
+			VAR PriorAnchor = EDATE ( CurrentAnchor, -12 )
+			RETURN
+			CALCULATE ( [Logo Retention % (SC) (R12M As Of)], FYCALENDAR_D[Date] = PriorAnchor )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: 52ba18c0-1f6d-435b-b3ea-9fcb8924c70a
+
+	/// Text indicator showing service contract logo retention change vs prior-year anchor (arrow + percent-point delta).
+	measure 'Logo Retention Trend (SC) vs PY (R12M As Of)' =
+			VAR CY = [Logo Retention % (SC) (R12M As Of)]
+			VAR PY = [Logo Retention % (SC) PY (R12M As Of)]
+			RETURN
+			IF (
+			    ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			    BLANK (),
+			    VAR Diff = CY - PY
+			    VAR Icon =
+			        SWITCH ( TRUE (), Diff > 0, UNICHAR ( 9650 ), Diff < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			    VAR PctText = IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			    RETURN
+			        Icon & " " & PctText
+			)
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo\Labels
+		lineageTag: 75b05ed2-c1d9-4a6b-8c70-4bfabe908d0a
+
+	/// Churn component as a percent of the R12M As Of retention base (service contracts).
+	measure 'Churn Revenue % (R12M As Of)' = DIVIDE ( [Churn Revenue (R12M As Of)], [Retention Base PY (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Components
+		lineageTag: e804003f-f5f4-4a48-8ec2-a37e06d25aa9
+
+	/// Contraction component as a percent of the R12M As Of retention base (service contracts).
+	measure 'Contraction Revenue % (R12M As Of)' = DIVIDE ( [Contraction Revenue (R12M As Of)], [Retention Base PY (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Components
+		lineageTag: 544717a2-71e5-4b58-aeb8-a8d8594fd5d9
+
+	/// Upsell component as a percent of the R12M As Of retention base (service contracts).
+	measure 'Upsell Revenue % (R12M As Of)' = DIVIDE ( [Upsell Revenue (R12M As Of)], [Retention Base PY (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Components
+		lineageTag: 40463556-a3cc-42bb-8d07-e237669caa1d
+
+	/// Service contract logo churn rate (R12M As Of): churned logos divided by prior-year logo base.
+	measure 'Logo Churn % (SC) (R12M As Of)' = DIVIDE ( [Logo Churn Count (SC) (R12M As Of)], [Retention Base Count PY (SC) (R12M As Of)], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: c228c82d-05a8-4256-99f0-ffe3c123f20c
+
+	/// Waterfall step value for NRR breakdown (R12M As Of). Use with 'Waterfall - NRR Breakdown'[Category] on axis.
+	measure 'NRR Waterfall Value (R12M As Of)' =
+			VAR Selection = SELECTEDVALUE ( 'UI_Waterfall - NRR Breakdown'[ID] )
+			VAR BasePY = [Retention Base PY (R12M As Of)]
+			VAR Churn = [Churn Revenue (R12M As Of)]
+			VAR Contraction = [Contraction Revenue (R12M As Of)]
+			VAR Upsell = [Upsell Revenue (R12M As Of)]
+			VAR Ending = BasePY - Churn - Contraction + Upsell
+			RETURN
+			SWITCH (
+			    Selection,
+			    1, BasePY,
+			    2, -Churn,
+			    3, -Contraction,
+			    4, Upsell,
+			    5, Ending
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Waterfall
+		lineageTag: 889dd863-22fd-4280-87e4-841f9d7f1418
+
+	/// Customer-level retention category for service contracts in the R12M As Of framework (based on RevPY/RevCY). Use with a customer-grain visual or helper queries; not intended for high-cardinality axes.
+	measure 'Customer Retention Category (SC) (R12M As Of)' =
+			VAR RevCY = [Service Contract Revenue (R12M As Of)]
+			VAR RevPY = [Service Contract Revenue PY (R12M As Of)]
+			VAR HasCY = NOT ( ISBLANK ( RevCY ) ) && RevCY <> 0
+			VAR HasPY = NOT ( ISBLANK ( RevPY ) ) && RevPY <> 0
+			RETURN
+			SWITCH (
+			    TRUE (),
+			    HasPY && NOT HasCY, "Churned",
+			    HasPY && HasCY && RevCY < RevPY, "Contraction",
+			    HasPY && HasCY && RevCY > RevPY, "Upsell",
+			    HasPY && HasCY && RevCY = RevPY, "Retained",
+			    NOT HasPY && HasCY, "New",
+			    BLANK ()
+			)
+		isHidden
+		displayFolder: 7. Helper\Retention\R12M As Of
+		lineageTag: 2c96b912-2ba5-4b6a-a90f-4a34699d3c74
+
+	/// Count of master customers with prior-year rolling service contract revenue > 0 (R12M As Of).
+	measure 'Customers PY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Master Customer Name] ), [Service Contract Revenue PY (R12M As Of)] > 0 ) )
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: 5cefcee4-c77f-4d64-abba-9101f1833bed
+
+	/// Count of master customers with current rolling service contract revenue > 0 (R12M As Of).
+	measure 'Customers CY (SC) (R12M As Of)' = COUNTROWS ( FILTER ( VALUES ( CUSTOMERS_D[Master Customer Name] ), [Service Contract Revenue (R12M As Of)] > 0 ) )
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: f0fdbadc-4e43-47ab-bf66-d6a472ddaab4
+
+	/// Count of churned master customers for service contracts (R12M As Of): PY>0 and CY=0/blank (master-customer grain).
+	measure 'Customers Churned (SC) (R12M As Of)' =
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        [Service Contract Revenue PY (R12M As Of)] > 0
+			            && ( ISBLANK ( [Service Contract Revenue (R12M As Of)] )
+			                || [Service Contract Revenue (R12M As Of)] = 0 )
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: 26cd9fd6-e0e4-43ed-9b49-9cb7be263abd
+
+	/// Count of contracting master customers for service contracts (R12M As Of): PY>0, CY>0, CY<PY (master-customer grain).
+	measure 'Customers Contraction (SC) (R12M As Of)' =
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        [Service Contract Revenue PY (R12M As Of)] > 0
+			            && [Service Contract Revenue (R12M As Of)] > 0
+			            && [Service Contract Revenue (R12M As Of)] < [Service Contract Revenue PY (R12M As Of)]
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: 106b9b2a-5a6f-4107-b24f-e4248603aaa6
+
+	/// Count of upsell master customers for service contracts (R12M As Of): PY>0 and CY>PY (master-customer grain).
+	measure 'Customers Upsell (SC) (R12M As Of)' =
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        [Service Contract Revenue PY (R12M As Of)] > 0
+			            && [Service Contract Revenue (R12M As Of)] > [Service Contract Revenue PY (R12M As Of)]
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: b87e2141-3ff2-454a-ad6c-27990a53ae5d
+
+	/// Count of retained master customers for service contracts (R12M As Of): PY>0 and CY>0 (master-customer grain).
+	measure 'Customers Retained (SC) (R12M As Of)' =
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        [Service Contract Revenue PY (R12M As Of)] > 0
+			            && [Service Contract Revenue (R12M As Of)] > 0
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Logo
+		lineageTag: d3e68b7a-735b-4d00-80c3-a400d0a1ce2b
+
+	/// Helper (hidden): as-of anchor month end for financial measures (all streams). Clamped to last available FINANCIALS_F month end in current non-customer slice and to the last completed month to avoid partial-month distortion.
+	measure 'As Of Month End (Financials)' =
+			VAR LastDataMonthEnd =
+			    CALCULATE ( MAX ( FINANCIALS_F[Month End] ), REMOVEFILTERS ( CUSTOMERS_D ) )
+			VAR LastCompletedMonthEnd =
+			    CALCULATE (
+			        MAX ( FYCALENDAR_D[Date] ),
+			        REMOVEFILTERS ( CUSTOMERS_D ),
+			        FYCALENDAR_D[Is Completed Month] = TRUE ()
+			    )
+			VAR Anchor =
+			    IF (
+			        ISBLANK ( LastDataMonthEnd ),
+			        LastCompletedMonthEnd,
+			        IF (
+			            ISBLANK ( LastCompletedMonthEnd ),
+			            LastDataMonthEnd,
+			            MIN ( LastDataMonthEnd, LastCompletedMonthEnd )
+			        )
+			    )
+			RETURN
+			    Anchor
+		formatString: yyyy-mm-dd
+		isHidden
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: 6e80bea2-b183-4c5a-ad13-fe20b5ae31df
+
+	/// Debug: exposes the financial as-of anchor date used by R12M/FY As Of financial measures.
+	measure 'Debug – Anchor Date' = [As Of Month End (Financials)]
+		formatString: yyyy-mm-dd
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: d21af0a2-01de-42e0-a3ba-7c8d58b83529
+
+	/// Debug: R12M end date for financial R12M As Of measures (same as [As Of Month End (Financials)]).
+	measure 'Debug - R12M End Date' = [As Of Month End (Financials)]
+		formatString: yyyy-mm-dd
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: 9315fb97-d0b4-44a3-b8a9-01d6b27e040a
+
+	/// Label for the rolling 12-month window used by financial R12M As Of measures.
+	measure 'R12M Period Label' =
+			VAR EndDate = [As Of Month End (Financials)]
+			VAR StartDate = EDATE ( EndDate, -11 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndDate ),
+			        "No Data",
+			        FORMAT ( StartDate, "MMM yyyy" ) & "  " & FORMAT ( EndDate, "MMM yyyy" )
+			    )
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Labels
+		lineageTag: 62e50123-5f2a-4329-92b6-920c50343167
+
+	/// Selected-methods project revenue (completed months only).
+	measure 'Project Revenue' =
+			CALCULATE (
+			    SUM ( FINANCIALS_F[Revenue Amount] ),
+			    STREAM_D[Stream] = "Projects",
+			    FYCALENDAR_D[Is Completed Month] = TRUE ()
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\Streams
+		lineageTag: 65c3b22c-d06e-42ce-8065-0599b765fddb
+
+	/// Selected-methods T&M revenue (completed months only).
+	measure 'T&M Revenue' =
+			CALCULATE (
+			    SUM ( FINANCIALS_F[Revenue Amount] ),
+			    STREAM_D[Stream] = "T&M",
+			    FYCALENDAR_D[Is Completed Month] = TRUE ()
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\Streams
+		lineageTag: 99b126eb-d6dd-4b97-bd65-02ad112aa64b
+
+	/// Total selected-methods revenue across Projects, Service Contracts, and T&M (completed months only).
+	measure 'Total Revenue' = [Project Revenue] + [Service Contract Revenue] + [T&M Revenue]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue
+		lineageTag: 4f7b0ee8-d762-42f8-83f9-7301f526d7f0
+
+	/// Selected-methods project cost (completed months only).
+	measure 'Project Cost' =
+			CALCULATE (
+			    SUM ( FINANCIALS_F[Cost Amount] ),
+			    STREAM_D[Stream] = "Projects",
+			    FYCALENDAR_D[Is Completed Month] = TRUE ()
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\2. Cost\Streams
+		lineageTag: aa4f1df6-c622-4916-bd92-dcb9a9f477bf
+
+	/// Selected-methods T&M cost (completed months only).
+	measure 'T&M Cost' =
+			CALCULATE (
+			    SUM ( FINANCIALS_F[Cost Amount] ),
+			    STREAM_D[Stream] = "T&M",
+			    FYCALENDAR_D[Is Completed Month] = TRUE ()
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\2. Cost\Streams
+		lineageTag: 50dc0e92-17d7-44a1-8e1e-f0391570a5a0
+
+	/// Selected-methods service contract cost (completed months only).
+	measure 'Service Contract Cost' =
+			CALCULATE (
+			    SUM ( FINANCIALS_F[Cost Amount] ),
+			    STREAM_D[Stream] = "Service Contracts",
+			    FYCALENDAR_D[Is Completed Month] = TRUE ()
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\2. Cost\Streams
+		lineageTag: 42098795-085e-419a-855a-d964fbc79c09
+
+	/// Total selected-methods cost across Projects, Service Contracts, and T&M (completed months only).
+	measure 'Total Cost' = [Project Cost] + [Service Contract Cost] + [T&M Cost]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\2. Cost
+		lineageTag: 891d1a85-e72d-4c4c-b464-30cb02884c6a
+
+	/// Selected-methods project gross profit (completed months only).
+	measure 'Project GP' = [Project Revenue] - [Project Cost]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\Streams
+		lineageTag: 36c11147-62a1-4de8-b45e-c3aff722109c
+
+	/// Selected-methods service contract gross profit (completed months only).
+	measure 'Service Contract Gross Profit' = [Service Contract Revenue] - [Service Contract Cost]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\Streams
+		lineageTag: bec8b39e-13fe-46a2-84f5-1ff5745a276d
+
+	/// Selected-methods T&M gross profit (completed months only).
+	measure 'T&M Gross Profit' = [T&M Revenue] - [T&M Cost]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\Streams
+		lineageTag: db36ff8a-84e2-4c43-9f51-48fb54b47275
+
+	/// Total selected-methods gross profit (completed months only).
+	measure 'Total Gross Profit' = [Total Revenue] - [Total Cost]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit
+		lineageTag: 1d9134eb-b001-4472-9d16-2428df555f14
+
+	/// Total gross profit percentage (completed months only).
+	measure 'Total GP %' = DIVIDE ( [Total Gross Profit], [Total Revenue] )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Customer Financials\3. Gross Profit
+		lineageTag: 9a9c2d08-8241-4cb2-8011-2454af30b435
+
+	/// Revenue selector for visuals that use STREAM_D as an axis. Returns stream-specific revenue when STREAM_D[Stream] is in scope; returns total revenue only at the visual total (not for the blank member).
+	measure 'Revenue (By Stream)' =
+			VAR SelStream = SELECTEDVALUE ( STREAM_D[Stream] )
+			RETURN
+			    IF (
+			        NOT ISINSCOPE ( STREAM_D[Stream] ),
+			        [Total Revenue],
+			        SWITCH (
+			            TRUE (),
+			            SelStream = "Projects", [Project Revenue],
+			            SelStream = "Service Contracts", [Service Contract Revenue],
+			            SelStream = "T&M", [T&M Revenue],
+			            BLANK ()
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\By Stream
+		lineageTag: 045df2aa-7250-42cc-9c54-5682a803643a
+
+	/// Cost selector for visuals that use the disconnected Revenue_Stream_D axis.
+	measure 'Cost (By Stream)' =
+			VAR SelStream = SELECTEDVALUE ( STREAM_D[Stream] )
+			RETURN
+			    IF (
+			        ISBLANK ( SelStream ),
+			        [Total Cost],
+			        SWITCH (
+			            SelStream,
+			            "Projects", [Project Cost],
+			            "Service Contracts", [Service Contract Cost],
+			            "T&M", [T&M Cost]
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\2. Cost\By Stream
+		lineageTag: 67b77942-804a-416c-8c16-cbc2955a7a6a
+
+	/// Gross profit selector aligned to Revenue_Stream_D axis.
+	measure 'Gross Profit (By Stream)' = [Revenue (By Stream)] - [Cost (By Stream)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\By Stream
+		lineageTag: efba70a1-7c47-4cd1-b893-f9e77ad42b63
+
+	/// Gross profit percent aligned to Revenue_Stream_D axis.
+	measure 'GP % (By Stream)' = DIVIDE ( [Gross Profit (By Stream)], [Revenue (By Stream)] )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Customer Financials\3. Gross Profit\By Stream
+		lineageTag: 1de7f7d1-6233-4169-9b06-84cf42d40a5f
+
+	/// Total revenue over the rolling 12 months ending at the financial as-of anchor month end.
+	measure 'Total Revenue (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE ( [Total Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of
+		lineageTag: 22cdb7ca-8ace-47cb-8a88-75a26b00c776
+
+	/// Prior-year total revenue over the rolling 12 months aligned to the financial as-of anchor month end.
+	measure 'Total Revenue PY (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE ( [Total Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of
+		lineageTag: 5972d34c-8ad0-4cd5-93a8-2d21f92e2b58
+
+	/// Project revenue over the rolling 12 months ending at the financial as-of anchor month end.
+	measure 'Project Revenue (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE ( [Project Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Streams
+		lineageTag: 48b1de13-278e-4ade-8c04-6592942e4625
+
+	/// T&M revenue over the rolling 12 months ending at the financial as-of anchor month end.
+	measure 'T&M Revenue (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE ( [T&M Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Streams
+		lineageTag: 57390524-639b-4780-a2bd-09ced1d5a7ec
+
+	/// Alias for service contract revenue (R12M As Of) used by CRR visuals. Retention revenue is service contracts only.
+	measure 'SC Revenue (R12M As Of)' = [Service Contract Revenue (R12M As Of)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Streams
+		lineageTag: a6c5b52f-653c-4c92-8d46-ded269a3234a
+
+	/// Total gross profit over the rolling 12 months ending at the financial as-of anchor month end.
+	measure 'Total Gross Profit (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE ( [Total Gross Profit], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\7. Time Intelligence\R12M As Of
+		lineageTag: 06225159-ff90-44aa-b98c-452efdc5100e
+
+	/// Total gross profit percent over the rolling 12 months ending at the financial as-of anchor month end.
+	measure 'Total GP % (R12M As Of)' = DIVIDE ( [Total Gross Profit (R12M As Of)], [Total Revenue (R12M As Of)] )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\3. Gross Profit\7. Time Intelligence\R12M As Of
+		lineageTag: 0481e564-78dd-40c9-ab55-6df437e81fb4
+
+	/// Share of total rolling-12-month revenue attributable to service contracts (derived as remainder of total after project and T&M).
+	measure 'Recurring Mix % (SC) (R12M)' =
+			VAR TotalRev = [Total Revenue (R12M As Of)]
+			VAR ProjectRev = [Project Revenue (R12M As Of)]
+			VAR TMRev = [T&M Revenue (R12M As Of)]
+			VAR SCRev = TotalRev - ProjectRev - TMRev
+			RETURN
+			    DIVIDE ( SCRev, TotalRev )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Mix
+		lineageTag: 3aeae34c-d528-4b20-908d-8ff8906e4cf5
+
+	/// Percent of total rolling-12-month revenue coming from the largest revenue stream (Projects vs Service Contracts vs T&M).
+	measure 'Stream Concentration % (R12M)' =
+			VAR TotalRev = [Total Revenue (R12M As Of)]
+			VAR ProjectRev = [Project Revenue (R12M As Of)]
+			VAR TMRev = [T&M Revenue (R12M As Of)]
+			VAR SCRev = TotalRev - ProjectRev - TMRev
+			VAR TopStreamRev = MAX ( ProjectRev, MAX ( SCRev, TMRev ) )
+			RETURN
+			    DIVIDE ( TopStreamRev, TotalRev )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Mix
+		lineageTag: c4f599b8-86b3-46be-8f92-84821dc8de58
+
+	/// Rolling-12-month revenue growth vs prior-year rolling-12-month revenue at the same as-of anchor.
+	measure 'Revenue Momentum % (R12M vs PY)' =
+			VAR CY = [Total Revenue (R12M As Of)]
+			VAR PY = [Total Revenue PY (R12M As Of)]
+			RETURN
+			    IF ( ISBLANK ( PY ) || PY = 0, BLANK (), DIVIDE ( CY - PY, PY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of
+		lineageTag: 7f5c6072-36fc-4fea-9ffc-3e685570e2e9
+
+	/// Helper for 100% filled bar visuals: returns stream share vs remainder for a given Revenue_Stream_D and UI_BarFillParts selection (R12M).
+	measure 'Revenue Stream Share Fill (R12M)' =
+			VAR AxisStreamLabel = SELECTEDVALUE ( STREAM_D[Stream] )
+			VAR Part = SELECTEDVALUE ( UI_BarFillParts[Part] )
+			VAR TotalRev = [Total Revenue (R12M As Of)]
+			VAR ProjectRev = [Project Revenue (R12M As Of)]
+			VAR TMRev = [T&M Revenue (R12M As Of)]
+			VAR SCRev = TotalRev - ProjectRev - TMRev
+			VAR AxisStreamPart =
+			    SWITCH (
+			        AxisStreamLabel,
+			        "Projects", "Project",
+			        "Service Contracts", "Service Contract",
+			        "T&M", "T&M"
+			    )
+			VAR StreamRev =
+			    SWITCH ( AxisStreamPart, "Project", ProjectRev, "Service Contract", SCRev, "T&M", TMRev )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( AxisStreamPart ) || ISBLANK ( Part ) || ISBLANK ( TotalRev ) || TotalRev = 0,
+			            BLANK (),
+			        Part = "Remainder",
+			            MAX ( 0, TotalRev - StreamRev ),
+			        Part = AxisStreamPart,
+			            StreamRev,
+			        0
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Mix
+		lineageTag: 510260ec-a145-4bc2-a071-8aabf8f51c1b
+
+	/// Helper: selected fiscal year when a single fiscal year is selected; blank otherwise.
+	measure 'Selected Fiscal Year (Single)' = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+		isHidden
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: 1e5b9cac-872b-4bdf-859c-ea513ad2839b
+
+	/// Helper (hidden): first date of the selected fiscal year.
+	measure 'Selected FY Start Date' =
+			VAR FY = [Selected Fiscal Year (Single)]
+			RETURN
+			    IF (
+			        ISBLANK ( FY ),
+			        BLANK (),
+			        CALCULATE ( MIN ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = FY )
+			    )
+		formatString: yyyy-mm-dd
+		isHidden
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: 721a6773-1292-4eb7-86a9-6a7303e6f28f
+
+	/// Helper (hidden): last date of the selected fiscal year.
+	measure 'Selected FY End Date' =
+			VAR FY = [Selected Fiscal Year (Single)]
+			RETURN
+			    IF (
+			        ISBLANK ( FY ),
+			        BLANK (),
+			        CALCULATE ( MAX ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = FY )
+			    )
+		formatString: yyyy-mm-dd
+		isHidden
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: e6580b5d-b008-4b64-a35b-5cdc0d45f8ba
+
+	/// As-of date for FY As Of measures: clamps the financial as-of anchor to the selected fiscal year end date when a fiscal year is selected.
+	measure 'As Of Date (Financials)' =
+			VAR FYEnd = [Selected FY End Date]
+			VAR Anchor = [As Of Month End (Financials)]
+			RETURN
+			    IF ( ISBLANK ( FYEnd ), Anchor, IF ( ISBLANK ( Anchor ), FYEnd, MIN ( Anchor, FYEnd ) ) )
+		formatString: yyyy-mm-dd
+		isHidden
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: 50806257-09b7-454d-8421-a588357edf75
+
+	/// Helper (hidden): as-of date used for FY As Of revenue measures.
+	measure 'As Of Date (Revenue)' = [As Of Date (Financials)]
+		formatString: yyyy-mm-dd
+		isHidden
+		displayFolder: 7. Helper\7.0 Date
+		lineageTag: 947c7766-c211-47a1-9c83-c9be2fb872fe
+
+	/// Annualized fiscal-year-to-date revenue from FY start through the as-of date (clamped to FY end).
+	measure 'Total Revenue (FY As Of)' =
+			VAR StartDate = [Selected FY Start Date]
+			VAR EndDate = [As Of Date (Revenue)]
+			RETURN
+			    IF (
+			        ISBLANK ( StartDate ) || ISBLANK ( EndDate ),
+			        BLANK (),
+			        CALCULATE ( [Total Revenue], REMOVEFILTERS ( FYCALENDAR_D ), DATESBETWEEN ( FYCALENDAR_D[Date], StartDate, EndDate ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\FY As Of
+		lineageTag: 58dbab61-695c-4792-af59-41a8e26de4bc
+
+	/// Prior-year fiscal-year-to-date revenue aligned to the FY As Of window.
+	measure 'Total Revenue PY (FY As Of)' =
+			VAR StartDate = [Selected FY Start Date]
+			VAR EndDate = [As Of Date (Revenue)]
+			VAR StartPY = EDATE ( StartDate, -12 )
+			VAR EndPY = EDATE ( EndDate, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( StartDate ) || ISBLANK ( EndDate ),
+			        BLANK (),
+			        CALCULATE ( [Total Revenue], REMOVEFILTERS ( FYCALENDAR_D ), DATESBETWEEN ( FYCALENDAR_D[Date], StartPY, EndPY ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\FY As Of
+		lineageTag: 878f68d1-13ef-4a98-ba85-046da45e175e
+
+	/// Year-over-year delta for FY As Of revenue window.
+	measure 'Total Revenue YoY Δ (FY As Of)' = [Total Revenue (FY As Of)] - [Total Revenue PY (FY As Of)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\6. Variance\FY As Of
+		lineageTag: cdae05cd-675c-4269-8049-c1ec17bda419
+
+	/// Year-over-year percent change for FY As Of revenue window.
+	measure 'Total Revenue YoY % (FY As Of)' = DIVIDE ( [Total Revenue YoY Δ (FY As Of)], [Total Revenue PY (FY As Of)] )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\1. Revenue\6. Variance\FY As Of
+		lineageTag: 47b90008-b863-47ae-8192-6d838537aea2
+
+	/// Annualized fiscal-year-to-date gross profit from FY start through the as-of date (clamped to FY end).
+	measure 'Total Gross Profit (FY As Of)' =
+			VAR StartDate = [Selected FY Start Date]
+			VAR EndDate = [As Of Date (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( StartDate ) || ISBLANK ( EndDate ),
+			        BLANK (),
+			        CALCULATE ( [Total Gross Profit], REMOVEFILTERS ( FYCALENDAR_D ), DATESBETWEEN ( FYCALENDAR_D[Date], StartDate, EndDate ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\7. Time Intelligence\FY As Of
+		lineageTag: 8c62cc4f-0328-45f6-8fab-6a7b15773d34
+
+	/// Prior-year fiscal-year-to-date gross profit aligned to the FY As Of window.
+	measure 'Total Gross Profit PY (FY As Of)' =
+			VAR StartDate = [Selected FY Start Date]
+			VAR EndDate = [As Of Date (Financials)]
+			VAR StartPY = EDATE ( StartDate, -12 )
+			VAR EndPY = EDATE ( EndDate, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( StartDate ) || ISBLANK ( EndDate ),
+			        BLANK (),
+			        CALCULATE ( [Total Gross Profit], REMOVEFILTERS ( FYCALENDAR_D ), DATESBETWEEN ( FYCALENDAR_D[Date], StartPY, EndPY ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\7. Time Intelligence\FY As Of
+		lineageTag: 4fd19ce0-07c8-4038-ad2e-00ef07aab561
+
+	/// Year-over-year delta for FY As Of gross profit window.
+	measure 'Total Gross Profit YoY Δ (FY As Of)' = [Total Gross Profit (FY As Of)] - [Total Gross Profit PY (FY As Of)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\6. Variance\FY As Of
+		lineageTag: 381664e0-a8ba-4720-832e-013f35f39158
+
+	/// Year-over-year percent change for FY As Of gross profit window.
+	measure 'Total Gross Profit YoY % (FY As Of)' = DIVIDE ( [Total Gross Profit YoY Δ (FY As Of)], [Total Gross Profit PY (FY As Of)] )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\3. Gross Profit\6. Variance\FY As Of
+		lineageTag: 741f7734-2743-4815-ad34-108606670ed1
+
+	/// Gross profit percent over the FY As Of window.
+	measure 'Total GP % (FY As Of)' = DIVIDE ( [Total Gross Profit (FY As Of)], [Total Revenue (FY As Of)] )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Customer Financials\3. Gross Profit\7. Time Intelligence\FY As Of
+		lineageTag: f1bdeaa9-8539-45a4-b04d-614a1bb4e923
+
+	/// Total revenue for the same selected period one year prior (uses current date filter context).
+	measure 'Total Revenue PY' = CALCULATE ( [Total Revenue], DATEADD ( FYCALENDAR_D[Date], -1, YEAR ) )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\Period
+		lineageTag: 97187602-a5c6-4fc6-b106-ec315c7be1de
+
+	/// Text indicator showing revenue change vs prior year for the current period context; respects Revenue_Stream_D selection via [Revenue (By Stream)].
+	measure 'Total Revenue Trend vs PY' =
+			VAR CY = [Revenue (By Stream)]
+			VAR PY = [Total Revenue PY]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR PctChange = DIVIDE ( Diff, PY )
+			        VAR Icon =
+			            SWITCH (
+			                TRUE (),
+			                PctChange > 0, UNICHAR ( 9650 ),
+			                PctChange < 0, UNICHAR ( 9660 ),
+			                UNICHAR ( 9644 )
+			            )
+			        VAR PctText =
+			            IF ( PctChange >= 0, UNICHAR ( 8199 ) & FORMAT ( PctChange, "0.0%" ), FORMAT ( PctChange, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		displayFolder: 2. Customer Financials\1. Revenue\8. Labels
+		lineageTag: c7109e9a-bb67-45db-9168-d8aa677c388a
+
+	/// Gross profit for the same selected period one year prior; respects Revenue_Stream_D selection via [Gross Profit (By Stream)].
+	measure 'Total Gross Profit PY' = CALCULATE ( [Gross Profit (By Stream)], SAMEPERIODLASTYEAR ( FYCALENDAR_D[Date] ) )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\3. Gross Profit\Time Intelligence
+		lineageTag: 22a036a1-8194-4de1-a571-b1ffa371e8d9
+
+	/// Text indicator showing gross profit change vs prior year for the current period context; respects Revenue_Stream_D selection via [Gross Profit (By Stream)].
+	measure 'Total Gross Profit Trend vs PY' =
+			VAR CY = [Gross Profit (By Stream)]
+			VAR PY = [Total Gross Profit PY]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR PctChange = DIVIDE ( Diff, PY )
+			        VAR Icon =
+			            SWITCH (
+			                TRUE (),
+			                PctChange > 0, UNICHAR ( 9650 ),
+			                PctChange < 0, UNICHAR ( 9660 ),
+			                UNICHAR ( 9644 )
+			            )
+			        VAR PctText =
+			            IF ( PctChange >= 0, UNICHAR ( 8199 ) & FORMAT ( PctChange, "0.0%" ), FORMAT ( PctChange, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		displayFolder: 2. Customer Financials\3. Gross Profit\8. Labels
+		lineageTag: d708ce1f-38a2-4734-a7ab-f3d77cd7fdf0
+
+	/// UI helper: friendly label for the current customer selection. Uses Master Customer Name so a single customer can span multiple customer keys.
+	measure 'Selected Customer Name' =
+			VAR HasAnyMaster = ISCROSSFILTERED ( CUSTOMERS_D[Master Customer Name] )
+			VAR HasOneMaster = HASONEVALUE ( CUSTOMERS_D[Master Customer Name] )
+			RETURN
+			    IF (
+			        HasAnyMaster,
+			        IF (
+			            HasOneMaster,
+			            COALESCE ( SELECTEDVALUE ( CUSTOMERS_D[Master Customer Name] ), "Selected Customer" ),
+			            "Multiple Customers Selected"
+			        ),
+			        "All Customers (Company Total)"
+			    )
+		displayFolder: 6. Customer Status\6.0 UI
+		lineageTag: 57aede0a-0361-40be-b77d-55543c539cef
+
+	/// Latest month end with non-zero billing/revenue for the current customer selection across all streams (optionally clamped to the financial as-of anchor).
+	measure 'Last Billing Date (Any Stream)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			RETURN
+			    CALCULATE (
+			        MAX ( FINANCIALS_F[Month End] ),
+			        REMOVEFILTERS ( FYCALENDAR_D ),
+			        FINANCIALS_F[Revenue Amount] <> 0,
+			        IF ( ISBLANK ( Anchor ), TRUE (), FINANCIALS_F[Month End] <= Anchor )
+			    )
+		formatString: yyyy-mm-dd
+		displayFolder: 6. Customer Status\6.1 Helpers
+		lineageTag: 24b15676-23f0-4245-b9c9-b011a253cf05
+
+	/// Months between the last billing month and the financial as-of anchor month for the current customer selection.
+	measure 'Months Since Last Billing' =
+			VAR LastBilling = [Last Billing Date (Any Stream)]
+			VAR Anchor = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( LastBilling ) || ISBLANK ( Anchor ),
+			        BLANK (),
+			        DATEDIFF ( EOMONTH ( LastBilling, 0 ), EOMONTH ( Anchor, 0 ), MONTH )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\6.1 Helpers
+		lineageTag: 82c8f7aa-2255-4cd0-abf8-120f76637497
+
+	/// Lifecycle status derived from months since last billing (based on the financial as-of anchor month).
+	measure 'Customer Lifecycle Status' =
+			VAR MonthsInactive = [Months Since Last Billing]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( MonthsInactive ), "No Activity",
+			        MonthsInactive < 6, "Active",
+			        MonthsInactive < 12, "Dormant",
+			        "Inactive"
+			    )
+		displayFolder: 6. Customer Status\6.1 Helpers
+		lineageTag: 0a636fab-7c03-4e61-89e8-393ae1bb657f
+
+	/// Filter helper: returns 1 if the current customer matches the selected lifecycle status in the disconnected Customer Status Selector slicer; else 0.
+	measure 'Customer Status' =
+			VAR StatusSel = SELECTEDVALUE ( 'UI_Customer Status Selector'[Customer Status], "All" )
+			VAR MonthsInactive = [Months Since Last Billing]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        StatusSel = "All", 1,
+			        ISBLANK ( MonthsInactive ), 0,
+			        StatusSel = "Active" && MonthsInactive < 6, 1,
+			        StatusSel = "Dormant (6–11 mo)" && MonthsInactive >= 6 && MonthsInactive < 12, 1,
+			        StatusSel = "Inactive (12+ mo)" && MonthsInactive >= 12, 1,
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\6.0 UI
+		lineageTag: d7e83744-c3ba-4875-a073-d88093a98319
+
+	/// Count of active service contract years for the current filter context.
+	measure 'Active Contracts' = CALCULATE ( COUNTROWS ( SERVCONTRACTS_D ), SERVCONTRACTS_D[IsActiveContractYear] = TRUE () )
+		formatString: #,0
+		displayFolder: 6. Customer Status\6.2 Contract
+		lineageTag: 27bfcb39-5306-4fa8-87d0-18bfb1459a19
+
+	/// Count of active projects for the current filter context.
+	measure 'Active Projects' = CALCULATE ( COUNTROWS ( PROJECTS_D ), PROJECTS_D[Inactive] = FALSE () )
+		formatString: #,0
+		displayFolder: 6. Customer Status\6.3 Projects
+		lineageTag: 8d740050-a1fc-4596-8d4e-f65a246e5d39
+
+	/// Earliest month end with non-zero service contract revenue in the current filter context.
+	measure 'First Contract Billing Date' = CALCULATE ( MIN ( SERVCONTRACTS_Financials_F[Month End] ), SERVCONTRACTS_Financials_F[Revenue Amount] <> 0 )
+		formatString: yyyy-mm-dd
+		displayFolder: 6. Customer Status\6.2 Contract
+		lineageTag: 1ed330eb-ec1c-44fe-98f8-9afee6100413
+
+	/// Latest month end with non-zero service contract revenue in the current filter context.
+	measure 'Last Contract Billing Date' = CALCULATE ( MAX ( SERVCONTRACTS_Financials_F[Month End] ), SERVCONTRACTS_Financials_F[Revenue Amount] <> 0 )
+		formatString: yyyy-mm-dd
+		displayFolder: 6. Customer Status\6.2 Contract
+		lineageTag: 1238b32b-b826-43d6-acfa-368e751c0c76
+
+	/// Inclusive count of months between first and last service contract billing months for the current filter context.
+	measure 'Contract Billing Period (Months Inclusive)' =
+			VAR FirstDt = [First Contract Billing Date]
+			VAR LastDt = [Last Contract Billing Date]
+			RETURN
+			    IF (
+			        ISBLANK ( FirstDt ) || ISBLANK ( LastDt ),
+			        BLANK (),
+			        DATEDIFF ( EOMONTH ( FirstDt, -1 ) + 1, EOMONTH ( LastDt, 0 ) + 1, MONTH )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\6.2 Contract
+		lineageTag: 53b5ecc1-d555-4d6a-ba72-2aa3730edfbc
+
+	/// Master-customer rank by lifetime total revenue (distinct master customers). Returns BLANK for customers with no revenue.
+	measure 'Customer Revenue Rank (All Time)' =
+			IF (
+			    ISBLANK ( [Total Revenue] ) || [Total Revenue] = 0,
+			    BLANK (),
+			    RANKX (
+			        ALL ( CUSTOMERS_D[Master Customer Name] ),
+			        CALCULATE ( [Total Revenue] ),
+			        ,
+			        DESC,
+			        Dense
+			    )
+			)
+		formatString: #,0
+		displayFolder: 4. Customer Metrics\4.2 Rank
+		lineageTag: c7579629-bbd2-42a8-b433-5c4baff36c3c
+
+	/// Formatted master-customer rank string for customer profile display (e.g., '#12 of 1,234').
+	measure 'Customer Rank Context String' =
+			VAR RankVal = [Customer Revenue Rank (All Time)]
+			VAR TotalCustomers =
+			    CALCULATE (
+			        DISTINCTCOUNT ( CUSTOMERS_D[Master Customer Name] ),
+			        FILTER ( ALL ( CUSTOMERS_D[Master Customer Name] ), [Total Revenue] > 0 )
+			    )
+			RETURN
+			    IF ( ISBLANK ( [Total Revenue] ), "No Revenue", "#" & FORMAT ( RankVal, "#,0" ) & " of " & FORMAT ( TotalCustomers, "#,0" ) )
+		displayFolder: 8. UI\Customer Metrics
+		lineageTag: 2d899a3e-ebd3-4df8-aecc-095508917d5c
+
+	/// Text value for the selected UI_CustomerProfileRows metric, formatted for display in the customer profile visual. Industrial Group resolves to the single non-blank value across the selected master customer (if unique); otherwise returns 'Multiple' or '--'. Includes R12M Revenue Rank, R12M Industrial Rank, and Industrial Rank.
+	measure 'Customer Profile Metric Value' =
+			VAR Metric = SELECTEDVALUE ( UI_CustomerProfileRows[Metric Name] )
+			VAR IndustrialGroupValues =
+			    FILTER ( VALUES ( CUSTOMERS_D[Industrial Group] ), NOT ISBLANK ( CUSTOMERS_D[Industrial Group] ) )
+			VAR IndustrialGroupResolved =
+			    SWITCH (
+			        TRUE (),
+			        COUNTROWS ( IndustrialGroupValues ) = 1, MAXX ( IndustrialGroupValues, CUSTOMERS_D[Industrial Group] ),
+			        COUNTROWS ( IndustrialGroupValues ) > 1, "Multiple",
+			        BLANK ()
+			    )
+			VAR Result =
+			    SWITCH (
+			        Metric,
+			        "Lifecycle Status", [Customer Lifecycle Status],
+			        "Industrial Group", IndustrialGroupResolved,
+			        "Last Billing Date", FORMAT ( [Last Billing Date (Any Stream)], "MMM d, yyyy" ),
+			        "Active Contracts", FORMAT ( [Active Contracts], "#,0" ),
+			        "Active Projects", FORMAT ( [Active Projects], "#,0" ),
+			        "Lifetime Revenue", FORMAT ( [Total Revenue], "$#,0" ),
+			        "Lifetime GP", FORMAT ( [Total Gross Profit], "$#,0" ),
+			        "Lifetime GP %", FORMAT ( [Total GP %], "0.0%" ),
+			        "Revenue Rank", [Customer Rank Context String],
+			        "R12M Revenue Rank", [Customer Rank Context String (R12M As Of)],
+			        "R12M Industrial Rank", [Industrial Rank Context String (R12M As Of)],
+			        "Industrial Rank", [Industrial Rank Context String]
+			    )
+			RETURN
+			    IF ( ISBLANK ( Result ), "--", Result )
+		displayFolder: 4. Customer Metrics\4.1 Profile
+		lineageTag: fe777dba-8270-4de9-acdc-ad8db94a8b50
+
+	/// Gross profit percent for service contracts (completed months only).
+	measure 'Service Contract Gross Profit %' = DIVIDE ( [Service Contract Gross Profit], [Service Contract Revenue] )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Customer Financials\3. Gross Profit\Streams
+		lineageTag: 792a65d1-23ec-4679-b008-1beff3093896
+
+	/// Alias for the NRR waterfall step value used by CRR v05 visuals.
+	measure 'NRR Waterfall Value' = [NRR Waterfall Value (R12M As Of)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Waterfall
+		lineageTag: 05b4cea7-3fa6-4130-8c2e-67e5d2ea8ea4
+
+	/// Alias for the service-contract retention category used in CRR visuals (retention metrics are SC-only in this model).
+	measure 'Customer Retention Category (R12M)' = [Customer Retention Category (SC) (R12M As Of)]
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\Classification
+		lineageTag: aa2da020-5bb3-49cc-b13d-da3ed6e54f40
+
+	/// Simplified prior-year revenue for the current period context; respects Revenue_Stream_D selection via [Revenue (By Stream)].
+	measure 'Revenue PY (Dynamic)' = CALCULATE ( [Revenue (By Stream)], DATEADD ( FYCALENDAR_D[Date], -1, YEAR ) )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 2. Customer Financials\1. Revenue\Time Intelligence
+		lineageTag: 93ddbfd1-befb-4a24-9995-32612207d8e7
+
+	/// Markdown explanation used by the report for NRR logic (SC-only retention in this model).
+	measure 'NRR Logic Explanation.MD' = "# Net Revenue Retention (NRR) Logic (Service Contracts Only)\n\nNRR uses an **as-of anchor month end** (see [As Of Month End (SC)]).\n\nIt compares two rolling windows:\n1. **CY (R12M)**: 12 months ending at the anchor.\n2. **PY (R12M)**: the prior 12 months.\n\nOnly customers with **PY revenue > 0** are included in the retention base.\n- **Churn**: PY > 0 and CY = 0\n- **Contraction**: PY > 0 and 0 < CY < PY\n- **Upsell**: PY > 0 and CY > PY\n- **New**: PY = 0 and CY > 0 (excluded from base)\n\nThis model clamps anchors to completed months to avoid partial-month distortion."
+		displayFolder: 8. UI\Documentation\Retention
+		lineageTag: dbe430e0-ef2b-4696-9310-ea63b231d176
+
+	/// Count of NPS survey responses in the current filter context.
+	measure 'NPS Response Count' = COUNTROWS ( NPS_F )
+		formatString: #,0
+		displayFolder: 5. Customer Experience\6.1 NPS
+		lineageTag: 3fcf8d5a-3dee-4fb0-97b0-58209fad8658
+
+	/// Average NPS 1-10 score in the current filter context.
+	measure 'Avg NPS Rating' = AVERAGE ( NPS_F[1-10 Score] )
+		formatString: 0.0;-0.0;0.0
+		displayFolder: 5. Customer Experience\6.1 NPS
+		lineageTag: 1bf7aa37-6585-4710-9aa8-57cecaaa0dc6
+
+	/// Count of NPS promoters (score 9-10) in the current filter context.
+	measure 'Promoters Count' = CALCULATE ( COUNTROWS ( NPS_F ), NPS_F[1-10 Score] >= 9 )
+		formatString: #,0
+		displayFolder: 5. Customer Experience\6.1 NPS
+		lineageTag: 13a8fc6f-2ffc-433b-b471-1fc11cba4013
+
+	/// Count of NPS detractors (score 0-6) in the current filter context.
+	measure 'Detractors Count' = CALCULATE ( COUNTROWS ( NPS_F ), NPS_F[1-10 Score] <= 6 )
+		formatString: #,0
+		displayFolder: 5. Customer Experience\6.1 NPS
+		lineageTag: 23a8cd0e-c6a0-4557-8e2a-e30d872066e0
+
+	/// Net Promoter Score (0-100 scale) computed as (Promoters - Detractors) / Total * 100.
+	measure 'Net Promoter Score' =
+			VAR P = [Promoters Count]
+			VAR D = [Detractors Count]
+			VAR Total = [NPS Response Count]
+			RETURN
+			    IF ( Total > 0, DIVIDE ( P - D, Total ) * 100 )
+		formatString: 0.0;-0.0;0.0
+		displayFolder: 5. Customer Experience\6.1 NPS
+		lineageTag: 2d89b227-fdb1-46f5-bd09-941916e7b23d
+
+	/// Rolling 12-month Net Promoter Score using an anchor based on visible date context and last NPS data date.
+	measure 'Net Promoter Score (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR LastData = [Last NPS Date]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR LastDataMonthEnd = EOMONTH ( LastData, 0 )
+			VAR AnchorDate = IF ( ISBLANK ( AxisMax ), LastData, MIN ( AxisMax, LastData ) )
+			RETURN
+			    IF (
+			        ISBLANK ( LastData ) || ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > LastDataMonthEnd,
+			            BLANK (),
+			            CALCULATE (
+			                [Net Promoter Score],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: 0.0;-0.0;0.0
+		displayFolder: 4. Customer Metrics\4.3 NPS
+		lineageTag: 7406cf94-6984-4c80-ac02-b9ac37df7042
+
+	/// Prior-year rolling 12-month Net Promoter Score aligned to the R12M anchor.
+	measure 'Net Promoter Score PY (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR LastData = [Last NPS Date]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR LastDataMonthEnd = EOMONTH ( LastData, 0 )
+			VAR AnchorDate = IF ( ISBLANK ( AxisMax ), LastData, MIN ( AxisMax, LastData ) )
+			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( LastData ) || ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > LastDataMonthEnd,
+			            BLANK (),
+			            CALCULATE (
+			                [Net Promoter Score],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: 0.0;-0.0;0.0
+		displayFolder: 5. Customer Experience\6.1 NPS\R12M
+		lineageTag: a3af3dec-b207-46dc-8caa-aeb87fb4ecb5
+
+	/// Text indicator showing rolling-12-month NPS change vs prior-year rolling-12-month NPS (arrow + delta).
+	measure 'Net Promoter Score Trend vs PY' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR LastData = [Last NPS Date]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR LastDataMonthEnd = EOMONTH ( LastData, 0 )
+			RETURN
+			    IF (
+			        ISBLANK ( LastData ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > LastDataMonthEnd,
+			            BLANK (),
+			            VAR CY = [Net Promoter Score (R12M)]
+			            VAR PY = [Net Promoter Score PY (R12M)]
+			            RETURN
+			                IF (
+			                    ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			                    BLANK (),
+			                    VAR Diff = CY - PY
+			                    VAR Icon =
+			                        SWITCH (
+			                            TRUE (),
+			                            Diff > 0, UNICHAR ( 9650 ),
+			                            Diff < 0, UNICHAR ( 9660 ),
+			                            UNICHAR ( 9644 )
+			                        )
+			                    VAR Txt =
+			                        IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0" ), FORMAT ( Diff, "0.0" ) )
+			                    RETURN
+			                        Icon & " " & Txt
+			                )
+			        )
+			    )
+		displayFolder: 5. Customer Experience\6.1 NPS\R12M
+		lineageTag: 124a4aa5-0446-43ed-a477-25ad43873748
+
+	/// Percent of responses marked First Time Fix = Yes.
+	measure 'First Time Fix Rate' =
+			VAR YesCt = CALCULATE ( COUNTROWS ( NPS_F ), NPS_F[First Time Fix] = "Yes" )
+			VAR NoCt = CALCULATE ( COUNTROWS ( NPS_F ), NPS_F[First Time Fix] = "No" )
+			RETURN
+			    DIVIDE ( YesCt, YesCt + NoCt )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 5. Customer Experience\6.2 Service Quality
+		lineageTag: 64f13f0e-d94a-49b4-bd1e-e15aa86daa46
+
+	/// Percent of responses marked Prompt and On Time = Yes.
+	measure 'Prompt and On Time %' =
+			VAR YesCt = CALCULATE ( COUNTROWS ( NPS_F ), NPS_F[Prompt and On Time] = "Yes" )
+			VAR NoCt = CALCULATE ( COUNTROWS ( NPS_F ), NPS_F[Prompt and On Time] = "No" )
+			RETURN
+			    DIVIDE ( YesCt, YesCt + NoCt )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 5. Customer Experience\6.2 Service Quality
+		lineageTag: d5dbb1ae-bd1e-48ed-854e-e47da5527c82
+
+	/// Placeholder: spend-per-maintenance metric not yet modeled in this semantic model.
+	measure 'Project Spend per Maintenance $ (TTM)' = BLANK()
+		formatString: 0.00;-0.00;0.00
+		displayFolder: 10. Not Implemented\9.2 Operations
+		lineageTag: ebd79675-e12a-4dbb-be09-1402aabf2a44
+
+	/// Placeholder: spend-per-maintenance metric not yet modeled in this semantic model.
+	measure 'T&M Spend per Maintenance $ (TTM)' = BLANK()
+		formatString: 0.00;-0.00;0.00
+		displayFolder: 10. Not Implemented\9.2 Operations
+		lineageTag: 7a6a6b3e-bd94-4123-bec6-214c6b95c89b
+
+	/// Placeholder: snapshot KPI not yet modeled in this semantic model.
+	measure 'Total Project Spend per Total Maintenance $ (Snapshot)' = BLANK()
+		formatString: 0.00;-0.00;0.00
+		displayFolder: 10. Not Implemented\9.2 Operations
+		lineageTag: 22291a47-8401-493b-9b4e-5b7e2fbb5681
+
+	/// Placeholder: snapshot KPI not yet modeled in this semantic model.
+	measure 'Total T&M Spend per Total Maintenance $ (Snapshot)' = BLANK()
+		formatString: 0.00;-0.00;0.00
+		displayFolder: 10. Not Implemented\9.2 Operations
+		lineageTag: 4b38c170-317a-42c0-ba84-2182fff28c91
+
+	/// Helper: last available NPS completed date in the model (ignores filters), capped at the current month end (and calendar max) to prevent bad future-dated rows from shifting anchors.
+	measure 'Last NPS Date' =
+			VAR RawLast =
+			    CALCULATE ( MAX ( NPS_F[SERVICE CALL COMPLETED DATE] ), REMOVEFILTERS () )
+			VAR TodayMonthEnd = EOMONTH ( TODAY (), 0 )
+			VAR CalendarMax = CALCULATE ( MAX ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( FYCALENDAR_D ) )
+			VAR Cap = MIN ( TodayMonthEnd, CalendarMax )
+			RETURN
+			    IF ( ISBLANK ( RawLast ), BLANK (), MIN ( RawLast, Cap ) )
+		formatString: yyyy-mm-dd
+		isHidden
+		displayFolder: 5. Customer Experience\6.0 Helpers
+		lineageTag: db38990d-fd2d-4ee7-ada0-790762aaff8f
+
+	/// Debug: start date of the rolling 12-month NPS window based on the visible date context and last NPS data date.
+	measure 'Debug - NPS R12M Start Date' =
+			VAR MaxVisible = MAX ( FYCALENDAR_D[Date] )
+			VAR LastData = [Last NPS Date]
+			VAR AnchorDate = MIN ( MaxVisible, LastData )
+			RETURN
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) )
+		formatString: yyyy-mm-dd
+		displayFolder: 5. Customer Experience\6.0 Helpers
+		lineageTag: 48d93173-a159-4d4f-b9aa-71d9f2c5ab1d
+
+	/// SVG sparkline for Net Revenue Retention % (R12M As Of), anchored to [As Of Month End (SC)] over the last 12 month-ends.
+	measure 'NRR Sparkline (SVG)' =
+			VAR W = 340
+			VAR H = 70
+			VAR Pad = 6
+			VAR Stroke = "white"
+			VAR Fill = "none"
+			VAR Anchor = [As Of Month End (SC)]
+			VAR Dates0 =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        REMOVEFILTERS ( FYCALENDAR_D ),
+			        FYCALENDAR_D[Date] <= Anchor,
+			        FYCALENDAR_D[Date] > EDATE ( Anchor, -12 ),
+			        FYCALENDAR_D[Date] = EOMONTH ( FYCALENDAR_D[Date], 0 )
+			    )
+			VAR Dates = TOPN ( 12, Dates0, FYCALENDAR_D[Date], ASC )
+			VAR Series =
+			    ADDCOLUMNS (
+			        Dates,
+			        "__i", RANKX ( Dates, FYCALENDAR_D[Date],, ASC, Dense ),
+			        "__y", CALCULATE ( [Net Revenue Retention % (R12M As Of)] )
+			    )
+			VAR N = COUNTROWS ( Series )
+			VAR YMin = MINX ( Series, [__y] )
+			VAR YMax = MAXX ( Series, [__y] )
+			VAR Den = IF ( YMax - YMin = 0, 1, YMax - YMin )
+			VAR Points =
+			    CONCATENATEX (
+			        Series,
+			        VAR i = [__i]
+			        VAR xRaw = IF ( N <= 1, W / 2, Pad + ( i - 1 ) * ( ( W - 2 * Pad ) / ( N - 1 ) ) )
+			        VAR yRaw = Pad + ( H - 2 * Pad ) * ( 1 - DIVIDE ( [__y] - YMin, Den, 0.5 ) )
+			        VAR x = SUBSTITUTE ( FORMAT ( xRaw, "0.0" ), ",", "." )
+			        VAR y = SUBSTITUTE ( FORMAT ( yRaw, "0.0" ), ",", "." )
+			        RETURN x & "," & y,
+			        " "
+			    )
+			VAR LastRow = TOPN ( 1, Series, FYCALENDAR_D[Date], DESC )
+			VAR LastXRaw =
+			    MAXX (
+			        LastRow,
+			        VAR i = [__i]
+			        RETURN IF ( N <= 1, W / 2, Pad + ( i - 1 ) * ( ( W - 2 * Pad ) / ( N - 1 ) ) )
+			    )
+			VAR LastYRaw =
+			    MAXX (
+			        LastRow,
+			        Pad + ( H - 2 * Pad ) * ( 1 - DIVIDE ( [__y] - YMin, Den, 0.5 ) )
+			    )
+			VAR LastX = SUBSTITUTE ( FORMAT ( LastXRaw, "0.0" ), ",", "." )
+			VAR LastY = SUBSTITUTE ( FORMAT ( LastYRaw, "0.0" ), ",", "." )
+			VAR Svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 "
+			        & W
+			        & " "
+			        & H
+			        & "'>"
+			        & "<polyline fill='"
+			        & Fill
+			        & "' stroke='"
+			        & Stroke
+			        & "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' points='"
+			        & Points
+			        & "'/>"
+			        & "<circle cx='"
+			        & LastX
+			        & "' cy='"
+			        & LastY
+			        & "' r='2.5' fill='"
+			        & Stroke
+			        & "'/>"
+			        & "</svg>"
+			VAR Enc0 = SUBSTITUTE ( Svg, "%", "%25" )
+			VAR Enc1 = SUBSTITUTE ( Enc0, "<", "%3C" )
+			VAR Enc2 = SUBSTITUTE ( Enc1, ">", "%3E" )
+			VAR Enc3 = SUBSTITUTE ( Enc2, " ", "%20" )
+			VAR Enc4 = SUBSTITUTE ( Enc3, "'", "%27" )
+			RETURN
+			    IF ( ISBLANK ( Anchor ) || N = 0, BLANK (), "data:image/svg+xml;utf8," & Enc4 )
+		displayFolder: 8. UI\Sparklines\Retention
+		lineageTag: 8c1b8858-38c2-4a5b-a61d-8a9e768b6084
+		dataCategory: Image URL
+
+	/// SVG sparkline for Gross Revenue Retention % (R12M As Of), anchored to [As Of Month End (SC)] over the last 12 month-ends.
+	measure 'GRR Sparkline (SVG)' =
+			VAR W = 340
+			VAR H = 70
+			VAR Pad = 6
+			VAR Stroke = "white"
+			VAR Fill = "none"
+			VAR Anchor = [As Of Month End (SC)]
+			VAR Dates0 =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        REMOVEFILTERS ( FYCALENDAR_D ),
+			        FYCALENDAR_D[Date] <= Anchor,
+			        FYCALENDAR_D[Date] > EDATE ( Anchor, -12 ),
+			        FYCALENDAR_D[Date] = EOMONTH ( FYCALENDAR_D[Date], 0 )
+			    )
+			VAR Dates = TOPN ( 12, Dates0, FYCALENDAR_D[Date], ASC )
+			VAR Series =
+			    ADDCOLUMNS (
+			        Dates,
+			        "__i", RANKX ( Dates, FYCALENDAR_D[Date],, ASC, Dense ),
+			        "__y", CALCULATE ( [Gross Revenue Retention % (R12M As Of)] )
+			    )
+			VAR N = COUNTROWS ( Series )
+			VAR YMin = MINX ( Series, [__y] )
+			VAR YMax = MAXX ( Series, [__y] )
+			VAR Den = IF ( YMax - YMin = 0, 1, YMax - YMin )
+			VAR Points =
+			    CONCATENATEX (
+			        Series,
+			        VAR i = [__i]
+			        VAR xRaw = IF ( N <= 1, W / 2, Pad + ( i - 1 ) * ( ( W - 2 * Pad ) / ( N - 1 ) ) )
+			        VAR yRaw = Pad + ( H - 2 * Pad ) * ( 1 - DIVIDE ( [__y] - YMin, Den, 0.5 ) )
+			        VAR x = SUBSTITUTE ( FORMAT ( xRaw, "0.0" ), ",", "." )
+			        VAR y = SUBSTITUTE ( FORMAT ( yRaw, "0.0" ), ",", "." )
+			        RETURN x & "," & y,
+			        " "
+			    )
+			VAR LastRow = TOPN ( 1, Series, FYCALENDAR_D[Date], DESC )
+			VAR LastXRaw =
+			    MAXX (
+			        LastRow,
+			        VAR i = [__i]
+			        RETURN IF ( N <= 1, W / 2, Pad + ( i - 1 ) * ( ( W - 2 * Pad ) / ( N - 1 ) ) )
+			    )
+			VAR LastYRaw =
+			    MAXX (
+			        LastRow,
+			        Pad + ( H - 2 * Pad ) * ( 1 - DIVIDE ( [__y] - YMin, Den, 0.5 ) )
+			    )
+			VAR LastX = SUBSTITUTE ( FORMAT ( LastXRaw, "0.0" ), ",", "." )
+			VAR LastY = SUBSTITUTE ( FORMAT ( LastYRaw, "0.0" ), ",", "." )
+			VAR Svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 "
+			        & W
+			        & " "
+			        & H
+			        & "'>"
+			        & "<polyline fill='"
+			        & Fill
+			        & "' stroke='"
+			        & Stroke
+			        & "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' points='"
+			        & Points
+			        & "'/>"
+			        & "<circle cx='"
+			        & LastX
+			        & "' cy='"
+			        & LastY
+			        & "' r='2.5' fill='"
+			        & Stroke
+			        & "'/>"
+			        & "</svg>"
+			VAR Enc0 = SUBSTITUTE ( Svg, "%", "%25" )
+			VAR Enc1 = SUBSTITUTE ( Enc0, "<", "%3C" )
+			VAR Enc2 = SUBSTITUTE ( Enc1, ">", "%3E" )
+			VAR Enc3 = SUBSTITUTE ( Enc2, " ", "%20" )
+			VAR Enc4 = SUBSTITUTE ( Enc3, "'", "%27" )
+			RETURN
+			    IF ( ISBLANK ( Anchor ) || N = 0, BLANK (), "data:image/svg+xml;utf8," & Enc4 )
+		displayFolder: 8. UI\Sparklines\Retention
+		lineageTag: 8f02d1ce-3758-4c0e-a5b7-c8858e9ca14a
+		dataCategory: Image URL
+
+	/// SVG sparkline for Logo Retention % (SC) (R12M As Of), anchored to [As Of Month End (SC)] over the last 12 month-ends.
+	measure 'Logo Sparkline (SVG)' =
+			VAR W = 340
+			VAR H = 70
+			VAR Pad = 6
+			VAR Stroke = "white"
+			VAR Fill = "none"
+			VAR Anchor = [As Of Month End (SC)]
+			VAR Dates0 =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        REMOVEFILTERS ( FYCALENDAR_D ),
+			        FYCALENDAR_D[Date] <= Anchor,
+			        FYCALENDAR_D[Date] > EDATE ( Anchor, -12 ),
+			        FYCALENDAR_D[Date] = EOMONTH ( FYCALENDAR_D[Date], 0 )
+			    )
+			VAR Dates = TOPN ( 12, Dates0, FYCALENDAR_D[Date], ASC )
+			VAR Series =
+			    ADDCOLUMNS (
+			        Dates,
+			        "__i", RANKX ( Dates, FYCALENDAR_D[Date],, ASC, Dense ),
+			        "__y", CALCULATE ( [Logo Retention % (SC) (R12M As Of)] )
+			    )
+			VAR N = COUNTROWS ( Series )
+			VAR YMin = MINX ( Series, [__y] )
+			VAR YMax = MAXX ( Series, [__y] )
+			VAR Den = IF ( YMax - YMin = 0, 1, YMax - YMin )
+			VAR Points =
+			    CONCATENATEX (
+			        Series,
+			        VAR i = [__i]
+			        VAR xRaw = IF ( N <= 1, W / 2, Pad + ( i - 1 ) * ( ( W - 2 * Pad ) / ( N - 1 ) ) )
+			        VAR yRaw = Pad + ( H - 2 * Pad ) * ( 1 - DIVIDE ( [__y] - YMin, Den, 0.5 ) )
+			        VAR x = SUBSTITUTE ( FORMAT ( xRaw, "0.0" ), ",", "." )
+			        VAR y = SUBSTITUTE ( FORMAT ( yRaw, "0.0" ), ",", "." )
+			        RETURN x & "," & y,
+			        " "
+			    )
+			VAR LastRow = TOPN ( 1, Series, FYCALENDAR_D[Date], DESC )
+			VAR LastXRaw =
+			    MAXX (
+			        LastRow,
+			        VAR i = [__i]
+			        RETURN IF ( N <= 1, W / 2, Pad + ( i - 1 ) * ( ( W - 2 * Pad ) / ( N - 1 ) ) )
+			    )
+			VAR LastYRaw =
+			    MAXX (
+			        LastRow,
+			        Pad + ( H - 2 * Pad ) * ( 1 - DIVIDE ( [__y] - YMin, Den, 0.5 ) )
+			    )
+			VAR LastX = SUBSTITUTE ( FORMAT ( LastXRaw, "0.0" ), ",", "." )
+			VAR LastY = SUBSTITUTE ( FORMAT ( LastYRaw, "0.0" ), ",", "." )
+			VAR Svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 "
+			        & W
+			        & " "
+			        & H
+			        & "'>"
+			        & "<polyline fill='"
+			        & Fill
+			        & "' stroke='"
+			        & Stroke
+			        & "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' points='"
+			        & Points
+			        & "'/>"
+			        & "<circle cx='"
+			        & LastX
+			        & "' cy='"
+			        & LastY
+			        & "' r='2.5' fill='"
+			        & Stroke
+			        & "'/>"
+			        & "</svg>"
+			VAR Enc0 = SUBSTITUTE ( Svg, "%", "%25" )
+			VAR Enc1 = SUBSTITUTE ( Enc0, "<", "%3C" )
+			VAR Enc2 = SUBSTITUTE ( Enc1, ">", "%3E" )
+			VAR Enc3 = SUBSTITUTE ( Enc2, " ", "%20" )
+			VAR Enc4 = SUBSTITUTE ( Enc3, "'", "%27" )
+			RETURN
+			    IF ( ISBLANK ( Anchor ) || N = 0, BLANK (), "data:image/svg+xml;utf8," & Enc4 )
+		displayFolder: 8. UI\Sparklines\Retention
+		lineageTag: 1db4a1f4-53ab-41d4-b9b8-85addb952be8
+		dataCategory: Image URL
+
+	/// GL revenue budget from BUDGET_F (sign-flipped), filtered to revenue accounts and completed months.
+	measure 'GL Budget Revenue' =
+			CALCULATE(
+			    -SUM(BUDGET_F[BUDGETAMT]),
+			    GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			    FYCALENDAR_D[Is Completed Month] = TRUE
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 1. GL Financials\1. Revenue\5. Budget
+		lineageTag: 8fcff759-6807-43f4-b410-63468b6aeedd
+
+	/// P&L actual amount for the current UI_P&L Structure row, Year-to-Date through the selected month-end (clamped to last completed month). Returns section totals when matrix is collapsed to Section.
+	measure 'P&L Amount (YTD)' =
+			VAR SelectedMaxDate = MAX ( FYCALENDAR_D[Date] )
+			VAR LastCompletedMonthEnd =
+			    CALCULATE(
+			        MAX ( FYCALENDAR_D[Date] ),
+			        FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Is Completed Month] = TRUE && FYCALENDAR_D[Date] = EOMONTH ( FYCALENDAR_D[Date], 0 ) )
+			    )
+			VAR SelectedMonthEnd = IF ( ISBLANK ( SelectedMaxDate ), LastCompletedMonthEnd, EOMONTH ( SelectedMaxDate, 0 ) )
+			VAR AnchorMonthEnd = IF ( SelectedMonthEnd > LastCompletedMonthEnd, LastCompletedMonthEnd, SelectedMonthEnd )
+			VAR StartFY =
+			    CALCULATE (
+			        MAX ( FYCALENDAR_D[Fiscal Start Of Year] ),
+			        FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Date] = AnchorMonthEnd )
+			    )
+			VAR dYTD = DATESBETWEEN ( FYCALENDAR_D[Date], StartFY, AnchorMonthEnd )
+			VAR HasLine = ISINSCOPE ( 'UI_P&L Structure'[Line Item] )
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			RETURN
+			    IF (
+			        HasLine,
+			        CALCULATE ( [P&L Amount (YTD) (Line)], dYTD ),
+			        IF (
+			            ISBLANK ( Section ),
+			            BLANK (),
+			            SUMX (
+			                FILTER (
+			                    ALL ( 'UI_P&L Structure' ),
+			                    'UI_P&L Structure'[Section] = Section
+			                        && 'UI_P&L Structure'[IsSubtotal] = FALSE
+			                ),
+			                CALCULATE ( [P&L Amount (YTD) (Line)], dYTD )
+			            )
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 11dc118d-828e-4425-8034-45e93ec2574d
+
+	/// P&L prior-year amount for the current UI_P&L Structure row, aligned to the YTD window through the selected month-end (clamped to last completed month). Returns section totals when matrix is collapsed to Section.
+	measure 'P&L Amount PY (YTD)' =
+			VAR SelectedMaxDate = MAX ( FYCALENDAR_D[Date] )
+			VAR LastCompletedMonthEnd =
+			    CALCULATE(
+			        MAX ( FYCALENDAR_D[Date] ),
+			        FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Is Completed Month] = TRUE && FYCALENDAR_D[Date] = EOMONTH ( FYCALENDAR_D[Date], 0 ) )
+			    )
+			VAR SelectedMonthEnd = IF ( ISBLANK ( SelectedMaxDate ), LastCompletedMonthEnd, EOMONTH ( SelectedMaxDate, 0 ) )
+			VAR AnchorMonthEnd = IF ( SelectedMonthEnd > LastCompletedMonthEnd, LastCompletedMonthEnd, SelectedMonthEnd )
+			VAR AnchorMonthEndPY = EDATE ( AnchorMonthEnd, -12 )
+			VAR StartFY_PY =
+			    CALCULATE (
+			        MAX ( FYCALENDAR_D[Fiscal Start Of Year] ),
+			        FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Date] = AnchorMonthEndPY )
+			    )
+			VAR dPY = DATESBETWEEN ( FYCALENDAR_D[Date], StartFY_PY, AnchorMonthEndPY )
+			VAR HasLine = ISINSCOPE ( 'UI_P&L Structure'[Line Item] )
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			RETURN
+			    IF (
+			        HasLine,
+			        CALCULATE ( [P&L Amount PY (YTD) (Line)], dPY ),
+			        IF (
+			            ISBLANK ( Section ),
+			            BLANK (),
+			            SUMX (
+			                FILTER (
+			                    ALL ( 'UI_P&L Structure' ),
+			                    'UI_P&L Structure'[Section] = Section
+			                        && 'UI_P&L Structure'[IsSubtotal] = FALSE
+			                ),
+			                CALCULATE ( [P&L Amount PY (YTD) (Line)], dPY )
+			            )
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 994d28a2-2f83-4e69-8b51-f3dee6c3660e
+
+	/// P&L budget amount for the current UI_P&L Structure row, Year-to-Date through the selected month-end (clamped to last completed month). Returns section totals when matrix is collapsed to Section.
+	measure 'P&L Budget Amount (YTD)' =
+			VAR SelectedMaxDate = MAX ( FYCALENDAR_D[Date] )
+			VAR LastCompletedMonthEnd =
+			    CALCULATE(
+			        MAX ( FYCALENDAR_D[Date] ),
+			        FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Is Completed Month] = TRUE && FYCALENDAR_D[Date] = EOMONTH ( FYCALENDAR_D[Date], 0 ) )
+			    )
+			VAR SelectedMonthEnd = IF ( ISBLANK ( SelectedMaxDate ), LastCompletedMonthEnd, EOMONTH ( SelectedMaxDate, 0 ) )
+			VAR AnchorMonthEnd = IF ( SelectedMonthEnd > LastCompletedMonthEnd, LastCompletedMonthEnd, SelectedMonthEnd )
+			VAR StartFY =
+			    CALCULATE (
+			        MAX ( FYCALENDAR_D[Fiscal Start Of Year] ),
+			        FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Date] = AnchorMonthEnd )
+			    )
+			VAR dYTD = DATESBETWEEN ( FYCALENDAR_D[Date], StartFY, AnchorMonthEnd )
+			VAR HasLine = ISINSCOPE ( 'UI_P&L Structure'[Line Item] )
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			RETURN
+			    IF (
+			        HasLine,
+			        CALCULATE ( [P&L Budget Amount (YTD) (Line)], dYTD ),
+			        IF (
+			            ISBLANK ( Section ),
+			            BLANK (),
+			            SUMX (
+			                FILTER (
+			                    ALL ( 'UI_P&L Structure' ),
+			                    'UI_P&L Structure'[Section] = Section
+			                        && 'UI_P&L Structure'[IsSubtotal] = FALSE
+			                ),
+			                CALCULATE ( [P&L Budget Amount (YTD) (Line)], dYTD )
+			            )
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 5204b83b-4038-408a-815c-97c52429b27f
+
+	/// P&L actual percent of Total Revenue for the current UI_P&L Structure row, Year-to-Date through the selected month-end (clamped to last completed month).
+	measure 'P&L % of Revenue (YTD)' =
+			VAR TotalRevenueYTD =
+			    CALCULATE (
+			        [P&L Amount (YTD)],
+			        REMOVEFILTERS ( 'UI_P&L Structure' ),
+			        KEEPFILTERS ( 'UI_P&L Structure'[Section] = "REVENUE" )
+			    )
+			RETURN
+			    DIVIDE ( [P&L Amount (YTD)], TotalRevenueYTD )
+		formatString: 0.0%;(0.0%);0.0%
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 87725954-0669-4e60-818b-9fa110239f1d
+
+	/// P&L prior-year percent of Total Revenue for the current UI_P&L Structure row, aligned to the YTD window through the selected month-end (clamped to last completed month).
+	measure 'P&L % of Revenue PY (YTD)' =
+			VAR TotalRevenueYTD =
+			    CALCULATE (
+			        [P&L Amount PY (YTD)],
+			        REMOVEFILTERS ( 'UI_P&L Structure' ),
+			        KEEPFILTERS ( 'UI_P&L Structure'[Section] = "REVENUE" )
+			    )
+			RETURN
+			    DIVIDE ( [P&L Amount PY (YTD)], TotalRevenueYTD )
+		formatString: 0.0%;(0.0%);0.0%
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 0aaf9280-ecdf-48e1-98a9-645eeca6ae69
+
+	/// P&L budget percent of Total Revenue for the current UI_P&L Structure row, Year-to-Date through the selected month-end (clamped to last completed month).
+	measure 'P&L % of Revenue Budget (YTD)' =
+			VAR TotalRevenueYTD =
+			    CALCULATE (
+			        [P&L Budget Amount (YTD)],
+			        REMOVEFILTERS ( 'UI_P&L Structure' ),
+			        KEEPFILTERS ( 'UI_P&L Structure'[Section] = "REVENUE" )
+			    )
+			RETURN
+			    DIVIDE ( [P&L Budget Amount (YTD)], TotalRevenueYTD )
+		formatString: 0.0%;(0.0%);0.0%
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 4c40f858-15a0-4224-80df-a45fd5443c09
+
+	/// P&L actual variance vs prior-year for the current UI_P&L Structure row (Actual YTD - Prior YTD).
+	measure 'P&L Var vs PY $ (YTD)' = [P&L Amount (YTD)] - [P&L Amount PY (YTD)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 9e52e4d7-c4f0-46bc-9779-2fc7f19e0386
+
+	/// P&L percent variance vs prior-year for the current UI_P&L Structure row: (Actual YTD - Prior YTD) / Prior YTD.
+	measure 'P&L Var vs PY % (YTD)' =
+			DIVIDE(
+			    [P&L Amount (YTD)] - [P&L Amount PY (YTD)],
+			    [P&L Amount PY (YTD)]
+			)
+		formatString: 0.0%;(0.0%);0.0%
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 451be94f-24cb-4700-84b8-635dd56be49d
+
+	/// P&L actual variance vs budget for the current UI_P&L Structure row (Actual YTD - Budget YTD).
+	measure 'P&L Var vs Budget $ (YTD)' = [P&L Amount (YTD)] - [P&L Budget Amount (YTD)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: fb924c0d-e503-4d31-af48-ee6889c4dcbc
+
+	/// P&L percent variance vs budget for the current UI_P&L Structure row: (Actual YTD - Budget YTD) / Budget YTD. Returns BLANK when the absolute budget base is below $1,000 to avoid meaningless extreme percentages.
+	measure 'P&L Var vs Budget % (YTD)' =
+			VAR BudgetAmt = [P&L Budget Amount (YTD)]
+			VAR VarAmt = [P&L Amount (YTD)] - BudgetAmt
+			VAR MinDenom = 1000
+			RETURN
+			    IF ( ABS ( BudgetAmt ) < MinDenom, BLANK (), DIVIDE ( VarAmt, BudgetAmt ) )
+		formatString: 0.0%;(0.0%);0.0%
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 341e9ecc-3d87-4032-bb5c-297a74e1d443
+
+	/// Helper: line-level P&L actual amount (no section-total behavior). YTD date window is applied by the calling measure.
+	measure 'P&L Amount (YTD) (Line)' =
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			VAR LineItem = SELECTEDVALUE ( 'UI_P&L Structure'[Line Item] )
+			
+			VAR MarketsProjects =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "Projects"
+			    )
+			VAR MarketsServiceContracts =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "Service Contracts"
+			    )
+			VAR MarketsTM =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "T&M"
+			    )
+			
+			VAR RevenueProjectsAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsProjects, GL_ACCT_D[MARKET] )
+			    )
+			VAR RevenueServiceContractsAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsServiceContracts, GL_ACCT_D[MARKET] )
+			    )
+			VAR RevenueTMAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsTM, GL_ACCT_D[MARKET] )
+			    )
+			
+			VAR RevenueAmt = RevenueProjectsAmt + RevenueServiceContractsAmt + RevenueTMAmt
+			
+			VAR CosAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES" )
+			VAR CosLaborBurdenAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] IN { "LABOR", "BURDEN" }
+			    )
+			VAR CosEquipMatAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "EQUIPMENT & MATERIAL"
+			    )
+			VAR CosSubcontractAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "SUBCONTRACT"
+			    )
+			VAR CosDiscountsAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "DISCOUNTS"
+			    )
+			VAR CosTaxExpenseAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "TAX EXPENSE"
+			    )
+			
+			VAR GrossProfitAmt = RevenueAmt - CosAmt
+			
+			VAR OpsExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "OPERATIONS EXPENSE" )
+			VAR ActualGrossProfitAmt = GrossProfitAmt - OpsExpenseAmt
+			
+			VAR SalesExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "SALES EXPENSE" )
+			VAR GAExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "G&A EXPENSE" )
+			VAR TotalSGAAmt = SalesExpenseAmt + GAExpenseAmt
+			
+			VAR OtherIncomeExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ), GL_ACCT_D[ACCOUNT_TYPE] = "OTHER INCOME & EXPENSE" )
+			
+			VAR NetProfitAmt = ActualGrossProfitAmt - TotalSGAAmt + OtherIncomeExpenseAmt
+			
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        Section = "REVENUE" && LineItem = "Projects", RevenueProjectsAmt,
+			        Section = "REVENUE" && LineItem = "Service Contracts", RevenueServiceContractsAmt,
+			        Section = "REVENUE" && LineItem = "T&M", RevenueTMAmt,
+			        LineItem = "Labor & Burden", CosLaborBurdenAmt,
+			        LineItem = "Equipment & Material", CosEquipMatAmt,
+			        LineItem = "Subcontract", CosSubcontractAmt,
+			        LineItem = "Discounts", CosDiscountsAmt,
+			        LineItem = "Tax Expense", CosTaxExpenseAmt,
+			        LineItem = "Gross Profit", GrossProfitAmt,
+			        LineItem = "Operations Expense", OpsExpenseAmt,
+			        LineItem = "Actual Gross Profit", ActualGrossProfitAmt,
+			        LineItem = "Sales Expense", SalesExpenseAmt,
+			        LineItem = "G & A Expense", GAExpenseAmt,
+			        LineItem = "Other Income & Expense", OtherIncomeExpenseAmt,
+			        LineItem = "Net Profit", NetProfitAmt,
+			        BLANK ()
+			    )
+		formatString: $#,0;($#,0);$#,0
+		isHidden
+		displayFolder: 7. Helper\7.3 P&L\YTD
+		lineageTag: c78930f8-393f-49d1-847f-56664c8da6ed
+
+	/// Helper: line-level P&L PY amount (no section-total behavior). YTD date window is applied by the calling measure.
+	measure 'P&L Amount PY (YTD) (Line)' =
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			VAR LineItem = SELECTEDVALUE ( 'UI_P&L Structure'[Line Item] )
+			
+			VAR MarketsProjects =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "Projects"
+			    )
+			VAR MarketsServiceContracts =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "Service Contracts"
+			    )
+			VAR MarketsTM =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "T&M"
+			    )
+			
+			VAR RevenueProjectsAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsProjects, GL_ACCT_D[MARKET] )
+			    )
+			VAR RevenueServiceContractsAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsServiceContracts, GL_ACCT_D[MARKET] )
+			    )
+			VAR RevenueTMAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsTM, GL_ACCT_D[MARKET] )
+			    )
+			
+			VAR RevenueAmt = RevenueProjectsAmt + RevenueServiceContractsAmt + RevenueTMAmt
+			
+			VAR CosAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES" )
+			VAR CosLaborBurdenAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] IN { "LABOR", "BURDEN" }
+			    )
+			VAR CosEquipMatAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "EQUIPMENT & MATERIAL"
+			    )
+			VAR CosSubcontractAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "SUBCONTRACT"
+			    )
+			VAR CosDiscountsAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "DISCOUNTS"
+			    )
+			VAR CosTaxExpenseAmt =
+			    CALCULATE (
+			        SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "TAX EXPENSE"
+			    )
+			
+			VAR GrossProfitAmt = RevenueAmt - CosAmt
+			
+			VAR OpsExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "OPERATIONS EXPENSE" )
+			VAR ActualGrossProfitAmt = GrossProfitAmt - OpsExpenseAmt
+			
+			VAR SalesExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "SALES EXPENSE" )
+			VAR GAExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[DEBITAMT] ) - SUM ( POSTING_DATA_F[CRDTAMNT] ), GL_ACCT_D[ACCOUNT_TYPE] = "G&A EXPENSE" )
+			VAR TotalSGAAmt = SalesExpenseAmt + GAExpenseAmt
+			
+			VAR OtherIncomeExpenseAmt =
+			    CALCULATE ( SUM ( POSTING_DATA_F[CRDTAMNT] ) - SUM ( POSTING_DATA_F[DEBITAMT] ), GL_ACCT_D[ACCOUNT_TYPE] = "OTHER INCOME & EXPENSE" )
+			
+			VAR NetProfitAmt = ActualGrossProfitAmt - TotalSGAAmt + OtherIncomeExpenseAmt
+			
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        Section = "REVENUE" && LineItem = "Projects", RevenueProjectsAmt,
+			        Section = "REVENUE" && LineItem = "Service Contracts", RevenueServiceContractsAmt,
+			        Section = "REVENUE" && LineItem = "T&M", RevenueTMAmt,
+			        LineItem = "Labor & Burden", CosLaborBurdenAmt,
+			        LineItem = "Equipment & Material", CosEquipMatAmt,
+			        LineItem = "Subcontract", CosSubcontractAmt,
+			        LineItem = "Discounts", CosDiscountsAmt,
+			        LineItem = "Tax Expense", CosTaxExpenseAmt,
+			        LineItem = "Gross Profit", GrossProfitAmt,
+			        LineItem = "Operations Expense", OpsExpenseAmt,
+			        LineItem = "Actual Gross Profit", ActualGrossProfitAmt,
+			        LineItem = "Sales Expense", SalesExpenseAmt,
+			        LineItem = "G & A Expense", GAExpenseAmt,
+			        LineItem = "Other Income & Expense", OtherIncomeExpenseAmt,
+			        LineItem = "Net Profit", NetProfitAmt,
+			        BLANK ()
+			    )
+		formatString: $#,0;($#,0);$#,0
+		isHidden
+		displayFolder: 7. Helper\7.3 P&L\YTD
+		lineageTag: f53e292d-358f-4c91-aa85-d3229b726b16
+
+	/// Helper: line-level P&L budget amount (no section-total behavior). YTD date window is applied by the calling measure.
+	measure 'P&L Budget Amount (YTD) (Line)' =
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			VAR LineItem = SELECTEDVALUE ( 'UI_P&L Structure'[Line Item] )
+			
+			VAR MarketsProjects =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "Projects"
+			    )
+			VAR MarketsServiceContracts =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "Service Contracts"
+			    )
+			VAR MarketsTM =
+			    CALCULATETABLE (
+			        VALUES ( GL_MARKET_STREAM_D[Market] ),
+			        ALL ( GL_MARKET_STREAM_D ),
+			        GL_MARKET_STREAM_D[Stream] = "T&M"
+			    )
+			
+			VAR RevenueProjectsAmt =
+			    CALCULATE (
+			        -SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsProjects, GL_ACCT_D[MARKET] )
+			    )
+			VAR RevenueServiceContractsAmt =
+			    CALCULATE (
+			        -SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsServiceContracts, GL_ACCT_D[MARKET] )
+			    )
+			VAR RevenueTMAmt =
+			    CALCULATE (
+			        -SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE",
+			        TREATAS ( MarketsTM, GL_ACCT_D[MARKET] )
+			    )
+			
+			VAR RevenueAmt = RevenueProjectsAmt + RevenueServiceContractsAmt + RevenueTMAmt
+			
+			VAR CosAmt =
+			    CALCULATE ( SUM ( BUDGET_F[BUDGETAMT] ), GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES" )
+			VAR CosLaborBurdenAmt =
+			    CALCULATE (
+			        SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] IN { "LABOR", "BURDEN" }
+			    )
+			VAR CosEquipMatAmt =
+			    CALCULATE (
+			        SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "EQUIPMENT & MATERIAL"
+			    )
+			VAR CosSubcontractAmt =
+			    CALCULATE (
+			        SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "SUBCONTRACT"
+			    )
+			VAR CosDiscountsAmt =
+			    CALCULATE (
+			        SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "DISCOUNTS"
+			    )
+			VAR CosTaxExpenseAmt =
+			    CALCULATE (
+			        SUM ( BUDGET_F[BUDGETAMT] ),
+			        GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			        GL_ACCT_D[COSTOFSALES_SUBCATEGORY] = "TAX EXPENSE"
+			    )
+			
+			VAR GrossProfitAmt = RevenueAmt - CosAmt
+			
+			VAR OpsExpenseAmt =
+			    CALCULATE ( SUM ( BUDGET_F[BUDGETAMT] ), GL_ACCT_D[ACCOUNT_TYPE] = "OPERATIONS EXPENSE" )
+			VAR ActualGrossProfitAmt = GrossProfitAmt - OpsExpenseAmt
+			
+			VAR SalesExpenseAmt =
+			    CALCULATE ( SUM ( BUDGET_F[BUDGETAMT] ), GL_ACCT_D[ACCOUNT_TYPE] = "SALES EXPENSE" )
+			VAR GAExpenseAmt =
+			    CALCULATE ( SUM ( BUDGET_F[BUDGETAMT] ), GL_ACCT_D[ACCOUNT_TYPE] = "G&A EXPENSE" )
+			VAR TotalSGAAmt = SalesExpenseAmt + GAExpenseAmt
+			
+			VAR OtherIncomeExpenseAmt =
+			    CALCULATE ( -SUM ( BUDGET_F[BUDGETAMT] ), GL_ACCT_D[ACCOUNT_TYPE] = "OTHER INCOME & EXPENSE" )
+			
+			VAR NetProfitAmt = ActualGrossProfitAmt - TotalSGAAmt + OtherIncomeExpenseAmt
+			
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        Section = "REVENUE" && LineItem = "Projects", RevenueProjectsAmt,
+			        Section = "REVENUE" && LineItem = "Service Contracts", RevenueServiceContractsAmt,
+			        Section = "REVENUE" && LineItem = "T&M", RevenueTMAmt,
+			        LineItem = "Labor & Burden", CosLaborBurdenAmt,
+			        LineItem = "Equipment & Material", CosEquipMatAmt,
+			        LineItem = "Subcontract", CosSubcontractAmt,
+			        LineItem = "Discounts", CosDiscountsAmt,
+			        LineItem = "Tax Expense", CosTaxExpenseAmt,
+			        LineItem = "Gross Profit", GrossProfitAmt,
+			        LineItem = "Operations Expense", OpsExpenseAmt,
+			        LineItem = "Actual Gross Profit", ActualGrossProfitAmt,
+			        LineItem = "Sales Expense", SalesExpenseAmt,
+			        LineItem = "G & A Expense", GAExpenseAmt,
+			        LineItem = "Other Income & Expense", OtherIncomeExpenseAmt,
+			        LineItem = "Net Profit", NetProfitAmt,
+			        BLANK ()
+			    )
+		formatString: $#,0;($#,0);$#,0
+		isHidden
+		displayFolder: 7. Helper\7.3 P&L\YTD
+		lineageTag: 5483baec-8776-4073-ae54-0eab23491a10
+
+	/// Text operator for the current P&L row (+ / - / = / +/-). Returns an operator on both section header rows and line item rows when any of the main P&L values are present.
+	measure 'P&L Operator' =
+			VAR HasAnyValue =
+			    NOT ISBLANK ( [P&L Amount (YTD)] )
+			        || NOT ISBLANK ( [P&L Budget Amount (YTD)] )
+			        || NOT ISBLANK ( [P&L Amount PY (YTD)] )
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			VAR LineItem = SELECTEDVALUE ( 'UI_P&L Structure'[Line Item] )
+			VAR IsLine = ISINSCOPE ( 'UI_P&L Structure'[Line Item] )
+			RETURN
+			    IF (
+			        NOT HasAnyValue || ISBLANK ( Section ),
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            IsLine && Section = "REVENUE", "+",
+			            NOT IsLine && Section = "REVENUE", "+",
+			
+			            IsLine && Section = "COST OF SALES", "-",
+			            NOT IsLine && Section = "COST OF SALES", "-",
+			
+			            Section = "GROSS PROFIT", "=",
+			            Section = "OPERATIONS EXPENSE", "-",
+			            Section = "ACTUAL GROSS PROFIT", "=",
+			            Section = "SG&A EXPENSE", "-",
+			            Section = "OTHER INCOME & EXPENSE", "+/-",
+			            Section = "NET PROFIT", "=",
+			            BLANK ()
+			        )
+			    )
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: 2710a298-0b7e-499a-8cd1-7602eb060697
+
+	/// Helper numeric sign (+1/-1/0) corresponding to the P&L math direction for the current line item. Useful for conditional formatting or derived signed metrics.
+	measure 'P&L Row Sign' =
+			VAR Section = SELECTEDVALUE ( 'UI_P&L Structure'[Section] )
+			VAR LineItem = SELECTEDVALUE ( 'UI_P&L Structure'[Line Item] )
+			RETURN
+			    IF (
+			        ISBLANK ( LineItem ),
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            Section = "REVENUE", 1,
+			            LineItem IN { "Labor & Burden", "Equipment & Material", "Subcontract", "Discounts", "Tax Expense" }, -1,
+			            LineItem IN { "Operations Expense", "Sales Expense", "G & A Expense" }, -1,
+			            LineItem = "Other Income & Expense", 1,
+			            LineItem IN { "Gross Profit", "Actual Gross Profit", "Net Profit" }, 0,
+			            BLANK ()
+			        )
+			    )
+		formatString: 0;-0;0
+		isHidden
+		displayFolder: 7. Helper\7.3 P&L\YTD
+		lineageTag: 3996aa79-c68e-4355-9b0d-75a09708e58b
+
+	measure 'P&L Divider' = " "
+		displayFolder: 1. GL Financials\4. P&L\1. YTD
+		lineageTag: c8c62224-2419-4306-82e8-62db4947b4c3
+
+	/// Gross Profit amount over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Gross Profit' from UI_P&L Structure.
+	measure 'P&L Gross Profit' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Gross Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\2. Period
+		lineageTag: 8d3ac1a4-afde-4e05-811e-ef96ef936fa3
+
+	/// Prior-year Gross Profit aligned to the visible (completed) date context. Blanks out months that are incomplete in the current year context. Uses the P&L line-item logic for 'Gross Profit' from UI_P&L Structure.
+	measure 'P&L Gross Profit PY' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			VAR DatesPY =
+			    SELECTCOLUMNS (
+			        ADDCOLUMNS ( DatesCompleted, "DatePY", EDATE ( [Date], -12 ) ),
+			        "Date", [DatePY]
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Gross Profit",
+			        TREATAS ( DatesPY, FYCALENDAR_D[Date] )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\2. Period
+		lineageTag: 7eee3cad-3e96-46f4-b229-4588bb539fa5
+
+	/// Budget Gross Profit over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Gross Profit' from UI_P&L Structure.
+	measure 'P&L Gross Profit Budget' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Budget Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Gross Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\2. Period
+		lineageTag: 2527d144-5fee-4d02-b35f-a82de31a59fc
+
+	/// Net Profit amount over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Net Profit' from UI_P&L Structure.
+	measure 'P&L Net Profit' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Net Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\2. Period
+		lineageTag: 0edfea89-f040-47f3-8fd9-2c384b6fdfb3
+
+	/// Prior-year Net Profit aligned to the visible (completed) date context. Blanks out months that are incomplete in the current year context. Uses the P&L line-item logic for 'Net Profit' from UI_P&L Structure.
+	measure 'P&L Net Profit PY' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			VAR DatesPY =
+			    SELECTCOLUMNS (
+			        ADDCOLUMNS ( DatesCompleted, "DatePY", EDATE ( [Date], -12 ) ),
+			        "Date", [DatePY]
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Net Profit",
+			        TREATAS ( DatesPY, FYCALENDAR_D[Date] )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\2. Period
+		lineageTag: d315414a-a722-493f-bb77-cd328429159b
+
+	/// Budget Net Profit over the visible date context (e.g., by fiscal month on axis), excluding incomplete months. Uses the P&L line-item logic for 'Net Profit' from UI_P&L Structure.
+	measure 'P&L Net Profit Budget' =
+			VAR DatesCompleted =
+			    CALCULATETABLE (
+			        VALUES ( FYCALENDAR_D[Date] ),
+			        KEEPFILTERS ( FYCALENDAR_D[Is Completed Month] = TRUE () )
+			    )
+			RETURN
+			    CALCULATE (
+			        [P&L Budget Amount (YTD) (Line)],
+			        'UI_P&L Structure'[Line Item] = "Net Profit",
+			        DatesCompleted
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\4. P&L\2. Period
+		lineageTag: 18b9f4f4-ce03-41ab-abf6-5184f5d9a663
+
+	/// Filter helper for Master Customer Name slicers: returns 1 when the customer has revenue in the current filter context (respects page filters like date/division/stream).
+	measure 'Customer Has Revenue' = IF ( [Total Revenue] > 0, 1, 0 )
+		formatString: 0
+		displayFolder: 6. Customer Status\6.0 UI
+		lineageTag: 59449520-3494-486b-91da-8218f7fad4da
+
+	/// Prior-year total gross profit percent over the rolling 12 months aligned to the financial as-of anchor month end.
+	measure 'Total GP % PY (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        DIVIDE (
+			            CALCULATE ( [Total Gross Profit], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) ),
+			            CALCULATE ( [Total Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\3. Gross Profit\7. Time Intelligence\R12M As Of
+		lineageTag: cf988878-0c4e-44d6-947e-0d9c64667dec
+
+	/// Text indicator showing total gross profit % delta vs prior year for the R12M As Of framework (arrow + absolute delta, formatted as %). Returns BLANK when CY or PY is missing/zero.
+	measure 'Total GP % Trend vs PY (R12M As Of)' =
+			VAR CY = [Total GP % (R12M As Of)]
+			VAR PY = [Total GP % PY (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR Icon =
+			            SWITCH (
+			                TRUE (),
+			                Diff > 0, UNICHAR ( 9650 ),
+			                Diff < 0, UNICHAR ( 9660 ),
+			                UNICHAR ( 9644 )
+			            )
+			        VAR DiffText =
+			            IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			        RETURN
+			            Icon & " " & DiffText
+			    )
+		displayFolder: 2. Customer Financials\3. Gross Profit\7. Time Intelligence\R12M As Of\Labels
+		lineageTag: f4228e70-c14e-4810-90f8-74f5da4bfd9d
+
+	/// Text indicator showing total revenue change vs prior year for the R12M As Of framework (arrow + percent change). Returns BLANK when CY or PY is missing/zero.
+	measure 'Total Revenue Trend vs PY (R12M As Of)' =
+			VAR CY = [Total Revenue (R12M As Of)]
+			VAR PY = [Total Revenue PY (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR PctChange = DIVIDE ( Diff, PY )
+			        VAR Icon =
+			            SWITCH (
+			                TRUE (),
+			                PctChange > 0, UNICHAR ( 9650 ),
+			                PctChange < 0, UNICHAR ( 9660 ),
+			                UNICHAR ( 9644 )
+			            )
+			        VAR PctText =
+			            IF ( PctChange >= 0, UNICHAR ( 8199 ) & FORMAT ( PctChange, "0.0%" ), FORMAT ( PctChange, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		displayFolder: 2. Customer Financials\1. Revenue\7. Time Intelligence\R12M As Of\Labels
+		lineageTag: 47309a7d-7e68-4207-89da-fd81745865c7
+
+	/// Helper (hidden): revenue delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'Revenue Δ vs PY (R12M As Of)' = [Total Revenue (R12M As Of)] - [Total Revenue PY (R12M As Of)]
+		formatString: $#,0;($#,0);$#,0
+		isHidden
+		displayFolder: 7. Helper\Conditional Formatting
+		lineageTag: 5aa07c06-a220-479c-b036-7eef1f69b919
+
+	/// Hex color for revenue trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'Revenue Trend Color (R12M As Of)' =
+			VAR Delta = [Revenue Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 8. UI\Conditional Formatting
+		lineageTag: 5cbb36ba-fbaf-472d-b9f5-e6b7cceff1cc
+
+	/// Helper (hidden): total GP% delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'Total GP % Δ vs PY (R12M As Of)' = [Total GP % (R12M As Of)] - [Total GP % PY (R12M As Of)]
+		formatString: 0.00%;-0.00%;0.00%
+		isHidden
+		displayFolder: 7. Helper\Conditional Formatting
+		lineageTag: efc3769a-9532-4e19-aee3-3591f65ac4f2
+
+	/// Hex color for total GP% trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'Total GP % Trend Color (R12M As Of)' =
+			VAR Delta = [Total GP % Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 8. UI\Conditional Formatting
+		lineageTag: 7b0e1103-50d8-492f-8518-83e50b3d9fe0
+
+	/// Helper (hidden): NRR% delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'NRR % Δ vs PY (R12M As Of)' = [Net Revenue Retention % (R12M As Of)] - [Net Revenue Retention % PY (R12M As Of)]
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: 7. Helper\Conditional Formatting
+		lineageTag: c12e6319-cc80-4274-a2cf-e03559427d76
+
+	/// Hex color for NRR trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'NRR Trend Color (R12M As Of)' =
+			VAR Delta = [NRR % Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 8. UI\Conditional Formatting
+		lineageTag: 4b063dd2-f14f-46d6-934f-9aaf3c085e05
+
+	/// Helper (hidden): GRR% delta vs PY for R12M As Of conditional formatting (CY - PY).
+	measure 'GRR % Δ vs PY (R12M As Of)' = [Gross Revenue Retention % (R12M As Of)] - [Gross Revenue Retention % PY (R12M As Of)]
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: 7. Helper\Conditional Formatting
+		lineageTag: 65a22a46-1fb4-4e59-a290-eefc5655977b
+
+	/// Hex color for GRR trend (R12M As Of): positive=#5FB3A2, negative=#D17A73, neutral/blank=#425563.
+	measure 'GRR Trend Color (R12M As Of)' =
+			VAR Delta = [GRR % Δ vs PY (R12M As Of)]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Delta ) || Delta = 0, "#425563",
+			        Delta > 0, "#5FB3A2",
+			        "#D17A73"
+			    )
+		displayFolder: 8. UI\Conditional Formatting
+		lineageTag: 3f6a87ea-22fb-475d-a603-c562e22c470c
+
+	measure 'Customer Lifecycle Status Color' = ```
+			
+			VAR MonthsInactive = [Months Since Last Billing]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( MonthsInactive ), "#BDBDBD", -- No Activity
+			        MonthsInactive < 6,         "#5FB3A2", -- Active
+			        MonthsInactive < 12,        "#EBC06D", -- Dormant
+			        "#D17A73"                              -- Inactive
+			    )
+			
+			```
+		displayFolder: 8. UI\Conditional Formatting
+		lineageTag: e3cd322f-baea-4345-a440-d92ecbe226bb
+
+	/// Rank of the current master customer by Total Revenue within the resolved Industrial Group (dense rank, descending). Resolves Industrial Group as the single non-blank value across the selected master customer. Returns BLANK when Industrial Group is ambiguous/blank or customer has no revenue.
+	measure 'Industrial Revenue Rank' =
+			VAR GroupValues = FILTER ( VALUES ( CUSTOMERS_D[Industrial Group] ), NOT ISBLANK ( CUSTOMERS_D[Industrial Group] ) )
+			VAR ThisGroup = IF ( COUNTROWS ( GroupValues ) = 1, MAXX ( GroupValues, CUSTOMERS_D[Industrial Group] ) )
+			VAR ThisRevenue = [Total Revenue]
+			VAR MastersInGroup =
+			    CALCULATETABLE (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        ALL ( CUSTOMERS_D ),
+			        CUSTOMERS_D[Industrial Group] = ThisGroup
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( ThisGroup ) || ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			        BLANK (),
+			        RANKX ( MastersInGroup, CALCULATE ( [Total Revenue] ), , DESC, Dense )
+			    )
+		formatString: #,0
+		displayFolder: 4. Customer Metrics\4.2 Rank
+		lineageTag: 9daba2cd-7871-4c8c-89e9-78d143ca08a2
+
+	/// Formatted rank string within the resolved Industrial Group (e.g., '#12 of 340'), based on distinct master customers with Total Revenue > 0. Resolves Industrial Group as the single non-blank value across the selected master customer.
+	measure 'Industrial Rank Context String' =
+			VAR GroupValues = FILTER ( VALUES ( CUSTOMERS_D[Industrial Group] ), NOT ISBLANK ( CUSTOMERS_D[Industrial Group] ) )
+			VAR GroupCount = COUNTROWS ( GroupValues )
+			VAR ThisGroup = IF ( GroupCount = 1, MAXX ( GroupValues, CUSTOMERS_D[Industrial Group] ) )
+			VAR ThisRevenue = [Total Revenue]
+			VAR RankVal = [Industrial Revenue Rank]
+			VAR MastersInGroup =
+			    CALCULATETABLE (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        ALL ( CUSTOMERS_D ),
+			        CUSTOMERS_D[Industrial Group] = ThisGroup
+			    )
+			VAR TotalMasters =
+			    COUNTROWS ( FILTER ( MastersInGroup, CALCULATE ( [Total Revenue] ) > 0 ) )
+			RETURN
+			    IF (
+			        GroupCount = 0,
+			        "--",
+			        IF (
+			            GroupCount > 1,
+			            "Multiple",
+			            IF (
+			                ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			                "No Revenue",
+			                "#" & FORMAT ( RankVal, "#,0" ) & " of " & FORMAT ( TotalMasters, "#,0" )
+			            )
+			        )
+			    )
+		displayFolder: 8. UI\Customer Metrics
+		lineageTag: 8046ee5a-3a7a-409d-b89f-0cea66ce0805
+
+	/// Master-customer rank by rolling 12-month Total Revenue ending at the financial as-of anchor (distinct master customers). Returns BLANK for customers with no R12M revenue.
+	measure 'Customer Revenue Rank (R12M As Of)' =
+			VAR ThisRevenue = [Total Revenue (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			        BLANK (),
+			        RANKX (
+			            ALL ( CUSTOMERS_D[Master Customer Name] ),
+			            CALCULATE ( [Total Revenue (R12M As Of)] ),
+			            ,
+			            DESC,
+			            Dense
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 4. Customer Metrics\4.2 Rank
+		lineageTag: fa77710c-0ec3-457e-9dc1-72e4009ec402
+
+	/// Formatted master-customer rank string for the R12M As Of window (e.g., '#12 of 1,234').
+	measure 'Customer Rank Context String (R12M As Of)' =
+			VAR RankVal = [Customer Revenue Rank (R12M As Of)]
+			VAR ThisRevenue = [Total Revenue (R12M As Of)]
+			VAR TotalCustomers =
+			    CALCULATE (
+			        DISTINCTCOUNT ( CUSTOMERS_D[Master Customer Name] ),
+			        FILTER ( ALL ( CUSTOMERS_D[Master Customer Name] ), [Total Revenue (R12M As Of)] > 0 )
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			        "No Revenue",
+			        "#" & FORMAT ( RankVal, "#,0" ) & " of " & FORMAT ( TotalCustomers, "#,0" )
+			    )
+		displayFolder: 8. UI\Customer Metrics
+		lineageTag: cd6bb597-9a42-47cd-ad37-a1958e75e184
+
+	/// GL revenue (credits - debits) for revenue accounts, scoped to the project-market set that best aligns to selected-method Projects revenue (DESIGN BUILD, PERFORMANCE CONTRACT, CONTROLS, PLAN SPEC, INDUSTRIAL, SPECIAL PROJECT). Completed months only via [GL Revenue].
+	measure 'GL Revenue (Projects - Amend Markets)' =
+			CALCULATE(
+			    [GL Revenue],
+			    GL_ACCT_D[MARKET] IN {
+			        "DESIGN BUILD",
+			        "PERFORMANCE CONTRACT",
+			        "CONTROLS",
+			        "PLAN SPEC",
+			        "INDUSTRIAL",
+			        "SPECIAL PROJECT"
+			    }
+			)
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 1. GL Financials\1. Revenue
+		lineageTag: fd7370ee-a5b1-4fa0-802e-68266945d059
+
+	/// Sandbox-style GL revenue total: -SUM(POSTING_DATA_F[PERDBLNC]) for REVENUE accounts. Mirrors Revenue Sandbox definitions.
+	measure 'GL Revenue (Total - Sandbox)' =
+			- CALCULATE(
+			    SUM(POSTING_DATA_F[PERDBLNC]),
+			    GL_ACCT_D[ACCOUNT_TYPE] = "REVENUE"
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 9. Deprecated\8.1 Sandbox\GL Financials
+		lineageTag: 41bc2eb0-ad48-453e-8411-e4e401e198a0
+
+	/// Sandbox-style GL revenue mapped to Projects markets via explicit market list. Mirrors Revenue Sandbox definitions.
+	measure 'GL Revenue (Projects - Sandbox)' =
+			CALCULATE(
+			    [GL Revenue (Total - Sandbox)],
+			    KEEPFILTERS(
+			        GL_ACCT_D[MARKET] IN {
+			            "O&M PROJECTS",
+			            "SPECIAL PROJECT",
+			            "PROJECTS",
+			            "PLAN SPEC",
+			            "CONTROLS",
+			            "INDUSTRIAL",
+			            "PERFORMANCE CONTRACT",
+			            "DESIGN BUILD"
+			        }
+			    )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 9. Deprecated\8.1 Sandbox\GL Financials
+		lineageTag: 86e4efd8-344d-403a-bf57-4b181a9f3e8e
+
+	/// Revenue for a single UI_ActiveItems row over the rolling 12 months ending at the last completed month end. Routes to Projects vs Service Contracts based on UI_ActiveItems[Item Type] and applies the model's active flags.
+	measure 'Active Item Revenue (R12M As Of)' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR AsOfMonthEnd =
+			    CALCULATE(
+			        MAX('FYCALENDAR_D'[Date]),
+			        TREATAS({ TRUE() }, 'FYCALENDAR_D'[Is Completed Month])
+			    )
+			VAR StartMonthEnd = EOMONTH(EDATE(AsOfMonthEnd, -11), 0)
+			VAR DateFilter = DATESBETWEEN('FYCALENDAR_D'[Date], StartMonthEnd, AsOfMonthEnd)
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Project",
+			            SUMX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        SUM('PROJECTS_Financials_F'[Revenue Amount]),
+			                        KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                        TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                        DateFilter
+			                    )
+			            ),
+			        ItemType = "Service Contract",
+			            SUMX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        SUM('SERVCONTRACTS_Financials_F'[Revenue Amount]),
+			                        KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                        TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey]),
+			                        DateFilter
+			                    )
+			            ),
+			        BLANK()
+			    )
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: e2b48778-6806-4eba-93be-0dc22c29121d
+
+	/// Helper (hidden): returns 1 when the current UI_ActiveItems row is considered active by flags (Projects: not inactive; Contracts: active contract year).
+	measure 'Active Item Is Active (Flag)' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			VAR AnyActive =
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Project",
+			            MAXX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    IF(
+			                        CALCULATE(
+			                            COUNTROWS('PROJECTS_D'),
+			                            KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                            TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                        ) > 0,
+			                        1
+			                    )
+			            ),
+			        ItemType = "Service Contract",
+			            MAXX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    IF(
+			                        CALCULATE(
+			                            COUNTROWS('SERVCONTRACTS_D'),
+			                            KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                            TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                        ) > 0,
+			                        1
+			                    )
+			            ),
+			        BLANK()
+			    )
+			RETURN
+			    AnyActive
+		formatString: 0
+		isHidden
+		displayFolder: 7. Helper\UI\Active Items
+		lineageTag: 916c958f-3589-4a45-92d0-db3d2db792ed
+
+	/// Helper (hidden): returns 1 when the current UI_ActiveItems row is active by flags AND has non-zero revenue in the R12M As Of window. Use as a visual filter to show only active items with revenue for the selected customer.
+	measure 'Active Item Show Row' =
+			VAR IsActive = [Active Item Is Active (Flag)]
+			VAR Rev = [Active Item Revenue (R12M As Of)]
+			RETURN
+			    IF(IsActive = 1 && NOT ISBLANK(Rev) && Rev <> 0, 1)
+		formatString: 0
+		isHidden
+		displayFolder: 7. Helper\UI\Active Items
+		lineageTag: 372e904b-01d1-4146-a51d-540cd4b03d5a
+
+	/// Start date for the current UI_ActiveItems row. Service Contracts: contract start date. Projects: first month-end with non-zero revenue (first billing) for the project.
+	measure 'Active Item Start Date' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Service Contract",
+			            MINX(
+			                Keys,
+			                VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        MIN('SERVCONTRACTS_D'[Start Date]),
+			                        TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                    )
+			            ),
+			        ItemType = "Project",
+			            MINX(
+			                Keys,
+			                VAR ProjectKey = 'UI_ActiveItems'[Item Key]
+			                VAR FirstRevenueDate =
+			                    MINX(
+			                        FILTER(
+			                            VALUES('FYCALENDAR_D'[Date]),
+			                            CALCULATE(
+			                                SUM('PROJECTS_Financials_F'[Revenue Amount]),
+			                                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                            ) <> 0
+			                        ),
+			                        'FYCALENDAR_D'[Date]
+			                    )
+			                RETURN
+			                    FirstRevenueDate
+			            ),
+			        BLANK()
+			    )
+		formatString: MMM d, yyyy
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: ffff250a-63a1-49d4-9586-6eada6586879
+
+	/// Total revenue across all active items (Projects not inactive + Service Contract active contract years), respecting current filter context (including date context). Excludes items with zero revenue by requiring [Active Item Show Row] = 1 at item grain.
+	measure 'Active Items Total Revenue' =
+			SUMX(
+			    FILTER(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        CALCULATE([Active Item Show Row]) = 1
+			    ),
+			    CALCULATE([Active Item Revenue (R12M As Of)])
+			)
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 8c5ca05f-c0fa-46ab-8cc1-4e1954bf5278
+
+	/// Total gross profit across all active items (Projects not inactive + Service Contract active contract years), respecting current filter context (including date context). Uses routed revenue/cost and excludes items with zero revenue by requiring [Active Item Show Row] = 1 at item grain.
+	measure 'Active Items Total Gross Profit' =
+			SUMX(
+			    FILTER(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        CALCULATE([Active Item Show Row]) = 1
+			    ),
+			    VAR ItemType = CALCULATE(SELECTEDVALUE('UI_ActiveItems'[Item Type]))
+			    VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            ItemType = "Project",
+			                CALCULATE(
+			                    SUM('PROJECTS_Financials_F'[Revenue Amount]) - SUM('PROJECTS_Financials_F'[Cost Amount]),
+			                    KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                    TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                ),
+			            ItemType = "Service Contract",
+			                CALCULATE(
+			                    SUM('SERVCONTRACTS_Financials_F'[Revenue Amount]) - SUM('SERVCONTRACTS_Financials_F'[Cost Amount]),
+			                    KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                    TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                ),
+			            BLANK()
+			        )
+			)
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 499e45f4-90dd-42ee-89aa-e68b87daebe3
+
+	/// Gross profit percent across all active items = [Active Items Total Gross Profit] / [Active Items Total Revenue], respecting current filter context.
+	measure 'Active Items Total GP %' = DIVIDE([Active Items Total Gross Profit], [Active Items Total Revenue])
+		formatString: 0.0%
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 69bdb81e-ba1f-44ad-bc59-c0d428004f5d
+
+	/// End date for the current UI_ActiveItems row. Service Contracts: contract end date. Projects: blank (project end dates not used for active-items table). Multi-key safe for duplicate item names.
+	measure 'Active Item End Date' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			VAR RawDate =
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Service Contract",
+			            MAXX(
+			                Keys,
+			                VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        MAX('SERVCONTRACTS_D'[End Date]),
+			                        TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                    )
+			            ),
+			        ItemType = "Project", BLANK(),
+			        BLANK()
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(RawDate),
+			        BLANK(),
+			        DATE(YEAR(RawDate), MONTH(RawDate), DAY(RawDate))
+			    )
+		formatString: MMM d, yyyy
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 16bfbf00-1070-4609-b011-74d409d6217b
+
+	/// Contract value for the current UI_ActiveItems row. Projects: latest (as of last completed month end) value of Orig Contract Amount + Confirmed Chg Order Amt from PROJECTS_Financials_F. Service Contracts: Annual Contract Value from SERVCONTRACTS_D. Multi-key safe for duplicate item names. Totals across mixed item types are supported.
+	measure 'Active Item Contract Value' =
+			VAR AsOfMonthEnd =
+			    CALCULATE(
+			        MAX('FYCALENDAR_D'[Date]),
+			        TREATAS({ TRUE() }, 'FYCALENDAR_D'[Is Completed Month])
+			    )
+			VAR CalcProject =
+			    SUMX(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        VAR ProjectKey = 'UI_ActiveItems'[Item Key]
+			        VAR LatestMonthEnd =
+			            MAXX(
+			                FILTER(
+			                    VALUES('PROJECTS_Financials_F'[Month End]),
+			                    'PROJECTS_Financials_F'[Month End] <= AsOfMonthEnd
+			                        && NOT ISBLANK(
+			                            CALCULATE(
+			                                MAX('PROJECTS_Financials_F'[Orig Contract Amount])
+			                                    + MAX('PROJECTS_Financials_F'[Confirmed Chg Order Amt]),
+			                                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                            )
+			                        )
+			                ),
+			                'PROJECTS_Financials_F'[Month End]
+			            )
+			        RETURN
+			            CALCULATE(
+			                MAX('PROJECTS_Financials_F'[Orig Contract Amount])
+			                    + MAX('PROJECTS_Financials_F'[Confirmed Chg Order Amt]),
+			                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                TREATAS({ LatestMonthEnd }, 'PROJECTS_Financials_F'[Month End])
+			            )
+			    )
+			VAR CalcContract =
+			    SUMX(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			        RETURN
+			            CALCULATE(
+			                MAX('SERVCONTRACTS_D'[Annual Contract Value]),
+			                TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			            )
+			    )
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			RETURN
+			    IF(
+			        HASONEVALUE('UI_ActiveItems'[Item Type]),
+			        IF(
+			            ItemType = "Project",
+			            CalcProject,
+			            IF(ItemType = "Service Contract", CalcContract)
+			        ),
+			        CALCULATE(CalcProject, TREATAS({"Project"}, 'UI_ActiveItems'[Item Type]))
+			            + CALCULATE(CalcContract, TREATAS({"Service Contract"}, 'UI_ActiveItems'[Item Type]))
+			    )
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 55d1877b-885d-4711-b686-2898bffe3b4f
+
+	/// Percent complete for the current UI_ActiveItems row. Projects: cost-based percent complete = cumulative ActualCost_Mo / cumulative ForecastCost_Mo as of last completed month end, clamped to [0,1]. Service Contracts: term elapsed percent based on (Last Billing Month End - Start Date) / (End Date - Start Date), clamped to [0,1]. Multi-key safe.
+	measure 'Active Item % Complete' =
+			VAR AsOfMonthEnd =
+			    CALCULATE(
+			        MAX('FYCALENDAR_D'[Date]),
+			        TREATAS({ TRUE() }, 'FYCALENDAR_D'[Is Completed Month])
+			    )
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			
+			VAR ProjectsPOC =
+			    AVERAGEX(
+			        Keys,
+			        VAR ProjectKey = 'UI_ActiveItems'[Item Key]
+			        VAR ActualITD =
+			            CALCULATE(
+			                SUM('PROJECTS_Financials_F'[ActualCost_Mo]),
+			                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                FILTER(ALL('FYCALENDAR_D'[Date]), 'FYCALENDAR_D'[Date] <= AsOfMonthEnd)
+			            )
+			        VAR ForecastITD =
+			            CALCULATE(
+			                SUM('PROJECTS_Financials_F'[ForecastCost_Mo]),
+			                TREATAS({ ProjectKey }, 'PROJECTS_D'[SurrogateProjectID]),
+			                FILTER(ALL('FYCALENDAR_D'[Date]), 'FYCALENDAR_D'[Date] <= AsOfMonthEnd)
+			            )
+			        VAR PctRaw = DIVIDE(ActualITD, ForecastITD)
+			        RETURN
+			            IF(
+			                ISBLANK(PctRaw),
+			                BLANK(),
+			                MIN(1, MAX(0, PctRaw))
+			            )
+			    )
+			
+			VAR ContractsElapsed =
+			    AVERAGEX(
+			        Keys,
+			        VAR AgreementKey = 'UI_ActiveItems'[Item Key]
+			        VAR StartDate =
+			            CALCULATE(
+			                MIN('SERVCONTRACTS_D'[Start Date]),
+			                TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			            )
+			        VAR EndDate =
+			            CALCULATE(
+			                MAX('SERVCONTRACTS_D'[End Date]),
+			                TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			            )
+			        RETURN
+			            IF(
+			                ISBLANK(StartDate)
+			                    || ISBLANK(EndDate)
+			                    || EndDate <= StartDate,
+			                BLANK(),
+			                VAR LastBillingMonthEnd =
+			                    MAXX(
+			                        FILTER(
+			                            VALUES('SERVCONTRACTS_Financials_F'[Month End]),
+			                            'SERVCONTRACTS_Financials_F'[Month End] <= AsOfMonthEnd
+			                                && CALCULATE(
+			                                    SUM('SERVCONTRACTS_Financials_F'[Revenue Amount]),
+			                                    TREATAS({ AgreementKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                                ) <> 0
+			                        ),
+			                        'SERVCONTRACTS_Financials_F'[Month End]
+			                    )
+			                VAR Anchor = COALESCE(LastBillingMonthEnd, AsOfMonthEnd)
+			                VAR PctRaw = DIVIDE(Anchor - StartDate, EndDate - StartDate)
+			                RETURN
+			                    MIN(1, MAX(0, PctRaw))
+			            )
+			    )
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Project", ProjectsPOC,
+			        ItemType = "Service Contract", ContractsElapsed,
+			        BLANK()
+			    )
+		formatString: 0.0%
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: d2545398-1450-4a50-98ac-6bc49c7654fe
+
+	/// Estimated total cost for the current UI_ActiveItems row. Service Contracts: SERVCONTRACTS_D[Estimate Total Cost] routed by AgreementKey. Projects: JOBS_D_LOOKUP[Total Estimated Cost] routed by matching UI_ActiveItems[Item Key] to JOBS_D_LOOKUP[Project Item Key] (JOB_<CustomerKey>_<JobKey>). Totals across mixed item types are supported.
+	measure 'Active Item Estimated Cost' =
+			VAR ItemType = SELECTEDVALUE ( UI_ActiveItems[Item Type] )
+			VAR ItemKeys = VALUES ( UI_ActiveItems[Item Key] )
+			RETURN
+			    IF (
+			        ISINSCOPE ( UI_ActiveItems[Item Type] ),
+			        SWITCH (
+			            TRUE (),
+			            ItemType = "Service Contract",
+			                CALCULATE (
+			                    SUM ( SERVCONTRACTS_D[Estimate Total Cost] ),
+			                    TREATAS ( ItemKeys, SERVCONTRACTS_D[AgreementKey] )
+			                ),
+			            ItemType = "Project",
+			                CALCULATE (
+			                    SUM ( JOBS_D_LOOKUP[Total Estimated Cost] ),
+			                    TREATAS ( ItemKeys, JOBS_D_LOOKUP[Project Item Key] )
+			                ),
+			            BLANK ()
+			        ),
+			        // Totals across mixed item types
+			        VAR ProjectKeys = CALCULATETABLE ( VALUES ( UI_ActiveItems[Item Key] ), UI_ActiveItems[Item Type] = "Project" )
+			        VAR ContractKeys = CALCULATETABLE ( VALUES ( UI_ActiveItems[Item Key] ), UI_ActiveItems[Item Type] = "Service Contract" )
+			        VAR Est_Project =
+			            CALCULATE (
+			                SUM ( JOBS_D_LOOKUP[Total Estimated Cost] ),
+			                TREATAS ( ProjectKeys, JOBS_D_LOOKUP[Project Item Key] )
+			            )
+			        VAR Est_Contract =
+			            CALCULATE (
+			                SUM ( SERVCONTRACTS_D[Estimate Total Cost] ),
+			                TREATAS ( ContractKeys, SERVCONTRACTS_D[AgreementKey] )
+			            )
+			        RETURN
+			            Est_Project + Est_Contract
+			    )
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: c68aa84f-d517-4fb5-90f6-863fd5391dc2
+
+	/// Sold gross profit percent for UI_ActiveItems: (Contract Value - Estimated Cost) / Contract Value, weighted at totals across visible items where estimated cost is available. Service Contracts use SERVCONTRACTS_D[Estimate Total Cost]. Projects use JOBS_D_LOOKUP[Total Estimated Cost] parsed from UI_ActiveItems[Item Key]. Returns BLANK when Contract Value is blank/0 or Estimated Cost is blank.
+	measure 'Active Item Sold GP %' =
+			VAR ItemType = SELECTEDVALUE ( UI_ActiveItems[Item Type] )
+			VAR ContractValue = '_Key Measures'[Active Item Contract Value]
+			VAR EstCost = '_Key Measures'[Active Item Estimated Cost]
+			RETURN
+			    IF (
+			        ISINSCOPE ( UI_ActiveItems[Item Type] ),
+			        IF ( ISBLANK ( ContractValue ) || ContractValue = 0 || ISBLANK ( EstCost ), BLANK (), DIVIDE ( ContractValue - EstCost, ContractValue ) ),
+			        // Totals: weight by contract value, but only for items with an estimate.
+			        VAR ItemsWithEstimate =
+			            FILTER ( VALUES ( UI_ActiveItems[Item Key] ), NOT ISBLANK ( CALCULATE ( '_Key Measures'[Active Item Estimated Cost] ) ) )
+			        VAR TotalValue = SUMX ( ItemsWithEstimate, CALCULATE ( '_Key Measures'[Active Item Contract Value] ) )
+			        VAR TotalEst = SUMX ( ItemsWithEstimate, CALCULATE ( '_Key Measures'[Active Item Estimated Cost] ) )
+			        RETURN
+			            DIVIDE ( TotalValue - TotalEst, TotalValue )
+			    )
+		formatString: 0.0%;-0.0%;-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 13c8326e-1951-4103-8e1a-2be202504576
+
+	measure 'Placeholder v1' = ```
+			BLANK() 
+			```
+		formatString: 0
+		displayFolder: 7. Helper\Misc
+		lineageTag: 44142b82-150f-4c2c-9a1f-88b53a2e11c5
+
+	measure 'Placeholder v2' = ```
+			BLANK() 
+			```
+		formatString: 0
+		displayFolder: 7. Helper\Misc
+		lineageTag: 6df80c27-b6f5-4247-b522-df616844579c
+
+	/// Total cost across all active items (Projects not inactive + Service Contract active contract years), respecting current filter context (including date context). Routes cost by UI_ActiveItems[Item Key] and excludes items with zero revenue by requiring [Active Item Show Row] = 1 at item grain.
+	measure 'Active Items Total Cost' =
+			SUMX(
+			    FILTER(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        CALCULATE([Active Item Show Row]) = 1
+			    ),
+			    VAR ItemType = CALCULATE(SELECTEDVALUE('UI_ActiveItems'[Item Type]))
+			    VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            ItemType = "Project",
+			                CALCULATE(
+			                    SUM('PROJECTS_Financials_F'[Cost Amount]),
+			                    KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                    TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                ),
+			            ItemType = "Service Contract",
+			                CALCULATE(
+			                    SUM('SERVCONTRACTS_Financials_F'[Cost Amount]),
+			                    KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                    TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                ),
+			            BLANK()
+			        )
+			)
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 98486475-7bad-4b12-aacd-bc95e7948bc0
+
+	/// Revenue for a single UI_ActiveItems row, routed by [Item Type] and [Item Key]. Respects current date filter context; when no date filter is applied, this is inception-to-date (ITD). Projects: PROJECTS_Financials_F[Revenue Amount] with PROJECTS_D[Inactive]=FALSE(). Service Contracts: SERVCONTRACTS_Financials_F[Revenue Amount] with SERVCONTRACTS_D[IsActiveContractYear]=TRUE(). Multi-key safe for duplicate item names.
+	measure 'Active Item Revenue (ITD)' =
+			VAR ItemType = SELECTEDVALUE('UI_ActiveItems'[Item Type])
+			VAR Keys = VALUES('UI_ActiveItems'[Item Key])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ItemType = "Project",
+			            SUMX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        SUM('PROJECTS_Financials_F'[Revenue Amount]),
+			                        KEEPFILTERS('PROJECTS_D'[Inactive] = FALSE()),
+			                        TREATAS({ ItemKey }, 'PROJECTS_D'[SurrogateProjectID])
+			                    )
+			            ),
+			        ItemType = "Service Contract",
+			            SUMX(
+			                Keys,
+			                VAR ItemKey = 'UI_ActiveItems'[Item Key]
+			                RETURN
+			                    CALCULATE(
+			                        SUM('SERVCONTRACTS_Financials_F'[Revenue Amount]),
+			                        KEEPFILTERS('SERVCONTRACTS_D'[IsActiveContractYear] = TRUE()),
+			                        TREATAS({ ItemKey }, 'SERVCONTRACTS_D'[AgreementKey])
+			                    )
+			            ),
+			        BLANK()
+			    )
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 62980a98-ebc5-48f8-af55-2c7a1b15ec5d
+
+	/// Total revenue across all active items (Projects not inactive + Service Contract active contract years), routed by UI_ActiveItems[Item Key]. Respects current date filter context; when no date filter is applied, this is inception-to-date (ITD). Excludes items with zero revenue by requiring [Active Item Show Row] = 1 at item grain.
+	measure 'Active Items Total Revenue (ITD)' =
+			SUMX(
+			    FILTER(
+			        VALUES('UI_ActiveItems'[Item Key]),
+			        CALCULATE([Active Item Show Row]) = 1
+			    ),
+			    CALCULATE([Active Item Revenue (ITD)])
+			)
+		formatString: $#,0;($#,0);-
+		displayFolder: 4. Customer Metrics\Active Items
+		lineageTag: 6ddefbff-e5b8-45a9-85c4-3632fce17681
+
+	/// Rank of the current master customer by Total Revenue (R12M As Of) within the resolved Industrial Group (dense rank, descending). Resolves Industrial Group as the single non-blank value across the selected master customer. Returns BLANK when Industrial Group is ambiguous/blank or customer has no R12M revenue.
+	measure 'Industrial Revenue Rank (R12M As Of)' =
+			VAR GroupValues = FILTER ( VALUES ( CUSTOMERS_D[Industrial Group] ), NOT ISBLANK ( CUSTOMERS_D[Industrial Group] ) )
+			VAR ThisGroup = IF ( COUNTROWS ( GroupValues ) = 1, MAXX ( GroupValues, CUSTOMERS_D[Industrial Group] ) )
+			VAR ThisRevenue = [Total Revenue (R12M As Of)]
+			VAR MastersInGroup =
+			    CALCULATETABLE (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        ALL ( CUSTOMERS_D ),
+			        CUSTOMERS_D[Industrial Group] = ThisGroup
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( ThisGroup ) || ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			        BLANK (),
+			        RANKX ( MastersInGroup, CALCULATE ( [Total Revenue (R12M As Of)] ), , DESC, Dense )
+			    )
+		formatString: #,0
+		displayFolder: 4. Customer Metrics\4.2 Rank
+		lineageTag: 6b3a4254-4c51-4af3-9262-d84dcbd63dbb
+
+	/// Formatted rank string within the resolved Industrial Group for the R12M As Of window (e.g., '#12 of 340'), based on distinct master customers with Total Revenue (R12M As Of) > 0. Resolves Industrial Group as the single non-blank value across the selected master customer.
+	measure 'Industrial Rank Context String (R12M As Of)' =
+			VAR GroupValues = FILTER ( VALUES ( CUSTOMERS_D[Industrial Group] ), NOT ISBLANK ( CUSTOMERS_D[Industrial Group] ) )
+			VAR GroupCount = COUNTROWS ( GroupValues )
+			VAR ThisGroup = IF ( GroupCount = 1, MAXX ( GroupValues, CUSTOMERS_D[Industrial Group] ) )
+			VAR ThisRevenue = [Total Revenue (R12M As Of)]
+			VAR RankVal = [Industrial Revenue Rank (R12M As Of)]
+			VAR MastersInGroup =
+			    CALCULATETABLE (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        ALL ( CUSTOMERS_D ),
+			        CUSTOMERS_D[Industrial Group] = ThisGroup
+			    )
+			VAR TotalMasters =
+			    COUNTROWS ( FILTER ( MastersInGroup, CALCULATE ( [Total Revenue (R12M As Of)] ) > 0 ) )
+			RETURN
+			    IF (
+			        GroupCount = 0,
+			        "--",
+			        IF (
+			            GroupCount > 1,
+			            "Multiple",
+			            IF (
+			                ISBLANK ( ThisRevenue ) || ThisRevenue = 0,
+			                "No Revenue",
+			                "#" & FORMAT ( RankVal, "#,0" ) & " of " & FORMAT ( TotalMasters, "#,0" )
+			            )
+			        )
+			    )
+		displayFolder: 8. UI\Customer Metrics
+		lineageTag: 7e3a2517-ef71-48d2-94ae-9dcaad67ba84
+
+	/// Helper (hidden): returns 1 when the current filter context (e.g., selected master customer) has at least one active project/contract row in UI_ActiveItems with non-zero R12M revenue (per [Active Item Show Row]). Use as a visual filter to show/hide no-data overlays.
+	measure 'Active Items Has Rows (Flag)' =
+			VAR ItemsWithRows =
+			    FILTER (
+			        VALUES ( UI_ActiveItems[Item Key] ),
+			        CALCULATE ( '_Key Measures'[Active Item Show Row] ) = 1
+			    )
+			RETURN
+			    IF ( COUNTROWS ( ItemsWithRows ) > 0, 1, 0 )
+		formatString: 0
+		displayFolder: 7. Helper\UI\Active Items
+		lineageTag: 2e282f2a-2767-4dda-9948-00bfaa9cc773
+
+	/// Helper (hidden): dashboard as-of month end for FY-based visuals = MIN(last date in selected fiscal year, last completed month end). Uses FYCALENDAR_D[Date] min/max per Fiscal Year (does not rely on Fiscal Start/End columns).
+	measure 'Dashboard As Of Month End (FY)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR SelectedFYEnd =
+			    CALCULATE ( MAX ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR LastCompletedMonthEnd =
+			    CALCULATE ( MAX ( FYCALENDAR_D[Date] ), TREATAS ( { TRUE () }, FYCALENDAR_D[Is Completed Month] ) )
+			RETURN
+			    IF ( ISBLANK ( SelectedFY ) || ISBLANK ( SelectedFYEnd ) || ISBLANK ( LastCompletedMonthEnd ), BLANK (), MIN ( SelectedFYEnd, LastCompletedMonthEnd ) )
+		formatString: mmm d, yyyy
+		isHidden
+		displayFolder: 7. Helper\GL Financials\Anchors
+		lineageTag: 98b95a9e-4147-406b-8660-1d57a96da935
+
+	/// GL revenue scoped to the selected stream (All Streams, Projects, Service Contracts, T&M) from UI_Revenue Stream Selector. Uses existing GL revenue stream measures and completed-month logic.
+	measure 'GL Revenue (Selected Stream)' =
+			VAR SelStream = SELECTEDVALUE ( 'UI_Revenue Stream Selector'[Stream], "All Streams" )
+			RETURN
+			    SWITCH (
+			        SelStream,
+			        "All Streams", [GL Revenue],
+			        "Projects", [GL Revenue (Projects)],
+			        "Service Contracts", [GL Revenue (Service Contracts)],
+			        "T&M", [GL Revenue (T&M)],
+			        [GL Revenue]
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\7. Time Intelligence
+		lineageTag: d5ddcd5b-dec3-47fa-b003-ba270b825874
+
+	/// Monthly GL revenue for the selected stream. Intended for month-axis charts; respects current filter context (including Fiscal Year slicer).
+	measure 'GL Revenue (Monthly)' = [GL Revenue (Selected Stream)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\7. Time Intelligence
+		lineageTag: 609f8d8c-0778-4aab-a239-a2c321b29108
+
+	/// Cumulative (running) GL revenue within the selected fiscal year up to the current month on the axis, clamped to [Dashboard As Of Month End (FY)]. Uses min/max FYCALENDAR_D[Date] for the selected Fiscal Year (does not rely on Fiscal Start/End columns). Returns BLANK for months after the dashboard As-Of.
+	measure 'GL Revenue (Cumulative FYTD)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR MonthEndInContext = MAX ( FYCALENDAR_D[Date] )
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStart ) || ISBLANK ( AsOf ) || ISBLANK ( MonthEndInContext ) || MonthEndInContext > AsOf,
+			        BLANK (),
+			        CALCULATE (
+			            [GL Revenue (Selected Stream)],
+			            DATESBETWEEN ( FYCALENDAR_D[Date], FYStart, MonthEndInContext )
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\7. Time Intelligence
+		lineageTag: 57b21ab4-48e5-4398-b450-dec6ce769634
+
+	/// Returns either monthly or cumulative FYTD GL revenue for the selected stream based on UI_Revenue View Selector.
+	measure 'GL Revenue (Monthly/Cumulative)' =
+			VAR ViewSel = SELECTEDVALUE ( 'UI_Revenue View Selector'[View], "Monthly" )
+			RETURN
+			    IF ( ViewSel = "Cumulative", [GL Revenue (Cumulative FYTD)], [GL Revenue (Monthly)] )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\7. Time Intelligence
+		lineageTag: 2d7890a1-31b6-4dc4-974a-e3e08a76a8b0
+
+	/// Prior-year comparator for GL Revenue (Monthly/Cumulative), aligned to the same fiscal-month position and clamped to the dashboard As-Of month. Uses EOMONTH shifts to avoid leap-year month-end mismatches. Monthly branch uses the prior-year month end for the current axis month and returns BLANK for months after As-Of. Cumulative branch computes FYTD through the equivalent prior-year month end using the selected Fiscal Year date range.
+	measure 'GL Revenue PY (Monthly/Cumulative)' =
+			VAR ViewSel = SELECTEDVALUE ( 'UI_Revenue View Selector'[View], "Monthly" )
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR MonthEndInContext = MAX ( FYCALENDAR_D[Date] )
+			VAR MonthEnd = IF ( ISBLANK ( AsOf ), MonthEndInContext, MIN ( MonthEndInContext, AsOf ) )
+			VAR FYStartPY = EOMONTH ( FYStart, -12 )
+			VAR MonthEndPY = EOMONTH ( MonthEnd, -12 )
+			RETURN
+			    IF (
+			        ViewSel = "Cumulative",
+			        IF (
+			            ISBLANK ( AsOf ) || ISBLANK ( FYStartPY ) || ISBLANK ( MonthEndPY ) || ISBLANK ( MonthEndInContext ) || MonthEndInContext > AsOf,
+			            BLANK (),
+			            CALCULATE ( [GL Revenue (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStartPY, MonthEndPY ) )
+			        ),
+			        VAR MonthEndPYMonthly = EOMONTH ( MonthEndInContext, -12 )
+			        RETURN
+			            IF (
+			                ISBLANK ( AsOf ) || ISBLANK ( MonthEndInContext ) || MonthEndInContext > AsOf,
+			                BLANK (),
+			                CALCULATE ( [GL Revenue (Selected Stream)], TREATAS ( { MonthEndPYMonthly }, FYCALENDAR_D[Date] ) )
+			            )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\7. Time Intelligence
+		lineageTag: bade04db-a414-442c-9d73-d80804722c74
+
+	/// GL cost of sales from POSTING_DATA_F, filtered to GL_ACCT_D[ACCOUNT_TYPE] = COST OF SALES and completed months only. Sign convention uses (Debits - Credits) to return positive costs.
+	measure 'GL Cost of Sales' =
+			CALCULATE(
+			    SUM(POSTING_DATA_F[DEBITAMT]) - SUM(POSTING_DATA_F[CRDTAMNT]),
+			    GL_ACCT_D[ACCOUNT_TYPE] = "COST OF SALES",
+			    FYCALENDAR_D[Is Completed Month] = TRUE
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\2. Cost
+		lineageTag: 3a13392a-ea73-4005-a004-e61f16c577bc
+
+	/// GL cost of sales scoped to Projects using STREAM_D/GL market mapping. Completed months only via [GL Cost of Sales].
+	measure 'GL Cost of Sales (Projects)' = CALCULATE ( [GL Cost of Sales], STREAM_D[Stream] = "Projects" )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\2. Cost
+		lineageTag: fe4120a4-30a8-4a5e-8885-900e121f688d
+
+	/// GL cost of sales scoped to Service Contracts using STREAM_D/GL market mapping. Completed months only via [GL Cost of Sales].
+	measure 'GL Cost of Sales (Service Contracts)' = CALCULATE ( [GL Cost of Sales], STREAM_D[Stream] = "Service Contracts" )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\2. Cost
+		lineageTag: 8c8ddf13-9ebe-47fe-b27e-df6c0e7ef79e
+
+	/// GL cost of sales scoped to T&M using STREAM_D/GL market mapping. Completed months only via [GL Cost of Sales].
+	measure 'GL Cost of Sales (T&M)' = CALCULATE ( [GL Cost of Sales], STREAM_D[Stream] = "T&M" )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\2. Cost
+		lineageTag: 83719736-52a1-474f-8aac-dfbd3b85e314
+
+	/// GL gross profit = GL Revenue - GL Cost of Sales. Both components are completed-month only measures.
+	measure 'GL Gross Profit' = [GL Revenue] - [GL Cost of Sales]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit
+		lineageTag: 3b5a8d1c-6894-439d-99b7-226b2c4c561f
+
+	/// GL gross profit scoped to Projects = GL Revenue (Projects) - GL Cost of Sales (Projects).
+	measure 'GL Gross Profit (Projects)' = [GL Revenue (Projects)] - [GL Cost of Sales (Projects)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit
+		lineageTag: 06fa5ffd-b788-4d3b-9c85-3c48edc68988
+
+	/// GL gross profit scoped to Service Contracts = GL Revenue (Service Contracts) - GL Cost of Sales (Service Contracts).
+	measure 'GL Gross Profit (Service Contracts)' = [GL Revenue (Service Contracts)] - [GL Cost of Sales (Service Contracts)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit
+		lineageTag: e4656f7d-a96a-4260-be7b-66fa35eb47b1
+
+	/// GL gross profit scoped to T&M = GL Revenue (T&M) - GL Cost of Sales (T&M).
+	measure 'GL Gross Profit (T&M)' = [GL Revenue (T&M)] - [GL Cost of Sales (T&M)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit
+		lineageTag: bbbc85a1-8ffe-4ab6-892e-3fcdd757184c
+
+	/// GL gross profit scoped to the selected stream (All Streams, Projects, Service Contracts, T&M) from UI_Revenue Stream Selector. Uses existing GL GP stream measures and completed-month logic.
+	measure 'GL Gross Profit (Selected Stream)' =
+			VAR SelStream = SELECTEDVALUE ( 'UI_Revenue Stream Selector'[Stream], "All Streams" )
+			RETURN
+			    SWITCH (
+			        SelStream,
+			        "All Streams", [GL Gross Profit],
+			        "Projects", [GL Gross Profit (Projects)],
+			        "Service Contracts", [GL Gross Profit (Service Contracts)],
+			        "T&M", [GL Gross Profit (T&M)],
+			        [GL Gross Profit]
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\7. Time Intelligence
+		lineageTag: 4217a444-2faa-404d-b997-f73657808718
+
+	/// Monthly GL gross profit for the selected stream. Intended for month-axis charts; respects current filter context (including Fiscal Year slicer).
+	measure 'GL Gross Profit (Monthly)' = [GL Gross Profit (Selected Stream)]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\7. Time Intelligence
+		lineageTag: 1520b695-71ad-4720-9b12-4accd2020299
+
+	/// Cumulative (running) GL gross profit within the selected fiscal year up to the current month on the axis, clamped to [Dashboard As Of Month End (FY)]. Uses min/max FYCALENDAR_D[Date] for the selected Fiscal Year (does not rely on Fiscal Start/End columns). Returns BLANK for months after the dashboard As-Of.
+	measure 'GL Gross Profit (Cumulative FYTD)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR MonthEndInContext = MAX ( FYCALENDAR_D[Date] )
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStart ) || ISBLANK ( AsOf ) || ISBLANK ( MonthEndInContext ) || MonthEndInContext > AsOf,
+			        BLANK (),
+			        CALCULATE (
+			            [GL Gross Profit (Selected Stream)],
+			            DATESBETWEEN ( FYCALENDAR_D[Date], FYStart, MonthEndInContext )
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\7. Time Intelligence
+		lineageTag: 400acd40-73f5-42ce-aa2f-b2d65d31484c
+
+	/// Returns either monthly or cumulative FYTD GL gross profit for the selected stream based on UI_Revenue View Selector.
+	measure 'GL Gross Profit (Monthly/Cumulative)' =
+			VAR ViewSel = SELECTEDVALUE ( 'UI_Revenue View Selector'[View], "Monthly" )
+			RETURN
+			    IF ( ViewSel = "Cumulative", [GL Gross Profit (Cumulative FYTD)], [GL Gross Profit (Monthly)] )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\7. Time Intelligence
+		lineageTag: 10fb1edf-52e9-45dd-a307-434e7d8ed290
+
+	/// Prior-year comparator for GL Gross Profit (Monthly/Cumulative), aligned to the same fiscal-month position and clamped to the dashboard As-Of month. Uses EOMONTH shifts to avoid leap-year month-end mismatches. Monthly branch uses the prior-year month end for the current axis month and returns BLANK for months after As-Of. Cumulative branch computes FYTD through the equivalent prior-year month end using the selected Fiscal Year date range.
+	measure 'GL Gross Profit PY (Monthly/Cumulative)' =
+			VAR ViewSel = SELECTEDVALUE ( 'UI_Revenue View Selector'[View], "Monthly" )
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR MonthEndInContext = MAX ( FYCALENDAR_D[Date] )
+			VAR MonthEnd = IF ( ISBLANK ( AsOf ), MonthEndInContext, MIN ( MonthEndInContext, AsOf ) )
+			VAR FYStartPY = EOMONTH ( FYStart, -12 )
+			VAR MonthEndPY = EOMONTH ( MonthEnd, -12 )
+			RETURN
+			    IF (
+			        ViewSel = "Cumulative",
+			        IF (
+			            ISBLANK ( AsOf ) || ISBLANK ( FYStartPY ) || ISBLANK ( MonthEndPY ) || ISBLANK ( MonthEndInContext ) || MonthEndInContext > AsOf,
+			            BLANK (),
+			            CALCULATE ( [GL Gross Profit (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStartPY, MonthEndPY ) )
+			        ),
+			        VAR MonthEndPYMonthly = EOMONTH ( MonthEndInContext, -12 )
+			        RETURN
+			            IF (
+			                ISBLANK ( AsOf ) || ISBLANK ( MonthEndInContext ) || MonthEndInContext > AsOf,
+			                BLANK (),
+			                CALCULATE ( [GL Gross Profit (Selected Stream)], TREATAS ( { MonthEndPYMonthly }, FYCALENDAR_D[Date] ) )
+			            )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\7. Time Intelligence
+		lineageTag: aeb50c1f-915f-45cc-b862-a8772deb6dd7
+
+	/// Prior-year GL revenue for the current period in context (month/quarter/etc), clamped to the dashboard As-Of month. Uses month-end aligned shifts (EOMONTH) on the full set of dates in context so quarter rows compare quarter-to-quarter (not just quarter-end), and avoids leap-year month-end mismatches. Returns BLANK when there is no date context within As-Of.
+	measure 'GL Revenue PY (Period)' =
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR DateSet =
+			    FILTER ( VALUES ( FYCALENDAR_D[Date] ), FYCALENDAR_D[Date] <= AsOf )
+			VAR DateSetPY =
+			    SELECTCOLUMNS ( DateSet, "Date", EOMONTH ( FYCALENDAR_D[Date], -12 ) )
+			RETURN
+			    IF (
+			        ISBLANK ( AsOf ) || ISEMPTY ( DateSet ),
+			        BLANK (),
+			        CALCULATE ( [GL Revenue (Selected Stream)], TREATAS ( DateSetPY, FYCALENDAR_D[Date] ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\6. Variance
+		lineageTag: 99054f00-2f22-499a-9fe7-97bd9b183c6a
+
+	/// Percent change vs prior-year for GL revenue in the current period context (month/quarter/etc). Returns BLANK when PY is blank/0.
+	measure 'GL Revenue Δ vs PY % (Period)' =
+			VAR CY = [GL Revenue (Selected Stream)]
+			VAR PY = [GL Revenue PY (Period)]
+			RETURN
+			    IF ( ISBLANK ( PY ) || PY = 0, BLANK (), DIVIDE ( CY - PY, PY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 1. GL Financials\1. Revenue\6. Variance
+		lineageTag: b9a2da55-7405-446a-8df4-65da1120f99c
+
+	/// Prior-year GL gross profit for the current period in context (month/quarter/etc), clamped to the dashboard As-Of month. Uses month-end aligned shifts (EOMONTH) on the full set of dates in context so quarter rows compare quarter-to-quarter (not just quarter-end), and avoids leap-year month-end mismatches. Returns BLANK when there is no date context within As-Of.
+	measure 'GL Gross Profit PY (Period)' =
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR DateSet =
+			    FILTER ( VALUES ( FYCALENDAR_D[Date] ), FYCALENDAR_D[Date] <= AsOf )
+			VAR DateSetPY =
+			    SELECTCOLUMNS ( DateSet, "Date", EOMONTH ( FYCALENDAR_D[Date], -12 ) )
+			RETURN
+			    IF (
+			        ISBLANK ( AsOf ) || ISEMPTY ( DateSet ),
+			        BLANK (),
+			        CALCULATE ( [GL Gross Profit (Selected Stream)], TREATAS ( DateSetPY, FYCALENDAR_D[Date] ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\6. Variance
+		lineageTag: 7433fc00-98e3-4e62-8e38-1dbb5ee5c6d2
+
+	/// Percent change vs prior-year for GL gross profit in the current period context (month/quarter/etc). Returns BLANK when PY is blank/0.
+	measure 'GL Gross Profit Δ vs PY % (Period)' =
+			VAR CY = [GL Gross Profit (Selected Stream)]
+			VAR PY = [GL Gross Profit PY (Period)]
+			RETURN
+			    IF ( ISBLANK ( PY ) || PY = 0, BLANK (), DIVIDE ( CY - PY, PY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 1. GL Financials\3. Gross Profit\6. Variance
+		lineageTag: 72c309cf-4def-49c6-9a4a-36c5d341c447
+
+	/// Label for GL Revenue Δ vs PY % (Period): returns ▲/▼/■ + formatted percent. BLANK when base delta is BLANK (e.g., no PY). Use in tables/cards; keep numeric measure for conditional formatting.
+	measure 'GL Revenue Δ vs PY % (Period) Label' =
+			VAR Delta = [GL Revenue Δ vs PY % (Period)]
+			RETURN
+			    IF (
+			        ISBLANK ( Delta ),
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            Delta > 0, UNICHAR ( 9650 ) & " " & FORMAT ( Delta, "0.0%" ),
+			            Delta < 0, UNICHAR ( 9660 ) & " " & FORMAT ( ABS ( Delta ), "0.0%" ),
+			            UNICHAR ( 9632 ) & " " & FORMAT ( Delta, "0.0%" )
+			        )
+			    )
+		displayFolder: 1. GL Financials\1. Revenue\6. Variance\Labels
+		lineageTag: 87adb919-48a3-4478-b5ff-2ade21fe2875
+
+	/// Label for GL Gross Profit Δ vs PY % (Period): returns ▲/▼/■ + formatted percent. BLANK when base delta is BLANK (e.g., no PY). Use in tables/cards; keep numeric measure for conditional formatting.
+	measure 'GL Gross Profit Δ vs PY % (Period) Label' =
+			VAR Delta = [GL Gross Profit Δ vs PY % (Period)]
+			RETURN
+			    IF (
+			        ISBLANK ( Delta ),
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            Delta > 0, UNICHAR ( 9650 ) & " " & FORMAT ( Delta, "0.0%" ),
+			            Delta < 0, UNICHAR ( 9660 ) & " " & FORMAT ( ABS ( Delta ), "0.0%" ),
+			            UNICHAR ( 9632 ) & " " & FORMAT ( Delta, "0.0%" )
+			        )
+			    )
+		displayFolder: 1. GL Financials\3. Gross Profit\6. Variance\Labels
+		lineageTag: 06ebfd7b-7edb-4b8d-a3e6-0cfbd54cf94a
+
+	/// GL revenue for the selected stream, fiscal-year-to-date from the start of the selected fiscal year through [Dashboard As Of Month End (FY)]. Intended for division summary tables and KPI cards.
+	measure 'GL Revenue FYTD (As Of)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStart ) || ISBLANK ( AsOf ),
+			        BLANK (),
+			        CALCULATE ( [GL Revenue (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStart, AsOf ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\7. Time Intelligence
+		lineageTag: 7921da30-d8f3-4dd5-8d1d-8bd242fc2876
+
+	/// Prior-year comparator for [GL Revenue FYTD (As Of)], aligned to the same fiscal-month position (FY start through prior-year as-of month end). Uses EOMONTH shifts for month-end alignment.
+	measure 'GL Revenue FYTD PY (As Of)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR FYStartPY = EOMONTH ( FYStart, -12 )
+			VAR AsOfPY = EOMONTH ( AsOf, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStartPY ) || ISBLANK ( AsOfPY ) || ISBLANK ( AsOf ),
+			        BLANK (),
+			        CALCULATE ( [GL Revenue (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStartPY, AsOfPY ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\7. Time Intelligence
+		lineageTag: 5ff60e7d-1aa9-4eea-be99-d544783b620f
+
+	/// Absolute change vs prior year for GL revenue FYTD (As Of). Returns BLANK when PY is blank.
+	measure 'GL Revenue Δ vs PY (FYTD)' =
+			VAR CY = [GL Revenue FYTD (As Of)]
+			VAR PY = [GL Revenue FYTD PY (As Of)]
+			RETURN IF ( ISBLANK ( PY ), BLANK (), CY - PY )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\6. Variance
+		lineageTag: 06ccd4da-91d0-4036-9691-62ae092d5a7d
+
+	/// Percent change vs prior year for GL revenue FYTD (As Of). Returns BLANK when PY is blank/0.
+	measure 'GL Revenue Δ vs PY % (FYTD)' =
+			VAR CY = [GL Revenue FYTD (As Of)]
+			VAR PY = [GL Revenue FYTD PY (As Of)]
+			RETURN IF ( ISBLANK ( PY ) || PY = 0, BLANK (), DIVIDE ( CY - PY, PY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 1. GL Financials\1. Revenue\6. Variance
+		lineageTag: 7f2d7cfe-7b90-4aa3-b6f6-ae68d7097569
+
+	/// GL gross profit for the selected stream, fiscal-year-to-date from the start of the selected fiscal year through [Dashboard As Of Month End (FY)]. Intended for division summary tables and KPI cards.
+	measure 'GL Gross Profit FYTD (As Of)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStart ) || ISBLANK ( AsOf ),
+			        BLANK (),
+			        CALCULATE ( [GL Gross Profit (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStart, AsOf ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\7. Time Intelligence
+		lineageTag: d8bbe771-b68a-40ac-ab4e-935cd5053116
+
+	/// Prior-year comparator for [GL Gross Profit FYTD (As Of)], aligned to the same fiscal-month position (FY start through prior-year as-of month end). Uses EOMONTH shifts for month-end alignment.
+	measure 'GL Gross Profit FYTD PY (As Of)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR FYStartPY = EOMONTH ( FYStart, -12 )
+			VAR AsOfPY = EOMONTH ( AsOf, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStartPY ) || ISBLANK ( AsOfPY ) || ISBLANK ( AsOf ),
+			        BLANK (),
+			        CALCULATE ( [GL Gross Profit (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStartPY, AsOfPY ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\7. Time Intelligence
+		lineageTag: f0d15496-aa98-4bbb-b4c0-59ee9772a346
+
+	/// Absolute change vs prior year for GL gross profit FYTD (As Of). Returns BLANK when PY is blank.
+	measure 'GL Gross Profit Δ vs PY (FYTD)' =
+			VAR CY = [GL Gross Profit FYTD (As Of)]
+			VAR PY = [GL Gross Profit FYTD PY (As Of)]
+			RETURN IF ( ISBLANK ( PY ), BLANK (), CY - PY )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\3. Gross Profit\6. Variance
+		lineageTag: 1fb55637-50a0-4533-bff4-30b4924f31c7
+
+	/// Percent change vs prior year for GL gross profit FYTD (As Of). Returns BLANK when PY is blank/0.
+	measure 'GL Gross Profit Δ vs PY % (FYTD)' =
+			VAR CY = [GL Gross Profit FYTD (As Of)]
+			VAR PY = [GL Gross Profit FYTD PY (As Of)]
+			RETURN IF ( ISBLANK ( PY ) || PY = 0, BLANK (), DIVIDE ( CY - PY, PY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 1. GL Financials\3. Gross Profit\6. Variance
+		lineageTag: 1f402a7c-2b39-414e-a54f-7b0495cbba9c
+
+	/// GL revenue budget scoped to Projects using STREAM_D/GL market mapping. Completed months only via [GL Budget Revenue].
+	measure 'GL Budget Revenue (Projects)' = CALCULATE ( [GL Budget Revenue], STREAM_D[Stream] = "Projects" )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\5. Budget
+		lineageTag: 733e9c2d-7498-46d6-961f-6171bb90d601
+
+	/// GL revenue budget scoped to Service Contracts using STREAM_D/GL market mapping. Completed months only via [GL Budget Revenue].
+	measure 'GL Budget Revenue (Service Contracts)' = CALCULATE ( [GL Budget Revenue], STREAM_D[Stream] = "Service Contracts" )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\5. Budget
+		lineageTag: b3f1d9c6-359a-4903-a93f-a5d8ce128c07
+
+	/// GL revenue budget scoped to T&M using STREAM_D/GL market mapping. Completed months only via [GL Budget Revenue].
+	measure 'GL Budget Revenue (T&M)' = CALCULATE ( [GL Budget Revenue], STREAM_D[Stream] = "T&M" )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\5. Budget
+		lineageTag: 182460fa-f207-45df-806b-55ed0ee5a6e9
+
+	/// GL revenue budget scoped to the selected stream (Projects, Service Contracts, T&M) from UI_Revenue Stream Selector. Defaults to All Streams (total budget) when the slicer is not single-selected. Completed months only via [GL Budget Revenue].
+	measure 'GL Budget Revenue (Selected Stream)' =
+			VAR SelStream = SELECTEDVALUE ( 'UI_Revenue Stream Selector'[Stream] )
+			RETURN
+			    SWITCH (
+			        TRUE(),
+			        SelStream = "Projects", [GL Budget Revenue (Projects)],
+			        SelStream = "Service Contracts", [GL Budget Revenue (Service Contracts)],
+			        SelStream = "T&M", [GL Budget Revenue (T&M)],
+			        [GL Budget Revenue]
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\5. Budget
+		lineageTag: d32e4b59-8d57-4880-b86a-bf5486347392
+
+	/// GL revenue budget for the selected stream, fiscal-year-to-date from the start of the selected fiscal year through [Dashboard As Of Month End (FY)]. Intended for division summary tables and KPI cards.
+	measure 'GL Budget Revenue FYTD (As Of)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStart ) || ISBLANK ( AsOf ),
+			        BLANK (),
+			        CALCULATE ( [GL Budget Revenue (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStart, AsOf ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\5. Budget\7. Time Intelligence
+		lineageTag: 5b937c2d-0328-40d6-8f7d-e35c4f6977d5
+
+	/// Prior-year comparator for [GL Budget Revenue FYTD (As Of)], aligned to the same fiscal-month position (FY start through prior-year as-of month end). Uses EOMONTH shifts for month-end alignment.
+	measure 'GL Budget Revenue FYTD PY (As Of)' =
+			VAR SelectedFY = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR FYStart =
+			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), FILTER ( ALL ( FYCALENDAR_D ), FYCALENDAR_D[Fiscal Year] = SelectedFY ) )
+			VAR AsOf = [Dashboard As Of Month End (FY)]
+			VAR FYStartPY = EOMONTH ( FYStart, -12 )
+			VAR AsOfPY = EOMONTH ( AsOf, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( SelectedFY ) || ISBLANK ( FYStartPY ) || ISBLANK ( AsOfPY ) || ISBLANK ( AsOf ),
+			        BLANK (),
+			        CALCULATE ( [GL Budget Revenue (Selected Stream)], DATESBETWEEN ( FYCALENDAR_D[Date], FYStartPY, AsOfPY ) )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\5. Budget\7. Time Intelligence
+		lineageTag: 09814e2c-6171-4f0c-99aa-63e864ff1983
+
+	/// Actual GL revenue FYTD (As Of) minus GL budget revenue FYTD (As Of), both stream-aware via UI_Revenue Stream Selector. Returns BLANK when budget is blank.
+	measure 'GL Revenue vs Budget (FYTD)' =
+			VAR Actual = [GL Revenue FYTD (As Of)]
+			VAR Budget = [GL Budget Revenue FYTD (As Of)]
+			RETURN IF ( ISBLANK ( Budget ), BLANK (), Actual - Budget )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 1. GL Financials\1. Revenue\6. Variance
+		lineageTag: 6c1ccacb-09dc-4961-a803-d9c6d452fd2e
+
+	/// Percent variance vs budget for GL revenue FYTD (As Of), stream-aware via UI_Revenue Stream Selector. Returns BLANK when budget is blank/0.
+	measure 'GL Revenue vs Budget % (FYTD)' =
+			VAR Actual = [GL Revenue FYTD (As Of)]
+			VAR Budget = [GL Budget Revenue FYTD (As Of)]
+			RETURN IF ( ISBLANK ( Budget ) || Budget = 0, BLANK (), DIVIDE ( Actual - Budget, Budget ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 1. GL Financials\1. Revenue\6. Variance
+		lineageTag: 629ad52a-caf7-40f2-9e96-44998f77844b
+
+	column _
+		isHidden
+		lineageTag: 51e1d78c-186d-4eac-8cc2-14bfc214dd1c
+		isNameInferred
+		sourceColumn: [_]
+
+	partition '_Key Measures' = calculated
+		mode: import
+		source = DATATABLE("_", INTEGER, {{1}})
+

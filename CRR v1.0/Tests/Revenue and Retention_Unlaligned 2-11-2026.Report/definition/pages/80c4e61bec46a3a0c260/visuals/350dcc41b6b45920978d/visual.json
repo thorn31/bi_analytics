@@ -1,0 +1,329 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "350dcc41b6b45920978d",
+  "position": {
+    "x": 439.55631399317406,
+    "y": 816.45051194539246,
+    "z": 7000,
+    "height": 263.54948805460748,
+    "width": 1460.5802047781569,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Master Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Master Customer Name",
+              "nativeQueryRef": "Master Customer Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customer Lifecycle Status"
+                }
+              },
+              "queryRef": "_Key Measures.Customer Lifecycle Status",
+              "nativeQueryRef": "Customer Lifecycle Status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customer Retention Category (R12M)"
+                }
+              },
+              "queryRef": "_Key Measures.Customer Retention Category (R12M)",
+              "nativeQueryRef": "Customer Retention Category (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Contracts"
+                }
+              },
+              "queryRef": "_Key Measures.Active Contracts",
+              "nativeQueryRef": "Active Contracts"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Months Since Last Billing"
+                }
+              },
+              "queryRef": "_Key Measures.Months Since Last Billing",
+              "nativeQueryRef": "Months Since Last Billing"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue PY (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue PY (R12M As Of)",
+              "nativeQueryRef": "Revenue PY",
+              "displayName": "Revenue PY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue (R12M As Of)",
+              "nativeQueryRef": "Revenue CY",
+              "displayName": "Revenue CY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Contraction Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Contraction Revenue (R12M As Of)",
+              "nativeQueryRef": "Contraction Revenue (R12M As Of)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Contraction Revenue (R12M As Of)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "129a06ec13a3d47a95fa",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Customer Retention Category (R12M)"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "_",
+              "Entity": "_Key Measures",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Or": {
+                  "Left": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "_"
+                            }
+                          },
+                          "Property": "Customer Retention Category (R12M)"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Churned'"
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "_"
+                            }
+                          },
+                          "Property": "Customer Retention Category (R12M)"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Contraction'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "f2d2a73d360990c01079",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Master Customer Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "adfde621803dd166fe70",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Months Since Last Billing"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e62e17d1cb11bdadb957",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Contraction Revenue (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "73072e43ace1167e8189",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Service Contract Revenue (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0ec837ea7243b17c7d48",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Service Contract Revenue PY (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b9cb3e4d1b121d6ad901",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Contracts"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d6b1647213e396c5cf15",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Customer Lifecycle Status"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

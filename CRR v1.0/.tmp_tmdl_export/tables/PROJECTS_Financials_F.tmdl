@@ -1,0 +1,413 @@
+table PROJECTS_Financials_F
+	lineageTag: 5c54f3b0-87ea-4bd6-92b7-baf206b178f4
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a1c7e1d0-04f6-46af-b52d-acde773b8b14
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SurrogateProjectID
+		dataType: string
+		lineageTag: 2f2dbb55-91b7-4d4b-a2da-80e36c97a2cf
+		summarizeBy: none
+		sourceColumn: SurrogateProjectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Subsegment'
+		dataType: string
+		lineageTag: 3fa0bc83-8af8-4579-9c74-e6d07d88a49b
+		summarizeBy: none
+		sourceColumn: Project Subsegment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stream
+		dataType: string
+		lineageTag: 5484c5b7-2c23-4890-9c0a-75bdad0c52c6
+		summarizeBy: none
+		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
+
+	column Methodology
+		dataType: string
+		lineageTag: 9d0cddc2-83e2-4bf7-8cc5-6ce3d5c32b5b
+		summarizeBy: none
+		sourceColumn: Methodology
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: 4e9fe3e8-266a-4c39-aad0-8e0ef1691a70
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: b490a3c7-7be0-4f0e-a5e0-5a3047f7e96f
+		summarizeBy: sum
+		sourceColumn: Cost Amount
+
+	column ActualCost_Mo
+		dataType: double
+		lineageTag: 53dbfe19-fd4a-4bf7-87ba-6a01b1c62bca
+		summarizeBy: sum
+		sourceColumn: ActualCost_Mo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ForecastCost_Mo
+		dataType: double
+		lineageTag: 0d0cbdf2-7100-4f53-8874-c71f2fd1294e
+		summarizeBy: sum
+		sourceColumn: ForecastCost_Mo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Orig Contract Amount'
+		dataType: double
+		lineageTag: c521e8a5-91de-4f7f-ae7e-f5597cf6c62e
+		summarizeBy: sum
+		sourceColumn: Orig Contract Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: bbd80314-0b92-4e63-acde-11678bbcc0f9
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Confirmed Chg Order Amt'
+		dataType: double
+		lineageTag: f5eaf987-4b04-4af4-807a-6aa5ae0c77f6
+		summarizeBy: sum
+		sourceColumn: Confirmed Chg Order Amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition PROJECTS_Financials_F = m
+		mode: import
+		source =
+				let
+				    // ----------------------------
+				    // Job Cost (Amend inputs at Job x Month)
+				    // ----------------------------
+				    StartDate = #date(2020, 1, 1),
+				    // Include earlier months so cumulative inputs at StartDate have carry-in.
+				    CarryInStartDate = #date(2015, 1, 1),
+				    EndDate = Date.EndOfMonth(Date.From(DateTime.LocalNow())),
+				
+				
+				    // Map Job Cost projects (Project Number = Job Number)
+				    JobDim = Table.SelectRows(PROJECTS_D, each [Project Type] = "Job Cost"),
+				    JobDimKeysRaw = Table.SelectColumns(JobDim,{"Project Number","Customer Number","Customer Key","SurrogateProjectID"}),
+				    JobDimKeys = Table.TransformColumns(
+				        JobDimKeysRaw,
+				        {
+				            {"Project Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+				            {"Customer Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}
+				        }
+				    ),
+				    // Fallback map: Job Number only when unique
+				    JobDimByJob = Table.Group(
+				        JobDimKeys,
+				        {"Project Number"},
+				        {
+				            {"Customer Key", each List.Distinct([Customer Key]), type list},
+				            {"SurrogateProjectID", each List.Distinct([SurrogateProjectID]), type list}
+				        }
+				    ),
+				    JobDimByJobUnique = Table.SelectRows(JobDimByJob, each List.Count([SurrogateProjectID]) = 1 and List.Count([Customer Key]) = 1),
+				    JobDimByJobFlat = Table.TransformColumns(
+				        JobDimByJobUnique,
+				        {
+				            {"Customer Key", each _{0}, type text},
+				            {"SurrogateProjectID", each _{0}, type text}
+				        }
+				    ),
+				
+				    // Build JobKey -> Job Number + Customer Number bridge from JOB_MONTHLY_SUMMARY_F
+				    JobMapBase = Table.SelectRows(JOB_MONTHLY_SUMMARY_F, each [Period Date] >= StartDate),
+				    JobMapBaseSlim = Table.SelectColumns(JobMapBase,{"Job Key","Job Number","Customer Number"}),
+				    JobMapBaseClean = Table.TransformColumns(
+				        JobMapBaseSlim,
+				        {
+				            {"Job Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+				            {"Customer Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}
+				        }
+				    ),
+				    JobMapGrouped =
+				        Table.Group(
+				            JobMapBaseClean,
+				            {"Job Key"},
+				            {
+				                {"Job Number", each List.Max([Job Number]), type text},
+				                {"Customer Number", each List.Max([Customer Number]), type text}
+				            }
+				        ),
+				
+				    // Build JobKey -> Job Number map directly from cost tables (fallback)
+				    CostJobMapBase =
+				        Table.Combine({
+				            Table.SelectColumns(JOB_COST_DETAILS, {"JOB_KEY","JOB_NUMBER"}),
+				            Table.SelectColumns(JOB_COST_FORECASTS_F, {"JOB_KEY","JOB_NUMBER"})
+				        }),
+				    CostJobMapClean = Table.TransformColumns(
+				        CostJobMapBase,
+				        {
+				            {"JOB_KEY", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+				            {"JOB_NUMBER", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}
+				        }
+				    ),
+				    CostJobMapGrouped = Table.Group(
+				        CostJobMapClean,
+				        {"JOB_KEY"},
+				        {{"JOB_NUMBER", each List.Max([JOB_NUMBER]), type text}}
+				    ),
+				
+				    // Jobs contract source (JOBS_D) - keep existing confirmed CO for reference, but time-phase CO via JOB_CHANGE_ORDERS_F
+				    JobsDBase = Table.SelectColumns(JOBS_D, {"Job Number","Orig Contract Amount","Confirmed Chg Order Amt","Customer Number"}, MissingField.UseNull),
+				    JobsDClean = Table.TransformColumns(
+				        JobsDBase,
+				        {
+				            {"Job Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+				            {"Customer Number", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}
+				        }
+				    ),
+				
+				    // Actuals (month-grain)
+				    ActualSrc = Table.SelectRows(JOB_COST_DETAILS, each Date.From([TRAN_DATE]) >= StartDate),
+				    ActualWithMonthEnd =
+				        Table.AddColumn(
+				            Table.SelectColumns(ActualSrc,{"JOB_KEY","TRAN_DATE","COST_AMT"}),
+				            "Month End",
+				            each Date.EndOfMonth(Date.From([TRAN_DATE])),
+				            type date
+				        ),
+				    ActualGrouped = Table.Group(ActualWithMonthEnd,{"JOB_KEY","Month End"},{{"ActualCost_Mo", each List.Sum([COST_AMT]), type number}}),
+				
+				    // Forecast (include carry-in months for cumulative denom)
+				    FcstSrc = Table.SelectRows(JOB_COST_FORECASTS_F, each Date.From([Date]) >= CarryInStartDate),
+				    FcstWithMonthEnd =
+				        Table.AddColumn(
+				            Table.SelectColumns(FcstSrc,{"JOB_KEY","Date","FORECAST_COSTS"}),
+				            "Month End",
+				            each Date.EndOfMonth(Date.From([Date])),
+				            type date
+				        ),
+				    FcstGrouped = Table.Group(FcstWithMonthEnd,{"JOB_KEY","Month End"},{{"ForecastCost_Mo", each List.Sum([FORECAST_COSTS]), type number}}),
+				
+				    // Change orders (include carry-in months for cumulative contract as-of)
+				    CoSrc = Table.SelectRows(JOB_CHANGE_ORDERS_F, each Date.From([Date]) >= CarryInStartDate),
+				    CoClean = Table.TransformColumns(
+				        CoSrc,
+				        {{"Job Key", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}}
+				    ),
+				    CoWithMonthEnd =
+				        Table.AddColumn(
+				            Table.SelectColumns(CoClean,{"Job Key","Date","Change Order Est Cost"}),
+				            "Month End",
+				            each Date.EndOfMonth(Date.From([Date])),
+				            type date
+				        ),
+				    CoGrouped = Table.Group(CoWithMonthEnd,{"Job Key","Month End"},{{"ChangeOrder_Mo", each List.Sum([Change Order Est Cost]), type number}}),
+				
+				    // Align Actual/Forecast by Job+Month
+				    ActualLabeled = Table.RenameColumns(Table.AddColumn(ActualGrouped, "Kind", each "ActualCost_Mo", type text), {{"ActualCost_Mo", "Amount"}}),
+				    FcstLabeled = Table.RenameColumns(Table.AddColumn(FcstGrouped, "Kind", each "ForecastCost_Mo", type text), {{"ForecastCost_Mo", "Amount"}}),
+				    CostsCombined = Table.Combine({ActualLabeled, FcstLabeled}),
+				    CostsGrouped = Table.Group(CostsCombined, {"JOB_KEY","Month End","Kind"}, {{"Amount", each List.Sum([Amount]), type number}}),
+				    CostsPivoted = Table.Pivot(CostsGrouped, List.Distinct(CostsGrouped[Kind]), "Kind", "Amount", List.Sum),
+				    EnsureActual = if List.Contains(Table.ColumnNames(CostsPivoted), "ActualCost_Mo") then CostsPivoted else Table.AddColumn(CostsPivoted, "ActualCost_Mo", each 0, type number),
+				    EnsureForecast = if List.Contains(Table.ColumnNames(EnsureActual), "ForecastCost_Mo") then EnsureActual else Table.AddColumn(EnsureActual, "ForecastCost_Mo", each 0, type number),
+				
+				    // Join change orders onto the same JobxMonth spine
+				    WithCO = Table.NestedJoin(EnsureForecast, {"JOB_KEY","Month End"}, CoGrouped, {"Job Key","Month End"}, "CO", JoinKind.LeftOuter),
+				    ExpandedCO = Table.ExpandTableColumn(WithCO, "CO", {"ChangeOrder_Mo"}, {"ChangeOrder_Mo"}),
+				    EnsureCO = if List.Contains(Table.ColumnNames(ExpandedCO), "ChangeOrder_Mo") then ExpandedCO else Table.AddColumn(ExpandedCO, "ChangeOrder_Mo", each 0, type number),
+				    FilledCO = Table.TransformColumns(EnsureCO, {{"ChangeOrder_Mo", each if _ = null then 0 else Number.From(_), type number}}),
+				
+				    // Join to JobMap to get Job Number + Customer Number
+				    WithJobMap = Table.NestedJoin(FilledCO, {"JOB_KEY"}, JobMapGrouped, {"Job Key"}, "JM", JoinKind.LeftOuter),
+				    ExpandedJobMap = Table.ExpandTableColumn(WithJobMap, "JM", {"Job Number","Customer Number"}, {"Job Number","Customer Number"}),
+				
+				    // Fallback: if Job Number missing from summary, get from cost tables
+				    WithCostJobMap = Table.NestedJoin(ExpandedJobMap, {"JOB_KEY"}, CostJobMapGrouped, {"JOB_KEY"}, "CJM", JoinKind.LeftOuter),
+				    ExpandedCostJobMap = Table.ExpandTableColumn(WithCostJobMap, "CJM", {"JOB_NUMBER"}, {"JOB_NUMBER_from_cost"}),
+				    WithJobNumFinal = Table.AddColumn(ExpandedCostJobMap, "Job Number Final", each if [Job Number] = null then [JOB_NUMBER_from_cost] else [Job Number], type text),
+				    WithCustNumFinal = Table.AddColumn(WithJobNumFinal, "Customer Number Final", each [Customer Number], type text),
+				    WithJobNumClean = Table.RemoveColumns(WithCustNumFinal, {"Job Number","Customer Number","JOB_NUMBER_from_cost"}),
+				    ExpandedJobNum = Table.RenameColumns(WithJobNumClean, {{"Job Number Final","Job Number"},{"Customer Number Final","Customer Number"}}),
+				
+				    // Join to JOBS_D for original contract + confirmed CO reference
+				    WithJobsD = Table.NestedJoin(ExpandedJobNum, {"Job Number"}, JobsDClean, {"Job Number"}, "JD", JoinKind.LeftOuter),
+				    ExpandedJobsD = Table.ExpandTableColumn(WithJobsD, "JD", {"Orig Contract Amount","Confirmed Chg Order Amt","Customer Number"}, {"Orig Contract Amount","Confirmed Chg Order Amt","Customer Number_JOBS"}),
+				    WithCustomerFinal = Table.AddColumn(ExpandedJobsD, "Customer Number Final2", each if [Customer Number] = null then [Customer Number_JOBS] else [Customer Number], type text),
+				    WithCustomerClean = Table.RemoveColumns(WithCustomerFinal, {"Customer Number","Customer Number_JOBS"}),
+				    ExpandedCustomer = Table.RenameColumns(WithCustomerClean, {{"Customer Number Final2","Customer Number"}}),
+				
+				    // Join to PROJECTS_D using Project Number + Customer Number, then fallback to Job Number only
+				    WithDimPrimary = Table.NestedJoin(ExpandedCustomer, {"Job Number","Customer Number"}, JobDimKeys, {"Project Number","Customer Number"}, "D", JoinKind.LeftOuter),
+				    ExpandedDimPrimary = Table.ExpandTableColumn(WithDimPrimary, "D", {"Customer Key","SurrogateProjectID"}, {"Customer Key","SurrogateProjectID"}),
+				    WithDimFallback = Table.NestedJoin(ExpandedDimPrimary, {"Job Number"}, JobDimByJobFlat, {"Project Number"}, "D2", JoinKind.LeftOuter),
+				    ExpandedDimFallback = Table.ExpandTableColumn(WithDimFallback, "D2", {"Customer Key","SurrogateProjectID"}, {"Customer Key_fallback","SurrogateProjectID_fallback"}),
+				    WithDimFinal = Table.AddColumn(ExpandedDimFallback, "Customer Key_Final", each if [Customer Key] = null then [Customer Key_fallback] else [Customer Key], type text),
+				    WithDimFinal2 = Table.AddColumn(WithDimFinal, "SurrogateProjectID_Final", each if [SurrogateProjectID] = null then [SurrogateProjectID_fallback] else [SurrogateProjectID], type text),
+				    WithDimClean = Table.RemoveColumns(WithDimFinal2, {"Customer Key","SurrogateProjectID","Customer Key_fallback","SurrogateProjectID_fallback"}),
+				    ExpandedDim = Table.RenameColumns(WithDimClean, {{"Customer Key_Final","Customer Key"},{"SurrogateProjectID_Final","SurrogateProjectID"}}),
+				
+				    // Compute earned revenue (Amend) per Job x Month
+				    JobsForCalc = Table.SelectColumns(
+				        ExpandedDim,
+				        {"Month End","Job Number","Customer Number","Customer Key","SurrogateProjectID","ActualCost_Mo","ForecastCost_Mo","ChangeOrder_Mo","Orig Contract Amount","Confirmed Chg Order Amt"}
+				    ),
+				    JobsGrouped = Table.Group(
+				        JobsForCalc,
+				        {"Job Number"},
+				        {
+				            {"Data", (t) =>
+				                let
+				                    t0 = Table.Sort(t, {{"Month End", Order.Ascending}}),
+				                    t1 = Table.TransformColumns(t0,
+				                        {
+				                            {"ActualCost_Mo", each if _ = null then 0 else Number.From(_), type number},
+				                            {"ForecastCost_Mo", each if _ = null then 0 else Number.From(_), type number},
+				                            {"ChangeOrder_Mo", each if _ = null then 0 else Number.From(_), type number},
+				                            {"Orig Contract Amount", each if _ = null then null else Number.From(_), type number}
+				                        }
+				                    ),
+				                    actualList = List.Buffer(t1[ActualCost_Mo]),
+				                    forecastList = List.Buffer(t1[ForecastCost_Mo]),
+				                    coList = List.Buffer(t1[ChangeOrder_Mo]),
+				
+				                    actualCum = List.Accumulate(actualList, {}, (s,c) => s & {(if List.Count(s)=0 then 0 else List.Last(s)) + c}),
+				                    forecastCum = List.Accumulate(forecastList, {}, (s,c) => s & {(if List.Count(s)=0 then 0 else List.Last(s)) + c}),
+				                    // Match Mechanical: round cumulative forecast to cents so tiny float residue becomes 0.
+				                    forecastCumRounded = List.Transform(forecastCum, each if _ = null then null else Number.Round(_, 2, RoundingMode.AwayFromZero)),
+				
+				                    coCum = List.Accumulate(coList, {}, (s,c) => s & {(if List.Count(s)=0 then 0 else List.Last(s)) + c}),
+				                    origList = List.RemoveNulls(t1[Orig Contract Amount]),
+				                    orig = if List.Count(origList) > 0 then origList{0} else null,
+				                    coAny = List.AnyTrue(List.Transform(coList, each _ <> null and _ <> 0)),
+				                    orig0 = if orig = null then 0 else orig,
+				                    contractAsOf = List.Transform(List.Positions(coCum), (i) => if orig = null and not coAny then null else orig0 + coCum{i}),
+				
+				                    earnedCum = List.Transform(List.Positions(actualCum), (i) =>
+				                        let
+				                            a = actualCum{i},
+				                            f = forecastCumRounded{i},
+				                            c = contractAsOf{i},
+				                            pct = if f = null or f = 0 then null else a / f,
+				                            pctCap = if pct = null then null else if pct > 1 then 1 else pct,
+				                            earned = if pctCap = null or c = null then null else c * pctCap
+				                        in
+				                            earned
+				                    ),
+				                    earnedMo = List.Transform(List.Positions(earnedCum), (i) =>
+				                        if i = 0 then earnedCum{0}
+				                        else if earnedCum{i} = null then null
+				                        else earnedCum{i} - (if earnedCum{i-1} = null then 0 else earnedCum{i-1})
+				                    ),
+				                    t2 = Table.AddIndexColumn(t1, "idx", 0, 1, Int64.Type),
+				                    t3 = Table.AddColumn(t2, "Revenue Amount", each earnedMo{[idx]}, type number),
+				                    t4 = Table.RemoveColumns(t3, {"idx","ChangeOrder_Mo"})
+				                in
+				                    t4,
+				                type table
+				            }
+				        }
+				    ),
+				    JobsExpanded0 = Table.ExpandTableColumn(
+				        JobsGrouped,
+				        "Data",
+				        {"Month End","Customer Key","SurrogateProjectID","ActualCost_Mo","ForecastCost_Mo","Orig Contract Amount","Confirmed Chg Order Amt","Revenue Amount"},
+				        {"Month End","Customer Key","SurrogateProjectID","ActualCost_Mo","ForecastCost_Mo","Orig Contract Amount","Confirmed Chg Order Amt","Revenue Amount"}
+				    ),
+				    // Only output months in the reporting window, but keep earlier months for carry-in.
+				    JobsExpanded = Table.SelectRows(JobsExpanded0, each [Month End] >= StartDate and [Month End] <= EndDate),
+				
+				    JobsBase =
+				        Table.AddColumn(
+				            Table.AddColumn(
+				                Table.AddColumn(
+				                    Table.AddColumn(JobsExpanded, "Project Subsegment", each "Job Cost", type text),
+				                    "Stream", each "Projects", type text
+				                ),
+				                "Methodology", each "Amend", type text
+				            ),
+				            "Cost Amount", each [ActualCost_Mo], type number
+				        ),
+				    JobsSelect =
+				        Table.SelectColumns(
+				            JobsBase,
+				            {"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount","ActualCost_Mo","ForecastCost_Mo","Orig Contract Amount","Confirmed Chg Order Amt"}
+				        ),
+				
+				    // ----------------------------
+				    // Service Project billings (same for both methodologies)
+				    // ----------------------------
+				    ServiceProjects = Table.SelectRows(PROJECTS_D, each [Project Type] = "Service Project"),
+				    ServiceKeys = Table.Distinct(Table.SelectColumns(ServiceProjects,{"Project Number","SurrogateProjectID"}),{"Project Number"}),
+				    Billing = Table.SelectRows(CONTRACT_BILLABLE_F, each [WENNSOFT_BILLING_DATE] >= StartDate and [WENNSOFT_BILLING_DATE] <= EndDate),
+				    Joined = Table.NestedJoin(Billing, {"CONTRACT_NUMBER"}, ServiceKeys, {"Project Number"}, "P", JoinKind.Inner),
+				    ExpandedSP = Table.ExpandTableColumn(Joined, "P", {"SurrogateProjectID"}, {"SurrogateProjectID"}),
+				    WithMonthEndSP = Table.AddColumn(ExpandedSP, "Month End", each Date.EndOfMonth([WENNSOFT_BILLING_DATE]), type date),
+				    ServiceSlim = Table.SelectColumns(WithMonthEndSP,{"Month End","Customer Key","SurrogateProjectID","BILLABLE_ALL"}),
+				    ServiceGrouped = Table.Group(ServiceSlim,{"Customer Key","SurrogateProjectID","Month End"},{{"Revenue Amount", each List.Sum([BILLABLE_ALL]), type number}}),
+				    ServiceWithCost = Table.AddColumn(ServiceGrouped, "Cost Amount", each null, type number),
+				    ServiceWithInputs =
+				        Table.AddColumn(
+				            Table.AddColumn(
+				                Table.AddColumn(ServiceWithCost, "ActualCost_Mo", each null, type number),
+				                "ForecastCost_Mo", each null, type number
+				            ),
+				            "Orig Contract Amount", each null, type number
+				        ),
+				    ServiceFinal = Table.AddColumn(
+				        Table.AddColumn(
+				            Table.AddColumn(ServiceWithInputs, "Project Subsegment", each "Service Project", type text),
+				            "Stream", each "Projects", type text
+				        ),
+				        "Methodology", each "Amend", type text
+				    ),
+				    ServiceSelect = Table.SelectColumns(ServiceFinal,{"Month End","Customer Key","SurrogateProjectID","Project Subsegment","Stream","Methodology","Revenue Amount","Cost Amount","ActualCost_Mo","ForecastCost_Mo","Orig Contract Amount"}),
+				
+				    Combined = Table.Combine({JobsSelect, ServiceSelect}),
+				    Typed = Table.TransformColumnTypes(
+				        Combined,
+				        {
+				            {"Revenue Amount", type number},
+				            {"Cost Amount", type number},
+				            {"ActualCost_Mo", type number},
+				            {"ForecastCost_Mo", type number},
+				            {"Orig Contract Amount", type number},
+				            {"Confirmed Chg Order Amt", type number},
+				            {"Month End", type date}
+				        }
+				    )
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

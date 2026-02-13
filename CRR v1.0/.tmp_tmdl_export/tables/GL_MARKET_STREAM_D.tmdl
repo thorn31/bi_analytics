@@ -1,0 +1,47 @@
+table GL_MARKET_STREAM_D
+	isHidden
+	lineageTag: b7a4e3a4-6b0c-43d7-b12d-f3e13ca8d72b
+
+	column Market
+		lineageTag: b1d5e1a4-b47a-4fd0-b0e6-41d85f88cad4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Market]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stream
+		lineageTag: d4daa995-5bf2-42a5-a07f-710857607941
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Stream]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GL_MARKET_STREAM_D = calculated
+		mode: import
+		source =
+				DATATABLE(
+					"Market", STRING,
+					"Stream", STRING,
+					{
+						{ "PROJECTS", "Projects" },
+						{ "O&M PROJECTS", "Projects" },
+						{ "DESIGN BUILD", "Projects" },
+						{ "PERFORMANCE CONTRACT", "Projects" },
+						{ "CONTROLS", "Projects" },
+						{ "PLAN SPEC", "Projects" },
+						{ "INDUSTRIAL", "Projects" },
+						{ "SPECIAL PROJECT", "Projects" },
+				
+						{ "O&M", "Service Contracts" },
+						{ "ASSURED", "Service Contracts" },
+						{ "CERTIFIED", "Service Contracts" },
+						{ "INSPECTION", "Service Contracts" },
+				
+						{ "SPOT", "T&M" },
+						{ "O&M SPOT", "T&M" },
+						{ "INTERCOMPANY SPOT", "T&M" },{ "PROJECT REPAIR", "T&M" }
+					}
+				)
+

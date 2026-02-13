@@ -1,0 +1,71 @@
+table SERVCONTRACTS_REVENUE_F
+	isHidden
+	lineageTag: 249708cf-51ca-446a-8f5d-27c81e3a22ec
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2577e77b-701e-4b94-b22a-30683a05d918
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AgreementKey
+		dataType: string
+		lineageTag: f4d06e29-801c-4192-909e-50b0b656fb2c
+		summarizeBy: none
+		sourceColumn: AgreementKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: fa8fef8a-7551-46f6-89ee-2da5fd223b8b
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Source Type'
+		dataType: string
+		lineageTag: a269ec29-310b-433c-b564-5b5cccb09016
+		summarizeBy: none
+		sourceColumn: Source Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SERVCONTRACTS_REVENUE_F = m
+		mode: import
+		source = ```
+				let
+				    // --- Define Service Projects for exclusion ---
+				    Projects_Source = PROJECTS_D,
+				    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
+				    Service_Project_Numbers = Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
+				    
+				    // --- Maintenance Billing Revenue Stream ---
+				    Billing_Source = CONTRACT_BILLABLE_F,
+				    // Filter out Service Projects from CONTRACT_BILLABLE_F
+				    Merged_For_Filter = Table.NestedJoin(Billing_Source, {"CONTRACT_NUMBER"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+				    Billing_Filtered = Table.RemoveColumns(Merged_For_Filter, {"ServiceProjects"}),
+				
+				    Billing_Selected = Table.SelectColumns(Billing_Filtered, {"WENNSOFT_BILLING_DATE", "Customer_Contract_Year Key", "BILLABLE_ALL"}),
+				    Billing_Renamed = Table.RenameColumns(Billing_Selected, {{"WENNSOFT_BILLING_DATE", "Date"}, {"Customer_Contract_Year Key", "AgreementKey"}, {"BILLABLE_ALL", "Amount"}}),
+				    Billing_Typed = Table.TransformColumnTypes(Billing_Renamed, {{"Date", type date}, {"AgreementKey", type text}, {"Amount", Currency.Type}}),
+				    
+				    AGREEMENT_REVENUE_F = Table.AddColumn(Billing_Typed, "Source Type", each "Service Contract Billing", type text),
+				    AddDateGuard = Table.SelectRows(#"AGREEMENT_REVENUE_F", each [Date] <= Date.AddYears(Date.From(DateTime.LocalNow()), 0))
+				in
+				    AddDateGuard
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

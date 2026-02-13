@@ -5,44 +5,11 @@
   "displayOption": "FitToPage",
   "height": 1080,
   "width": 1920,
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "35e77203696da7f41f12",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Master Customer Name"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
-      }
-    ]
-  },
   "pageBinding": {
     "name": "f70e70a41b0e8a52754b",
-    "type": "Drillthrough",
-    "parameters": [
-      {
-        "name": "3e3065b8ecc71ba767f3",
-        "boundFilter": "35e77203696da7f41f12",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Master Customer Name"
-          }
-        }
-      }
-    ],
-    "referenceScope": "CrossReport"
+    "type": "Default",
+    "parameters": [],
+    "referenceScope": "CrossReport",
+    "acceptsFilterContext": "None"
   }
 }

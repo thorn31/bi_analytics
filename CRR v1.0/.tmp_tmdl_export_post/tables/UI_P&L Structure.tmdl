@@ -1,0 +1,66 @@
+/// Disconnected P&L row structure for matrix visuals. Includes section sort order and subtotal flags so section-level totals can be shown when collapsed.
+table 'UI_P&L Structure'
+	lineageTag: 3bf1bf5b-bc12-4fed-88e6-ad4566b6deb1
+
+	column 'Row Index'
+		lineageTag: d95f96c2-2b90-48c3-a785-8f65d80e77a3
+		isNameInferred
+		sourceColumn: [Row Index]
+
+	column Section
+		lineageTag: e4850293-449a-456a-95a4-447a7f8e6732
+		isNameInferred
+		sourceColumn: [Section]
+		sortByColumn: 'Section Sort'
+
+	column 'Line Item'
+		lineageTag: 04366f24-204b-4415-a851-69cb05fd50ab
+		isNameInferred
+		sourceColumn: [Line Item]
+		sortByColumn: 'Row Index'
+
+	column 'Section Sort'
+		lineageTag: 28ee66a0-b91b-409e-ab23-eb3176cec69f
+		isNameInferred
+		sourceColumn: [Section Sort]
+
+	column IsSubtotal
+		lineageTag: 9efecb5a-226d-4de4-a70c-b01b64bb7796
+		isNameInferred
+		sourceColumn: [IsSubtotal]
+
+	partition 'UI_P&L Structure' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Row Index", INTEGER,
+				    "Section Sort", INTEGER,
+				    "Section", STRING,
+				    "IsSubtotal", BOOLEAN,
+				    "Line Item", STRING,
+				    {
+				        { 10, 10, "REVENUE", FALSE, "Projects" },
+				        { 20, 10, "REVENUE", FALSE, "Service Contracts" },
+				        { 30, 10, "REVENUE", FALSE, "T&M" },
+				
+				        { 40, 20, "COST OF SALES", FALSE, "Labor & Burden" },
+				        { 50, 20, "COST OF SALES", FALSE, "Equipment & Material" },
+				        { 60, 20, "COST OF SALES", FALSE, "Subcontract" },
+				        { 70, 20, "COST OF SALES", FALSE, "Discounts" },
+				        { 80, 20, "COST OF SALES", FALSE, "Tax Expense" },
+				
+				        { 90, 30, "GROSS PROFIT", FALSE, "Gross Profit" },
+				
+				        { 100, 40, "OPERATIONS EXPENSE", FALSE, "Operations Expense" },
+				
+				        { 110, 50, "ACTUAL GROSS PROFIT", FALSE, "Actual Gross Profit" },
+				
+				        { 120, 60, "SG&A EXPENSE", FALSE, "Sales Expense" },
+				        { 130, 60, "SG&A EXPENSE", FALSE, "G & A Expense" },
+				
+				        { 140, 70, "OTHER INCOME & EXPENSE", FALSE, "Other Income & Expense" },
+				
+				        { 150, 80, "NET PROFIT", FALSE, "Net Profit" }
+				    }
+				)
+
