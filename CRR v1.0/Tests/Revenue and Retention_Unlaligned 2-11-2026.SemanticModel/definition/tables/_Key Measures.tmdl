@@ -26,7 +26,7 @@ table '_Key Measures'
 
 	/// Service contract revenue only (completed months), intended as the revenue basis for retention metrics.
 	measure 'Service Contract Revenue' = CALCULATE ( SUM ( SERVCONTRACTS_Financials_F[Revenue Amount] ), FYCALENDAR_D[Is Completed Month] = TRUE () )
-		formatString: $#,0.00;($#,0.00);$#,0.00
+		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 2. Customer Financials\Revenue\Streams
 		lineageTag: 5ad68fe2-c1ac-4873-a32a-a946fd4adabc
 

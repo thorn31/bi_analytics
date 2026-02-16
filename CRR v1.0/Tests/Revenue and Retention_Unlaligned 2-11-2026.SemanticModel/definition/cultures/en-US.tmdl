@@ -35059,6 +35059,16 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "Δ vs PY $ (YTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -35080,6 +35090,16 @@ cultureInfo en-US
 			          "P&L var vs PY %": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Δ vs PY % (YTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -35124,6 +35144,16 @@ cultureInfo en-US
 			          "P&L var vs budget %": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Δ vs Budget % (YTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -42429,7 +42459,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Total Revenue": {
+			          "Revenue": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -42439,7 +42469,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Revenue": {
+			          "Total Revenue": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

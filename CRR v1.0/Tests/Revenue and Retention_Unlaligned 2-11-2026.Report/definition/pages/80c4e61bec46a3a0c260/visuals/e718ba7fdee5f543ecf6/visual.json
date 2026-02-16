@@ -53,37 +53,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ccfd3d34894bef0b19ed",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Retention Base PY (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5e281e5e66443fa2b9ee",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }
