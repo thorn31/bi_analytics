@@ -31,6 +31,20 @@
             },
             {
               "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Industrial Group"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Industrial Group",
+              "nativeQueryRef": "Industrial Group"
+            },
+            {
+              "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
@@ -188,7 +202,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "110.8184654505715D"
+                  "Value": "76.66520869113975D"
                 }
               }
             }
@@ -244,7 +258,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "287.81931180930104D"
+                  "Value": "225.11638035032132D"
                 }
               }
             }
@@ -265,6 +279,76 @@
           },
           "selector": {
             "metadata": "_Key Measures.Customer Lifecycle Status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "173.68600754860805D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CUSTOMERS_D.Industrial Group"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76.98081518737266D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Active Projects"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.72697841986475D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Active Contracts"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.43343519751026D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Gross Profit"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.64845228256056D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Revenue"
           }
         }
       ],
@@ -423,6 +507,27 @@
           "selector": {
             "metadata": "_Key Measures.Total Revenue"
           }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CUSTOMERS_D.Industrial Group"
+          }
         }
       ],
       "total": [
@@ -477,6 +582,17 @@
             ],
             "metadata": "_Key Measures.Last Billing Date (Any Stream)"
           }
+        },
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -488,83 +604,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "title": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Customer Status'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "spacing": [
-        {
-          "properties": {
-            "verticalSpacing": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "customizeSpacing": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "divider": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
-                    }
-                  }
                 }
               }
             }
@@ -585,6 +624,45 @@
               "expr": {
                 "Literal": {
                   "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Customer Status'"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heading3'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }
@@ -708,6 +786,160 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "eb0f3c06010556545d2d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Master Customer Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e36f4cf7e2d463f03d1c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Customer Revenue Rank (All Time)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "55c3bb685ea1423e1caa",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Customer Lifecycle Status"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "edcd1fb0ef41ff8543d3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5026927affc301e550e8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Last Billing Date (Any Stream)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b2ee1b1a2035ab437f06",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Projects"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a84cf2bb3e12799f3854",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Contracts"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2825e71ec0ad5bae87af",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Placeholder v1"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "458a9daeebdd756d15c1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Placeholder v2"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "60ca0ff72c8dc551d7fb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Gross Profit"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9e53d04e1550b336b141",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Industrial Group"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

@@ -195,101 +195,6 @@
                   "Value": "0D"
                 }
               }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "d",
-                    "Entity": "DIVISIONS_D",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "Not": {
-                        "Expression": {
-                          "In": {
-                            "Expressions": [
-                              {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Source": "d"
-                                    }
-                                  },
-                                  "Property": "Region"
-                                }
-                              }
-                            ],
-                            "Values": [
-                              [
-                                {
-                                  "Literal": {
-                                    "Value": "'TFS'"
-                                  }
-                                }
-                              ]
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    "Annotations": {
-                      "filterExpressionMetadata": {
-                        "expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "DIVISIONS_D"
-                                }
-                              },
-                              "Property": "Division"
-                            }
-                          }
-                        ],
-                        "decomposedIdentities": {
-                          "values": [
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'TFS'"
-                                    }
-                                  }
-                                ]
-                              }
-                            ]
-                          ],
-                          "columns": [
-                            {
-                              "value": {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "DIVISIONS_D"
-                                    }
-                                  },
-                                  "Property": "Region"
-                                }
-                              }
-                            }
-                          ]
-                        },
-                        "valueMap": [
-                          {
-                            "0": "TFS"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
             }
           }
         }
@@ -636,20 +541,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "c3c17c0a28a749abd371",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DIVISIONS_D"
-              }
-            },
-            "Property": "Division"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

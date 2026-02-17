@@ -567,6 +567,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.727
 			          }
+			        },
+			        {
+			          "Revenue": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -3460,6 +3470,26 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Revenue (R12M)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total Revenue (R12M)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -3481,6 +3511,16 @@ cultureInfo en-US
 			          "total revenue PY": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Revenue PY (R12M)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -3623,6 +3663,16 @@ cultureInfo en-US
 			          "recurring mix % (SC)": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Recurring Mix % (R12M)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -4065,6 +4115,26 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "Revenue (FYTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total Revenue (FYTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -4086,6 +4156,16 @@ cultureInfo en-US
 			          "total revenue PY": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Revenue PY (FYTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -35135,6 +35215,16 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "Δ vs Budget $ (YTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -37666,6 +37756,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.492
 			          }
+			        },
+			        {
+			          "Gross Profit ($)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -37944,6 +38044,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.468
 			          }
+			        },
+			        {
+			          "Net Profit ($)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -38187,6 +38297,16 @@ cultureInfo en-US
 			          "total revenue trend vs PY": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Δ vs PY (R12M)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -45698,9 +45818,443 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue Trend vs PY (FY As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue trend vs PY (FY as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue trend vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Δ vs PY  (FYTD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fycalendar_d.date_hierarchy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FYCALENDAR_D",
+			          "Hierarchy": "Date Hierarchy"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date hierarchy": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hierarchy": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "moment hierarchy": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period hierarchy": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "date ladder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "date grading": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "date order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "date pyramid": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "ladder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "grading": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "pyramid": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fycalendar_d.date_hierarchy.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FYCALENDAR_D",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fycalendar_d.fiscal_end_of_month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FYCALENDAR_D",
+			          "ConceptualProperty": "Fiscal End Of Month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fiscal end of month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "end": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "fiscal end": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "fiscal completion of month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "fiscal conclusion of month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "fiscal expiration of month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "fiscal completion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "fiscal conclusion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "fiscal expiration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "fiscal close of month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "fiscal finish of month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "fiscal last of month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "fiscal stop of month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "entity__key_measure.recurring_mix__SC_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Recurring Mix % (SC) PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "recurring mix % (SC) PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "recurring mix % (SC) PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Recurring Mix Trend vs PY (SC) (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "recurring mix trend vs PY (SC) (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "recurring mix trend vs PY (SC)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.show_month_in_R12M_window_SC": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Show Month In R12M Window (SC)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "show month in R12M window (SC)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "show month in R12M window": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
+			    "financials_f_has_customers_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "customers_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_customers_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_financials_f"
+			        }
+			      ]
+			    },
 			    "TM_financials_F_has_divisions_d": {
 			      "Binding": {
 			        "ConceptualEntity": "TM_Financials_F"
@@ -46351,6 +46905,435 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "divisions_Ds_have_projects_Ds"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_show_month_in_R12M_window_SC": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.show_month_in_R12M_window_SC": {
+			          "Target": {
+			            "Entity": "entity__key_measure.show_month_in_R12M_window_SC"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.show_month_in_R12M_window_SC"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_show_month_in_R12M_window_SC"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_show_month_in_R12M_window_SC": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.show_month_in_R12M_window_SC": {
+			          "Target": {
+			            "Entity": "entity__key_measure.show_month_in_R12M_window_SC"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.show_month_in_R12M_window_SC"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_show_month_in_R12M_window_SC"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_recurring_mix_trend_vs_PY_SC_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_recurring_mix_trend_vs_PY_SC_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_recurring_mix_trend_vs_PY_SC_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_recurring_mix_trend_vs_PY_SC_R12M"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_recurring_mix_trend_vs_PY_SC_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.recurring_mix_trend_vs_PY_SC_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_recurring_mix_trend_vs_PY_SC_R12M"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_recurring_mix__SC_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.recurring_mix__SC_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.recurring_mix__SC_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.recurring_mix__SC_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_recurring_mix__SC_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_recurring_mix__SC_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.recurring_mix__SC_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.recurring_mix__SC_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.recurring_mix__SC_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_recurring_mix__SC_PY_R12M"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_recurring_mix__SC_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.recurring_mix__SC_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.recurring_mix__SC_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.recurring_mix__SC_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_recurring_mix__SC_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_fiscal_end_of_month": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "fycalendar_d.fiscal_end_of_month": {
+			          "Target": {
+			            "Entity": "fycalendar_d.fiscal_end_of_month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d.fiscal_end_of_month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_fiscal_end_of_month"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_date_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "fycalendar_d.date_hierarchy": {
+			          "Target": {
+			            "Entity": "fycalendar_d.date_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d.date_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_date_hierarchies"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_trend_vs_PY_FY_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_trend_vs_PY_FY_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_trend_vs_PY_FY_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_revenue_trend_vs_PY_FY_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_revenue_trend_vs_PY_FY_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY_FY_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_total_revenue_trend_vs_PY_FY_as_of"
 			        }
 			      ]
 			    },
@@ -70188,52 +71171,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "financials_f_has_customers_d": {
-			      "Binding": {
-			        "ConceptualEntity": "FINANCIALS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "financials_f": {
-			          "Target": {
-			            "Entity": "financials_f"
-			          }
-			        },
-			        "customers_d": {
-			          "Target": {
-			            "Entity": "customers_d"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "financials_f"
-			            },
-			            "Object": {
-			              "Role": "customers_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "financials_f_have_customers_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "customers_d"
-			            },
-			            "Object": {
-			              "Role": "financials_f"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "customers_Ds_have_financials_f"
-			        }
-			      ]
-			    },
 			    "financials_f_has_fycalendar_d": {
 			      "Binding": {
 			        "ConceptualEntity": "FINANCIALS_F"
@@ -70723,6 +71660,39 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "customers_Ds_have_jobs_d_lookups"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_date_hierarchy_has_date": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d.date_hierarchy": {
+			          "Target": {
+			            "Entity": "fycalendar_d.date_hierarchy"
+			          }
+			        },
+			        "fycalendar_d.date_hierarchy.date": {
+			          "Target": {
+			            "Entity": "fycalendar_d.date_hierarchy.date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "fycalendar_d.date_hierarchy.date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_hierarchies_have_dates"
 			        }
 			      ]
 			    }

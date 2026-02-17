@@ -192,7 +192,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 4,
+                      "ColorId": 7,
                       "Percent": 0
                     }
                   }
@@ -375,6 +375,20 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'FY Revenue By Stream'"
                 }
               }
             }

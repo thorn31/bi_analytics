@@ -430,6 +430,26 @@ table FYCALENDAR_D
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Fiscal End Of Month'
+		dataType: dateTime
+		formatString: MMM YYYY
+		lineageTag: cba76c83-eb39-4a18-9c73-6b685991d9fc
+		summarizeBy: none
+		sourceColumn: Fiscal End Of Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 121b1c39-f17b-4bc0-adc7-0e0506bdabe1
+
+		level Date
+			lineageTag: 8c7dc3df-0d42-4742-ad9f-092bf9ee0be8
+			column: Date
+
 	partition FYCALENDAR_D = m
 		mode: import
 		queryGroup: DIM
@@ -482,7 +502,6 @@ table FYCALENDAR_D
 				            Text.Type
 				        ),
 				
-				    // Allows you to select the 'Current' or 'Previous' year dynamically. 
 				    Add_FiscalYearDefault =
 				        Table.AddColumn(
 				            Add_FiscalYearLabel,
@@ -513,10 +532,6 @@ table FYCALENDAR_D
 				            Date.Type
 				        ),
 				
-				    // -----------------------------------------------------
-				    // Fiscal Day & Week of Fiscal Year
-				    // -----------------------------------------------------
-				
 				    Add_FiscalDayOfYear =
 				        Table.AddColumn(
 				            Add_FiscalEndOfYear,
@@ -545,11 +560,6 @@ table FYCALENDAR_D
 				            Text.Type
 				        ),
 				
-				    // -----------------------------------------------------
-				    // Continue existing logic
-				    // -----------------------------------------------------
-				
-				    // A year Offset value indicates the relative position of the current year (based on today's date)
 				    Add_FiscalYearOffset =
 				        Table.AddColumn(
 				            Add_FiscalWeekLabel,
@@ -566,10 +576,18 @@ table FYCALENDAR_D
 				            Int64.Type
 				        ),
 				
-				    // Allows you to select the 'Current' or 'Previous' month dynamically.
+				    // >>> ADD THIS: Fiscal End Of Month (fiscal month boundary)
+				    Add_FiscalEndOfMonth =
+				        Table.AddColumn(
+				      Add_FiscalMonthNumber,
+				      "FiscalEndOfMonth",
+				      each Date.EndOfMonth([Date]),
+				      Date.Type
+				  ),
+				
 				    Add_FiscalMonthDefault =
 				        Table.AddColumn(
-				            Add_FiscalMonthNumber,
+				            Add_FiscalEndOfMonth,
 				            "FiscalMonthDefault",
 				            each
 				                if Date.IsInCurrentMonth([Date]) then "Current"
@@ -626,7 +644,6 @@ table FYCALENDAR_D
 				            Date.Type
 				        ),
 				
-				    // Quarter offset logic
 				    Add_FiscalQuarterOffset =
 				        Table.AddColumn(
 				            Add_FiscalEndOfQuarter,
@@ -662,10 +679,6 @@ table FYCALENDAR_D
 				            each Number.From([Date] - [FiscalStartOfQuarter]) + 1,
 				            Int64.Type
 				        ),
-				
-				    // -----------------------------------------------------
-				    // Current-period indicators
-				    // -----------------------------------------------------
 				
 				    Add_IsCurrentMonth =
 				        Table.AddColumn(
@@ -711,10 +724,6 @@ table FYCALENDAR_D
 				            type logical
 				        ),
 				
-				    // -----------------------------------------------------
-				    // Previous-period indicators
-				    // -----------------------------------------------------
-				
 				    Add_IsPreviousMonth =
 				        Table.AddColumn(
 				            Add_IsCurrentWeek,
@@ -742,37 +751,30 @@ table FYCALENDAR_D
 				            type logical
 				        ),
 				
-				    // -----------------------------------------------------
-				    // Column cleanup
-				    // -----------------------------------------------------
-				// -----------------------------------------------------
-				// Additional fiscal month & week labels for CB-TI
-				// -----------------------------------------------------
+				    Add_FiscalMonthName =
+				        Table.AddColumn(
+				            Add_IsPreviousWeek,
+				            "FiscalMonthName",
+				            each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0"),
+				            Text.Type
+				        ),
 				
-				Add_FiscalMonthName =
-				    Table.AddColumn(
-				        Add_IsPreviousWeek,
-				        "FiscalMonthName",
-				        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0"),
-				        Text.Type
-				    ),
+				    Add_FiscalMonthNameLong =
+				        Table.AddColumn(
+				            Add_FiscalMonthName,
+				            "FiscalMonthNameLong",
+				            each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0") 
+				                & " - " & Date.MonthName([Date]),
+				            Text.Type
+				        ),
 				
-				Add_FiscalMonthNameLong =
-				    Table.AddColumn(
-				        Add_FiscalMonthName,
-				        "FiscalMonthNameLong",
-				        each "FM" & Text.PadStart(Text.From([FiscalMonth]), 2, "0") 
-				            & " - " & Date.MonthName([Date]),
-				        Text.Type
-				    ),
-				
-				Add_FiscalWeekName =
-				    Table.AddColumn(
-				        Add_FiscalMonthNameLong,
-				        "FiscalWeekName",
-				        each "FW" & Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
-				        Text.Type
-				    ),
+				    Add_FiscalWeekName =
+				        Table.AddColumn(
+				            Add_FiscalMonthNameLong,
+				            "FiscalWeekName",
+				            each "FW" & Text.PadStart(Text.From([FiscalWeekOfYear]), 2, "0"),
+				            Text.Type
+				        ),
 				
 				    #"Rename Columns" =
 				        Table.TransformColumnNames(
@@ -788,8 +790,9 @@ table FYCALENDAR_D
 				    #"Inserted Month Name" =
 				        Table.AddColumn(#"Rename Columns", "Month Name", each Date.MonthName([Date]), type text),
 				    #"Added Custom" = Table.AddColumn(#"Inserted Month Name", "MMM Label", each Text.Start([Month Name], 3)),
-				    Add_IsCompletedMonth = Table.AddColumn(#"Added Custom", "Is Completed Month", each Date.EndOfMonth([Date])< Date.StartOfMonth(Date.From(DateTime.LocalNow())), type logical),
+				    Add_IsCompletedMonth = Table.AddColumn(#"Added Custom", "Is Completed Month", each Date.EndOfMonth([Date]) < Date.StartOfMonth(Date.From(DateTime.LocalNow())), type logical),
 				    #"Added Custom1" = Table.AddColumn(Add_IsCompletedMonth, "Is Completed Quarter", each [Fiscal End Of Quarter] < Date.From(DateTime.LocalNow()), type logical)
+				
 				in
 				    #"Added Custom1"
 				```

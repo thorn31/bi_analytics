@@ -298,6 +298,125 @@
             ],
             "metadata": "_Key Measures.Upsell Revenue (R12M As Of)"
           }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "_Key Measures"
+                                    }
+                                  },
+                                  "Property": "Customer Retention Category (R12M)"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Churned'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D17A73'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "_Key Measures"
+                                    }
+                                  },
+                                  "Property": "Customer Retention Category (R12M)"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Contraction'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D17A73'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "_Key Measures"
+                                    }
+                                  },
+                                  "Property": "Customer Retention Category (R12M)"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Upsell'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#5FBEA2'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Key Measures.Customer Retention Category (R12M)"
+          }
         }
       ]
     },
@@ -309,6 +428,25 @@
               "expr": {
                 "Literal": {
                   "Value": "'Customer Retention Analysis'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
                 }
               }
             }
@@ -650,20 +788,6 @@
               }
             },
             "Property": "Service Contract Revenue Δ vs PY (Retention Base Customers) (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a722d5dd559463010f55",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Months Since Last Contract Billing (SC Anchor)"
           }
         },
         "type": "Advanced"

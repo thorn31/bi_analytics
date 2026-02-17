@@ -111,7 +111,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'OutsideEnd'"
+                  "Value": "'InsideEnd'"
                 }
               }
             },
@@ -139,7 +139,7 @@
             "optimizeLabelDisplay": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -282,7 +282,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue Mix'"
+                  "Value": "'Revenue By Fiscal Year'"
                 }
               }
             },

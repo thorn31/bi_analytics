@@ -5,7 +5,7 @@
     "x": 1129.7610921501705,
     "y": 270,
     "z": 6000,
-    "height": 385,
+    "height": 385.18771331058019,
     "width": 770.37542662116039,
     "tabOrder": 6000
   },
@@ -29,39 +29,6 @@
               "queryRef": "FYCALENDAR_D.Fiscal Year",
               "nativeQueryRef": "Fiscal Year",
               "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FYCALENDAR_D"
-                    }
-                  },
-                  "Property": "MMM Label"
-                }
-              },
-              "queryRef": "FYCALENDAR_D.MMM Label",
-              "nativeQueryRef": "MMM Label",
-              "active": true
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Key Measures"
-                    }
-                  },
-                  "Property": "Net Revenue Retention Trend vs PY (R12M As Of)"
-                }
-              },
-              "queryRef": "_Key Measures.Net Revenue Retention Trend vs PY (R12M As Of)",
-              "nativeQueryRef": "Net Revenue Retention Trend vs PY (R12M As Of)"
             }
           ]
         },
@@ -75,14 +42,46 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Churn + Contraction Revenue (R12M As Of)"
+                  "Property": "Service Contract Revenue (Retention Base Customers) (R12M As Of)"
                 }
               },
-              "queryRef": "_Key Measures.Churn + Contraction Revenue (R12M As Of)",
-              "nativeQueryRef": "Churn + Contraction Revenue (R12M As Of)"
+              "queryRef": "_Key Measures.Service Contract Revenue (Retention Base Customers) (R12M As Of)",
+              "nativeQueryRef": "Service Contract Revenue (Retention Base Customers) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "SC Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.SC Revenue (R12M As Of)",
+              "nativeQueryRef": "SC Revenue (R12M As Of)"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Service Contract Revenue (Retention Base Customers) (R12M As Of)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -128,6 +127,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Scalar'"
+                }
+              }
             }
           }
         }
@@ -139,6 +145,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
@@ -189,6 +202,13 @@
                   "Value": "'Segoe UI Light'"
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Upsell vs Churn & Contraction'"
+                }
+              }
             }
           }
         }
@@ -199,7 +219,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -269,7 +289,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "5df6cd96e155476bf69f",
+        "name": "850aa69d11d01c8b145f",
         "field": {
           "Column": {
             "Expression": {
@@ -281,120 +301,38 @@
           }
         },
         "type": "RelativeDate",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "FYCALENDAR_D",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Between": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  },
-                  "LowerBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "DateAdd": {
-                              "Expression": {
-                                "Now": {}
-                              },
-                              "Amount": 1,
-                              "TimeUnit": 0
-                            }
-                          },
-                          "Amount": -1,
-                          "TimeUnit": 3
-                        }
-                      },
-                      "TimeUnit": 0
-                    }
-                  },
-                  "UpperBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "Now": {}
-                      },
-                      "TimeUnit": 0
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
         "howCreated": "User"
       },
       {
-        "name": "d8abd1a7ff99fb30c5d9",
+        "name": "ba32bdb307fa2dfe01cb",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "FYCALENDAR_D"
+                "Entity": "_Key Measures"
               }
             },
-            "Property": "Is Completed Month"
+            "Property": "SC Revenue (R12M As Of)"
           }
         },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "FYCALENDAR_D",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "f"
-                          }
-                        },
-                        "Property": "Is Completed Month"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "true"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
+        "type": "Advanced"
       },
       {
-        "name": "820863aef6cbc74155e9",
+        "name": "9a5da9ee56cac88e363e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Service Contract Revenue (Retention Base Customers) (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c2ecd05fbb4e3e770b8a",
         "field": {
           "Column": {
             "Expression": {
@@ -403,48 +341,6 @@
               }
             },
             "Property": "Fiscal Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "691fde9e2dd04867f636",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "MMM Label"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "fd60eebe2996bb9e76c3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Net Revenue Retention Trend vs PY (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "93fb42e31309113b489e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Churn + Contraction Revenue (R12M As Of)"
           }
         },
         "type": "Advanced"

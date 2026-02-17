@@ -879,7 +879,13 @@ table '_Key Measures'
 		lineageTag: 510260ec-a145-4bc2-a071-8aabf8f51c1b
 
 	/// Helper: selected fiscal year when a single fiscal year is selected; blank otherwise.
-	measure 'Selected Fiscal Year (Single)' = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+	measure 'Selected Fiscal Year (Single)' =
+			VAR FYSelected = SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] )
+			VAR Anchor = [As Of Month End (Financials)]
+			VAR FYFromAnchor =
+			    CALCULATE ( SELECTEDVALUE ( FYCALENDAR_D[Fiscal Year] ), TREATAS ( { Anchor }, FYCALENDAR_D[Date] ) )
+			RETURN
+			    COALESCE ( FYSelected, FYFromAnchor )
 		isHidden
 		displayFolder: 7. Helper\Date
 		lineageTag: 1e5b9cac-872b-4bdf-859c-ea513ad2839b
@@ -1445,25 +1451,25 @@ table '_Key Measures'
 	/// Placeholder: spend-per-maintenance metric not yet modeled in this semantic model.
 	measure 'Project Spend per Maintenance $ (TTM)' = BLANK()
 		formatString: 0.00;-0.00;0.00
-		displayFolder: 10. Not Implemented\Operations
+		displayFolder: z. Not Implemented\Operations
 		lineageTag: ebd79675-e12a-4dbb-be09-1402aabf2a44
 
 	/// Placeholder: spend-per-maintenance metric not yet modeled in this semantic model.
 	measure 'T&M Spend per Maintenance $ (TTM)' = BLANK()
 		formatString: 0.00;-0.00;0.00
-		displayFolder: 10. Not Implemented\Operations
+		displayFolder: z. Not Implemented\Operations
 		lineageTag: 7a6a6b3e-bd94-4123-bec6-214c6b95c89b
 
 	/// Placeholder: snapshot KPI not yet modeled in this semantic model.
 	measure 'Total Project Spend per Total Maintenance $ (Snapshot)' = BLANK()
 		formatString: 0.00;-0.00;0.00
-		displayFolder: 10. Not Implemented\Operations
+		displayFolder: z. Not Implemented\Operations
 		lineageTag: 22291a47-8401-493b-9b4e-5b7e2fbb5681
 
 	/// Placeholder: snapshot KPI not yet modeled in this semantic model.
 	measure 'Total T&M Spend per Total Maintenance $ (Snapshot)' = BLANK()
 		formatString: 0.00;-0.00;0.00
-		displayFolder: 10. Not Implemented\Operations
+		displayFolder: z. Not Implemented\Operations
 		lineageTag: 4b38c170-317a-42c0-ba84-2182fff28c91
 
 	/// Helper: last available NPS completed date in the model (ignores filters), capped at the current month end (and calendar max) to prevent bad future-dated rows from shifting anchors.
@@ -4123,6 +4129,117 @@ table '_Key Measures'
 		formatString: #,0
 		displayFolder: 6. Customer Status\Contract
 		lineageTag: e5fe1651-e3a6-41fd-a183-47034f6a2971
+
+	/// Arrow + percent label comparing Total Revenue FY As Of vs prior-year FY As Of (blank when CY or PY is blank/0).
+	measure 'Total Revenue Trend vs PY (FY As Of)' =
+			VAR CY = [Total Revenue (FY As Of)]
+			VAR PY = [Total Revenue PY (FY As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR PctChange = DIVIDE ( Diff, PY )
+			        VAR Icon =
+			            SWITCH ( TRUE (), PctChange > 0, UNICHAR ( 9650 ), PctChange < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			        VAR PctText =
+			            IF ( PctChange >= 0, UNICHAR ( 8199 ) & FORMAT ( PctChange, "0.0%" ), FORMAT ( PctChange, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		displayFolder: 2. Customer Financials\Revenue\Time Intelligence\FY As Of\Labels
+		lineageTag: 1dc1b457-6e2f-4d14-9a49-7c27e5626a69
+
+	/// Prior-year rolling-12-month recurring (service contracts) mix: (TotalRevPY - ProjectRevPY - TMRevPY) / TotalRevPY, anchored to financials R12M As Of window shifted back 12 months.
+	measure 'Recurring Mix % (SC) PY (R12M)' =
+			VAR AnchorDate = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			VAR TotalRevPY = [Total Revenue PY (R12M As Of)]
+			VAR ProjectRevPY =
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE ( [Project Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) )
+			    )
+			VAR TMRevPY =
+			    IF (
+			        ISBLANK ( AnchorDate ),
+			        BLANK (),
+			        CALCULATE ( [T&M Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) )
+			    )
+			VAR SCRevPY = TotalRevPY - ProjectRevPY - TMRevPY
+			RETURN
+			    DIVIDE ( SCRevPY, TotalRevPY )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 2. Customer Financials\Revenue\Time Intelligence\R12M As Of\Mix
+		lineageTag: 55b42486-4411-4f4c-9d8b-cff6a8ae4d53
+
+	/// Arrow + percentage-point label comparing Recurring Mix % (SC) (R12M) vs prior year (PY).
+	measure 'Recurring Mix Trend vs PY (SC) (R12M)' =
+			VAR CY = [Recurring Mix % (SC) (R12M)]
+			VAR PY = [Recurring Mix % (SC) PY (R12M)]
+			VAR DeltaPP = ( CY - PY ) * 100
+			VAR Icon =
+			    SWITCH ( TRUE (), DeltaPP > 0, UNICHAR ( 9650 ), DeltaPP < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			VAR LabelText =
+			    IF ( DeltaPP >= 0, UNICHAR ( 8199 ) & FORMAT ( DeltaPP, "0.0" ) & " pp", FORMAT ( DeltaPP, "0.0" ) & " pp" )
+			RETURN
+			    IF ( ISBLANK ( CY ) || ISBLANK ( PY ), BLANK (), Icon & " " & LabelText )
+		displayFolder: 2. Customer Financials\Revenue\Time Intelligence\R12M As Of\Mix\Labels
+		lineageTag: c39e3a75-f73f-4faa-bd85-97d9959fe5a3
+
+	/// Helper (hidden): returns 1 when the current month on the axis is within the rolling 12-month window ending at the service-contract as-of anchor month (uses slicer context via ALLSELECTED).
+	measure 'Show Month In R12M Window (SC)' =
+			VAR MonthEnd = MAX ( FYCALENDAR_D[Fiscal End Of Month] )
+			VAR Anchor =
+			    CALCULATE ( [As Of Month End (SC)], REMOVEFILTERS ( FYCALENDAR_D[Fiscal End Of Month] ) )
+			VAR StartMonthEnd = EOMONTH ( Anchor, -11 )
+			RETURN
+			    IF (
+			        ISBLANK ( Anchor ) || ISBLANK ( MonthEnd ),
+			        BLANK (),
+			        IF ( MonthEnd >= StartMonthEnd && MonthEnd <= Anchor, 1, 0 )
+			    )
+		formatString: 0
+		displayFolder: 7. Helper\Retention\Anchors
+		lineageTag: c407ba5c-6492-420d-8544-1a99b949e7d2
+
+	/// Text indicator showing P&L Net Profit change vs prior year for the current period context (arrow + formatted delta). Returns BLANK when CY or PY is missing.
+	measure 'P&L Net Profit Trend vs PY' =
+			VAR CY = [P&L Net Profit]
+			VAR PY = [P&L Net Profit PY]
+			VAR Delta = CY - PY
+			VAR Arrow = SWITCH ( TRUE (), Delta > 0, "▲ ", Delta < 0, "▼ ", "■ " )
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || ISBLANK ( PY ),
+			        BLANK (),
+			        Arrow & FORMAT ( Delta, "$#,0;($#,0);$#,0" )
+			    )
+		formatString: @
+		displayFolder: 1. GL Financials\P&L\Period\Labels
+		lineageTag: 7635cfb2-b58d-43d6-a1ff-c7b74392ff63
+
+	/// Text indicator showing P&L Net Profit percent change vs prior year for the current period context (arrow + percent). Returns BLANK when CY or PY is missing/zero.
+	measure 'P&L Net Profit Trend vs PY %' =
+			VAR CY = [P&L Net Profit]
+			VAR PY = [P&L Net Profit PY]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR PctChange = DIVIDE ( Diff, PY )
+			        VAR Icon =
+			            SWITCH ( TRUE (), PctChange > 0, UNICHAR ( 9650 ), PctChange < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			        VAR PctText =
+			            IF ( PctChange >= 0, UNICHAR ( 8199 ) & FORMAT ( PctChange, "0.0%" ), FORMAT ( PctChange, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		formatString: @
+		displayFolder: 1. GL Financials\P&L\Period\Labels
+		lineageTag: 7952e371-cef5-4b22-a930-4b4ae5b905c6
 
 	column _
 		isHidden

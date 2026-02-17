@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "ea7311b757b2589ee65a",
   "position": {
-    "x": 708.63481228668934,
-    "y": 374.12969283276448,
-    "z": 5000,
-    "height": 670.853242320819,
-    "width": 1211.7747440273038,
-    "tabOrder": 5000
+    "x": 340.03412969283272,
+    "y": 270,
+    "z": 4000,
+    "height": 790.6484641638225,
+    "width": 1560.1023890784982,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -117,11 +117,12 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "P&L Var vs Budget % (YTD)"
+                  "Property": "P&L Var vs PY $ (YTD)"
                 }
               },
-              "queryRef": "_Key Measures.P&L Var vs Budget % (YTD)",
-              "nativeQueryRef": "P&L Var vs Budget % (YTD)"
+              "queryRef": "_Key Measures.P&L Var vs PY $ (YTD)",
+              "nativeQueryRef": "Δ vs PY $ (YTD)",
+              "displayName": "Δ vs PY $ (YTD)"
             },
             {
               "field": {
@@ -135,7 +136,8 @@
                 }
               },
               "queryRef": "_Key Measures.P&L Var vs PY % (YTD)",
-              "nativeQueryRef": "P&L Var vs PY % (YTD)"
+              "nativeQueryRef": "Δ vs PY % (YTD)",
+              "displayName": "Δ vs PY % (YTD)"
             },
             {
               "field": {
@@ -145,11 +147,27 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "P&L Var vs PY $ (YTD)"
+                  "Property": "P&L Var vs Budget $ (YTD)"
                 }
               },
-              "queryRef": "_Key Measures.P&L Var vs PY $ (YTD)",
-              "nativeQueryRef": "P&L Var vs PY $ (YTD)"
+              "queryRef": "_Key Measures.P&L Var vs Budget $ (YTD)",
+              "nativeQueryRef": "Δ vs Budget $ (YTD)",
+              "displayName": "Δ vs Budget $ (YTD)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "P&L Var vs Budget % (YTD)"
+                }
+              },
+              "queryRef": "_Key Measures.P&L Var vs Budget % (YTD)",
+              "nativeQueryRef": "Δ vs Budget % (YTD)",
+              "displayName": "Δ vs Budget % (YTD)"
             }
           ]
         }
@@ -205,7 +223,7 @@
               "identityValues": [
                 {
                   "Literal": {
-                    "Value": "'NET PROFIT'"
+                    "Value": "'GROSS PROFIT'"
                   }
                 }
               ],
@@ -225,7 +243,7 @@
               "identityValues": [
                 {
                   "Literal": {
-                    "Value": "'GROSS PROFIT'"
+                    "Value": "'NET PROFIT'"
                   }
                 }
               ],
@@ -236,6 +254,16 @@
                 {
                   "Literal": {
                     "Value": "'OTHER INCOME & EXPENSE'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'OPERATIONS EXPENSE'"
                   }
                 }
               ],
@@ -1623,6 +1651,20 @@
             ],
             "metadata": "_Key Measures.P&L Amount PY (YTD)"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "170D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Var vs Budget $ (YTD)"
+          }
         }
       ],
       "grid": [
@@ -1645,11 +1687,18 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "10D"
                 }
               }
             },
             "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridHorizontal": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -1785,6 +1834,31 @@
           "selector": {
             "metadata": "_Key Measures.P&L Var vs PY $ (YTD)"
           }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "null"
+                    }
+                  }
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Operator"
+          }
         }
       ],
       "values": [
@@ -1832,6 +1906,73 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'P&L Detailed'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
                 }
               }
             }

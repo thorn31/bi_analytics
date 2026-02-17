@@ -419,11 +419,26 @@
           "zIndex": 0
         },
         {
-          "location": {},
+          "location": {
+            "x": 6232.7335143762721,
+            "y": 769.77995523712707
+          },
           "nodeIndex": "UI_Top N Selector",
           "nodeLineageTag": "7afdb64c-87ca-42b6-946a-68fb3595898a",
           "size": {
             "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6466.7335143762721,
+            "y": 805.77995523712707
+          },
+          "nodeIndex": "UI_Retention Category Selector",
+          "size": {
+            "height": 128,
             "width": 234
           },
           "zIndex": 0

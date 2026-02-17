@@ -115,13 +115,6 @@
                 }
               }
             },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'aboveValue'"
-                }
-              }
-            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -131,6 +124,13 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'aboveValue'"
                 }
               }
             }
@@ -251,20 +251,6 @@
                 }
               }
             },
-            "paddingUniform": {
-              "expr": {
-                "Literal": {
-                  "Value": "12L"
-                }
-              }
-            },
-            "backgroundShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
             "backgroundTransparency": {
               "expr": {
                 "Literal": {
@@ -272,7 +258,7 @@
                 }
               }
             },
-            "paddingIndividual": {
+            "backgroundShow": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -292,6 +278,20 @@
                   "Value": "12L"
                 }
               }
+            },
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "12L"
+                }
+              }
+            },
+            "paddingIndividual": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           },
           "selector": {
@@ -300,6 +300,27 @@
         },
         {
           "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "rowCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            },
+            "columnCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            },
             "cellPadding": {
               "expr": {
                 "Literal": {
@@ -311,27 +332,6 @@
               "expr": {
                 "Literal": {
                   "Value": "50D"
-                }
-              }
-            },
-            "orientation": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "columnCount": {
-              "expr": {
-                "Literal": {
-                  "Value": "4L"
-                }
-              }
-            },
-            "rowCount": {
-              "expr": {
-                "Literal": {
-                  "Value": "2L"
                 }
               }
             }
@@ -365,21 +365,6 @@
             "metadata": "_Key Measures.Gross Revenue Retention % (R12M As Of)",
             "id": "field-90c40eb4-59d5-6896-f8c4-3d73913398d5",
             "order": 0
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Gross Revenue Retention % (R12M As Of)",
-            "id": "field-449c1ce6-7518-380e-ac07-a798f9835e65",
-            "order": 1
           }
         },
         {
@@ -537,51 +522,6 @@
           }
         },
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)",
-            "id": "field-f3e82c8a-6eae-2c13-8be4-0bb5ed9e81db",
-            "order": 3
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)",
-            "id": "field-8e0f3541-73a7-ac5e-1576-5374e0d988e4",
-            "order": 2
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)",
-            "id": "field-4f8204fb-1a1a-af8d-2f5e-495e39aad1d2",
-            "order": 2
-          }
-        },
-        {
           "properties": {
             "value": {
               "expr": {
@@ -662,6 +602,13 @@
                 }
               }
             },
+            "style": {
+              "expr": {
+                "Literal": {
+                  "Value": "'tabular'"
+                }
+              }
+            },
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
@@ -673,13 +620,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'middle'"
-                }
-              }
-            },
-            "style": {
-              "expr": {
-                "Literal": {
-                  "Value": "'tabular'"
                 }
               }
             },
@@ -713,17 +653,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -735,17 +675,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'Δ vs PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -757,17 +697,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -779,17 +719,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'Δ vs PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -801,6 +741,13 @@
         },
         {
           "properties": {
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
             "titleFontColor": {
               "solid": {
                 "color": {
@@ -812,13 +759,6 @@
                   }
                 }
               }
-            },
-            "titleFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
             }
           },
           "selector": {
@@ -827,17 +767,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'Δ vs PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -849,17 +789,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -871,17 +811,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -893,17 +833,17 @@
         },
         {
           "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
             "titleText": {
               "expr": {
                 "Literal": {
                   "Value": "'Δ vs PY'"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
                 }
               }
             }
@@ -1016,122 +956,13 @@
         },
         {
           "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "Revenue Trend Color (R12M As Of)"
-                    }
-                  }
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Total Revenue (R12M As Of)"
-          }
-        },
-        {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "Total GP % Trend Color (R12M As Of)"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Total GP % (R12M As Of)"
-          }
-        },
-        {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "NRR Trend Color (R12M As Of)"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)"
-          }
-        },
-        {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "GRR Trend Color (R12M As Of)"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "_Key Measures.Gross Revenue Retention % (R12M As Of)"
           }
         }
       ],
@@ -1218,10 +1049,10 @@
       "title": [
         {
           "properties": {
-            "titleWrap": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'Retention Metrics (Rolling 12 Month)'"
                 }
               }
             },
@@ -1232,36 +1063,17 @@
                 }
               }
             },
-            "text": {
+            "heading": {
               "expr": {
                 "Literal": {
-                  "Value": "'Retention Metrics (Rolling 12 Month)'"
+                  "Value": "'Heading3'"
                 }
               }
             },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
+            "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                  "Value": "false"
                 }
               }
             },
@@ -1277,6 +1089,18 @@
                 }
               }
             },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
             "alignment": {
               "expr": {
                 "Literal": {
@@ -1284,10 +1108,17 @@
                 }
               }
             },
-            "heading": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "'Heading3'"
+                  "Value": "18D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
                 }
               }
             }
@@ -1344,13 +1175,6 @@
       "border": [
         {
           "properties": {
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {
@@ -1366,6 +1190,13 @@
                       "Value": "'#F2F2F2'"
                     }
                   }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }

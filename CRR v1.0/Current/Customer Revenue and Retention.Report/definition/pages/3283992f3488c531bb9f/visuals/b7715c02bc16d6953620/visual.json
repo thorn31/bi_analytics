@@ -1015,24 +1015,7 @@
           }
         },
         {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "Revenue Trend Color (R12M As Of)"
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -1045,24 +1028,7 @@
           }
         },
         {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "Total GP % Trend Color (R12M As Of)"
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -1075,24 +1041,7 @@
           }
         },
         {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "NRR Trend Color (R12M As Of)"
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -1105,24 +1054,7 @@
           }
         },
         {
-          "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Key Measures"
-                        }
-                      },
-                      "Property": "GRR Trend Color (R12M As Of)"
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -1132,6 +1064,17 @@
               }
             ],
             "metadata": "_Key Measures.Gross Revenue Retention % (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ],
