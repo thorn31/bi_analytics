@@ -1,0 +1,24 @@
+/// Disconnected slicer table for selecting Top N customers in visuals.
+table 'UI_Top N Selector'
+	lineageTag: 7afdb64c-87ca-42b6-946a-68fb3595898a
+
+	column TopN
+		lineageTag: 1b67482f-9c4d-4bd4-9dff-eaadc7a56152
+		isNameInferred
+		sourceColumn: [TopN]
+
+	partition 'UI_Top N Selector' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "TopN", INTEGER,
+				    {
+				        { 5 },
+				        { 10 },
+				        { 15 },
+				        { 20 },
+				        { 25 },
+				        { 50 }
+				    }
+				)
+

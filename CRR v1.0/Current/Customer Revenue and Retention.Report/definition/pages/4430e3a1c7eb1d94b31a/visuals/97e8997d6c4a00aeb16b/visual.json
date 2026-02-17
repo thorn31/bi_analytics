@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "97e8997d6c4a00aeb16b",
+  "position": {
+    "x": 20.273037542662117,
+    "y": 100.44368600682593,
+    "z": 3000,
+    "height": 439.55631399317406,
+    "width": 679.14675767918084,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Month Letter"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Month Letter",
+              "nativeQueryRef": "Month Letter",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "P&L Gross Profit"
+                }
+              },
+              "queryRef": "_Key Measures.P&L Gross Profit",
+              "nativeQueryRef": "P&L Gross Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "P&L Gross Profit PY"
+                }
+              },
+              "queryRef": "_Key Measures.P&L Gross Profit PY",
+              "nativeQueryRef": "P&L Gross Profit PY"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "P&L Gross Profit Budget"
+                }
+              },
+              "queryRef": "_Key Measures.P&L Gross Profit Budget",
+              "nativeQueryRef": "P&L Gross Profit Budget"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "alignZeros": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "secShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Gross Profit Budget"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

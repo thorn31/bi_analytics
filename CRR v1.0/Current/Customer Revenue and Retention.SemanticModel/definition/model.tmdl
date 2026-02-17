@@ -1,0 +1,59 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Staging
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup DIM
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling","TMDLView_Desktop"]
+
+annotation PBI_QueryOrder = ["CUSTOMERS_D","FYCALENDAR_D","DIVISIONS_D","PROJECTS_D","SERVCONTRACTS_D","GL_ACCT_D","JOBS_D_LOOKUP","POSTING_DATA_F","CALLS_F","CUSTOMER_SEGMENTATION","CONTRACTS_D","JOBS_D","JOBSTRIMMED_D","SERVPROJECTS_D","OFFICE_LOCATIONS","SERVCONTRACTS_D_STAGING","SV00564","CONTRACT_BILLABLE_F","SERVCONTRACTS_REVENUE_F","SERVCONTRACTS_COSTS_F","JOB_COST_DETAILS","JOB_COST_FORECASTS_F","JOB_CHANGE_ORDERS_F","JOB_MONTHLY_SUMMARY_F","PROJECTS_Financials_F","SERVCONTRACTS_Financials_F","TM_Financials_F","FINANCIALS_F","NPS_F","BUDGET_F"]
+
+ref table '_Key Measures'
+ref table CUSTOMERS_D
+ref table FYCALENDAR_D
+ref table DIVISIONS_D
+ref table PROJECTS_D
+ref table SERVCONTRACTS_D
+ref table GL_ACCT_D
+ref table POSTING_DATA_F
+ref table CONTRACT_BILLABLE_F
+ref table SERVCONTRACTS_REVENUE_F
+ref table SERVCONTRACTS_COSTS_F
+ref table JOB_COST_DETAILS
+ref table JOB_COST_FORECASTS_F
+ref table JOB_CHANGE_ORDERS_F
+ref table JOB_MONTHLY_SUMMARY_F
+ref table PROJECTS_Financials_F
+ref table SERVCONTRACTS_Financials_F
+ref table TM_Financials_F
+ref table FINANCIALS_F
+ref table STREAM_D
+ref table GL_MARKET_STREAM_D
+ref table 'UI_Waterfall - NRR Breakdown'
+ref table UI_BarFillParts
+ref table 'UI_Customer Status Selector'
+ref table UI_CustomerProfileRows
+ref table NPS_F
+ref table BUDGET_F
+ref table 'UI_P&L Structure'
+ref table UI_ActiveItems
+ref table JOBS_D_LOOKUP
+ref table 'UI_Revenue Stream Selector'
+ref table 'UI_Revenue View Selector'
+ref table 'UI_Top N Selector'
+ref table 'UI_Retention Category Selector'
+
+ref cultureInfo en-US
+

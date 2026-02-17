@@ -1,0 +1,30 @@
+/// Disconnected table defining the step order for the NRR waterfall visual (R12M As Of).
+table 'UI_Waterfall - NRR Breakdown'
+	lineageTag: a2fbd847-71d1-46cb-8764-6fa59d662dae
+
+	column Category
+		lineageTag: e3356be9-e348-4c58-99fe-a336bc661124
+		isNameInferred
+		sourceColumn: [Category]
+		sortByColumn: ID
+
+	column ID
+		lineageTag: 37772a72-daca-4722-bbdd-7d16c0944ff8
+		isNameInferred
+		sourceColumn: [ID]
+
+	partition 'Waterfall - NRR Breakdown' = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Category", STRING,
+				    "ID", INTEGER,
+				    {
+				        { "Starting Base", 1 },
+				        { "Churn", 2 },
+				        { "Contraction", 3 },
+				        { "Upsell", 4 },
+				        { "Retained Revenue", 5 }
+				    }
+				)
+

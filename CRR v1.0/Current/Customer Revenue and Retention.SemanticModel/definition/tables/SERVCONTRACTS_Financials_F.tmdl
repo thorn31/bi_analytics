@@ -1,0 +1,106 @@
+table SERVCONTRACTS_Financials_F
+	lineageTag: 61aa4981-ec4f-45e0-9f70-3c0b81f7431d
+
+	column AgreementKey
+		dataType: string
+		lineageTag: 0bd8f864-4bd5-4f0a-a688-5486c2bb4e43
+		summarizeBy: none
+		sourceColumn: AgreementKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 991f98e7-f127-4d62-b14d-b4c0b4d9eab0
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: aefb6bd0-6aa6-45fd-a1e6-76b6fc723c1e
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Divisions
+		dataType: string
+		lineageTag: e84d6d50-5664-4336-b07d-6237a96ac5f2
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stream
+		dataType: string
+		lineageTag: 3c4a5821-f3c8-40c8-a9c4-2c46f74f6d3f
+		summarizeBy: none
+		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: f99a079d-83f5-4f88-bb68-1b15a71224ce
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: 7b36fd8e-0f67-491d-bd40-66ed0ef5b2fb
+		summarizeBy: sum
+		sourceColumn: Cost Amount
+
+	partition SERVCONTRACTS_Financials_F = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2020, 1, 1),
+				
+				    Dim0 = Table.SelectColumns(SERVCONTRACTS_D, {"AgreementKey","Custnmbr Key","Divisions"}, MissingField.UseNull),
+				    Dim = Table.TransformColumns(
+				        Dim0,
+				        {
+				            {"AgreementKey", each if _ = null then null else Text.Trim(Text.From(_)), type text},
+				            {"Custnmbr Key", each if _ = null then null else Text.Trim(Text.From(_)), type text},
+				            {"Divisions", each if _ = null or _ = "" then "Unknown" else Text.Upper(Text.Trim(Text.From(_))), type text}
+				        }
+				    ),
+				
+				    RevSrc0 = Table.SelectRows(SERVCONTRACTS_REVENUE_F, each Date.From([Date]) >= StartDate),
+				    RevSrc = Table.TransformColumns(RevSrc0, {{"AgreementKey", each if _ = null then null else Text.Trim(Text.From(_)), type text}}),
+				    RevWithMonth = Table.AddColumn(RevSrc, "Month End", each Date.EndOfMonth(Date.From([Date])), type date),
+				    RevSlim = Table.SelectColumns(RevWithMonth, {"AgreementKey","Month End","Amount"}),
+				    RevRenamed = Table.RenameColumns(RevSlim, {{"Amount","Revenue Amount"}}),
+				    RevAgg = Table.Group(RevRenamed, {"AgreementKey","Month End"}, {{"Revenue Amount", each List.Sum([Revenue Amount]), type number}}),
+				
+				    CostSrc0 = Table.SelectRows(SERVCONTRACTS_COSTS_F, each Date.From([Date]) >= StartDate),
+				    CostSrc = Table.TransformColumns(CostSrc0, {{"AgreementKey", each if _ = null then null else Text.Trim(Text.From(_)), type text}}),
+				    CostWithMonth = Table.AddColumn(CostSrc, "Month End", each Date.EndOfMonth(Date.From([Date])), type date),
+				    CostSlim = Table.SelectColumns(CostWithMonth, {"AgreementKey","Month End","Amount"}),
+				    CostRenamed = Table.RenameColumns(CostSlim, {{"Amount","Cost Amount"}}),
+				    CostAgg = Table.Group(CostRenamed, {"AgreementKey","Month End"}, {{"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+				
+				    // Union + group is the simplest full-outer join for PQ
+				    RevTagged = Table.AddColumn(RevAgg, "Cost Amount", each 0, type number),
+				    CostTagged = Table.AddColumn(CostAgg, "Revenue Amount", each 0, type number),
+				    Combined = Table.Combine({RevTagged, CostTagged}),
+				    Grouped = Table.Group(Combined, {"AgreementKey","Month End"}, {{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+				
+				    WithDim = Table.NestedJoin(Grouped, {"AgreementKey"}, Dim, {"AgreementKey"}, "Dim", JoinKind.LeftOuter),
+				    Expanded = Table.ExpandTableColumn(WithDim, "Dim", {"Custnmbr Key","Divisions"}, {"Customer Key","Divisions"}),
+				    WithStream = Table.AddColumn(Expanded, "Stream", each "Service Contracts", type text),
+				    SelectCols = Table.SelectColumns(WithStream, {"AgreementKey","Customer Key","Month End","Divisions","Stream","Revenue Amount","Cost Amount"}),
+				    Typed = Table.TransformColumnTypes(SelectCols, {{"AgreementKey", type text}, {"Customer Key", type text}, {"Month End", type date}, {"Divisions", type text}, {"Stream", type text}, {"Revenue Amount", type number}, {"Cost Amount", type number}})
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
