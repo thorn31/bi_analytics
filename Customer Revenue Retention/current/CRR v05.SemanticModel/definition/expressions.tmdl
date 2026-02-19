@@ -1,171 +1,16 @@
-expression JOBSTRIMMED_D =
-		let
-		    Source = JOBS_D,
-		    #"Removed Other Columns" = Table.SelectColumns(Source,{"Job Number", "Job Name", "Divisions", "Customer Number", "Start Date", "Act Completion Date", "Inactive", "Source", "Job Key", "Customer Key"})
-		in
-		    #"Removed Other Columns"
-	lineageTag: 28e07c03-020a-4da7-ae41-64a2b01c9a17
-	queryGroup: Staging
-
-	annotation PBI_NavigationStepName = Navigation
-
-	annotation PBI_ResultType = Table
-
-expression JOB_FINANCIALS_F =
-		let
-		    // Slim source
-		    Slim =
-		        Table.SelectColumns(
-		            JOB_MONTHLY_SUMMARY_F,
-		            {
-		                "Job Number",
-		                "Period Date",
-		                "Customer Number",
-		                "Total Actual Cost",
-		                "Contract Earned Curr Mo",
-		                "Job Key",
-		                "Customer Key"
-		            }
-		        ),
-		
-		    // Group by job
-		    Grouped =
-		        Table.Group(
-		            Slim,
-		            {"Job Key"},
-		            {{"Rows", each _, type table}}
-		        ),
-		
-		    // Compute Monthly Cost inside each job group
-		    AddMonthlyCost =
-		        Table.TransformColumns(
-		            Grouped,
-		            {
-		                {
-		                    "Rows",
-		                    (t) =>
-		                        let
-		                            Sorted = Table.Sort(t, {{"Period Date", Order.Ascending}}),
-		
-		                            Indexed = Table.AddIndexColumn(Sorted, "Index", 0, 1, Int64.Type),
-		
-		                            CleanCost =
-		                                Table.TransformColumns(
-		                                    Indexed,
-		                                    {
-		                                        { "Total Actual Cost",
-		                                          each try Number.From(_) otherwise 0,
-		                                          type number }
-		                                    }
-		                                ),
-		
-		                            CostList = CleanCost[Total Actual Cost],
-		
-		                            PrevList =
-		                                List.InsertRange(
-		                                    List.RemoveLastN(CostList, 1),
-		                                    0,
-		                                    {0}
-		                                ),
-		
-		                            WithPrev =
-		                                Table.AddColumn(
-		                                    CleanCost,
-		                                    "PrevCost",
-		                                    each PrevList{[Index]},
-		                                    type number
-		                                ),
-		
-		                            WithMonthlyCost =
-		                                Table.AddColumn(
-		                                    WithPrev,
-		                                    "Monthly Cost",
-		                                    each [Total Actual Cost] - [PrevCost],
-		                                    type number
-		                                ),
-		
-		                            Clean =
-		                                Table.RemoveColumns(
-		                                    WithMonthlyCost,
-		                                    {"Index","PrevCost"}
-		                                )
-		                        in
-		                            Clean
-		                }
-		            }
-		        ),
-		
-		    // Expand all rows back out
-		    Expanded =
-		        Table.ExpandTableColumn(
-		            AddMonthlyCost,
-		            "Rows",
-		            {
-		                "Period Date",
-		                "Customer Key",
-		                "Customer Number",
-		                "Job Number",
-		                "Total Actual Cost",
-		                "Contract Earned Curr Mo",
-		                "Monthly Cost"
-		            }
-		        ),
-		
-		    // NOW apply your filtering (SAFE HERE)
-		    Filtered =
-		        Table.SelectRows(
-		            Expanded,
-		            each not (
-		                ([Monthly Cost] = 0 or [Monthly Cost] = null)
-		                and
-		                ([Contract Earned Curr Mo] = 0 or [Contract Earned Curr Mo] = null)
-		            )
-		        ),
-		
-		    // Add surrogate key
-		    AddedSurrogate =
-		        Table.AddColumn(
-		            Filtered,
-		            "SurrogateProjectID",
-		            each
-		                "JOB_"
-		                & Text.From([Customer Key])
-		                & "_"
-		                & Text.From([Job Key]),
-		            type text
-		        ),
-		
-		    // Final typing
-		    Final =
-		        Table.TransformColumnTypes(
-		            AddedSurrogate,
-		            {
-		                {"Monthly Cost", Currency.Type},
-		                {"SurrogateProjectID", type text}
-		            }
-		        )
-		in
-		    Final
-	lineageTag: e52c21cf-ecef-43c5-804c-f7e3bc8aa2cb
-	queryGroup: Staging
-
-	annotation PBI_NavigationStepName = Navigation
-
-	annotation PBI_ResultType = Table
-
-expression REPAIR = ```
+expression CONTRACTS_D = ```
 		let
 		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
 		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
 		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
-		    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CALLS_F",Kind="Table"]}[Data], 
+		    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data], 
 		    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
-		    #"Filtered Rows" = Table.SelectRows(ProperCase, each ([Contract Number] = ""))
+		    #"Trimmed Text" = Table.TransformColumns(ProperCase,{{"Divisions", Text.Trim, type text}})
 		in
-		    #"Filtered Rows"
+		    #"Trimmed Text"
 		```
-	lineageTag: 7cdf2c0b-d47c-4a67-9dbd-115c05849f21
-	queryGroup: Facts
+	lineageTag: 6a2b893a-1656-4c37-bd27-65773ebeda3d
+	queryGroup: Staging
 
 	annotation PBI_NavigationStepName = Navigation
 
@@ -173,12 +18,9 @@ expression REPAIR = ```
 
 expression SERVPROJECTS_D = ```
 		let
-		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
-		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
-		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
-		    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data],
-		    #"Filtered Rows" = Table.SelectRows(CUSTOMERS_D_Table, each [CONTRACT_DESCRIPTION] = "SERVICE PROJECT" or Text.StartsWith([CONTRACT_NUMBER], "P")),
-		    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","","SERVICE PROJECT",Replacer.ReplaceValue,{"CONTRACT_DESCRIPTION"}), 
+		    CUSTOMERS_D_Table = CONTRACTS_D,
+		    #"Filtered Rows" = Table.SelectRows(CUSTOMERS_D_Table, each [Contract Description] = "SERVICE PROJECT" or Text.StartsWith([Contract Number], "P")),
+		    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","","Service Project",Replacer.ReplaceValue,{"Contract Description"}), 
 		    ProperCase = Table.RenameColumns(#"Replaced Value", List.Transform(Table.ColumnNames(#"Replaced Value"), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
 		    #"Removed Other Columns" = Table.SelectColumns(ProperCase,{"Custnmbr", "Contract Number", "Contract Description", "Divisions", "Contract Start Date", "Contract Expiration Date", "Source", "Contract Number Key", "Custnmbr Key"}),
 		    #"Trimmed Text" = Table.TransformColumns(#"Removed Other Columns",{{"Divisions", Text.Trim, type text}}),
@@ -186,7 +28,7 @@ expression SERVPROJECTS_D = ```
 		in
 		    #"Added Custom"
 		```
-	lineageTag: 50c9f7ac-a000-43a1-970e-a252dfab9dba
+	lineageTag: f843551f-7bbc-4a44-8dd0-91a469c97ce3
 	queryGroup: Staging
 
 	annotation PBI_NavigationStepName = Navigation
@@ -200,11 +42,149 @@ expression JOBS_D = ```
 		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
 		    JOBS_D_Table = DW_FINAL_Schema{[Name="JOBS_D",Kind="Table"]}[Data], 
 		    ProperCase = Table.RenameColumns(JOBS_D_Table, List.Transform(Table.ColumnNames(JOBS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
-		    #"Filtered Rows" = Table.SelectRows(ProperCase, each ([Divisions] <> "BURDEN" and [Divisions] <> "BURDEN - FIELD" and [Divisions] <> "ENGINEERING" and [Divisions] <> "FREE SERVICE DB" and [Divisions] <> "FREE SERVICE GR" and [Divisions] <> "SLS ASSIST DB" and [Divisions] <> "SLS ASSIST GRN" and [Divisions] <> "TRAINING" and [Divisions] <> "VACATION"))
+		    #"Filtered Rows" = Table.SelectRows(ProperCase, each ([Divisions] <> "BURDEN" and [Divisions] <> "BURDEN - FIELD" and [Divisions] <> "FREE SERVICE DB" and [Divisions] <> "FREE SERVICE GR" and [Divisions] <> "SLS ASSIST DB" and [Divisions] <> "SLS ASSIST GRN" and [Divisions] <> "SPECIAL PROJECT" and [Divisions] <> "TRAINING" and [Divisions] <> "VACATION"))
 		in
 		    #"Filtered Rows"
 		```
-	lineageTag: c2ea9d9c-0866-4cb4-b479-2c54adbdc227
+	lineageTag: 86a0dd46-db80-4a7a-a886-83bcf815df68
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression CUSTOMER_SEGMENTATION =
+		let
+		    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+		    #"Navigation 1" = Source{[Name = "datasets"]}[Data],
+		    Navigation =
+		        #"Navigation 1"{
+		            [
+		                #"Folder Path" = "https://stgreen.blob.core.windows.net/datasets/",
+		                Name = "customer_segmentation/CustomerSegmentation.csv"
+		            ]
+		        }[Content],
+		
+		    #"Imported CSV" =
+		        Csv.Document(
+		            Navigation,
+		            [Delimiter = ",", Columns = 29, Encoding = 65001, QuoteStyle = QuoteStyle.None]
+		        ),
+		
+		    #"Promoted headers" =
+		        Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars = true]),
+		
+		    // Fix dot edge-case by renaming once
+		    #"Renamed LogoDev Column" =
+		        Table.RenameColumns(
+		            #"Promoted headers",
+		            {{"Company Logo URL (Logo.dev)", "Company Logo URL (LogoDev)"}},
+		            MissingField.Ignore
+		        ),
+		
+		    #"Changed column type" =
+		        Table.TransformColumnTypes(
+		            #"Renamed LogoDev Column",
+		            {
+		                {"Customer Key", type text},
+		                {"Original Name", type text},
+		                {"Master Customer Name", type text},
+		                {"Master Customer Name Canonical", type text},
+		                {"Industrial Group", type text},
+		                {"Industry Detail", type text},
+		                {"NAICS", Int64.Type},
+		                {"NAICS Source", type text},
+		                {"NAICS Sector Code", type text},
+		                {"NAICS Sector Title", type text},
+		                {"NAICS Subsector Code", Int64.Type},
+		                {"NAICS Subsector Title", type text},
+		                {"NAICS Industry Group Code", Int64.Type},
+		                {"NAICS Industry Group Title", type text},
+		                {"NAICS Industry Code", Int64.Type},
+		                {"NAICS Industry Title", type text},
+		                {"NAICS National Industry Code", Int64.Type},
+		                {"NAICS National Industry Title", type text},
+		                {"Method", type text},
+		                {"Status", type text},
+		                {"Confidence", type text},
+		                {"Rationale", type text},
+		                {"Support Category", type text},
+		                {"Company Website", type text},
+		                {"Company Logo URL", type text},
+		                {"Company Logo URL (Apistemic)", type text},
+		                {"Company Logo URL (LogoDev)", type text},
+		                {"Source", type text}
+		            }
+		        ),
+		
+		    PickLogo =
+		        Table.AddColumn(
+		            #"Changed column type",
+		            "Logo URL (Final)",
+		            each
+		                if [#"Company Logo URL"] <> null and [#"Company Logo URL"] <> "" then
+		                    [#"Company Logo URL"]
+		                else if [#"Company Logo URL (LogoDev)"] <> null and [#"Company Logo URL (LogoDev)"] <> "" then
+		                    [#"Company Logo URL (LogoDev)"]
+		                else
+		                    [#"Company Logo URL (Apistemic)"],
+		            type text
+		        )
+		in
+		    PickLogo
+	lineageTag: 5112bc86-c721-4390-93d3-5f3aeacb128c
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression JOBSTRIMMED_D =
+		let
+		    Source = JOBS_D,
+		    #"Removed Other Columns" = Table.SelectColumns(Source,{"Job Number", "Job Name", "Divisions", "Customer Number", "Start Date", "Act Completion Date", "Inactive", "Source", "Job Key", "Customer Key"})
+		in
+		    #"Removed Other Columns"
+	lineageTag: 2d59dc64-3692-4084-9c13-48c0658b9485
+	queryGroup: Staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression SERVCONTRACTS_D_STAGING = ```
+		let
+		    // 1. Get Source Data
+		    Source = CONTRACTS_D, 
+		    
+		    // 2. Identify Service Projects to Exclude
+		    Projects_Source = PROJECTS_D,
+		    Service_Projects = Table.SelectRows(Projects_Source, each [Project Type] = "Service Project"),
+		    Service_Project_Numbers = Table.Distinct(Table.SelectColumns(Service_Projects, {"Project Number"})),
+		    
+		    // 3. Filter Contracts to Exclude Service Projects
+		    Merged_For_Filter = Table.NestedJoin(Source, {"Contract Number"}, Service_Project_Numbers, {"Project Number"}, "ServiceProjects", JoinKind.LeftAnti),
+		    Filtered_Agreements = Table.RemoveColumns(Merged_For_Filter, {"ServiceProjects"}),
+		
+		    // 4. Explode Years based on Wscontsq
+		    Add_Year_List = Table.AddColumn(Filtered_Agreements, "YearIndex", each List.Numbers(1, if [Wscontsq] = null or [Wscontsq] < 1 then 1 else [Wscontsq])),
+		    Expanded_Years = Table.ExpandListColumn(Add_Year_List, "YearIndex"),
+		
+		    // 5. Create Keys
+		    Add_Customer_Key = Table.AddColumn(Expanded_Years, "Customer Key Full", each [Custnmbr] & [Source], type text),
+		    Add_Agreement_Key = Table.AddColumn(Add_Customer_Key, "AgreementKey", each [Customer Key Full] & "_" & [Contract Number] & "_" & Text.From([YearIndex]), type text),
+		
+		    // 6. Set Types
+		    Typed_Final = Table.TransformColumnTypes(Add_Agreement_Key, {{"AgreementKey", type text}, {"YearIndex", Int64.Type}}),
+		
+		    // 7. Group by AgreementKey to Deduplicate (Master/Servant Aggregation)
+		    Grouped_Agreements = Table.Group(Typed_Final, {"AgreementKey", "Custnmbr Key"}, {{"Contract Number", each List.Max([Contract Number]), type nullable text}, {"Customer Number", each List.Max([Custnmbr]), type nullable text}, {"YearIndex", each List.Max([YearIndex]), type nullable number}, {"Contract Description", each List.Max([Contract Description]), type nullable text}, {"Contract Type", each List.Max([Contract Type]), type nullable text}, {"Divisions", each List.Max([Divisions]), type nullable text}, {"Contract Status", each List.Max([Contract Status]), type nullable text}, {"Start Date", each List.Min([Contract Start Date]), type nullable datetime}, {"End Date", each List.Max([Contract Expiration Date]), type nullable datetime}, {"Contract Amount", each List.Sum([Contract Amount]), type nullable number}, {"Annual Contract Value", each List.Sum([Annual Contract Value]), type nullable number}, {"Estimate Total Cost", each try List.Sum([Estimate Total Cost]) otherwise null, type nullable number}, {"Cancel Box", each List.Max([Cancel Box]), type nullable logical}})
+		
+		in
+		
+		    Grouped_Agreements
+		```
+	lineageTag: 13ae3e80-b5b2-4563-a5b1-c153c4a725ce
 	queryGroup: Staging
 
 	annotation PBI_NavigationStepName = Navigation
@@ -219,7 +199,7 @@ expression SV00564 =
 		    SV00564_Table = SERV_GP_STAGE_Schema{[Name="SV00564",Kind="Table"]}[Data]
 		in
 		    SV00564_Table
-	lineageTag: 6814a67b-37ab-45dc-9079-7d63fb53c380
+	lineageTag: 974b9a90-614d-4ec3-abb6-cf94c0251e6b
 	queryGroup: Staging
 
 	annotation PBI_NavigationStepName = Navigation
@@ -250,25 +230,24 @@ expression CALLS_F = ```
 		in
 		    AddKey
 		```
-	lineageTag: d015c711-3f05-4c4f-ad54-d100b9733557
+	lineageTag: fd5403d6-3811-4526-bf18-2196dac779f4
 	queryGroup: Staging
 
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Table
 
-expression CONTRACTS_D = ```
+expression OFFICE_LOCATIONS =
 		let
-		    Source = Snowflake.Databases("ufwarhx-qo50284.snowflakecomputing.com", "COMPUTE_WH", []),
-		    DATA_WAREHOUSE_Database = Source{[Name="DATA_WAREHOUSE",Kind="Database"]}[Data],
-		    DW_FINAL_Schema = DATA_WAREHOUSE_Database{[Name="DW_FINAL",Kind="Schema"]}[Data],
-		    CUSTOMERS_D_Table = DW_FINAL_Schema{[Name="CONTRACTS_D",Kind="Table"]}[Data], 
-		    ProperCase = Table.RenameColumns(CUSTOMERS_D_Table, List.Transform(Table.ColumnNames(CUSTOMERS_D_Table), each {_, Text.Proper(Text.Replace(_, "_", " "))})),
-		    #"Trimmed Text" = Table.TransformColumns(ProperCase,{{"Divisions", Text.Trim, type text}})
+		    Source = AzureStorage.Blobs("https://stgreen.blob.core.windows.net"),
+		    datasets = Source{[Name="datasets"]}[Data],
+		    #"https://stgreen blob core windows net/datasets/_OFFICE_LOCATIONS csv" = datasets{[#"Folder Path"="https://stgreen.blob.core.windows.net/datasets/",Name="OFFICE_LOCATIONS.csv"]}[Content],
+		    #"Imported CSV" = Csv.Document(#"https://stgreen blob core windows net/datasets/_OFFICE_LOCATIONS csv",[Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Budget Division", type text}, {"Division", type text}, {"Office Location", type text}, {"Street Address 1", type text}, {"Street Address 2", type text}, {"City", type text}, {"State", type text}, {"ZIP", Int64.Type}})
 		in
-		    #"Trimmed Text"
-		```
-	lineageTag: 54a24e07-f1ca-4670-a7a4-1e902b369001
+		    #"Changed Type"
+	lineageTag: a3e57671-07d7-4839-b663-016a2142a29f
 	queryGroup: Staging
 
 	annotation PBI_NavigationStepName = Navigation

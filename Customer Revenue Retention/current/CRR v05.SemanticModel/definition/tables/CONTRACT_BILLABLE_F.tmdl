@@ -1,48 +1,36 @@
 table CONTRACT_BILLABLE_F
 	isHidden
-	lineageTag: 3344fffa-f695-4ca3-bea6-807da27cd20b
+	lineageTag: 982c3a9a-e340-49fb-922e-5653b03952b4
 
 	column CUSTNMBR
 		dataType: string
-		isHidden
-		lineageTag: f37e085e-6fee-4aab-8ccc-e4dd06edc749
+		lineageTag: f51b9edd-0855-42ab-a88d-821f5b78f6fc
 		summarizeBy: none
 		sourceColumn: CUSTNMBR
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column ADRSCODE
 		dataType: string
-		isHidden
-		lineageTag: 1392868f-58a0-4f28-b612-7ac591c283b4
+		lineageTag: d35ef548-af65-4cb5-be6b-91b9e0a85842
 		summarizeBy: none
 		sourceColumn: ADRSCODE
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column CONTRACT_NUMBER
 		dataType: string
-		isHidden
-		lineageTag: 403dab31-e3d8-4142-be7e-bbcddca64524
+		lineageTag: 99a3efeb-1df4-485f-8798-94ec1d01a54d
 		summarizeBy: none
 		sourceColumn: CONTRACT_NUMBER
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column WSCONTSQ
 		dataType: double
-		isHidden
-		lineageTag: 8c08853a-db94-439c-a864-77c30c1c8441
+		lineageTag: 6b751d5a-2941-47ca-886c-a7be43143edd
 		summarizeBy: sum
 		sourceColumn: WSCONTSQ
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -50,13 +38,10 @@ table CONTRACT_BILLABLE_F
 
 	column WENNSOFT_BILLING_DATE
 		dataType: dateTime
-		isHidden
 		formatString: Long Date
-		lineageTag: 2c327e6e-168d-4d88-a568-f244139d1aaa
+		lineageTag: 436de59a-5fe2-45cf-9593-6432954dcb0b
 		summarizeBy: none
 		sourceColumn: WENNSOFT_BILLING_DATE
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -64,12 +49,9 @@ table CONTRACT_BILLABLE_F
 
 	column BILLABLE_ALL
 		dataType: double
-		isHidden
-		lineageTag: 2262b2cf-1ed6-4d4a-a9e1-28fac7cb3376
+		lineageTag: ec0aa730-29f7-4d1a-aa3b-8fed9e5635f7
 		summarizeBy: sum
 		sourceColumn: BILLABLE_ALL
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -77,51 +59,38 @@ table CONTRACT_BILLABLE_F
 
 	column CONTRACT_BILLING_DESC
 		dataType: string
-		isHidden
-		lineageTag: 71de85ff-dd1c-4ee8-a896-91016f33fb3c
+		lineageTag: f942c287-24ab-49fd-9e72-cef129016fbe
 		summarizeBy: none
 		sourceColumn: CONTRACT_BILLING_DESC
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column CONTRACT_FULL_YEAR_ID
-		dataType: string
-		isHidden
-		lineageTag: 371d5332-9a51-4355-b5fb-5ecaf704460a
-		summarizeBy: none
-		sourceColumn: CONTRACT_FULL_YEAR_ID
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Customer Key'
 		dataType: string
-		isHidden
-		lineageTag: b2837207-ff1a-4af8-9fee-496b95b73126
+		lineageTag: 38ca69e7-c4ce-475c-b74a-2d05d5f6e6c4
 		summarizeBy: none
 		sourceColumn: Customer Key
 
-		changedProperty = IsHidden
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_FULL_YEAR_ID
+		dataType: string
+		lineageTag: 93a44955-bff8-491d-95c6-7ba4038a2527
+		summarizeBy: none
+		sourceColumn: CONTRACT_FULL_YEAR_ID
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Customer_Contract_Year Key'
 		dataType: string
-		isHidden
-		lineageTag: e607ceff-3fd1-422f-ad64-d4bc01944c06
+		lineageTag: 57e530d5-02c3-4233-9ae2-c22e69c06341
 		summarizeBy: none
 		sourceColumn: Customer_Contract_Year Key
-
-		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	partition CONTRACT_BILLABLE_F = m
 		mode: import
-		queryGroup: Facts
 		source =
 				let
 				    Source = SV00564,
@@ -135,8 +104,6 @@ table CONTRACT_BILLABLE_F
 				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Customer_Contract_Year Key", each [Customer Key] & "_" & [CONTRACT_NUMBER] & "_" & Number.ToText([WSCONTSQ]))
 				in
 				    #"Added Custom2"
-
-	changedProperty = IsHidden
 
 	annotation PBI_NavigationStepName = Navigation
 

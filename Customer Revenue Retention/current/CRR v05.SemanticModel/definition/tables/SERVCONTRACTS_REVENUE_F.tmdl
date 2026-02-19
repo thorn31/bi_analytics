@@ -1,10 +1,11 @@
 table SERVCONTRACTS_REVENUE_F
-	lineageTag: 59c115c8-855c-4624-b670-d2b2e09d5db1
+	isHidden
+	lineageTag: 249708cf-51ca-446a-8f5d-27c81e3a22ec
 
 	column Date
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 455d4324-7ee8-41b3-ae39-d7e03660ad30
+		lineageTag: 2577e77b-701e-4b94-b22a-30683a05d918
 		summarizeBy: none
 		sourceColumn: Date
 
@@ -14,7 +15,7 @@ table SERVCONTRACTS_REVENUE_F
 
 	column AgreementKey
 		dataType: string
-		lineageTag: 4e82cc9e-1ac0-41bb-87a5-3f1d492538a1
+		lineageTag: f4d06e29-801c-4192-909e-50b0b656fb2c
 		summarizeBy: none
 		sourceColumn: AgreementKey
 
@@ -23,7 +24,7 @@ table SERVCONTRACTS_REVENUE_F
 	column Amount
 		dataType: decimal
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
-		lineageTag: af683c84-7ad1-4bc7-971d-39177d57a4e0
+		lineageTag: fa8fef8a-7551-46f6-89ee-2da5fd223b8b
 		summarizeBy: sum
 		sourceColumn: Amount
 
@@ -33,7 +34,7 @@ table SERVCONTRACTS_REVENUE_F
 
 	column 'Source Type'
 		dataType: string
-		lineageTag: 9291dc2c-df33-420f-9140-e499e4ced21f
+		lineageTag: a269ec29-310b-433c-b564-5b5cccb09016
 		summarizeBy: none
 		sourceColumn: Source Type
 
@@ -41,7 +42,6 @@ table SERVCONTRACTS_REVENUE_F
 
 	partition SERVCONTRACTS_REVENUE_F = m
 		mode: import
-		queryGroup: Facts
 		source = ```
 				let
 				    // --- Define Service Projects for exclusion ---

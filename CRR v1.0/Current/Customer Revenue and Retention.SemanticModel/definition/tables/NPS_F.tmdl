@@ -120,13 +120,14 @@ table NPS_F
 
 	column '1-10 Score'
 		dataType: double
+		formatString: 0
 		lineageTag: 6b637f91-11f2-4688-b1d1-4ff8f9f286da
 		summarizeBy: sum
 		sourceColumn: 1-10 Score
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	column 'Fiscal Year'
 		dataType: double

@@ -1,0 +1,28 @@
+/// Disconnected selector table for dashboard Revenue Analysis view toggle (Monthly vs Cumulative).
+table 'UI_Revenue View Selector'
+	lineageTag: 7c9c561f-9b56-4dff-8bc4-e70024d4b81c
+
+	column View
+		lineageTag: 3d2d6a20-da96-4878-b25f-fe91f8d5720c
+		isNameInferred
+		sourceColumn: [View]
+		sortByColumn: ViewSort
+
+	column ViewSort
+		isHidden
+		lineageTag: 1a89c70b-00ca-4905-b02d-247dd5a80fa3
+		isNameInferred
+		sourceColumn: [ViewSort]
+
+	partition 'UI_Revenue View Selector' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				  "View", STRING,
+				  "ViewSort", INTEGER,
+				  {
+				    { "Monthly", 1 },
+				    { "Cumulative", 2 }
+				  }
+				)
+

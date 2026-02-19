@@ -3472,7 +3472,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Revenue (R12M)": {
+			          "Total Revenue (R12M)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -3482,7 +3482,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Total Revenue (R12M)": {
+			          "Revenue (R12M)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4117,7 +4117,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Revenue (FYTD)": {
+			          "Total Revenue (FYTD)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4127,7 +4127,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Total Revenue (FYTD)": {
+			          "Revenue (FYTD)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -6640,6 +6640,16 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "NPS CY (R12M)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -6661,6 +6671,16 @@ cultureInfo en-US
 			          "net promoter score PY": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "NPS PY (R12M)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -8924,6 +8944,16 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "Customer": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -46206,108 +46236,553 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "entity__key_measure.PL_net_profit_trend_vs_PY": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Net Profit Trend vs PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L net profit trend vs PY": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_net_profit_trend_vs_PY_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Net Profit Trend vs PY %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L net profit trend vs PY %": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.first_time_fix_rate_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "First Time Fix Rate (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "first time fix rate (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "first time fix rate": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.first_time_fix_rate_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "First Time Fix Rate PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "first time fix rate PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "first time fix rate PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.first_time_fix_rate_trend_vs_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "First Time Fix Rate Trend vs PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "first time fix rate trend vs PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "first time fix rate trend vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.prompt_and_on_time__R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Prompt and On Time % (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "prompt and on time % (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "prompt and on time %": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "prompt": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "prompt on time % ( R12M )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "on time % (R12M)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quick": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "rapid": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "swift": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "ready": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "Prompt and On Time": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.prompt_and_on_time__PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Prompt and On Time % PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "prompt and on time % PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "prompt and on time % PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "prompt": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "prompt on time % PY ( R12M )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "on time % PY (R12M)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quick": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "rapid": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "swift": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "ready": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Prompt and On Time % Trend vs PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "prompt and on time % trend vs PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "prompt and on time % trend vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "prompt": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "prompt on time % trend vs PY ( R12M )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "on time % trend vs PY (R12M)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quick": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "rapid": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "swift": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "ready": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.window_label_NPS_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Window Label (NPS R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "window label (NPS R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "window label": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.NPS_response_count_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "NPS Response Count (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NPS response count (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NPS response count": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.NPS_response_count_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "NPS Response Count PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NPS response count PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NPS response count PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.NPS_response_count_trend_vs_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "NPS Response Count Trend vs PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NPS response count trend vs PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NPS response count trend vs PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.as_of_month_end_NPS": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "As Of Month End (NPS)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "as of month end (NPS)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "as of month end": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "entity__key_measure.PL_databar__VAR_vs_budget_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Databar - VAR vs Budget $"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L databar - VAR vs budget $": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "P&L databar VAR vs budget $": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "BDBAR": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.PL_databar__VAR_vs_PY_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "P&L Databar - VAR vs PY $"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P&L databar - VAR vs PY $": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "P&L databar VAR vs PY $": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_service_contracts_month_end": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Service Contracts (Month End)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active service contracts (month end)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active service contracts": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "financials_f_has_customers_d": {
-			      "Binding": {
-			        "ConceptualEntity": "FINANCIALS_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "financials_f": {
-			          "Target": {
-			            "Entity": "financials_f"
-			          }
-			        },
-			        "customers_d": {
-			          "Target": {
-			            "Entity": "customers_d"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "financials_f"
-			            },
-			            "Object": {
-			              "Role": "customers_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "financials_f_have_customers_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "customers_d"
-			            },
-			            "Object": {
-			              "Role": "financials_f"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "customers_Ds_have_financials_f"
-			        }
-			      ]
-			    },
-			    "TM_financials_F_has_divisions_d": {
-			      "Binding": {
-			        "ConceptualEntity": "TM_Financials_F"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "TM_financials_F": {
-			          "Target": {
-			            "Entity": "TM_financials_F"
-			          }
-			        },
-			        "divisions_d": {
-			          "Target": {
-			            "Entity": "divisions_d"
-			          },
-			          "Nouns": [
-			            {
-			              "division": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "TM_financials_F"
-			            },
-			            "Object": {
-			              "Role": "divisions_d"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TM_financials_F_have_divisions_Ds"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "divisions_d"
-			            },
-			            "Object": {
-			              "Role": "TM_financials_F"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "divisions_Ds_have_TM_financials_F"
-			        }
-			      ]
-			    },
 			    "TM_financials_F_has_fycalendar_d": {
 			      "Binding": {
 			        "ConceptualEntity": "TM_Financials_F"
@@ -46907,6 +47382,1031 @@ cultureInfo en-US
 			          "ID": "divisions_Ds_have_projects_Ds"
 			        }
 			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_active_service_contracts_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_service_contracts_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_service_contracts_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_service_contracts_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_active_service_contracts_month_end"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_active_service_contracts_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_service_contracts_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_service_contracts_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_service_contracts_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_active_service_contracts_month_end"
+			        }
+			      ]
+			    },
+			    "UI_Pl_structure_has_entity__key_measure_PL_databar__VAR_vs_PY_": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_P&L Structure"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Pl_structure": {
+			          "Target": {
+			            "Entity": "UI_Pl_structure"
+			          }
+			        },
+			        "entity__key_measure.PL_databar__VAR_vs_PY_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_databar__VAR_vs_PY_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_Pl_structure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_databar__VAR_vs_PY_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_Pl_structures_have_PL_databar__VAR_vs_PY_"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_PL_databar__VAR_vs_PY_": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.PL_databar__VAR_vs_PY_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_databar__VAR_vs_PY_"
+			          }
+			        }
+			      }
+			    },
+			    "UI_Pl_structure_has_entity__key_measure_PL_databar__VAR_vs_budget_": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_P&L Structure"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Pl_structure": {
+			          "Target": {
+			            "Entity": "UI_Pl_structure"
+			          }
+			        },
+			        "entity__key_measure.PL_databar__VAR_vs_budget_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_databar__VAR_vs_budget_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_Pl_structure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_databar__VAR_vs_budget_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_Pl_structures_have_PL_databar__VAR_vs_budget_"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_PL_databar__VAR_vs_budget_": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.PL_databar__VAR_vs_budget_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_databar__VAR_vs_budget_"
+			          }
+			        }
+			      }
+			    },
+			    "budget_f_has_entity__key_measure_PL_databar__VAR_vs_budget_": {
+			      "Binding": {
+			        "ConceptualEntity": "BUDGET_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "budget_f": {
+			          "Target": {
+			            "Entity": "budget_f"
+			          }
+			        },
+			        "entity__key_measure.PL_databar__VAR_vs_budget_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_databar__VAR_vs_budget_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "budget_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_databar__VAR_vs_budget_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "budget_f_have_PL_databar__VAR_vs_budget_"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_NPS_response_count_trend_vs_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.NPS_response_count_trend_vs_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NPS_response_count_trend_vs_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NPS_response_count_trend_vs_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_NPS_response_count_trend_vs_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_NPS_response_count_trend_vs_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.NPS_response_count_trend_vs_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NPS_response_count_trend_vs_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NPS_response_count_trend_vs_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_NPS_response_count_trend_vs_PY_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_NPS_response_count_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.NPS_response_count_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NPS_response_count_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NPS_response_count_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_NPS_response_count_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_NPS_response_count_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.NPS_response_count_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NPS_response_count_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NPS_response_count_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_NPS_response_count_PY_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_NPS_response_count_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.NPS_response_count_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NPS_response_count_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NPS_response_count_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_NPS_response_count_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_NPS_response_count_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.NPS_response_count_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NPS_response_count_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NPS_response_count_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_NPS_response_count_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_window_label_NPS_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.window_label_NPS_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.window_label_NPS_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.window_label_NPS_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_window_label_NPS_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_window_label_NPS_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.window_label_NPS_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.window_label_NPS_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.window_label_NPS_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_window_label_NPS_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_prompt_and_on_time__trend_vs_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_prompt_and_on_time__trend_vs_PY_R12M"
+			        },
+			        {
+			          "Verb": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Verbs": [
+			              {
+			                "prompt": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "PrepositionalPhrases": [
+			              {
+			                "Prepositions": [
+			                  {
+			                    "on": {
+			                      "State": "Generated"
+			                    }
+			                  }
+			                ],
+			                "Object": {
+			                  "Role": "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M"
+			                }
+			              }
+			            ]
+			          },
+			          "State": "Generated",
+			          "Weight": 0.95,
+			          "ID": "nps_f_prompt_on_prompt_and_on_time__trend_vs_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_prompt_and_on_time__trend_vs_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_prompt_and_on_time__trend_vs_PY_R12M"
+			        },
+			        {
+			          "Verb": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Verbs": [
+			              {
+			                "prompt": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "PrepositionalPhrases": [
+			              {
+			                "Prepositions": [
+			                  {
+			                    "on": {
+			                      "State": "Generated"
+			                    }
+			                  }
+			                ],
+			                "Object": {
+			                  "Role": "entity__key_measure.prompt_and_on_time__trend_vs_PY_R12M"
+			                }
+			              }
+			            ]
+			          },
+			          "State": "Generated",
+			          "Weight": 0.95,
+			          "ID": "fycalendar_Ds_prompt_on_prompt_and_on_time__trend_vs_PY_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_prompt_and_on_time__PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.prompt_and_on_time__PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.prompt_and_on_time__PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.prompt_and_on_time__PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_prompt_and_on_time__PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_prompt_and_on_time__PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.prompt_and_on_time__PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.prompt_and_on_time__PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.prompt_and_on_time__PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_prompt_and_on_time__PY_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_prompt_and_on_time__R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.prompt_and_on_time__R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.prompt_and_on_time__R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.prompt_and_on_time__R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_prompt_and_on_time__R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_prompt_and_on_time__R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.prompt_and_on_time__R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.prompt_and_on_time__R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.prompt_and_on_time__R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_prompt_and_on_time__R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_first_time_fix_rate_trend_vs_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.first_time_fix_rate_trend_vs_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.first_time_fix_rate_trend_vs_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.first_time_fix_rate_trend_vs_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_first_time_fix_rate_trend_vs_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_first_time_fix_rate_trend_vs_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.first_time_fix_rate_trend_vs_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.first_time_fix_rate_trend_vs_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.first_time_fix_rate_trend_vs_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_first_time_fix_rate_trend_vs_PY_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_first_time_fix_rate_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.first_time_fix_rate_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.first_time_fix_rate_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.first_time_fix_rate_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_first_time_fix_rate_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_first_time_fix_rate_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.first_time_fix_rate_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.first_time_fix_rate_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.first_time_fix_rate_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_first_time_fix_rate_PY_R12M"
+			        }
+			      ]
+			    },
+			    "nps_f_has_entity__key_measure_first_time_fix_rate_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.first_time_fix_rate_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.first_time_fix_rate_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.first_time_fix_rate_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_first_time_fix_rate_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_first_time_fix_rate_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.first_time_fix_rate_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.first_time_fix_rate_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.first_time_fix_rate_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_first_time_fix_rate_R12M"
+			        }
+			      ]
+			    },
+			    "UI_Pl_structure_has_entity__key_measure_PL_net_profit_trend_vs_PY_": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_P&L Structure"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Pl_structure": {
+			          "Target": {
+			            "Entity": "UI_Pl_structure"
+			          }
+			        },
+			        "entity__key_measure.PL_net_profit_trend_vs_PY_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_net_profit_trend_vs_PY_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_Pl_structure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_net_profit_trend_vs_PY_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_Pl_structures_have_PL_net_profit_trend_vs_PY_"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_PL_net_profit_trend_vs_PY_": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.PL_net_profit_trend_vs_PY_": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_net_profit_trend_vs_PY_"
+			          }
+			        }
+			      }
+			    },
+			    "UI_Pl_structure_has_entity__key_measure_PL_net_profit_trend_vs_PY": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_P&L Structure"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Pl_structure": {
+			          "Target": {
+			            "Entity": "UI_Pl_structure"
+			          }
+			        },
+			        "entity__key_measure.PL_net_profit_trend_vs_PY": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_net_profit_trend_vs_PY"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_Pl_structure"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.PL_net_profit_trend_vs_PY"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_Pl_structures_have_PL_net_profit_trend_vs_PY"
+			        }
+			      ]
+			    },
+			    "posting_data_f_has_entity__key_measure_PL_net_profit_trend_vs_PY": {
+			      "Binding": {
+			        "ConceptualEntity": "POSTING_DATA_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "posting_data_f": {
+			          "Target": {
+			            "Entity": "posting_data_f"
+			          }
+			        },
+			        "entity__key_measure.PL_net_profit_trend_vs_PY": {
+			          "Target": {
+			            "Entity": "entity__key_measure.PL_net_profit_trend_vs_PY"
+			          }
+			        }
+			      }
 			    },
 			    "SERVCONTRACTS_financials_F_has_entity__key_measure_show_month_in_R12M_window_SC": {
 			      "Binding": {
@@ -62308,6 +63808,39 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "nps_f_has_entity__key_measure_debug__NPS_R12M_start_date": {
+			      "Binding": {
+			        "ConceptualEntity": "NPS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "nps_f": {
+			          "Target": {
+			            "Entity": "nps_f"
+			          }
+			        },
+			        "entity__key_measure.debug__NPS_R12M_start_date": {
+			          "Target": {
+			            "Entity": "entity__key_measure.debug__NPS_R12M_start_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "nps_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.debug__NPS_R12M_start_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "nps_f_have_debug__NPS_R12M_start_date"
+			        }
+			      ]
+			    },
 			    "fycalendar_d_has_entity__key_measure_debug__NPS_R12M_start_date": {
 			      "Binding": {
 			        "ConceptualEntity": "FYCALENDAR_D"
@@ -71168,6 +72701,105 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_projects_Ds_are_inactive_projects_Ds"
+			        }
+			      ]
+			    },
+			    "TM_financials_F_has_divisions_d": {
+			      "Binding": {
+			        "ConceptualEntity": "TM_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "TM_financials_F": {
+			          "Target": {
+			            "Entity": "TM_financials_F"
+			          }
+			        },
+			        "divisions_d": {
+			          "Target": {
+			            "Entity": "divisions_d"
+			          },
+			          "Nouns": [
+			            {
+			              "division": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "TM_financials_F"
+			            },
+			            "Object": {
+			              "Role": "divisions_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "TM_financials_F_have_divisions_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "divisions_d"
+			            },
+			            "Object": {
+			              "Role": "TM_financials_F"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "divisions_Ds_have_TM_financials_F"
+			        }
+			      ]
+			    },
+			    "financials_f_has_customers_d": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "customers_d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_customers_Ds"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "financials_f"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_financials_f"
 			        }
 			      ]
 			    },

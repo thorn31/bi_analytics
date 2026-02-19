@@ -1,0 +1,77 @@
+table TM_Financials_F
+	lineageTag: 3d1cbb2d-acde-4eb1-a910-22cce8ed4d66
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 8dc8f3c1-6be6-4a20-8c19-97fd10bd8d8f
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e5c80bd0-7dfc-4f98-9f7f-6b5a1de38a03
+		summarizeBy: none
+		sourceColumn: Month End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Divisions
+		dataType: string
+		lineageTag: 540e7905-96a0-4779-9f3c-00bdbf2fdfbb
+		summarizeBy: none
+		sourceColumn: Divisions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stream
+		dataType: string
+		lineageTag: 0a8a356e-9f1f-4e2a-8251-b3c2145c76e4
+		summarizeBy: none
+		sourceColumn: Stream
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Amount'
+		dataType: double
+		lineageTag: 9e9d7e2d-6c7d-4ac5-88ba-2c4bdc3c205e
+		summarizeBy: sum
+		sourceColumn: Revenue Amount
+
+	column 'Cost Amount'
+		dataType: double
+		lineageTag: 5c8c7bc8-4f4b-42df-9c05-fbf6e2ab2d0a
+		summarizeBy: sum
+		sourceColumn: Cost Amount
+
+	partition TM_Financials_F = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2020, 1, 1),
+				    Today = Date.From(DateTime.LocalNow()),
+				    Types = {"REPAIR","QUOTED SERVICE"},
+				    Source = CALLS_F,
+				    WithTrim = Table.TransformColumns(Source, {{"Contract Number", each if _ = null then null else Text.Trim(Text.From(_)), type text}, {"Type Of Call", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}}),
+				    FilteredNonContract = Table.SelectRows(WithTrim, each [Contract Number] = null or [Contract Number] = ""),
+				    FilteredTypes = Table.SelectRows(FilteredNonContract, each List.Contains(Types, [Type Of Call])),
+				    TypedDate = Table.TransformColumnTypes(FilteredTypes, {{"Date Of Service Call", type date}}),
+				    FilteredDate = Table.SelectRows(TypedDate, each [Date Of Service Call] >= StartDate and [Date Of Service Call] <= Today),
+				    WithMonthEnd = Table.AddColumn(FilteredDate, "Month End", each Date.EndOfMonth([Date Of Service Call]), type date),
+				    Slim = Table.SelectColumns(WithMonthEnd,{"Customernbr Key","Month End","Billable All","Cost All","Divisions"}),
+				    Renamed = Table.RenameColumns(Slim, {{"Customernbr Key","Customer Key"}, {"Billable All","Revenue Amount"}, {"Cost All","Cost Amount"}}),
+				    Grouped = Table.Group(Renamed,{"Customer Key","Month End","Divisions"},{{"Revenue Amount", each List.Sum([Revenue Amount]), type number}, {"Cost Amount", each List.Sum([Cost Amount]), type number}}),
+				    WithStream = Table.AddColumn(Grouped, "Stream", each "T&M", type text),
+				    SelectCols = Table.SelectColumns(WithStream,{"Customer Key","Month End","Divisions","Stream","Revenue Amount","Cost Amount"}),
+				    Typed = Table.TransformColumnTypes(SelectCols,{{"Revenue Amount", type number}, {"Cost Amount", type number}, {"Month End", type date}, {"Divisions", type text}})
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

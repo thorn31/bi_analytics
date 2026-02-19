@@ -1,9 +1,17 @@
 table PROJECTS_D
-	lineageTag: 9fa053a1-7676-4bfa-9741-94157f847221
+	lineageTag: 3c6a90d7-8e9b-4a35-9e17-5c5e4984b4b2
+
+	column 'Customer Number'
+		dataType: string
+		lineageTag: 3a78250c-194d-4ad6-89f3-9e7856fb8fc7
+		summarizeBy: none
+		sourceColumn: Customer Number
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Project Number'
 		dataType: string
-		lineageTag: a1ed322f-ddc8-48e2-93fc-d124d8660e58
+		lineageTag: 084e1dc3-3eef-4253-9d4a-d569031528bf
 		summarizeBy: none
 		sourceColumn: Project Number
 
@@ -11,7 +19,7 @@ table PROJECTS_D
 
 	column 'Project Name/Description'
 		dataType: string
-		lineageTag: b9a199e7-5388-42f4-9536-18ac2e2ac655
+		lineageTag: acd4df33-40cf-423d-bf4c-d71f8d54f68b
 		summarizeBy: none
 		sourceColumn: Project Name/Description
 
@@ -19,24 +27,16 @@ table PROJECTS_D
 
 	column Divisions
 		dataType: string
-		lineageTag: 19fc0418-a303-4809-aa94-b800b8616096
+		lineageTag: c7fb7709-7f9e-4780-8b2e-ab9760189ab0
 		summarizeBy: none
 		sourceColumn: Divisions
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Customer Number'
-		dataType: string
-		lineageTag: 4320c7a3-b768-4cad-9fad-4234ada32bde
-		summarizeBy: none
-		sourceColumn: Customer Number
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Start Date'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 188b0cc0-4806-4507-85e9-53e2214a8ad3
+		lineageTag: 7d3b1ab9-3c1d-4b89-a7c7-a0263555ee8e
 		summarizeBy: none
 		sourceColumn: Start Date
 
@@ -47,7 +47,7 @@ table PROJECTS_D
 	column 'End Date'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 54ebe2b8-d0af-4447-a5c3-69bbf2a02c41
+		lineageTag: 2533a3c0-5846-426d-a06d-2da42eecda0f
 		summarizeBy: none
 		sourceColumn: End Date
 
@@ -57,7 +57,7 @@ table PROJECTS_D
 
 	column Source
 		dataType: string
-		lineageTag: f344eecc-4b9f-4f57-9e43-7107fbc5a4bd
+		lineageTag: 6c085b10-ac68-486e-b931-704e2da4316d
 		summarizeBy: none
 		sourceColumn: Source
 
@@ -65,7 +65,7 @@ table PROJECTS_D
 
 	column 'Project Key'
 		dataType: string
-		lineageTag: bed079ff-3647-4a10-9300-2a415fa8c645
+		lineageTag: 90f15eec-3d2d-4c2e-9871-287bfe934591
 		summarizeBy: none
 		sourceColumn: Project Key
 
@@ -73,15 +73,24 @@ table PROJECTS_D
 
 	column 'Customer Key'
 		dataType: string
-		lineageTag: 31fbd6eb-9753-4a01-a272-9208232a5914
+		lineageTag: 99e6c133-d83e-42c7-887d-7fc722501106
 		summarizeBy: none
 		sourceColumn: Customer Key
 
 		annotation SummarizationSetBy = Automatic
 
+	column Inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3f7648bb-4dd8-410d-b7f5-8b3014acbd24
+		summarizeBy: none
+		sourceColumn: Inactive
+
+		annotation SummarizationSetBy = Automatic
+
 	column 'Project Type'
 		dataType: string
-		lineageTag: 4a3cb5a6-5cd0-41c3-9342-af4289ced221
+		lineageTag: 6e7519dc-4a14-49f5-b349-8fcdaeb2aa09
 		summarizeBy: none
 		sourceColumn: Project Type
 
@@ -89,24 +98,15 @@ table PROJECTS_D
 
 	column SurrogateProjectID
 		dataType: string
-		lineageTag: 08e91f2c-699b-4ee6-b543-ee3dc78a8deb
+		lineageTag: ffe36857-7a57-4572-ba92-8b9452c38ce5
 		summarizeBy: none
 		sourceColumn: SurrogateProjectID
 
 		annotation SummarizationSetBy = Automatic
 
-	column Inactive
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: dba26ba6-dc6a-4907-a1d3-00aa14f6f312
-		summarizeBy: none
-		sourceColumn: Inactive
-
-		annotation SummarizationSetBy = Automatic
-
 	partition PROJECTS_D = m
 		mode: import
-		queryGroup: Dim
+		queryGroup: DIM
 		source =
 				let
 				    //=== SERVPROJECTS_D ===================================================//

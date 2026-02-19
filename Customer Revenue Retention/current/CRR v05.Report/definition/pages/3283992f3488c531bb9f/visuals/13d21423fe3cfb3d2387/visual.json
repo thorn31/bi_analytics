@@ -1,0 +1,370 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "13d21423fe3cfb3d2387",
+  "position": {
+    "x": 440,
+    "y": 670,
+    "z": 12000,
+    "height": 390,
+    "width": 1460,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UI_ActiveItems"
+                    }
+                  },
+                  "Property": "Item Type"
+                }
+              },
+              "queryRef": "UI_ActiveItems.Item Type",
+              "nativeQueryRef": "Item Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UI_ActiveItems"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "UI_ActiveItems.Division",
+              "nativeQueryRef": "Division"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UI_ActiveItems"
+                    }
+                  },
+                  "Property": "Item Number"
+                }
+              },
+              "queryRef": "UI_ActiveItems.Item Number",
+              "nativeQueryRef": "Item Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UI_ActiveItems"
+                    }
+                  },
+                  "Property": "Item Name"
+                }
+              },
+              "queryRef": "UI_ActiveItems.Item Name",
+              "nativeQueryRef": "Item Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item Start Date"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item Start Date",
+              "nativeQueryRef": "Start Date",
+              "displayName": "Start Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item End Date"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item End Date",
+              "nativeQueryRef": "End Date",
+              "displayName": "End Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item % Complete"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item % Complete",
+              "nativeQueryRef": "% Complete",
+              "displayName": "% Complete"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Placeholder v1"
+                }
+              },
+              "queryRef": "_Key Measures.Placeholder v1",
+              "nativeQueryRef": "Placeholder v1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item Contract Value"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item Contract Value",
+              "nativeQueryRef": "Contract Value",
+              "displayName": "Contract Value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item Estimated Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item Estimated Cost",
+              "nativeQueryRef": "Estimated Cost",
+              "displayName": "Estimated Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Item Sold GP %"
+                }
+              },
+              "queryRef": "_Key Measures.Active Item Sold GP %",
+              "nativeQueryRef": "Estimated GP %",
+              "displayName": "Estimated GP %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Placeholder v2"
+                }
+              },
+              "queryRef": "_Key Measures.Placeholder v2",
+              "nativeQueryRef": "Placeholder v2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total Revenue (ITD)"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total Revenue (ITD)",
+              "nativeQueryRef": "Revenue ITD",
+              "displayName": "Revenue ITD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total Cost"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total Cost",
+              "nativeQueryRef": "Cost ITD",
+              "displayName": "Cost ITD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total Gross Profit"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total Gross Profit",
+              "nativeQueryRef": "Gross Profit ITD",
+              "displayName": "Gross Profit ITD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Items Total GP %"
+                }
+              },
+              "queryRef": "_Key Measures.Active Items Total GP %",
+              "nativeQueryRef": "GP % ITD",
+              "displayName": "GP % ITD"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v2"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F6F8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v1"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F6F8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v2"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Active Projects and Contracts'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

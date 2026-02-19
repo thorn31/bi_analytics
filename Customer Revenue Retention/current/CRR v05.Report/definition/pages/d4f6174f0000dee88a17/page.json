@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "d4f6174f0000dee88a17",
+  "displayName": "Customer Overview",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "cf771fc71f9d58b9a1df",
+      "target": "a325292ca40c503110b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cf771fc71f9d58b9a1df",
+      "target": "66b271f6cd0f5e584fe0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cf771fc71f9d58b9a1df",
+      "target": "653481898f3cbc27389b",
+      "type": "DataFilter"
+    }
+  ]
+}

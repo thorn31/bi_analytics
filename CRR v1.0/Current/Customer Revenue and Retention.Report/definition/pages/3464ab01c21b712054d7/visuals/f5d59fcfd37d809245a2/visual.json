@@ -217,6 +217,37 @@
         "root": {}
       }
     ],
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "164.825943592389D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Recurring Mix % (SC) (R12M)"
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -240,7 +271,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 3,
+                      "ColorId": 2,
                       "Percent": 0
                     }
                   }
@@ -252,149 +283,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0e0172e80c0cdbe9da3e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Master Customer Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "21c039e77c733d80723d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Revenue (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "cca75d3d011c440dbb5f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Revenue PY (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "06d1a771df08eed5c95e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Revenue Trend vs PY (R12M As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2aa8faed36eb37f7da4d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Revenue (FY As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3313e8e6ef9995f9a2eb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Revenue PY (FY As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f041917a4aaf693cf67c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Total Revenue Trend vs PY (FY As Of)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "854a152b58d772da193b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Recurring Mix % (SC) (R12M)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c0b0890d3e77a98861e7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Projects"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "86fa634dad773490296a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Active Contracts"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

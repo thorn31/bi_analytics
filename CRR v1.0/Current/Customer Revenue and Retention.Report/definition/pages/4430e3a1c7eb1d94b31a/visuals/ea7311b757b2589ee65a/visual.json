@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "UI_P&L Structure.Section",
-              "nativeQueryRef": "Section",
-              "active": true
+              "nativeQueryRef": " 1",
+              "active": true,
+              "displayName": " "
             },
             {
               "field": {
@@ -117,12 +118,40 @@
                       "Entity": "_Key Measures"
                     }
                   },
+                  "Property": "Placeholder v2"
+                }
+              },
+              "queryRef": "_Key Measures.Placeholder v2",
+              "nativeQueryRef": "Placeholder v2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
                   "Property": "P&L Var vs PY $ (YTD)"
                 }
               },
               "queryRef": "_Key Measures.P&L Var vs PY $ (YTD)",
               "nativeQueryRef": "Δ vs PY $ (YTD)",
               "displayName": "Δ vs PY $ (YTD)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "P&L Databar - VAR vs PY $"
+                }
+              },
+              "queryRef": "_Key Measures.P&L Databar - VAR vs PY $",
+              "nativeQueryRef": "P&L Databar - VAR vs PY $"
             },
             {
               "field": {
@@ -147,12 +176,41 @@
                       "Entity": "_Key Measures"
                     }
                   },
+                  "Property": "P&L Divider"
+                }
+              },
+              "queryRef": "_Key Measures.P&L Divider",
+              "nativeQueryRef": "P&L Divider"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
                   "Property": "P&L Var vs Budget $ (YTD)"
                 }
               },
               "queryRef": "_Key Measures.P&L Var vs Budget $ (YTD)",
               "nativeQueryRef": "Δ vs Budget $ (YTD)",
               "displayName": "Δ vs Budget $ (YTD)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "P&L Databar - VAR vs Budget $"
+                }
+              },
+              "queryRef": "_Key Measures.P&L Databar - VAR vs Budget $",
+              "nativeQueryRef": "BDBAR",
+              "displayName": "BDBAR"
             },
             {
               "field": {
@@ -171,6 +229,36 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "UI_P&L Structure"
+                  }
+                },
+                "Property": "Section"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "UI_P&L Structure"
+                  }
+                },
+                "Property": "Line Item"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "expansionStates": [
@@ -183,6 +271,7 @@
             "queryRefs": [
               "UI_P&L Structure.Section"
             ],
+            "isCollapsed": true,
             "identityKeys": [
               {
                 "Column": {
@@ -223,7 +312,7 @@
               "identityValues": [
                 {
                   "Literal": {
-                    "Value": "'GROSS PROFIT'"
+                    "Value": "'REVENUE'"
                   }
                 }
               ],
@@ -233,7 +322,7 @@
               "identityValues": [
                 {
                   "Literal": {
-                    "Value": "'ACTUAL GROSS PROFIT'"
+                    "Value": "'SG&A EXPENSE'"
                   }
                 }
               ],
@@ -243,27 +332,7 @@
               "identityValues": [
                 {
                   "Literal": {
-                    "Value": "'NET PROFIT'"
-                  }
-                }
-              ],
-              "isToggled": true
-            },
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'OTHER INCOME & EXPENSE'"
-                  }
-                }
-              ],
-              "isToggled": true
-            },
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'OPERATIONS EXPENSE'"
+                    "Value": "'COST OF SALES'"
                   }
                 }
               ],
@@ -277,17 +346,10 @@
       "subTotals": [
         {
           "properties": {
-            "rowSubtotals": {
+            "columnSubtotals": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "perRowLevel": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -298,10 +360,10 @@
                 }
               }
             },
-            "columnSubtotals": {
+            "perRowLevel": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -313,17 +375,11 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#F4F6F8'"
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
-                }
-              }
-            },
-            "applyToHeaders": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -344,6 +400,20 @@
           },
           "selector": {
             "metadata": "UI_P&L Structure.Section"
+          }
+        },
+        {
+          "properties": {
+            "levelSubtotalEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "UI_P&L Structure.Line Item"
           }
         }
       ],
@@ -385,1285 +455,24 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Auto'"
+                  "Value": "'Right'"
                 }
               }
-            }
-          }
-        }
-      ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
+            },
+            "columnAdjustment": {
               "expr": {
                 "Literal": {
-                  "Value": "32D"
+                  "Value": "'growToFit'"
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Operator"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "95D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "95D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Budget Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "95D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Amount PY (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "157.4129677343654D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Var vs Budget % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "209D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "UI_P&L Structure.Section"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "146D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Var vs PY % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "142D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Var vs PY $ (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "32D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "null"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Operator"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "87D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "null"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount PY (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "87D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "null"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "87D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "null"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Budget Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "174D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "null"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs Budget % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "146D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "null"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "142D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "null"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY $ (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "32D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Cincinnati'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Operator"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Cincinnati'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount PY (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Cincinnati'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "83D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Cincinnati'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Budget Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "174D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Cincinnati'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs Budget % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "146D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Cincinnati'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "142D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Cincinnati'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY $ (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "32D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dayton-Columbus'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Operator"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dayton-Columbus'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount PY (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dayton-Columbus'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "83D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dayton-Columbus'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Budget Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "174D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dayton-Columbus'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs Budget % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "146D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dayton-Columbus'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "142D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dayton-Columbus'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY $ (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "32D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Indianapolis'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Operator"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Indianapolis'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount PY (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Indianapolis'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "83D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Indianapolis'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Budget Amount (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "174D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Indianapolis'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs Budget % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "146D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Indianapolis'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY % (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "142D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Indianapolis'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Var vs PY $ (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "32D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Knoxville-Nashville-Chattanooga'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Operator"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "80D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DIVISIONS_D"
-                          }
-                        },
-                        "Property": "Budget Division"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Knoxville-Nashville-Chattanooga'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "_Key Measures.P&L Amount PY (YTD)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "170D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Key Measures.P&L Var vs Budget $ (YTD)"
           }
         }
       ],
@@ -1710,127 +519,13 @@
       ],
       "columnFormatting": [
         {
-          "properties": {
-            "dataBars": {
-              "positiveColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'maxColor'"
-                      }
-                    }
-                  }
-                }
-              },
-              "negativeColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'minColor'"
-                      }
-                    }
-                  }
-                }
-              },
-              "axisColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'foreground'"
-                      }
-                    }
-                  }
-                }
-              },
-              "reverseDirection": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "hideText": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "totalMatchingOption": {
-                "expr": {
-                  "Literal": {
-                    "Value": "1L"
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Key Measures.P&L Var vs Budget % (YTD)"
           }
         },
         {
-          "properties": {
-            "dataBars": {
-              "positiveColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'maxColor'"
-                      }
-                    }
-                  }
-                }
-              },
-              "negativeColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'minColor'"
-                      }
-                    }
-                  }
-                }
-              },
-              "axisColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'foreground'"
-                      }
-                    }
-                  }
-                }
-              },
-              "reverseDirection": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "hideText": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "totalMatchingOption": {
-                "expr": {
-                  "Literal": {
-                    "Value": "1L"
-                  }
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Key Measures.P&L Var vs PY $ (YTD)"
           }
@@ -1851,13 +546,220 @@
             "styleHeader": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
                 }
               }
             }
           },
           "selector": {
             "metadata": "_Key Measures.P&L Operator"
+          }
+        },
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#5FB3A2'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#D17A73'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Databar - VAR vs Budget $"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#5FB3A2'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#D17A73'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Databar - VAR vs PY $"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F6F8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Divider"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F6F8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v2"
           }
         }
       ],
@@ -1922,6 +824,106 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99.63553225775354D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Databar - VAR vs Budget $"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "140.0925856883216D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Var vs Budget % (YTD)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "87.12625197536622D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Databar - VAR vs PY $"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Divider"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Placeholder v2"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.02614532042213D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Var vs PY % (YTD)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "135.2798261548191D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.P&L Var vs Budget $ (YTD)"
           }
         }
       ]

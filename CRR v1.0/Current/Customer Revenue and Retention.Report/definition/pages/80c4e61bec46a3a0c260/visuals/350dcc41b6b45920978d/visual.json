@@ -164,10 +164,10 @@
                     "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Service Contract Revenue Δ vs PY (Retention Base Customers) (R12M As Of)"
+                "Property": "Service Contract Revenue (R12M As Of)"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -447,6 +447,19 @@
               "expr": {
                 "Literal": {
                   "Value": "18D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -788,6 +801,20 @@
               }
             },
             "Property": "Service Contract Revenue Δ vs PY (Retention Base Customers) (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7d840199e8b5c1d1a1e6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Months Since Last Contract Billing (SC Anchor)"
           }
         },
         "type": "Advanced"

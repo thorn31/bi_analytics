@@ -1334,25 +1334,24 @@ table '_Key Measures'
 		displayFolder: 5. Customer Experience\NPS
 		lineageTag: 2d89b227-fdb1-46f5-bd09-941916e7b23d
 
-	/// Rolling 12-month Net Promoter Score using an anchor based on visible date context and last NPS data date.
+	/// Rolling 12-month Net Promoter Score using an anchor capped to the last completed month end and last NPS data month end (see [As Of Month End (NPS)]).
 	measure 'Net Promoter Score (R12M)' =
 			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
-			VAR LastData = [Last NPS Date]
+			VAR EndCap = [As Of Month End (NPS)]
 			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
-			VAR LastDataMonthEnd = EOMONTH ( LastData, 0 )
-			VAR AnchorDate = IF ( ISBLANK ( AxisMax ), LastData, MIN ( AxisMax, LastData ) )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
 			RETURN
 			    IF (
-			        ISBLANK ( LastData ) || ISBLANK ( AnchorDate ),
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
 			        BLANK (),
 			        IF (
 			            ISINSCOPE ( FYCALENDAR_D[Date] )
 			                && NOT ISBLANK ( AxisMax )
-			                && AxisMonthEnd > LastDataMonthEnd,
+			                && AxisMonthEnd > EndCap,
 			            BLANK (),
 			            CALCULATE (
 			                [Net Promoter Score],
-			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ),
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorMonthEnd, -12, MONTH ),
 			                REMOVEFILTERS ( FYCALENDAR_D )
 			            )
 			        )
@@ -1361,22 +1360,21 @@ table '_Key Measures'
 		displayFolder: 5. Customer Experience\NPS\R12M
 		lineageTag: 7406cf94-6984-4c80-ac02-b9ac37df7042
 
-	/// Prior-year rolling 12-month Net Promoter Score aligned to the R12M anchor.
+	/// Prior-year rolling 12-month Net Promoter Score aligned to the completed-month R12M anchor (see [As Of Month End (NPS)]).
 	measure 'Net Promoter Score PY (R12M)' =
 			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
-			VAR LastData = [Last NPS Date]
+			VAR EndCap = [As Of Month End (NPS)]
 			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
-			VAR LastDataMonthEnd = EOMONTH ( LastData, 0 )
-			VAR AnchorDate = IF ( ISBLANK ( AxisMax ), LastData, MIN ( AxisMax, LastData ) )
-			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			VAR AnchorPY = EDATE ( AnchorMonthEnd, -12 )
 			RETURN
 			    IF (
-			        ISBLANK ( LastData ) || ISBLANK ( AnchorDate ),
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
 			        BLANK (),
 			        IF (
 			            ISINSCOPE ( FYCALENDAR_D[Date] )
 			                && NOT ISBLANK ( AxisMax )
-			                && AxisMonthEnd > LastDataMonthEnd,
+			                && AxisMonthEnd > EndCap,
 			            BLANK (),
 			            CALCULATE (
 			                [Net Promoter Score],
@@ -1389,20 +1387,19 @@ table '_Key Measures'
 		displayFolder: 5. Customer Experience\NPS\R12M
 		lineageTag: a3af3dec-b207-46dc-8caa-aeb87fb4ecb5
 
-	/// Text indicator showing rolling-12-month NPS change vs prior-year rolling-12-month NPS (arrow + delta).
+	/// Text indicator showing rolling-12-month NPS change vs prior-year rolling-12-month NPS (arrow + delta), capped to completed months via [As Of Month End (NPS)].
 	measure 'Net Promoter Score Trend vs PY' =
 			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
-			VAR LastData = [Last NPS Date]
+			VAR EndCap = [As Of Month End (NPS)]
 			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
-			VAR LastDataMonthEnd = EOMONTH ( LastData, 0 )
 			RETURN
 			    IF (
-			        ISBLANK ( LastData ),
+			        ISBLANK ( EndCap ),
 			        BLANK (),
 			        IF (
 			            ISINSCOPE ( FYCALENDAR_D[Date] )
 			                && NOT ISBLANK ( AxisMax )
-			                && AxisMonthEnd > LastDataMonthEnd,
+			                && AxisMonthEnd > EndCap,
 			            BLANK (),
 			            VAR CY = [Net Promoter Score (R12M)]
 			            VAR PY = [Net Promoter Score PY (R12M)]
@@ -1412,19 +1409,14 @@ table '_Key Measures'
 			                    BLANK (),
 			                    VAR Diff = CY - PY
 			                    VAR Icon =
-			                        SWITCH (
-			                            TRUE (),
-			                            Diff > 0, UNICHAR ( 9650 ),
-			                            Diff < 0, UNICHAR ( 9660 ),
-			                            UNICHAR ( 9644 )
-			                        )
-			                    VAR Txt =
-			                        IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0" ), FORMAT ( Diff, "0.0" ) )
+			                        SWITCH ( TRUE (), Diff > 0, UNICHAR ( 9650 ), Diff < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			                    VAR Txt = IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0" ), FORMAT ( Diff, "0.0" ) )
 			                    RETURN
 			                        Icon & " " & Txt
 			                )
 			        )
 			    )
+		formatString: @
 		displayFolder: 5. Customer Experience\NPS\R12M
 		lineageTag: 124a4aa5-0446-43ed-a477-25ad43873748
 
@@ -1486,13 +1478,22 @@ table '_Key Measures'
 		displayFolder: 5. Customer Experience\Helpers
 		lineageTag: db38990d-fd2d-4ee7-ada0-790762aaff8f
 
-	/// Debug: start date of the rolling 12-month NPS window based on the visible date context and last NPS data date.
+	/// Debug: start date of the rolling 12-month NPS window based on the completed-month NPS anchor (see [As Of Month End (NPS)]).
 	measure 'Debug - NPS R12M Start Date' =
 			VAR MaxVisible = MAX ( FYCALENDAR_D[Date] )
-			VAR LastData = [Last NPS Date]
-			VAR AnchorDate = MIN ( MaxVisible, LastData )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( MaxVisible, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( MaxVisible ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
 			RETURN
-			    CALCULATE ( MIN ( FYCALENDAR_D[Date] ), DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) )
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        CALCULATE (
+			            MIN ( FYCALENDAR_D[Date] ),
+			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorMonthEnd, -12, MONTH ),
+			            REMOVEFILTERS ( FYCALENDAR_D )
+			        )
+			    )
 		formatString: yyyy-mm-dd
 		displayFolder: 5. Customer Experience\Helpers
 		lineageTag: 48d93173-a159-4d4f-b9aa-71d9f2c5ab1d
@@ -1938,7 +1939,7 @@ table '_Key Measures'
 
 	/// P&L actual variance vs budget for the current UI_P&L Structure row (Actual YTD - Budget YTD).
 	measure 'P&L Var vs Budget $ (YTD)' = [P&L Amount (YTD)] - [P&L Budget Amount (YTD)]
-		formatString: $#,0;($#,0);$#,0
+		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: 1. GL Financials\P&L\YTD
 		lineageTag: fb924c0d-e503-4d31-af48-ee6889c4dcbc
 
@@ -4084,7 +4085,7 @@ table '_Key Measures'
 		lineageTag: 230a874a-5a71-40a3-b2a5-e8411840b1bc
 
 	/// UI button/label text showing the current customer selection for navigation.
-	measure 'See Details For Label' = "View Profile for: " & [Selected Customer Name]
+	measure 'See Details For Label' = [Selected Customer Name]
 		formatString: @
 		displayFolder: 8. UI\Labels\Navigation
 		lineageTag: d0e8db65-4eb6-4d06-b8ff-417fc5ce6579
@@ -4240,6 +4241,326 @@ table '_Key Measures'
 		formatString: @
 		displayFolder: 1. GL Financials\P&L\Period\Labels
 		lineageTag: 7952e371-cef5-4b22-a930-4b4ae5b905c6
+
+	/// Rolling 12-month First Time Fix rate using the completed-month NPS anchor (see [As Of Month End (NPS)]).
+	measure 'First Time Fix Rate (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            CALCULATE (
+			                [First Time Fix Rate],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorMonthEnd, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 5. Customer Experience\Service Quality\R12M
+		lineageTag: 4ccecc6a-d86f-47ee-879b-b316222cef54
+
+	/// Prior-year rolling 12-month First Time Fix rate aligned to the completed-month NPS anchor (see [As Of Month End (NPS)]).
+	measure 'First Time Fix Rate PY (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			VAR AnchorPY = EDATE ( AnchorMonthEnd, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            CALCULATE (
+			                [First Time Fix Rate],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 5. Customer Experience\Service Quality\R12M
+		lineageTag: 25412fcb-95db-434e-9ccd-5d1d89edded4
+
+	/// Text indicator showing rolling-12-month First Time Fix rate change vs prior-year rolling-12-month (arrow + pp delta), capped to completed months via [As Of Month End (NPS)].
+	measure 'First Time Fix Rate Trend vs PY (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            VAR CY = [First Time Fix Rate (R12M)]
+			            VAR PY = [First Time Fix Rate PY (R12M)]
+			            VAR DeltaPP = ( CY - PY ) * 100
+			            VAR Icon =
+			                SWITCH ( TRUE (), DeltaPP > 0, UNICHAR ( 9650 ), DeltaPP < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			            VAR LabelText =
+			                IF ( DeltaPP >= 0, UNICHAR ( 8199 ) & FORMAT ( DeltaPP, "0.0" ) & " pp", FORMAT ( DeltaPP, "0.0" ) & " pp" )
+			            RETURN
+			                IF ( ISBLANK ( CY ) || ISBLANK ( PY ), BLANK (), Icon & " " & LabelText )
+			        )
+			    )
+		formatString: @
+		displayFolder: 5. Customer Experience\Service Quality\R12M
+		lineageTag: 551650eb-b235-44ec-b0de-ebb2c35314e5
+
+	/// Rolling 12-month Prompt and On Time % using the completed-month NPS anchor (see [As Of Month End (NPS)]).
+	measure 'Prompt and On Time % (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            CALCULATE (
+			                [Prompt and On Time %],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorMonthEnd, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 5. Customer Experience\Service Quality\R12M
+		lineageTag: dda96245-b62e-4942-82ee-2d2e8fdb3a81
+
+	/// Prior-year rolling 12-month Prompt and On Time % aligned to the completed-month NPS anchor (see [As Of Month End (NPS)]).
+	measure 'Prompt and On Time % PY (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			VAR AnchorPY = EDATE ( AnchorMonthEnd, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            CALCULATE (
+			                [Prompt and On Time %],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 5. Customer Experience\Service Quality\R12M
+		lineageTag: a2a1c0a5-0fc6-4002-ad7f-69d2abdd9c2d
+
+	/// Text indicator showing rolling-12-month Prompt and On Time % change vs prior-year rolling-12-month (arrow + pp delta), capped to completed months via [As Of Month End (NPS)].
+	measure 'Prompt and On Time % Trend vs PY (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            VAR CY = [Prompt and On Time % (R12M)]
+			            VAR PY = [Prompt and On Time % PY (R12M)]
+			            VAR DeltaPP = ( CY - PY ) * 100
+			            VAR Icon =
+			                SWITCH ( TRUE (), DeltaPP > 0, UNICHAR ( 9650 ), DeltaPP < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			            VAR LabelText =
+			                IF ( DeltaPP >= 0, UNICHAR ( 8199 ) & FORMAT ( DeltaPP, "0.0" ) & " pp", FORMAT ( DeltaPP, "0.0" ) & " pp" )
+			            RETURN
+			                IF ( ISBLANK ( CY ) || ISBLANK ( PY ), BLANK (), Icon & " " & LabelText )
+			        )
+			    )
+		formatString: @
+		displayFolder: 5. Customer Experience\Service Quality\R12M
+		lineageTag: 6eeb9fd8-e6b9-43c1-99ff-9cf764789961
+
+	/// UI subtitle label describing the rolling 12-month NPS window, capped to the last completed month end via [As Of Month End (NPS)].
+	measure 'Window Label (NPS R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			VAR EndDate = EOMONTH ( AnchorMonthEnd, 0 )
+			VAR StartDate = EDATE ( EndDate, -11 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        "Rolling 12 Months: "
+			            & FORMAT ( StartDate, "MMM yyyy" )
+			            & " to "
+			            & FORMAT ( EndDate, "MMM yyyy" )
+			    )
+		formatString: @
+		displayFolder: 8. UI\Labels\Time Windows
+		lineageTag: 6898214d-ff95-4243-a251-b5c5f1c85ec5
+
+	/// Rolling 12-month NPS response count using an anchor capped to the last completed month end and last NPS data month end (see [As Of Month End (NPS)]).
+	measure 'NPS Response Count (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            CALCULATE (
+			                [NPS Response Count],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorMonthEnd, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 5. Customer Experience\NPS\R12M
+		lineageTag: aceac98e-88f5-40ab-96ca-83f32b004003
+
+	/// Prior-year rolling 12-month NPS response count aligned to the completed-month R12M anchor (see [As Of Month End (NPS)]).
+	measure 'NPS Response Count PY (R12M)' =
+			VAR AxisMax = MAX ( FYCALENDAR_D[Date] )
+			VAR EndCap = [As Of Month End (NPS)]
+			VAR AxisMonthEnd = EOMONTH ( AxisMax, 0 )
+			VAR AnchorMonthEnd = IF ( ISBLANK ( AxisMax ), EndCap, MIN ( AxisMonthEnd, EndCap ) )
+			VAR AnchorPY = EDATE ( AnchorMonthEnd, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndCap ) || ISBLANK ( AnchorMonthEnd ),
+			        BLANK (),
+			        IF (
+			            ISINSCOPE ( FYCALENDAR_D[Date] )
+			                && NOT ISBLANK ( AxisMax )
+			                && AxisMonthEnd > EndCap,
+			            BLANK (),
+			            CALCULATE (
+			                [NPS Response Count],
+			                DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ),
+			                REMOVEFILTERS ( FYCALENDAR_D )
+			            )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 5. Customer Experience\NPS\R12M
+		lineageTag: f756bb2e-da06-4a74-b121-595e03da1133
+
+	/// Text indicator showing rolling-12-month NPS response count percent change vs prior-year rolling-12-month (arrow + percent).
+	measure 'NPS Response Count Trend vs PY (R12M)' =
+			VAR CY = [NPS Response Count (R12M)]
+			VAR PY = [NPS Response Count PY (R12M)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR PctChange = DIVIDE ( Diff, PY )
+			        VAR Icon =
+			            SWITCH ( TRUE (), PctChange > 0, UNICHAR ( 9650 ), PctChange < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			        VAR PctText =
+			            IF ( PctChange >= 0, UNICHAR ( 8199 ) & FORMAT ( PctChange, "0.0%" ), FORMAT ( PctChange, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		formatString: @
+		displayFolder: 5. Customer Experience\NPS\R12M
+		lineageTag: fea9813f-5057-4654-a8d7-ec10739cb569
+
+	/// Helper (hidden): as-of anchor month end for Customer Experience (NPS-based) rolling metrics. Capped to last completed month end and to the last available NPS data month end to avoid partial-month distortion.
+	measure 'As Of Month End (NPS)' =
+			VAR LastData = [Last NPS Date]
+			VAR LastDataMonthEnd = EOMONTH ( LastData, 0 )
+			VAR LastCompletedMonthEnd =
+			    CALCULATE (
+			        MAX ( FYCALENDAR_D[Date] ),
+			        REMOVEFILTERS ( FYCALENDAR_D ),
+			        FYCALENDAR_D[Is Completed Month] = TRUE (),
+			        FYCALENDAR_D[Date] = EOMONTH ( FYCALENDAR_D[Date], 0 )
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( LastData ),
+			        BLANK (),
+			        IF ( ISBLANK ( LastCompletedMonthEnd ), LastDataMonthEnd, MIN ( LastDataMonthEnd, LastCompletedMonthEnd ) )
+			    )
+		formatString: yyyy-mm-dd
+		isHidden
+		displayFolder: 5. Customer Experience\Helpers
+		lineageTag: eff24bd2-c26f-4a3d-8764-62b6fe118189
+
+	measure 'P&L Databar - VAR vs Budget $' = [P&L Var vs Budget $ (YTD)]
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 1. GL Financials\P&L\YTD
+		lineageTag: 89f43848-3676-475f-b6f0-122535cdefaa
+
+	measure 'P&L Databar - VAR vs PY $' = [P&L Var vs PY $ (YTD)]
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 1. GL Financials\P&L\YTD
+		lineageTag: 6a725f00-8446-4505-b4d6-f1266a2b91d4
+
+	/// Distinct count of service contracts active at the month end on the axis (Start Date <= MonthEnd and End Date blank or >= MonthEnd). Intended for month-by-month trending.
+	measure 'Active Service Contracts (Month End)' =
+			VAR MonthEnd =
+			    COALESCE (
+			        MAX ( FYCALENDAR_D[Fiscal End Of Month] ),
+			        EOMONTH ( MAX ( FYCALENDAR_D[Date] ), 0 )
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( MonthEnd ),
+			        BLANK (),
+			        CALCULATE (
+			            DISTINCTCOUNT ( SERVCONTRACTS_D[Contract Number] ),
+			            KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_D[Contract Number] ) ),
+			            KEEPFILTERS ( SERVCONTRACTS_D[Start Date] <= MonthEnd ),
+			            KEEPFILTERS (
+			                FILTER (
+			                    SERVCONTRACTS_D,
+			                    ISBLANK ( SERVCONTRACTS_D[End Date] )
+			                        || SERVCONTRACTS_D[End Date] >= MonthEnd
+			                )
+			            ),
+			            KEEPFILTERS ( TREATAS ( VALUES ( DIVISIONS_D[DivisionCode] ), SERVCONTRACTS_D[Divisions] ) )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Contract
+		lineageTag: 6c8ef473-ac06-4f01-96c6-b3d85e5dd698
 
 	column _
 		isHidden

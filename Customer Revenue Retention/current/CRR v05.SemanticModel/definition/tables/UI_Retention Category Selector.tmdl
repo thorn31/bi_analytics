@@ -1,0 +1,30 @@
+/// UI table for matrix/slicer rows when grouping by Customer Retention Category (R12M).
+table 'UI_Retention Category Selector'
+	lineageTag: 103b1f89-5d02-4a3c-9660-7b76870ffa00
+
+	column 'Retention Category'
+		lineageTag: f3fae7f8-99ca-441c-ae20-de5328a60652
+		isNameInferred
+		sourceColumn: [Retention Category]
+		sortByColumn: Sort
+
+	column Sort
+		lineageTag: dd6d8c5a-e54d-440b-bf70-53fb711b215a
+		isNameInferred
+		sourceColumn: [Sort]
+
+	partition 'UI_Retention Category Selector' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Retention Category", STRING,
+				    "Sort", INTEGER,
+				    {
+				        { "New", 1 },
+				        { "Upsell", 2 },
+				        { "Retained", 3 },
+				        { "Contraction", 4 },
+				        { "Churned", 5 }
+				    }
+				)
+

@@ -1,29 +1,14 @@
+/// Disconnected slicer to filter customers by lifecycle status derived from billing recency.
 table 'UI_Customer Status Selector'
-	lineageTag: 5fdf9b14-c604-4569-86bd-a25680b92ad8
+	lineageTag: d5225688-3e9f-42db-8f96-eaa9daaeb793
 
 	column 'Customer Status'
-		lineageTag: 2b309f78-17e1-4c75-b300-78693341d5ce
+		lineageTag: 70fdf533-8c65-4906-9aaf-66a94697b5a8
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Customer Status]
 
-		annotation SummarizationSetBy = Automatic
-
-	partition 'UI_Customer Status Selector' = calculated
+	partition 'Customer Status Selector' = calculated
 		mode: import
-		source = ```
-				
-				DATATABLE (
-				    "Customer Status", STRING,
-				    {
-				        { "Active" },
-				        { "Dormant (6–11 mo)" },
-				        { "Inactive (12+ mo)" },
-				        { "All" }
-				    }
-				)
-				
-				```
-
-	annotation PBI_Id = e12bc43227cd49d58baf746f42ad8e6a
+		source = DATATABLE ( "Customer Status", STRING, { { "Active" }, { "Dormant (6–11 mo)" }, { "Inactive (12+ mo)" }, { "All" } } )
 

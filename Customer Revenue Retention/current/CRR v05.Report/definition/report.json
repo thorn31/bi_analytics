@@ -1,20 +1,20 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.1.0/schema.json",
   "themeCollection": {
     "baseTheme": {
-      "name": "CY25SU11",
+      "name": "CY25SU12",
       "reportVersionAtImport": {
-        "visual": "2.4.0",
-        "report": "3.0.0",
+        "visual": "2.5.0",
+        "report": "3.1.0",
         "page": "2.3.0"
       },
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Perfection_-_Clean_Neutral_(v67036643786152118.json",
+      "name": "Perfection_-_Clean_Icy11693946478521677.json",
       "reportVersionAtImport": {
-        "visual": "2.4.0",
-        "report": "3.0.0",
+        "visual": "2.5.0",
+        "report": "3.1.0",
         "page": "2.3.0"
       },
       "type": "RegisteredResources"
@@ -23,29 +23,57 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e673efb18d2b0b92b4bf",
+        "name": "18bebbaae5ad77ea6c1c",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "DIVISIONS_D"
+                "Entity": "FYCALENDAR_D"
               }
             },
-            "Property": "Company"
+            "Property": "Fiscal Year"
           }
         },
-        "type": "Categorical",
-        "howCreated": "User",
-        "objects": {
-          "general": [
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
             {
-              "properties": {}
+              "Name": "f",
+              "Entity": "FYCALENDAR_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "Fiscal Year"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "2020L"
+                    }
+                  }
+                }
+              }
             }
           ]
-        }
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
       },
       {
-        "name": "9c12a0924756ac600571",
+        "name": "ce5d1e32ca299646c265",
         "field": {
           "Column": {
             "Expression": {
@@ -53,7 +81,7 @@
                 "Entity": "DIVISIONS_D"
               }
             },
-            "Property": "Region"
+            "Property": "Division"
           }
         },
         "type": "Categorical",
@@ -80,7 +108,7 @@
                                 "Source": "d"
                               }
                             },
-                            "Property": "Region"
+                            "Property": "Division"
                           }
                         }
                       ],
@@ -95,21 +123,77 @@
                         [
                           {
                             "Literal": {
-                              "Value": "'Leopardo'"
+                              "Value": "'Burden'"
                             }
                           }
                         ],
                         [
                           {
                             "Literal": {
-                              "Value": "'Misc'"
+                              "Value": "'Engineering'"
                             }
                           }
                         ],
                         [
                           {
                             "Literal": {
-                              "Value": "'Unknown'"
+                              "Value": "'Free Service DB'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Free Service GR'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Industrial'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Plan Spec'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sales Assist'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Special Project'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Training'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Vacation'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Controls'"
                             }
                           }
                         ]
@@ -177,8 +261,8 @@
       "type": "SharedResources",
       "items": [
         {
-          "name": "CY25SU11",
-          "path": "BaseThemes/CY25SU11.json",
+          "name": "CY25SU12",
+          "path": "BaseThemes/CY25SU12.json",
           "type": "BaseTheme"
         }
       ]
@@ -193,38 +277,28 @@
           "type": "Image"
         },
         {
-          "name": "PG_Arrow9095992411081082.svg",
-          "path": "PG_Arrow9095992411081082.svg",
+          "name": "Navigation_Arrow5291009444146907.svg",
+          "path": "Navigation_Arrow5291009444146907.svg",
           "type": "Image"
         },
         {
-          "name": "PG_Arrow259137531327289.svg",
-          "path": "PG_Arrow259137531327289.svg",
+          "name": "Navigation_Arrow_-_Inverse6287781539356028.svg",
+          "path": "Navigation_Arrow_-_Inverse6287781539356028.svg",
           "type": "Image"
         },
         {
-          "name": "Icon_PG-Total_Facility-Graysca7811267966852667.jpg",
-          "path": "Icon_PG-Total_Facility-Graysca7811267966852667.jpg",
+          "name": "Navigation_Arrow9627682918641088.svg",
+          "path": "Navigation_Arrow9627682918641088.svg",
           "type": "Image"
         },
         {
-          "name": "PG_Arrow1867330995351283.svg",
-          "path": "PG_Arrow1867330995351283.svg",
-          "type": "Image"
-        },
-        {
-          "name": "Perfection_-_Clean_Neutral_(v67036643786152118.json",
-          "path": "Perfection_-_Clean_Neutral_(v67036643786152118.json",
+          "name": "Perfection_-_Clean_Icy11693946478521677.json",
+          "path": "Perfection_-_Clean_Icy11693946478521677.json",
           "type": "CustomTheme"
         },
         {
-          "name": "modelling01982517382778437.png",
-          "path": "modelling01982517382778437.png",
-          "type": "Image"
-        },
-        {
-          "name": "jesslogotest9725230063470476.png",
-          "path": "jesslogotest9725230063470476.png",
+          "name": "Badge_PG-Circle-Tagline-Revers4512055382834307.png",
+          "path": "Badge_PG-Circle-Tagline-Revers4512055382834307.png",
           "type": "Image"
         }
       ]

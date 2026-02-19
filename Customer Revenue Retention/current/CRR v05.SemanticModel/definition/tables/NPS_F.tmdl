@@ -1,9 +1,9 @@
 table NPS_F
-	lineageTag: 8e21cf84-b757-443d-a842-dd745839ddb0
+	lineageTag: 02b567a6-f292-41f4-9348-ce1fd28065b5
 
 	column 'SERVICE CALL NUMBER'
 		dataType: string
-		lineageTag: 3af73178-09b6-400d-925e-adb61f81e0a1
+		lineageTag: 48e9cdd1-b06d-4515-8983-d96075be40c4
 		summarizeBy: none
 		sourceColumn: SERVICE CALL NUMBER
 
@@ -11,7 +11,7 @@ table NPS_F
 
 	column CUSTOMER
 		dataType: string
-		lineageTag: 102748b3-75d5-4e8e-9748-e81935c5f02e
+		lineageTag: 5c59258c-6181-46fa-accc-79c9a6e33754
 		summarizeBy: none
 		sourceColumn: CUSTOMER
 
@@ -19,7 +19,7 @@ table NPS_F
 
 	column LOCATION
 		dataType: string
-		lineageTag: fda305d0-7e27-4c04-8921-71f25bdd229a
+		lineageTag: 3ad04097-de0e-4798-80a9-487708e3b34e
 		summarizeBy: none
 		sourceColumn: LOCATION
 
@@ -27,7 +27,7 @@ table NPS_F
 
 	column 'FIRST, LAST NAME OF CALLER'
 		dataType: string
-		lineageTag: 43d51251-f59a-41d8-a983-8435a7a273a5
+		lineageTag: af1c5797-c74c-4f1e-94b1-1c1c276380a2
 		summarizeBy: none
 		sourceColumn: FIRST, LAST NAME OF CALLER
 
@@ -35,7 +35,7 @@ table NPS_F
 
 	column 'PHONE NUMBER'
 		dataType: string
-		lineageTag: 09d6b33b-9ea5-4a0f-a2ad-ca3222b5aa61
+		lineageTag: 05c923d2-98a1-49a7-be6c-1b96463f4c8d
 		summarizeBy: none
 		sourceColumn: PHONE NUMBER
 
@@ -44,7 +44,7 @@ table NPS_F
 	column 'SERVICE CALL COMPLETED DATE'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 59f89397-d738-4a9f-b11b-f31f3a3254de
+		lineageTag: 04c472e6-7f2e-4066-ae7c-01f03fd9b73f
 		summarizeBy: none
 		sourceColumn: SERVICE CALL COMPLETED DATE
 
@@ -54,7 +54,7 @@ table NPS_F
 
 	column 'Service Description'
 		dataType: string
-		lineageTag: fb5dee93-4809-4cc1-a501-adc23cb1607d
+		lineageTag: 33df9af2-c188-45c2-a040-21f3af6857c7
 		summarizeBy: none
 		sourceColumn: Service Description
 
@@ -62,7 +62,7 @@ table NPS_F
 
 	column 'Type of Call'
 		dataType: string
-		lineageTag: b10de87f-ff0d-41bf-8c86-9740ce377db9
+		lineageTag: f707269c-9235-40f9-9175-81c896483660
 		summarizeBy: none
 		sourceColumn: Type of Call
 
@@ -70,7 +70,7 @@ table NPS_F
 
 	column Comment
 		dataType: string
-		lineageTag: b010039d-278c-4b3e-b825-552a35b800ae
+		lineageTag: 03d228ae-85bb-4391-ad99-97d08e13bf23
 		summarizeBy: none
 		sourceColumn: Comment
 
@@ -78,7 +78,7 @@ table NPS_F
 
 	column 'Prompt and On Time'
 		dataType: string
-		lineageTag: 0480a432-764f-4471-a2c0-eaa0e2995740
+		lineageTag: 2b35e4f5-978e-435d-8f3d-806166a75216
 		summarizeBy: none
 		sourceColumn: Prompt and On Time
 
@@ -86,7 +86,7 @@ table NPS_F
 
 	column 'First Time Fix'
 		dataType: string
-		lineageTag: ec7571cc-b881-4758-a847-2bcc40600be2
+		lineageTag: fe2db240-517d-4170-b74e-1a1b62eb7284
 		summarizeBy: none
 		sourceColumn: First Time Fix
 
@@ -94,7 +94,7 @@ table NPS_F
 
 	column Notes
 		dataType: string
-		lineageTag: 24cb6c60-5c4c-4171-bec2-7fa9cfba4700
+		lineageTag: f4dc13a2-addb-4de4-9c1f-cd93635a19f8
 		summarizeBy: none
 		sourceColumn: Notes
 
@@ -102,7 +102,7 @@ table NPS_F
 
 	column 'Month of Service'
 		dataType: double
-		lineageTag: 558935bc-71e2-4e19-befa-c5c092c108b5
+		lineageTag: 917eb82a-df2a-432c-8cde-aba6339d765f
 		summarizeBy: sum
 		sourceColumn: Month of Service
 
@@ -112,7 +112,7 @@ table NPS_F
 
 	column Market
 		dataType: string
-		lineageTag: f4d5a1c0-31ec-4111-8dae-bf2f62caa6b8
+		lineageTag: e629f805-6a1c-4aeb-8857-fc732a662048
 		summarizeBy: none
 		sourceColumn: Market
 
@@ -120,19 +120,23 @@ table NPS_F
 
 	column '1-10 Score'
 		dataType: double
-		lineageTag: c4ed0fab-4abc-447b-902a-7fd6703ac0b8
+		formatString: 0
+		lineageTag: 6b637f91-11f2-4688-b1d1-4ff8f9f286da
 		summarizeBy: sum
 		sourceColumn: 1-10 Score
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	column 'Fiscal Year'
 		dataType: double
-		lineageTag: 6647e5c6-fe41-4807-8875-53df65008a32
+		isHidden
+		lineageTag: c6ee0a8b-9cb0-4cd5-824b-07eed595df51
 		summarizeBy: sum
 		sourceColumn: Fiscal Year
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -140,7 +144,7 @@ table NPS_F
 
 	column Region
 		dataType: string
-		lineageTag: b2033b68-3674-4cd5-9858-88b11e0f7c22
+		lineageTag: 4d3f682e-4a6f-47ad-84d0-41bc99227d78
 		summarizeBy: none
 		sourceColumn: Region
 
@@ -148,7 +152,7 @@ table NPS_F
 
 	column 'Capitalize Each Word'
 		dataType: string
-		lineageTag: f30e0ef6-97ad-45a9-906b-dafd2bead3ac
+		lineageTag: eba7e3f2-8f09-4a4b-b6d3-de974e0a638b
 		summarizeBy: none
 		sourceColumn: Capitalize Each Word
 
@@ -156,7 +160,7 @@ table NPS_F
 
 	column 'Customernbr Key'
 		dataType: string
-		lineageTag: 5d12c5a0-12c0-43b0-add1-0b37298524fe
+		lineageTag: 43e08219-7ced-4650-b3b2-5352a865ce10
 		summarizeBy: none
 		sourceColumn: Customernbr Key
 
@@ -164,7 +168,6 @@ table NPS_F
 
 	partition NPS_F = m
 		mode: import
-		queryGroup: Facts
 		source =
 				let
 				    SiteRoot = SharePoint.Contents("https://perfectiongroup.sharepoint.com/sites/dispatch"),
@@ -192,7 +195,7 @@ table NPS_F
 				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"QUESTION:  Hi this is <INTRODUCE YOURSELF> from Perfection Group, just checking ", "Comment"}, {"Were we prompt an on time?", "Prompt and On Time"}, {"Did we fix the issue the first time? #(lf)#(lf)If the customer says “NO”:#(lf)#(lf)Please ask, “", "First Time Fix"}}),
 				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"SERVICE CALL NUMBER", "CUSTOMER", "LOCATION", "FIRST, LAST NAME OF CALLER", "PHONE NUMBER", "SERVICE CALL COMPLETED DATE", "Service Description", "Type of Call", "Comment", "Prompt and On Time", "First Time Fix", "Notes", "Month of Service", "Market", "1-10 Score", "Fiscal Year", "Region"}),
 				    #"Inserted Capitalize Each Word" = Table.AddColumn(#"Removed Other Columns", "Capitalize Each Word", each Text.Proper([CUSTOMER]), type text),
-				    #"Merged Queries" = Table.NestedJoin(#"Inserted Capitalize Each Word", {"SERVICE CALL NUMBER"}, CALLS_F, {"Service Call Id"}, "CALLS_F", JoinKind.LeftOuter),
+				    #"Merged Queries" = Table.NestedJoin(#"Inserted Capitalize Each Word", {"SERVICE CALL NUMBER"}, #"CALLS_F", {"Service Call Id"}, "CALLS_F", JoinKind.LeftOuter),
 				    #"Expanded CALLS_F" = Table.ExpandTableColumn(#"Merged Queries", "CALLS_F", {"Customernbr Key"}, {"Customernbr Key"})
 				in
 				    #"Expanded CALLS_F"

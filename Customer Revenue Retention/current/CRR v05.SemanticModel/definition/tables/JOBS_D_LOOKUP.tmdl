@@ -1,0 +1,101 @@
+table JOBS_D_LOOKUP
+	lineageTag: eed7775d-c204-48ab-8621-64d5555a884a
+
+	column 'Total Estimated Cost'
+		dataType: double
+		lineageTag: 2059d32f-b910-491a-aa0c-40eafbf987fb
+		summarizeBy: sum
+		sourceColumn: Total Estimated Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Orig Contract Amount'
+		dataType: double
+		lineageTag: c3be2bd8-2890-4779-9d7e-dd88435a3f7b
+		summarizeBy: sum
+		sourceColumn: Orig Contract Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Confirmed Chg Order Amt'
+		dataType: double
+		lineageTag: d8b773c6-5986-4bd5-bab8-16e34ffbe01e
+		summarizeBy: sum
+		sourceColumn: Confirmed Chg Order Amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tot Revsd Forecast Cost'
+		dataType: double
+		lineageTag: 0cc85294-a41f-40e2-a0b7-dd8e685c3e45
+		summarizeBy: sum
+		sourceColumn: Tot Revsd Forecast Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Job Key'
+		dataType: string
+		lineageTag: 23c64258-775e-4579-9f7c-3be91811ec02
+		summarizeBy: none
+		sourceColumn: Job Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Key'
+		dataType: string
+		lineageTag: 9368bc38-cb2b-4c2a-beb1-980464f7402b
+		summarizeBy: none
+		sourceColumn: Customer Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Warranty Start'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 97d85703-4cb7-41f8-9c49-db0665cb96f7
+		summarizeBy: none
+		sourceColumn: Warranty Start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Warranty End'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1cb20bec-e131-4fe2-81e1-f1ff806449f6
+		summarizeBy: none
+		sourceColumn: Warranty End
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Helper key to match UI_ActiveItems[Item Key] for Projects (JOB_<CustomerKey>_<JobKey>). Enables robust routing without string parsing.
+	column 'Project Item Key' = "JOB_" & JOBS_D_LOOKUP[Customer Key] & "_" & JOBS_D_LOOKUP[Job Key]
+		dataType: string
+		isHidden
+		lineageTag: 5885437b-9bf6-4662-8752-767732ff0772
+
+	partition JOBS_D_LOOKUP = m
+		mode: import
+		queryGroup: DIM
+		source =
+				let
+				    Source = JOBS_D,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Total Estimated Cost", "Orig Contract Amount", "Confirmed Chg Order Amt", "Tot Revsd Forecast Cost", "Job Key", "Customer Key", "Warranty Start", "Warranty End"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

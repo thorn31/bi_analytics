@@ -1,0 +1,431 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "f5d59fcfd37d809245a2",
+  "position": {
+    "x": 340.03412969283272,
+    "y": 710,
+    "z": 7000,
+    "height": 350,
+    "width": 1560.1023890784982,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Master Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Master Customer Name",
+              "nativeQueryRef": "Master Customer Name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Contracts"
+                }
+              },
+              "queryRef": "_Key Measures.Active Contracts",
+              "nativeQueryRef": "Active Contracts"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Active Projects"
+                }
+              },
+              "queryRef": "_Key Measures.Active Projects",
+              "nativeQueryRef": "Active Projects"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue (R12M As Of)",
+              "nativeQueryRef": "Revenue (R12M)",
+              "displayName": "Revenue (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue PY (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue PY (R12M As Of)",
+              "nativeQueryRef": "Revenue PY (R12M)",
+              "displayName": "Revenue PY (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue Trend vs PY (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue Trend vs PY (R12M As Of)",
+              "nativeQueryRef": "Δ vs PY (R12M)",
+              "displayName": "Δ vs PY (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Recurring Mix % (SC) (R12M)"
+                }
+              },
+              "queryRef": "_Key Measures.Recurring Mix % (SC) (R12M)",
+              "nativeQueryRef": "Recurring Mix % (R12M)",
+              "displayName": "Recurring Mix % (R12M)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue (FY As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue (FY As Of)",
+              "nativeQueryRef": "Revenue (FYTD)",
+              "displayName": "Revenue (FYTD)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue PY (FY As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue PY (FY As Of)",
+              "nativeQueryRef": "Revenue PY (FYTD)",
+              "displayName": "Revenue PY (FYTD)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue Trend vs PY (FY As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue Trend vs PY (FY As Of)",
+              "nativeQueryRef": "Δ vs PY  (FYTD)",
+              "displayName": "Δ vs PY  (FYTD)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Total Revenue (R12M As Of)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "CUSTOMERS_D.Master Customer Name"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Master Customer Name"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "164.825943592389D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Recurring Mix % (SC) (R12M)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Customer Revenue Trends'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0845e5bf5aa47e942dea",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CUSTOMERS_D"
+              }
+            },
+            "Property": "Master Customer Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "34967109e0f0f2a7bbc7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Contracts"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1ba8fd334058f1936eae",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Active Projects"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0b8127c463b3088e99df",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "46a1322a30184a400090",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue PY (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e6c730d7a9ae2508997b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue Trend vs PY (R12M As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1366ce37076e34e36845",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Recurring Mix % (SC) (R12M)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1eee4bf47ee78f5f387e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue (FY As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9c83142277bd33e836f6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue PY (FY As Of)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cfadb681e6e34c21f693",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue Trend vs PY (FY As Of)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
