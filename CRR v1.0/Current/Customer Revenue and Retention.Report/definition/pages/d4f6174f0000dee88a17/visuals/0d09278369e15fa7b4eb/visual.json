@@ -356,7 +356,22 @@
             "Property": "Date"
           }
         },
-        "type": "RelativeDate",
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "1d08aeee97250c50462b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced",
         "filter": {
           "Version": 2,
           "From": [
@@ -369,45 +384,76 @@
           "Where": [
             {
               "Condition": {
-                "Between": {
-                  "Expression": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
                           "Source": "f"
                         }
                       },
-                      "Property": "Date"
+                      "Property": "Fiscal Year"
                     }
                   },
-                  "LowerBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "Now": {}
-                          },
-                          "Amount": -10,
-                          "TimeUnit": 3
-                        }
-                      },
-                      "TimeUnit": 3
-                    }
-                  },
-                  "UpperBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "Now": {}
-                          },
-                          "Amount": -1,
-                          "TimeUnit": 3
-                        }
-                      },
-                      "TimeUnit": 3
+                  "Right": {
+                    "Literal": {
+                      "Value": "2023L"
                     }
                   }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "1e4c5df25a94da61973f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Is Completed Month"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FYCALENDAR_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Is Completed Month"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
                 }
               }
             }

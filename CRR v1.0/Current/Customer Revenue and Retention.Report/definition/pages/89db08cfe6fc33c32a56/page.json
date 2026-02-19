@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "89db08cfe6fc33c32a56",
+  "displayName": "Page 1",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "b0d36ef04465b64c23a9",
+      "target": "16ab0e8be2bb1eb12331",
+      "type": "DataFilter"
+    }
+  ]
+}

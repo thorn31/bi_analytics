@@ -45846,6 +45846,16 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "Months Since Last Billing": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -46780,6 +46790,1024 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "entity__key_measure.last_financials_data_month_end_in_slice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Last Financials Data Month End (In Slice)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "last financials data month end (in slice)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "last financials data month end": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "entity__key_measure.as_of_month_end_total_NRR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "As Of Month End (Total NRR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "as of month end (total NRR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "as of month end": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "entity__key_measure.total_revenue_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_revenue_PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.retention_base_PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Retention Base PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "retention base PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "retention base PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.churn_revenue_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Churn Revenue (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "churn revenue (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "churn revenue (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.contraction_revenue_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Contraction Revenue (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "contraction revenue (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "contraction revenue (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.upsell_revenue_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Upsell Revenue (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "upsell revenue (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "upsell revenue (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Upsell Revenue": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.net_revenue_retention__total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Net Revenue Retention % (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "net revenue retention % (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "net revenue retention % (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "NRR %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Net Revenue Retention % PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "net revenue retention % PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "net revenue retention % PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Net Revenue Retention Trend vs PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "net revenue retention trend vs PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "net revenue retention trend vs PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.customer_retention_category_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Customer Retention Category (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "customer retention category (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "customer retention category (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Retention Category": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.window_label_R12M_as_of__total_company": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Window Label (R12M As Of - Total Company)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "window label (R12M as of - total company)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "window label": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "window label (R12M as of total company)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue (Retention Base Customers) (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue (retention base customers) (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue (retention base customers) (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Total Revenue": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue PY (retention base customers) (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue PY (retention base customers) (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Total Revenue PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_revenue_new_customers_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue (New Customers) (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue (new customers) (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue (new customers) (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "New Customer Revenue": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.gross_revenue_retention__total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Gross Revenue Retention % (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "gross revenue retention % (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "gross revenue retention % (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "GRR %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Gross Revenue Retention % PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "gross revenue retention % PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "gross revenue retention % PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Gross Revenue Retention Trend vs PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "gross revenue retention trend vs PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "gross revenue retention trend vs PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.retention_base_count_PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Retention Base Count PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "retention base count PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "retention base count PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.logo_churn_count_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Logo Churn Count (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "logo churn count (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "logo churn count (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.logo_retention__total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Logo Retention % (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "logo retention % (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "logo retention % (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.logo_retention__PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Logo Retention % PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "logo retention % PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "logo retention % PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.logo_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Logo Retention Trend vs PY (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "logo retention trend vs PY (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "logo retention trend vs PY (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Revenue (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "revenue (retention base customers) (total) (R12M as of) - by stream": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "revenue (retention base customers) (total) (R12M as of) by stream": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Revenue PY (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "revenue PY (retention base customers) (total) (R12M as of) - by stream": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "revenue PY (retention base customers) (total) (R12M as of) by stream": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Revenue Δ vs PY (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "revenue δ vs PY (retention base customers) (total) (R12M as of) - by stream": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "revenue δ vs PY (retention base customers) (total) (R12M as of) by stream": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Revenue Δ vs PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.NRR_waterfall_value_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "NRR Waterfall Value (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NRR waterfall value (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NRR waterfall value (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_projects_as_of_month_end": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Projects (As Of Month End)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active projects (as of month end)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active projects": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_projects_PY_as_of_month_end": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Projects PY (As Of Month End)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active projects PY (as of month end)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active projects PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_contracts_as_of_month_end": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Contracts (As Of Month End)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active contracts (as of month end)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active contracts": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.active_contracts_PY_as_of_month_end": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Active Contracts PY (As Of Month End)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "active contracts PY (as of month end)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "active contracts PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.projects_w__revenue_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Projects w/ Revenue (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "projects w/ revenue (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "projects w/ revenue": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "projects w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "projects w revenue ( R12M )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.projects_w__revenue_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Projects w/ Revenue PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "projects w/ revenue PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "projects w/ revenue PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "projects w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "projects w revenue PY ( R12M )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.contracts_w__revenue_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Contracts w/ Revenue (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "contracts w/ revenue (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "contracts w/ revenue": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "contracts w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "contracts w revenue ( R12M )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.contracts_w__revenue_PY_R12M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Contracts w/ Revenue PY (R12M)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "contracts w/ revenue PY (R12M)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "contracts w/ revenue PY": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "contracts w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "w": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "contracts w revenue PY ( R12M )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Total Revenue Trend vs PY % (Retention Base Customers) (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total revenue trend vs PY % (retention base customers) (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total revenue trend vs PY % (retention base customers) (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "entity__key_measure.churn__contraction_revenue_total_R12M_as_of": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Key Measures",
+			          "ConceptualProperty": "Churn + Contraction Revenue (Total) (R12M As Of)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "churn + contraction revenue (total) (R12M as of)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "churn + contraction revenue (total)": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Churn + Contraction Revenue": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -47380,6 +48408,4131 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "divisions_Ds_have_projects_Ds"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_churn__contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.churn__contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_churn__contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_churn__contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.churn__contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_churn__contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_churn__contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.churn__contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_churn__contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_churn__contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.churn__contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn__contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_churn__contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_total_revenue_trend_vs_PY__retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_contracts_w__revenue_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.contracts_w__revenue_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contracts_w__revenue_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contracts_w__revenue_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_contracts_w__revenue_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_contracts_w__revenue_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.contracts_w__revenue_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contracts_w__revenue_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contracts_w__revenue_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_contracts_w__revenue_PY_R12M"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_contracts_w__revenue_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.contracts_w__revenue_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contracts_w__revenue_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contracts_w__revenue_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_contracts_w__revenue_PY_R12M"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_contracts_w__revenue_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.contracts_w__revenue_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contracts_w__revenue_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contracts_w__revenue_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_contracts_w__revenue_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_contracts_w__revenue_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.contracts_w__revenue_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contracts_w__revenue_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contracts_w__revenue_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_contracts_w__revenue_R12M"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_contracts_w__revenue_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.contracts_w__revenue_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contracts_w__revenue_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contracts_w__revenue_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_contracts_w__revenue_R12M"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_projects_w__revenue_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.projects_w__revenue_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.projects_w__revenue_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.projects_w__revenue_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_projects_w__revenue_PY_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_projects_w__revenue_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.projects_w__revenue_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.projects_w__revenue_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.projects_w__revenue_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_projects_w__revenue_PY_R12M"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_projects_w__revenue_PY_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.projects_w__revenue_PY_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.projects_w__revenue_PY_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.projects_w__revenue_PY_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_projects_w__revenue_PY_R12M"
+			        }
+			      ]
+			    },
+			    "PROJECTS_financials_F_has_entity__key_measure_projects_w__revenue_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "PROJECTS_financials_F": {
+			          "Target": {
+			            "Entity": "PROJECTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.projects_w__revenue_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.projects_w__revenue_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "PROJECTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.projects_w__revenue_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "PROJECTS_financials_F_have_projects_w__revenue_R12M"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_projects_w__revenue_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.projects_w__revenue_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.projects_w__revenue_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.projects_w__revenue_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_projects_w__revenue_R12M"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_projects_w__revenue_R12M": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.projects_w__revenue_R12M": {
+			          "Target": {
+			            "Entity": "entity__key_measure.projects_w__revenue_R12M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.projects_w__revenue_R12M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_projects_w__revenue_R12M"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_active_contracts_PY_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_contracts_PY_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_contracts_PY_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_contracts_PY_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_active_contracts_PY_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_active_contracts_PY_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_contracts_PY_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_contracts_PY_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_contracts_PY_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_active_contracts_PY_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_active_contracts_PY_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.active_contracts_PY_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_contracts_PY_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_contracts_PY_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_active_contracts_PY_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "servcontracts_d_has_entity__key_measure_active_contracts_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "servcontracts_d": {
+			          "Target": {
+			            "Entity": "servcontracts_d"
+			          }
+			        },
+			        "entity__key_measure.active_contracts_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_contracts_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "servcontracts_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_contracts_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "servcontracts_Ds_have_active_contracts_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_active_contracts_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_contracts_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_contracts_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_contracts_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_active_contracts_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_active_contracts_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.active_contracts_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_contracts_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_contracts_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_active_contracts_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "projects_d_has_entity__key_measure_active_projects_PY_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "projects_d": {
+			          "Target": {
+			            "Entity": "projects_d"
+			          }
+			        },
+			        "entity__key_measure.active_projects_PY_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_projects_PY_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "projects_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_projects_PY_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_Ds_have_active_projects_PY_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_active_projects_PY_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_projects_PY_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_projects_PY_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_projects_PY_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_active_projects_PY_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_active_projects_PY_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.active_projects_PY_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_projects_PY_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_projects_PY_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_active_projects_PY_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "projects_d_has_entity__key_measure_active_projects_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "PROJECTS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "projects_d": {
+			          "Target": {
+			            "Entity": "projects_d"
+			          }
+			        },
+			        "entity__key_measure.active_projects_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_projects_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "projects_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_projects_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_Ds_have_active_projects_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_active_projects_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.active_projects_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_projects_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_projects_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_active_projects_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_active_projects_as_of_month_end": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.active_projects_as_of_month_end": {
+			          "Target": {
+			            "Entity": "entity__key_measure.active_projects_as_of_month_end"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.active_projects_as_of_month_end"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_active_projects_as_of_month_end"
+			        }
+			      ]
+			    },
+			    "UI_Waterfall__NRR_breakdown_has_entity__key_measure_NRR_waterfall_value_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "UI_Waterfall - NRR Breakdown"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "UI_Waterfall__NRR_breakdown": {
+			          "Target": {
+			            "Entity": "UI_Waterfall__NRR_breakdown"
+			          }
+			        },
+			        "entity__key_measure.NRR_waterfall_value_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "UI_Waterfall__NRR_breakdown"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "UI_Waterfall__NRR_breakdowns_have_NRR_waterfall_value_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_NRR_waterfall_value_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.NRR_waterfall_value_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_NRR_waterfall_value_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_NRR_waterfall_value_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.NRR_waterfall_value_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_NRR_waterfall_value_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_NRR_waterfall_value_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.NRR_waterfall_value_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_NRR_waterfall_value_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_NRR_waterfall_value_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.NRR_waterfall_value_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.NRR_waterfall_value_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_NRR_waterfall_value_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "stream_d_has_entity__key_measure_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "STREAM_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "stream_d": {
+			          "Target": {
+			            "Entity": "stream_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "stream_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "stream_Ds_have_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_revenue_δ_vs_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "stream_d_has_entity__key_measure_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "STREAM_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "stream_d": {
+			          "Target": {
+			            "Entity": "stream_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "stream_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "stream_Ds_have_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_revenue_PY_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "stream_d_has_entity__key_measure_revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "STREAM_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "stream_d": {
+			          "Target": {
+			            "Entity": "stream_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "stream_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "stream_Ds_have_revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream": {
+			          "Target": {
+			            "Entity": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_revenue_retention_base_customers_total_R12M_as_of__by_stream"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_logo_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.logo_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.logo_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.logo_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_logo_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_logo_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.logo_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.logo_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.logo_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_logo_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_logo_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.logo_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.logo_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.logo_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_logo_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_logo_churn_count_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.logo_churn_count_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.logo_churn_count_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.logo_churn_count_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_logo_churn_count_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_retention_base_count_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.retention_base_count_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.retention_base_count_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.retention_base_count_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_retention_base_count_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_gross_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_gross_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_gross_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_gross_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_gross_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_gross_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_gross_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_gross_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_gross_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_gross_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_gross_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_gross_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_gross_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_gross_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_gross_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_gross_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.gross_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.gross_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_gross_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_new_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_new_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_new_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_new_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_new_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_revenue_new_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_revenue_new_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_new_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_total_revenue_new_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_total_revenue_new_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_new_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_new_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_total_revenue_new_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_total_revenue_PY_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_revenue_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_revenue_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_total_revenue_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_total_revenue_retention_base_customers_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_retention_base_customers_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_total_revenue_retention_base_customers_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_window_label_R12M_as_of__total_company": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.window_label_R12M_as_of__total_company": {
+			          "Target": {
+			            "Entity": "entity__key_measure.window_label_R12M_as_of__total_company"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.window_label_R12M_as_of__total_company"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_window_label_R12M_as_of__total_company"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_window_label_R12M_as_of__total_company": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.window_label_R12M_as_of__total_company": {
+			          "Target": {
+			            "Entity": "entity__key_measure.window_label_R12M_as_of__total_company"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.window_label_R12M_as_of__total_company"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_window_label_R12M_as_of__total_company"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_window_label_R12M_as_of__total_company": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.window_label_R12M_as_of__total_company": {
+			          "Target": {
+			            "Entity": "entity__key_measure.window_label_R12M_as_of__total_company"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.window_label_R12M_as_of__total_company"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_window_label_R12M_as_of__total_company"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_customer_retention_category_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.customer_retention_category_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.customer_retention_category_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.customer_retention_category_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_customer_retention_category_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_customer_retention_category_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.customer_retention_category_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.customer_retention_category_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.customer_retention_category_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_customer_retention_category_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_customer_retention_category_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.customer_retention_category_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.customer_retention_category_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.customer_retention_category_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_customer_retention_category_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_net_revenue_retention_trend_vs_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_net_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_net_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_net_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_net_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_net_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_net_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_net_revenue_retention__PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_net_revenue_retention__PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_net_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_net_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_net_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_net_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_net_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_net_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_net_revenue_retention__total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.net_revenue_retention__total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.net_revenue_retention__total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_net_revenue_retention__total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_upsell_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.upsell_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_upsell_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_upsell_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.upsell_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_upsell_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_upsell_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.upsell_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_upsell_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_upsell_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.upsell_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.upsell_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_upsell_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_contraction_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.contraction_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.contraction_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_contraction_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_churn_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.churn_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_churn_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_churn_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.churn_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_churn_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_churn_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.churn_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_churn_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_churn_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.churn_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.churn_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_churn_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_retention_base_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.retention_base_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_retention_base_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_retention_base_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.retention_base_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_retention_base_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_retention_base_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.retention_base_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_retention_base_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "customers_d_has_entity__key_measure_retention_base_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "CUSTOMERS_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "customers_d": {
+			          "Target": {
+			            "Entity": "customers_d"
+			          }
+			        },
+			        "entity__key_measure.retention_base_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "customers_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.retention_base_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "customers_Ds_have_retention_base_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_revenue_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_revenue_PY_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_PY_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_PY_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_PY_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_total_revenue_PY_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_total_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_total_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_total_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_total_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_total_revenue_total_R12M_as_of": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.total_revenue_total_R12M_as_of": {
+			          "Target": {
+			            "Entity": "entity__key_measure.total_revenue_total_R12M_as_of"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.total_revenue_total_R12M_as_of"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_total_revenue_total_R12M_as_of"
+			        }
+			      ]
+			    },
+			    "SERVCONTRACTS_financials_F_has_entity__key_measure_as_of_month_end_total_NRR": {
+			      "Binding": {
+			        "ConceptualEntity": "SERVCONTRACTS_Financials_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "SERVCONTRACTS_financials_F": {
+			          "Target": {
+			            "Entity": "SERVCONTRACTS_financials_F"
+			          }
+			        },
+			        "entity__key_measure.as_of_month_end_total_NRR": {
+			          "Target": {
+			            "Entity": "entity__key_measure.as_of_month_end_total_NRR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "SERVCONTRACTS_financials_F"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.as_of_month_end_total_NRR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "SERVCONTRACTS_financials_F_have_as_of_month_end_total_NRR"
+			        }
+			      ]
+			    },
+			    "fycalendar_d_has_entity__key_measure_as_of_month_end_total_NRR": {
+			      "Binding": {
+			        "ConceptualEntity": "FYCALENDAR_D"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fycalendar_d": {
+			          "Target": {
+			            "Entity": "fycalendar_d"
+			          }
+			        },
+			        "entity__key_measure.as_of_month_end_total_NRR": {
+			          "Target": {
+			            "Entity": "entity__key_measure.as_of_month_end_total_NRR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fycalendar_d"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.as_of_month_end_total_NRR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fycalendar_Ds_have_as_of_month_end_total_NRR"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_as_of_month_end_total_NRR": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.as_of_month_end_total_NRR": {
+			          "Target": {
+			            "Entity": "entity__key_measure.as_of_month_end_total_NRR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.as_of_month_end_total_NRR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_as_of_month_end_total_NRR"
+			        }
+			      ]
+			    },
+			    "financials_f_has_entity__key_measure_last_financials_data_month_end_in_slice": {
+			      "Binding": {
+			        "ConceptualEntity": "FINANCIALS_F"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "financials_f": {
+			          "Target": {
+			            "Entity": "financials_f"
+			          }
+			        },
+			        "entity__key_measure.last_financials_data_month_end_in_slice": {
+			          "Target": {
+			            "Entity": "entity__key_measure.last_financials_data_month_end_in_slice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "financials_f"
+			            },
+			            "Object": {
+			              "Role": "entity__key_measure.last_financials_data_month_end_in_slice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "financials_f_have_last_financials_data_month_end_in_slice"
 			        }
 			      ]
 			    },

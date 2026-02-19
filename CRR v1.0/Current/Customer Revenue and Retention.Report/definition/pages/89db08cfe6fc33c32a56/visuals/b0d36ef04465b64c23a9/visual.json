@@ -1,0 +1,290 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "b0d36ef04465b64c23a9",
+  "position": {
+    "x": 216.55290102389077,
+    "y": 530.78498293515361,
+    "z": 2000,
+    "height": 492.0819112627986,
+    "width": 1703.8566552901023,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CUSTOMERS_D"
+                    }
+                  },
+                  "Property": "Master Customer Name"
+                }
+              },
+              "queryRef": "CUSTOMERS_D.Master Customer Name",
+              "nativeQueryRef": "Master Customer Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Months Since Last Billing"
+                }
+              },
+              "queryRef": "_Key Measures.Months Since Last Billing",
+              "nativeQueryRef": "Months Since Last Billing"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Customer Retention Category (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Customer Retention Category (Total) (R12M As Of)",
+              "nativeQueryRef": "Customer Retention Category (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Project Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Project Revenue (R12M As Of)",
+              "nativeQueryRef": "Project Revenue (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "SC Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.SC Revenue (R12M As Of)",
+              "nativeQueryRef": "SC Revenue (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "T&M Revenue (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.T&M Revenue (R12M As Of)",
+              "nativeQueryRef": "T&M Revenue (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Churn Revenue (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Churn Revenue (Total) (R12M As Of)",
+              "nativeQueryRef": "Churn Revenue (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)",
+              "nativeQueryRef": "Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Contraction Revenue (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Contraction Revenue (Total) (R12M As Of)",
+              "nativeQueryRef": "Contraction Revenue (Total) (R12M As Of)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "T&M Revenue (R12M As Of)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "159.3515231013328D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b9add53e4f33f83829b4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Customer Has Revenue"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "_",
+              "Entity": "_Key Measures",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "_"
+                        }
+                      },
+                      "Property": "Customer Has Revenue"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "1L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "73a203d46c458cbbe804",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Customer Retention Category (Total) (R12M As Of)"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "_",
+              "Entity": "_Key Measures",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "_"
+                            }
+                          },
+                          "Property": "Customer Retention Category (Total) (R12M As Of)"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

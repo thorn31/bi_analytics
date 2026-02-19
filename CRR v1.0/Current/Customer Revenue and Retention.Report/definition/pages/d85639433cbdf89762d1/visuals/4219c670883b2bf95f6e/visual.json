@@ -7,7 +7,7 @@
     "z": 23000,
     "height": 100,
     "width": 280,
-    "tabOrder": 23001
+    "tabOrder": 24000
   },
   "visual": {
     "visualType": "slicer",
@@ -392,20 +392,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "9359095fbe9f588cbd38",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Industrial Group"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

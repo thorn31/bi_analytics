@@ -1,0 +1,165 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "16ab0e8be2bb1eb12331",
+  "position": {
+    "x": 1099.3515358361774,
+    "y": 674.53924914675758,
+    "z": 4000,
+    "height": 405.4607508532423,
+    "width": 771.296928327645,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "STREAM_D"
+                    }
+                  },
+                  "Property": "Stream"
+                }
+              },
+              "queryRef": "STREAM_D.Stream",
+              "nativeQueryRef": "Stream",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Revenue (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+                }
+              },
+              "queryRef": "_Key Measures.Revenue (Retention Base Customers) (Total) (R12M As Of) - By Stream",
+              "nativeQueryRef": "Revenue (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Revenue PY (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+                }
+              },
+              "queryRef": "_Key Measures.Revenue PY (Retention Base Customers) (Total) (R12M As Of) - By Stream",
+              "nativeQueryRef": "Revenue PY (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Key Measures"
+                  }
+                },
+                "Property": "Revenue (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "004b85a22d57aff7bb69",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "STREAM_D"
+              }
+            },
+            "Property": "Stream"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "STREAM_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "s"
+                              }
+                            },
+                            "Property": "Stream"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

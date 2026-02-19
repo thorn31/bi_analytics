@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "822b81b6677e9a2dc219",
   "position": {
-    "x": 440,
+    "x": 340.03412969283272,
     "y": 100.44368600682593,
-    "z": 6000,
-    "height": 140.06825938566553,
-    "width": 1460,
+    "z": 3000,
+    "height": 150,
+    "width": 1560.1023890784982,
     "tabOrder": 3000
   },
   "visual": {
@@ -282,7 +282,7 @@
             "paddingUniform": {
               "expr": {
                 "Literal": {
-                  "Value": "12L"
+                  "Value": "10L"
                 }
               }
             },
@@ -1015,13 +1015,6 @@
       "padding": [
         {
           "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
             "bottom": {
               "expr": {
                 "Literal": {
@@ -1032,11 +1025,18 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "10D"
                 }
               }
             },
             "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "top": {
               "expr": {
                 "Literal": {
                   "Value": "0D"
@@ -1104,7 +1104,7 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },
@@ -1251,6 +1251,31 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Window Label (R12M As Of - Financials)"
                 }
               }
             }

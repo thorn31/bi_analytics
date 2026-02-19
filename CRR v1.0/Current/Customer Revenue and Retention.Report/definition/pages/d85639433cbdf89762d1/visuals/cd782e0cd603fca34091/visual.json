@@ -467,34 +467,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "12d3ed4f197ae114a791",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FYCALENDAR_D"
-              }
-            },
-            "Property": "Month Letter"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "a7e8cc94fcfe33f68845",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "GL Revenue PY (Monthly/Cumulative)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

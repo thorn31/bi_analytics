@@ -441,23 +441,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "cdd9c8ea7962eb5fd5b4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_Revenue View Selector"
-              }
-            },
-            "Property": "View"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

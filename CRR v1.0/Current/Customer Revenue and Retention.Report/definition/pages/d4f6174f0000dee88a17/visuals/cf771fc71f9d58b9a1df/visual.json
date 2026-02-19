@@ -414,6 +414,18 @@
                   "Value": "9D"
                 }
               }
+            },
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -641,7 +653,7 @@
         "howCreated": "User"
       },
       {
-        "name": "843a099cc33cc4421052",
+        "name": "7ebc4193c2569bf14c4a",
         "field": {
           "Column": {
             "Expression": {
@@ -655,7 +667,7 @@
         "type": "Categorical"
       },
       {
-        "name": "cccdcb381762030b5bcc",
+        "name": "c7b4b072da0a500e9363",
         "field": {
           "Measure": {
             "Expression": {
@@ -669,7 +681,7 @@
         "type": "Advanced"
       },
       {
-        "name": "34a9c0ae5825bdabfdfb",
+        "name": "1201fc9cb86024c646a5",
         "field": {
           "Measure": {
             "Expression": {
@@ -683,7 +695,7 @@
         "type": "Advanced"
       },
       {
-        "name": "f382068e6a1c6bb851a6",
+        "name": "d8d3c25562d029c5b471",
         "field": {
           "Measure": {
             "Expression": {
@@ -697,7 +709,7 @@
         "type": "Advanced"
       },
       {
-        "name": "d616af100a2734c5033d",
+        "name": "a7781b6d63933fbe9b5e",
         "field": {
           "Measure": {
             "Expression": {
@@ -711,7 +723,7 @@
         "type": "Advanced"
       },
       {
-        "name": "d480aa09a2f693fce365",
+        "name": "9ad35271012d046d70b2",
         "field": {
           "Measure": {
             "Expression": {
@@ -725,7 +737,7 @@
         "type": "Advanced"
       },
       {
-        "name": "6fa75c6212da7dbac676",
+        "name": "6750a6be3c710c8fecc5",
         "field": {
           "Measure": {
             "Expression": {
@@ -739,7 +751,7 @@
         "type": "Advanced"
       },
       {
-        "name": "7eb19e020a5a6ab6a502",
+        "name": "d056a329c6308582d4fc",
         "field": {
           "Measure": {
             "Expression": {
@@ -753,7 +765,7 @@
         "type": "Advanced"
       },
       {
-        "name": "6526846027947631dc34",
+        "name": "17616c986b74fc77ad39",
         "field": {
           "Measure": {
             "Expression": {
@@ -767,7 +779,7 @@
         "type": "Advanced"
       },
       {
-        "name": "8294c9412d8d99dbfff8",
+        "name": "43386111d34482fa47bc",
         "field": {
           "Measure": {
             "Expression": {

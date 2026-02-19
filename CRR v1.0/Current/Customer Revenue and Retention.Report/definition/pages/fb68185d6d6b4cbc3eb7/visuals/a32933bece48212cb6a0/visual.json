@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "a32933bece48212cb6a0",
   "position": {
-    "x": 439.55631399317406,
-    "y": 259.86348122866895,
-    "z": 5000,
-    "height": 389.79522184300339,
-    "width": 720.61433447098966,
+    "x": 340,
+    "y": 270,
+    "z": 2000,
+    "height": 380,
+    "width": 770,
     "tabOrder": 2000
   },
   "visual": {
@@ -417,5 +417,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "73b05244122af7dbee68",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year Label"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fd948660aa776bdda36c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "STREAM_D"
+              }
+            },
+            "Property": "Stream"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cb9c3d3e8d14a0f3855d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Revenue"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

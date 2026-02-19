@@ -392,20 +392,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "09246fc6dae13972b8c5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Industrial Group"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

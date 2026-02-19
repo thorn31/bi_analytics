@@ -55,19 +55,18 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Key Measures"
+                    "Entity": "FYCALENDAR_D"
                   }
                 },
-                "Property": "Total Revenue"
+                "Property": "Fiscal Year"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
@@ -235,6 +234,13 @@
               "expr": {
                 "Literal": {
                   "Value": "34L"
+                }
+              }
+            },
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Categorical'"
                 }
               }
             }
@@ -556,6 +562,21 @@
           }
         },
         "type": "RelativeDate",
+        "howCreated": "User"
+      },
+      {
+        "name": "700c683b7bdc0ea67675",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year"
+          }
+        },
+        "type": "Advanced",
         "filter": {
           "Version": 2,
           "From": [
@@ -568,51 +589,42 @@
           "Where": [
             {
               "Condition": {
-                "Between": {
-                  "Expression": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
                           "Source": "f"
                         }
                       },
-                      "Property": "Date"
+                      "Property": "Fiscal Year"
                     }
                   },
-                  "LowerBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "Now": {}
-                          },
-                          "Amount": -60,
-                          "TimeUnit": 2
-                        }
-                      },
-                      "TimeUnit": 2
-                    }
-                  },
-                  "UpperBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "Now": {}
-                          },
-                          "Amount": -1,
-                          "TimeUnit": 2
-                        }
-                      },
-                      "TimeUnit": 2
+                  "Right": {
+                    "Literal": {
+                      "Value": "2023L"
                     }
                   }
                 }
               }
             }
           ]
+        }
+      },
+      {
+        "name": "36d3683564fc934263a9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue"
+          }
         },
-        "howCreated": "User"
+        "type": "Advanced"
       }
     ]
   }

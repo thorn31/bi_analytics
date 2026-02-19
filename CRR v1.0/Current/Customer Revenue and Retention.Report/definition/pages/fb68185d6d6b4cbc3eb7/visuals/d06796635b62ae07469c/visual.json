@@ -2,12 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "d06796635b62ae07469c",
   "position": {
-    "x": 20,
-    "y": 260,
-    "z": 3000,
-    "height": 800,
-    "width": 400,
-    "tabOrder": 4000
+    "x": 0,
+    "y": 0.13474269961735519,
+    "z": 0,
+    "height": 789.5922197577205,
+    "width": 299.33481152993346
   },
   "visual": {
     "visualType": "tableEx",
@@ -71,13 +70,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "197.6249794318801D"
+                  "Value": "148.7068724730018D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "UI_CustomerProfileRows.Metric Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "136.63140334955085D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Customer Profile Metric Value"
           }
         }
       ],
@@ -100,6 +113,13 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
                 }
               }
             }
@@ -142,6 +162,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
             }
           },
           "selector": {
@@ -172,6 +199,7 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "fc2bf424910c8422d791",
   "filterConfig": {
     "filters": [
       {
@@ -245,6 +273,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "fdee7367956c5c4783a7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Customer Profile Metric Value"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

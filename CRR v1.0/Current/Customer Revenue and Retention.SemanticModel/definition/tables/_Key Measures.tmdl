@@ -1165,10 +1165,11 @@ table '_Key Measures'
 		displayFolder: 6. Customer Status\UI
 		lineageTag: d7e83744-c3ba-4875-a073-d88093a98319
 
-	/// Count of active service contract years for the current filter context.
+	/// Distinct count of active service contracts (Contract Number) for the current filter context. Uses IsActiveContractYear=TRUE() to define active contract-years and counts unique contracts; respects Division slicer via TREATAS.
 	measure 'Active Contracts' =
 			CALCULATE (
-			    COUNTROWS ( SERVCONTRACTS_D ),
+			    DISTINCTCOUNT ( SERVCONTRACTS_D[Contract Number] ),
+			    KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_D[Contract Number] ) ),
 			    SERVCONTRACTS_D[IsActiveContractYear] = TRUE (),
 			    KEEPFILTERS ( TREATAS ( VALUES ( DIVISIONS_D[DivisionCode] ), SERVCONTRACTS_D[Divisions] ) )
 			)
@@ -2980,8 +2981,8 @@ table '_Key Measures'
 		displayFolder: 4. Customer Metrics\Active Items
 		lineageTag: 499e45f4-90dd-42ee-89aa-e68b87daebe3
 
-	/// Gross profit percent across all active items = [Active Items Total Gross Profit] / [Active Items Total Revenue], respecting current filter context.
-	measure 'Active Items Total GP %' = DIVIDE([Active Items Total Gross Profit], [Active Items Total Revenue])
+	/// Gross profit percent across all active items (ITD) = [Active Items Total Gross Profit] / [Active Items Total Revenue (ITD)], respecting current filter context.
+	measure 'Active Items Total GP %' = DIVIDE ( [Active Items Total Gross Profit], [Active Items Total Revenue (ITD)] )
 		formatString: 0.0%
 		displayFolder: 4. Customer Metrics\Active Items
 		lineageTag: 69bdb81e-ba1f-44ad-bc59-c0d428004f5d
@@ -4561,6 +4562,584 @@ table '_Key Measures'
 		formatString: #,0
 		displayFolder: 6. Customer Status\Contract
 		lineageTag: 6c8ef473-ac06-4f01-96c6-b3d85e5dd698
+
+	/// Helper: last available FINANCIALS_F month end within current non-date slice (e.g., Division/Industrial Group), ignoring customer filters.
+	measure 'Last Financials Data Month End (In Slice)' = CALCULATE ( MAX ( FINANCIALS_F[Month End] ), REMOVEFILTERS ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( CUSTOMERS_D ) )
+		formatString: yyyy-mm-dd
+		displayFolder: 7. Helper\Retention\Anchors
+		lineageTag: 7ac04746-d1e7-42c6-a596-0565505f6d01
+
+	/// Helper: as-of anchor month end for Total-Company retention metrics (Projects + Service Contracts + T&M). Uses selected max date (for historical lookback) but clamps to last completed month end and available data month ends across Financials and Service Contracts.
+	measure 'As Of Month End (Total NRR)' =
+			VAR SelectedMonthEnd =
+			    EOMONTH ( CALCULATE ( MAX ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( CUSTOMERS_D ) ), 0 )
+			VAR LastSCData = [Last SC Data Month End (In Slice)]
+			VAR LastFinData = [Last Financials Data Month End (In Slice)]
+			VAR LastCompletedMonthEnd =
+			    CALCULATE ( MAX ( FYCALENDAR_D[Date] ), REMOVEFILTERS ( FYCALENDAR_D[Date] ), FYCALENDAR_D[Is Completed Month] = TRUE () )
+			VAR Cap0 = COALESCE ( LastCompletedMonthEnd, LastFinData, LastSCData )
+			VAR Cap1 = IF ( ISBLANK ( LastFinData ), Cap0, MIN ( Cap0, LastFinData ) )
+			VAR Cap2 = IF ( ISBLANK ( LastSCData ), Cap1, MIN ( Cap1, LastSCData ) )
+			RETURN
+			    IF ( ISBLANK ( Cap2 ), BLANK (), MIN ( SelectedMonthEnd, Cap2 ) )
+		formatString: Long Date
+		displayFolder: 7. Helper\Retention\Anchors
+		lineageTag: 87db6bf6-727e-451b-8a02-d48fa27263bb
+
+	/// Total-company revenue (Projects + Service Contracts + T&M) over the rolling 12 months ending at [As Of Month End (Total NRR)].
+	measure 'Total Revenue (Total) (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Total NRR)]
+			RETURN
+			    IF ( ISBLANK ( AnchorDate ), BLANK (), CALCULATE ( [Total Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorDate, -12, MONTH ) ) )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Base
+		lineageTag: 56583e03-ce0f-4ad2-b0dc-2ffdf97c76b6
+
+	/// Prior-year total-company rolling 12-month revenue aligned to [As Of Month End (Total NRR)].
+	measure 'Total Revenue PY (Total) (R12M As Of)' =
+			VAR AnchorDate = [As Of Month End (Total NRR)]
+			VAR AnchorPY = EDATE ( AnchorDate, -12 )
+			RETURN
+			    IF ( ISBLANK ( AnchorDate ), BLANK (), CALCULATE ( [Total Revenue], DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH ) ) )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Base
+		lineageTag: abbebcb2-4ea3-4c5d-b350-5702bc4d4ff1
+
+	/// Retention denominator (Total-company R12M As Of): prior-year rolling total revenue for master customers that existed in the prior window (master-customer grain). Floors negative PY to 0 for retention logic.
+	measure 'Retention Base PY (Total) (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenuePY0 = [Total Revenue PY (Total) (R12M As Of)]
+			    VAR RevenuePY = MAX ( 0, COALESCE ( RevenuePY0, 0 ) )
+			    RETURN IF ( RevenuePY > 0, RevenuePY, 0 )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Components
+		lineageTag: 3ff1ce02-f7c5-44f1-b06e-429666939df2
+
+	/// Churn component (Total-company R12M As Of): lost revenue from master customers with PY revenue but zero CY revenue (master-customer grain). Floors negative CY/PY to 0 for retention logic.
+	measure 'Churn Revenue (Total) (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenueCY0 = [Total Revenue (Total) (R12M As Of)]
+			    VAR RevenuePY0 = [Total Revenue PY (Total) (R12M As Of)]
+			    VAR RevenueCY = MAX ( 0, COALESCE ( RevenueCY0, 0 ) )
+			    VAR RevenuePY = MAX ( 0, COALESCE ( RevenuePY0, 0 ) )
+			    RETURN IF ( RevenuePY > 0 && RevenueCY = 0, RevenuePY, 0 )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Components
+		lineageTag: 65994d13-ce9a-4b47-b234-e52c477e8648
+
+	/// Contraction component (Total-company R12M As Of): decreases for retained master customers (CY < PY). Floors negative CY/PY to 0 for retention logic.
+	measure 'Contraction Revenue (Total) (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenueCY0 = [Total Revenue (Total) (R12M As Of)]
+			    VAR RevenuePY0 = [Total Revenue PY (Total) (R12M As Of)]
+			    VAR RevenueCY = MAX ( 0, COALESCE ( RevenueCY0, 0 ) )
+			    VAR RevenuePY = MAX ( 0, COALESCE ( RevenuePY0, 0 ) )
+			    RETURN IF ( RevenuePY > 0 && RevenueCY > 0 && RevenueCY < RevenuePY, RevenuePY - RevenueCY, 0 )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Components
+		lineageTag: c7684a10-5366-4883-b522-62fc8cb5d20b
+
+	/// Upsell component (Total-company R12M As Of): increases for retained master customers (CY > PY). Floors negative CY/PY to 0 for retention logic.
+	measure 'Upsell Revenue (Total) (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR RevenueCY0 = [Total Revenue (Total) (R12M As Of)]
+			    VAR RevenuePY0 = [Total Revenue PY (Total) (R12M As Of)]
+			    VAR RevenueCY = MAX ( 0, COALESCE ( RevenueCY0, 0 ) )
+			    VAR RevenuePY = MAX ( 0, COALESCE ( RevenuePY0, 0 ) )
+			    RETURN IF ( RevenuePY > 0 && RevenueCY > RevenuePY, RevenueCY - RevenuePY, 0 )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Components
+		lineageTag: be3b766a-3ca4-4403-8c0d-573d01a57349
+
+	/// Net Revenue Retention (NRR) for total-company revenue (Projects + Service Contracts + T&M) over rolling 12 months ending at [As Of Month End (Total NRR)]. Base customers are those with PY revenue > 0.
+	measure 'Net Revenue Retention % (Total) (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (Total) (R12M As Of)]
+			VAR Numerator =
+			    BasePY
+			        - [Churn Revenue (Total) (R12M As Of)]
+			        - [Contraction Revenue (Total) (R12M As Of)]
+			        + [Upsell Revenue (Total) (R12M As Of)]
+			RETURN
+			    IF ( BasePY > 0, DIVIDE ( Numerator, BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Total)\R12M As Of\KPIs\NRR
+		lineageTag: b096a80f-fcec-4cf0-afec-79a9948bbc8a
+
+	/// Prior-year NRR for total-company revenue, evaluated at the anchor shifted back 12 months (R12M As Of).
+	measure 'Net Revenue Retention % PY (Total) (R12M As Of)' =
+			VAR CurrentAnchor = [As Of Month End (Total NRR)]
+			VAR PriorAnchor = EDATE ( CurrentAnchor, -12 )
+			RETURN
+			    CALCULATE ( [Net Revenue Retention % (Total) (R12M As Of)], FYCALENDAR_D[Date] = PriorAnchor )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Total)\R12M As Of\KPIs\NRR
+		lineageTag: f4a55e9b-c2b3-4a06-84da-755d19c11376
+
+	/// Text indicator showing total-company NRR (R12M As Of) delta vs prior-year anchor (arrow + absolute delta). Returns BLANK when CY or PY is missing/zero.
+	measure 'Net Revenue Retention Trend vs PY (Total) (R12M As Of)' =
+			VAR CY = [Net Revenue Retention % (Total) (R12M As Of)]
+			VAR PY = [Net Revenue Retention % PY (Total) (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR Icon = SWITCH ( TRUE (), Diff > 0, UNICHAR ( 9650 ), Diff < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			        VAR PctText = IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		formatString: @
+		displayFolder: 3. Retention (Total)\R12M As Of\KPIs\NRR\Labels
+		lineageTag: 71b606e2-2fa8-43c0-be1f-cb67d1df77f1
+
+	/// Customer-level retention category for total-company revenue in the R12M As Of framework (based on total RevPY/RevCY). Floors negative RevCY/RevPY to 0 for retention logic.
+	measure 'Customer Retention Category (Total) (R12M As Of)' =
+			VAR RevCY0 = [Total Revenue (Total) (R12M As Of)]
+			VAR RevPY0 = [Total Revenue PY (Total) (R12M As Of)]
+			VAR RevCY = MAX ( 0, COALESCE ( RevCY0, 0 ) )
+			VAR RevPY = MAX ( 0, COALESCE ( RevPY0, 0 ) )
+			VAR HasCY = RevCY > 0
+			VAR HasPY = RevPY > 0
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        HasPY && NOT HasCY, "Churned",
+			        HasPY && HasCY && RevCY < RevPY, "Contraction",
+			        HasPY && HasCY && RevCY > RevPY, "Upsell",
+			        HasPY && HasCY && RevCY = RevPY, "Retained",
+			        NOT HasPY && HasCY, "New",
+			        BLANK ()
+			    )
+		formatString: @
+		displayFolder: 7. Helper\Retention\R12M As Of
+		lineageTag: 869caca5-6a71-431c-bee2-8080c744b990
+
+	/// UI subtitle label describing the anchored rolling 12-month window for Total-Company retention R12M As Of measures (uses [As Of Month End (Total NRR)]).
+	measure 'Window Label (R12M As Of - Total Company)' =
+			VAR EndDate = [As Of Month End (Total NRR)]
+			VAR StartDate = EDATE ( EndDate, -11 )
+			RETURN
+			    IF (
+			        ISBLANK ( EndDate ),
+			        BLANK (),
+			        "Rolling 12 Months: " & FORMAT ( StartDate, "MMM yyyy" ) & " to " & FORMAT ( EndDate, "MMM yyyy" )
+			    )
+		formatString: @
+		displayFolder: 8. UI\Labels\Time Windows
+		lineageTag: c3a4a849-0cf3-40e5-9639-63178dcb0ba5
+
+	/// Total-company revenue (R12M As Of) restricted to customers in the retention base (PY total-company R12M revenue > 0). Reconciles to the NRR bridge ending value for base customers only.
+	measure 'Total Revenue (Retention Base Customers) (Total) (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR PY0 = [Total Revenue PY (Total) (R12M As Of)]
+			    VAR PY = MAX ( 0, COALESCE ( PY0, 0 ) )
+			    VAR CY0 = [Total Revenue (Total) (R12M As Of)]
+			    VAR CY = MAX ( 0, COALESCE ( CY0, 0 ) )
+			    RETURN IF ( PY > 0, CY, 0 )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Base
+		lineageTag: e3a65a8f-ce39-4841-ad56-6cdce2b35ea5
+
+	/// Prior-year total-company revenue (R12M As Of) restricted to customers in the retention base (PY total-company R12M revenue > 0).
+	measure 'Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR PY0 = [Total Revenue PY (Total) (R12M As Of)]
+			    VAR PY = MAX ( 0, COALESCE ( PY0, 0 ) )
+			    RETURN IF ( PY > 0, PY, 0 )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Base
+		lineageTag: 5b0082b5-9127-4a75-a857-0e126376cc0a
+
+	/// Total-company revenue (R12M As Of) for customers not in the retention base (PY total-company R12M revenue is blank/0). Useful to explain why total CY R12M revenue can exceed the retention base revenue used in NRR/GRR.
+	measure 'Total Revenue (New Customers) (Total) (R12M As Of)' =
+			SUMX (
+			    VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			    VAR PY0 = [Total Revenue PY (Total) (R12M As Of)]
+			    VAR PY = MAX ( 0, COALESCE ( PY0, 0 ) )
+			    VAR CY0 = [Total Revenue (Total) (R12M As Of)]
+			    VAR CY = MAX ( 0, COALESCE ( CY0, 0 ) )
+			    RETURN IF ( PY = 0 && CY > 0, CY, 0 )
+			)
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Base
+		lineageTag: 47ef90a9-71d6-403f-9d8a-28e1d689861b
+
+	/// Gross Revenue Retention (GRR) for total-company revenue over rolling 12 months ending at [As Of Month End (Total NRR)] (excludes upsell). Base customers are those with PY revenue > 0; negative CY/PY floored to 0 for retention logic.
+	measure 'Gross Revenue Retention % (Total) (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (Total) (R12M As Of)]
+			VAR Numerator = BasePY - [Churn Revenue (Total) (R12M As Of)] - [Contraction Revenue (Total) (R12M As Of)]
+			RETURN
+			    IF ( BasePY > 0, DIVIDE ( Numerator, BasePY ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Total)\R12M As Of\KPIs\GRR
+		lineageTag: f9f5c4c2-546f-4bd6-8cf5-a082b787cb84
+
+	/// Prior-year GRR for total-company revenue, evaluated at the anchor shifted back 12 months (R12M As Of).
+	measure 'Gross Revenue Retention % PY (Total) (R12M As Of)' =
+			VAR CurrentAnchor = [As Of Month End (Total NRR)]
+			VAR PriorAnchor = EDATE ( CurrentAnchor, -12 )
+			RETURN
+			    CALCULATE ( [Gross Revenue Retention % (Total) (R12M As Of)], FYCALENDAR_D[Date] = PriorAnchor )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Total)\R12M As Of\KPIs\GRR
+		lineageTag: f02773a2-47a8-4807-badb-eef50257c5ec
+
+	/// Text indicator showing total-company GRR (R12M As Of) delta vs prior-year anchor (arrow + absolute delta). Returns BLANK when CY or PY is missing/zero.
+	measure 'Gross Revenue Retention Trend vs PY (Total) (R12M As Of)' =
+			VAR CY = [Gross Revenue Retention % (Total) (R12M As Of)]
+			VAR PY = [Gross Revenue Retention % PY (Total) (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR Icon = SWITCH ( TRUE (), Diff > 0, UNICHAR ( 9650 ), Diff < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			        VAR PctText = IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		formatString: @
+		displayFolder: 3. Retention (Total)\R12M As Of\KPIs\GRR\Labels
+		lineageTag: 3b833435-e815-4689-80de-c2e71037388e
+
+	/// Logo retention denominator: count of master customers with prior-year rolling total-company revenue > 0 (R12M As Of). Floors negative PY to 0 for retention logic.
+	measure 'Retention Base Count PY (Total) (R12M As Of)' =
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        MAX ( 0, COALESCE ( [Total Revenue PY (Total) (R12M As Of)], 0 ) ) > 0
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Retention (Total)\R12M As Of\Logo
+		lineageTag: 05db6ba2-9d5f-4ec1-b93d-9a4c48a3ef67
+
+	/// Logo churn count (master-customer grain): master customers with PY rolling total-company revenue > 0 and CY rolling revenue = 0 (R12M As Of). Floors negative CY/PY to 0 for retention logic.
+	measure 'Logo Churn Count (Total) (R12M As Of)' =
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			        MAX ( 0, COALESCE ( [Total Revenue PY (Total) (R12M As Of)], 0 ) ) > 0
+			            && MAX ( 0, COALESCE ( [Total Revenue (Total) (R12M As Of)], 0 ) ) = 0
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Retention (Total)\R12M As Of\Logo
+		lineageTag: 139a7f07-d32c-4298-b50a-111b48eba9f3
+
+	/// Logo retention percent (Total-company R12M As Of): 1 - (logo churn count / base customer count).
+	measure 'Logo Retention % (Total) (R12M As Of)' =
+			VAR BaseCt = [Retention Base Count PY (Total) (R12M As Of)]
+			VAR ChurnCt = [Logo Churn Count (Total) (R12M As Of)]
+			RETURN
+			    IF ( BaseCt > 0, DIVIDE ( BaseCt - ChurnCt, BaseCt ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Total)\R12M As Of\Logo
+		lineageTag: a0436fee-a034-4aab-b4de-6566874e96df
+
+	/// Prior-year Logo Retention % for total-company revenue, evaluated at the anchor shifted back 12 months (R12M As Of).
+	measure 'Logo Retention % PY (Total) (R12M As Of)' =
+			VAR CurrentAnchor = [As Of Month End (Total NRR)]
+			VAR PriorAnchor = EDATE ( CurrentAnchor, -12 )
+			RETURN
+			    CALCULATE ( [Logo Retention % (Total) (R12M As Of)], FYCALENDAR_D[Date] = PriorAnchor )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Total)\R12M As Of\Logo
+		lineageTag: cfc3848d-2179-40f2-85e3-8b8675509879
+
+	/// Text indicator showing total-company Logo Retention % (R12M As Of) delta vs prior-year anchor (arrow + absolute delta). Returns BLANK when CY or PY is missing/zero.
+	measure 'Logo Retention Trend vs PY (Total) (R12M As Of)' =
+			VAR CY = [Logo Retention % (Total) (R12M As Of)]
+			VAR PY = [Logo Retention % PY (Total) (R12M As Of)]
+			RETURN
+			    IF (
+			        ISBLANK ( CY ) || CY = 0 || ISBLANK ( PY ) || PY = 0,
+			        BLANK (),
+			        VAR Diff = CY - PY
+			        VAR Icon = SWITCH ( TRUE (), Diff > 0, UNICHAR ( 9650 ), Diff < 0, UNICHAR ( 9660 ), UNICHAR ( 9644 ) )
+			        VAR PctText = IF ( Diff >= 0, UNICHAR ( 8199 ) & FORMAT ( Diff, "0.0%" ), FORMAT ( Diff, "0.0%" ) )
+			        RETURN
+			            Icon & " " & PctText
+			    )
+		formatString: @
+		displayFolder: 3. Retention (Total)\R12M As Of\Logo\Labels
+		lineageTag: 360a5211-139b-41b8-9ac7-c22583752ee9
+
+	/// Total-company revenue (R12M As Of) by stream, restricted to retention-base customers (PY total-company R12M revenue > 0). Uses [As Of Month End (Total NRR)] anchor; floors customers with total CY <= 0 to 0 to align with retention bridge logic.
+	measure 'Revenue (Retention Base Customers) (Total) (R12M As Of) - By Stream' =
+			VAR CurrentAnchor = [As Of Month End (Total NRR)]
+			RETURN
+			    IF (
+			        ISBLANK ( CurrentAnchor ),
+			        BLANK (),
+			        SUMX (
+			            VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			            VAR PY0 = [Total Revenue PY (Total) (R12M As Of)]
+			            VAR PY = MAX ( 0, COALESCE ( PY0, 0 ) )
+			            VAR TotalCY0 = [Total Revenue (Total) (R12M As Of)]
+			            VAR TotalCY = MAX ( 0, COALESCE ( TotalCY0, 0 ) )
+			            VAR StreamCY =
+			                CALCULATE (
+			                    [Revenue (By Stream)],
+			                    DATESINPERIOD ( FYCALENDAR_D[Date], CurrentAnchor, -12, MONTH )
+			                )
+			            RETURN
+			                IF ( PY > 0 && TotalCY > 0, COALESCE ( StreamCY, 0 ), 0 )
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Stream Insights
+		lineageTag: de9c70fd-de32-4451-aa83-83c8f18dd064
+
+	/// Prior-year total-company revenue (R12M As Of) by stream, restricted to retention-base customers (PY total-company R12M revenue > 0). Evaluated over the PY-aligned window based on [As Of Month End (Total NRR)].
+	measure 'Revenue PY (Retention Base Customers) (Total) (R12M As Of) - By Stream' =
+			VAR CurrentAnchor = [As Of Month End (Total NRR)]
+			VAR PriorAnchor = EDATE ( CurrentAnchor, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( CurrentAnchor ),
+			        BLANK (),
+			        SUMX (
+			            VALUES ( CUSTOMERS_D[Master Customer Name] ),
+			            VAR PY0 = [Total Revenue PY (Total) (R12M As Of)]
+			            VAR PY = MAX ( 0, COALESCE ( PY0, 0 ) )
+			            VAR StreamPY =
+			                CALCULATE (
+			                    [Revenue (By Stream)],
+			                    DATESINPERIOD ( FYCALENDAR_D[Date], PriorAnchor, -12, MONTH )
+			                )
+			            RETURN
+			                IF ( PY > 0, COALESCE ( StreamPY, 0 ), 0 )
+			        )
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Stream Insights
+		lineageTag: 81852e50-a111-49bc-8a06-0dd3b92631c0
+
+	/// Change vs PY in total-company revenue (R12M As Of) by stream for retention-base customers: CY stream revenue minus PY stream revenue. Intended to explain which streams drive retention-base growth/decline.
+	measure 'Revenue Δ vs PY (Retention Base Customers) (Total) (R12M As Of) - By Stream' = [Revenue (Retention Base Customers) (Total) (R12M As Of) - By Stream] - [Revenue PY (Retention Base Customers) (Total) (R12M As Of) - By Stream]
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Stream Insights
+		lineageTag: aca85c47-3f00-4357-a124-d954841fc97c
+
+	/// Waterfall step value for total-company NRR breakdown (R12M As Of). Use with 'UI_Waterfall - NRR Breakdown'[Category] on the axis (sorted by ID).
+	measure 'NRR Waterfall Value (Total) (R12M As Of)' =
+			VAR Selection = SELECTEDVALUE ( 'UI_Waterfall - NRR Breakdown'[ID] )
+			VAR BasePY = [Retention Base PY (Total) (R12M As Of)]
+			VAR Churn = [Churn Revenue (Total) (R12M As Of)]
+			VAR Contraction = [Contraction Revenue (Total) (R12M As Of)]
+			VAR Upsell = [Upsell Revenue (Total) (R12M As Of)]
+			VAR Ending = BasePY - Churn - Contraction + Upsell
+			RETURN
+			    SWITCH (
+			        Selection,
+			        1, BasePY,
+			        2, -Churn,
+			        3, -Contraction,
+			        4, Upsell,
+			        5, Ending
+			    )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Waterfall
+		lineageTag: 4e3e2c3e-bff2-438d-922c-9e6a8895ed16
+
+	/// Count of projects active as of the financial as-of month end ([As Of Month End (Financials)]): Start Date <= anchor and End Date blank or >= anchor, and PROJECTS_D[Inactive]=FALSE(). Intended for snapshot comparisons (e.g., PY) and as-of cards.
+	measure 'Active Projects (As Of Month End)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( Anchor ),
+			        BLANK (),
+			        CALCULATE (
+			            COUNTROWS ( PROJECTS_D ),
+			            PROJECTS_D[Inactive] = FALSE (),
+			            KEEPFILTERS ( PROJECTS_D[Start Date] <= Anchor ),
+			            KEEPFILTERS ( ISBLANK ( PROJECTS_D[End Date] ) || PROJECTS_D[End Date] >= Anchor )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Projects\As Of
+		lineageTag: 641b08e7-090b-4786-b270-35bfb952a96c
+
+	/// Count of projects active as of the prior-year financial as-of month end (EDATE([As Of Month End (Financials)],-12)).
+	measure 'Active Projects PY (As Of Month End)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( Anchor, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorPY ),
+			        BLANK (),
+			        CALCULATE (
+			            COUNTROWS ( PROJECTS_D ),
+			            PROJECTS_D[Inactive] = FALSE (),
+			            KEEPFILTERS ( PROJECTS_D[Start Date] <= AnchorPY ),
+			            KEEPFILTERS ( ISBLANK ( PROJECTS_D[End Date] ) || PROJECTS_D[End Date] >= AnchorPY )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Projects\As Of
+		lineageTag: 29326759-ffa4-4902-b6f4-4e3c8bcaa6de
+
+	/// Distinct count of service contracts (Contract Number) active as of the financial as-of month end ([As Of Month End (Financials)]): Start Date <= anchor and End Date blank or >= anchor. Respects Division slicer via TREATAS.
+	measure 'Active Contracts (As Of Month End)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( Anchor ),
+			        BLANK (),
+			        CALCULATE (
+			            DISTINCTCOUNT ( SERVCONTRACTS_D[Contract Number] ),
+			            KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_D[Contract Number] ) ),
+			            KEEPFILTERS ( SERVCONTRACTS_D[Start Date] <= Anchor ),
+			            KEEPFILTERS ( ISBLANK ( SERVCONTRACTS_D[End Date] ) || SERVCONTRACTS_D[End Date] >= Anchor ),
+			            KEEPFILTERS ( TREATAS ( VALUES ( DIVISIONS_D[DivisionCode] ), SERVCONTRACTS_D[Divisions] ) )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Contract\As Of
+		lineageTag: 337fa779-b140-4090-bb8a-4c82d4104994
+
+	/// Distinct count of service contracts (Contract Number) active as of the prior-year financial as-of month end (EDATE([As Of Month End (Financials)],-12)). Respects Division slicer via TREATAS.
+	measure 'Active Contracts PY (As Of Month End)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( Anchor, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorPY ),
+			        BLANK (),
+			        CALCULATE (
+			            DISTINCTCOUNT ( SERVCONTRACTS_D[Contract Number] ),
+			            KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_D[Contract Number] ) ),
+			            KEEPFILTERS ( SERVCONTRACTS_D[Start Date] <= AnchorPY ),
+			            KEEPFILTERS ( ISBLANK ( SERVCONTRACTS_D[End Date] ) || SERVCONTRACTS_D[End Date] >= AnchorPY ),
+			            KEEPFILTERS ( TREATAS ( VALUES ( DIVISIONS_D[DivisionCode] ), SERVCONTRACTS_D[Divisions] ) )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Contract\As Of
+		lineageTag: 910823b4-03ee-4ba6-9325-72bbcae042ec
+
+	/// Distinct count of projects with non-zero project revenue billed in the trailing 12 months ending at [As Of Month End (Financials)]. Uses PROJECTS_Financials_F (project grain = SurrogateProjectID).
+	measure 'Projects w/ Revenue (R12M)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			RETURN
+			    IF (
+			        ISBLANK ( Anchor ),
+			        BLANK (),
+			        CALCULATE (
+			            DISTINCTCOUNT ( PROJECTS_Financials_F[SurrogateProjectID] ),
+			            KEEPFILTERS ( NOT ISBLANK ( PROJECTS_Financials_F[SurrogateProjectID] ) ),
+			            KEEPFILTERS ( PROJECTS_Financials_F[Revenue Amount] <> 0 ),
+			            DATESINPERIOD ( FYCALENDAR_D[Date], Anchor, -12, MONTH )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Projects\Billed Active
+		lineageTag: 698e6f5d-423f-4d0c-8772-5891ccec1de4
+
+	/// Prior-year distinct count of projects with non-zero project revenue billed in the trailing 12 months, aligned to EDATE([As Of Month End (Financials)],-12).
+	measure 'Projects w/ Revenue PY (R12M)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( Anchor, -12 )
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorPY ),
+			        BLANK (),
+			        CALCULATE (
+			            DISTINCTCOUNT ( PROJECTS_Financials_F[SurrogateProjectID] ),
+			            KEEPFILTERS ( NOT ISBLANK ( PROJECTS_Financials_F[SurrogateProjectID] ) ),
+			            KEEPFILTERS ( PROJECTS_Financials_F[Revenue Amount] <> 0 ),
+			            DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Projects\Billed Active
+		lineageTag: 14068cb4-fe24-4758-8a65-eb4a904a5743
+
+	/// Distinct count of service contracts (Contract Number) with non-zero service contract revenue billed in the trailing 12 months ending at [As Of Month End (Financials)]. Uses SERVCONTRACTS_Financials_F to detect billed agreements and maps to contracts via SERVCONTRACTS_D.
+	measure 'Contracts w/ Revenue (R12M)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			VAR AgreementKeysWithRevenue =
+			    CALCULATETABLE (
+			        VALUES ( SERVCONTRACTS_Financials_F[AgreementKey] ),
+			        KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_Financials_F[AgreementKey] ) ),
+			        KEEPFILTERS ( SERVCONTRACTS_Financials_F[Revenue Amount] <> 0 ),
+			        DATESINPERIOD ( FYCALENDAR_D[Date], Anchor, -12, MONTH )
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( Anchor ),
+			        BLANK (),
+			        CALCULATE (
+			            DISTINCTCOUNT ( SERVCONTRACTS_D[Contract Number] ),
+			            KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_D[Contract Number] ) ),
+			            KEEPFILTERS ( TREATAS ( AgreementKeysWithRevenue, SERVCONTRACTS_D[AgreementKey] ) )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Contract\Billed Active
+		lineageTag: 7d166ac5-e49f-4547-8010-16df7fd236d7
+
+	/// Prior-year distinct count of service contracts (Contract Number) with non-zero revenue billed in the trailing 12 months, aligned to EDATE([As Of Month End (Financials)],-12). Uses SERVCONTRACTS_Financials_F to detect billed agreements and maps to contracts via SERVCONTRACTS_D.
+	measure 'Contracts w/ Revenue PY (R12M)' =
+			VAR Anchor = [As Of Month End (Financials)]
+			VAR AnchorPY = EDATE ( Anchor, -12 )
+			VAR AgreementKeysWithRevenue =
+			    CALCULATETABLE (
+			        VALUES ( SERVCONTRACTS_Financials_F[AgreementKey] ),
+			        KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_Financials_F[AgreementKey] ) ),
+			        KEEPFILTERS ( SERVCONTRACTS_Financials_F[Revenue Amount] <> 0 ),
+			        DATESINPERIOD ( FYCALENDAR_D[Date], AnchorPY, -12, MONTH )
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( AnchorPY ),
+			        BLANK (),
+			        CALCULATE (
+			            DISTINCTCOUNT ( SERVCONTRACTS_D[Contract Number] ),
+			            KEEPFILTERS ( NOT ISBLANK ( SERVCONTRACTS_D[Contract Number] ) ),
+			            KEEPFILTERS ( TREATAS ( AgreementKeysWithRevenue, SERVCONTRACTS_D[AgreementKey] ) )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 6. Customer Status\Contract\Billed Active
+		lineageTag: 3a1a6e0e-0282-48c5-b8e8-6fab4f4d97a6
+
+	/// Text indicator showing total-company revenue percent change vs PY for retention base customers (R12M As Of) as arrow + formatted percent.
+	measure 'Total Revenue Trend vs PY % (Retention Base Customers) (Total) (R12M As Of)' =
+			VAR CY = [Total Revenue (Retention Base Customers) (Total) (R12M As Of)]
+			VAR PY = [Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)]
+			VAR DeltaPct = DIVIDE ( CY - PY, PY )
+			VAR Arrow = SWITCH ( TRUE (), DeltaPct > 0, "▲ ", DeltaPct < 0, "▼ ", "■ " )
+			RETURN
+			    IF ( ISBLANK ( DeltaPct ), BLANK (), Arrow & FORMAT ( DeltaPct, "0.0%;-0.0%;0.0%" ) )
+		formatString: @
+		displayFolder: 3. Retention (Total)\R12M As Of\Base\Labels
+		lineageTag: 709bb85f-9105-4cc8-8140-5815519be1ba
+
+	/// Combined downside component for total-company retention: churn revenue plus contraction revenue (R12M As Of). Returns negative value for bridge/waterfall use and BLANK when 0.
+	measure 'Churn + Contraction Revenue (Total) (R12M As Of)' =
+			VAR Downside =
+			    COALESCE ( [Churn Revenue (Total) (R12M As Of)], 0 )
+			        + COALESCE ( [Contraction Revenue (Total) (R12M As Of)], 0 )
+			RETURN
+			    IF ( Downside = 0, BLANK (), -Downside )
+		formatString: $#,0;($#,0);$#,0
+		displayFolder: 3. Retention (Total)\R12M As Of\Components
+		lineageTag: f6f28376-d73c-4ef8-9385-68f79daabdaa
 
 	column _
 		isHidden

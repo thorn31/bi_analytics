@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "391d064f7fbf9ac9bc37",
+  "position": {
+    "x": 1066.1774744027302,
+    "y": 0,
+    "z": 5000,
+    "height": 242.04778156996588,
+    "width": 853.82252559726976,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Gross Revenue Retention % (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Gross Revenue Retention % (Total) (R12M As Of)",
+              "nativeQueryRef": "Gross Revenue Retention % (Total) (R12M As Of)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

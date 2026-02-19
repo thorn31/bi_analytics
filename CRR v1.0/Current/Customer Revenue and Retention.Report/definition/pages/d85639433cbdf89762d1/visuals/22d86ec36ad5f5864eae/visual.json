@@ -385,23 +385,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "71497e6701e5602ec89f",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "UI_Revenue Stream Selector"
-              }
-            },
-            "Property": "Stream"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

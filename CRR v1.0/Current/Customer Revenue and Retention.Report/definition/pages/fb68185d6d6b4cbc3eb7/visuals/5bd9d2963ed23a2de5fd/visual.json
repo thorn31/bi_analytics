@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "5bd9d2963ed23a2de5fd",
   "position": {
-    "x": 1180,
-    "y": 260,
-    "z": 9000,
-    "height": 390,
-    "width": 720,
-    "tabOrder": 9000
+    "x": 1130,
+    "y": 270,
+    "z": 6000,
+    "height": 380,
+    "width": 770,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "columnChart",
@@ -452,5 +452,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5275f2785c24f74d5681",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Key Measures"
+              }
+            },
+            "Property": "Total Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6377896ec6fc972f612d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIVISIONS_D"
+              }
+            },
+            "Property": "Region"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bf81e6a604f54d4d1130",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal Year Label"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

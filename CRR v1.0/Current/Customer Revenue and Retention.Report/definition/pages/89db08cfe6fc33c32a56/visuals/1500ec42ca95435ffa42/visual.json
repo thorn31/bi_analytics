@@ -1,0 +1,308 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "1500ec42ca95435ffa42",
+  "position": {
+    "x": 0,
+    "y": 644.12969283276448,
+    "z": 0,
+    "height": 435.87030716723547,
+    "width": 511.4334470989761,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal End Of Month"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal End Of Month",
+              "nativeQueryRef": "Fiscal End Of Month"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Revenue Retention % (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Revenue Retention % (Total) (R12M As Of)",
+              "nativeQueryRef": "Net Revenue Retention % (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Net Revenue Retention % PY (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Net Revenue Retention % PY (Total) (R12M As Of)",
+              "nativeQueryRef": "Net Revenue Retention % PY (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Gross Revenue Retention % (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Gross Revenue Retention % (Total) (R12M As Of)",
+              "nativeQueryRef": "Gross Revenue Retention % (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Logo Retention % (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Logo Retention % (Total) (R12M As Of)",
+              "nativeQueryRef": "Logo Retention % (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Retention Base PY (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Retention Base PY (Total) (R12M As Of)",
+              "nativeQueryRef": "Retention Base PY (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue (Retention Base Customers) (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue (Retention Base Customers) (Total) (R12M As Of)",
+              "nativeQueryRef": "Total Revenue (Retention Base Customers) (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)",
+              "nativeQueryRef": "Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Churn Revenue (Total) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Churn Revenue (Total) (R12M As Of)",
+              "nativeQueryRef": "Churn Revenue (Total) (R12M As Of)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal End Of Month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "116.83620590016866D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Net Revenue Retention % (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.79867191610572D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Net Revenue Retention % PY (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "115.91124880135723D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Logo Retention % (Total) (R12M As Of)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2e8f98f4dd0e0ee1cbe7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FYCALENDAR_D"
+              }
+            },
+            "Property": "Fiscal End Of Month"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FYCALENDAR_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "Fiscal End Of Month"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -3,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

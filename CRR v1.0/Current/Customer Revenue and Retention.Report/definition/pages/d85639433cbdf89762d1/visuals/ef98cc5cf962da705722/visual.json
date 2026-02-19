@@ -529,20 +529,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "05f1d080f3fe545f164e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CUSTOMERS_D"
-              }
-            },
-            "Property": "Master Customer Name"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

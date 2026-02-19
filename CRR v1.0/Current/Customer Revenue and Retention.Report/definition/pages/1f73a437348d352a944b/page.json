@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "1f73a437348d352a944b",
+  "displayName": "Total Revenue Retention",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "b0ed635b51a977c734a7",
+      "target": "7972954714f926d6d8e3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b0ed635b51a977c734a7",
+      "target": "1db711a8115c30ebd71a",
+      "type": "DataFilter"
+    }
+  ]
+}
