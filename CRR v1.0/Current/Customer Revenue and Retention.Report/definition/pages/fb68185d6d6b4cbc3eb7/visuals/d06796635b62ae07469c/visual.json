@@ -6,7 +6,8 @@
     "y": 0.13474269961735519,
     "z": 0,
     "height": 789.5922197577205,
-    "width": 299.33481152993346
+    "width": 299.33481152993346,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "tableEx",
@@ -273,20 +274,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "fdee7367956c5c4783a7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Key Measures"
-              }
-            },
-            "Property": "Customer Profile Metric Value"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

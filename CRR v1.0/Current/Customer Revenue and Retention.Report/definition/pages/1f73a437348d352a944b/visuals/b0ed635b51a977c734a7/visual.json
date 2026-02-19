@@ -103,8 +103,8 @@
                 }
               },
               "queryRef": "_Key Measures.Total Revenue (Retention Base Customers) (Total) (R12M As Of)",
-              "nativeQueryRef": "Total Revenue",
-              "displayName": "Total Revenue"
+              "nativeQueryRef": "Total Base Revenue",
+              "displayName": "Total Base Revenue"
             },
             {
               "field": {
@@ -118,8 +118,8 @@
                 }
               },
               "queryRef": "_Key Measures.Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)",
-              "nativeQueryRef": "Total Revenue PY",
-              "displayName": "Total Revenue PY"
+              "nativeQueryRef": "Total Base Revenue PY",
+              "displayName": "Total Base Revenue PY"
             },
             {
               "field": {
@@ -159,12 +159,12 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Total Revenue (New Customers) (Total) (R12M As Of)"
+                  "Property": "Churn + Contraction Revenue (Total) (R12M As Of)"
                 }
               },
-              "queryRef": "_Key Measures.Total Revenue (New Customers) (Total) (R12M As Of)",
-              "nativeQueryRef": "New Customer Revenue",
-              "displayName": "New Customer Revenue"
+              "queryRef": "_Key Measures.Churn + Contraction Revenue (Total) (R12M As Of)",
+              "nativeQueryRef": "Churn + Contraction Revenue",
+              "displayName": "Churn + Contraction Revenue"
             },
             {
               "field": {
@@ -174,12 +174,12 @@
                       "Entity": "_Key Measures"
                     }
                   },
-                  "Property": "Churn + Contraction Revenue (Total) (R12M As Of)"
+                  "Property": "Total Revenue (New Customers) (Total) (R12M As Of)"
                 }
               },
-              "queryRef": "_Key Measures.Churn + Contraction Revenue (Total) (R12M As Of)",
-              "nativeQueryRef": "Churn + Contraction Revenue",
-              "displayName": "Churn + Contraction Revenue"
+              "queryRef": "_Key Measures.Total Revenue (New Customers) (Total) (R12M As Of)",
+              "nativeQueryRef": "New Customer Revenue",
+              "displayName": "New Customer Revenue"
             }
           ]
         }
@@ -194,7 +194,7 @@
                     "Entity": "_Key Measures"
                   }
                 },
-                "Property": "Total Revenue (Retention Base Customers) (Total) (R12M As Of)"
+                "Property": "Revenue Δ vs PY (Retention Base Customers) (Total) (R12M As Of) - By Stream"
               }
             },
             "direction": "Descending"
@@ -233,6 +233,48 @@
           },
           "selector": {
             "metadata": "CUSTOMERS_D.Master Customer Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "139.31737502575385D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Churn + Contraction Revenue (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.37542028914044D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107.74207555265272D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Months Since Last Billing"
           }
         }
       ],
@@ -295,6 +337,264 @@
           },
           "selector": {
             "metadata": "_Key Measures.Customer Retention Category (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#5FB3A2'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#D17A73'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Revenue Δ vs PY (Retention Base Customers) (Total) (R12M As Of) - By Stream"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Active Contracts"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Active Projects"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Months Since Last Billing"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Revenue (Retention Base Customers) (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Revenue PY (Retention Base Customers) (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Upsell Revenue (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Churn + Contraction Revenue (Total) (R12M As Of)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Key Measures.Total Revenue (New Customers) (Total) (R12M As Of)"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ]
