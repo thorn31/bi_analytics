@@ -5141,6 +5141,112 @@ table '_Key Measures'
 		displayFolder: 3. Retention (Total)\R12M As Of\Components
 		lineageTag: f6f28376-d73c-4ef8-9385-68f79daabdaa
 
+	/// What-if target for Service Contract logo retention. Uses the disconnected parameter table when selected; otherwise defaults to the current [Logo Retention % (SC) (R12M As Of)].
+	measure 'Target Logo Retention % (SC) (What If)' =
+			VAR SelectedTarget =
+			    SELECTEDVALUE ( 'UI_WhatIf - Target Logo Retention % (SC)'[Target Logo Retention %] )
+			RETURN
+			COALESCE ( SelectedTarget, [Logo Retention % (SC) (R12M As Of)] )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If
+		lineageTag: 86a07530-6c6d-4eb2-bd61-9f6d8dfc4b95
+
+	/// Average PY R12M Service Contract revenue for churned logos (PY>0 and CY=0). Used as a simple what-if assumption (saved logos keep their PY revenue).
+	measure 'Avg PY Revenue per Churned Logo (SC) (R12M As Of)' = DIVIDE ( [Churn Revenue (R12M As Of)], [Logo Churn Count (SC) (R12M As Of)] )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If
+		lineageTag: cf5fd7db-ed70-43db-84d9-b74409e34413
+
+	/// Incremental revenue vs actual for retention-base customers when changing Service Contract logo retention to the selected target. Assumes saved logos retain their PY R12M revenue (avg of churned logos).
+	measure 'Service Contract Revenue Δ (What If vs Actual) (Retention Base Customers) (R12M As Of)' =
+			VAR BaseLogos = [Retention Base Count PY (SC) (R12M As Of)]
+			VAR ActualLogoRetention = [Logo Retention % (SC) (R12M As Of)]
+			VAR TargetLogoRetention = [Target Logo Retention % (SC) (What If)]
+			VAR AvgPYPerChurnLogo = [Avg PY Revenue per Churned Logo (SC) (R12M As Of)]
+			VAR AvoidedChurnLogos = BaseLogos * ( TargetLogoRetention - ActualLogoRetention )
+			VAR DeltaRevenue = AvoidedChurnLogos * AvgPYPerChurnLogo
+			RETURN
+			IF ( BaseLogos > 0, COALESCE ( DeltaRevenue, 0 ) )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If
+		lineageTag: eed4dccf-53bc-4755-9321-6dff39f5f7e0
+
+	/// Projected Service Contract revenue for retention-base customers under the selected target logo retention scenario (actual base revenue + incremental what-if delta).
+	measure 'Service Contract Revenue (What If) (Retention Base Customers) (R12M As Of)' =
+			VAR ActualBaseRevenue = [Service Contract Revenue (Retention Base Customers) (R12M As Of)]
+			VAR DeltaRevenue = [Service Contract Revenue Δ (What If vs Actual) (Retention Base Customers) (R12M As Of)]
+			RETURN
+			IF ( NOT ISBLANK ( ActualBaseRevenue ), ActualBaseRevenue + DeltaRevenue )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If
+		lineageTag: 72a5c6f7-3983-47c3-8634-8a3cd305fd05
+
+	/// What-if target for Service Contract Gross Revenue Retention % (GRR). Uses the disconnected parameter table when selected; otherwise defaults to current [Gross Revenue Retention % (R12M As Of)].
+	measure 'Target GRR % (SC) (What If)' =
+			VAR SelectedTarget =
+			    SELECTEDVALUE ( 'UI_WhatIf - Target GRR % (SC)'[Target GRR %] )
+			RETURN
+			COALESCE ( SelectedTarget, [Gross Revenue Retention % (R12M As Of)] )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If\GRR
+		lineageTag: c1ebea2f-1c9b-424f-8a5f-5f472b273b84
+
+	/// Actual downside revenue for Service Contract GRR: churn revenue + contraction revenue (R12M As Of). Positive value represents lost revenue vs PY base.
+	measure 'Downside Revenue (SC) (R12M As Of)' = [Churn Revenue (R12M As Of)] + [Contraction Revenue (R12M As Of)]
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If\GRR
+		lineageTag: 66303d24-2808-470f-94de-3aa4c569b57d
+
+	/// Implied downside revenue for Service Contract GRR under the selected target: BasePY * (1 - TargetGRR).
+	measure 'Downside Revenue (What If) (SC) (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (R12M As Of)]
+			VAR TargetGRR = [Target GRR % (SC) (What If)]
+			VAR Downside = BasePY * ( 1 - TargetGRR )
+			RETURN
+			IF ( BasePY > 0, MAX ( 0, Downside ) )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If\GRR
+		lineageTag: 55e6cfb8-8a6f-413f-8267-83461dea19dc
+
+	/// Actual gross retained revenue for Service Contracts (R12M As Of): BasePY minus downside (churn + contraction).
+	measure 'Gross Retained Revenue (SC) (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (R12M As Of)]
+			RETURN
+			IF ( BasePY > 0, BasePY - [Downside Revenue (SC) (R12M As Of)] )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If\GRR
+		lineageTag: 8e34125b-5ddd-4ec4-9609-1b8eb94e6ff3
+
+	/// Projected gross retained revenue for Service Contracts under the selected target GRR: BasePY * TargetGRR (R12M As Of).
+	measure 'Gross Retained Revenue (What If) (SC) (R12M As Of)' =
+			VAR BasePY = [Retention Base PY (R12M As Of)]
+			VAR TargetGRR = [Target GRR % (SC) (What If)]
+			RETURN
+			IF ( BasePY > 0, BasePY * TargetGRR )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If\GRR
+		lineageTag: 809b4c12-7d7c-490f-97ec-e7c3271ec57f
+
+	/// Incremental gross retained revenue vs actual when setting Service Contract GRR to the selected target (R12M As Of). Positive means better retention.
+	measure 'Gross Retained Revenue Δ (What If vs Actual) (SC) (R12M As Of)' =
+			VAR Actual = [Gross Retained Revenue (SC) (R12M As Of)]
+			VAR WhatIf = [Gross Retained Revenue (What If) (SC) (R12M As Of)]
+			RETURN
+			IF ( NOT ISBLANK ( Actual ) && NOT ISBLANK ( WhatIf ), WhatIf - Actual )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If\GRR
+		lineageTag: e0e1a800-2bb4-4610-928b-29171c2dd102
+
+	/// Reduction in downside dollars (churn+contraction) implied by the target GRR scenario vs actual (R12M As Of). Positive means less downside.
+	measure 'Downside $ Saved (What If vs Actual) (SC) (R12M As Of)' =
+			VAR ActualDownside = [Downside Revenue (SC) (R12M As Of)]
+			VAR WhatIfDownside = [Downside Revenue (What If) (SC) (R12M As Of)]
+			RETURN
+			IF ( NOT ISBLANK ( ActualDownside ) && NOT ISBLANK ( WhatIfDownside ), ActualDownside - WhatIfDownside )
+		formatString: $#,0.00;($#,0.00);$#,0.00
+		displayFolder: 3. Retention (Service Contracts)\R12M As Of\What If\GRR
+		lineageTag: 696ca09b-776d-42ab-81fd-e7bab72b1e19
+
 	column _
 		isHidden
 		lineageTag: 51e1d78c-186d-4eac-8cc2-14bfc214dd1c

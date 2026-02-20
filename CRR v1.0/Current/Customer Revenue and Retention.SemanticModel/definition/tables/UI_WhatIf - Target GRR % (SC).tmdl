@@ -1,0 +1,17 @@
+/// Disconnected what-if parameter table for target Gross Revenue Retention % (Service Contracts).
+table 'UI_WhatIf - Target GRR % (SC)'
+	lineageTag: b56296e4-a705-4f0c-8b8e-884f052903d2
+
+	column 'Target GRR %'
+		lineageTag: b0fb5eb8-ef28-4e64-950d-4a44378e3fb4
+		isNameInferred
+		sourceColumn: [Target GRR %]
+
+	partition 'UI_WhatIf - Target GRR % (SC)' = calculated
+		mode: import
+		source =
+				SELECTCOLUMNS(
+				    GENERATESERIES(70, 100, 1),
+				    "Target GRR %", DIVIDE ( [Value], 100 )
+				)
+

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "9568f02d5d7402ec849b",
+  "position": {
+    "x": 0,
+    "y": 228.97108271687964,
+    "z": 2,
+    "height": 490.65232010759922,
+    "width": 1117.3100201748489
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FYCALENDAR_D"
+                    }
+                  },
+                  "Property": "Fiscal End Of Month"
+                }
+              },
+              "queryRef": "FYCALENDAR_D.Fiscal End Of Month",
+              "nativeQueryRef": "Fiscal End Of Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue (Retention Base Customers) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue (Retention Base Customers) (R12M As Of)",
+              "nativeQueryRef": "Service Contract Revenue (Retention Base Customers) (R12M As Of)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Key Measures"
+                    }
+                  },
+                  "Property": "Service Contract Revenue (What If) (Retention Base Customers) (R12M As Of)"
+                }
+              },
+              "queryRef": "_Key Measures.Service Contract Revenue (What If) (Retention Base Customers) (R12M As Of)",
+              "nativeQueryRef": "Service Contract Revenue (What If) (Retention Base Customers) (R12M As Of)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FYCALENDAR_D"
+                  }
+                },
+                "Property": "Fiscal End Of Month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
