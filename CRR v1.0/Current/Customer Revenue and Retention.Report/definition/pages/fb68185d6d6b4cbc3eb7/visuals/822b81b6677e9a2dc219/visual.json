@@ -213,7 +213,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "'center'"
                 }
               }
             }
@@ -1009,6 +1009,22 @@
             "metadata": "_Key Measures.Net Revenue Retention % (R12M As Of)"
           }
         }
+      ],
+      "shapeCustomRectangle": [
+        {
+          "properties": {
+            "rectangleRoundedCurve": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -1138,6 +1154,17 @@
           },
           "selector": {
             "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
           }
         }
       ],
